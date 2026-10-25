@@ -8,7 +8,9 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
-当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)，Sprint 2 选择自定义多歌单作为需求方向。功能尚未实现或验收；v0.1 产品规则仍供团队审阅。
+当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单初版已在本地 `feat/custom-playlists` 实现，文档基础提交为 `2372cac`。功能源码提交 `6ec4869` 的最终本地重建成功，29 个单元测试通过；设备验收、人工 Review 和 AC 签收均为 Pending。实际实现与验证结果见[实施记录](development/custom-playlists-implementation.md)。
+
+GitHub 集成仍返回 403；本功能的远端分支、正式 Story Issue 和 PR 尚未建立。本地代码与文档的存在不代表已经推送或发布。
 
 ## 文档入口
 
@@ -19,6 +21,8 @@
 | [Release 1](releases/release-1.md) | 两个 Sprint 的交付和审阅证据索引 |
 | [Thinking](thinking/README.md) | 调研、选择理由、未决问题 |
 | [多歌单测试计划](testing/custom-playlists.md) | AC 对应的操作、期望及实际执行结果 |
+| [实现与验证记录](development/custom-playlists-implementation.md) | 本地实现范围、实际自动检查与待执行验收 |
+| [Coding-agent 指南](development/custom-playlists-agent-guide.md) | 接手步骤、实施约定与可复制提示词 |
 | [User Story 模板](../.github/ISSUE_TEMPLATE/user_story.yml) | 在同一个 Issue 填写 Story、AC、范围与验证计划 |
 | [PR 模板](../.github/PULL_REQUEST_TEMPLATE.md) | 说明修改、关联需求、记录审阅与验证 |
 
@@ -37,8 +41,8 @@ Story 与 AC 是同一需求的两个小节，不分别开两个 Issue。需要�
 
 ## 从需求到合并
 
-1. 在本仓库建立 Story Issue，讨论并确定范围及 AC。暂时没有模板时可用 Blank Issue。
-2. 从最新 `main` 建功能分支，如 `feat/custom-playlists`。该名字是计划，不代表已经存在。
+1. 在本仓库建立 Story Issue，记录同一需求的 Story 与 AC。当前远端授权受阻，已按用户要求基于唯一需求草稿进行本地实现；授权恢复后再发布正式 Issue 并更新链接，不猜编号。
+2. 新功能从合适的最新基线建功能分支；本轮 `feat/custom-playlists` 已在本地存在，接手时检查当前分支和 diff，保留已有改动。
 3. 做有意义的提交并推送分支；在本仓库创建目标为 `main` 的 PR。
 4. 在 PR 中链接 Story Issue，并填写 `AC ID -> 验证方法 -> 结果 -> 证据`。继续向同一分支推送可更新同一个 PR。
 5. 由队友进行真实审阅，记录并处理反馈；按实际情况运行构建和测试。
@@ -64,7 +68,7 @@ Story 与 AC 是同一需求的两个小节，不分别开两个 Issue。需要�
 
 使用真实日期、实际提交 SHA、执行环境、操作/命令、预期与实际结果，以及日志或录屏链接。`Pending` 表示尚未验证，不能等同于失败或通过。协作者提交的历史日志注明来源；构建成功、APP 能运行和某条功能 AC 通过分别记录。补整理历史时注明整理日期，不补造早先的会议、审阅、测试或提交。
 
-AI 可以协助调研、起草和实现；团队需要检查输出并进行真实审阅与测试。本轮只准备项目文档和模板，没有修改 APP 功能代码或执行 Android 测试。
+本轮已有 coding agents 完成初版数据、UI、播放与扫描集成，并完成最终本地构建与 29 个单元测试。AI 审查、单元测试、设备验收和协作者在 GitHub 上的真实 Review 分别记录；人工审阅与 AC 签收仍待完成。最新命令、被测版本、结果和限制统一见[实施记录](development/custom-playlists-implementation.md)。
 
 ## 参考
 

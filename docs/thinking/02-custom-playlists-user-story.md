@@ -2,15 +2,16 @@
 
 ## 文档状态与维护方式
 
-- 版本：**v0.1 讨论稿**，2026-10-25。
-- **GitHub Issue 尚未建立。** 本文件是正式 Issue 发布前唯一的需求草稿；以下细则尚未由全队确认，也不表示功能已实现或通过验收。
+- 版本：**v0.1，本地初版已实现，待验收**，2026-10-25。
+- **GitHub Issue 尚未建立。** 本文件仍是正式 Issue 发布前唯一的需求正文。已按用户要求在本地 `feat/custom-playlists` 实施以下规则；GitHub 集成 403 阻断远端发布，正式 Story Issue、远端功能分支与 PR 尚未建立。
+- 文档基础提交为 `2372cac`，功能源码提交为 `6ec4869`；最终本地构建与 29 个单元测试已通过。设备验收与人工 Review 尚待完成，AC1–AC9 均保留未签收状态；实际结果见[实施记录](../development/custom-playlists-implementation.md)。
 - 建立 Issue 时，使用本文件标题，并复制下方英文正文。成功建立后，将本文件替换为正式 Issue 的链接与简短状态说明；之后只在该 Issue 维护需求和 AC，避免两处需求不一致。
 - 背景依据：[基础功能调研](01-basic-feature-research.md)。当前已有 Favorites 和播放队列；本次新增多个独立、可命名、可保存的歌单。
 - 验收方法见[自定义多歌单手工验收](../testing/custom-playlists.md)。其中结果均为 Pending，不是测试完成记录。
 
-## 本稿采用的默认规则
+## 本轮采用的产品规则
 
-以下规则用于让草稿和测试计划可以讨论、可以执行，**均是待确认的 v0.1 提议**：
+以下 v0.1 规则已用于本地初版实现，仍需通过实际验收与同伴审阅确认交付结果：
 
 1. 创建与改名时先去除名称首尾空白；结果不能为空。不同歌单的名称不分大小写唯一；改名时排除当前歌单本身，因此保留自己的原名或只改变自身名称大小写是合法的。
 2. 同一曲目可以属于不同歌单；同一歌单内重复添加该曲目不会产生第二个条目，并给出明确反馈。
@@ -22,7 +23,7 @@
 
 ### Status
 
-Proposed scope, v0.1. The rules below are discussion defaults pending team agreement. All acceptance criteria are pending; this draft does not claim that the feature has been implemented or tested.
+Scope v0.1 has an initial local implementation on `feat/custom-playlists`, following documentation baseline `2372cac`. The GitHub integration still returns 403, so the remote feature branch, Story Issue, and PR have not been created. Final local unit tests (29) and the debug APK build passed for feature commit `6ec4869`; device acceptance and human review remain pending. All acceptance criteria below remain unchecked until supported by the required verification. See the implementation record for actual results and limitations.
 
 ### User Story
 
@@ -52,14 +53,14 @@ Manual reordering, cloud synchronization, playlist import/export, and AI feature
 - [ ] **AC8 — Handle empty playlists:** An empty playlist displays a clear empty state, and its Play action is disabled.
 - [ ] **AC9 — Handle unavailable files:** After a library refresh, playlist entries whose audio files are no longer available remain visible and are marked as Unavailable. Playlist playback skips these entries. If no playable tracks remain, the app displays an explanation and does not attempt to start playlist playback.
 
-### Implementation Tasks
+### Implementation Tasks and Status
 
-- [ ] Implement playlist identity, track membership, and local persistence.
-- [ ] Add playlist list/detail views and create, rename, add, remove, and delete interactions.
-- [ ] Integrate ordered playback and unavailable-file handling.
-- [ ] Add relevant automated checks, run the manual acceptance plan, and record evidence in the implementation PR.
+- Playlist identity, membership, and persistence: implemented locally and covered by the local unit-test run; device acceptance pending.
+- Playlist list/detail views and editing interactions: initial implementation available locally; device acceptance pending.
+- Ordered playback, library refresh, and unavailable-file handling: integrated locally; device playback/regression checks pending.
+- Verification: the final local run passed 29 unit tests and built the debug APK; the device acceptance plan remains to be completed. A real PR and human review are still pending.
 
-These are engineering tasks, not replacements for the acceptance criteria above.
+These engineering status notes do not replace or sign off the acceptance criteria above.
 
 ### Verification Plan
 
@@ -69,9 +70,14 @@ Check persistence of additions, renames, track removals, and playlist deletions 
 
 Record the tested commit, device and Android version, steps, expected and actual results, and supporting evidence in the implementation PR. All acceptance criteria remain unchecked until supported by actual verification.
 
-### Open Decisions Before Implementation
+### Implementation Decisions for This Iteration
 
-- Confirm the v0.1 rules for names, duplicates, insertion order, and unavailable entries with the team.
-- Decide how starting a playlist interacts with an existing playback queue and the app's shuffle/repeat controls. AC6 specifies the behavior when ordered playback is selected.
-- Decide whether editing a playlist changes an already-running playback queue. The initial edit tests use a stopped player so this unresolved behavior does not produce ambiguous results.
-- Choose a track identity and rescan association strategy, together with a local persistence approach. These are implementation decisions, not claims that a particular storage solution has already been selected.
+- Playlists have UUID identities. Data is serialized with Moshi under the independent SharedPreferences key `custom_playlists_v1`; existing Favorites and Queue data are preserved.
+- Track resolution uses MediaStore ID with conservative `displayName` and `duration` validation. Unmatched entries retain their snapshots as Unavailable instead of being rebound by title or removed.
+- Resolution uses the raw, complete result of a successful library scan, before UI hiding or deduplication. Adding tracks uses the currently visible library. Permission errors and failed scans are not treated as successful empty scans; a genuinely empty library still permits playlist management.
+- Starting playlist playback clears the old temporary queue and creates an independent ordered snapshot, starting from the beginning of the first available track. AC6 specifies behavior in ordered playback mode.
+- Editing a saved playlist leaves the active playback snapshot unchanged. The next Play action uses the updated saved content.
+- Playback completion follows the existing `continueOnEnd` / `onListEnded` preference and does not return to the cleared temporary queue.
+- Across process restarts, only the existing last-track/position restoration may apply; restoring the full active playlist queue is outside this iteration. AC7 covers saved playlist data.
+
+Further changes to these decisions should be recorded against this requirement and checked for their impact on the tests. Device behavior and acceptance sign-off remain pending.

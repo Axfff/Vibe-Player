@@ -3,11 +3,12 @@
 This is the team's course repository, based on [Music Player GO](https://github.com/enricocid/Music-Player-GO). Upstream attribution and licensing are retained below.
 
 - [Course workflow and documentation](docs/README.md)
-- [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 plan](docs/sprints/sprint-2.md)
+- [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
 - [Feature research and decisions](docs/thinking/README.md)
+- [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
-The current feature under specification is **multiple named local playlists**. Requirements, implementation progress, and verification are tracked separately in the linked course records. The badges and download links in the upstream documentation below refer to the original application, not a verified course release.
+An initial implementation of **multiple named local playlists** is available locally on `feat/custom-playlists`, following documentation baseline `2372cac`. Final local unit tests (29) and debug APK build passed for feature commit `6ec4869`; device acceptance and human review remain pending. The implementation record contains the evidence and limitations. GitHub integration still returns 403, so the remote feature branch, Story Issue, and PR have not been created. The badges and download links in the upstream documentation below refer to the original application, not a verified course release.
 
 ---
 
