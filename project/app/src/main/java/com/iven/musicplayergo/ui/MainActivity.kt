@@ -44,6 +44,7 @@ import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.player.MediaPlayerInterface
 import com.iven.musicplayergo.player.PlayerService
+import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
 import com.iven.musicplayergo.preferences.SettingsFragment
 import com.iven.musicplayergo.utils.*
 
@@ -78,6 +79,9 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     private var sRevealAnimationRunning = false
 
     private var mTabToRestore = -1
+    private var isLibraryUiInitialized = false
+    private var isLibraryObserved = false
+    private var pendingPlaylist: List<Music>? = null
 
     // Queue dialog
     private var mQueueDialog: RecyclerSheet? = null
@@ -118,8 +122,17 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             mMediaPlayerHolder.mediaPlayerInterface = mMediaPlayerInterface
 
             // load music and setup UI
-            mMusicViewModel.deviceMusic.observe(this@MainActivity) { returnedMusic ->
-                finishSetup(returnedMusic)
+            if (!isLibraryObserved) {
+                isLibraryObserved = true
+                mMusicViewModel.deviceMusic.observe(this@MainActivity) { returnedMusic ->
+                    finishSetup(returnedMusic)
+                    if (!returnedMusic.isNullOrEmpty()) {
+                        pendingPlaylist?.let { songs ->
+                            pendingPlaylist = null
+                            onPlaylistSelected(songs)
+                        }
+                    }
+                }
             }
             mMusicViewModel.getDeviceMusic()
         }
@@ -180,11 +193,17 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     override fun onDestroy() {
         super.onDestroy()
         equalizerLauncher.unregister()
-        mMusicViewModel.cancel()
-        if (!mMediaPlayerHolder.isPlaying && ::mPlayerService.isInitialized && mPlayerService.isRunning && !mMediaPlayerHolder.isSongFromPrefs) {
+        // AndroidViewModel owns its job; rotation keeps it alive for the recreated activity.
+        if (!isChangingConfigurations && !mMediaPlayerHolder.isPlaying &&
+            ::mPlayerService.isInitialized && mPlayerService.isRunning &&
+            !mMediaPlayerHolder.isSongFromPrefs) {
             ServiceCompat.stopForeground(mPlayerService, ServiceCompat.STOP_FOREGROUND_REMOVE)
             stopService(mBindingIntent)
-            if (sBound) unbindService(connection)
+        }
+        // Release this Activity's binding even when a started service keeps the snapshot alive.
+        if (sBound) {
+            unbindService(connection)
+            sBound = false
         }
     }
 
@@ -277,6 +296,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         mPlayerControlsPanelBinding = PlayerControlsPanelBinding.bind(mMainActivityBinding.root)
 
         setContentView(mMainActivityBinding.root)
+        mPlayerControlsPanelBinding.playlistsButton.setOnClickListener { openPlaylists() }
 
         if (sLaunchedByTile) {
             mMainActivityBinding.loadingProgressBar.handleViewVisibility(false)
@@ -310,11 +330,11 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             duration = 250
             alpha(1.0F)
             withEndAction {
-                if (sAllowCommit) {
-                    supportFragmentManager.addFragment(
-                        ErrorFragment.newInstance(errorType),
-                        GoConstants.ERROR_FRAGMENT_TAG
-                    )
+                if (sAllowCommit && !supportFragmentManager.isStateSaved &&
+                    supportFragmentManager.findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG) == null) {
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.container, ErrorFragment.newInstance(errorType), GoConstants.ERROR_FRAGMENT_TAG)
+                        .commit()
                 }
             }
         }
@@ -324,6 +344,16 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         if (!music.isNullOrEmpty()) {
             mMainActivityBinding.loadingProgressBar.handleViewVisibility(show = false)
 
+            supportFragmentManager.findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG)?.let {
+                if (!supportFragmentManager.isStateSaved) {
+                    supportFragmentManager.beginTransaction().remove(it).commitNow()
+                }
+            }
+            mPlayerControlsPanelBinding.playerView.handleViewVisibility(show = true)
+            mMainActivityBinding.viewPager2.handleViewVisibility(show = true)
+            // Refreshing the library must not rebuild navigation or restore old playback.
+            if (isLibraryUiInitialized) return
+
             // Be sure that prefs are initialized
             GoPreferences.initPrefs(this)
 
@@ -331,6 +361,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
 
                 initMediaButtons()
                 initViewPager()
+                isLibraryUiInitialized = true
 
                 synchronized(handleRestore()) {
                     mMainActivityBinding.mainView.animate().run {
@@ -343,7 +374,19 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             }
             return
         }
-        notifyError(GoConstants.TAG_NO_MUSIC)
+        // The error screen has its own Playlists action, including when every audio file
+        // has disappeared. Do not leave stale, previously populated library rows clickable.
+        notifyError(if (mMusicViewModel.playlistLibraryState.value?.refreshFailed == true) {
+            GoConstants.TAG_SD_NOT_READY
+        } else {
+            GoConstants.TAG_NO_MUSIC
+        })
+    }
+
+    fun openPlaylists() {
+        if (supportFragmentManager.isStateSaved ||
+            supportFragmentManager.findFragmentByTag("custom_playlists") != null) return
+        PlaylistsDialogFragment().show(supportFragmentManager, "custom_playlists")
     }
 
     // Handle restoring: handle intent data, if any, or restore playback
@@ -627,7 +670,8 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         // If we are playing and the activity was restarted
         // update the controls panel
         with(mMediaPlayerHolder) {
-            if (isMediaPlayer && isPlaying) {
+            if (isMediaPlayer && (isPlaying || (isPlaylistPlayback && isCurrentSong))) {
+                // A paused playlist still has its in-memory snapshot after activity rotation.
                 onRestartSeekBarCallback()
                 updatePlayingInfo(restore = true)
                 return
@@ -649,6 +693,21 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             }
 
             song?.let { restoredSong ->
+
+                if (restoredSong.launchedBy == MediaPlayerHolder.PLAYLIST_SOURCE) {
+                    // The saved playlist is durable; the running snapshot is intentionally
+                    // session-only. Resume the last track rather than guessing its old album.
+                    queueSongs.clear()
+                    setQueueEnabled(enabled = false, canSkip = false)
+                    mGoPreferences.queue = null
+                    mGoPreferences.isQueue = null
+                    isPlay = false
+                    updateCurrentSong(restoredSong, listOf(restoredSong), MediaPlayerHolder.PLAYLIST_SOURCE)
+                    preparePlayback(restoredSong)
+                    updatePlayingInfo(restore = false)
+                    mPlayerControlsPanelBinding.songProgress.setProgressCompat(restoredSong.startFrom, true)
+                    return
+                }
 
                 val sorting = restoredSong.findRestoreSorting(restoredSong.launchedBy)
                 val songs = restoredSong.findRestoreSongs(sorting, mMusicViewModel)
@@ -722,9 +781,15 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         val selectedSong = (mMediaPlayerHolder.currentSongFM ?: mMediaPlayerHolder.currentSong)
         return when (mMediaPlayerHolder.launchedBy) {
             GoConstants.FOLDER_VIEW -> selectedSong?.relativePath
-            GoConstants.ARTIST_VIEW -> selectedSong?.artist
+            GoConstants.ARTIST_VIEW, MediaPlayerHolder.PLAYLIST_SOURCE -> selectedSong?.artist
             else -> selectedSong?.album
         }
+    }
+
+    private fun getDetailsSource() = if (mMediaPlayerHolder.isPlaylistPlayback) {
+        GoConstants.ARTIST_VIEW
+    } else {
+        mMediaPlayerHolder.launchedBy
     }
 
     override fun onOpenPlayingArtistAlbum() {
@@ -756,7 +821,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             }
             openDetailsFragment(
                 selectedArtistOrFolder,
-                mMediaPlayerHolder.launchedBy,
+                getDetailsSource(),
                 mMediaPlayerHolder.currentSong?.id
             )
         }
@@ -779,7 +844,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         with(getSongSource()) {
             openDetailsFragment(
                 this,
-                mMediaPlayerHolder.launchedBy,
+                getDetailsSource(),
                 mMediaPlayerHolder.currentSong?.id
             )
         }
@@ -798,6 +863,40 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             startService(mBindingIntent)
         }
         mMediaPlayerHolder.initMediaPlayer(song, forceReset = false)
+    }
+
+    override fun onPlaylistSelected(songs: List<Music>) {
+        val snapshot = songs.filter { it.id != null }
+            .distinctBy { it.id to it.albumId }
+            .map { it.copy(startFrom = 0, launchedBy = MediaPlayerHolder.PLAYLIST_SOURCE) }
+        if (snapshot.isEmpty()) {
+            Toast.makeText(this, R.string.playlist_playback_unavailable, Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (!sBound || !::mPlayerService.isInitialized) {
+            pendingPlaylist = snapshot
+            if (!Permissions.hasToAskForReadStoragePermission(this)) doBindService()
+            return
+        }
+
+        mQueueDialog?.dismissAllowingStateLoss()
+        mQueueDialog = null
+        with(mMediaPlayerHolder) {
+            // These lists are session state, never the saved playlist's mutable membership.
+            queueSongs = mutableListOf()
+            setQueueEnabled(enabled = false, canSkip = false)
+            mGoPreferences.queue = null
+            mGoPreferences.isQueue = null
+            mGoPreferences.hasCompletedPlayback = false
+            currentSongFM = null
+            isSongFromPrefs = false
+            isPlay = true
+            isRepeat1X = false
+            isLooping = false
+            updateCurrentSong(snapshot.first(), snapshot.toList(), MediaPlayerHolder.PLAYLIST_SOURCE)
+            mGoPreferences.latestPlayedSong = snapshot.first()
+            preparePlayback(snapshot.first())
+        }
     }
 
     override fun onSongSelected(song: Music?, songs: List<Music>?, songLaunchedBy: String) {
@@ -949,6 +1048,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     }
 
     override fun onUpdatePlayingAlbumSongs(songs: List<Music>?) {
+        if (mMediaPlayerHolder.isPlaylistPlayback) return
         mMediaPlayerHolder.currentSong?.run {
             updatePlayingSongTitle(this)
         }

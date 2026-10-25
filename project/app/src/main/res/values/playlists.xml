@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playlist_title">Playlists</string>
+    <string name="playlist_back">Back to playlists</string>
+    <string name="playlist_close">Close playlists</string>
+    <string name="playlist_create">New playlist</string>
+    <string name="playlist_name">Playlist name</string>
+    <string name="playlist_save">Save</string>
+    <string name="playlist_play">Play</string>
+    <string name="playlist_add_song">Add songs</string>
+    <string name="playlist_add">Add</string>
+    <string name="playlist_remove">Remove</string>
+    <string name="playlist_refresh">Refresh</string>
+    <string name="playlist_rename">Rename</string>
+    <string name="playlist_delete">Delete</string>
+    <string name="playlist_done">Done</string>
+    <string name="playlist_collection_hint">Your saved collections, kept on this device.</string>
+    <string name="playlist_order_hint">Tracks play in the order you add them. Changes apply the next time you press Play.</string>
+    <string name="playlist_no_playlists">No playlists yet. Create a playlist to collect songs for a mood or activity.</string>
+    <string name="playlist_no_tracks">This playlist is empty. Add songs from your local library to get started.</string>
+    <string name="playlist_no_playable_tracks">No playable tracks are available. Refresh your library after restoring the audio files, or add other songs.</string>
+    <string name="playlist_loading">Loading playlists…</string>
+    <string name="playlist_library_loading">Checking your music library…</string>
+    <string name="playlist_library_unknown">Refresh your music library to check which tracks are available.</string>
+    <string name="playlist_library_failure">Could not refresh your music library. Check music access and try Refresh. Saved playlist entries are kept.</string>
+    <string name="playlist_unavailable">Unavailable</string>
+    <string name="playlist_availability_unknown">Availability not checked</string>
+    <string name="playlist_saving">Saving…</string>
+    <string name="playlist_no_visible_songs">No songs are visible in your library. Add local music or check your hidden items, then Refresh.</string>
+    <string name="playlist_search_songs">Search songs or artists</string>
+    <string name="playlist_no_search_results">No songs match your search.</string>
+    <string name="playlist_picker_hint">Tap Add for each song. Songs are appended in the order you add them.</string>
+    <string name="playlist_in_playlist">Already in this playlist</string>
+    <string name="playlist_add_to">Add songs to %1$s</string>
+    <string name="playlist_add_description">Add %1$s to this playlist</string>
+    <string name="playlist_remove_description">Remove %1$s from this playlist</string>
+    <string name="playlist_position_title">%1$d. %2$s</string>
+    <string name="playlist_unknown_title">Untitled track</string>
+    <string name="playlist_unknown_artist">Unknown artist</string>
+    <string name="playlist_created">Playlist created</string>
+    <string name="playlist_renamed">Playlist renamed</string>
+    <string name="playlist_deleted">Playlist deleted</string>
+    <string name="playlist_track_added">Added %1$s</string>
+    <string name="playlist_track_removed">Removed from this playlist</string>
+    <string name="playlist_delete_title">Delete playlist?</string>
+    <string name="playlist_delete_message">Delete “%1$s”? Your audio files and other playlists will be kept.</string>
+    <string name="playlist_error_empty_name">Enter a name. A name cannot contain only spaces.</string>
+    <string name="playlist_error_duplicate_name">Another playlist already has that name. Names are not case-sensitive.</string>
+    <string name="playlist_error_not_found">This playlist is no longer available. Refresh the playlist list.</string>
+    <string name="playlist_error_duplicate_track">This song is already in the playlist. Its position has not changed.</string>
+    <string name="playlist_error_invalid_track">This song cannot be added. Refresh your music library and try again.</string>
+    <string name="playlist_error_track_not_found">This song is no longer in the playlist. Refresh the playlist list.</string>
+    <string name="playlist_error_read">Could not read saved playlists. Try Refresh. No saved data has been replaced.</string>
+    <string name="playlist_error_write">Could not save this change. Your previous playlists have been kept. Please try again.</string>
+    <string name="playlist_error_unknown">The operation could not be completed. Please try again.</string>
+    <string name="playlist_error_playback">Playback is not available right now. Close playlists and try again.</string>
+    <plurals name="playlist_track_count">
+        <item quantity="one">%d song</item>
+        <item quantity="other">%d songs</item>
+    </plurals>
+    <plurals name="playlist_unavailable_count">
+        <item quantity="one">%d unavailable song will be skipped.</item>
+        <item quantity="other">%d unavailable songs will be skipped.</item>
+    </plurals>
+</resources>

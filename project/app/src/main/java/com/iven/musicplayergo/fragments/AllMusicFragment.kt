@@ -82,12 +82,25 @@ class AllMusicFragment : Fragment(), SearchView.OnQueryTextListener {
         mMusicViewModel =
             ViewModelProvider(requireActivity())[MusicViewModel::class.java].apply {
                 deviceMusic.observe(viewLifecycleOwner) { returnedMusic ->
-                    if (!returnedMusic.isNullOrEmpty()) {
+                    if (returnedMusic != null) {
                         mAllMusic = Lists.getSortedMusicListForAllMusic(
                             mSorting,
                             mMusicViewModel.deviceMusicFiltered
-                        )
-                        finishSetup()
+                        ).orEmpty()
+                        if (_allMusicFragmentBinding?.allMusicRv?.adapter == null) {
+                            finishSetup()
+                        } else {
+                            val search = _allMusicFragmentBinding?.searchToolbar?.menu
+                                ?.findItem(R.id.action_search)?.actionView as? SearchView
+                            if (!search?.query.isNullOrEmpty()) {
+                                mAllMusic = Lists.processQueryForMusic(search?.query.toString(), mAllMusic).orEmpty()
+                            }
+                            setMusicDataSource(mAllMusic)
+                            _allMusicFragmentBinding?.shuffleFab?.run {
+                                text = mAllMusic.orEmpty().size.toString()
+                                isEnabled = !mAllMusic.isNullOrEmpty()
+                            }
+                        }
                     }
                 }
             }
@@ -110,6 +123,7 @@ class AllMusicFragment : Fragment(), SearchView.OnQueryTextListener {
             FastScrollerBuilder(allMusicRv).useMd2Style().build()
 
             shuffleFab.text = mAllMusic?.size.toString()
+            shuffleFab.isEnabled = !mAllMusic.isNullOrEmpty()
             val fabColor = ColorUtils.blendARGB(
                 Theming.resolveColorAttr(requireContext(), R.attr.toolbar_bg),
                 Theming.resolveThemeColor(resources),
@@ -125,6 +139,7 @@ class AllMusicFragment : Fragment(), SearchView.OnQueryTextListener {
 
             searchToolbar.let { stb ->
 
+                stb.menu.clear()
                 stb.inflateMenu(R.menu.menu_music_search)
                 stb.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_sort)
                 stb.setNavigationOnClickListener {
