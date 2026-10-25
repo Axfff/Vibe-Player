@@ -1,50 +1,49 @@
-# PR draft — Add custom local playlists
+# PR draft — Add persistent custom playlists and preserve playback on rebind
 
-Status: local draft only; no remote PR has been created. Replace the related-Issue and evidence fields with real links before publishing.
+Local PR preparation. Target: `feat/custom-playlists` → `main`. Publish as **Draft** while device acceptance and teammate review are pending.
 
 ## Problem
 
-Listeners need multiple named collections of local music for different activities. The existing Favorites and temporary Queue do not provide independent, persistently saved playlists with their own membership and order.
+Listeners need several named collections of local music, each retaining its membership and order after an app restart. Favorites and the temporary Queue currently serve different playback needs.
 
 ## Changes and resulting behavior
 
-- Add playlist list/detail screens with create, rename, delete, search-and-add, and remove actions.
-- Validate trimmed, non-empty, case-insensitive unique names; preserve per-playlist insertion order and prevent duplicate membership.
-- Persist playlist data separately from existing preferences using Moshi and a dedicated SharedPreferences key.
-- Start an independent ordered playback snapshot from the first available track, clearing the previous temporary queue.
-- Retain unavailable entries after a successful library refresh, skip unavailable tracks, and handle actual file-open failures with bounded recovery.
-- Support playlist management when the device library is empty and repair refresh/lifecycle interactions in existing views.
-- Add 29 unit tests and a CI workflow that builds the debug APK and uploads test results.
+- Add playlist list/detail views and create, rename, delete, search/add, and remove actions. Names are trimmed and unique without regard to case; duplicate additions retain their original position.
+- Save each accepted mutation with Moshi and the dedicated SharedPreferences key `custom_playlists_v1`. Preserve unavailable memberships and resolve against the full successful scan, including hidden tracks.
+- Play an independent ordered snapshot from its first available track, clearing the previous temporary Queue. Saved edits take effect on the next Play. Runtime file failures shrink the snapshot and terminate after finite attempts.
+- Keep playlist management available for empty libraries and scan failures, and refresh existing library/detail views.
+- Preserve the prepared player and media session when an Activity rebinds to the same running service. Route explicit Play/Pause commands to their corresponding operations. Honor hardware Pause/Stop during failed-file recovery.
+- Keep Kotlin, XML, ViewBinding, MediaPlayer, JDK 17, SDK 33 and the existing Gradle/dependency versions.
 
 ## Related Issue
 
-The formal Story Issue has not been created. Until it exists, use [the Story and AC draft](../thinking/02-custom-playlists-user-story.md). Replace this paragraph with the actual Issue link; do not invent a number or use Sprint 1 Issue #1 as this feature's story.
+Refs #2 — [Sprint 2 Story and AC1–AC9](https://github.com/Axfff/Vibe-Player/issues/2).
 
 ## Verification
 
-| Area | Check | Result | Evidence |
+| AC / change | Check or test | Result | Evidence |
 | --- | --- | --- | --- |
-| Baseline | Unmodified base commit assembleDebug | Pass | Implementation report / handoff baseline log |
-| Repository behavior | PlaylistRepositoryTest | 24 passed | Unit test XML / HTML report |
-| Runtime recovery decisions | PlaylistFailurePlanTest | 5 passed | Unit test XML / HTML report |
-| Compilation and packaging | Final :app:testDebugUnitTest :app:assembleDebug after removing generated build outputs | Pass, all 43 tasks executed | Final build log and APK |
-| AC1–AC9 on device | TC01–TC13 | Pending | [Manual test plan](../testing/custom-playlists.md) |
-| Integration regressions | RG01–RG07 | Pending | Manual test plan |
-| GitHub Actions | Remote workflow execution | Not run | Add the real run URL after pushing |
+| AC1–AC5, AC7, AC9 data behavior | PlaylistRepositoryTest: names, isolation, deduplication/order, JSON reload, storage errors and resolution | 24 passed | [JUnit XML](../testing/evidence/2026-10-25-windows/TEST-com.iven.musicplayergo.playlists.PlaylistRepositoryTest.xml) |
+| AC6 / AC9 recovery decisions | PlaylistFailurePlanTest: skip order, list end, bounded exhaustion and stale failures | 5 passed | [JUnit XML](../testing/evidence/2026-10-25-windows/TEST-com.iven.musicplayergo.player.PlaylistFailurePlanTest.xml) |
+| Compilation / APK | `:app:testDebugUnitTest :app:assembleDebug` | BUILD SUCCESSFUL; 43 tasks, 17 executed / 26 up-to-date | [Build log](../testing/evidence/2026-10-25-windows/windows-build-retry.log) |
+| AC1–AC9 on Android | TC01–TC13 | Pending; device environment Blocked | [Test plan](../testing/custom-playlists.md) |
+| Rotation, media commands, old playback/Favorites/Queue | RG01–RG07, especially RG03/RG05/RG07 for this fix | Pending; device environment Blocked | Test plan |
+| GitHub CI and teammate review | Remote branch/PR publication and review | Pending | Add actual run/review URLs after publication |
 
-- Tested source commit: `6ec486928175d448140fbdf05fa63ed64515b787` (local build and unit tests). Later changes are documentation only. Add the real CI run and device-tested commit when available.
-- Build environment: complete JDK 17, Android SDK 33, project Gradle Wrapper.
-- Device / Android API: not yet tested.
-- This is an implementation candidate, not a claim that all acceptance criteria are satisfied.
+- Tested source: `2f660d11647ac5cc3e77a3c39c05c02224584d41`.
+- Environment: Windows, Temurin 17.0.20.1+1, SDK 33 revision 3, Build Tools 30.0.3, Gradle Wrapper 8.0. Run from `project/`; exact command and APK hash are in [summary.json](../testing/evidence/2026-10-25-windows/summary.json).
+- Initial build stopped on a DNS failure while resolving aapt2; retry succeeded. Both logs are retained. Existing resource-format, Manifest package, kapt and deprecated-API warnings are recorded in the logs.
+- `adb devices -l` returned no devices and no AVD was configured. Device checks use the same installed app, independent fixtures and force-stop/reopen for persistence.
 
 ## Review focus and known limitations
 
-Please review playlist identity and persistence, raw versus filtered library resolution, clearing old queue state, failed-file recovery, paused rotation, and existing detail views after files disappear. Active playback uses a snapshot; saved edits take effect on the next Play. Persisting the complete active snapshot across process death, manual ordering, import/export, and AI are outside this change.
+Review same-service rebinding, idempotent media Play/Pause, and Stop cancelling pending file-failure recovery. Also review persistence write failure handling, full versus visible library resolution, Queue clearing, saved-order playback and details after refresh. Complete RG03, RG05 and RG07 on Android first, then the remaining plan. Active playback snapshots are session-only; saved names, membership and order persist across app restart.
 
 ## Before merge
 
-- [ ] Link the real Story Issue and confirm that its AC match this implementation.
-- [ ] Record device acceptance and integration regression results for the tested commit.
-- [ ] Record the real GitHub CI run.
-- [ ] Obtain a teammate's review and address blocking feedback.
-- [ ] Update Sprint 2 and Release 1 evidence links.
+- [x] Link the formal Story Issue and check scope against AC1–AC9.
+- [x] Record local build and unit-test results for the tested source.
+- [ ] Record TC01–TC13 and RG01–RG07 device results and evidence.
+- [ ] Publish the feature branch and Draft PR through an authorized team channel, and record the real CI run.
+- [ ] Obtain a teammate's review and address feedback.
+- [ ] Update Sprint 2 / Release 1 evidence and let the team decide merge readiness.

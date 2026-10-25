@@ -8,7 +8,7 @@ This is the team's course repository, based on [Music Player GO](https://github.
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
-An initial implementation of **multiple named local playlists** is available locally on `feat/custom-playlists`, following documentation baseline `2372cac`. Final local unit tests (29) and debug APK build passed for feature commit `6ec4869`; device acceptance and human review remain pending. The implementation record contains the evidence and limitations. GitHub integration still returns 403, so the remote feature branch, Story Issue, and PR have not been created. The badges and download links in the upstream documentation below refer to the original application, not a verified course release.
+Multiple named local playlists are implemented locally on `feat/custom-playlists`. The latest source `2f660d11` passed the Windows debug APK build and 29 unit tests; device acceptance and teammate review are pending. Requirements are maintained in [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2). The remote feature branch and PR await publication. See the implementation record for changes, evidence and next steps. The badges and downloads below belong to the upstream application.
 
 ---
 

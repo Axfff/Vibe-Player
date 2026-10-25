@@ -4,7 +4,7 @@
 
 这份指南用于接手 Sprint 2 的多歌单实现，并指导学生检查交付。**本地 `feat/custom-playlists` 已有实现候选，文档基础提交为 `2372cac`；提交与验证状态以[实现与验证记录](custom-playlists-implementation.md)为准。接手者先检查现有代码和 diff，再完成审查、回归和设备验收。**
 
-本次最终本地重建与 29 个单元测试均通过，源码对应功能提交 `6ec4869`；设备验收、人工 Review 和 AC 签收仍为 Pending。GitHub 集成仍返回 403，正式 Story Issue、远端功能分支和 PR 尚未建立。动态结果以[实现与验证记录](custom-playlists-implementation.md)为准，本指南中的提示词不代表这些工作已经全部完成。
+原功能提交为 `6ec4869`，本轮播放修复为 `2f660d11`；后者的 Windows 构建及 29 项单元测试通过。正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 已建立；远端功能分支与 PR 待发布，设备验收和队友 Review Pending。交接记录的集成写入 403 待团队处理；当前事实以[实现与验证记录](custom-playlists-implementation.md)为准。
 
 ## 1. 先理解工作位置和需求来源
 
@@ -17,17 +17,17 @@
 | 执行 Gradle 命令 | project/ |
 | 本指南 | docs/development/custom-playlists-agent-guide.md |
 
-本次完整开发 checkout 位于 `/workspace/scratch/9f9888900409/Vibe-Player-development`，本地开发分支为 `feat/custom-playlists`。在自己的电脑上，使用自己实际克隆的仓库目录；不要照搬这个环境的绝对路径。
+本轮 Windows checkout 位于 `C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player`，本地开发分支为 `feat/custom-playlists`。原交接环境路径为 `/workspace/scratch/9f9888900409/Vibe-Player-development`。执行时使用当前实际仓库目录。
 
 ### 1.2 开工前必须读的三份文件
 
-1. [多歌单 User Story 与 AC](../thinking/02-custom-playlists-user-story.md)：当前正式 Issue 发布前的需求来源。
+1. [多歌单 User Story 与 AC](../thinking/02-custom-playlists-user-story.md)：正式 Issue #2 的本地入口。
 2. [多歌单测试计划](../testing/custom-playlists.md)：TC01–TC13 和 RG01–RG07、测试数据、重启定义、结果记录方式。
 3. [项目工作流](../README.md)：Story、PR、审阅和证据维护方式。
 
-**User Story 和 Acceptance Criteria 放在同一个正式 Issue 中。** 当前尚无已确认的正式 Story Issue，不能猜测编号，也不能拿 Sprint 1 的 Issue #1 充当多歌单需求。用户已要求按此 Story 开始实施，可以先基于当前草稿推进本地开发。建立正式 Issue 后，将草稿转换为链接；Sprint、PR 和测试记录引用该 Issue 及 AC 编号。
+**User Story 和 Acceptance Criteria 统一维护在正式 [Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)。** 本地需求入口、Sprint、PR 和测试记录引用该 Issue 及 AC 编号。
 
-需求正文已记录本轮采用的工程决定，下面第 2 节用于帮助接手，不形成另一套 AC。初版实现已有相应代码；接手 agent 应依据实施记录检查缺口并推进常规修复。若发现具体行为与用户最新要求或 AC 真正冲突，列出冲突及影响后再询问，不因正式 Issue 暂未发布而反复暂停本地工作。
+需求正文已记录本轮采用的工程决定，下面第 2 节用于帮助接手，不形成另一套 AC。初版实现已有相应代码；接手 agent 应依据实施记录检查缺口并推进常规修复。若发现具体行为与用户最新要求或 AC 真正冲突，列出冲突及影响后再询问，按既定范围连续推进本地工作。
 
 ### 1.3 检查现状，再决定是否切分支
 
@@ -203,7 +203,7 @@ bash ./gradlew :app:connectedDebugAndroidTest
 - docs/testing/custom-playlists.md
 - docs/development/custom-playlists-agent-guide.md
 - docs/README.md
-正式 Story Issue 尚未建立，不能猜编号。当前按草稿 AC1–AC9 实施；一旦有真实 Issue，就以它作为 Story 和 AC 的共同来源。
+正式 Story Issue 为 https://github.com/Axfff/Vibe-Player/issues/2，按其中 AC1–AC9 实施；本地需求文件作为入口，需求正文统一在 Issue 维护。
 
 遵循指南第 2 节已选实施约定：UUID 歌单；SharedPreferences+Moshi 的 custom_playlists_v1 key；曲目以 MediaStore ID 加 displayName/duration 保守校验；不可用条目保留快照；完整成功扫描用于 resolve，可见库用于添加；空曲库仍可管理歌单。Play 清除旧临时队列，建立独立有序 snapshot，从头播放；编辑保存数据不改变正在播放的 snapshot。结束遵循既有 continueOnEnd/onListEnded 偏好，不跳回旧队列。不承诺活动歌单跨重启恢复，AC7 验证的是保存数据。
 
@@ -327,7 +327,7 @@ Play 只交出选定歌单的有序、可用曲目 snapshot，由播放集成层
 
 先检查 git status、diff、未跟踪文件和已有验证结果。按明确的本轮文件路径暂存，保留其他来源的无关改动；检查 git diff --cached 后再创建有意义的提交。不要为制造过程而拆空提交、倒填日期或伪造审阅。
 
-需求尚无正式 GitHub Issue：不能猜编号或写 Closes #1。先检查当前实际状态；若已获得授权并成功创建正式 Story Issue，把 Story 与 AC 放在同一个 Issue，更新草稿/Sprint/测试来源为真实链接。若未成功，PR 正文明确引用当前需求草稿并标注“正式 Issue 待建立”。
+正式 Story Issue 已核实为 https://github.com/Axfff/Vibe-Player/issues/2。PR 使用 Refs #2，需求、Sprint、测试来源引用同一 Issue。设备验收和人工 Review 完成后，由团队决定合并与关闭需求的时机。
 
 PR 正文使用仓库模板，说明用户问题、实现行为、关联需求、主要设计决定和限制；按 AC 编号列验证方法、实际结果与证据，不复制第二套可独立修改的验收标准。部分完成或尚有设备验收时标为 Draft，使用真实关联链接；只有完成且意图在合并时关闭需求才用 Closes。
 

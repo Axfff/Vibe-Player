@@ -3,7 +3,7 @@
 ## 状态与需求来源
 
 - 版本：v0.2，2026-10-25；本地已有功能初版和自动检查记录，见[实现报告](../development/custom-playlists-implementation.md)。**本文件所有设备验收结果仍为 Pending，尚未运行真机或模拟器验收。**
-- 当前需求来源：[待发布的 User Story 草稿](../thinking/02-custom-playlists-user-story.md)。正式 Issue 尚未建立；建立后应将本处改为正式 Issue 链接，并以该 Issue 的 AC 为准。
+- 当前需求来源：[正式 Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，User Story 与 AC1–AC9 在该 Issue 维护。
 - 本文件维护验证方法和执行证据，不另行定义产品需求。需求变更后，按 AC 编号更新相关用例。
 - `Pending` 表示未执行；实际执行后记录 `Pass`、`Fail` 或 `Blocked`，并补充观察结果和证据。不能仅凭测试文档存在就勾选 AC。
 
@@ -11,13 +11,17 @@
 
 | 项目 | 本次记录 |
 | --- | --- |
-| 被测 commit / 构建来源 | Pending |
-| 设备或模拟器 / Android 版本 | Pending |
-| APP 版本 | Pending |
-| 测试日期 / 执行者 | Pending |
+| 被测 commit / 构建来源 | 候选源码 `2f660d11`；设备安装与执行 Pending |
+| 设备或模拟器 / Android 版本 | Blocked：`adb devices -l` 返回空列表，本机未配置 AVD |
+| APP 版本 | 候选 Debug 4.4.24 / 187；设备安装 Pending |
+| 测试日期 / 执行者 | 2026-10-25 Codex 检查环境；设备执行者待分配 |
 | 音频文件来源、实际文件名与 A/B/C 对应关系 | Pending |
 | 曲库刷新入口及使用方式 | Pending |
 | 截图、录屏、日志或缺陷链接 | Pending |
+
+本轮 TC01–TC13、RG01–RG07 的操作结果保留 Pending，执行环境为 Blocked（无已连接设备或已配置模拟器）。环境和自动检查证据见 [summary.json](evidence/2026-10-25-windows/summary.json)。接入设备后，优先执行 RG03、RG05、RG07，再按各自 fixture 完成其余用例。
+
+RG03 补充：播放和暂停两种状态分别旋转，确认位置、声音和后续顺序保留；服务重新绑定时复用原播放器。RG05 补充：恢复期间分别发送明确的媒体 Pause 和 Stop；Pause 保持暂停，Stop 取消恢复；连续发送 Play 或 Pause 时保持指令对应状态。本轮修复提交为 `2f660d11`，设备结果待记录。
 
 ## 测试数据与隔离约定
 

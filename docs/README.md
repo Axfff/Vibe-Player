@@ -8,9 +8,9 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
-当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单初版已在本地 `feat/custom-playlists` 实现，文档基础提交为 `2372cac`。功能源码提交 `6ec4869` 的最终本地重建成功，29 个单元测试通过；设备验收、人工 Review 和 AC 签收均为 Pending。实际实现与验证结果见[实施记录](development/custom-playlists-implementation.md)。
+当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单初版已在本地 `feat/custom-playlists` 实现，文档基础提交为 `2372cac`。初版源码为 `6ec4869`，本轮播放修复为 `2f660d11`；后者的 Windows 构建成功，29 项单元测试通过。设备验收、人工 Review 和 AC 签收均为 Pending。实际实现与验证结果见[实施记录](development/custom-playlists-implementation.md)。
 
-GitHub 集成仍返回 403；本功能的远端分支、正式 Story Issue 和 PR 尚未建立。本地代码与文档的存在不代表已经推送或发布。
+已核查正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)。远端功能分支与 PR 待发布；交接记录中的 GitHub 集成写入 403 待团队处理，本轮完成本地提交与 PR 准备。
 
 ## 文档入口
 
@@ -37,11 +37,11 @@ GitHub 集成仍返回 403；本功能的远端分支、正式 Story Issue 和 P
 
 Story 与 AC 是同一需求的两个小节，不分别开两个 Issue。需要分工时可在该 Issue 中列任务；范围过大时拆成可独立交付的多个 Story，每个 Story 保留自己的 AC。
 
-正式 Issue 建立前，[多歌单需求草稿](thinking/02-custom-playlists-user-story.md) 是待发布正文。建立后，将草稿正文替换为正式 Issue 链接；之后只更新 Issue 中的需求。Sprint、测试和 Release 文档引用 Issue / AC 编号，不维护另一套需求。
+[多歌单需求入口](thinking/02-custom-playlists-user-story.md)已指向正式 Issue #2。Story 与 AC 在该 Issue 统一维护；Sprint、测试、PR 和 Release 文档引用 Issue 与 AC 编号。
 
 ## 从需求到合并
 
-1. 在本仓库建立 Story Issue，记录同一需求的 Story 与 AC。当前远端授权受阻，已按用户要求基于唯一需求草稿进行本地实现；授权恢复后再发布正式 Issue 并更新链接，不猜编号。
+1. 在正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 维护多歌单需求与 AC；本地入口、测试与 PR 材料保持链接一致。
 2. 新功能从合适的最新基线建功能分支；本轮 `feat/custom-playlists` 已在本地存在，接手时检查当前分支和 diff，保留已有改动。
 3. 做有意义的提交并推送分支；在本仓库创建目标为 `main` 的 PR。
 4. 在 PR 中链接 Story Issue，并填写 `AC ID -> 验证方法 -> 结果 -> 证据`。继续向同一分支推送可更新同一个 PR。

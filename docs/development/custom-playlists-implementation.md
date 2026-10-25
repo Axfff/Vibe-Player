@@ -4,19 +4,59 @@
 
 ## 当前结论
 
-自定义多歌单初版已在本地 `feat/custom-playlists` 实现，包含管理界面、持久化、独立播放上下文、失效文件处理和单元测试。**这是待设备验收的实现候选，不能据此将全部 AC 标记完成。**
+自定义多歌单初版已在本地 `feat/custom-playlists` 实现，包含管理界面、持久化、独立播放上下文、失效文件处理和单元测试。**当前源码 `2f660d11` 已通过本轮 Windows 构建和 29 项单元测试，AC1–AC9 待设备验收与签收。**
 
 | 项目 | 当前证据与状态 |
 | --- | --- |
 | 代码基线 | `Axfff/Vibe-Player` 的 `947709e4c798a103b9fcc5962172f2e85d349196` |
 | 课程结构提交 | 本地 `2372cac75dcea550041cee80d78c447ee0691885`，`docs: establish course workflow and custom playlist story` |
-| 功能分支 | 本地 `feat/custom-playlists`；功能源码提交 `6ec486928175d448140fbdf05fa63ed64515b787`，随后仅整理文档；最终分支 HEAD 和产物校验值见交接包 manifest.json |
+| 功能分支 | 本地 `feat/custom-playlists`；初版 `6ec4869`，交接 HEAD `8a5d892`，本轮修复 `2f660d11647ac5cc3e77a3c39c05c02224584d41` |
 | 原始基线构建 | 独立、未修改的基线 checkout 执行 `:app:assembleDebug` 成功 |
-| 功能自动检查 | 最终完整重建成功：43 个任务全部执行，29 tests / 0 failures / 0 errors / 0 skipped；Debug APK 已生成 |
-| 设备测试 | 尚未运行；TC01–TC13、RG01–RG07 均为 Pending |
-| 审查 | 已进行独立 agent 源码检查并修复具体问题；协作者的正式 GitHub Review 尚未进行 |
-| 远端状态 | 本轮未向 GitHub 推送；未创建远端功能分支、正式 Story Issue 或 PR；此前写入返回 `403 Resource not accessible by integration` |
-| GitHub CI | 工作流已修改，但尚未在 GitHub 执行；本地成功不等于远端 CI 已通过 |
+| 功能自动检查 | 本轮 Windows 构建成功：43 个任务，17 executed / 26 up-to-date；29 tests / 0 failures / 0 errors / 0 skipped；Debug APK 已生成 |
+| 设备测试 | TC01–TC13、RG01–RG07 均 Pending；环境 Blocked：adb 返回空设备列表，本机无已配置 AVD |
+| 审查 | 交接版本记录有 agent 源码检查；本轮由一个 Codex agent 审查并修改公共播放文件。队友 Review Pending |
+| 远端状态 | 读取确认正式 [Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 已存在；远端只有 main，开放 PR 列表为空。本轮执行本地提交与 PR 准备；交接记录的 403 写入阻塞保留待团队处理 |
+| GitHub CI | 功能分支 CI Pending；分支发布后记录真实运行链接 |
+
+## 本轮接手、修复与验证（2026-10-25）
+
+### 实际状态与交接差异
+
+- 提供的目录包含增量 bundle、补丁和历史日志；当前聊天目录原先为空。本轮从公开仓库取得完整 Git 历史，在 `C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player` 导入 bundle，恢复 `feat/custom-playlists`。bundle SHA256 与 manifest 一致；导入后 HEAD `8a5d892`、工作区干净，原提交全部保留。
+- GitHub 只读核查的 main 为 `947709e`，与交接基线一致。团队已于 22:28 创建 Issue #2；需求入口、测试和 PR 材料已改为引用正式 Issue。
+- 本机原有 Android Studio JBR 25，SDK 尚未配置。本轮在仓库外准备 Temurin 17.0.20.1+1、SDK Platform 33 revision 3、Build Tools 30.0.3。Gradle 8.0、AGP 8.0.2、Kotlin 1.8.21 和工程依赖保持原版本。
+
+### 必要修复：`2f660d11`
+
+1. **暂停/播放后旋转的服务重绑定**：`PlayerService.onBind()` 会再次调用 `setMusicService()`，原实现每次都新建 MediaPlayer 和媒体会话。`MediaPlayerHolder.setMusicService()` 现在识别同一服务的已初始化实例并复用，保留曲目、位置和活动歌单。
+2. **明确的媒体 Play/Pause 指令**：`PlayerService` 的两个回调原先都调用 toggle；暂停中的失败恢复遇到 Pause 会走恢复路径。现在分别调用 resume 和 pause，重复指令保持对应状态。
+3. **文件失效期间的硬件 Pause/Stop**：失败恢复会短暂处于 PAUSED，原按键分支只在 isPlaying 时响应。现在 Pause 清除恢复播放意图，Stop 调用停止路径取消排队恢复，并阻止迟到错误重新安排播放。
+
+### AC 与审查证据
+
+| 范围 | 已核查实现 / 自动验证 | 设备结果 |
+| --- | --- | --- |
+| AC1–AC2 | Repository 的 trim、非空、不分大小写重名校验、自身改名例外；编辑弹窗仅在保存成功后回报；对应 Repository tests Pass | TC01、TC02、TC07、TC08 Pending |
+| AC3–AC5 | 追加保序、mediaId 去重、跨歌单独立、移除关系与删除歌单；对应 Repository tests Pass | TC03–TC05、TC09–TC10 Pending |
+| AC7 | 独立 key、Moshi JSON、同步 commit 结果及失败回退；Repository 重建/JSON 测试 Pass | 同一安装强停重启 TC07–TC10 Pending |
+| AC6 | Play 清除 queueSongs/isQueue/restoreQueueSong 等旧状态；快照从 startFrom=0 开始，详情排序不改快照；失效决策 5 tests Pass | TC06、TC12、RG01–RG03 Pending |
+| AC8–AC9 | UI 区分空歌单、不可用条目、扫描中/失败/未知及成功空库；完整扫描用于 resolve，可见库用于添加 | TC11–TC13、RG04–RG06 Pending |
+| 既有播放、Favorites、Queue | 普通路径和收藏/队列入口已审查；保存操作只更新歌单 key；本轮明确媒体命令语义适用于普通播放和歌单 | RG07 Pending |
+
+### 本轮自动检查
+
+在 `project/` 执行：
+
+```powershell
+./gradlew.bat --no-daemon --console=plain -Dfile.encoding=UTF-8 -Dorg.gradle.internal.http.connectionTimeout=30000 -Dorg.gradle.internal.http.socketTimeout=30000 :app:testDebugUnitTest :app:assembleDebug
+```
+
+- 被测源码：`2f660d11647ac5cc3e77a3c39c05c02224584d41`；测试时间 23:24（Asia/Shanghai）。
+- 结果：BUILD SUCCESSFUL，退出码 0；43 个任务（17 executed / 26 up-to-date）；24 项 repository + 5 项失败恢复决策测试通过，0 failures / errors / skipped。
+- 首次运行在解析 aapt2 依赖时发生 DNS 错误；网络恢复后重试成功。首次与重试日志均保留。日志另记录既有翻译格式、Manifest package、Moshi kapt 和 SOFT_INPUT_ADJUST_RESIZE 警告。
+- [证据清单与 APK SHA256](../testing/evidence/2026-10-25-windows/summary.json)、[成功日志](../testing/evidence/2026-10-25-windows/windows-build-retry.log)、[首次失败日志](../testing/evidence/2026-10-25-windows/windows-build-initial.log)。同目录保存两份 JUnit XML；本地 HTML 报告位于 `project/app/build/reports/tests/testDebugUnitTest/index.html`。
+- APK：`project/app/build/outputs/apk/debug/app-debug.apk`，8,071,533 bytes；SHA256 `e491b14079004a86b062a3a8a01326878d41b2dae99b15ac9935a3d2514309c6`。
+- 设备环境：`adb devices -l` 空列表，未配置 AVD；TC01–TC13 / RG01–RG07 Pending，环境 Blocked。优先设备验证本轮修复涉及的 RG03、RG05、RG07。
 
 ## 用户现在可以操作什么
 
@@ -59,7 +99,9 @@ AC7 覆盖保存后的名称、成员和顺序。**本轮未实现跨进程恢�
 | 自动测试 | `src/test/java/.../playlists/PlaylistRepositoryTest.kt`、`src/test/java/.../player/PlaylistFailurePlanTest.kt` | 纯 JVM 行为测试 |
 | CI | `.github/workflows/android.yml` | 功能分支/PR 构建、单元测试、测试报告和 Debug APK 附件 |
 
-## 自动检查与可复现步骤
+## 交接包历史验证：源码 `6ec4869`
+
+本节保留原交接环境的记录。本轮 `2f660d11` 的命令、结果和证据见上节。
 
 ### 环境
 
@@ -88,7 +130,7 @@ Windows PowerShell 使用 `./gradlew.bat` 替换 `bash ./gradlew`。使用自己
 | PlaylistFailurePlanTest | 中间/末尾失败、列表结束偏好、全部失败时有限终止、重复/过时失败、播放字段不改变曲目身份 | 5 tests，0 failures，0 errors，0 skipped |
 | 最终集成构建 | 包括详情刷新、暂停旋转和失败恢复的最后修复 | Pass；完整移除生成产物后执行，43 个任务全部重新执行，BUILD SUCCESSFUL |
 
-单元测试中的持久化使用可控存储实现与真实 JSON 编解码，证明 repository 在重建后恢复数据；它**不替代 Android 进程强停后的真实 SharedPreferences、界面和音频验收**。失败恢复测试验证纯决策函数，MediaPlayer 回调、音频焦点和服务生命周期仍需设备测试。
+历史单元测试使用可控存储与真实 JSON 编解码，覆盖 repository 重建后的数据恢复；失败恢复测试覆盖纯决策函数。真实 SharedPreferences 强停恢复、MediaPlayer 回调、音频焦点和服务生命周期列入设备验收。
 
 生成位置：
 
@@ -111,8 +153,8 @@ Windows PowerShell 使用 `./gradlew.bat` 替换 `bash ./gradlew`。使用自己
 
 1. 在真实 Android 设备或模拟器运行[手工测试计划](../testing/custom-playlists.md)，记录 TC01–TC13 和 RG01–RG07 的真实结果、设备/API、被测提交、截图/录屏或 Logcat。
 2. 失败项先修复并重跑受影响用例；不要因为自动测试全部通过就勾选全部 AC。
-3. 在正常获得授权的团队环境发布包含 Story + AC 的正式 Issue，并把本地需求稿改为指向该 Issue 的入口。
+3. 在正式 [Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 中维护 Story + AC，并补充实际设备验收证据。
 4. 在 GitHub 写入权限可用后推送本地提交、建立 PR，使用[PR 正文草稿](custom-playlists-pr-draft.md)填入真实 Issue 和证据链接；请协作者实际 review。
 5. 验收和 review 完成后再合并 main，并更新 Sprint 2 / Release 1 的完成证据。
 
-当前集成返回的 403 说明这条写入通道不可用；它不能单独证明拥有者忘记安装某个应用。用户账号的仓库权限与 GitHub App 对该仓库的安装/授权范围要分别检查。本轮未用其他登录方式绕过该限制，也没有把本地提交称为已推送。
+交接记录包含 GitHub 集成写入 403。本轮通过原集成完成只读核查，远端写入待团队处理授权；本轮成果为本地提交、构建产物和 PR 材料。
