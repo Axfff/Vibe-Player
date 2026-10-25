@@ -46,11 +46,11 @@ class PlayerService : Service() {
     private val mMediaSessionCallback = object : MediaSessionCompat.Callback() {
 
         override fun onPlay() {
-            mMediaPlayerHolder.resumeOrPause()
+            mMediaPlayerHolder.resumeMediaPlayer()
         }
 
         override fun onPause() {
-            mMediaPlayerHolder.resumeOrPause()
+            mMediaPlayerHolder.pauseMediaPlayer()
         }
 
         override fun onSkipToNext() {

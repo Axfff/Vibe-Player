@@ -226,6 +226,9 @@ class MediaPlayerHolder:
     private var mMusicNotificationManager: MusicNotificationManager? = null
 
     fun setMusicService(playerService: PlayerService) {
+        // A started service can outlive all Activity bindings during rotation. Rebinding
+        // to that same service must retain its prepared player, position and session.
+        if (::mPlayerService.isInitialized && mPlayerService === playerService && isMediaPlayer) return
         mediaPlayer = MediaPlayer()
         mPlayerService = playerService
         mAudioManager = mPlayerService.getSystemService()
@@ -1289,7 +1292,13 @@ class MediaPlayerHolder:
 
         if (event.action == KeyEvent.ACTION_DOWN) {
             when (event.keyCode) {
-                KeyEvent.KEYCODE_MEDIA_STOP, KeyEvent.KEYCODE_MEDIA_PAUSE -> if (isPlaying) {
+                KeyEvent.KEYCODE_MEDIA_STOP -> if (isCurrentSong) {
+                    stopPlaybackService(stopPlayback = true, fromUser = true, fromFocus = false)
+                    return true
+                }
+                // Failed-file recovery temporarily reports PAUSED while a next track is
+                // queued. An explicit pause must clear its play intent in that state too.
+                KeyEvent.KEYCODE_MEDIA_PAUSE -> if (isCurrentSong) {
                     pauseMediaPlayer()
                     return true
                 }
