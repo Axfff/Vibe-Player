@@ -1,3 +1,16 @@
+# Vibe-Player — course project
+
+This is the team's course repository, based on [Music Player GO](https://github.com/enricocid/Music-Player-GO). Upstream attribution and licensing are retained below.
+
+- [Course workflow and documentation](docs/README.md)
+- [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 plan](docs/sprints/sprint-2.md)
+- [Release 1 review index](docs/releases/release-1.md)
+- [Feature research and decisions](docs/thinking/README.md)
+
+The current feature under specification is **multiple named local playlists**. Requirements, implementation progress, and verification are tracked separately in the linked course records. The badges and download links in the upstream documentation below refer to the original application, not a verified course release.
+
+---
+
 <p align="center">
 <img width="128" src="https://github.com/enricocid/Music-Player-GO/blob/main/fastlane/metadata/android/en-US/images/icon.png">
 </p>
