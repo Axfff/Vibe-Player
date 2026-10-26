@@ -50,6 +50,13 @@ class LibraryActionsFragment : Fragment() {
     private fun arrangeActionButtons() {
         val views = binding ?: return
         val configuration = resources.configuration
+        if (configuration.screenWidthDp >= 600) {
+            views.libraryFeedbackRow.orientation = LinearLayout.HORIZONTAL
+            views.libraryScanStatus.layoutParams = (views.libraryScanStatus.layoutParams as LinearLayout.LayoutParams).apply {
+                width = 0
+                weight = 1f
+            }
+        }
         if (configuration.fontScale >= 1.3f && configuration.screenWidthDp < 600) {
             views.libraryActionButtons.orientation = LinearLayout.VERTICAL
             listOf(views.libraryOpenPlaylists, views.libraryScanMusic).forEach { button ->

@@ -41,20 +41,27 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         android:visibility="gone" />
-    <TextView
-        android:id="@+id/library_scan_status"
+    <LinearLayout
+        android:id="@+id/library_feedback_row"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:accessibilityLiveRegion="polite"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-        android:textColor="?android:attr/textColorPrimary"
-        android:visibility="gone" />
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/library_import_help"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:minHeight="48dp"
-        android:text="@string/library_import_help" />
+        android:gravity="center_vertical|end"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/library_scan_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:accessibilityLiveRegion="polite"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            android:textColor="?android:attr/textColorPrimary"
+            android:visibility="gone" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/library_import_help"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:minHeight="48dp"
+            android:text="@string/library_import_help" />
+    </LinearLayout>
 </LinearLayout>
