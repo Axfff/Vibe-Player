@@ -1,7 +1,9 @@
 package com.iven.musicplayergo.regression
 
+import android.content.ContentValues
 import android.media.MediaPlayer
 import android.os.SystemClock
+import android.provider.MediaStore
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +19,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.extensions.toContentUri
 import com.iven.musicplayergo.fragments.AllMusicFragment
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
 import com.iven.musicplayergo.preferences.PreferencesFragment
@@ -79,28 +82,43 @@ class PlaylistPresentationRegressionTest {
 
     @Test fun titleFilenamePreferenceUpdatesRetainedSongsAndMiniPlayerWithoutReorderingPlaylist() {
         RegressionFixture.open().use { f ->
+            // WAV scanning may replace initial TITLE values while the fixture is inserted.
+            // Set real metadata after that scan, then obtain fresh songs through the live model.
+            f.tracks.forEach { (label, song) ->
+                val values = ContentValues().apply {
+                    put(MediaStore.Audio.Media.TITLE, "Regression display title $label")
+                }
+                assertEquals(1, f.context.contentResolver.update(song.id!!.toContentUri(), values, null, null))
+            }
+            f.refreshLibrary()
+            val refreshed = f.onMain { f.viewModel.playlistLibrary.toList() }
+            val actualTracks = f.tracks.mapValues { (_, initial) -> refreshed.single { it.id == initial.id } }
             selectTab(f, GoConstants.SONGS_TAB)
             awaitSongRows(f, 3)
             val retainedRows = f.onMain { songs(f) }
-            val filenameTitles = f.songs.map { it.displayName!!.substringBeforeLast('.') }.toSet()
-            val metadataTitles = f.songs.map { it.title!! }.toSet()
+            val filenameTitles = actualTracks.values.map { it.displayName!!.substringBeforeLast('.') }.toSet()
+            val metadataTitles = actualTracks.values.map { it.title!! }.toSet()
+            assertEquals(setOf("Regression display title A", "Regression display title B", "Regression display title C"), metadataTitles)
             assertTrue("Fixture metadata and filenames must be visibly distinct", filenameTitles.intersect(metadataTitles).isEmpty())
             assertSongTitles(f, filenameTitles, retainedRows)
 
             // The saved order deliberately differs from both library display sort orders.
-            val playlist = f.createPlaylist("Presentation order", "C", "A", "B")
+            var playlist = RegressionFixture.success(f.repository.create("Presentation order"))
+            listOf("C", "A", "B").forEach { label ->
+                playlist = RegressionFixture.success(f.repository.addTrack(playlist.id, actualTracks.getValue(label)))
+            }
             f.playPlaylist(playlist.id)
             f.expectPlaying("C")
             f.onMain { f.player.seekTo(5_000) }
             f.await("playlist seeks away from zero") { f.onMain { f.player.currentPosition >= 4_800 } }
             val originalPlayer = f.player
-            assertMiniPlayer(f, f.tracks.getValue("C").displayName!!.substringBeforeLast('.'))
+            assertMiniPlayer(f, actualTracks.getValue("C").displayName!!.substringBeforeLast('.'))
 
             listOf("0" to metadataTitles, GoConstants.FN to filenameTitles).forEach { (value, expectedRows) ->
                 val before = checkpoint(f)
                 selectTab(f, GoConstants.SETTINGS_TAB)
                 selectVisualizationInSettings(f, value)
-                val current = f.tracks.getValue("C")
+                val current = actualTracks.getValue("C")
                 assertMiniPlayer(f, if (value == GoConstants.FN) current.displayName!!.substringBeforeLast('.') else current.title!!)
                 selectTab(f, GoConstants.SONGS_TAB)
                 assertSongTitles(f, expectedRows, retainedRows)
