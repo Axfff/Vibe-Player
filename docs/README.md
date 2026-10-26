@@ -8,7 +8,7 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
-当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单位于 `feat/custom-playlists`，被测提交为 `785e0863`。Windows 构建和 29 项单元测试通过；CroissantXinny 完成真机 TC01–TC10，曾沛涵完成模拟器 TC01–TC13，均记录 Pass。RG01–RG07、人工 Review 和 AC 签收待完成，详见[实施记录](development/custom-playlists-implementation.md)。
+当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。初版 `785e0863` 的 Windows 构建和 29 项单元测试通过；CroissantXinny 完成真机 TC01–TC10，曾沛涵完成模拟器 TC01–TC13，均记录 Pass。后续回归修复已通过 PR #12 合入功能分支。本轮 #4/#5/#6 修复位于独立分支 `fix/playlist-acceptance-4-5-6`，被测源码 `70d2f8d3` 完成 30 项 JVM 测试、24 项 Android 回归和 TC03/TC07；真机复测、扫描异常场景、人工 Review 与 AC 签收见[本轮修复记录](development/acceptance-fixes/2026-10-26-issues-4-5-6.md)。
 
 正式需求为 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，实现已发布至 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3)。原 GitHub 集成的 403 记录保留；用户明确授权使用现有 Git 与 GitHub CLI 后，已通过 CroissantXinny 账号完成分支、PR 和缺陷记录发布。
 
@@ -22,6 +22,7 @@
 | [Thinking](thinking/README.md) | 调研、选择理由、未决问题 |
 | [多歌单测试计划](testing/custom-playlists.md) | AC 对应的操作、期望及实际执行结果 |
 | [REDMI 真机验收](testing/custom-playlists-redmi-results.md) | CroissantXinny 的 TC01–TC10、截图、文件校验和强停重启证据 |
+| [#4/#5/#6 修复与复测](development/acceptance-fixes/2026-10-26-issues-4-5-6.md) | 候选补丁审阅、实际提交、新版构建/API 33 设备证据与待复测项 |
 | [协作者模拟器验收](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) | 曾沛涵的 TC01–TC13 与代表性截图 |
 | [实现与验证记录](development/custom-playlists-implementation.md) | 本地实现范围、实际自动检查与待执行验收 |
 | [Coding-agent 指南](development/custom-playlists-agent-guide.md) | 接手步骤、实施约定与可复制提示词 |

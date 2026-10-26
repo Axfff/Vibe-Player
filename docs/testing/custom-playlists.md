@@ -1,6 +1,6 @@
 # 自定义多歌单：手工验收计划
 
-> **2026-10-26 当前进度：** CroissantXinny 的 [REDMI 真机记录](custom-playlists-redmi-results.md)覆盖 TC01–TC10 Pass；曾沛涵的[模拟器记录](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)覆盖 TC01–TC13 Pass。两者均测试 `785e0863`。本机 TC11–TC13、RG01–RG07、人工 Review 与正式 AC 签收继续单独跟踪。下文 Pending 和设备环境保留为 2026-10-25 的历史状态；各次实际结果见两份报告。
+> **2026-10-26 执行记录：** `785e0863` 的 [REDMI 真机记录](custom-playlists-redmi-results.md)覆盖 TC01–TC10，曾沛涵的[模拟器记录](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)覆盖 TC01–TC13。后续 `24beffad` 的 RG01–RG07 见下方回归记录；本轮 `70d2f8d3` 的 TC03/TC07、24 项 Android 回归及 #4/#5/#6 设备反馈复测见[修复报告](../development/acceptance-fixes/2026-10-26-issues-4-5-6.md)。各版本结果分别保留；新版本 REDMI 复测、人工 Review 和 AC 签收继续跟踪。
 
 ## 状态与需求来源
 
