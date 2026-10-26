@@ -98,6 +98,7 @@ class MediaPlayerHolder:
     private var mEqualizer: Equalizer? = null
     private var mBassBoost: BassBoost? = null
     private var mVirtualizer: Virtualizer? = null
+    private var audioEffectSessionId: Int? = null
 
     // Audio focus
     private var mAudioManager: AudioManager? = null
@@ -235,7 +236,7 @@ class MediaPlayerHolder:
         if (mMusicNotificationManager == null) mMusicNotificationManager = mPlayerService.musicNotificationManager
         registerActionsReceiver()
         mPlayerService.configureMediaSession()
-        openOrCloseAudioEffectAction(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION)
+        openAudioEffectSession()
     }
 
     fun getMediaMetadataCompat() = mMediaMetadataCompat
@@ -314,11 +315,25 @@ class MediaPlayerHolder:
 
     fun getCurrentAlbumSize() = mPlayingSongs?.size ?: 0
 
-    private fun openOrCloseAudioEffectAction(event: String) {
+    private fun openAudioEffectSession() {
+        val sessionId = mediaPlayer.audioSessionId
+        if (sessionId <= 0 || audioEffectSessionId == sessionId) return
+        closeAudioEffectSession()
+        audioEffectSessionId = sessionId
+        sendAudioEffectSessionAction(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION, sessionId)
+    }
+
+    private fun closeAudioEffectSession() {
+        val sessionId = audioEffectSessionId ?: return
+        audioEffectSessionId = null
+        sendAudioEffectSessionAction(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION, sessionId)
+    }
+
+    private fun sendAudioEffectSessionAction(event: String, sessionId: Int) {
         mPlayerService.sendBroadcast(
             Intent(event)
                 .putExtra(AudioEffect.EXTRA_PACKAGE_NAME, mPlayerService.packageName)
-                .putExtra(AudioEffect.EXTRA_AUDIO_SESSION, mediaPlayer.audioSessionId)
+                .putExtra(AudioEffect.EXTRA_AUDIO_SESSION, sessionId)
                 .putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
         )
     }
@@ -671,6 +686,7 @@ class MediaPlayerHolder:
             if (recoverPlaylistFailure) {
                 // A new instance makes callbacks from a failed/previous attempt identifiable.
                 if (isMediaPlayer) {
+                    closeAudioEffectSession()
                     runCatching {
                         mediaPlayer.setOnErrorListener(null)
                         mediaPlayer.setOnPreparedListener(null)
@@ -683,8 +699,12 @@ class MediaPlayerHolder:
             } else if (isMediaPlayer && !forceReset) {
                 mediaPlayer.reset()
             } else {
+                closeAudioEffectSession()
                 mediaPlayer = MediaPlayer()
             }
+            // External controllers attach effects to the audio session, not this holder.
+            // Every replacement must register its new session before playback can start.
+            openAudioEffectSession()
 
             with(mediaPlayer) {
                 if (recoverPlaylistFailure) {
@@ -740,6 +760,8 @@ class MediaPlayerHolder:
         failedPlaylistAttempt = attempt
         state = GoConstants.PAUSED
         stopUpdatingCallbackWithPosition()
+        // A failed player cannot be used by the effect controller, even if recovery stops.
+        closeAudioEffectSession()
         if (isMediaPlayer) {
             runCatching {
                 mediaPlayer.setOnPreparedListener(null)
@@ -803,6 +825,7 @@ class MediaPlayerHolder:
             return true
         }
 
+        closeAudioEffectSession()
         mediaPlayer.release()
         releaseBuiltInEqualizer()
 
@@ -977,7 +1000,7 @@ class MediaPlayerHolder:
         cancelPlaylistRecovery()
         mediaAttempt++
         if (isMediaPlayer) {
-            openOrCloseAudioEffectAction(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION)
+            closeAudioEffectSession()
             releaseBuiltInEqualizer()
             mediaPlayer.release()
             giveUpAudioFocus()

@@ -47,7 +47,7 @@ import kotlin.math.sin
  * test. Audio is inserted through MediaStore, decoded by the production MediaPlayer and
  * removed by URI afterwards. No production lifecycle or playback callback is substituted.
  */
-class RegressionFixture private constructor() : AutoCloseable {
+class RegressionFixture private constructor(private val taggedAudio: Boolean) : AutoCloseable {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     val context: Context = instrumentation.targetContext
     val preferences: GoPreferences get() = GoPreferences.getPrefsInstance()
@@ -286,12 +286,12 @@ class RegressionFixture private constructor() : AutoCloseable {
         }
     }
 
-    private fun fileName(label: String) = "${session}_$label.wav"
+    private fun fileName(label: String) = "${session}_$label.${if (taggedAudio) "mp3" else "wav"}"
 
     private fun insertAudio(label: String) {
         val values = ContentValues().apply {
             put(MediaStore.Audio.Media.DISPLAY_NAME, fileName(label))
-            put(MediaStore.Audio.Media.MIME_TYPE, "audio/wav")
+            put(MediaStore.Audio.Media.MIME_TYPE, if (taggedAudio) "audio/mpeg" else "audio/wav")
             put(MediaStore.Audio.Media.TITLE, "Regression $label")
             put(MediaStore.Audio.Media.ARTIST, "Vibe regression fixtures")
             put(MediaStore.Audio.Media.ALBUM, "$session album $label")
@@ -301,7 +301,13 @@ class RegressionFixture private constructor() : AutoCloseable {
         }
         val uri = checkNotNull(context.contentResolver.insert(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, values))
         audioUris[label] = uri
-        context.contentResolver.openOutputStream(uri, "w")!!.use { it.write(waveBytes(label)) }
+        context.contentResolver.openOutputStream(uri, "w")!!.use { output ->
+            if (taggedAudio) {
+                instrumentation.context.assets.open("playlist-display-$label.mp3").use { it.copyTo(output) }
+            } else {
+                output.write(waveBytes(label))
+            }
+        }
         values.clear()
         values.put(MediaStore.Audio.Media.IS_PENDING, 0)
         context.contentResolver.update(uri, values, null, null)
@@ -330,7 +336,7 @@ class RegressionFixture private constructor() : AutoCloseable {
     companion object {
         const val TAG = "PlaylistRegression"
 
-        fun open(scanApplication: Application? = null): RegressionFixture = RegressionFixture().also {
+        fun open(scanApplication: Application? = null, taggedAudio: Boolean = false): RegressionFixture = RegressionFixture(taggedAudio).also {
             try {
                 it.initialize(scanApplication)
             } catch (failure: Throwable) {

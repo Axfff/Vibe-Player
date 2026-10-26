@@ -411,15 +411,10 @@ class PlaylistLibraryRegressionTest {
         assertTrue(view.performClick())
     }
 
-    private fun clickActivity(f: RegressionFixture, id: Int) {
-        // Activity controls share SingleClickHelper's 500 ms debounce. Space test
-        // gestures accordingly so a rejected rapid click cannot become a UI timeout.
-        SystemClock.sleep(550)
-        f.onActivity {
-            val view = it.findViewById<View>(id)
-            assertTrue("Visible activity action $id", view.isShown)
-            assertTrue(view.performClick())
-        }
+    private fun clickActivity(f: RegressionFixture, id: Int) = f.onActivity {
+        val view = it.findViewById<View>(id)
+        assertTrue("Visible activity action $id", view.isShown)
+        assertTrue(view.performClick())
     }
 
     private fun clickActivityRecyclerRow(f: RegressionFixture, id: Int, index: Int) =
@@ -435,6 +430,9 @@ class PlaylistLibraryRegressionTest {
     }
 
     private fun openNowPlaying(f: RegressionFixture) {
+        // Activity controls share a 500 ms debounce. A fast emulator can finish the
+        // previous Favorites/Queue flow before it expires; send a usable UI click.
+        SystemClock.sleep(550)
         clickActivity(f, R.id.playing_song_container)
         f.await("Now Playing sheet") { f.onMain { f.activityFragment(NowPlaying.TAG_MODAL) is NowPlaying } }
     }

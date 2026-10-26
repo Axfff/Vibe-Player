@@ -187,3 +187,13 @@ teammate review and merge remain pending. Prepared bodies are retained in
 [the issue records](playlist-regression-issue-drafts.md). The optional CI
 trigger/test-APK change is separate and unimplemented; it needs its own agreed
 issue before implementation.
+
+## Follow-up PR review fixes
+
+After the original 24-test RG contribution merged through PR #12, PR #3 review found
+additional search/Shuffle, Title/Filename presentation and external equalizer-session
+defects. They were tracked as issues #13–#15 and fixed in `2ffeff62` / `8ff9e2f2`.
+The [follow-up verification record](playlist-review-fixes.md) preserves the actual
+failing reproductions and the passing 29-test Android suite (24 original RG checks
+plus five new checks) at `7b0da65c`. The original evidence above remains a record of
+its tested revision; it did not cover those additional interactions.

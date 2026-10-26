@@ -78,29 +78,35 @@ class PlaylistPresentationRegressionTest {
     }
 
     @Test fun titleFilenamePreferenceUpdatesRetainedSongsAndMiniPlayerWithoutReorderingPlaylist() {
-        RegressionFixture.open().use { f ->
+        RegressionFixture.open(taggedAudio = true).use { f ->
+            // Embedded MP3 titles come from the real MediaStore scan, not provider edits.
+            val actualTracks = f.tracks
             selectTab(f, GoConstants.SONGS_TAB)
             awaitSongRows(f, 3)
             val retainedRows = f.onMain { songs(f) }
-            val filenameTitles = f.songs.map { it.displayName!!.substringBeforeLast('.') }.toSet()
-            val metadataTitles = f.songs.map { it.title!! }.toSet()
+            val filenameTitles = actualTracks.values.map { it.displayName!!.substringBeforeLast('.') }.toSet()
+            val metadataTitles = actualTracks.values.map { it.title!! }.toSet()
+            assertEquals(setOf("Regression display title A", "Regression display title B", "Regression display title C"), metadataTitles)
             assertTrue("Fixture metadata and filenames must be visibly distinct", filenameTitles.intersect(metadataTitles).isEmpty())
             assertSongTitles(f, filenameTitles, retainedRows)
 
             // The saved order deliberately differs from both library display sort orders.
-            val playlist = f.createPlaylist("Presentation order", "C", "A", "B")
+            var playlist = RegressionFixture.success(f.repository.create("Presentation order"))
+            listOf("C", "B", "A").forEach { label ->
+                playlist = RegressionFixture.success(f.repository.addTrack(playlist.id, actualTracks.getValue(label)))
+            }
             f.playPlaylist(playlist.id)
             f.expectPlaying("C")
             f.onMain { f.player.seekTo(5_000) }
             f.await("playlist seeks away from zero") { f.onMain { f.player.currentPosition >= 4_800 } }
             val originalPlayer = f.player
-            assertMiniPlayer(f, f.tracks.getValue("C").displayName!!.substringBeforeLast('.'))
+            assertMiniPlayer(f, actualTracks.getValue("C").displayName!!.substringBeforeLast('.'))
 
             listOf("0" to metadataTitles, GoConstants.FN to filenameTitles).forEach { (value, expectedRows) ->
                 val before = checkpoint(f)
                 selectTab(f, GoConstants.SETTINGS_TAB)
                 selectVisualizationInSettings(f, value)
-                val current = f.tracks.getValue("C")
+                val current = actualTracks.getValue("C")
                 assertMiniPlayer(f, if (value == GoConstants.FN) current.displayName!!.substringBeforeLast('.') else current.title!!)
                 selectTab(f, GoConstants.SONGS_TAB)
                 assertSongTitles(f, expectedRows, retainedRows)
@@ -108,12 +114,12 @@ class PlaylistPresentationRegressionTest {
                 f.record("PR3-playlist-presentation-${if (value == GoConstants.FN) "filename" else "title"}")
             }
             f.onMain { f.holder.skip(isNext = true) }
-            f.expectPlaying("A")
-            f.onMain { f.holder.skip(isNext = true) }
             f.expectPlaying("B")
+            f.onMain { f.holder.skip(isNext = true) }
+            f.expectPlaying("A")
             assertEquals("Changing display settings retains saved membership order", playlist.tracks,
                 RegressionFixture.success(f.repository.getPlaylist(playlist.id)).tracks)
-            f.record("PR3-presentation-keeps-snapshot-C-A-B")
+            f.record("PR3-presentation-keeps-snapshot-C-B-A")
         }
     }
 
