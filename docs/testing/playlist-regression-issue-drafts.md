@@ -1,9 +1,13 @@
-# Playlist regression issue drafts
+# Playlist regression issue records
 
-These are prepared issue bodies, not claims that GitHub issues exist. The connected
-GitHub integration returned HTTP 403 when creating both an issue and a Draft PR.
-Git pushes through the repository's existing Git remote succeed. No alternate
-credential or UI path was used to bypass the denied API operations.
+The connected GitHub integration initially returned HTTP 403 for issue and Draft
+PR creation. On 2026-10-26, the owner explicitly authorized publishing the prepared
+records through the separately authenticated local GitHub CLI. Publication
+succeeded: [tracking #9](https://github.com/Axfff/Vibe-Player/issues/9),
+[media commands #10](https://github.com/Axfff/Vibe-Player/issues/10),
+[denied access #11](https://github.com/Axfff/Vibe-Player/issues/11), and
+[Draft PR #12](https://github.com/Axfff/Vibe-Player/pull/12). The issue bodies
+disclose that execution preceded publication. Review and merge remain pending.
 
 The user requested completing RG01–RG07 and committing/pushing meaningful increments.
 Discovered RG defects belong to that verification scope. Additional workflow work
@@ -12,6 +16,10 @@ regression-branch CI change has been removed from this contribution and retained
 an unapplied local proposal.
 
 ## Tracking issue: Complete playlist integration regressions RG01–RG07
+
+Published as [issue #9](https://github.com/Axfff/Vibe-Player/issues/9).
+Verified defects: [#10](https://github.com/Axfff/Vibe-Player/issues/10) and
+[#11](https://github.com/Axfff/Vibe-Player/issues/11). Delivery: [Draft PR #12](https://github.com/Axfff/Vibe-Player/pull/12).
 
 Related story: #2. Feature PR: #3. Contribution branch: `test/playlist-regressions`.
 TC01–TC13 are owned by collaborators on `test/playlist-acceptance`.
@@ -41,6 +49,9 @@ versions and physical devices remain unverified. TC01–TC13 are tracked separat
 
 ## Defect: Explicit media Pause resumes a paused playlist
 
+Published as [issue #10](https://github.com/Axfff/Vibe-Player/issues/10), linked to
+tracking #9 and Draft PR #12.
+
 **Found by:** RG05 on Android 17 / API 37, production source `785e0863`.
 
 1. Play a saved playlist using real local audio.
@@ -58,6 +69,9 @@ Regression tests cover both service and receiver routes, repeated commands and
 queued recovery cancellation.
 
 ## Defect: Denied audio access is classified as missing playlist files
+
+Published as [issue #11](https://github.com/Axfff/Vibe-Player/issues/11), linked to
+tracking #9 and Draft PR #12. Fix commit: `24beffad`.
 
 **Found by:** RG06 actual runtime permission revocation with external audio owned by
 `com.android.shell`, production source `734cf90c`.

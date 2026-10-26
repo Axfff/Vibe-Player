@@ -1,9 +1,10 @@
-# PR draft: Verify playlist regressions and fix media commands and denied access
+# Draft PR: Verify playlist regressions and fix media commands and denied access
 
 Base: `feat/custom-playlists` · Head: `test/playlist-regressions`
 
-Prepared body only: the GitHub connector rejected issue and PR creation with HTTP
-403. Git commits and pushes succeeded; this document does not claim a new PR exists.
+Published as [Draft PR #12](https://github.com/Axfff/Vibe-Player/pull/12) on
+2026-10-26 through the owner's explicitly authorized local GitHub CLI, after the
+connected GitHub tool rejected creation with HTTP 403. Review and merge are pending.
 
 ## Problem
 
@@ -30,10 +31,12 @@ This contribution targets the feature branch from
 [feature PR #3](https://github.com/Axfff/Vibe-Player/pull/3).
 Collaborators own TC01–TC13 on `test/playlist-acceptance`.
 
-Task and defect bodies await creation in
-[the issue drafts](../testing/playlist-regression-issue-drafts.md); no issue numbers
-have been invented. The optional CI trigger/test-APK proposal is separated and is
-not included in this contribution.
+Refs [#9](https://github.com/Axfff/Vibe-Player/issues/9) (RG01–RG07 tracking),
+[#10](https://github.com/Axfff/Vibe-Player/issues/10) (explicit media commands), and
+[#11](https://github.com/Axfff/Vibe-Player/issues/11) (denied media access).
+The issues were drafted during execution and published afterward; that timing is
+disclosed in the tracking issue. The optional CI trigger/test-APK proposal remains
+separate and is not included in this contribution.
 
 ## Verification
 
@@ -69,7 +72,7 @@ TC cases or declare Release 1 complete.
 
 ## Before merge
 
-- [ ] Create/link the prepared task and defect issues when GitHub write access is available.
+- [x] Publish and link the RG tracking task and both verified defect issues.
 - [x] Record actual verification and its limits.
 - [ ] Obtain a human teammate review and resolve blocking feedback.
 - [ ] Reconcile relevant Sprint/release evidence with the team's final acceptance.

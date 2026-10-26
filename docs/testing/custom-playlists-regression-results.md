@@ -171,8 +171,19 @@ found no remaining blocking findings. A human teammate's review remains pending.
 
 ## Issue tracking and scope
 
-The GitHub connector rejected issue and PR creation with HTTP 403. Prepared task
-and defect issue bodies are in [the issue drafts](playlist-regression-issue-drafts.md).
-There are no fabricated issue or PR numbers. Git commits and pushes succeeded.
-The optional CI trigger/test-APK change was separated and is not part of this
-contribution; it needs its own agreed issue before implementation.
+The GitHub connector initially rejected issue and PR creation with HTTP 403.
+On 2026-10-26, the owner explicitly authorized publication through the separately
+authenticated local GitHub CLI. The prepared records are now published:
+
+- [RG01–RG07 tracking task #9](https://github.com/Axfff/Vibe-Player/issues/9)
+- [Explicit media-command defect #10](https://github.com/Axfff/Vibe-Player/issues/10), fixed in `734cf90c`
+- [Denied audio-access defect #11](https://github.com/Axfff/Vibe-Player/issues/11), fixed in `24beffad`
+- [Draft PR #12](https://github.com/Axfff/Vibe-Player/pull/12), `test/playlist-regressions` into `feat/custom-playlists`
+
+The issues were drafted during execution and published afterward; their timestamps
+do not imply they existed before implementation. The original final-run summary
+retains the publication blocker as it stood when evidence was captured. Human
+teammate review and merge remain pending. Prepared bodies are retained in
+[the issue records](playlist-regression-issue-drafts.md). The optional CI
+trigger/test-APK change is separate and unimplemented; it needs its own agreed
+issue before implementation.
