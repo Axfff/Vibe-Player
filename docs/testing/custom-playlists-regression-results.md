@@ -57,5 +57,28 @@ test must reproduce it before a fix is recorded as verified.
 
 ## Results and evidence
 
-No Android regression result has been recorded yet. Append actual execution
-records and retain failed runs when they explain a subsequent fix.
+### RG05: reproduced before the fix
+
+On 2026-10-26, the targeted Android test
+`PlaylistRecoveryRegressionTest#mediaSessionPauseDoesNotResumePausedPlaylist`
+failed against production source `785e0863`:
+
+> Unexpected real MediaPlayer audio: explicit MediaSession Pause while paused
+
+The app played a real fixture WAV, paused it, then received an explicit media Pause
+through the service entry used by `MediaSession.Callback.onMediaButtonEvent`.
+The assertion sampled the actual Android `MediaPlayer.isPlaying`, rather than a
+mock player or only the app's displayed state. The emulator has host audio disabled;
+the result establishes real decoder/player state, not an audible host recording.
+
+Environment: macOS 27.0.1 arm64, JBR 17.0.14, Gradle 8.0, emulator 37.2.12,
+Android 17 / API 37 arm64, Medium Phone read-only temporary overlay. Baseline
+`:app:testDebugUnitTest :app:assembleDebug` passed with the existing 29 JVM tests.
+
+The Gradle device runner initially aborted before running any tests. Explicitly
+installing both newly built APKs and invoking AndroidJUnitRunner directly allowed
+the test to execute against the correct application. That setup failure is not
+counted as an application regression result.
+
+[Actual pre-fix runner output](evidence/2026-10-26-regressions/rg05-before-fix.txt)
+is retained. All other RG results remain Pending until their device runs complete.
