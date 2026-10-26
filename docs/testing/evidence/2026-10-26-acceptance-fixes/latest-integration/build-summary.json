@@ -1,0 +1,43 @@
+{
+  "recorded_at": "2026-10-27T00:01:02.5690062+08:00",
+  "source": "f7ba39bb2a4e98b5ab61c9bfa43a9512c168055f",
+  "upstream": "f659ff7e",
+  "command": "gradlew.bat --no-daemon --console=plain :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest",
+  "environment": "Windows, Temurin 17.0.20.1+1, SDK 33, Gradle Wrapper 8.0",
+  "result": "BUILD SUCCESSFUL in 29s; 71 actionable tasks: 20 executed, 51 up-to-date",
+  "unit_tests": [
+    {
+      "name": "com.iven.musicplayergo.library.MediaScanPolicyTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "com.iven.musicplayergo.player.PlaylistFailurePlanTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "com.iven.musicplayergo.playlists.PlaylistRepositoryTest",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "apks": [
+    {
+      "file": "app-debug-androidTest.apk",
+      "bytes": 908629,
+      "sha256": "42f47af700a95bca9d4d44cd57872b95053569ab2b915220c25e1faeb0d41f81"
+    },
+    {
+      "file": "app-debug.apk",
+      "bytes": 8392448,
+      "sha256": "0f1d8fc0d70eac972a6f17a3898806ccf0e205e7b69893bde04e075419d0c825"
+    }
+  ],
+  "device_status": "Pending: user requested device testing later; complete code and build first",
+  "earlier_device_source": "70d2f8d3a2431921b0cca96d20387e1a2ce45190",
+  "integration": "Preserve upstream #13-15 fixes; use upstream RG07 click pacing exactly, avoiding a duplicate delay"
+}
