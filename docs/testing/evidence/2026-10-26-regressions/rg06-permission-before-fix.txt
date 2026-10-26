@@ -1,0 +1,15 @@
+Actual Android permission-revocation reproduction, 2026-10-26 (Asia/Shanghai).
+App production source: 734cf90c. The external audio was created by adb, not by the target app.
+Steps: scan external WAV with permission; create RG06Permission and add it; revoke READ_MEDIA_AUDIO; reopen and deny rationale; open Playlists from denied-permission screen.
+Expected: Unknown availability, disabled Play/Add, management still enabled.
+Actual before fix: Unavailable; no-playable-files explanation; Add still enabled. Saved audio and MediaStore row still exist.
+
+adb -s emulator-5554 shell content query --uri content://media/external/audio/media --projection _id:_display_name:owner_package_name
+Row: 0 _id=189, _display_name=permission-audio.wav, owner_package_name=com.android.shell
+
+adb -s emulator-5554 shell ls -l /sdcard/Music/VibePermissionRegression/permission-audio.wav
+-rw-rw---- 1 u0_a206 media_rw 160044 2026-10-26 21:17 /sdcard/Music/VibePermissionRegression/permission-audio.wav
+
+adb -s emulator-5554 shell dumpsys package com.iven.musicplayergo.debug
+      android.permission.READ_MEDIA_AUDIO
+        android.permission.READ_MEDIA_AUDIO: granted=false, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]

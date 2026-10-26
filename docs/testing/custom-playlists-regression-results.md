@@ -94,3 +94,25 @@ were freshly built and installed by `scripts/check-playlist-regressions.sh` befo
 the run. [Actual post-fix runner output](evidence/2026-10-26-regressions/rg05-after-fix.txt)
 is retained alongside the failing run. This targeted pass establishes the original
 Pause fix; it does not yet mark the complete RG05 or other RG cases as passed.
+
+### RG06: actual permission revocation found a second regression
+
+An initial full instrumentation run passed 22 tests, but a separate real Android
+permission check exposed an additional gap. The fixture audio for this check was
+ADB-created and MediaStore-owned by `com.android.shell`, not owned by the app.
+After saving that track in `RG06Permission`, revoking `READ_MEDIA_AUDIO`, reopening
+the app and denying its rationale, opening Playlists triggered an automatic scan.
+Android returned a permission-filtered empty result instead of throwing.
+
+**Observed failure:** the still-existing external track was shown as Unavailable,
+with a no-playable-files explanation. RG06 requires unknown availability when
+access is denied. The saved member and its audio file were not deleted.
+
+- [Before-fix screen](evidence/2026-10-26-regressions/rg06-permission-before-fix.png)
+- [UI hierarchy](evidence/2026-10-26-regressions/rg06-permission-before-fix.xml)
+- [Actual permission/file/MediaStore evidence and reproduction](evidence/2026-10-26-regressions/rg06-permission-before-fix.txt)
+
+The original app-owned test WAVs would remain readable under scoped storage and
+would not establish this external-media behavior. The scanner now needs an
+explicit permission guard, and the live UI tests are being extended accordingly.
+RG06 remains unverified until the same device check passes after the fix.
