@@ -96,10 +96,6 @@ class AllMusicFragment : Fragment(), SearchView.OnQueryTextListener {
                                 mAllMusic = Lists.processQueryForMusic(search?.query.toString(), mAllMusic).orEmpty()
                             }
                             setMusicDataSource(mAllMusic)
-                            _allMusicFragmentBinding?.shuffleFab?.run {
-                                text = mAllMusic.orEmpty().size.toString()
-                                isEnabled = !mAllMusic.isNullOrEmpty()
-                            }
                         }
                     }
                 }
@@ -111,6 +107,10 @@ class AllMusicFragment : Fragment(), SearchView.OnQueryTextListener {
         musicList?.run {
             mAllMusic = this
             _allMusicFragmentBinding?.allMusicRv?.adapter?.notifyDataSetChanged()
+            _allMusicFragmentBinding?.shuffleFab?.run {
+                text = mAllMusic.orEmpty().size.toString()
+                isEnabled = !mAllMusic.isNullOrEmpty()
+            }
         }
     }
 

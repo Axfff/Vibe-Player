@@ -1048,18 +1048,19 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     }
 
     override fun onUpdatePlayingAlbumSongs(songs: List<Music>?) {
-        if (mMediaPlayerHolder.isPlaylistPlayback) return
         mMediaPlayerHolder.currentSong?.run {
             updatePlayingSongTitle(this)
         }
-        if (songs != null) {
-            mMediaPlayerHolder.updateCurrentSongs(songs)
-            return
-        }
-        val currentAlbumSize = mMediaPlayerHolder.getCurrentAlbumSize()
-        if (currentAlbumSize != 0 && currentAlbumSize > 1) {
-            // update current song to reflect this change
-            mMediaPlayerHolder.updateCurrentSongs(null)
+        if (!mMediaPlayerHolder.isPlaylistPlayback) {
+            if (songs != null) {
+                mMediaPlayerHolder.updateCurrentSongs(songs)
+                return
+            }
+            val currentAlbumSize = mMediaPlayerHolder.getCurrentAlbumSize()
+            if (currentAlbumSize != 0 && currentAlbumSize > 1) {
+                // update current song to reflect this change
+                mMediaPlayerHolder.updateCurrentSongs(null)
+            }
         }
         if (mAllMusicFragment != null && !mAllMusicFragment?.onSongVisualizationChanged()!!) {
             Theming.applyChanges(this, mMainActivityBinding.viewPager2.currentItem)
