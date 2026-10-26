@@ -1,6 +1,7 @@
 package com.iven.musicplayergo.regression
 
 import android.Manifest
+import android.app.Activity
 import android.app.Application
 import android.content.ContentUris
 import android.content.ContentValues
@@ -10,9 +11,11 @@ import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.SystemClock
 import android.provider.MediaStore
 import android.util.Log
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ActivityScenario
@@ -85,7 +88,7 @@ class RegressionFixture private constructor() : AutoCloseable {
             return value
         }
 
-    private fun initialize() {
+    private fun initialize(scanApplication: Application?) {
         require(context.packageName.endsWith(".debug")) { "Use the isolated debug app" }
         require(Build.VERSION.SDK_INT >= 29) { "Fixtures require MediaStore scoped storage" }
         grantMediaPermission()
@@ -100,7 +103,7 @@ class RegressionFixture private constructor() : AutoCloseable {
         preferences.continueOnEnd = true
         preferences.onListEnded = "1" // Stop when the saved snapshot ends.
         listOf("A", "B", "C").forEach { insertAudio(it) }
-        scenario = ActivityScenario.launch(MainActivity::class.java)
+        launchActivity(scanApplication)
         await("initial successful MediaStore scan", 20_000) {
             onMain {
                 val state = viewModel.playlistLibraryState.value
@@ -117,6 +120,45 @@ class RegressionFixture private constructor() : AutoCloseable {
             assertTrue("$label has a real decoded duration", song.duration >= 29_000)
         }
         record("fixture-ready")
+    }
+
+    /**
+     * An optional application lets tests exercise real scanner exceptions in the live UI.
+     * Install its model through the normal Activity store before the Activity's lazy lookup.
+     * The callback never replaces production scan state, observers or playback callbacks.
+     */
+    private fun launchActivity(scanApplication: Application?) {
+        if (scanApplication == null) {
+            scenario = ActivityScenario.launch(MainActivity::class.java)
+            return
+        }
+        val application = context.applicationContext as Application
+        val callback = object : Application.ActivityLifecycleCallbacks {
+            override fun onActivityPreCreated(activity: Activity, savedInstanceState: Bundle?) {
+                if (activity !is MainActivity) return
+                val factory = object : ViewModelProvider.Factory {
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        require(modelClass == MusicViewModel::class.java)
+                        return modelClass.cast(MusicViewModel(scanApplication))!!
+                    }
+                }
+                ViewModelProvider(activity, factory)[MusicViewModel::class.java]
+            }
+
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) = Unit
+            override fun onActivityStarted(activity: Activity) = Unit
+            override fun onActivityResumed(activity: Activity) = Unit
+            override fun onActivityPaused(activity: Activity) = Unit
+            override fun onActivityStopped(activity: Activity) = Unit
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
+            override fun onActivityDestroyed(activity: Activity) = Unit
+        }
+        application.registerActivityLifecycleCallbacks(callback)
+        try {
+            scenario = ActivityScenario.launch(MainActivity::class.java)
+        } finally {
+            application.unregisterActivityLifecycleCallbacks(callback)
+        }
     }
 
     fun grantMediaPermission() {
@@ -288,9 +330,9 @@ class RegressionFixture private constructor() : AutoCloseable {
     companion object {
         const val TAG = "PlaylistRegression"
 
-        fun open(): RegressionFixture = RegressionFixture().also {
+        fun open(scanApplication: Application? = null): RegressionFixture = RegressionFixture().also {
             try {
-                it.initialize()
+                it.initialize(scanApplication)
             } catch (failure: Throwable) {
                 it.close()
                 throw failure

@@ -3,6 +3,7 @@ package com.iven.musicplayergo.utils
 import android.Manifest
 import android.annotation.TargetApi
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.ActivityCompat
@@ -22,9 +23,9 @@ object Permissions {
     }
 
     @JvmStatic
-    fun hasToAskForReadStoragePermission(activity: Activity) =
+    fun hasToAskForReadStoragePermission(context: Context) =
         Versioning.isMarshmallow() && ContextCompat.checkSelfPermission(
-            activity,
+            context,
             PERMISSION_READ_AUDIO
         ) != PackageManager.PERMISSION_GRANTED
 

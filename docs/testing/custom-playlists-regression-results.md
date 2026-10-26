@@ -116,3 +116,33 @@ The original app-owned test WAVs would remain readable under scoped storage and
 would not establish this external-media behavior. The scanner now needs an
 explicit permission guard, and the live UI tests are being extended accordingly.
 RG06 remains unverified until the same device check passes after the fix.
+
+### RG06: same external-media check passes after the guard
+
+The scanner now checks the existing audio permission helper before querying
+MediaStore. A permission-limited result cannot become a successful empty library.
+The helper accepts a Context so both Activity callers and the scanner Application
+use the same permission rule.
+
+The same saved playlist and external MediaStore ID were retained when installing
+the fixed APK. With access still revoked, the live UI now shows **Availability not
+checked**, disables Play/Add, enables Rename/Delete, and keeps the saved member.
+After an actual `pm grant` and UI Refresh, the same member becomes available and
+its Play action starts the real media session (`PLAYING(3)`).
+
+- [Denied access after fix](evidence/2026-10-26-regressions/rg06-permission-after-fix.png)
+- [Restored access](evidence/2026-10-26-regressions/rg06-permission-restored.png)
+- [Asserted UI state, APK hash and observations](evidence/2026-10-26-regressions/rg06-permission-after-fix.txt)
+
+The complete strengthened instrumentation suite still needs its final run. An
+independent AI review requested stronger RG03 position bounds, live RG06 failure
+rendering, and RG05 unavailable-feedback assertions; these are included in that
+run. AI review does not replace a human teammate's review.
+
+## Issue tracking and scope
+
+The GitHub connector rejected issue and PR creation with HTTP 403. Prepared task
+and defect issue bodies are in [the issue drafts](playlist-regression-issue-drafts.md).
+There are no fabricated issue or PR numbers. Git commits and pushes succeeded.
+The optional CI trigger/test-APK change was separated and is not part of this
+contribution; it needs its own agreed issue before implementation.

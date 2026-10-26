@@ -1,14 +1,18 @@
 package com.iven.musicplayergo.regression
 
 import android.content.Intent
+import android.media.AudioManager
 import android.media.MediaPlayer
 import android.os.SystemClock
 import android.support.v4.media.session.MediaControllerCompat
 import android.util.Log
 import android.view.KeyEvent
+import android.view.accessibility.AccessibilityEvent
 import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import com.iven.musicplayergo.GoConstants
+import com.iven.musicplayergo.R
 import com.iven.musicplayergo.player.MediaButtonReceiver
 import com.iven.musicplayergo.playlists.Playlist
 import com.iven.musicplayergo.playlists.PlaylistResult
@@ -146,13 +150,29 @@ class PlaylistRecoveryRegressionTest {
         val before = f.onMain { privateField<Long>(f.holder, "mediaAttempt") }
         f.onMain { f.preferences.onListEnded = GoConstants.CONTINUE }
 
-        // Reuse the successful cached scan. All three source URIs now fail to open.
-        f.playPlaylist(saved.id)
+        // Reuse the successful cached scan. Assert the actual user-facing explanation,
+        // rather than treating an internal exhausted flag as proof that it was displayed.
+        val explanation = f.context.getString(R.string.playlist_playback_files_unavailable)
+        val toast = InstrumentationRegistry.getInstrumentation().uiAutomation.executeAndWaitForEvent(
+            { f.playPlaylist(saved.id) },
+            { event ->
+                event.eventType == AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED &&
+                    event.text.any { it.toString().contains(explanation) }
+            },
+            10_000L
+        )
+        try {
+            assertTrue("The unavailable-files Toast must explain why playback stopped", toast.text.any {
+                it.toString().contains(explanation)
+            })
+        } finally {
+            toast.recycle()
+        }
         f.await("all unavailable entries exhaust") {
             f.onMain { privateField<Boolean>(f.holder, "playlistExhausted") }
         }
 
-        assertSilent(f, "all files unavailable with list continuation")
+        assertSilent(f, "all files unavailable with list continuation", expectUnavailable = true)
         val attempts = f.onMain { privateField<Long>(f.holder, "mediaAttempt") - before }
         assertTrue("Recovery must stay bounded by the three members; attempts=$attempts", attempts <= 4)
         f.onMain {
@@ -219,13 +239,42 @@ class PlaylistRecoveryRegressionTest {
             failedAttempt
         }
 
-        assertSilent(f, "Stop while failed-file recovery is queued")
+        assertSilent(f, "Stop while failed-file recovery is queued", expectUnavailable = true)
         f.onMain {
             assertEquals("No replacement player may start after Stop", attempt, privateField<Long>(f.holder, "mediaAttempt"))
             assertFalse(f.holder.isPlay)
         }
         assertSavedMembership(f, saved)
         f.record("RG05-stop-before-posted-recovery")
+    }
+
+    @Test
+    fun transientFocusCallbackKeepsRecoveredTrackPausedUntilGain() = RegressionFixture.open().use { f ->
+        val saved = f.createPlaylist("Focus recovery", "A", "B", "C")
+        f.playPlaylist(saved.id)
+        f.expectPlaying("A")
+        f.deleteAudio("B")
+        val listener = f.onMain {
+            privateField<AudioManager.OnAudioFocusChangeListener>(f.holder, "mOnAudioFocusChangeListener")
+        }
+        f.onMain {
+            f.holder.skip(isNext = true)
+            assertNotNull("Missing B must schedule real recovery", privateField<Runnable?>(f.holder, "playlistRecovery"))
+            // Deliver the production focus callback in this same looper turn, before
+            // recovery runs. This controls event timing; it does not exercise OS arbitration.
+            listener.onAudioFocusChange(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT)
+            assertFalse("Transient focus loss clears pending play intent", f.holder.isPlay)
+        }
+
+        awaitPreparedC(f)
+        assertSilent(f, "prepared C after transient focus loss")
+        f.onMain {
+            assertFalse(f.holder.isPlay)
+            listener.onAudioFocusChange(AudioManager.AUDIOFOCUS_GAIN)
+        }
+        f.expectPlaying("C")
+        assertSavedMembership(f, saved)
+        f.record("RG05-transient-focus-callback-loss-and-gain")
     }
 
     @Test
@@ -253,14 +302,14 @@ class PlaylistRecoveryRegressionTest {
         repeat(8) {
             f.onMain {
                 assertNull(privateField<Runnable?>(stoppedHolder, "playlistRecovery"))
-                assertFalse("Stopped MediaSession must not restart audio", runCatching {
+                assertFalse("Stopped MediaSession must not restart MediaPlayer", runCatching {
                     privateField<MediaPlayer>(stoppedHolder, "mediaPlayer").isPlaying
                 }.getOrDefault(false))
             }
             SystemClock.sleep(75)
         }
         assertSavedMembership(f, saved)
-        Log.i("PlaylistRegression", "RG05 MediaSession Stop destroyed Activity and released service; no late audio")
+        Log.i("PlaylistRegression", "RG05 MediaSession Stop destroyed Activity and released service; captured MediaPlayer.isPlaying remained false")
         Unit
     }
 
@@ -289,11 +338,21 @@ class PlaylistRecoveryRegressionTest {
         assertEquals(expected, (result as PlaylistResult.Success<Playlist>).value)
     }
 
-    private fun assertSilent(f: RegressionFixture, label: String) {
+    private fun assertSilent(f: RegressionFixture, label: String, expectUnavailable: Boolean = false) {
         // Sample beyond the main-handler turn so delayed recovery cannot make a false pass.
         repeat(8) {
             f.onMain {
-                assertFalse("Unexpected real MediaPlayer audio: $label", runCatching { f.player.isPlaying }.getOrDefault(false))
+                if (expectUnavailable) {
+                    assertEquals("Unavailable/stopped player must be paused: $label", GoConstants.PAUSED, f.holder.state)
+                    assertNull("Unavailable/stopped recovery must have finished: $label", privateField<Runnable?>(f.holder, "playlistRecovery"))
+                    assertTrue("An unprepared player is only valid after exhaustion or Stop: $label",
+                        privateField<Boolean>(f.holder, "playlistExhausted") ||
+                            !privateField<Boolean>(f.holder, "playlistRecoveryAllowed"))
+                    assertFalse("MediaPlayer.isPlaying must remain false: $label", runCatching { f.player.isPlaying }.getOrDefault(false))
+                } else {
+                    assertTrue("Paused player must still be prepared: $label", f.player.duration > 0)
+                    assertFalse("MediaPlayer.isPlaying must remain false: $label", f.player.isPlaying)
+                }
             }
             SystemClock.sleep(75)
         }
