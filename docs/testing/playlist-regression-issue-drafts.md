@@ -18,19 +18,26 @@ TC01–TC13 are owned by collaborators on `test/playlist-acceptance`.
 
 Tasks:
 
-- [ ] Execute RG01 old Queue clearing and list-end behavior.
-- [ ] Execute RG02 saved edits versus active playback snapshots.
-- [ ] Execute RG03 playing/paused rotation and background return.
-- [ ] Execute RG04 stale details and repeated scans.
-- [ ] Execute RG05 real file failures, finite recovery and media commands.
-- [ ] Execute RG06 failed/denied versus successful-empty scans.
-- [ ] Execute RG07 hiding, ordinary playback, Favorites and Queue.
-- [ ] Link verified defects, commits, tested revisions and device evidence.
+- [x] Execute RG01 old Queue clearing and list-end behavior.
+- [x] Execute RG02 saved edits versus active playback snapshots.
+- [x] Execute RG03 playing/paused rotation and background return.
+- [x] Execute RG04 stale details and repeated scans.
+- [x] Execute RG05 real file failures, finite recovery and media commands.
+- [x] Execute RG06 failed/denied versus successful-empty scans.
+- [x] Execute RG07 hiding, ordinary playback, Favorites and Queue.
+- [x] Link verified defects, commits, tested revisions and device evidence.
 - [ ] Obtain a human teammate review before merge.
 
 Use [the existing plan](custom-playlists.md) as the case definitions and
 [the result record](custom-playlists-regression-results.md) for actual results.
 AI assistance is disclosed in that record; it is not human teammate review.
+
+Final tested source `24beffad`: **24 Android instrumentation tests passed** on
+Android 17 / API 37 arm64 (333.224 s), and **29 JVM tests passed**. The result record
+also retains actual external-media permission revoke/grant evidence. Focus-loss
+timing is tested through the production callback, not OS arbitration; the headless
+emulator verifies player state rather than audible host output. Other Android
+versions and physical devices remain unverified. TC01–TC13 are tracked separately.
 
 ## Defect: Explicit media Pause resumes a paused playlist
 

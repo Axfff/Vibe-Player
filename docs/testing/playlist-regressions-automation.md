@@ -38,21 +38,31 @@ build output). Set `REGRESSION_EVIDENCE_DIR` to keep independent runs. Set
 ## Interpretation
 
 - RG03 rotates the actual display and requires a new Activity with the same live
-  MediaPlayer. It also exercises stopped/background and resumed Activity states.
+  MediaPlayer. Position must not reset or jump beyond elapsed time plus tolerance.
+  It also exercises stopped/background and resumed Activity states.
 - RG05 physically removes owned audio without refreshing the cached app library.
   Failure and Pause/Stop are dispatched within one main-loop turn where needed,
   so pending-recovery cancellation is tested without unreliable human timing.
   Explicit commands are checked through the service and receiver entry points.
-- RG06 injects a controlled `SecurityException` through a test Application's
-  ContentResolver accessor to exercise the real scanner's error path. Its
-  successful-empty checks use real MediaStore and live UI. Actual Android
-  permission revocation is a separate device check because it kills the runner.
+  The all-unavailable case also asserts the actual unavailable Toast. The focus
+  test calls the production focus listener directly; it does not exercise full
+  OS audio-focus arbitration.
+- RG06 uses the live Activity-owned ViewModel with a controlled resolver
+  `SecurityException` or denied-permission flag supplied by test Applications.
+  It asserts Unknown rows, disabled Play/Add, preserved management/membership and
+  successful recovery. Successful-empty checks use real MediaStore and live UI.
+  Actual Android permission revoke/grant with external shell-owned audio is a
+  separate device check because revocation kills the runner.
 - RG07 uses a hidden-album preference as fixture preparation, then checks real
   filtering, the add-song picker, saved playback, Songs, Favorites and Queue.
   This does not assert that the Hide popup gesture was exercised.
+- RG01/RG02 prepare and edit saved membership through the real repository fixture
+  before invoking the playback entry. Collaborators' TC UI acceptance stays separate.
 - Host audio is disabled in the headless emulator. Assertions inspect the actual
   Android player's state and advancing position; they do not claim audible host
   verification.
+- The recorded execution covers Android 17 / API 37 arm64 only. API 29+ describes
+  fixture requirements, not a tested device/API matrix.
 
 Keep failed evidence that explains a fix. Record actual test/source revisions and
 APK hashes in [the regression result record](custom-playlists-regression-results.md).

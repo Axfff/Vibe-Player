@@ -7,29 +7,50 @@ starting from PR #3 at `785e0863e1efa8f44574cec1444b649a4016c911`.
 The separate `test/playlist-acceptance` branch records the collaborators' TC01–TC13
 work. This record does not repeat or replace those results.
 
-Execution and fixes are being prepared by Axfff with Codex assistance. AI assistance
+RG01–RG07 passed on 2026-10-26 on the Android 17 / API 37 arm64 emulator:
+**24 Android integration tests and 29 supporting JVM tests, no failures**.
+The tested source is `24beffad3c0c89739b13420d2a07cedb947770c0`.
+Two reproduced defects were fixed: explicit media-command toggling and denied
+media access being mistaken for a successful empty scan.
+
+Execution and fixes were prepared by Axfff with Codex assistance. AI assistance
 is used for source inspection, test implementation, debugging, and evidence drafting.
 Actual commands and observations determine the results; automated assistance is not
 the required human teammate review.
 
-## Execution plan
+## Final execution
 
-Use an isolated read-only Android emulator instance and disposable audio fixtures.
-Record the tested source revision, APK hash, device/API, test output, and observations.
-Each test starts with independently prepared data. Only test audio is removed.
+The run used an isolated read-only Android emulator instance and disposable audio
+fixtures. Each test started with independently prepared data. Only test audio was
+removed. The code and script had no tracked changes during the final execution.
 
 | Case | Required observation | Status |
 | --- | --- | --- |
-| RG01 | Starting a saved playlist clears the old Queue and its restoration state; playback ends without returning to the old Queue. | Pending |
-| RG02 | Editing saved membership preserves the active snapshot; the next explicit playlist Play uses the edited membership. | Pending |
-| RG03 | Playing and paused rotation, plus background/return, preserve track, position, and subsequent playlist order. | Pending |
-| RG04 | Repeated successful scans safely refresh an open vanished album/folder detail and the empty-library screen, without duplicate controls/rows. | Pending |
-| RG05 | Runtime file failures recover finitely; explicit Play/Pause are idempotent; Pause/Stop cancel unwanted playback during recovery. | Pending |
-| RG06 | Failed/unknown scan state differs from a successful empty scan; saved membership and playlist management remain accessible. | Pending |
-| RG07 | Hidden media remains usable in saved playlists; ordinary playback, Favorites, Queue, and repeated refresh still work. | Pending |
+| RG01 | Starting a saved playlist clears the old Queue and its restoration state; playback ends without returning to the old Queue. | Pass — 1 Android test |
+| RG02 | Editing saved membership preserves the active snapshot; the next explicit playlist Play uses the edited membership. | Pass — 1 Android test |
+| RG03 | Playing and paused rotation, plus background/return, preserve track, position, and subsequent playlist order. | Pass — 3 Android tests |
+| RG04 | Repeated successful scans safely refresh an open vanished album/folder detail and the empty-library screen, without duplicate controls/rows. | Pass — 3 Android tests |
+| RG05 | Runtime file failures recover finitely; explicit Play/Pause are idempotent; Pause/Stop cancel unwanted playback during recovery. | Pass — 12 Android tests |
+| RG06 | Failed/unknown scan state differs from a successful empty scan; saved membership and playlist management remain accessible. | Pass — 3 Android tests plus actual permission revoke/restore |
+| RG07 | Hidden media remains usable in saved playlists; ordinary playback, Favorites, Queue, and repeated refresh still work. | Pass — 1 Android test |
 
-Priority is RG03, RG05, and RG07, then the remaining cases. The existing 29 JVM tests
-remain useful supporting checks but do not establish Android integration results.
+All Pass results above apply to this emulator. The existing 29 JVM tests remain
+supporting checks; they do not establish Android integration results by themselves.
+
+The final Android run took 333.224 seconds. The final Gradle build succeeded and
+reused the up-to-date JVM results from the same source at 13:24:48 UTC. The Android
+runner executed all 24 tests after both current APKs were installed.
+
+- [Summary, environment and limitations](evidence/2026-10-26-regressions/final/summary.json)
+- [Complete Android runner output](evidence/2026-10-26-regressions/final/instrumentation.txt)
+- [Per-case device observations](evidence/2026-10-26-regressions/final/device-logcat.txt)
+- [Build output](evidence/2026-10-26-regressions/final/build.txt) and [APK SHA-256 hashes](evidence/2026-10-26-regressions/final/apk-sha256.txt)
+- [JVM failure-plan results (5 tests)](evidence/2026-10-26-regressions/final/TEST-com.iven.musicplayergo.player.PlaylistFailurePlanTest.xml) and [repository results (24 tests)](evidence/2026-10-26-regressions/final/TEST-com.iven.musicplayergo.playlists.PlaylistRepositoryTest.xml)
+- [Repeatable run instructions](playlist-regressions-automation.md)
+
+The summary lists 16 unmodified screenshots selected only from fixture sessions
+present in the final device log. Screenshots are supporting UI evidence; the
+state, position, ordering, controls and cancellation assertions are in the tests.
 
 ## Setup details that affect validity
 
@@ -45,6 +66,14 @@ remain useful supporting checks but do not establish Android integration results
 - RG07 gives B its own album/folder because existing Hide actions filter containers.
   Saved members resolve against the complete successful scan; the add picker uses
   the visible filtered library.
+- Only Android 17 / API 37 arm64 was executed. Other supported APIs and physical
+  devices remain unverified. Host audio was disabled; real player state and
+  advancing positions were asserted without claiming audible host verification.
+- The audio-focus test invokes the production focus listener directly. It verifies
+  pause/resume handling, not Android's full OS focus arbitration.
+- RG01/RG02 prepare and edit membership through the repository fixture, and RG07
+  prepares the Hide preference directly. These integration checks do not replace
+  the collaborators' TC UI acceptance work or claim the Hide popup was exercised.
 
 ## Initial source finding
 
@@ -81,7 +110,7 @@ the test to execute against the correct application. That setup failure is not
 counted as an application regression result.
 
 [Actual pre-fix runner output](evidence/2026-10-26-regressions/rg05-before-fix.txt)
-is retained. All other RG results remain Pending until their device runs complete.
+is retained. At that stage the other RG device results were still Pending.
 
 ### Focused media-command fix
 
@@ -92,8 +121,8 @@ headset-click timing and calls the matching player operation.
 The same device reproducer now passes: **1 Android test, 0 failures**. Both APKs
 were freshly built and installed by `scripts/check-playlist-regressions.sh` before
 the run. [Actual post-fix runner output](evidence/2026-10-26-regressions/rg05-after-fix.txt)
-is retained alongside the failing run. This targeted pass establishes the original
-Pause fix; it does not yet mark the complete RG05 or other RG cases as passed.
+is retained alongside the failing run. That targeted pass established the original
+Pause fix; the final complete run above subsequently verified the remaining cases.
 
 ### RG06: actual permission revocation found a second regression
 
@@ -113,9 +142,9 @@ access is denied. The saved member and its audio file were not deleted.
 - [Actual permission/file/MediaStore evidence and reproduction](evidence/2026-10-26-regressions/rg06-permission-before-fix.txt)
 
 The original app-owned test WAVs would remain readable under scoped storage and
-would not establish this external-media behavior. The scanner now needs an
-explicit permission guard, and the live UI tests are being extended accordingly.
-RG06 remains unverified until the same device check passes after the fix.
+would not establish this external-media behavior. This observation prompted an
+explicit scanner permission guard and extended live UI tests. RG06 was kept
+unverified until the same external-media device check passed after the fix.
 
 ### RG06: same external-media check passes after the guard
 
@@ -134,10 +163,11 @@ its Play action starts the real media session (`PLAYING(3)`).
 - [Restored access](evidence/2026-10-26-regressions/rg06-permission-restored.png)
 - [Asserted UI state, APK hash and observations](evidence/2026-10-26-regressions/rg06-permission-after-fix.txt)
 
-The complete strengthened instrumentation suite still needs its final run. An
-independent AI review requested stronger RG03 position bounds, live RG06 failure
-rendering, and RG05 unavailable-feedback assertions; these are included in that
-run. AI review does not replace a human teammate's review.
+The final strengthened suite passed all 24 tests. An independent AI review
+requested RG03 position bounds tied to elapsed time, live Activity-owned RG06
+failure rendering and disabled controls, and an actual RG05 unavailable Toast
+assertion. These checks were included in the passing run. Focused AI re-review
+found no remaining blocking findings. A human teammate's review remains pending.
 
 ## Issue tracking and scope
 
