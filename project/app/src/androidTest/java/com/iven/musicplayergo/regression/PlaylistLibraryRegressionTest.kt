@@ -430,6 +430,9 @@ class PlaylistLibraryRegressionTest {
     }
 
     private fun openNowPlaying(f: RegressionFixture) {
+        // Activity controls share a 500 ms debounce. A fast emulator can finish the
+        // previous Favorites/Queue flow before it expires; send a usable UI click.
+        SystemClock.sleep(550)
         clickActivity(f, R.id.playing_song_container)
         f.await("Now Playing sheet") { f.onMain { f.activityFragment(NowPlaying.TAG_MODAL) is NowPlaying } }
     }
