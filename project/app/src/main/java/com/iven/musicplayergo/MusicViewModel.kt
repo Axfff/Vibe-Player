@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.utils.MusicUtils
+import com.iven.musicplayergo.utils.Permissions
 import com.iven.musicplayergo.utils.Versioning
 import kotlinx.coroutines.*
 import java.io.File
@@ -115,6 +116,9 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
     @Suppress("DEPRECATION")
     fun queryForMusic(application: Application): MutableList<Music>? {
          return try {
+             // A permission-limited MediaStore query may succeed with a filtered or empty
+             // result. It cannot establish that saved playlist files have disappeared.
+             if (Permissions.hasToAskForReadStoragePermission(application)) return null
              // Build a fresh result: a refresh must not retain deleted rows or add duplicates.
              val scannedMusic = mutableListOf<Music>()
              val pathColumn = if (Versioning.isQ()) {

@@ -1,0 +1,81 @@
+{
+  "source_commit": "24beffad3c0c89739b13420d2a07cedb947770c0",
+  "test_date": "2026-10-26",
+  "environment": {
+    "host": "macOS 27.0.1 arm64",
+    "java": "JBR 17.0.14",
+    "gradle": "8.0",
+    "build_sdk": 33,
+    "emulator": "37.2.12, Medium_Phone_API_37.0, read-only temporary overlay",
+    "device_serial": "emulator-5554",
+    "android_release": 17,
+    "android_api": 37,
+    "abi": "arm64-v8a",
+    "host_audio": false
+  },
+  "android": {
+    "tests": 24,
+    "failures": 0,
+    "elapsed_seconds": 333.224,
+    "raw_output": "instrumentation.txt"
+  },
+  "jvm": {
+    "tests": 29,
+    "failures": 0,
+    "errors": 0,
+    "executed_utc": "2026-10-26T13:24:48Z",
+    "final_build_reused_up_to_date_results": true
+  },
+  "rg_status": {
+    "RG01": "Pass (Android17/API37 emulator)",
+    "RG02": "Pass (Android17/API37 emulator)",
+    "RG03": "Pass (Android17/API37 emulator)",
+    "RG04": "Pass (Android17/API37 emulator)",
+    "RG05": "Pass (Android17/API37 emulator)",
+    "RG06": "Pass (Android17/API37 emulator)",
+    "RG07": "Pass (Android17/API37 emulator)"
+  },
+  "rg_android_test_counts": {
+    "RG01": 1,
+    "RG02": 1,
+    "RG03": 3,
+    "RG04": 3,
+    "RG05": 12,
+    "RG06": 3,
+    "RG07": 1
+  },
+  "source_diff_empty": true,
+  "apk_sha256": {
+    "project/app/build/outputs/apk/debug/app-debug.apk": "c7f2dd8759dceb1964cc3b5e1b0d63e9e918d6e3caa98d0d5b8cddb6f001e1ab",
+    "project/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk": "66ea622c292388ac5822bd7d586a107bdf0067ddf83bda7547f47781575322a3"
+  },
+  "screenshots": [
+    "RG01-ended-on-A-old-B-not-restored.png",
+    "RG02-next-play-uses-edited-C-B.png",
+    "RG03-playing-landscape.png",
+    "RG03-paused-landscape.png",
+    "RG03-background-return-next-is-B.png",
+    "RG04-1-refresh-3-empty.png",
+    "RG04-1-refresh-3-missing.png",
+    "RG04-2-refresh-3-missing.png",
+    "RG05-all-files-unavailable-bounded-stop.png",
+    "RG05-media-session-pause-remains-paused.png",
+    "RG06-live-failed-query-unknown-and-disabled-play.png",
+    "RG06-live-denied-permission-unknown-and-disabled-play.png",
+    "RG06-successful-empty-unavailable-retained.png",
+    "RG07-hidden-B-excluded-from-picker.png",
+    "RG07-hidden-B-plays-from-saved-playlist.png",
+    "RG07-library-favorites-queue-and-controls.png"
+  ],
+  "additional_permission_check": "../rg06-permission-after-fix.txt; actual external shell-owned MediaStore row189, pm revoke/grant, same saved member, disabled controls while denied and PLAYING(3) after restore",
+  "limitations": [
+    "Only API37 arm64 emulator executed; no device/API compatibility matrix",
+    "Host audio disabled; actual MediaPlayer state and position asserted",
+    "Audio focus coverage invokes production callback, not full OS focus arbitration",
+    "Hide preference is fixture setup, not Hide popup gesture",
+    "RG01/RG02 repository membership fixture setup; collaborator TC UI acceptance remains separate",
+    "Human teammate review pending; independent AI review completed",
+    "Issue and PR creation rejected with403 Resource not accessible by integration; no issue/PR created",
+    "Optional CI change held separately; no branch CI pass claimed"
+  ]
+}
