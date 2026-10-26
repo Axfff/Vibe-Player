@@ -1,8 +1,10 @@
 # 自定义多歌单：手工验收计划
 
+> **2026-10-26 更新：** TC01–TC13 的本次测试结果与截图见 [手工验收记录](custom-playlists-manual-results.md)。下方 Pending 和环境记录保留为 2026-10-25 的历史记录，不代表本次 TC 未执行；RG01–RG07 和正式 AC 签收仍待完成。被测版本与音频文件名的确认事项见验收记录。
+
 ## 状态与需求来源
 
-- 版本：v0.2，2026-10-25；本地已有功能初版和自动检查记录，见[实现报告](../development/custom-playlists-implementation.md)。**本文件所有设备验收结果仍为 Pending，尚未运行真机或模拟器验收。**
+- 版本：v0.2，2026-10-25；本地已有功能初版和自动检查记录，见[实现报告](../development/custom-playlists-implementation.md)。以下原始状态为 2026-10-25 的记录；后续设备测试见上方链接。
 - 当前需求来源：[正式 Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，User Story 与 AC1–AC9 在该 Issue 维护。
 - 本文件维护验证方法和执行证据，不另行定义产品需求。需求变更后，按 AC 编号更新相关用例。
 - `Pending` 表示未执行；实际执行后记录 `Pass`、`Fail` 或 `Blocked`，并补充观察结果和证据。不能仅凭测试文档存在就勾选 AC。
