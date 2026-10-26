@@ -1,17 +1,17 @@
 # Release 1 — Review index
 
-更新日期：2026-10-27（Asia/Shanghai）。**Draft / Not released；最终集成自动验证通过。**
+更新日期：2026-10-27（Asia/Shanghai）。**GitHub Release `release1` 已发布；最终集成自动验证通过，正式团队签收与课程评审继续跟进。**
 
-这是课程评审的证据索引，不表示已经发布 APK、创建 GitHub Release 或完成验收。老师说明 Release 1 在 Sprint 2 后评审，并覆盖 Sprint 1 与 Sprint 2。
+这是课程评审的证据索引。`release1` 的 GitHub Release 与评估 APK 已发布；发布记录与正式验收分别维护。老师说明 Release 1 在 Sprint 2 后评审，并覆盖 Sprint 1 与 Sprint 2。
 
 ## 版本信息
 
 | 字段 | 当前值 |
 | --- | --- |
 | 评审日期 | 待课程安排 |
-| 被测提交 SHA | 历史 TC：`785e0863`；完整审阅修复回归：`7b0da65c`；当前集成候选：`8f2e4616`，保留 `f659ff7e` 的修复。最新验证与最终合并 SHA 统一见[最终集成报告](../testing/playlist-final-integration.md) |
-| Tag / GitHub Release | 未创建；是否采用由团队决定 |
-| APK / 构建产物 | Debug APK 已安装并进行真机/模拟器验收；APK 哈希见真机报告，GitHub Release 待团队决定 |
+| 被测提交 SHA | Release 1：`81b22ee5`，应用源码与被测 `8f2e4616` 一致；历史 TC：`785e0863`；完整审阅修复回归：`7b0da65c`；当前集成候选：`8f2e4616`，保留 `f659ff7e` 的修复。最新验证与最终合并 SHA 统一见[最终集成报告](../testing/playlist-final-integration.md) |
+| Tag / GitHub Release | [`release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1)，2026-10-27 01:00:15 Asia/Shanghai 发布；指向 `81b22ee5868e0cd5ac6a75472296caab3753a7b5` |
+| APK / 构建产物 | Release 附件提供 main CI 构建的 `Vibe-Player-release1-debug.apk` 与 `SHA256SUMS.txt`；版本 4.4.24 / 187，包名 `com.iven.musicplayergo.debug`，用于课程评估 |
 | 构建环境与设备 | JDK17 / SDK33；REDMI Android 16 API 36、模拟器 Android 17 API 37；两份报告分别记录覆盖范围 |
 | 远端功能分支 / Story / PR | `feat/custom-playlists`、[Story #2](https://github.com/Axfff/Vibe-Player/issues/2)、[PR #3](https://github.com/Axfff/Vibe-Player/pull/3) |
 
@@ -63,3 +63,11 @@
 这些检查是团队组织评审材料的方式，不代表老师额外规定了某个 tag 命名、覆盖率或 PR 数量。
 
 2026-10-27 集成记录：[PR #16](https://github.com/Axfff/Vibe-Player/pull/16) 已合并为 `a489a243`；29 Android / 30 JVM 及本轮 UI 冒烟检查通过，应用源码与被测 `8f2e4616` 相同。PR #3 的最终 CI 和主分支合并结果见[最终集成报告](../testing/playlist-final-integration.md)及 PR 的 GitHub 状态。真人复审和正式签收仍由 #17 跟进。
+
+## GitHub Release 发布记录
+
+2026-10-27，用户明确要求发布当前版本并采用 tag `release1`。已建立并推送指向 `81b22ee5` 的 annotated tag，再发布 [Release 1 — Persistent custom playlists](https://github.com/Axfff/Vibe-Player/releases/tag/release1)。本次发布没有修改应用版本号或生产代码；本文件的后续更新仅记录已发生的发布事实。
+
+附件来自该 main 提交的 [CI run 40363054583](https://github.com/Axfff/Vibe-Player/actions/runs/40363054583)，30 项 JVM 测试和 Debug 构建通过。APK 的包名、版本和 Android Debug 签名已检查。附件 APK 的 SHA-256 为 `81c6fde3da1909ff3fb86efe099f265a967af5f8284b40f15f33251b1d3cfd92`，与 GitHub 上传后的 digest 一致；[校验文件](https://github.com/Axfff/Vibe-Player/releases/download/release1/SHA256SUMS.txt)随 Release 保存。它是 CI 的独立构建，不将其哈希混同于本地执行 Android 集成测试的 APK。
+
+29 项 Android 集成测试及 UI 冒烟检查在应用源码相同的 `8f2e4616` 上通过，证据见[最终集成报告](../testing/playlist-final-integration.md)。人类队友复审与正式签收仍在 #17，扩展设备验证仍在 #18，课程回顾/演示准备仍在 #19；发布 Release 不替代这些工作。
