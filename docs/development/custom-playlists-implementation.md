@@ -1,8 +1,23 @@
 # 自定义多歌单：实现与验证记录
 
-更新日期：2026-10-25。需求来源：[User Story 与 AC](../thinking/02-custom-playlists-user-story.md)。操作指南：[Coding Agent 实施指南](custom-playlists-agent-guide.md)。
+更新日期：2026-10-26。需求来源：[User Story 与 AC](../thinking/02-custom-playlists-user-story.md)。操作指南：[Coding Agent 实施指南](custom-playlists-agent-guide.md)。
 
 ## 当前结论
+
+被测提交为 `785e0863e1efa8f44574cec1444b649a4016c911`，已发布至 `feat/custom-playlists` 和 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3)，关联 [Story #2](https://github.com/Axfff/Vibe-Player/issues/2)。Windows 构建、29 项单元测试及该提交的 push/PR CI 均通过。
+
+| 2026-10-26 验收 | 结果与证据 |
+| --- | --- |
+| CroissantXinny / REDMI K90 Pro Max / Android 16 API 36 | [TC01–TC10 Pass](../testing/custom-playlists-redmi-results.md)；截图、原音频哈希与 TC07–TC10 强停冷启动记录已保存 |
+| 曾沛涵 / Android 17 API 37 模拟器 | [TC01–TC13 Pass](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)；报告提交为 `6e92066`，Android 源码与被测提交相同 |
+| 集成回归、人工 Review、正式 AC 签收 | RG01–RG07 Pending，优先 RG03/RG05/RG07；PR 保持 Draft，签收由团队完成 |
+| 待修复反馈 | [#4 曲库扫描](https://github.com/Axfff/Vibe-Player/issues/4)、[#5 歌单入口](https://github.com/Axfff/Vibe-Player/issues/5)、[#6 添加歌曲白条](https://github.com/Axfff/Vibe-Player/issues/6) |
+
+当前源码提交为 `03e85dd7`，与下文原修复提交 `2f660d11` 的文件树相同。2026-10-26 按用户要求调整了五次提交的署名，保留每次文件树、提交内容和时间；文档/功能/交接/修复/证据提交依次为 `b1605279`、`fd00c099`、`96bc3af6`、`03e85dd7`、`785e0863`。
+
+以下章节保留 **2026-10-25 接手时** 的状态、原提交标识和验证日志。最新设备与远端状态以上表及实际运行链接为准。
+
+## 2026-10-25 接手结论（历史）
 
 自定义多歌单初版已在本地 `feat/custom-playlists` 实现，包含管理界面、持久化、独立播放上下文、失效文件处理和单元测试。**当前源码 `2f660d11` 已通过本轮 Windows 构建和 29 项单元测试，AC1–AC9 待设备验收与签收。**
 

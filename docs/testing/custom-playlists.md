@@ -1,5 +1,7 @@
 # 自定义多歌单：手工验收计划
 
+> **2026-10-26 当前进度：** CroissantXinny 的 [REDMI 真机记录](custom-playlists-redmi-results.md)覆盖 TC01–TC10 Pass；曾沛涵的[模拟器记录](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)覆盖 TC01–TC13 Pass。两者均测试 `785e0863`。本机 TC11–TC13、RG01–RG07、人工 Review 与正式 AC 签收继续单独跟踪。下文 Pending 和设备环境保留为 2026-10-25 的历史状态；各次实际结果见两份报告。
+
 ## 状态与需求来源
 
 - 版本：v0.3，2026-10-26；功能实现见[实现报告](../development/custom-playlists-implementation.md)。**RG01–RG07 已在 Android 17 / API 37 arm64 模拟器通过，完整证据见[回归结果](custom-playlists-regression-results.md)。** TC01–TC13 由协作者的 `test/playlist-acceptance` 分支单独记录，本次不重复执行或修改其结果。

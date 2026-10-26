@@ -1,0 +1,8 @@
+{
+  "screen": "study",
+  "xml": "TC09-after-study.xml",
+  "screenshot": "TC09-after-study.png",
+  "observed": "Study contains only Test-A; Test-B remains removed",
+  "pid": "21492",
+  "checked_at_shanghai": "2026-10-26T20:27:30.7431302+08:00"
+}
