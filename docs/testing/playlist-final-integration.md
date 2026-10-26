@@ -65,4 +65,6 @@ Formal AC1–AC9 sign-off remains in Story #2 and follow-up #17. The owner expli
 
 ## Integration status
 
-Both merges are explicitly authorized. Actual PR #16 → `feat/custom-playlists`, final CI and PR #3 → `main` results will be linked here and in the PRs after completion. No merge success is claimed before GitHub confirms it.
+[PR #16](https://github.com/Axfff/Vibe-Player/pull/16) merged into `feat/custom-playlists` as `a489a243895d6e39aea56198eacb89f448b7f17b` at 2026-10-27 00:41:50 Asia/Shanghai. Its `project/` tree is `4428850dffd9c784929c1522d88b20ed15064e3d`, exactly the tested tree; `git diff 8f2e4616 a489a243 -- project scripts .github/workflows` is empty. The subsequent integration-status commit also changes documentation only.
+
+The owner authorized [PR #3 → main](https://github.com/Axfff/Vibe-Player/pull/3) after final candidate CI. The PR records the actual final head, CI runs and main merge commit; follow its GitHub state and merge-completion comment for the final result. Formal human review/AC acceptance and release preparation remain separate follow-ups.

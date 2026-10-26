@@ -14,7 +14,7 @@
 
 2026-10-27，用户明确授权在可执行验证通过后完成合并，将依赖外部参与的后续工作作为 Issue 跟踪：[真人队友复审与正式 AC1–AC9 签收 #17](https://github.com/Axfff/Vibe-Player/issues/17)、[真机、可访问性与扫描边界验证 #18](https://github.com/Axfff/Vibe-Player/issues/18)、[团队回顾与 Release 准备 #19](https://github.com/Axfff/Vibe-Player/issues/19)。这是本轮对建议 Definition of Done 执行顺序的明确例外，不代表已经取得真人批准或正式签收。完全未进入系统索引的文件发现限制继续由 [#4](https://github.com/Axfff/Vibe-Player/issues/4) 跟踪，可选 Add 样式调整由 [#8](https://github.com/Axfff/Vibe-Player/issues/8) 跟踪。
 
-正式需求为 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，实现已发布至 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3)。原 GitHub 集成的 403 记录保留；用户明确授权使用现有 Git 与 GitHub CLI 后，已通过 CroissantXinny 账号完成分支、PR 和缺陷记录发布。
+正式需求为 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，实现已发布至 [PR #3](https://github.com/Axfff/Vibe-Player/pull/3)。原 GitHub 集成的 403 记录保留；用户明确授权使用现有 Git 与 GitHub CLI 后，已通过 CroissantXinny 账号完成分支、PR 和缺陷记录发布。
 
 ## 文档入口
 
@@ -88,3 +88,5 @@ Story 与 AC 是同一需求的两个小节，不分别开两个 Issue。需要�
 - [Issue 与 PR 模板](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates)
 - [PR 与 Issue 的关联及关闭](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue)
 - [User Story 的角色、目标与价值表达](https://agilealliance.org/glossary/user-story-template/)
+
+2026-10-27 集成记录：[PR #16](https://github.com/Axfff/Vibe-Player/pull/16) 已合并为 `a489a243`；29 Android / 30 JVM 及本轮 UI 冒烟检查通过，应用源码与被测 `8f2e4616` 相同。PR #3 的最终 CI 和主分支合并结果见[最终集成报告](testing/playlist-final-integration.md)及 PR 的 GitHub 状态。真人复审和正式签收仍由 #17 跟进。

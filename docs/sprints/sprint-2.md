@@ -22,14 +22,14 @@
 | 工作项 | 当前执行 / 后续责任 | 状态 | 证据 / 后续动作 |
 | --- | --- | --- | --- |
 | User Story 与 AC | CroissantXinny 发布；团队验收人待定 | Issue #2 open | 正式需求已核实；AC 均待签收 |
-| 歌单数据与本地保存 | CroissantXinny 集成；Codex 辅助实现 | Draft PR #3 | UUID、独立保存与保守曲目解析；创建/改名/移除/删除的真机持久化检查通过 |
+| 歌单数据与本地保存 | CroissantXinny 集成；Codex 辅助实现 | PR #3 | UUID、独立保存与保守曲目解析；创建/改名/移除/删除的真机持久化检查通过 |
 | 歌单列表、编辑与歌曲管理 UI | CroissantXinny 集成 | TC01–TC05 历史 Pass；PR #16 实现 #5/#6 修复 | 入口与添加反馈的历史设备结果见修复记录，最新集成结果见最终报告 |
 | 播放集成与失效文件处理 | CroissantXinny 集成 | TC06 真机通过；TC12–TC13 模拟器通过；RG01–RG07 已通过 | PR #12 已合入；完全未索引文件的发现限制仍由 #4 跟踪 |
 | 自动检查 | Codex 辅助执行 | 历史 `7b0da65c`：29 Android / 29 JVM Pass；当前集成构建成功 | `8f2e4616`：29 项 Android / 30 项 JVM 全部通过；最新结果以最终集成报告为准 |
 | 真机手工验收 | CroissantXinny 操作；Codex 记录 | TC01–TC10 Pass | REDMI K90 Pro Max / Android 16 API 36；本机其余用例保持 Pending |
 | 模拟器手工验收 | 曾沛涵 | TC01–TC13 Pass | Android 17 API 37；报告提交 `6e92066` |
 | 集成回归 / 人工 Review | Codex 执行自动化；队友后续复审 | RG 与 #13–#15 回归已有通过记录；当前集成 29 Android / 30 JVM 全部通过 | 真实队友复审与正式 AC1–AC9 签收由 #17 跟踪，不宣称 AI 审查等于真人批准 |
-| 远端发布与合并 | 用户授权；完成可执行检查后执行 | PR #3 / PR #16 的合并已获授权，尚以最终报告记录实际结果 | 2026-10-27 用户允许先合并，再由 #17/#18/#19 跟进外部验证与课程准备 |
+| 远端发布与合并 | 用户授权；完成可执行检查后执行 | PR #16 已合并为 `a489a243`；PR #3 的实际交付状态见最终报告及 GitHub | 2026-10-27 用户允许先合并，再由 #17/#18/#19 跟进外部验证与课程准备 |
 
 上述数据、UI、播放是同一用户故事内的技术任务。若团队评估超出 Sprint 容量，再拆成可独立验收的故事；每个故事都要有自己的 AC。
 
@@ -37,7 +37,7 @@
 
 - 文档基础提交：`b1605279`（原 `2372cac`，署名调整后内容相同）。
 - 本地功能分支：`feat/custom-playlists`，已有初版实现提交；接手时检查状态并保留后续改动。
-- 已发布 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3)，关联 Refs #2。队友的测试报告保留在 `test/playlist-acceptance` 分支，当前 PR 链接两份验收记录。
+- 已发布 [PR #3](https://github.com/Axfff/Vibe-Player/pull/3)，关联 Refs #2。队友的测试报告保留在 `test/playlist-acceptance` 分支，当前 PR 链接两份验收记录。
 - 功能初版 `fd00c099`，播放修复 `03e85dd7`，两份历史 TC 设备测试基于 `785e0863`；历史提交对应关系见[实施记录](../development/custom-playlists-implementation.md)。
 - PR #12 已将 RG 测试及两项修复合入功能分支；#13–#15 的后续修复与 `7b0da65c` 的完整通过证据随 `f659ff7e` 保留。PR #16 实现 #4/#5/#6 的设备反馈修复；本轮以 `8f2e4616` 作集成候选，最新结果见最终集成报告。
 - 团队接手分工、Sprint 起止日期：待按课程安排补充。
@@ -81,3 +81,5 @@
 本轮合并顺序例外（2026-10-27）来自用户明确授权，区别于团队建议先取得真人同伴审阅再合并的 Definition of Done。这里不补造真人批准、不勾选正式 AC 签收，也不将合并视为课程评审或 Release 已完成。
 
 Release 1 汇总入口：[Release 1](../releases/release-1.md)。
+
+2026-10-27 集成记录：[PR #16](https://github.com/Axfff/Vibe-Player/pull/16) 已合并为 `a489a243`；29 Android / 30 JVM 及本轮 UI 冒烟检查通过，应用源码与被测 `8f2e4616` 相同。PR #3 的最终 CI 和主分支合并结果见[最终集成报告](../testing/playlist-final-integration.md)及 PR 的 GitHub 状态。真人复审和正式签收仍由 #17 跟进。
