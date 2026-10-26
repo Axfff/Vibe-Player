@@ -1,9 +1,7 @@
 package com.iven.musicplayergo.regression
 
-import android.content.ContentValues
 import android.media.MediaPlayer
 import android.os.SystemClock
-import android.provider.MediaStore
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
@@ -19,7 +17,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.R
-import com.iven.musicplayergo.extensions.toContentUri
 import com.iven.musicplayergo.fragments.AllMusicFragment
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
 import com.iven.musicplayergo.preferences.PreferencesFragment
@@ -81,18 +78,9 @@ class PlaylistPresentationRegressionTest {
     }
 
     @Test fun titleFilenamePreferenceUpdatesRetainedSongsAndMiniPlayerWithoutReorderingPlaylist() {
-        RegressionFixture.open().use { f ->
-            // WAV scanning may replace initial TITLE values while the fixture is inserted.
-            // Set real metadata after that scan, then obtain fresh songs through the live model.
-            f.tracks.forEach { (label, song) ->
-                val values = ContentValues().apply {
-                    put(MediaStore.Audio.Media.TITLE, "Regression display title $label")
-                }
-                assertEquals(1, f.context.contentResolver.update(song.id!!.toContentUri(), values, null, null))
-            }
-            f.refreshLibrary()
-            val refreshed = f.onMain { f.viewModel.playlistLibrary.toList() }
-            val actualTracks = f.tracks.mapValues { (_, initial) -> refreshed.single { it.id == initial.id } }
+        RegressionFixture.open(taggedAudio = true).use { f ->
+            // Embedded MP3 titles come from the real MediaStore scan, not provider edits.
+            val actualTracks = f.tracks
             selectTab(f, GoConstants.SONGS_TAB)
             awaitSongRows(f, 3)
             val retainedRows = f.onMain { songs(f) }
