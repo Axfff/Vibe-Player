@@ -1,0 +1,15 @@
+{
+  "empty_entry": "pass",
+  "no_candidates": "pass",
+  "import_help": "pass",
+  "accessible_media_scan": "pass, 2 indexed fixture files",
+  "add_and_duplicate_feedback": "pass",
+  "rotation_feedback": "pass",
+  "same_install_cold_restart": "pass, one saved member",
+  "denied_entry_and_scan_feedback": "pass",
+  "denied_preserves_playlist_and_disables_play_add": "pass",
+  "permission_restored": "pass",
+  "full_TC01_TC13_rerun": false,
+  "write_error_and_timeout_matrix": "deferred to18",
+  "system_ui_anr": "observed after automated suite; dialog closed before smoke checks, screenshot01 retained"
+}
