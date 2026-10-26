@@ -1,0 +1,10 @@
+{
+  "source": "ea358f08fca1e3512a8488b5210c43ffc7af2d40",
+  "device": "emulator-5554",
+  "android_release": "13",
+  "android_api": "33",
+  "abi": "x86_64",
+  "filter": "com.iven.musicplayergo.regression.PlaylistPlaybackRegressionTest,com.iven.musicplayergo.regression.PlaylistLibraryRegressionTest,com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest",
+  "started_at": "2026-10-26T23:30:28.8775973+08:00",
+  "source_dirty": []
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playlist_title">歌单</string>
+    <string name="playlist_back">返回歌单列表</string>
+    <string name="playlist_close">关闭歌单</string>
+    <string name="playlist_create">新建歌单</string>
+    <string name="playlist_name">歌单名称</string>
+    <string name="playlist_save">保存</string>
+    <string name="playlist_play">播放</string>
+    <string name="playlist_add_song">添加歌曲</string>
+    <string name="playlist_add">添加</string>
+    <string name="playlist_remove">移除</string>
+    <string name="playlist_refresh">刷新</string>
+    <string name="playlist_rename">重命名</string>
+    <string name="playlist_delete">删除</string>
+    <string name="playlist_done">完成</string>
+    <string name="playlist_collection_hint">将喜欢的音乐整理成歌单，保存在此设备上。</string>
+    <string name="playlist_order_hint">歌曲按添加顺序播放。编辑内容在下次点击“播放”时生效。</string>
+    <string name="playlist_no_playlists">还没有歌单。新建一个歌单，收集适合不同心情或活动的音乐。</string>
+    <string name="playlist_no_tracks">歌单还是空的。先从本地曲库添加几首歌曲吧。</string>
+    <string name="playlist_no_playable_tracks">没有可播放的歌曲。恢复音频文件后刷新曲库，或添加其他歌曲。</string>
+    <string name="playlist_loading">正在读取歌单…</string>
+    <string name="playlist_library_loading">正在检查本地曲库…</string>
+    <string name="playlist_library_unknown">请刷新本地曲库，检查歌曲是否可用。</string>
+    <string name="playlist_library_failure">无法刷新本地曲库。请检查音乐访问权限后重试。已保存的歌单条目会保留。</string>
+    <string name="playlist_unavailable">不可用</string>
+    <string name="playlist_availability_unknown">尚未确认可用性</string>
+    <string name="playlist_saving">正在保存…</string>
+    <string name="playlist_no_visible_songs">曲库中没有可见的歌曲。请添加本地音乐或检查已隐藏的项目，然后刷新。</string>
+    <string name="playlist_search_songs">搜索歌曲或歌手</string>
+    <string name="playlist_no_search_results">没有找到匹配的歌曲。</string>
+    <string name="playlist_picker_hint">逐首点击“添加”，歌曲会按添加顺序排在歌单末尾。</string>
+    <string name="playlist_in_playlist">已在此歌单中</string>
+    <string name="playlist_add_to">添加歌曲到 %1$s</string>
+    <string name="playlist_add_description">将 %1$s 添加到此歌单</string>
+    <string name="playlist_remove_description">从此歌单移除 %1$s</string>
+    <string name="playlist_position_title">%1$d. %2$s</string>
+    <string name="playlist_unknown_title">未命名歌曲</string>
+    <string name="playlist_unknown_artist">未知歌手</string>
+    <string name="playlist_created">已创建歌单</string>
+    <string name="playlist_renamed">已重命名歌单</string>
+    <string name="playlist_deleted">已删除歌单</string>
+    <string name="playlist_track_added">已添加 %1$s</string>
+    <string name="playlist_track_removed">已从此歌单移除</string>
+    <string name="playlist_delete_title">删除歌单？</string>
+    <string name="playlist_delete_message">删除“%1$s”？本地音频文件和其他歌单会保留。</string>
+    <string name="playlist_error_empty_name">请输入名称，名称不能仅包含空格。</string>
+    <string name="playlist_error_duplicate_name">其他歌单已使用此名称。名称不区分字母大小写。</string>
+    <string name="playlist_error_not_found">此歌单已不存在，请刷新歌单列表。</string>
+    <string name="playlist_error_duplicate_track">此歌曲已在歌单中，原有位置保持不变。</string>
+    <string name="playlist_error_invalid_track">无法添加此歌曲，请刷新本地曲库后重试。</string>
+    <string name="playlist_error_track_not_found">此歌曲已不在歌单中，请刷新歌单列表。</string>
+    <string name="playlist_error_read">无法读取歌单，请尝试刷新。已保存的数据未被替换。</string>
+    <string name="playlist_error_write">无法保存此次修改，原有歌单已保留，请重试。</string>
+    <string name="playlist_error_unknown">未能完成操作，请重试。</string>
+    <string name="playlist_error_playback">暂时无法播放，请关闭歌单后重试。</string>
+    <plurals name="playlist_track_count">
+        <item quantity="other">%d 首歌曲</item>
+    </plurals>
+    <plurals name="playlist_unavailable_count">
+        <item quantity="other">将跳过 %d 首不可用的歌曲。</item>
+    </plurals>
+</resources>

@@ -1,0 +1,11 @@
+Actual Android permission-revocation check after scanner guard, 2026-10-26 Asia/Shanghai.
+Device: emulator-5554, Android17/API37 arm64, read-only MediumPhone instance.
+Installed APK SHA256: c7f2dd8759dceb1964cc3b5e1b0d63e9e918d6e3caa98d0d5b8cddb6f001e1ab
+
+Same existing RG06Permission saved playlist and external MediaStore ID189 were retained across APK update.
+With READ_MEDIA_AUDIO still revoked: denial rationale -> NO -> Playlists -> RG06Permission.
+PASS: track Availability not checked; Play and Add disabled; Rename/Delete enabled; saved track remains.
+Then pm grant READ_MEDIA_AUDIO, same sheet Refresh.
+PASS: same saved track becomes available; Play/Add enabled; no Unavailable/Unknown status.
+Pressed Play in real UI: actual media session reported state=PLAYING(3), metadata permission-audio / VibePermissionRegression.
+UI hierarchy assertions above were checked programmatically against retained XML.

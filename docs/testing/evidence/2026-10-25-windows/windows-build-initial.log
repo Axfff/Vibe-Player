@@ -1,0 +1,237 @@
+Downloading https://services.gradle.org/distributions/gradle-8.0-all.zip
+...............10%................20%................30%................40%................50%................60%................70%................80%................90%................100%
+
+Welcome to Gradle 8.0!
+
+For more details see https://docs.gradle.org/8.0/release-notes.html
+
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/8.0/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:dataBindingMergeDependencyArtifactsDebug
+> Task :app:generateDebugResValues
+> Task :app:generateDebugResources
+
+> Task :app:mergeDebugResources
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nb-rNO\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hi\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hu\strings.xml:4:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-in\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt\strings.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-it\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nb-rNO\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nb-rNO\strings.xml:25:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt\strings.xml:31:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hi\strings.xml:9:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt\strings.xml:66:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hi\strings.xml:31:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hu\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-it\strings.xml:37:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-in\strings.xml:9:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-hu\strings.xml:17:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-it\strings.xml:35:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-in\strings.xml:27:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ar\strings.xml:14:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ar\strings.xml:12:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ar\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:29:4: Multiple substitutions specified in non-positional format of string resource string/artist_and_album. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\donottranslate.xml:12:4: Multiple substitutions specified in non-positional format of string resource string/duration_artist_date_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\donottranslate.xml:55:4: Multiple substitutions specified in non-positional format of string resource string/duration_date_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:11:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\donottranslate.xml:17:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:54:4: Multiple substitutions specified in non-positional format of string resource string/favorite_subtitle. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:200:4: Multiple substitutions specified in non-positional format of string resource string/rates. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\donottranslate.xml:21:4: Multiple substitutions specified in non-positional format of string resource string/track_song. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values\strings.xml:212:4: Multiple substitutions specified in non-positional format of string resource string/year_and_duration. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ru\strings.xml:11:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ro\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ko\strings.xml:68:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-be\strings.xml:76:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bd\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bd\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bd\strings.xml:25:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ko\strings.xml:34:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ko\strings.xml:26:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ro\strings.xml:21:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ro\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-be\strings.xml:78:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-be\strings.xml:51:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-th\strings.xml:9:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sv\strings.xml:80:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-th\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-th\strings.xml:26:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sv\strings.xml:82:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sv\strings.xml:53:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ru\strings.xml:23:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-jp\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ru\strings.xml:24:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-jp\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-jp\strings.xml:25:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sl\strings.xml:77:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-de\strings.xml:61:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eu\strings.xml:78:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eg\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eg\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eg\strings.xml:25:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eu\strings.xml:80:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-eu\strings.xml:51:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sl\strings.xml:71:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sl\strings.xml:50:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cn\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lk\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cn\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cn\strings.xml:26:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lk\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lk\strings.xml:25:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-de\strings.xml:62:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-de\strings.xml:41:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fr\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lt\strings.xml:79:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fr\strings.xml:22:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lt\strings.xml:80:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fr\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cs\strings.xml:12:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-lt\strings.xml:58:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-tr\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt-rBR\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bg\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nl\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nn\strings.xml:76:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt-rBR\strings.xml:21:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pt-rBR\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bg\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bg\strings.xml:50:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-gl\strings.xml:12:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nn\strings.xml:78:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nn\strings.xml:50:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-or\strings.xml:43:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-zh-rTW\strings.xml:17:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cs\strings.xml:20:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sr\strings.xml:113:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-uk\strings.xml:42:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-cs\strings.xml:85:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-vi\strings.xml:78:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-el\strings.xml:14:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-tr\strings.xml:21:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-tr\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-zh-rTW\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-zh-rTW\strings.xml:47:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-or\strings.xml:44:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-or\strings.xml:33:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-vi\strings.xml:80:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-uk\strings.xml:43:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nl\strings.xml:24:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-uk\strings.xml:22:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-nl\strings.xml:22:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-el\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-el\strings.xml:38:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-vi\strings.xml:51:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sr\strings.xml:9:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-sr\strings.xml:4:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-da\strings.xml:13:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ku\strings.xml:8:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-gl\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-gl\strings.xml:33:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ku\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ku\strings.xml:26:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-da\strings.xml:74:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-da\strings.xml:36:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pa\strings.xml:24:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pa\strings.xml:20:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pa\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-np\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-es\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-np\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-np\strings.xml:24:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-es\strings.xml:21:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-es\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pk\strings.xml:7:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pk\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pk\strings.xml:24:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fi\strings.xml:35:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fi\strings.xml:30:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fi\strings.xml:11:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-fa\strings.xml:22:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ms\strings.xml:20:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bqi\strings.xml:85:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bqi\strings.xml:6:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-bqi\strings.xml:16:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pl\strings.xml:10:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pl\strings.xml:9:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-pl\strings.xml:27:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ml\strings.xml:27:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ml\strings.xml:19:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-ml\strings.xml:29:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-az\strings.xml:15:4: Multiple substitutions specified in non-positional format of string resource string/artist_info. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-az\strings.xml:11:4: Multiple substitutions specified in non-positional format of string resource string/favorite_added. Did you mean to add the formatted="false" attribute?
+C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\res\values-az\strings.xml:45:4: Multiple substitutions specified in non-positional format of string resource string/favorite_remove. Did you mean to add the formatted="false" attribute?
+
+> Task :app:packageDebugResources
+> Task :app:mapDebugSourceSetPaths
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:checkDebugAarMetadata
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+
+> Task :app:processDebugMainManifest
+package="com.iven.musicplayergo" found in source AndroidManifest.xml: C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\AndroidManifest.xml.
+Setting the namespace via the package attribute in the source AndroidManifest.xml is no longer supported, and the value is ignored.
+Recommendation: remove package="com.iven.musicplayergo" from the source AndroidManifest.xml: C:\Users\ASUS\Documents\ChatGPT\dsa project\Vibe-Player\project\app\src\main\AndroidManifest.xml.
+
+> Task :app:dataBindingGenBaseClassesDebug
+> Task :app:processDebugManifest
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileDebug
+> Task :app:javaPreCompileDebugUnitTest
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:processDebugUnitTestJavaRes NO-SOURCE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:mergeDebugJniLibFolders
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:mergeLibDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:processDebugManifestForPackage
+> Task :app:mergeExtDexDebug
+> Task :app:processDebugResources
+> Task :app:processDebugResources FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:processDebugResources'.
+> Could not isolate parameters com.android.build.gradle.internal.dependency.AarResourcesCompilerTransform$Parameters_Decorated@7f92253d of artifact transform AarResourcesCompilerTransform
+   > Could not isolate value com.android.build.gradle.internal.dependency.AarResourcesCompilerTransform$Parameters_Decorated@7f92253d of type AarResourcesCompilerTransform.Parameters
+      > Could not resolve all files for configuration ':app:detachedConfiguration2'.
+         > Could not resolve com.android.tools.build:aapt2:8.0.2-9289358.
+           Required by:
+               project :app
+            > Could not resolve com.android.tools.build:aapt2:8.0.2-9289358.
+               > Could not get resource 'https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/8.0.2-9289358/aapt2-8.0.2-9289358.pom'.
+                  > Could not GET 'https://dl.google.com/dl/android/maven2/com/android/tools/build/aapt2/8.0.2-9289358/aapt2-8.0.2-9289358.pom'.
+                     > ��֪�������������� (dl.google.com)
+            > Could not resolve com.android.tools.build:aapt2:8.0.2-9289358.
+               > Could not get resource 'https://repo.maven.apache.org/maven2/com/android/tools/build/aapt2/8.0.2-9289358/aapt2-8.0.2-9289358.pom'.
+                  > Could not GET 'https://repo.maven.apache.org/maven2/com/android/tools/build/aapt2/8.0.2-9289358/aapt2-8.0.2-9289358.pom'.
+                     > ��֪�������������� (repo.maven.apache.org)
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+
+* Get more help at https://help.gradle.org
+
+BUILD FAILED in 21m 12s
+27 actionable tasks: 27 executed

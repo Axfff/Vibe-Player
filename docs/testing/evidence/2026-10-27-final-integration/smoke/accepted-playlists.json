@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "playlists": [
+    {
+      "id": "5d9c3410-02a7-4489-9cf3-85cb322c2f42",
+      "name": "FinalSmoke",
+      "tracks": [
+        {
+          "mediaId": 224,
+          "title": "Regression display title A",
+          "displayName": "VibeFinalSmoke_A.mp3",
+          "artist": "Vibe regression fixtures",
+          "album": "Regression display album A",
+          "duration": 30067
+        }
+      ]
+    }
+  ]
+}

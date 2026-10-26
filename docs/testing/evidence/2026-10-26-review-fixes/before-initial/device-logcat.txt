@@ -1,0 +1,13 @@
+--------- beginning of main
+10-26 23:25:08.189  4722  4752 I PlaylistRegression: fixture-ready: song=VibeRegression_252284846161_A.wav, state=2, queue=[], playlist=false
+10-26 23:25:09.252  4722  4752 I PlaylistRegression: PR3-search-refresh-no-matches: song=VibeRegression_252284846161_A.wav, state=3, queue=[], playlist=false
+10-26 23:25:12.928  4722  4752 I PlaylistRegression: fixture-ready: song=VibeRegression_256360139913_B.wav, state=2, queue=[], playlist=false
+10-26 23:25:14.359  4722  4752 I PlaylistRegression: fixture-ready: song=VibeRegression_259403319623_B.wav, state=2, queue=[], playlist=false
+10-26 23:25:14.919  4722  4752 I PlaylistRegression: PR14-external-effect-missing-file-recovery: song=VibeRegression_259403319623_C.wav, state=3, queue=[], playlist=true
+10-26 23:25:15.494  4722  4752 I PlaylistRegression: PR14 actual-sessions=[49, 57, 65, 73], effect-events=[EffectEvent(action=android.media.action.OPEN_AUDIO_EFFECT_CONTROL_SESSION, sessionId=49, contentType=0, packageName=com.iven.musicplayergo.debug), EffectEvent(action=android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION, sessionId=73, contentType=0, packageName=com.iven.musicplayergo.debug)]
+10-26 23:25:15.992  4722  4752 I PlaylistRegression: fixture-ready: song=VibeRegression_261062824165_B.wav, state=2, queue=[], playlist=false
+10-26 23:25:16.498  4722  4752 I PlaylistRegression: PR14-external-effect-manual-next: song=VibeRegression_261062824165_B.wav, state=3, queue=[], playlist=true
+10-26 23:25:16.895  4722  4752 I PlaylistRegression: PR14 actual-sessions=[81, 89, 97], effect-events=[EffectEvent(action=android.media.action.OPEN_AUDIO_EFFECT_CONTROL_SESSION, sessionId=81, contentType=0, packageName=com.iven.musicplayergo.debug), EffectEvent(action=android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION, sessionId=97, contentType=0, packageName=com.iven.musicplayergo.debug)]
+10-26 23:25:17.575  4722  4752 I PlaylistRegression: fixture-ready: song=VibeRegression_262471920874_B.wav, state=2, queue=[], playlist=false
+10-26 23:25:18.721  4722  4752 I PlaylistRegression: PR14-external-effect-natural-completion: song=VibeRegression_262471920874_B.wav, state=3, queue=[], playlist=true
+10-26 23:25:19.282  4722  4752 I PlaylistRegression: PR14 actual-sessions=[105, 113, 121], effect-events=[EffectEvent(action=android.media.action.OPEN_AUDIO_EFFECT_CONTROL_SESSION, sessionId=105, contentType=0, packageName=com.iven.musicplayergo.debug), EffectEvent(action=android.media.action.CLOSE_AUDIO_EFFECT_CONTROL_SESSION, sessionId=121, contentType=0, packageName=com.iven.musicplayergo.debug)]
