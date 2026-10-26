@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "codeCommit": "a4458fe06ba12479c946286062660e37f7706688",
+  "codeTree": "8aef0944028c7bf031b8117e1ca13dd9c17c7662",
+  "baseline": "947709e4c798a103b9fcc5962172f2e85d349196",
+  "environment": {"os": "Windows", "python": "3.14.5", "node": "v24.19.0"},
+  "pythonTests": {"passed": 112, "failed": 0, "durationSeconds": 6.40, "warnings": 1, "transport": "httpx.MockTransport"},
+  "previewControllerTests": {"passed": 11, "failed": 0, "runner": "node:test"},
+  "checks": {"ruff": "passed", "pipCheck": "passed", "javascriptSyntax": "passed", "stagedWhitespace": "passed"},
+  "browser": {"manualAndUnconfigured": "passed", "photoMockSyntheticImage": "passed", "actualCatalogAndPlayback": "Pending"},
+  "liveRequests": {"vision": 0, "jamendo": 0, "itunes": 0, "officialTrackPages": 0, "audio": 0},
+  "android": "Pending next batch",
+  "dacMapping": "Pending research files 06-10",
+  "runningService": {"host": "127.0.0.1", "port": 8765, "health": "ok", "visionMode": "unconfigured", "jamendoMode": "unconfigured", "itunesMode": "unconfigured"}
+}
