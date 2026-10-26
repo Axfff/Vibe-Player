@@ -1,0 +1,7 @@
+source_commit=7b0da65c27c89c1d0eacdc5cdf2d00457bf9e0c5
+device_serial=emulator-5554
+android_release=17
+android_api=37
+abi=arm64-v8a
+test_filter=com.iven.musicplayergo.regression (package)
+started_utc=2026-10-26T15:42:52Z

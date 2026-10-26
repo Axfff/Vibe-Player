@@ -1,6 +1,9 @@
 # Run the playlist Android regressions
 
 The instrumentation suite covers RG01–RG07 in [the existing plan](custom-playlists.md).
+It also includes five tests for [PR review fixes #13–#15](playlist-review-fixes.md):
+Shuffle/search state, Title/Filename presentation, and external effect-session
+lifecycle through Next, natural completion and failed-file recovery.
 It uses real MediaStore WAVs, the app's repository, Activity, playback service and
 Android MediaPlayer. Screenshots, decoder/player state assertions, commands and
 logs provide the execution evidence. A passing build alone is not a device result.
@@ -63,6 +66,10 @@ build output). Set `REGRESSION_EVIDENCE_DIR` to keep independent runs. Set
   verification.
 - The recorded execution covers Android 17 / API 37 arm64 only. API 29+ describes
   fixture requirements, not a tested device/API matrix.
+- The Title/Filename test opts into generated MP3 assets with embedded ID3 metadata.
+  Other cases retain WAV fixtures. The external-equalizer tests observe real
+  AudioEffect broadcasts and MediaPlayer session IDs; they do not claim an audible
+  third-party effect check.
 
 Keep failed evidence that explains a fix. Record actual test/source revisions and
 APK hashes in [the regression result record](custom-playlists-regression-results.md).
