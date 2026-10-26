@@ -56,6 +56,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:minHeight="48dp"
-        android:text="@string/library_import_help"
-        android:visibility="gone" />
+        android:text="@string/library_import_help" />
 </LinearLayout>

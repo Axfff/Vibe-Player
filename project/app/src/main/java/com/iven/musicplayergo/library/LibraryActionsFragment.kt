@@ -99,9 +99,6 @@ class LibraryActionsFragment : Fragment() {
         }
         views.libraryScanStatus.text = message
         views.libraryScanStatus.isVisible = message.isNotEmpty()
-        views.libraryImportHelp.isVisible = library?.songs.isNullOrEmpty() || state.failed ||
-            state.permissionDenied || report?.outcome == MediaScanOutcome.PARTIAL ||
-            report?.outcome == MediaScanOutcome.TIMED_OUT || report?.outcome == MediaScanOutcome.NO_CANDIDATES
     }
 
     override fun onDestroyView() {
