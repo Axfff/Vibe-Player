@@ -92,7 +92,7 @@ class PlaylistPresentationRegressionTest {
 
             // The saved order deliberately differs from both library display sort orders.
             var playlist = RegressionFixture.success(f.repository.create("Presentation order"))
-            listOf("C", "A", "B").forEach { label ->
+            listOf("C", "B", "A").forEach { label ->
                 playlist = RegressionFixture.success(f.repository.addTrack(playlist.id, actualTracks.getValue(label)))
             }
             f.playPlaylist(playlist.id)
@@ -114,12 +114,12 @@ class PlaylistPresentationRegressionTest {
                 f.record("PR3-playlist-presentation-${if (value == GoConstants.FN) "filename" else "title"}")
             }
             f.onMain { f.holder.skip(isNext = true) }
-            f.expectPlaying("A")
-            f.onMain { f.holder.skip(isNext = true) }
             f.expectPlaying("B")
+            f.onMain { f.holder.skip(isNext = true) }
+            f.expectPlaying("A")
             assertEquals("Changing display settings retains saved membership order", playlist.tracks,
                 RegressionFixture.success(f.repository.getPlaylist(playlist.id)).tracks)
-            f.record("PR3-presentation-keeps-snapshot-C-A-B")
+            f.record("PR3-presentation-keeps-snapshot-C-B-A")
         }
     }
 
