@@ -1,6 +1,6 @@
 # Vibe-Player 课程项目工作流
 
-记录日期：2026-10-25（Asia/Shanghai）。本文件规定本项目采用的文档与协作方式；它不是对课程评分细则的补充。
+更新日期：2026-10-26（Asia/Shanghai）。本文件规定本项目采用的文档与协作方式。
 
 ## 课程要求与当前状态
 
@@ -8,9 +8,9 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
-当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单初版已在本地 `feat/custom-playlists` 实现，文档基础提交为 `2372cac`。初版源码为 `6ec4869`，本轮播放修复为 `2f660d11`；后者的 Windows 构建成功，29 项单元测试通过。设备验收、人工 Review 和 AC 签收均为 Pending。实际实现与验证结果见[实施记录](development/custom-playlists-implementation.md)。
+当前沿用 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。自定义多歌单位于 `feat/custom-playlists`，被测提交为 `785e0863`。Windows 构建和 29 项单元测试通过；CroissantXinny 完成真机 TC01–TC10，曾沛涵完成模拟器 TC01–TC13，均记录 Pass。RG01–RG07、人工 Review 和 AC 签收待完成，详见[实施记录](development/custom-playlists-implementation.md)。
 
-已核查正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)。远端功能分支与 PR 待发布；交接记录中的 GitHub 集成写入 403 待团队处理，本轮完成本地提交与 PR 准备。
+正式需求为 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，实现已发布至 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3)。原 GitHub 集成的 403 记录保留；用户明确授权使用现有 Git 与 GitHub CLI 后，已通过 CroissantXinny 账号完成分支、PR 和缺陷记录发布。
 
 ## 文档入口
 
@@ -21,6 +21,8 @@
 | [Release 1](releases/release-1.md) | 两个 Sprint 的交付和审阅证据索引 |
 | [Thinking](thinking/README.md) | 调研、选择理由、未决问题 |
 | [多歌单测试计划](testing/custom-playlists.md) | AC 对应的操作、期望及实际执行结果 |
+| [REDMI 真机验收](testing/custom-playlists-redmi-results.md) | CroissantXinny 的 TC01–TC10、截图、文件校验和强停重启证据 |
+| [协作者模拟器验收](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) | 曾沛涵的 TC01–TC13 与代表性截图 |
 | [实现与验证记录](development/custom-playlists-implementation.md) | 本地实现范围、实际自动检查与待执行验收 |
 | [Coding-agent 指南](development/custom-playlists-agent-guide.md) | 接手步骤、实施约定与可复制提示词 |
 | [User Story 模板](../.github/ISSUE_TEMPLATE/user_story.yml) | 在同一个 Issue 填写 Story、AC、范围与验证计划 |

@@ -1,0 +1,7 @@
+{
+  "xml": "TC10-after-songs.xml",
+  "screenshot": "TC10-after-songs.png",
+  "observed": "Songs list contains Test-A, Test-B, Test-C",
+  "pid": "22355",
+  "checked_at_shanghai": "2026-10-26T20:34:17.1133061+08:00"
+}

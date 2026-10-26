@@ -1,8 +1,10 @@
 # 自定义多歌单：手工验收计划
 
+> **2026-10-26 当前进度：** CroissantXinny 的 [REDMI 真机记录](custom-playlists-redmi-results.md)覆盖 TC01–TC10 Pass；曾沛涵的[模拟器记录](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)覆盖 TC01–TC13 Pass。两者均测试 `785e0863`。本机 TC11–TC13、RG01–RG07、人工 Review 与正式 AC 签收继续单独跟踪。下文 Pending 和设备环境保留为 2026-10-25 的历史状态；各次实际结果见两份报告。
+
 ## 状态与需求来源
 
-- 版本：v0.2，2026-10-25；本地已有功能初版和自动检查记录，见[实现报告](../development/custom-playlists-implementation.md)。**本文件所有设备验收结果仍为 Pending，尚未运行真机或模拟器验收。**
+- 版本：v0.2，2026-10-25；测试步骤保持原版。2026-10-26 的执行结果见上方报告；原始环境和状态记录保留供追溯。
 - 当前需求来源：[正式 Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，User Story 与 AC1–AC9 在该 Issue 维护。
 - 本文件维护验证方法和执行证据，不另行定义产品需求。需求变更后，按 AC 编号更新相关用例。
 - `Pending` 表示未执行；实际执行后记录 `Pass`、`Fail` 或 `Blocked`，并补充观察结果和证据。不能仅凭测试文档存在就勾选 AC。

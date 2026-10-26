@@ -1,10 +1,10 @@
 # 自定义多歌单：Coding Agent 实施指南
 
-更新日期：2026-10-25（Asia/Shanghai）。适用仓库：[Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。
+更新日期：2026-10-26（Asia/Shanghai）。适用仓库：[Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player)。
 
-这份指南用于接手 Sprint 2 的多歌单实现，并指导学生检查交付。**本地 `feat/custom-playlists` 已有实现候选，文档基础提交为 `2372cac`；提交与验证状态以[实现与验证记录](custom-playlists-implementation.md)为准。接手者先检查现有代码和 diff，再完成审查、回归和设备验收。**
+这份指南用于接手 Sprint 2 的多歌单实现，并指导学生检查交付。**`feat/custom-playlists` 已有实现候选，文档基础提交为 `b1605279`；提交与验证状态以[实现与验证记录](custom-playlists-implementation.md)为准。接手者先检查现有代码和 diff，再完成审查、回归和设备验收。**
 
-原功能提交为 `6ec4869`，本轮播放修复为 `2f660d11`；后者的 Windows 构建及 29 项单元测试通过。正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 已建立；远端功能分支与 PR 待发布，设备验收和队友 Review Pending。交接记录的集成写入 403 待团队处理；当前事实以[实现与验证记录](custom-playlists-implementation.md)为准。
+当前被测提交为 `785e0863`；原功能和修复提交经署名调整后分别为 `fd00c099`、`03e85dd7`，文件树保持一致。Windows 构建和 29 项单元测试通过，正式 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2) 与 [Draft PR #3](https://github.com/Axfff/Vibe-Player/pull/3) 已建立。CroissantXinny 的[真机 TC01–TC10](../testing/custom-playlists-redmi-results.md)及曾沛涵的[模拟器 TC01–TC13](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md)均记录 Pass；接下来执行 RG01–RG07，修复反馈 #4/#5/#6，完成 Review 和 AC 签收。用户已明确授权使用现有 Git/GitHub CLI 发布；原集成 403 保留在历史记录中。
 
 ## 1. 先理解工作位置和需求来源
 
