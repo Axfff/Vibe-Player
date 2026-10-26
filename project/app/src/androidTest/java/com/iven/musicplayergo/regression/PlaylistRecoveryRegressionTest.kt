@@ -1,8 +1,12 @@
 package com.iven.musicplayergo.regression
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.SystemClock
+import android.support.v4.media.session.MediaControllerCompat
+import android.util.Log
 import android.view.KeyEvent
+import androidx.lifecycle.Lifecycle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.player.MediaButtonReceiver
@@ -222,6 +226,42 @@ class PlaylistRecoveryRegressionTest {
         }
         assertSavedMembership(f, saved)
         f.record("RG05-stop-before-posted-recovery")
+    }
+
+    @Test
+    fun mediaSessionStopDestroysActivityAndCannotRestartAudio(): Unit = RegressionFixture.open().use { f ->
+        val saved = f.createPlaylist("Media key stop recovery", "A", "B", "C")
+        f.playPlaylist(saved.id)
+        f.expectPlaying("A")
+        f.deleteAudio("B")
+        val service = f.service
+        val stoppedHolder = f.holder
+        val session = checkNotNull(service.getMediaSession())
+        val controller = MediaControllerCompat(f.context, session.sessionToken)
+
+        f.onMain {
+            stoppedHolder.skip(isNext = true)
+            assertNotNull("Missing B must schedule real recovery", privateField<Runnable?>(stoppedHolder, "playlistRecovery"))
+            // Deliver a real media key through MediaSession.Callback.onMediaButtonEvent.
+            assertTrue(controller.dispatchMediaButtonEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_MEDIA_STOP)))
+        }
+        f.await("MediaSession Stop destroys the Activity and releases its service") {
+            f.scenario.state == Lifecycle.State.DESTROYED && service.getMediaSession() == null
+        }
+
+        // Observe the captured holder: looking it up again would create a fresh singleton.
+        repeat(8) {
+            f.onMain {
+                assertNull(privateField<Runnable?>(stoppedHolder, "playlistRecovery"))
+                assertFalse("Stopped MediaSession must not restart audio", runCatching {
+                    privateField<MediaPlayer>(stoppedHolder, "mediaPlayer").isPlaying
+                }.getOrDefault(false))
+            }
+            SystemClock.sleep(75)
+        }
+        assertSavedMembership(f, saved)
+        Log.i("PlaylistRegression", "RG05 MediaSession Stop destroyed Activity and released service; no late audio")
+        Unit
     }
 
     private fun awaitPreparedC(f: RegressionFixture) {

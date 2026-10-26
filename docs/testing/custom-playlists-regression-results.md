@@ -82,3 +82,15 @@ counted as an application regression result.
 
 [Actual pre-fix runner output](evidence/2026-10-26-regressions/rg05-before-fix.txt)
 is retained. All other RG results remain Pending until their device runs complete.
+
+### Focused media-command fix
+
+`PlayerService.handleMediaIntent` now handles explicit Play and Pause separately
+from the toggle/headset double-click branch. Each explicit command clears previous
+headset-click timing and calls the matching player operation.
+
+The same device reproducer now passes: **1 Android test, 0 failures**. Both APKs
+were freshly built and installed by `scripts/check-playlist-regressions.sh` before
+the run. [Actual post-fix runner output](evidence/2026-10-26-regressions/rg05-after-fix.txt)
+is retained alongside the failing run. This targeted pass establishes the original
+Pause fix; it does not yet mark the complete RG05 or other RG cases as passed.
