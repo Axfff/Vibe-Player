@@ -13,7 +13,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 import com.iven.musicplayergo.MusicViewModel
 import com.iven.musicplayergo.PlaylistLibraryState
 import com.iven.musicplayergo.R
@@ -175,6 +174,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
     private var loading = false
     private var saving = false
     private var storageError: String? = null
+    private var actionFeedback: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -183,6 +183,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
         libraryState = musicViewModel.playlistLibraryState.value ?: PlaylistLibraryState()
         updateVisibleSongs()
         query = savedInstanceState?.getString(QUERY).orEmpty()
+        actionFeedback = savedInstanceState?.getString(FEEDBACK)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -214,7 +215,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
             updateVisibleSongs()
             render()
         }
-        loadPlaylist()
+        loadPlaylist(clearFeedback = false)
         return alert
     }
 
@@ -233,6 +234,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString(QUERY, query)
+        outState.putString(FEEDBACK, actionFeedback)
         super.onSaveInstanceState(outState)
     }
 
@@ -242,11 +244,12 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
         super.onDestroyView()
     }
 
-    private fun loadPlaylist() {
+    private fun loadPlaylist(clearFeedback: Boolean = true) {
         if (loading || saving) return
         val id = requireArguments().getString(ID).orEmpty()
         loading = true
         storageError = null
+        if (clearFeedback) actionFeedback = null
         render()
         lifecycleScope.launch {
             when (val result = withContext(Dispatchers.IO) { repository.getPlaylist(id) }) {
@@ -261,6 +264,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
     private fun addSong(music: Music) {
         val selected = playlist ?: return
         if (loading || saving || !libraryIsReady() || storageError != null) return
+        actionFeedback = null
         saving = true
         isCancelable = false
         render()
@@ -272,10 +276,11 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
                 is PlaylistResult.Success -> {
                     playlist = result.value
                     (parentFragment as? PlaylistsDialogFragment)?.onPlaylistSaved(result.value.id)
-                    showFeedback(getString(R.string.playlist_track_added,
-                        requireContext().playlistTrackTitle(music.title, music.displayName)))
+                    // The row already shows membership. Keep feedback inside the picker
+                    // so its Refresh/Done button panel stays unobscured (#6).
                 }
-                is PlaylistResult.Failure -> showFeedback(requireContext().playlistErrorMessage(result.error))
+                is PlaylistResult.Failure ->
+                    actionFeedback = requireContext().playlistErrorMessage(result.error)
             }
             render()
         }
@@ -314,6 +319,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
             libraryState.isLoading -> getString(R.string.playlist_library_loading)
             libraryState.refreshFailed -> getString(R.string.playlist_library_failure)
             !libraryState.hasLoaded -> getString(R.string.playlist_library_unknown)
+            actionFeedback != null -> actionFeedback.orEmpty()
             candidates.isEmpty() -> getString(R.string.playlist_no_visible_songs)
             searched.isEmpty() -> getString(R.string.playlist_no_search_results)
             else -> getString(R.string.playlist_picker_hint)
@@ -324,13 +330,10 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
         }
     }
 
-    private fun showFeedback(message: String) {
-        binding?.root?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
-    }
-
     companion object {
         private const val ID = "playlist_id"
         private const val QUERY = "song_query"
+        private const val FEEDBACK = "song_action_feedback"
         fun newInstance(id: String) = PlaylistSongPickerDialogFragment().apply {
             arguments = bundleOf(ID to id)
         }
