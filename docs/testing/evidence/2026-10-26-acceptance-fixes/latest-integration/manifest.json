@@ -1,0 +1,30 @@
+{
+  "source": "f7ba39bb2a4e98b5ab61c9bfa43a9512c168055f",
+  "files": [
+    {
+      "file": "build-summary.json",
+      "bytes": 1537,
+      "sha256": "44da0eb455b19969255dbd8850bd85e9bcd228c99ccf2aecb302b5765fcf085d"
+    },
+    {
+      "file": "build.txt",
+      "bytes": 5182,
+      "sha256": "b5913d2491636f37946b6a51be2394719293266a556f65e8c50e49a7baa7bf4c"
+    },
+    {
+      "file": "TEST-com.iven.musicplayergo.library.MediaScanPolicyTest.xml",
+      "bytes": 455,
+      "sha256": "aecdf8fd0c04725c866f01c3777ad69a43349c1999860f57b411d44ab281ec98"
+    },
+    {
+      "file": "TEST-com.iven.musicplayergo.player.PlaylistFailurePlanTest.xml",
+      "bytes": 1086,
+      "sha256": "bff13294c4fdb2c4b2382ed14237cff0ac97548477a12160c8c318e09390e181"
+    },
+    {
+      "file": "TEST-com.iven.musicplayergo.playlists.PlaylistRepositoryTest.xml",
+      "bytes": 4097,
+      "sha256": "91ed4cbebd3ac3562e067f538dfc1ffb0cda9e1ca81f126b8b6ecc0fcadb4f5b"
+    }
+  ]
+}

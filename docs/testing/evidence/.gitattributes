@@ -2,3 +2,4 @@
 2026-10-26-redmi/* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 # Keep raw Gradle/device output, including its trailing spaces, byte-for-byte.
 2026-10-26-acceptance-fixes/* -text -whitespace
+2026-10-26-acceptance-fixes/latest-integration/* -text -whitespace
