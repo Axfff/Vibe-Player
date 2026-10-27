@@ -1,0 +1,85 @@
+# Release 1 简短 Retro 与收尾记录 — Issue #19
+
+更新日期：2026-10-27（Asia/Shanghai）。任务入口：[Issue #19](https://github.com/Axfff/Vibe-Player/issues/19)。本文件预填已有事实；三人确认、回顾和行动项保留 **TODO / Pending**，由实际参与者填写。
+
+## 本轮范围与填写方式
+
+CroissantXinny 于 2026-10-27 确认 Release 1、Release 2 均无课堂展示要求，并采用精简收尾流程。
+
+- 课堂展示：**N/A**；PPT、专门演示视频和完整手机演示不列为本轮待办。
+- 内部 Demo：**可选**；已有功能表现直接引用对应版本的测试报告。
+- 简短 Retro：**Pending**；每人用约 5 分钟写贡献、做得好的地方、问题和改进建议，再用约 10 分钟群聊或异步回复确定 1–2 个行动项。
+- 真人代码 Review 与正式 AC1–AC9 签收：**Pending，归 #17**；扩展验证和后续功能范围继续按 #18、#4、#8 跟踪。
+
+## Sprint 与回顾日期
+
+| 项目 | 已核实的事件日期 | 团队确认字段 |
+| --- | --- | --- |
+| Sprint 1 | 2026-10-17 Axfff 留下环境/构建记录；2026-10-27 00:41:16，#1 按 completed 关闭 | 正式开始日期：TODO；结束日期：TODO |
+| Sprint 2 | 2026-10-25 22:28 创建 Story #2；10-26 手工验收；10-27 00:51:01 合并 PR #3 | 正式开始日期：TODO；结束日期：TODO |
+| Release 1 发布 | 2026-10-27 01:00:15；tag `release1` → `81b22ee5` | 发布与产物见 [Release 索引](release-1.md)；课堂展示 N/A |
+| Retro | Pending | 实际日期/回复时段、方式（群聊 / Issue 等）、记录人、实际参与者：TODO |
+
+以上事件日期使用 Asia/Shanghai。正式 Sprint 起止按团队实际安排填写。来源：[Sprint 1 #1](https://github.com/Axfff/Vibe-Player/issues/1)、[Story #2](https://github.com/Axfff/Vibe-Player/issues/2)、[PR #3](https://github.com/Axfff/Vibe-Player/pull/3)、[Release](https://github.com/Axfff/Vibe-Player/releases/tag/release1)。
+
+## 三位组员的实际分工
+
+| 组员 | 已有记录中的实际工作 | 证据 | 待本人补充 |
+| --- | --- | --- | --- |
+| CroissantXinny（姓名：TODO） | 发布 Story/功能 PR；集成自定义歌单及 PR #16 反馈修复，使用 Codex 辅助；操作 REDMI 完成 TC01–TC10，并完成 #13/#15 新版真机复测；整理证据与结项文档 | [PR #3](https://github.com/Axfff/Vibe-Player/pull/3)、[PR #16](https://github.com/Axfff/Vibe-Player/pull/16)、[历史真机报告](../testing/custom-playlists-redmi-results.md)、[#13/#15 复测](../testing/playlist-redmi-review-13-15.md) | 本人确认、日期、关键决策与本轮回顾：TODO |
+| Axfff（姓名：TODO） | 记录开发环境和初始构建；账号提交 RG 与 #13–#15 修复/验证，记录 Codex assistance；执行集成合并与 Release 发布 | [#1](https://github.com/Axfff/Vibe-Player/issues/1)、[PR #12](https://github.com/Axfff/Vibe-Player/pull/12)、[修复报告](../testing/playlist-review-fixes.md)、[发布记录](release-1.md) | 本人确认、日期、本人执行与 AI 辅助的细分：TODO |
+| 曾沛涵 / peihanZENG | 在 API 37 x86_64 模拟器执行 TC01–TC13 并提交报告；对 PR #12 留下 APPROVED“RG验收无误”并合并 | [报告提交 6e92066](https://github.com/Axfff/Vibe-Player/commit/6e92066dbadbd1d6abf5db2fc6b632b975aafa26)、[PR #12](https://github.com/Axfff/Vibe-Player/pull/12) | 本人确认、日期、后续复审及记录安排：TODO |
+
+这张表记录已有贡献。后续复审、验证和记录的负责人由三人确认，AI 辅助执行在相应证据中注明。
+
+## 遇到的问题与已采取的行动
+
+| 问题 | 已采取的行动 / 当前结果 | 团队回顾问题 |
+| --- | --- | --- |
+| GitHub 集成写入 403 | 用户授权使用已有 Git / gh 登录；完成分支、PR 和证据发布，记录在 [Sprint 2](../sprints/sprint-2.md) | 如何更早验证协作权限？TODO |
+| 导入音频尚未被系统正确索引（#4） | PR #16 加入可访问候选重新索引及导入指导；完全未索引文件发现继续 Deferred | 原始导入场景的后续验证如何分配？TODO |
+| 歌单入口不明显、添加白条遮挡（#5/#6） | PR #16 增加可见入口和内联反馈；最终集成 UI 冒烟已有记录 | 如何提前检查可发现性、反馈和可访问性？TODO |
+| 暂停、权限、Shuffle、音效会话与标题回归（#10/#11/#13–#15） | 建立复现与回归测试、修复并合入 main；正式复审归 #17 | 哪些风险应更早加入验收？TODO |
+| 测试夹具与环境干扰 | 保留 ID3 夹具修正、System UI ANR 及失败记录；RG07 点击间隔修正后完成通过运行，见[修复报告](../testing/playlist-review-fixes.md) | 如何改善测试素材和环境稳定性？TODO |
+| 集成先于最终真人签收 | 所有者授权该次合并顺序；#17/#18/#19 分别跟踪人工复审、扩展验证及课程活动 | 下轮怎样安排审阅时间和准入条件？TODO |
+
+## 发布与已有功能证据
+
+发布目标为 `release1` / `81b22ee5868e0cd5ac6a75472296caab3753a7b5`，产物、校验文件和 CI 链接见 [Release 索引](release-1.md)。[AC 矩阵](release-1-evidence-matrix.md)关联旧版手工 TC、最终集成验证和新版 [REDMI #13/#15 复测](../testing/playlist-redmi-review-13-15.md)，各自保留实际环境、日期和源码版本。
+
+课堂展示 **N/A**；内部 Demo **可选**。如团队选择操作确认某个场景，记录实际日期、操作者、源码 SHA、APK 来源/哈希、设备和预期/实际结果，并附证据。正式 Review 和 AC 结论填写在 [#17 packet](release-1-human-review.md)。
+
+## What went well / What to improve
+
+每人填写一行；可从上方真实问题中选取自己的经历。群聊汇总后由本人核对，也可直接链接本人在 #19 的回复。
+
+| 发言人 | 做得好的地方及例子 | 问题与改进建议 | 实际日期 / 本人回复或确认 |
+| --- | --- | --- | --- |
+| CroissantXinny | TODO | TODO | TODO |
+| Axfff | TODO | TODO | TODO |
+| 曾沛涵 / peihanZENG | TODO | TODO | TODO |
+
+## 团队决定与行动项
+
+| 实际决定 / 行动 | 负责人 | 截止日期 | 完成条件 / 关联 Issue | 状态 |
+| --- | --- | --- | --- | --- |
+| TODO | TODO | TODO | TODO | Pending |
+
+团队实际讨论后确定 1–2 个改进行动。后续工作另按已有 Issue 安排：
+
+| 后续范围 | 负责人 | 排期 / 下一检查点 | 实际决定与链接 |
+| --- | --- | --- | --- |
+| #17：真人 Review 与正式 AC1–AC9 签收 | TODO，由作者之外的队友复审对应改动 | TODO | Pending |
+| #18：扩展设备、音效、可访问性与扫描验证 | TODO | TODO | Pending |
+| #4：完全未索引文件发现 | TODO | TODO | Deferred / Follow-up |
+| #8：已添加成员的 Add 控件样式 | TODO | TODO | Follow-up，按 Issue 最新进度记录 |
+
+## 收尾清单
+
+- 课堂展示：**N/A**；内部 Demo：**可选**。
+- [ ] 三位组员确认各自真实分工与 Sprint 起止。
+- [ ] 完成简短 Retro，记录三人观点、实际交流日期及 1–2 个行动项。
+- [ ] 核对发布版本、现有测试证据与 #17 验收材料的链接。
+- [ ] 在 #17 填写真人复审及 AC 签收结论，并同步 Story #2。
+- [ ] 将 #18、#4、#8 的后续范围、负责人和排期纳入团队决定。
+- [ ] 更新 [Release 1 索引](release-1.md)及 [Sprint 2](../sprints/sprint-2.md)，由团队决定 #19 的结项。

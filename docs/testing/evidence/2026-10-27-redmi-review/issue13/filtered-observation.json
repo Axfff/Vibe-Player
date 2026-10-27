@@ -1,0 +1,15 @@
+{
+  "stage": "filtered-before-refresh",
+  "recorded_utc": "2026-10-27T06:27:49.2045832+00:00",
+  "operator_report": "列表为空，Shuffle 为 0 且不可点击",
+  "query": "zz_no_song_13",
+  "visible_tracks": [],
+  "shuffle_text": "0",
+  "shuffle_enabled": false,
+  "shuffle_clickable": true,
+  "evidence": [
+    "filtered-ui.xml",
+    "filtered-ui.png"
+  ],
+  "issue13_result": "Pending"
+}

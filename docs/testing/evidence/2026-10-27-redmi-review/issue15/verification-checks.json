@@ -1,0 +1,47 @@
+{
+  "recorded_utc": "2026-10-27T08:06:43.708043+00:00",
+  "checks": [
+    {
+      "stage": "filename-playing",
+      "display_preference": "1",
+      "current_song": "File15-C",
+      "visible_fixture_names": [
+        "File15-A",
+        "File15-B",
+        "File15-C"
+      ],
+      "result": "PASS"
+    },
+    {
+      "stage": "title-after",
+      "display_preference": "0",
+      "current_song": "Title15-C",
+      "visible_fixture_names": [
+        "Title15-A",
+        "Title15-B",
+        "Title15-C"
+      ],
+      "result": "PASS"
+    },
+    {
+      "stage": "filename-restored",
+      "display_preference": "1",
+      "current_song": "File15-C",
+      "visible_fixture_names": [
+        "File15-A",
+        "File15-B",
+        "File15-C"
+      ],
+      "result": "PASS"
+    },
+    {
+      "stage": "continuous-run-complete",
+      "same_saved_playlist_document": true,
+      "display_preference_restored_to_initial": true,
+      "final_media_title": "File15-A",
+      "final_media_state": "PAUSED",
+      "result": "PASS",
+      "continuous_operations_and_audio_basis": "Explicit human operator report"
+    }
+  ]
+}

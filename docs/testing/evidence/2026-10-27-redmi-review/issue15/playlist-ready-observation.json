@@ -1,0 +1,133 @@
+{
+  "stage": "playlist-ready",
+  "recorded_utc": "2026-10-27T06:49:37.833375+00:00",
+  "operator_report": "已建好，顺序是 C → B → A",
+  "display_preference": "1",
+  "playlist_document_sha256": "b7c28d5bd59334b100265a41d74a1a9108fd6145e13d7e6a6f4b57f215dd5b5f",
+  "visible_ui": [
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_heading",
+      "text": "Review15",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[168,551][1032,679]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_summary",
+      "text": "3 首歌曲\n歌曲按添加顺序播放。编辑内容在下次点击“播放”时生效。",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[0,687][1200,879]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_primary",
+      "text": "播放",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,879][588,1023]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_add",
+      "text": "添加歌曲",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[612,879][1152,1023]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_refresh",
+      "text": "刷新",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[36,1023][412,1167]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_rename",
+      "text": "重命名",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[412,1023][788,1167]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_delete",
+      "text": "删除",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[788,1023][1164,1167]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_title",
+      "text": "1. Title15-C",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1220][960,1285]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_subtitle",
+      "text": "Vibe Player test audio",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1285][960,1341]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_action",
+      "text": "移除",
+      "description": "从此歌单移除 Title15-C",
+      "enabled": "true",
+      "bounds": "[972,1209][1164,1353]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_title",
+      "text": "2. Title15-B",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1448][960,1513]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_subtitle",
+      "text": "Vibe Player test audio",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1513][960,1569]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_action",
+      "text": "移除",
+      "description": "从此歌单移除 Title15-B",
+      "enabled": "true",
+      "bounds": "[972,1437][1164,1581]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_title",
+      "text": "3. Title15-A",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1676][960,1741]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_subtitle",
+      "text": "Vibe Player test audio",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[72,1741][960,1797]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playlist_track_action",
+      "text": "移除",
+      "description": "从此歌单移除 Title15-A",
+      "enabled": "true",
+      "bounds": "[972,1665][1164,1809]"
+    }
+  ],
+  "media_session": [
+    "package=com.iven.musicplayergo.debug",
+    "active=true",
+    "state=PlaybackState {state=PAUSED(2), position=6026, buffered position=0, speed=1.0, updated=1164036574, actions=823, custom actions=[], active item id=-1, error=null}",
+    "metadata: size=13, description=Test-B, Folder-One, null",
+    "queueTitle=null, size=0"
+  ],
+  "evidence": [
+    "playlist-ready-ui.xml",
+    "playlist-ready-ui.png",
+    "playlist-ready-playlists.json"
+  ]
+}

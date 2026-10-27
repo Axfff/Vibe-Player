@@ -1,0 +1,5 @@
+# Keep publication hashes stable across Windows checkouts.
+*.json text eol=lf
+*.xml text eol=lf
+*.txt text eol=lf
+*.png -text
