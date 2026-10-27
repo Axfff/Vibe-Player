@@ -52,7 +52,7 @@ H3 对 AC6 提供新增真机支持：同一次 Review15 播放内切换标题/�
 - [#18](https://github.com/Axfff/Vibe-Player/issues/18)：新版本 REDMI TC03/TC07、真实听音/外部 EQ、TalkBack/200% 字体、保存失败、扫描超时/部分失败/1,000 行边界/扫描中旋转与跨版本存储验证：**Pending**。
 - [#4](https://github.com/Axfff/Vibe-Player/issues/4)：已提供对现有可访问 MediaStore 候选的重新索引与导入指导；完全未索引或不可访问文件的发现为 **Deferred**。
 - [#8](https://github.com/Axfff/Vibe-Player/issues/8)：已有成员的 Add 置灰/禁用为 **Deferred（可选 UI 改进）**；去重行为有上述 AC3 证据。
-- [#19](https://github.com/Axfff/Vibe-Player/issues/19)：真实 Sprint 起止、三人贡献确认、简短回顾和行动项 **Pending**；使用 [Retro 模板](release-1-retrospective.md)及[三人操作指南](release-1-team-next-steps.md)。2026-10-27 用户确认 Release 1、2 无课堂展示要求，课堂展示为 **N/A**，内部 Demo 可选。#17 的真人 Review 和 AC1–AC9 签收继续保留。
+- [#19](https://github.com/Axfff/Vibe-Player/issues/19)：真实 Sprint 起止、三人贡献确认、简短回顾和行动项 **Pending**；使用 [Retro 模板](release-1-retrospective.md)。2026-10-27 用户确认 Release 1、2 无课堂展示要求，课堂展示为 **N/A**，内部 Demo 可选。#17 的真人 Review 和 AC1–AC9 签收继续保留。
 
 ## 初版 closeout 文档核验（406fa072）
 

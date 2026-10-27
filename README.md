@@ -6,7 +6,6 @@ This is the team's course repository, based on [Music Player GO](https://github.
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
 - [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Short retrospective template](docs/releases/release-1-retrospective.md)
-- [Three-person closeout guide / 三人收尾操作指南](docs/releases/release-1-team-next-steps.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 

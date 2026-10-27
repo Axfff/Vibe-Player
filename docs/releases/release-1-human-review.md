@@ -4,7 +4,7 @@
 
 2026-10-27 补充：CroissantXinny 已在 REDMI Android 16 / API 36 上完成 **#13、#15 的真人设备复测，均 Pass**，见[报告与证据](../testing/playlist-redmi-review-13-15.md)。被测本地 APK 为 `0f1d8fc0…`，构建源码 `f7ba39bb` 与发布版本的工程内容一致。真人代码审阅结论与正式 AC 签收继续按下方模板填写。
 
-同日按用户确认精简 #19：课堂展示 N/A、内部 Demo 可选，贡献确认和 Retro 可在群聊或 Issue 中进行。**本页真人 Review、AC1–AC9 签收仍为 Pending**；具体分工与 GitHub 操作见[三人收尾指南](release-1-team-next-steps.md)。
+同日按用户确认精简 #19：课堂展示 N/A、内部 Demo 可选，贡献确认和 Retro 可在群聊或 Issue 中进行。**本页真人 Review、AC1–AC9 签收仍为 Pending**，按下方步骤与模板填写。
 
 ## 复审版本与合并链
 

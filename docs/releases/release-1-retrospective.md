@@ -1,6 +1,6 @@
 # Release 1 简短 Retro 与收尾记录 — Issue #19
 
-更新日期：2026-10-27（Asia/Shanghai）。任务入口：[Issue #19](https://github.com/Axfff/Vibe-Player/issues/19)。本文件预填已有事实；三人确认、回顾和行动项保留 **TODO / Pending**，由实际参与者填写。按步骤操作请看[三人收尾指南](release-1-team-next-steps.md)。
+更新日期：2026-10-27（Asia/Shanghai）。任务入口：[Issue #19](https://github.com/Axfff/Vibe-Player/issues/19)。本文件预填已有事实；三人确认、回顾和行动项保留 **TODO / Pending**，由实际参与者填写。
 
 ## 本轮范围与填写方式
 
@@ -30,7 +30,7 @@ CroissantXinny 于 2026-10-27 确认 Release 1、Release 2 均无课堂展示要
 | Axfff（姓名：TODO） | 记录开发环境和初始构建；账号提交 RG 与 #13–#15 修复/验证，记录 Codex assistance；执行集成合并与 Release 发布 | [#1](https://github.com/Axfff/Vibe-Player/issues/1)、[PR #12](https://github.com/Axfff/Vibe-Player/pull/12)、[修复报告](../testing/playlist-review-fixes.md)、[发布记录](release-1.md) | 本人确认、日期、本人执行与 AI 辅助的细分：TODO |
 | 曾沛涵 / peihanZENG | 在 API 37 x86_64 模拟器执行 TC01–TC13 并提交报告；对 PR #12 留下 APPROVED“RG验收无误”并合并 | [报告提交 6e92066](https://github.com/Axfff/Vibe-Player/commit/6e92066dbadbd1d6abf5db2fc6b632b975aafa26)、[PR #12](https://github.com/Axfff/Vibe-Player/pull/12) | 本人确认、日期、后续复审及记录安排：TODO |
 
-这张表记录已有贡献。后续计划见[三人收尾指南](release-1-team-next-steps.md)；实际复审、验证和记录由执行者确认，AI 辅助执行在相应证据中注明。
+这张表记录已有贡献。后续复审、验证和记录的负责人由三人确认，AI 辅助执行在相应证据中注明。
 
 ## 遇到的问题与已采取的行动
 
@@ -69,7 +69,7 @@ CroissantXinny 于 2026-10-27 确认 Release 1、Release 2 均无课堂展示要
 
 | 后续范围 | 负责人 | 排期 / 下一检查点 | 实际决定与链接 |
 | --- | --- | --- | --- |
-| #17：真人 Review 与正式 AC1–AC9 签收 | 计划分工见指南；实际确认 TODO | TODO | Pending |
+| #17：真人 Review 与正式 AC1–AC9 签收 | TODO，由作者之外的队友复审对应改动 | TODO | Pending |
 | #18：扩展设备、音效、可访问性与扫描验证 | TODO | TODO | Pending |
 | #4：完全未索引文件发现 | TODO | TODO | Deferred / Follow-up |
 | #8：已添加成员的 Add 控件样式 | TODO | TODO | Follow-up，按 Issue 最新进度记录 |

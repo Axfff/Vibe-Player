@@ -8,7 +8,7 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
-2026-10-27，CroissantXinny 补充确认 Release 1、Release 2 均无课堂展示要求，并采用精简收尾流程：课堂展示标为 **N/A**，内部 Demo 可选；三人可通过群聊或 Issue 回复完成贡献确认、简短 Retro 和 1–2 个改进行动。真人代码 Review、正式 AC 签收与后续验证继续按原范围跟踪。操作步骤见[三人收尾指南](releases/release-1-team-next-steps.md)。
+2026-10-27，CroissantXinny 补充确认 Release 1、Release 2 均无课堂展示要求，并采用精简收尾流程：课堂展示标为 **N/A**，内部 Demo 可选；三人可通过群聊或 Issue 回复完成贡献确认、简短 Retro 和 1–2 个改进行动。真人代码 Review、正式 AC 签收与后续验证继续按原范围跟踪。
 
 当前 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player) 的 [PR #3](https://github.com/Axfff/Vibe-Player/pull/3) 已于 2026-10-27 合入 `main`，合并提交 `81b22ee5` 包含 PR #12、PR #16 与 #13–#15 修复。[Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) 已发布并指向该提交。文档整理起点为 `main` 的 `dc17523b`；Sprint 1 的 [Issue #1](https://github.com/Axfff/Vibe-Player/issues/1) 已依据环境、构建、运行和文档证据结项。
 
@@ -28,7 +28,6 @@
 | [Release 1 evidence matrix](releases/release-1-evidence-matrix.md) | AC1–AC9 对应的历史 TC、最终集成测试、环境和源码版本 |
 | [Human-review packet](releases/release-1-human-review.md) | #17 的复审范围、合并提交、证据及真人填写模板 |
 | [简短 Retro 模板](releases/release-1-retrospective.md) | #19 的真实分工、日期、回顾与行动项；课堂展示 N/A、内部 Demo 可选 |
-| [三人收尾操作指南](releases/release-1-team-next-steps.md) | 各自下一步、可复制回复、真人 Review / AC 签收及文档提交方法 |
 | [Thinking](thinking/README.md) | 调研、选择理由、未决问题 |
 | [多歌单测试计划](testing/custom-playlists.md) | AC 对应的操作、期望及实际执行结果 |
 | [RG01–RG07 回归结果](testing/custom-playlists-regression-results.md) | 原始 24 项 Android 回归与 PR #12 的复现、修复及证据 |

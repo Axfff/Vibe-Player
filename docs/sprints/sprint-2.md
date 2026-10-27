@@ -24,7 +24,7 @@
 | #4/#5/#6 反馈处理 | CroissantXinny 的 PR #16，Codex 辅助；Axfff 集成合并 | 可见入口、内联反馈、重新索引和指导已合入；完全未索引文件发现归 #4 |
 | 最终集成与发布 | Axfff 账号记录整合验证、执行合并及发布，验证注明 Codex assistance | `8f2e4616` 的 29 Android / 30 JVM 及指定 UI 冒烟 Pass；发布 CI 在 `81b22ee5` 完成 30 JVM 与 APK 构建 |
 | 真人最终复审 / AC 签收 | 负责人 TODO；各改动由作者之外的队友复审 | Pending，使用 [#17 review packet](../releases/release-1-human-review.md) |
-| 扩展设备验证 / 简短 Retro | 计划分工见三人操作指南；实际执行与结论 TODO | #18 / #19 Pending，见 [Retro 模板](../releases/release-1-retrospective.md)及[三人操作指南](../releases/release-1-team-next-steps.md) |
+| 扩展设备验证 / 简短 Retro | 三人实际后续分工 TODO；执行与结论由本人确认 | #18 / #19 Pending，见 [Retro 模板](../releases/release-1-retrospective.md) |
 
 ## 合并与发布
 
@@ -64,7 +64,7 @@
 | 2026-10-27 | 完成整合版本 29 Android / 30 JVM 和指定 UI 冒烟；所有者授权先合并并将外部复审等移交后续 Issue | [最终集成报告](../testing/playlist-final-integration.md)、#17/#18/#19 |
 | 2026-10-27 | 合并 PR #16、PR #3；发布 release1；Sprint 1 #1 结项 | 上方合并表、[Release 索引](../releases/release-1.md) |
 | 2026-10-27 | 文档收尾：同步已发生的交付，整理 AC 矩阵、复审材料与 Retro/Demo 待填项 | [证据矩阵](../releases/release-1-evidence-matrix.md)、[#17 packet](../releases/release-1-human-review.md)、[#19 模板](../releases/release-1-retrospective.md) |
-| 2026-10-27 | CroissantXinny 确认 Release 1、2 无课堂展示要求，采用贡献确认、简短回顾和行动项的精简流程；真人 Review / AC 与扩展验证继续跟踪 | [三人操作指南](../releases/release-1-team-next-steps.md)、#17/#18/#19 |
+| 2026-10-27 | CroissantXinny 确认 Release 1、2 无课堂展示要求，采用贡献确认、简短回顾和行动项的精简流程；真人 Review / AC 与扩展验证继续跟踪 | [Retro 模板](../releases/release-1-retrospective.md)、#17/#18/#19 |
 
 ## Sprint Review / Retrospective
 

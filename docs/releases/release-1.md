@@ -2,7 +2,7 @@
 
 更新日期：2026-10-27（Asia/Shanghai）。**Release `release1` 已发布，PR #3 已合入 main；真人复审、正式 AC 签收和简短团队回顾 Pending。课堂展示 N/A，内部 Demo 可选。** 本索引组织 Sprint 1 与 Sprint 2 的课程评审材料。
 
-快速入口：[三人收尾操作指南](release-1-team-next-steps.md) · [AC1–AC9 evidence matrix](release-1-evidence-matrix.md) · [#17 human-review packet](release-1-human-review.md) · [#19 简短 Retro 模板](release-1-retrospective.md)。
+快速入口：[AC1–AC9 evidence matrix](release-1-evidence-matrix.md) · [#17 human-review packet](release-1-human-review.md) · [#19 简短 Retro 模板](release-1-retrospective.md)。
 
 ## 发布版本与产物
 
@@ -32,7 +32,7 @@
 | REDMI #13/#15 真人复测 | 2026-10-27：Shuffle 恢复、Title/Filename 双向更新、连续 C→B→A 均 Pass；`f7ba39bb` 本地 APK 与发布源码对应 | [复测报告与证据](../testing/playlist-redmi-review-13-15.md) |
 | 既有真人审阅 | peihanZENG 对 PR #12 的 `d2f54ed5` 提交 APPROVED，意见“RG验收无误” | [PR #12](https://github.com/Axfff/Vibe-Player/pull/12)；2026-10-26 22:47:57 |
 | 后续修复的真人复审 / 正式 AC 签收 | Pending；Story #2 与 #17 Open | [Human-review packet](release-1-human-review.md)、[逐项 AC 矩阵](release-1-evidence-matrix.md) |
-| 贡献确认 / 简短 Retro | Pending；实际 Sprint 起止、三人确认及 1–2 个行动项 TODO；可用群聊或 Issue 回复完成 | [#19 模板](release-1-retrospective.md)、[三人操作指南](release-1-team-next-steps.md) |
+| 贡献确认 / 简短 Retro | Pending；实际 Sprint 起止、三人确认及 1–2 个行动项 TODO；可用群聊或 Issue 回复完成 | [#19 模板](release-1-retrospective.md) |
 
 ## 验证版本的对应关系
 
@@ -63,7 +63,7 @@ AI、云同步、手动排序和歌单导入导出均在本次 Story 范围外�
 - [x] 记录发布 SHA、tag、现有 APK、校验文件和可复现构建入口。
 - [x] 关联 Story、PR #3/#12/#16、合并提交、Review 与版本对应测试证据。
 - [x] 同步 Sprint 1 结项、Sprint 2 合并和 Release 发布事实。
-- [x] 整理 AC1–AC9 evidence matrix、#17 review packet、#19 简短 Retro 模板及三人操作指南。
+- [x] 整理 AC1–AC9 evidence matrix、#17 review packet、#19 简短 Retro 模板。
 - [x] 明确 #18、#4、#8 及其他未完成事项。
 - [ ] 完成合并后真人复审与正式 AC1–AC9 签收（#17）。
 - 课堂展示：N/A；内部 Demo：可选，执行后记录实际版本和结果（#19）。
