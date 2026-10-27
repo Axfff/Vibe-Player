@@ -5,10 +5,15 @@ This is the team's course repository, based on [Music Player GO](https://github.
 - [Course workflow and documentation](docs/README.md)
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
+- [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Retro / Demo template](docs/releases/release-1-retrospective.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
-Multiple named local playlists are implemented locally on `feat/custom-playlists`. The latest source `2f660d11` passed the Windows debug APK build and 29 unit tests; device acceptance and teammate review are pending. Requirements are maintained in [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2). The remote feature branch and PR await publication. See the implementation record for changes, evidence and next steps. The badges and downloads below belong to the upstream application.
+**DSAA2044 Release 1 is published.** [PR #3](https://github.com/Axfff/Vibe-Player/pull/3), including PR #12 and PR #16, merged into `main` as `81b22ee5`. [Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) points to that commit and provides the CI-built debug/evaluation APK and checksum (app version 4.4.24 / 187).
+
+The release CI passed 30 JVM tests and built the APK. The matching application source at `8f2e4616` passed 29 Android integration tests on Android 17 / API 37 arm64, plus documented UI smoke checks. Historical manual TC results retain their original `785e0863` revision. See the [evidence matrix](docs/releases/release-1-evidence-matrix.md) for environments, commits and results.
+
+Human review and formal AC1–AC9 sign-off remain Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17) and [Story #2](https://github.com/Axfff/Vibe-Player/issues/2); expanded device verification is tracked in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and the team Demo/retrospective in [#19](https://github.com/Axfff/Vibe-Player/issues/19). Unindexed-file discovery [#4](https://github.com/Axfff/Vibe-Player/issues/4) and optional Add-control styling [#8](https://github.com/Axfff/Vibe-Player/issues/8) remain deferred. The badges and downloads below belong to the upstream application.
 
 ---
 
