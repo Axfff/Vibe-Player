@@ -2,6 +2,8 @@
 
 准备日期：2026-10-27（Asia/Shanghai）。状态：**材料已整理，真人复审与正式 AC 签收 Pending**。任务入口：[Issue #17](https://github.com/Axfff/Vibe-Player/issues/17)；正式需求：[Story #2](https://github.com/Axfff/Vibe-Player/issues/2)。由各修改作者之外的队友阅读对应差异、核对证据并填写结论。
 
+2026-10-27 补充：CroissantXinny 已在 REDMI Android 16 / API 36 上完成 **#13、#15 的真人设备复测，均 Pass**，见[报告与证据](../testing/playlist-redmi-review-13-15.md)。被测本地 APK 为 `0f1d8fc0…`，构建源码 `f7ba39bb` 与发布版本的工程内容一致。真人代码审阅结论与正式 AC 签收继续按下方模板填写。
+
 ## 复审版本与合并链
 
 | 对象 | 实际状态 / 精确提交 |
@@ -39,7 +41,7 @@ PR #3 / #16 中由 Axfff 账号发布的最终技术核对是注明 AI assistanc
 ## 已知限制与验证安排
 
 - 两份完整手工 TC 报告被测源码为 `785e0863`；最新 API 37 记录覆盖自动套件和明确列出的 UI 冒烟场景。最新合并版本的 REDMI TC03/TC07 留在 #18。
-- 29 项 Android 检查记录实际播放器、进度和音效 session 事件。主机音频关闭；真实设备听音、第三方/厂商 EQ 与 OS 音频焦点仲裁仍待执行。
+- 29 项 Android 检查记录实际播放器、进度和音效 session 事件。该自动套件运行时主机音频关闭；新增 REDMI #13/#15 已确认真实发声与上述播放路径，第三方/厂商 EQ 与 OS 音频焦点仲裁仍待执行。
 - 自动套件结束后出现 System UI ANR，截图保存在 [01-empty-library.png](../testing/evidence/2026-10-27-final-integration/smoke/01-empty-library.png)；关闭该系统弹窗后执行了应用 UI 冒烟。
 - 最新版本的保存失败 UI、扫描超时/部分失败/行数上限/执行中旋转、跨 Android 版本存储、完整可访问性验证 Pending，归 #18。
 - #4 的完全未索引文件发现和 #8 的 Add 灰显为 Deferred；现有重新索引边界和去重反馈见矩阵。

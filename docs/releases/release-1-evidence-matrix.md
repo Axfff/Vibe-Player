@@ -1,6 +1,6 @@
 # Release 1 closeout evidence matrix
 
-核验日期：2026-10-27（Asia/Shanghai）。正式需求为 [Story #2](https://github.com/Axfff/Vibe-Player/issues/2)。本表索引已有证据；本轮执行文档与仓库核验，Android/JVM 测试结果均引用其原始执行记录。
+核验日期：2026-10-27（Asia/Shanghai）。正式需求为 [Story #2](https://github.com/Axfff/Vibe-Player/issues/2)。本表索引版本对应的证据；Android/JVM 自动套件引用原始执行记录，新增 H3 为当日实际执行的 REDMI #13/#15 真人复测。
 
 ## 发布基线
 
@@ -19,12 +19,13 @@
 | --- | --- | --- | --- |
 | H1 | 2026-10-26；CroissantXinny 手动操作、确认声音，Codex 记录 | `785e0863e1efa8f44574cec1444b649a4016c911`；REDMI K90 Pro Max / Android 16 / API 36 | [真机报告][H1]：TC01–TC10 Pass；TC11–TC13 在该真机记录中 Pending |
 | H2 | 2026-10-26；曾沛涵手动验收 | 同一 `785e0863`；Medium Phone / Android 17 / API 37 Google Play **x86_64**，1080×2400、420 dpi | [模拟器报告][H2]：TC01–TC13 Pass；报告提交 `6e92066` |
+| H3 | 2026-10-27；CroissantXinny 手机操作和听音，Codex 留证 | `f7ba39bb2a4e98b5ab61c9bfa43a9512c168055f`，与 release1 的工程内容一致；REDMI Android 16 / API 36；本地 APK `0f1d8fc0…` | [复测报告][H3]：#13 搜索/刷新/清空后的 Shuffle、#15 Title/Filename 双向更新及连续 C→B→A 均 Pass |
 | J | 2026-10-27；自动运行，Codex 辅助留证 | `8f2e4616`；JDK 17 / Gradle 8.0 / SDK 33 构建环境 | [汇总][Summary]：30 JVM Pass（Repository 24、FailurePlan 5、MediaScanPolicy 1）；逐项见 [J][J]、[F][F]、[M][M] |
 | I | 2026-10-27；AndroidJUnitRunner，Codex 辅助留证 | `8f2e4616`；一次性 Medium Phone / Android 17 / API 37 **arm64**；主机音频关闭 | [原始输出][I]：29 Android Pass，215.954 秒；[环境][Env]；包含 RG01–RG07 与 #13–#15 的五项检查 |
 | S | 2026-10-27；ADB 操作与 UIAutomator 观察 | 同一 `8f2e4616` 安装、同一 API 37 arm64 设备 | [冒烟记录][S]：入口、无候选、两文件重新索引、添加/重复反馈、旋转、权限拒绝/恢复、单成员强停后冷启动 |
 | C | 2026-10-27；GitHub Actions | 发布源码 `81b22ee5`；Ubuntu runner / Temurin JDK 17，工程 SDK 33、Gradle Wrapper | [发布 CI][CI]：Debug APK 构建成功；原始 `unit-test-results` 附件为 24+5+1 = 30 JVM，0 failure / error |
 
-H1/H2 为旧版完整手工用例；J/I/S 为最终集成版本的自动测试与指定冒烟场景。正式团队签收单列在下一表末列，由 [#17](https://github.com/Axfff/Vibe-Player/issues/17) 的真人审阅者填写。
+H1/H2 为旧版完整手工用例；J/I/S 为最终集成版本的自动测试与指定冒烟场景；H3 补充发布源码对应版本的两项真机复测。正式团队签收单列在下一表末列，由 [#17](https://github.com/Axfff/Vibe-Player/issues/17) 的真人审阅者填写。
 
 ## AC1–AC9 对应证据
 
@@ -42,6 +43,8 @@ H1/H2 为旧版完整手工用例；J/I/S 为最终集成版本的自动测试�
 | AC8 空歌单提示且禁止播放 | [H2][H2]：TC11 Pass；H1 的 TC11 Pending | [J][J]：`emptyPlaylistHasNoPlayableTracks`；完整空歌单 UI 操作记录见 H2 | Pending — #17 |
 | AC9 失效成员保留、跳过与全失效反馈 | [H2][H2]：TC12、TC13 Pass；H1 的 TC12–TC13 Pending | [J][J]：`missingTrackRetainsItsSnapshotAndAvailableTracksKeepSavedOrder`、`allUnavailableEntriesStayVisibleAndBecomeAvailableAgainWhenRestored`；[I][I]：手动/自然跳过、`allMissingFilesStopAfterFiniteAttemptsEvenWhenListsRepeat`、RG06 拒绝权限/失败扫描；[F][F] 有限恢复计划 | Pending — #17 |
 
+H3 对 AC6 提供新增真机支持：同一次 Review15 播放内切换标题/文件名后，下一首仍依次为 B、A，且声音正常；保存成员顺序前后一致。#13 的新增记录覆盖普通曲库 Shuffle 在搜索与刷新后的恢复。其具体范围、操作者确认和截图阶段见 [H3][H3]。
+
 ## 审阅与后续事项
 
 - [PR #12](https://github.com/Axfff/Vibe-Player/pull/12)：peihanZENG 在 `d2f54ed5` 上于 2026-10-26 22:47:57 提交 APPROVED；22:56:25 合并为 `dd587853`。审阅意见为“RG验收无误”。
@@ -51,9 +54,9 @@ H1/H2 为旧版完整手工用例；J/I/S 为最终集成版本的自动测试�
 - [#8](https://github.com/Axfff/Vibe-Player/issues/8)：已有成员的 Add 置灰/禁用为 **Deferred（可选 UI 改进）**；去重行为有上述 AC3 证据。
 - [#19](https://github.com/Axfff/Vibe-Player/issues/19)：真实 Sprint 起止、Demo、团队回顾和课程评审记录 **Pending**；使用 [Retro / Demo 模板](release-1-retrospective.md)。
 
-## 本轮文档核验
+## 初版 closeout 文档核验（406fa072）
 
-2026-10-27 的 closeout 检查结果：
+2026-10-27 初版 closeout 的检查结果如下；后续 H3 真机补充的文件范围和发布检查记录在 PR #20 中。
 
 | 检查 | 实际结果 |
 | --- | --- |
@@ -68,6 +71,7 @@ H1/H2 为旧版完整手工用例；J/I/S 为最终集成版本的自动测试�
 
 [H1]: ../testing/custom-playlists-redmi-results.md
 [H2]: https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md
+[H3]: ../testing/playlist-redmi-review-13-15.md
 [J]: ../testing/evidence/2026-10-27-final-integration/TEST-com.iven.musicplayergo.playlists.PlaylistRepositoryTest.xml
 [F]: ../testing/evidence/2026-10-27-final-integration/TEST-com.iven.musicplayergo.player.PlaylistFailurePlanTest.xml
 [M]: ../testing/evidence/2026-10-27-final-integration/TEST-com.iven.musicplayergo.library.MediaScanPolicyTest.xml

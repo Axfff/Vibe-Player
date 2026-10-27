@@ -32,6 +32,7 @@
 | [PR 审阅修复验证](testing/playlist-review-fixes.md) | #13–#15 的失败复现、完整 29 项 Android 测试、JVM 支持结果与限制 |
 | [最终集成验证](testing/playlist-final-integration.md) | PR #16 与功能分支集成后的最新源码、构建、测试、合并状态及限制；最终结果以此为准 |
 | [REDMI 真机验收](testing/custom-playlists-redmi-results.md) | CroissantXinny 的 TC01–TC10、截图、文件校验和强停重启证据 |
+| [REDMI #13/#15 真人复测](testing/playlist-redmi-review-13-15.md) | 2026-10-27；与发布源码对应的本地 APK；Shuffle、Title/Filename 和连续 C→B→A 均 Pass |
 | [#4/#5/#6 修复与复测](development/acceptance-fixes/2026-10-26-issues-4-5-6.md) | 候选补丁审阅、实际提交、新版构建/API 33 设备证据与待复测项 |
 | [协作者模拟器验收](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) | 曾沛涵的 TC01–TC13 与代表性截图 |
 | [实现与验证记录](development/custom-playlists-implementation.md) | 本地实现范围、实际自动检查与待执行验收 |
@@ -60,6 +61,12 @@ Story 与 AC 是同一需求的两个小节，不分别开两个 Issue。需要�
 4. 在 PR 中链接 Story Issue，并填写 `AC ID -> 验证方法 -> 结果 -> 证据`。继续向同一分支推送可更新同一个 PR。
 5. 由队友进行真实审阅，记录并处理反馈；按实际情况运行构建和测试。
 6. 范围完成且相关检查通过后合并，更新 Sprint 与 Release 的证据链接。
+
+### 分支使用建议
+
+三人协作建议长期保留 `main`，按任务创建短期分支，例如 `feat/功能名`、`fix/问题名`、`docs/文档任务`、`test/验证任务`。这些前缀用于说明任务类型；每个分支对应一个明确范围。同一 PR 的反馈和补充证据继续推到原分支。
+
+任务合并后，确认全部所需提交已进入 `main`、本地改动已保存、相关 worktree 已交接，再清理完成的分支。下一项任务从更新后的 `main` 新开分支。PR 与提交历史继续保留协作和审阅记录。只有需要并行维护已发布版本时，再增加 `release/...` 维护分支；`release1` tag 继续标识已发布提交。流程参考 [GitHub Flow](https://docs.github.com/en/get-started/using-github/github-flow)。
 
 部分实现或文档搭建 PR 使用 `Refs #N`。只有完成对应需求、准备在合并到默认分支时关闭 Issue 的 PR 才使用 `Closes #N`。搭建文档不关闭多歌单 Story 或 Sprint 1 Issue。
 

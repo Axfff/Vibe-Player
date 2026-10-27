@@ -28,6 +28,7 @@
 | Sprint 2 用户价值与实现 | 自定义多歌单通过 PR #3 进入 main；PR #12、PR #16 均已合并 | [Sprint 2](../sprints/sprint-2.md)、[PR #3](https://github.com/Axfff/Vibe-Player/pull/3) |
 | 历史手工验收 | `785e0863`：REDMI TC01–TC10 Pass；队友模拟器 TC01–TC13 Pass | [真机报告](../testing/custom-playlists-redmi-results.md)、[模拟器报告](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) |
 | 最终集成验证 | `8f2e4616`：29 Android / 30 JVM Pass；指定 UI 冒烟通过 | [最终集成报告](../testing/playlist-final-integration.md)、[原始汇总](../testing/evidence/2026-10-27-final-integration/summary.json) |
+| REDMI #13/#15 真人复测 | 2026-10-27：Shuffle 恢复、Title/Filename 双向更新、连续 C→B→A 均 Pass；`f7ba39bb` 本地 APK 与发布源码对应 | [复测报告与证据](../testing/playlist-redmi-review-13-15.md) |
 | 既有真人审阅 | peihanZENG 对 PR #12 的 `d2f54ed5` 提交 APPROVED，意见“RG验收无误” | [PR #12](https://github.com/Axfff/Vibe-Player/pull/12)；2026-10-26 22:47:57 |
 | 后续修复的真人复审 / 正式 AC 签收 | Pending；Story #2 与 #17 Open | [Human-review packet](release-1-human-review.md)、[逐项 AC 矩阵](release-1-evidence-matrix.md) |
 | Demo / Retro / 课程评审 | Pending；实际 Sprint 起止和讨论结论 TODO | [#19 模板](release-1-retrospective.md) |
@@ -52,7 +53,7 @@
 | [#4](https://github.com/Axfff/Vibe-Player/issues/4) | 已实现可访问 MediaStore 候选重新索引和导入指导；完全未索引或不可访问文件的发现保留后续范围 | Deferred / Open |
 | [#8](https://github.com/Axfff/Vibe-Player/issues/8) | 已添加成员的 Add 控件置灰/禁用；当前重复项反馈和去重逻辑已有测试 | Deferred / Open，可选 UI 改进 |
 
-API 37 自动化运行关闭主机音频；真实听音和厂商 EQ 由 #18 继续验证。自动套件后出现的 System UI ANR 截图及处理过程保留在最终报告。两份旧版手工 TC、当前集成套件和当前设备待测范围分别列在矩阵中。
+API 37 自动化运行关闭主机音频；新增 REDMI #13/#15 已确认相关播放路径的真实发声，厂商 EQ 和其他音频边界由 #18 继续验证。自动套件后出现的 System UI ANR 截图及处理过程保留在最终报告。两份旧版手工 TC、当前集成套件、新增真机复测和剩余待测范围分别列在矩阵中。
 
 AI、云同步、手动排序和歌单导入导出均在本次 Story 范围外。
 

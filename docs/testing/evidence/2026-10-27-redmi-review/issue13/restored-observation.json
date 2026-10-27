@@ -1,0 +1,22 @@
+{
+  "stage": "query-cleared-after-playlist-refresh",
+  "recorded_utc": "2026-10-27T06:30:44.0931664+00:00",
+  "operator_report": "三首已恢复，Shuffle 为 3 且可点击",
+  "search_control_present": true,
+  "visible_tracks": [
+    "Test-A",
+    "Test-B",
+    "Test-C"
+  ],
+  "shuffle_text": "3",
+  "shuffle_enabled": true,
+  "shuffle_clickable": true,
+  "evidence": [
+    "restored-ui.xml",
+    "restored-ui.png"
+  ],
+  "issue13_result": "PASS: restored list/count/enabled state; audible Shuffle confirmation recorded in playback-observation.json",
+  "search_display_text": "搜索…",
+  "query": "",
+  "query_interpretation": "The cleared search field displays the hint 搜索…; operator confirmed clearing the query and restoration of all three songs."
+}
