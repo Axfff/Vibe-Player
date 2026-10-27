@@ -8,11 +8,13 @@
 
 邮件没有指定模板格式、测试覆盖率、PR 数量、审阅人数或必须使用 GitHub Projects / Releases。以下结构是团队的执行方案。截止日期与具体分工由团队按课程安排补充。
 
+2026-10-27，CroissantXinny 补充确认 Release 1、Release 2 均无课堂展示要求，并采用精简收尾流程：课堂展示标为 **N/A**，内部 Demo 可选；三人可通过群聊或 Issue 回复完成贡献确认、简短 Retro 和 1–2 个改进行动。真人代码 Review、正式 AC 签收与后续验证继续按原范围跟踪。操作步骤见[三人收尾指南](releases/release-1-team-next-steps.md)。
+
 当前 [Axfff/Vibe-Player](https://github.com/Axfff/Vibe-Player) 的 [PR #3](https://github.com/Axfff/Vibe-Player/pull/3) 已于 2026-10-27 合入 `main`，合并提交 `81b22ee5` 包含 PR #12、PR #16 与 #13–#15 修复。[Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) 已发布并指向该提交。文档整理起点为 `main` 的 `dc17523b`；Sprint 1 的 [Issue #1](https://github.com/Axfff/Vibe-Player/issues/1) 已依据环境、构建、运行和文档证据结项。
 
 验证按版本索引：`785e0863` 的 REDMI TC01–TC10 与队友模拟器 TC01–TC13 为历史手工结果；`8f2e4616` 的 29 项 Android / 30 项 JVM 及指定 UI 冒烟为最终集成记录；`81b22ee5` 的发布 CI 完成 30 项 JVM 和 Debug APK 构建。最终集成与发布版本的应用、测试、脚本和 CI 文件一致。环境、测试提交、APK 哈希与逐项 AC 证据统一见 [Release 1 evidence matrix](releases/release-1-evidence-matrix.md)。历史修复过程见[设备反馈修复记录](development/acceptance-fixes/2026-10-26-issues-4-5-6.md)。
 
-2026-10-27，仓库所有者授权先完成集成合并，将后续工作分别跟踪：[真人队友复审与正式 AC1–AC9 签收 #17](https://github.com/Axfff/Vibe-Player/issues/17)、[真机、可访问性与扫描边界验证 #18](https://github.com/Axfff/Vibe-Player/issues/18)、[团队 Demo 与回顾 #19](https://github.com/Axfff/Vibe-Player/issues/19)，均为 Pending。完全未进入系统索引的文件发现 [#4](https://github.com/Axfff/Vibe-Player/issues/4) 和可选 Add 样式 [#8](https://github.com/Axfff/Vibe-Player/issues/8) 为 Deferred。
+2026-10-27，仓库所有者授权先完成集成合并，将后续工作分别跟踪：[真人队友复审与正式 AC1–AC9 签收 #17](https://github.com/Axfff/Vibe-Player/issues/17)、[真机、可访问性与扫描边界验证 #18](https://github.com/Axfff/Vibe-Player/issues/18)、[贡献确认与简短回顾 #19](https://github.com/Axfff/Vibe-Player/issues/19)，均为 Pending。完全未进入系统索引的文件发现 [#4](https://github.com/Axfff/Vibe-Player/issues/4) 和可选 Add 样式 [#8](https://github.com/Axfff/Vibe-Player/issues/8) 按各自 Issue 继续跟踪。
 
 正式需求为 [Story Issue #2](https://github.com/Axfff/Vibe-Player/issues/2)，其 AC 等待真人签收。原 GitHub 集成的 403 与后续获授权使用已有 Git / GitHub CLI 的处理记录保留在 Sprint 2。
 
@@ -25,7 +27,8 @@
 | [Release 1](releases/release-1.md) | 两个 Sprint 的交付和审阅证据索引 |
 | [Release 1 evidence matrix](releases/release-1-evidence-matrix.md) | AC1–AC9 对应的历史 TC、最终集成测试、环境和源码版本 |
 | [Human-review packet](releases/release-1-human-review.md) | #17 的复审范围、合并提交、证据及真人填写模板 |
-| [Retro / Demo 模板](releases/release-1-retrospective.md) | #19 的真实分工、日期、演示与团队回顾待填项 |
+| [简短 Retro 模板](releases/release-1-retrospective.md) | #19 的真实分工、日期、回顾与行动项；课堂展示 N/A、内部 Demo 可选 |
+| [三人收尾操作指南](releases/release-1-team-next-steps.md) | 各自下一步、可复制回复、真人 Review / AC 签收及文档提交方法 |
 | [Thinking](thinking/README.md) | 调研、选择理由、未决问题 |
 | [多歌单测试计划](testing/custom-playlists.md) | AC 对应的操作、期望及实际执行结果 |
 | [RG01–RG07 回归结果](testing/custom-playlists-regression-results.md) | 原始 24 项 Android 回归与 PR #12 的复现、修复及证据 |

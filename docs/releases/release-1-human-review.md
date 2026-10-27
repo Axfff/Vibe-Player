@@ -4,6 +4,8 @@
 
 2026-10-27 补充：CroissantXinny 已在 REDMI Android 16 / API 36 上完成 **#13、#15 的真人设备复测，均 Pass**，见[报告与证据](../testing/playlist-redmi-review-13-15.md)。被测本地 APK 为 `0f1d8fc0…`，构建源码 `f7ba39bb` 与发布版本的工程内容一致。真人代码审阅结论与正式 AC 签收继续按下方模板填写。
 
+同日按用户确认精简 #19：课堂展示 N/A、内部 Demo 可选，贡献确认和 Retro 可在群聊或 Issue 中进行。**本页真人 Review、AC1–AC9 签收仍为 Pending**；具体分工与 GitHub 操作见[三人收尾指南](release-1-team-next-steps.md)。
+
 ## 复审版本与合并链
 
 | 对象 | 实际状态 / 精确提交 |
@@ -45,7 +47,7 @@ PR #3 / #16 中由 Axfff 账号发布的最终技术核对是注明 AI assistanc
 - 自动套件结束后出现 System UI ANR，截图保存在 [01-empty-library.png](../testing/evidence/2026-10-27-final-integration/smoke/01-empty-library.png)；关闭该系统弹窗后执行了应用 UI 冒烟。
 - 最新版本的保存失败 UI、扫描超时/部分失败/行数上限/执行中旋转、跨 Android 版本存储、完整可访问性验证 Pending，归 #18。
 - #4 的完全未索引文件发现和 #8 的 Add 灰显为 Deferred；现有重新索引边界和去重反馈见矩阵。
-- 发布附件是 CI 构建的 debug/evaluation APK；本地设备测试 APK 与发布 APK 各自的哈希见矩阵。Demo 安装的实际附件与设备结果由 #19 填写。
+- 发布附件是 CI 构建的 debug/evaluation APK；本地设备测试 APK 与发布 APK 各自的哈希见矩阵。新增补测按本页模板记录实际安装包；可选内部演示按 #19 模板记录。
 
 ## 真人审阅结论模板
 

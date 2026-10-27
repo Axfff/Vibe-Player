@@ -5,7 +5,8 @@ This is the team's course repository, based on [Music Player GO](https://github.
 - [Course workflow and documentation](docs/README.md)
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
-- [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Retro / Demo template](docs/releases/release-1-retrospective.md)
+- [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Short retrospective template](docs/releases/release-1-retrospective.md)
+- [Three-person closeout guide / 三人收尾操作指南](docs/releases/release-1-team-next-steps.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
@@ -13,7 +14,7 @@ This is the team's course repository, based on [Music Player GO](https://github.
 
 The release CI passed 30 JVM tests and built the APK. The matching application source at `8f2e4616` passed 29 Android integration tests on Android 17 / API 37 arm64, plus documented UI smoke checks. Historical manual TC results retain their original `785e0863` revision. See the [evidence matrix](docs/releases/release-1-evidence-matrix.md) for environments, commits and results.
 
-Human review and formal AC1–AC9 sign-off remain Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17) and [Story #2](https://github.com/Axfff/Vibe-Player/issues/2); expanded device verification is tracked in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and the team Demo/retrospective in [#19](https://github.com/Axfff/Vibe-Player/issues/19). Unindexed-file discovery [#4](https://github.com/Axfff/Vibe-Player/issues/4) and optional Add-control styling [#8](https://github.com/Axfff/Vibe-Player/issues/8) remain deferred. The badges and downloads below belong to the upstream application.
+Human review and formal AC1–AC9 sign-off remain Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17) and [Story #2](https://github.com/Axfff/Vibe-Player/issues/2); expanded device verification is tracked in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and contribution confirmation plus a short retrospective in [#19](https://github.com/Axfff/Vibe-Player/issues/19). On 2026-10-27, CroissantXinny clarified that Release 1 and Release 2 require no classroom presentation: that item is N/A, and an internal Demo is optional. Unindexed-file discovery [#4](https://github.com/Axfff/Vibe-Player/issues/4) and optional Add-control styling [#8](https://github.com/Axfff/Vibe-Player/issues/8) remain follow-up work outside this closeout. The badges and downloads below belong to the upstream application.
 
 ---
 

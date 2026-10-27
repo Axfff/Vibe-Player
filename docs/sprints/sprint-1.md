@@ -34,6 +34,7 @@
 ## Review 与 Retrospective
 
 - 基础任务结项：已完成，见 #1。
-- 正式 Sprint 起止日期、课程 Review / Demo、团队实际回顾：**TODO / Pending**，由 [#19](https://github.com/Axfff/Vibe-Player/issues/19) 跟踪。
-- 团队填写入口：[Retro / Demo 模板](../releases/release-1-retrospective.md)，预填已有贡献，会议与结论待实际参与者记录。
+- 正式 Sprint 起止日期、三人贡献确认、简短团队回顾：**TODO / Pending**，由 [#19](https://github.com/Axfff/Vibe-Player/issues/19) 跟踪。
+- 课堂展示：**N/A**，依据 CroissantXinny 于 2026-10-27 对 Release 1、Release 2 课程安排的确认；内部 Demo 可选。
+- 团队填写入口：[简短 Retro 模板](../releases/release-1-retrospective.md)及[三人操作指南](../releases/release-1-team-next-steps.md)，可在群聊或 Issue 中交流，由实际参与者确认记录。
 - Sprint 2 的功能验收由 [Story #2](https://github.com/Axfff/Vibe-Player/issues/2) 与 [#17](https://github.com/Axfff/Vibe-Player/issues/17) 跟踪。

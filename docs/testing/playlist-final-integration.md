@@ -53,13 +53,13 @@ Three independent AI source checks covered the scan/lifecycle path, picker and m
 
 Historical acceptance: [Redmi TC01–TC10](custom-playlists-redmi-results.md) and [teammate emulator TC01–TC13](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) tested `785e0863` on 2026-10-26. Their results remain associated with that source; the current J/I/S results are indexed separately in the closeout matrix.
 
-Formal AC1–AC9 sign-off remains Pending in Story #2 and follow-up #17. The owner explicitly authorized merging after available verification and tracking external review/extra work separately on 2026-10-27. This is the recorded exception to the team's suggested review-before-merge order. Human review and acceptance use the [review packet](../releases/release-1-human-review.md); the team Demo and retrospective use the [#19 template](../releases/release-1-retrospective.md).
+Formal AC1–AC9 sign-off remains Pending in Story #2 and follow-up #17. The owner explicitly authorized merging after available verification and tracking external review/extra work separately on 2026-10-27. This is the recorded exception to the team's suggested review-before-merge order. Human review and acceptance use the [review packet](../releases/release-1-human-review.md); contribution confirmation and a short retrospective use the [#19 template](../releases/release-1-retrospective.md) and [team guide](../releases/release-1-team-next-steps.md). CroissantXinny clarified on 2026-10-27 that Release 1 and Release 2 require no classroom presentation; that item is N/A and an internal Demo is optional.
 
 ## Follow-up work
 
 - [#17 — Human teammate review and formal AC sign-off](https://github.com/Axfff/Vibe-Player/issues/17): review the merged changes and record the team decision; Story #2 stays open until acceptance.
 - [#18 — Additional device/accessibility/scan verification](https://github.com/Axfff/Vibe-Player/issues/18): current physical-device acceptance, audible playback/vendor EQ, TalkBack/large text, timeout/partial/row-limit and in-progress rotation cases.
-- [#19 — Team retrospective and Demo](https://github.com/Axfff/Vibe-Player/issues/19): actual team/course records, Demo artifact selection and outcomes; the release publication is complete.
+- [#19 — Short team retrospective and closeout](https://github.com/Axfff/Vibe-Player/issues/19): actual contribution/date confirmation, a short retrospective, 1–2 improvement actions and links to acceptance/follow-up decisions; classroom presentation N/A, internal Demo optional. Release publication is complete.
 - [#4 — Discovery limitation](https://github.com/Axfff/Vibe-Player/issues/4): the scanner only sees existing accessible MediaStore candidates. Wholly unindexed files may still require system Files/Music indexing; no unsupported storage access is added.
 - [#8 — Optional duplicate Add styling](https://github.com/Axfff/Vibe-Player/issues/8): duplicate membership is prevented; disabling its Add control remains separate.
 

@@ -24,7 +24,7 @@
 | #4/#5/#6 反馈处理 | CroissantXinny 的 PR #16，Codex 辅助；Axfff 集成合并 | 可见入口、内联反馈、重新索引和指导已合入；完全未索引文件发现归 #4 |
 | 最终集成与发布 | Axfff 账号记录整合验证、执行合并及发布，验证注明 Codex assistance | `8f2e4616` 的 29 Android / 30 JVM 及指定 UI 冒烟 Pass；发布 CI 在 `81b22ee5` 完成 30 JVM 与 APK 构建 |
 | 真人最终复审 / AC 签收 | 负责人 TODO；各改动由作者之外的队友复审 | Pending，使用 [#17 review packet](../releases/release-1-human-review.md) |
-| 扩展设备验证 / Demo / Retro | 三人实际后续分工 TODO | #18 / #19 Pending，见 [Retro 模板](../releases/release-1-retrospective.md) |
+| 扩展设备验证 / 简短 Retro | 计划分工见三人操作指南；实际执行与结论 TODO | #18 / #19 Pending，见 [Retro 模板](../releases/release-1-retrospective.md)及[三人操作指南](../releases/release-1-team-next-steps.md) |
 
 ## 合并与发布
 
@@ -48,7 +48,7 @@
 | --- | --- |
 | [#17](https://github.com/Axfff/Vibe-Player/issues/17) | #13–#15、PR #16 的真人复审及 AC1–AC9 正式签收；Pending，Story #2 保持 Open |
 | [#18](https://github.com/Axfff/Vibe-Player/issues/18) | 最新版本真机 TC03/TC07、真实听音/EQ、TalkBack/大字体、保存失败、扫描边界与跨版本存储验证；Pending |
-| [#19](https://github.com/Axfff/Vibe-Player/issues/19) | 真实 Sprint 周期、三人分工确认、Demo、Retro 与课程评审；Pending，Release 发布项已完成 |
+| [#19](https://github.com/Axfff/Vibe-Player/issues/19) | 真实 Sprint 周期、三人贡献确认、简短 Retro 与行动项；Pending。课堂展示 N/A、内部 Demo 可选；Release 发布项已完成 |
 | [#4](https://github.com/Axfff/Vibe-Player/issues/4) | 已有可访问候选的重新索引和指导已实现；完全未索引文件发现 Deferred |
 | [#8](https://github.com/Axfff/Vibe-Player/issues/8) | 已有成员 Add 控件的灰显/禁用，Deferred；去重与保序已有 AC3 测试 |
 
@@ -64,13 +64,14 @@
 | 2026-10-27 | 完成整合版本 29 Android / 30 JVM 和指定 UI 冒烟；所有者授权先合并并将外部复审等移交后续 Issue | [最终集成报告](../testing/playlist-final-integration.md)、#17/#18/#19 |
 | 2026-10-27 | 合并 PR #16、PR #3；发布 release1；Sprint 1 #1 结项 | 上方合并表、[Release 索引](../releases/release-1.md) |
 | 2026-10-27 | 文档收尾：同步已发生的交付，整理 AC 矩阵、复审材料与 Retro/Demo 待填项 | [证据矩阵](../releases/release-1-evidence-matrix.md)、[#17 packet](../releases/release-1-human-review.md)、[#19 模板](../releases/release-1-retrospective.md) |
+| 2026-10-27 | CroissantXinny 确认 Release 1、2 无课堂展示要求，采用贡献确认、简短回顾和行动项的精简流程；真人 Review / AC 与扩展验证继续跟踪 | [三人操作指南](../releases/release-1-team-next-steps.md)、#17/#18/#19 |
 
 ## Sprint Review / Retrospective
 
 - [x] 实现、合并提交、发布及版本对应测试证据可追踪。
 - [x] PR #12 的既有真人批准、后续待复审范围与已知限制分别记录。
 - [ ] 真人队友完成合并后复审，正式签收 AC1–AC9（#17）。
-- [ ] 完成实际 Demo，记录使用的 SHA、APK 哈希、设备和结果（#19）。
-- [ ] 三位组员确认实际分工、Sprint 起止并完成真实 Retro，留下行动项（#19）。
+- 课堂展示：N/A；内部 Demo：可选，执行后记录实际版本、设备和结果（#19）。
+- [ ] 三位组员确认实际分工、Sprint 起止并完成简短 Retro，留下 1–2 个改进行动及后续安排（#19）。
 
 2026-10-27 的合并顺序来自仓库所有者授权；真人复审及正式签收继续按 #17 完成。课程材料总入口：[Release 1](../releases/release-1.md)。
