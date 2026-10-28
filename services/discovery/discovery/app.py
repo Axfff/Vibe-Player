@@ -4,18 +4,25 @@ import logging
 import secrets
 from contextlib import asynccontextmanager, suppress
 
-import httpx
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from .albums import MAX_ALBUM_PHOTOS, AlbumService
 from .catalog import ITunesCatalog, JamendoCatalog
 from .config import ROOT, Settings
 from .errors import DiscoveryError
-from .models import DiscoveryRequest, DiscoveryResponse, ReplaceRequest, TrackRef
-from .network import SafeHTTP
+from .models import (
+    AlbumCreateRequest,
+    AlbumFailureRequest,
+    DiscoveryRequest,
+    DiscoveryResponse,
+    ReplaceRequest,
+    TrackRef,
+)
+from .network import OutboundRoute, SafeHTTP
 from .policy import REVIEW_DATE
 from .service import DiscoveryService
 from .vision import VisionService, prepare_image
@@ -40,12 +47,16 @@ def create_app(settings=None, http=None, vision=None, catalogs=None):
     settings = settings or Settings.load()
     logging.getLogger("httpx").setLevel(logging.WARNING)
     logging.getLogger("httpcore").setLevel(logging.WARNING)
-    client = httpx.AsyncClient(timeout=settings.timeout_seconds, trust_env=False)
-    http = http or SafeHTTP(client, settings.catalog_call_budget, settings.timeout_seconds)
-    vision_http = SafeHTTP(client, settings.vision_call_budget, timeout=30)
+    route = OutboundRoute(settings.local_proxy_url)
+    client = route.client(timeout=settings.timeout_seconds)
+    http = http or SafeHTTP(
+        client, settings.catalog_call_budget, settings.timeout_seconds, resolver=route.resolve
+    )
+    vision_http = SafeHTTP(client, settings.vision_call_budget, timeout=30, resolver=route.resolve)
     vision = vision or VisionService(settings, vision_http)
     catalogs = catalogs or [JamendoCatalog(settings, http), ITunesCatalog(settings, http)]
     service = DiscoveryService(catalogs, vision, http)
+    albums = AlbumService(vision, settings)
     token = secrets.token_urlsafe(32)
 
     @asynccontextmanager
@@ -57,6 +68,7 @@ def create_app(settings=None, http=None, vision=None, catalogs=None):
         title="Vibe Discovery", version="0.1.0", lifespan=lifespan, docs_url=None, redoc_url=None
     )
     app.state.service = service
+    app.state.albums = albums
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
 
     @app.middleware("http")
@@ -123,29 +135,41 @@ def create_app(settings=None, http=None, vision=None, catalogs=None):
                 "pixels": settings.max_pixels,
                 "imageEdge": settings.max_image_edge,
                 "previewSeconds": 30,
+                "albumPhotos": MAX_ALBUM_PHOTOS,
+                "visionCallsRemaining": max(
+                    0, settings.vision_call_budget - vision.status().requestsMade
+                ),
             },
             "defaultMarket": "US",
             "marketBasis": "explicit_test_configuration",
+            "networkRoute": route.mode,
         }
 
-    @app.post("/v1/photo-intent")
-    async def photo_intent(request: Request):
+    def photo_consent(request):
         if request.headers.get("x-cloud-consent") != "true":
             raise DiscoveryError("cloud_consent_required", 403)
         if vision.status().mode == "unconfigured":
             raise DiscoveryError("vision_not_configured", 503)
+
+    async def read_image(request):
         body = bytearray()
         async for chunk in request.stream():
             body.extend(chunk)
             if len(body) > settings.max_upload_bytes:
                 raise DiscoveryError("image_byte_limit", 413)
+        return bytes(body)
+
+    @app.post("/v1/photo-intent")
+    async def photo_intent(request: Request):
+        photo_consent(request)
+        body = await read_image(request)
         jpeg, size = await asyncio.to_thread(
             prepare_image,
-            bytes(body),
+            body,
             request.headers.get("content-type", ""),
             settings,
         )
-        body.clear()
+        del body
         if await request.is_disconnected():
             raise DiscoveryError("request_cancelled", 499)
         output = await connected(request, vision.analyze(jpeg))
@@ -155,6 +179,38 @@ def create_app(settings=None, http=None, vision=None, catalogs=None):
             "catalogs": [p.status() for p in catalogs],
             "processedSize": list(size),
         }
+
+    def album_response(data):
+        return {**data, "catalogs": [p.status() for p in catalogs]}
+
+    @app.post("/v1/albums", status_code=201)
+    async def create_album(body: AlbumCreateRequest, request: Request):
+        photo_consent(request)
+        return album_response(albums.create(body.photoCount))
+
+    @app.get("/v1/albums/{album_id}")
+    async def album_status(album_id: str):
+        return album_response(albums.snapshot(album_id))
+
+    @app.post("/v1/albums/{album_id}/photos/{index}")
+    async def album_photo(album_id: str, index: int, request: Request):
+        photo_consent(request)
+        albums.ready(album_id, index)
+        data = await read_image(request)
+        if await request.is_disconnected():
+            raise DiscoveryError("request_cancelled", 499)
+        result = await connected(
+            request, albums.process(album_id, index, data, request.headers.get("content-type", ""))
+        )
+        return album_response(result)
+
+    @app.post("/v1/albums/{album_id}/failures/{index}")
+    async def album_failure(album_id: str, index: int, body: AlbumFailureRequest):
+        return album_response(await albums.record_failure(album_id, index, body.errorCode))
+
+    @app.delete("/v1/albums/{album_id}")
+    async def cancel_album(album_id: str):
+        return album_response(await albums.cancel(album_id))
 
     @app.post("/v1/discover", response_model=DiscoveryResponse)
     async def discover(body: DiscoveryRequest, request: Request):

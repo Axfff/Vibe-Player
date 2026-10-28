@@ -70,6 +70,7 @@ class DiscoveryService:
             groups = [value if isinstance(value, list) else [] for value in results]
             pool = [candidate for row in zip_longest(*groups) for candidate in row if candidate]
             tracks, artists = [], Counter()
+            selection_issues = Counter()
             # Limit validation traffic as well as results. No unbounded pagination/fallback search.
             inspected = 0
             for candidate in pool:
@@ -88,7 +89,15 @@ class DiscoveryService:
                         track.ref.provider,
                         track.ref.providerTrackId,
                     )
-                except (DiscoveryError, ValueError):
+                except (DiscoveryError, ValueError) as error:
+                    code = (
+                        error.code
+                        if isinstance(error, DiscoveryError)
+                        else "official_track_mismatch"
+                    )
+                    selection_issues[(track.ref.provider, code)] += 1
+                    if code == "call_budget_exhausted":
+                        break
                     continue
                 tracks.append(track)
                 excluded.add(track.ref.key)
@@ -115,6 +124,10 @@ class DiscoveryService:
                 shortageReason=shortage,
                 vision=self.vision.status(),
                 catalogs=statuses,
+                selectionIssues=[
+                    {"provider": provider, "reasonCode": code, "count": count}
+                    for (provider, code), count in selection_issues.items()
+                ],
             )
 
     async def capabilities(self, ref, session_id):

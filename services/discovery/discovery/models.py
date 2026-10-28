@@ -72,12 +72,22 @@ class VisionOutput(StrictModel):
     uncertainty: Literal["low", "medium", "high"]
 
 
+class AlbumCreateRequest(StrictModel):
+    photoCount: int = Field(ge=1, le=500, strict=True)
+
+
+class AlbumFailureRequest(StrictModel):
+    errorCode: Literal[
+        "client_decode_error", "unsupported_image", "image_byte_limit", "image_pixel_limit"
+    ]
+
+
 class DiscoveryRequest(StrictModel):
     intent: DiscoveryIntent
     confirmed: Literal[True]
     sceneTags: list[SCENES] = Field(default_factory=list, max_length=8)
     visualSuggestions: VisionOutput | None = None
-    inputMode: Literal["manual", "photo"] = "manual"
+    inputMode: Literal["manual", "photo", "album"] = "manual"
     market: Literal["US", "GB", "CN", "HK", "JP", "DE", "FR", "CA", "AU"] = "US"
     limit: int = Field(default=8, ge=1, le=8, strict=True)
     exclude: list[TrackRef] = Field(default_factory=list, max_length=500)
@@ -131,6 +141,12 @@ class ProviderStatus(StrictModel):
     errorCode: str | None = None
 
 
+class SelectionIssue(StrictModel):
+    provider: Provider
+    reasonCode: str
+    count: int = Field(ge=1)
+
+
 class DiscoveryResponse(StrictModel):
     sessionId: str
     inputMode: str
@@ -142,3 +158,4 @@ class DiscoveryResponse(StrictModel):
     shortageReason: str | None
     vision: ProviderStatus
     catalogs: list[ProviderStatus]
+    selectionIssues: list[SelectionIssue] = Field(default_factory=list)

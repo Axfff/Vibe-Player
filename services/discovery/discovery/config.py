@@ -18,6 +18,7 @@ class Settings:
     cloud_authorized: bool = False
     vision_call_budget: int = 0
     catalog_call_budget: int = 80
+    local_proxy_url: str = ""
     jamendo_preview_enabled: bool = False
     jamendo_noncommercial: bool = False
     jamendo_terms_accepted: bool = False

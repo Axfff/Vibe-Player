@@ -53,6 +53,52 @@ async def public_dns(host: str):
         raise DiscoveryError("dns_error") from None
 
 
+class OutboundRoute:
+    """Explicit loopback CONNECT proxy, or public DNS for the default direct route."""
+
+    def __init__(self, proxy_url=""):
+        self.proxy = None
+        if proxy_url:
+            try:
+                parts = urlsplit(proxy_url)
+                if (
+                    parts.scheme != "http"
+                    or parts.hostname not in {"127.0.0.1", "::1"}
+                    or parts.port is None
+                    or not 1 <= parts.port <= 65535
+                    or parts.username is not None
+                    or parts.password is not None
+                    or parts.path not in {"", "/"}
+                    or parts.query
+                    or parts.fragment
+                    or any(ord(c) <= 32 for c in proxy_url)
+                    or "\\" in proxy_url
+                ):
+                    raise ValueError
+            except ValueError:
+                raise ValueError(
+                    "Local proxy must be an HTTP loopback IP and port, without credentials"
+                ) from None
+            self.proxy = proxy_url
+
+    @property
+    def mode(self):
+        return "loopback_proxy" if self.proxy else "direct"
+
+    def client(self, **options):
+        # HTTPS destinations use CONNECT plus the client's normal certificate verification.
+        return httpx.AsyncClient(proxy=self.proxy, trust_env=False, **options)
+
+    async def resolve(self, host):
+        if self.proxy:
+            # The configured local proxy resolves destination DNS. Every URL/redirect still
+            # passes its purpose-specific allowlist before this method or the CONNECT request.
+            if host not in API_HOSTS | AUDIO_HOSTS | PAGE_HOSTS["itunes"] | PAGE_HOSTS["jamendo"]:
+                raise DiscoveryError("unsafe_url")
+        else:
+            await public_dns(host)
+
+
 def retry_delay(value: str | None) -> float | None:
     """Never shorten a provider-requested wait. Long Retry-After returns to the user."""
     if not value:

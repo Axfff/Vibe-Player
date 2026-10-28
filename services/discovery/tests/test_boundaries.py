@@ -80,6 +80,9 @@ def test_same_domain_redirect_wrong_track_excluded(client_factory, intent):
         .json()
     )
     assert data["returned"] == 0
+    assert data["selectionIssues"] == [
+        {"provider": "itunes", "reasonCode": "official_track_mismatch", "count": 1}
+    ]
 
 
 async def test_api_redirect_cannot_cross_provider(network):

@@ -33,13 +33,38 @@ Linux/macOS：`python3 -m venv .venv`，`.venv/bin/python -m pip install -r requ
 
 预算为**每个服务进程**上限：目录默认 80 个 HTTP 请求（包含重试、链接 HEAD 与重定向）；视觉默认 0 次。每来源每分钟最多 18 个出站请求。重启会重置计数。视觉模型由用户指定，单次输出最多 600 tokens，不自动重试。
 
+### 本地代理网络
+
+默认直连并校验公共 DNS。使用既有本地 HTTP CONNECT 代理的电脑，可以显式设置 `DISCOVERY_LOCAL_PROXY_URL=http://127.0.0.1:7897`（填写自己的本地端口）。只接受 127.0.0.1 / ::1 和端口；不接受远程代理、凭据或路径，也不自动读取系统设置。此模式由本地代理解析目标 DNS，客户端仍验证目标 HTTPS 证书，逐跳执行官方域名白名单。状态接口返回 `networkRoute=direct|loopback_proxy`。
+
+2026-10-28 本机 iTunes 真实搜索与 ID lookup 成功；官方曲目页转到 `/cn/new`，因此页面筛选为 0 首，并显示 `official_track_mismatch`。完整证据见[本轮联调记录](../../docs/development/discovery/album-and-live-2026-10-28.md)。
+
+## 整个相册
+
+“整个相册”支持多选图片或选择含子目录的文件夹。页面列出本批所有文件，逐张处理，最多 500 个文件/批；超过上限要求分批选择。原图每张仍限 5 MiB、2000 万像素，支持 JPEG/PNG/WebP。目录里的其他文件和损坏图片列为失败；文件名及路径只在浏览器展示，不提交服务端。
+
+每批单独同意，点击“分析整个相册”后才创建分析会话并上传处理后的图片。实时显示成功/失败/待处理；可停止本批并保留已成功的标签，或取消/清除。分析标签按每张照片一票统计，显示覆盖张数和场景频次，再由用户确认目标氛围。结果不足或取消时保留实际覆盖率。重复提交同一个相册索引不重复调用模型。
+
+真实视觉模式在开始前核对整批最大调用量与剩余预算；不足返回 `album_budget_insufficient`。授权/限流错误会暂停后续图片，其他单张错误记录后继续。内存中仅保留标签与计数，闲置 20 分钟过期、最多 20 个相册会话。汇总在本地计算，不另发模型请求。
+
+本地相册交互演示（明确 MOCK、云调用 0）：
+
+```powershell
+$env:DISCOVERY_VISION_MODE='mock'
+$env:DISCOVERY_ITUNES_MODE='unconfigured'
+$env:DISCOVERY_JAMENDO_MODE='unconfigured'
+.\.venv\Scripts\python.exe -m uvicorn discovery.app:app --host 127.0.0.1 --port 8766 --no-access-log
+```
+
+打开 <http://127.0.0.1:8766/demo/>。MOCK 固定示例标签用于验证交互；真实照片内容分析需要授权的模型、项目密钥和预算。
+
 ## 测试
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 .\.venv\Scripts\python.exe -m ruff check .
 .\.venv\Scripts\python.exe -m pip check
-node --test tests/preview.test.mjs
+node --test tests/preview.test.mjs tests/album.test.mjs
 ```
 
 Python 测试使用 `httpx.MockTransport`，无外网请求。Node 18+ 用内置测试运行器验证试听控制器。Node 不是服务启动依赖。
@@ -48,6 +73,12 @@ Python 测试使用 `httpx.MockTransport`，无外网请求。Node 18+ 用内置
 
 ```powershell
 .\.venv\Scripts\python.exe smoke.py --provider itunes --authorized --max-http-calls 3 --market US
+```
+
+完整受限联调：默认目标 8 首、连续换歌两次（客户端 exclude 故意留空）、最终 iTunes ID lookup 与外跳资格复查；预算包括所有重试、HEAD 和重定向，失败保持 live 并以非零退出码结束。
+
+```powershell
+.\.venv\Scripts\python.exe smoke.py --provider itunes --authorized --workflow --limit 8 --max-http-calls 15 --market US
 ```
 
 ## 使用与存储

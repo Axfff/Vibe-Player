@@ -41,22 +41,57 @@
             ><button type="button" id="photoMode" aria-pressed="false">
               一张照片
             </button>
+            <button type="button" id="albumMode" aria-pressed="false">
+              整个相册
+            </button>
           </div>
           <div id="photoPanel" hidden>
-            <label class="filebox" for="photo"
-              >选择单张照片 <small>JPEG · PNG · WebP / 最大 5 MiB</small
-              ><input
-                id="photo"
-                type="file"
-                accept="image/jpeg,image/png,image/webp"
-            /></label>
-            <img id="photoPreview" alt="所选照片的本地预览" hidden />
+            <div id="singlePicker">
+              <label class="filebox" for="photo"
+                >选择单张照片 <small>JPEG · PNG · WebP / 最大 5 MiB</small
+                ><input
+                  id="photo"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+              /></label>
+              <img id="photoPreview" alt="所选照片的本地预览" hidden />
+            </div>
+            <div id="albumPicker" hidden>
+              <label class="filebox" for="albumFiles"
+                >多选照片
+                <small>JPEG · PNG · WebP / 每张最大 5 MiB</small>
+                <input
+                  id="albumFiles"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  multiple
+                />
+              </label>
+              <label class="filebox" for="albumFolder"
+                >选择相册文件夹
+                <small>包含子文件夹；仅本次所选范围，文件名留在本机</small>
+                <input id="albumFolder" type="file" webkitdirectory multiple />
+              </label>
+              <p class="small" id="albumSelection">
+                逐张处理所选文件，单批最多 500 张。失败项会列出。
+              </p>
+              <progress
+                id="albumProgress"
+                value="0"
+                max="1"
+                aria-label="相册处理进度"
+              ></progress>
+              <ol
+                id="albumItems"
+                class="album-items"
+                aria-label="所选文件与处理状态"
+              ></ol>
+            </div>
             <p class="small" id="cloudNotice"></p>
             <label class="check"
-              ><input
-                id="consent"
-                type="checkbox"
-              />我同意将这张处理后的图片发送给上述接收者分析</label
+              ><input id="consent" type="checkbox" /><span id="consentText"
+                >我同意将这张处理后的图片发送给上述接收者分析</span
+              ></label
             >
             <p class="small">
               图片先在本机校正方向、缩小到最长边 1280 像素并去掉
@@ -64,6 +99,8 @@
             </p>
             <div class="actions">
               <button id="analyze" type="button" disabled>分析照片</button
+              ><button id="stopAlbum" type="button" class="quiet" hidden>
+                停止本批，保留标签</button
               ><button id="cancelPhoto" type="button" class="quiet">
                 取消 / 清除
               </button>

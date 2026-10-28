@@ -1,4 +1,6 @@
 import { PreviewController } from "./preview.mjs";
+import { preparePhoto } from "./images.mjs";
+import { AlbumController } from "./album.mjs";
 const $ = (id) => document.getElementById(id);
 const moods = {
   calm: "平静",
@@ -39,6 +41,7 @@ let config,
   mode = "manual",
   blob,
   objectUrl,
+  albumFiles = [],
   visionResult = null,
   sessionId = null,
   exclusions = [];
@@ -102,7 +105,7 @@ async function api(path, options = {}) {
 }
 function analyzeEnabled() {
   $("analyze").disabled = !(
-    blob &&
+    (mode === "album" ? albumFiles.length && !albumController.running : blob) &&
     $("consent").checked &&
     config &&
     config.vision.mode !== "unconfigured"
@@ -121,12 +124,133 @@ const previewController = new PreviewController({
   },
   onError: (message) => status("resultStatus", `试听状态：${message}`, true),
 });
+const albumController = new AlbumController({
+  api,
+  prepare: preparePhoto,
+  onUpdate: renderAlbum,
+});
+function applyVision(intent) {
+  visionResult = intent;
+  if (!intent) return;
+  if (!sceneDirty) setChosen("scenes", intent.sceneTags);
+  if (!musicDirty) setChosen("musicTags", intent.musicDescriptors);
+  invalidateIntent();
+  $("suggestions").textContent =
+    `视觉建议：${intent.visualMoodSuggestions.map((m) => moods[m]).join(" / ")}；不确定性：${intent.uncertainty}。请在下方选择目标氛围。`;
+}
+function renderAlbum(data) {
+  $("albumProgress").max = data.total;
+  $("albumProgress").value = data.processed;
+  const prefix = data.vision.mode === "mock" ? "MOCK 示例 · " : "";
+  status(
+    "analysisStatus",
+    `${prefix}已处理 ${data.processed} / ${data.total}：成功 ${data.succeeded}，失败 ${data.failed}，待处理 ${data.pending}${data.pauseReason ? `；已暂停：${data.pauseReason}` : ""}${data.state === "cancelled" ? "；已停止本批" : ""}`,
+  );
+  for (const item of data.items) {
+    const row = $("albumItems").children[item.index];
+    if (!row) continue;
+    const detail =
+      item.state === "succeeded"
+        ? `完成 · ${item.intent.sceneTags.map((tag) => sceneNames[tag]).join(" / ")}`
+        : `失败 · ${item.errorCode}`;
+    row.textContent = `${albumFiles[item.index].name} · ${detail}`;
+    row.classList.toggle("error", item.state === "failed");
+  }
+}
+function applyAlbum(data) {
+  applyVision(data.intent);
+  if (data.intent) {
+    const scenes = data.frequencies.sceneTags
+      .map((entry) => `${sceneNames[entry.tag]} ${entry.photos} 张`)
+      .join("、");
+    $("suggestions").textContent +=
+      ` 相册覆盖 ${data.succeeded} / ${data.total} 张；场景分布：${scenes}。`;
+  }
+}
+function selectAlbum(files) {
+  clearPhoto();
+  if (!config) {
+    status("analysisStatus", "正在读取服务配置，请稍后重新选择。", true);
+    return;
+  }
+  if (!files.length) return;
+  if (files.length > config.limits.albumPhotos) {
+    status(
+      "analysisStatus",
+      `选中 ${files.length} 个文件，单批最多 ${config.limits.albumPhotos} 个，请分批选择。`,
+      true,
+    );
+    return;
+  }
+  albumFiles = files;
+  $("albumItems").replaceChildren(
+    ...files.map((file) => node("li", `${file.name} · 待处理`)),
+  );
+  $("albumSelection").textContent =
+    `已选 ${files.length} 个文件，将逐一检查与分析。非图片和不支持的格式会列为失败，不上传。${config.vision.mode === "live" ? ` 最多 ${files.length} 次模型调用；当前进程预算余量 ${config.limits.visionCallsRemaining} 次（开始前再次校验）。` : ""}`;
+  $("consentText").textContent =
+    `我同意将本批 ${files.length} 个文件中的有效图片逐张处理后发送给上述接收者分析`;
+  status("analysisStatus", "已在本机选中相册；勾选同意并点击分析后开始处理。");
+  analyzeEnabled();
+}
+$("albumFiles").onchange = () => selectAlbum(Array.from($("albumFiles").files));
+$("albumFolder").onchange = () =>
+  selectAlbum(Array.from($("albumFolder").files));
+async function analyzeAlbum() {
+  if (!albumFiles.length || !$("consent").checked) return;
+  const version = ++photoVersion;
+  $("analyze").disabled = true;
+  $("stopAlbum").hidden = false;
+  invalidateIntent();
+  try {
+    await albumController.cancel();
+    if (version !== photoVersion || !$("consent").checked) return;
+    const pending = albumController.run(albumFiles, {
+      consented: () => $("consent").checked && mode === "album",
+      limits: config.limits,
+    });
+    analyzeEnabled();
+    const data = await pending;
+    if (data && version === photoVersion) applyAlbum(data);
+  } catch (error) {
+    if (version === photoVersion && error.name !== "AbortError")
+      status(
+        "analysisStatus",
+        `本批停止：${error.message}。已处理数量见进度条。`,
+        true,
+      );
+  } finally {
+    if (version === photoVersion) {
+      $("stopAlbum").hidden = true;
+      $("consent").checked = false;
+      analyzeEnabled();
+    }
+  }
+}
+$("stopAlbum").onclick = async () => {
+  const version = ++photoVersion;
+  $("consent").checked = false;
+  const data = await albumController.cancel(true);
+  if (version !== photoVersion) return;
+  if (data) applyAlbum(data);
+  $("stopAlbum").hidden = true;
+  analyzeEnabled();
+};
 function stop() {
   previewController.stop();
 }
 function clearPhoto(resetSelection = true) {
   ++photoVersion;
   photoRequest?.abort();
+  albumController.cancel();
+  albumFiles = [];
+  $("albumFiles").value = "";
+  $("albumFolder").value = "";
+  $("albumItems").replaceChildren();
+  $("albumSelection").textContent =
+    "逐张处理所选文件，单批最多 500 张。失败项会列出。";
+  $("albumProgress").value = 0;
+  $("stopAlbum").hidden = true;
   blob = null;
   visionResult = null;
   if (resetSelection) $("photo").value = "";
@@ -136,23 +260,38 @@ function clearPhoto(resetSelection = true) {
   if (objectUrl) URL.revokeObjectURL(objectUrl);
   objectUrl = null;
   $("suggestions").textContent = "";
+  invalidateIntent();
   analyzeEnabled();
   status("analysisStatus", "已清除照片；可继续手动选择标签。");
 }
 function selectMode(value) {
+  if (mode !== value) clearPhoto();
   mode = value;
-  $("photoPanel").hidden = value !== "photo";
+  $("photoPanel").hidden = value === "manual";
+  $("singlePicker").hidden = value !== "photo";
+  $("albumPicker").hidden = value !== "album";
   $("manualMode").setAttribute("aria-pressed", String(value === "manual"));
   $("photoMode").setAttribute("aria-pressed", String(value === "photo"));
-  if (value === "manual") clearPhoto();
+  $("albumMode").setAttribute("aria-pressed", String(value === "album"));
+  $("analyze").textContent = value === "album" ? "分析整个相册" : "分析照片";
+  $("consentText").textContent =
+    value === "album"
+      ? "我同意将本批选中的图片逐张处理后发送给上述接收者分析"
+      : "我同意将这张处理后的图片发送给上述接收者分析";
+  analyzeEnabled();
 }
 $("manualMode").onclick = () => selectMode("manual");
 $("photoMode").onclick = () => selectMode("photo");
+$("albumMode").onclick = () => selectMode("album");
 $("cancelPhoto").onclick = clearPhoto;
 $("consent").onchange = () => {
   if (!$("consent").checked) {
     ++photoVersion;
     photoRequest?.abort();
+    albumController.cancel(true).then((data) => {
+      if (data && mode === "album") applyAlbum(data);
+      analyzeEnabled();
+    });
   }
   analyzeEnabled();
 };
@@ -162,49 +301,23 @@ $("photo").onchange = async () => {
   if (!file) return;
   const version = photoVersion;
   try {
-    if (file.size > config.limits.uploadBytes)
-      throw new Error("图片超过 5 MiB，请选择较小的图片。");
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type))
-      throw new Error("请选择 JPEG、PNG 或 WebP。");
-    const bitmap = await createImageBitmap(file, {
-      imageOrientation: "from-image",
-    });
-    try {
-      if (bitmap.width * bitmap.height > config.limits.pixels)
-        throw new Error("图片超过 2000 万像素。");
-      const scale = Math.min(
-        1,
-        config.limits.imageEdge / Math.max(bitmap.width, bitmap.height),
-      );
-      const canvas = document.createElement("canvas");
-      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
-      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
-      const ctx = canvas.getContext("2d");
-      ctx.fillStyle = "white";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
-      const cleaned = await new Promise((resolve) =>
-        canvas.toBlob(resolve, "image/jpeg", 0.85),
-      );
-      if (version !== photoVersion) return;
-      if (!cleaned) throw new Error("图片转换失败。");
-      blob = cleaned;
-      objectUrl = URL.createObjectURL(blob);
-      $("photoPreview").src = objectUrl;
-      $("photoPreview").hidden = false;
-      status(
-        "analysisStatus",
-        `本机处理完成 · ${canvas.width} × ${canvas.height}。勾选同意后可分析。`,
-      );
-      analyzeEnabled();
-    } finally {
-      bitmap.close();
-    }
+    const image = await preparePhoto(file, config.limits);
+    if (version !== photoVersion) return;
+    blob = image.blob;
+    objectUrl = URL.createObjectURL(blob);
+    $("photoPreview").src = objectUrl;
+    $("photoPreview").hidden = false;
+    status(
+      "analysisStatus",
+      `本机处理完成 · ${image.width} × ${image.height}。勾选同意后可分析。`,
+    );
+    analyzeEnabled();
   } catch (error) {
     if (version === photoVersion) status("analysisStatus", error.message, true);
   }
 };
 $("analyze").onclick = async () => {
+  if (mode === "album") return analyzeAlbum();
   if (!blob || !$("consent").checked) return;
   const version = ++photoVersion;
   photoRequest?.abort();
@@ -224,12 +337,7 @@ $("analyze").onclick = async () => {
       headers: { "Content-Type": "image/jpeg", "X-Cloud-Consent": "true" },
     });
     if (version !== photoVersion) return;
-    visionResult = data.intent;
-    if (!sceneDirty) setChosen("scenes", visionResult.sceneTags);
-    if (!musicDirty) setChosen("musicTags", visionResult.musicDescriptors);
-    invalidateIntent();
-    $("suggestions").textContent =
-      `视觉建议：${visionResult.visualMoodSuggestions.map((m) => moods[m]).join(" / ")}；不确定性：${visionResult.uncertainty}。请在下方选择目标氛围。`;
+    applyVision(data.intent);
     status(
       "analysisStatus",
       data.vision.mode === "mock"
@@ -285,7 +393,7 @@ function requestBody() {
     confirmed: true,
     sceneTags: chosen("scenes"),
     visualSuggestions: visionResult,
-    inputMode: mode === "photo" && visionResult ? "photo" : "manual",
+    inputMode: mode !== "manual" && visionResult ? mode : "manual",
     market: $("market").value,
     limit: 8,
     exclude: exclusions,
@@ -403,7 +511,7 @@ async function runDiscovery(replacing, oldCard) {
       `${document.querySelectorAll(".track").length} / 8`;
     status(
       "resultStatus",
-      `${data.inputMode === "manual" ? "手动模式" : "照片意图"} · ${data.shortageReason || `已找到 ${data.returned} 首真实目录曲目。`}`,
+      `${{ manual: "手动模式", photo: "照片意图", album: "相册意图" }[data.inputMode]} · ${data.shortageReason || `已找到 ${data.returned} 首真实目录曲目。`}${(data.selectionIssues || []).map((issue) => ` ${issue.provider}：${issue.reasonCode === "official_track_mismatch" ? "官方页面跳转后未保留曲目 ID，请核对市场与平台地区可用性" : issue.reasonCode}（${issue.count} 次）。`).join("")}`,
     );
   } catch (error) {
     if (version === resultVersion && error.name !== "AbortError")
@@ -422,6 +530,7 @@ $("stop").onclick = stop;
 window.addEventListener("pagehide", () => {
   stop();
   photoRequest?.abort();
+  albumController.cancel();
   resultRequest?.abort();
   if (objectUrl) URL.revokeObjectURL(objectUrl);
 });

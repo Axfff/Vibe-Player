@@ -427,6 +427,28 @@ footer p {
 [hidden] {
   display: none !important;
 }
+.tabs,
+.actions {
+  flex-wrap: wrap;
+}
+.album-items {
+  max-height: 190px;
+  overflow-y: auto;
+  padding-left: 24px;
+  color: var(--muted);
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+.album-items li {
+  margin: 8px 0;
+}
+.album-items .error {
+  color: #9b3e2c;
+}
+#albumProgress {
+  width: 100%;
+  accent-color: #27664e;
+}
 @media (max-width: 900px) {
   main {
     padding: 0 24px;
