@@ -22,6 +22,8 @@
 | `previewPolicyReady` | 项目级试听开关和审核配置齐全；逐曲以 capability 为准 |
 | `errorCode` | 最近一次目录请求错误，成功后清空 |
 
+相册扩展增加 `limits.albumPhotos=500`、`limits.visionCallsRemaining` 与 `networkRoute=direct|loopback_proxy`。
+
 同时返回 `cloudRecipient`、`visionModel`、`policyReviewedAt`、上传限制和默认市场。配置完成后 state 仍为 `not_run`，实际请求产生结果后更新。
 
 ## POST /v1/photo-intent
@@ -38,6 +40,8 @@
 mock 固定返回示例标签，`vision.mode=mock`；它与用户图片内容无关。live 请求使用用户配置的 OpenAI 模型；图中文字和元数据始终作为不可信数据。拒绝额外字段、非法枚举和长度。
 
 ## POST /v1/discover
+
+`inputMode` 支持 manual/photo/album；相册汇总后仍使用用户确认的 intent。
 
 ```json
 {
@@ -65,6 +69,8 @@ mock 固定返回示例标签，`vision.mode=mock`；它与用户图片内容无
 `limit` 为 1–8，默认 8；`market` 支持 US/GB/CN/HK/JP/DE/FR/CA/AU，默认 US（测试配置）；`exclude` 最多 500 个 `TrackRef`。
 
 返回 `sessionId/inputMode/effectiveIntent/market/tracks/requested/returned/shortageReason/vision/catalogs`。两个来源并行，交替选取并按实际艺人元数据限制每来源同艺人最多两首。官方页通过 HEAD 重定向与身份检查才进入结果。查询后最多检查 12 个候选页，经过 35 秒预算检查后停止增加下一次页检查；正在进行的单次网络请求另有 8 秒上限。结果不足保留真实数量和说明。
+
+响应另有 `selectionIssues: [{provider, reasonCode, count}]`。`official_track_mismatch` 表示官方重定向后的 URL 丢失曲目 ID；`call_budget_exhausted` 为请求预算耗尽。来源 state=ok 表示目录请求成功，链接筛选结果单独记录。
 
 `TrackRef = {provider: jamendo|itunes, providerTrackId: 十进制字符串}`。该 ID 只属于来源命名空间。
 
@@ -98,3 +104,26 @@ HTTP 403：未同意图片处理或缺少本地令牌；413：请求/图片过�
 目录最多重试一次；Retry-After ≤2 秒才按其值等待重试，较长值直接返回显式错误。视觉不重试。关闭/取消前端请求后后端取消进行中的异步工作；已经发送的上游请求计入调用预算。
 
 响应和日志采用受控错误码；校验失败只列字段位置和错误类型，过滤输入值和上游原始正文。
+
+
+## 相册接口（2026-10-28 新增）
+
+所有接口需要本地令牌；创建与上传还须 `X-Cloud-Consent: true`。客户端展示本批选择数量与接收者，得到同意后再按索引串行调用。图片请求沿用 photo-intent 的二进制与 MIME 规格。
+
+| 方法与路径 | 请求 | 行为 |
+| --- | --- | --- |
+| POST `/v1/albums` | `{"photoCount":3}`，整数 1–500 | 检查配置与整批剩余预算，创建会话，201 |
+| POST `/v1/albums/{albumId}/photos/{index}` | 原始图片，索引 0..photoCount-1 | 分析单张，返回汇总；重复索引幂等 |
+| POST `/v1/albums/{albumId}/failures/{index}` | `{"errorCode":"client_decode_error"}` | 记录本地失败，不传原图 |
+| GET `/v1/albums/{albumId}` | 无 | 获取计数、逐项结果及汇总 |
+| DELETE `/v1/albums/{albumId}` | 无 | 取消正在进行与后续分析，返回已完成覆盖情况 |
+
+本地失败码仅接受 client_decode_error、unsupported_image、image_byte_limit、image_pixel_limit。文件名、路径和错误原文不在请求 schema 中。
+
+响应字段为 `albumId/total/processed/succeeded/failed/pending/state/pauseReason/intent/frequencies/items/vision/catalogs`。state 为 ready、processing、completed、completed_with_errors、paused 或 cancelled。items 只包含 index、state 与成功的 intent 或失败的 errorCode。
+
+frequencies 的 sceneTags、visualMoodSuggestions、musicDescriptors 各为 `[{tag, photos}]`，每张成功照片对每个标签最多计一票，按数量降序与字母顺序排序。汇总上限为 8 场景、3 氛围、8 音乐标签。无成功项时 intent=null；部分覆盖时 uncertainty=high。界面展示 succeeded/total。
+
+最多 20 个内存标签会话，闲置 20 分钟过期。创建时整批最大调用数超过剩余预算返回 429 album_budget_insufficient。执行中的授权/限流/预算错误使 state=paused，其余图片保留 pending；取消后再次提交返回 409 album_cancelled。自动重试和恢复上传均未启用，新一批重新确认。
+
+客户端取消当前请求并调用 DELETE；上传断开后、模型调用前再次检查连接。已经发出的上游请求仍计入预算。

@@ -1,5 +1,10 @@
 # 验证记录
 
+最新验证（2026-10-28）：Python **148 passed**、Node **17 passed**；相册文件夹、多选、取消、用户目标覆盖已实际操作。iTunes 真实搜索和 ID lookup 成功，官方曲目页出现地区重定向。完整计数、命令、状态见[本轮记录](album-and-live-2026-10-28.md)。
+
+## 2026-10-26 历史验证记录
+
+
 日期：2026-10-26（Asia/Shanghai）。代码提交：`a4458fe06ba12479c946286062660e37f7706688`。代码树：`8aef0944028c7bf031b8117e1ca13dd9c17c7662`。最后一轮测试后服务代码无额外修改。
 
 环境：Windows、Python **3.14.5**、Node **v24.19.0**，服务目录局部 `.venv`。确切依赖见 `services/discovery/requirements.txt`。

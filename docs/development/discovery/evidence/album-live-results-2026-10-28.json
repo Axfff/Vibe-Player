@@ -1,0 +1,595 @@
+{
+  "recordedAt": "2026-10-28T08:37:33.124608+00:00",
+  "codeCommit": "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca",
+  "baseline": "947709e4c798a103b9fcc5962172f2e85d349196",
+  "automated": {
+    "pytestPassed": 148,
+    "nodePassed": 17,
+    "ruff": "passed",
+    "pipCheck": "passed",
+    "jsSyntax": "passed"
+  },
+  "totalBackendLiveHTTP": 33,
+  "visionLiveCalls": 0,
+  "jamendoLiveCalls": 0,
+  "audioRequests": 0,
+  "directAttempt": {
+    "checkedAt": "2026-10-28T08:01:15.896402+00:00",
+    "mode": "live",
+    "provider": "itunes",
+    "initial": {
+      "inputMode": "manual",
+      "effectiveIntent": {
+        "targetMood": "focused",
+        "musicTags": [],
+        "text": "piano",
+        "energy": "any",
+        "instrumental": null
+      },
+      "market": "US",
+      "tracks": [],
+      "requested": 8,
+      "returned": 0,
+      "shortageReason": "目标 8 首，返回 0 首。已按来源状态、有效官方链接、排除列表及每来源同艺人最多两首筛选。",
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "error",
+          "liveTested": false,
+          "requestsMade": 0,
+          "errorCode": "private_address"
+        }
+      ]
+    },
+    "replacements": [],
+    "checks": {
+      "real_results": false,
+      "unique_initial_ids": true,
+      "selected_provider_only": true,
+      "vision_disabled": true,
+      "replacement_1_new_id": false,
+      "lookup_identity": false,
+      "external_only_without_preview": false
+    },
+    "requestsMade": 0,
+    "catalogs": [
+      {
+        "provider": "itunes",
+        "mode": "live",
+        "configured": true,
+        "policyBasis": "https://performance-partners.apple.com/search-api",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "error",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": "private_address"
+      }
+    ],
+    "passed": false,
+    "httpBudget": 15,
+    "httpRequests": []
+  },
+  "usWorkflow": {
+    "checkedAt": "2026-10-28T08:04:00.451235+00:00",
+    "mode": "live",
+    "provider": "itunes",
+    "initial": {
+      "inputMode": "manual",
+      "effectiveIntent": {
+        "targetMood": "focused",
+        "musicTags": [],
+        "text": "piano",
+        "energy": "any",
+        "instrumental": null
+      },
+      "market": "US",
+      "tracks": [],
+      "requested": 8,
+      "returned": 0,
+      "shortageReason": "目标 8 首，返回 0 首。已按来源状态、有效官方链接、排除列表及每来源同艺人最多两首筛选。",
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "ok",
+          "liveTested": true,
+          "requestsMade": 15,
+          "errorCode": null
+        }
+      ]
+    },
+    "replacements": [],
+    "checks": {
+      "real_results": false,
+      "unique_initial_ids": true,
+      "selected_provider_only": true,
+      "vision_disabled": true,
+      "replacement_1_new_id": false,
+      "lookup_identity": false,
+      "external_only_without_preview": false
+    },
+    "requestsMade": 15,
+    "catalogs": [
+      {
+        "provider": "itunes",
+        "mode": "live",
+        "configured": true,
+        "policyBasis": "https://performance-partners.apple.com/search-api",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "ok",
+        "liveTested": true,
+        "requestsMade": 15,
+        "errorCode": null
+      }
+    ],
+    "passed": false,
+    "httpBudget": 15,
+    "networkRoute": "loopback_proxy",
+    "httpRequests": [
+      {
+        "method": "GET",
+        "host": "itunes.apple.com",
+        "path": "/search",
+        "status": 200
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/us/album/piano/1440860819",
+        "status": 302
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn",
+        "status": 301
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn/new",
+        "status": 200
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/us/album/piano-emotional-music/844514128",
+        "status": 302
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn",
+        "status": 301
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn/new",
+        "status": 200
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/us/album/calm-piano-music-for-sleeping-baby/1065946325",
+        "status": 302
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn",
+        "status": 301
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn/new",
+        "status": 200
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/us/album/classical-piano-music-for-baby-sleep/1065946325",
+        "status": 302
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn",
+        "status": 301
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn/new",
+        "status": 200
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/us/album/relaxing-piano-music-sleep-aid/1065946325",
+        "status": 302
+      },
+      {
+        "method": "HEAD",
+        "host": "music.apple.com",
+        "path": "/cn",
+        "status": 301
+      }
+    ]
+  },
+  "cnWorkflow": {
+    "checkedAt": "2026-10-28T08:05:02.907950+00:00",
+    "mode": "live",
+    "provider": "itunes",
+    "initial": {
+      "inputMode": "manual",
+      "effectiveIntent": {
+        "targetMood": "focused",
+        "musicTags": [],
+        "text": "piano",
+        "energy": "any",
+        "instrumental": null
+      },
+      "market": "CN",
+      "tracks": [],
+      "requested": 3,
+      "returned": 0,
+      "shortageReason": "目标 3 首，返回 0 首。已按来源状态、有效官方链接、排除列表及每来源同艺人最多两首筛选。",
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "ok",
+          "liveTested": true,
+          "requestsMade": 1,
+          "errorCode": null
+        }
+      ]
+    },
+    "replacements": [],
+    "checks": {
+      "real_results": false,
+      "unique_initial_ids": true,
+      "selected_provider_only": true,
+      "vision_disabled": true,
+      "replacement_1_new_id": false,
+      "lookup_identity": false,
+      "external_only_without_preview": false
+    },
+    "requestsMade": 1,
+    "catalogs": [
+      {
+        "provider": "itunes",
+        "mode": "live",
+        "configured": true,
+        "policyBasis": "https://performance-partners.apple.com/search-api",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "ok",
+        "liveTested": true,
+        "requestsMade": 1,
+        "errorCode": null
+      }
+    ],
+    "passed": false,
+    "httpBudget": 10,
+    "networkRoute": "loopback_proxy",
+    "httpRequests": [
+      {
+        "method": "GET",
+        "host": "itunes.apple.com",
+        "path": "/search",
+        "status": 200
+      }
+    ]
+  },
+  "metadataSearch": {
+    "requestsMade": 1,
+    "normalizedCount": 40,
+    "sample": [
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1440861221"
+        },
+        "title": "Piano",
+        "artist": "Ariana Grande",
+        "officialUrl": "https://music.apple.com/us/album/piano/1440860819?i=1440861221&uo=4"
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "844514243"
+        },
+        "title": "Piano (Emotional Music)",
+        "artist": "Solenne Whisper",
+        "officialUrl": "https://music.apple.com/us/album/piano-emotional-music/844514128?i=844514243&uo=4"
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1065946792"
+        },
+        "title": "Calm Piano Music for Sleeping Baby",
+        "artist": "Baby Lullaby Academy",
+        "officialUrl": "https://music.apple.com/us/album/calm-piano-music-for-sleeping-baby/1065946325?i=1065946792&uo=4"
+      }
+    ]
+  },
+  "metadataLookup": {
+    "checkedAt": "2026-10-28T08:30:22.194917+00:00",
+    "requestsMade": 1,
+    "kind": "metadata_lookup",
+    "requestedId": "1440861221",
+    "identityMatched": true,
+    "track": {
+      "ref": {
+        "provider": "itunes",
+        "providerTrackId": "1440861221"
+      },
+      "title": "Piano",
+      "artist": "Ariana Grande",
+      "officialUrl": "https://music.apple.com/us/album/piano/1440860819?i=1440861221&uo=4",
+      "artwork": null,
+      "tags": [
+        "Pop"
+      ],
+      "recommendationReason": "iTunes 文本检索「ID lookup」；目录流派：Pop。",
+      "capability": {
+        "mode": "EXTERNAL_ONLY",
+        "reasonCode": "itunes_external_only",
+        "policyEvidence": [
+          "https://performance-partners.apple.com/search-api"
+        ],
+        "checkedAt": "2026-10-28T08:30:22.194876+00:00",
+        "expiresAt": null,
+        "previewUrl": null,
+        "maxPreviewSeconds": 30,
+        "licenseUrl": null,
+        "attribution": null
+      }
+    }
+  },
+  "browserDiscoveryStatusBeforeRestart": {
+    "vision": {
+      "provider": "vision",
+      "mode": "unconfigured",
+      "configured": false,
+      "policyBasis": "explicit_cloud_consent",
+      "previewPolicyReady": false,
+      "configurationIssues": [
+        "mode_not_enabled"
+      ],
+      "state": "not_run",
+      "liveTested": false,
+      "requestsMade": 0,
+      "errorCode": null
+    },
+    "catalogs": [
+      {
+        "provider": "jamendo",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "https://devportal.jamendo.com/api_terms_of_use",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled",
+          "project_client_id_required"
+        ],
+        "state": "not_configured",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      {
+        "provider": "itunes",
+        "mode": "live",
+        "configured": true,
+        "policyBasis": "https://performance-partners.apple.com/search-api",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "ok",
+        "liveTested": true,
+        "requestsMade": 15,
+        "errorCode": null
+      }
+    ],
+    "cloudRecipient": "无云端接收者",
+    "visionModel": null,
+    "policyReviewedAt": "2026-10-26",
+    "limits": {
+      "uploadBytes": 5242880,
+      "pixels": 20000000,
+      "imageEdge": 1280,
+      "previewSeconds": 30,
+      "albumPhotos": 500,
+      "visionCallsRemaining": 0
+    },
+    "defaultMarket": "US",
+    "marketBasis": "explicit_test_configuration",
+    "networkRoute": "loopback_proxy"
+  },
+  "browserOfficialNavigation": {
+    "requested": "https://music.apple.com/us/album/piano/1440860819?i=1440861221&uo=4",
+    "observedFinal": "https://music.apple.com/cn/new"
+  },
+  "endToEndReplacement": "pending_official_track_page_availability",
+  "browserAlbum": {
+    "mode": "mock",
+    "folder": {
+      "selected": 3,
+      "succeeded": 2,
+      "failed": 1
+    },
+    "multiSelect": {
+      "selected": 2,
+      "succeeded": 2
+    },
+    "cancel": {
+      "selected": 24,
+      "succeeded": 15,
+      "pending": 9
+    },
+    "userMood": "energetic",
+    "userMusicTags": [
+      "dance"
+    ],
+    "cloudRequests": 0
+  },
+  "redactions": [
+    "ephemeral sessionId",
+    "demoToken"
+  ],
+  "handoffInstances": {
+    "8765": {
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "jamendo",
+          "mode": "unconfigured",
+          "configured": false,
+          "policyBasis": "https://devportal.jamendo.com/api_terms_of_use",
+          "previewPolicyReady": false,
+          "configurationIssues": [
+            "mode_not_enabled",
+            "project_client_id_required"
+          ],
+          "state": "not_run",
+          "liveTested": false,
+          "requestsMade": 0,
+          "errorCode": null
+        },
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "not_run",
+          "liveTested": false,
+          "requestsMade": 0,
+          "errorCode": null
+        }
+      ],
+      "networkRoute": "loopback_proxy"
+    },
+    "8766": {
+      "vision": {
+        "provider": "vision",
+        "mode": "mock",
+        "configured": true,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "mock_example",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "jamendo",
+          "mode": "unconfigured",
+          "configured": false,
+          "policyBasis": "https://devportal.jamendo.com/api_terms_of_use",
+          "previewPolicyReady": false,
+          "configurationIssues": [
+            "mode_not_enabled",
+            "project_client_id_required"
+          ],
+          "state": "not_configured",
+          "liveTested": false,
+          "requestsMade": 0,
+          "errorCode": null
+        },
+        {
+          "provider": "itunes",
+          "mode": "unconfigured",
+          "configured": false,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [
+            "mode_not_enabled"
+          ],
+          "state": "not_configured",
+          "liveTested": false,
+          "requestsMade": 0,
+          "errorCode": null
+        }
+      ],
+      "networkRoute": "loopback_proxy"
+    }
+  }
+}

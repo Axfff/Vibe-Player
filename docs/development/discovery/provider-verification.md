@@ -30,7 +30,7 @@ API 要求项目注册的 client ID。条款 3.3 将免费使用限定为非商�
 
 可替换 `VisionProvider`；可选 OpenAI Responses 适配器参考官方 [Images and vision](https://developers.openai.com/api/docs/guides/images-vision) 与 [Structured outputs](https://developers.openai.com/api/docs/guides/structured-outputs)。发送清理后的 JPEG、固定指令和严格 schema；`store=false`，无工具，无歌曲信息，无自动重试。模型、项目密钥、授权和调用预算均由用户配置。
 
-`store=false` 是请求参数；接收者的数据处理规则以其官方政策和用户账户约定为准。页面逐张获得明确同意，默认云调用关闭。
+`store=false` 是请求参数；接收者的数据处理规则以其官方政策和用户账户约定为准。页面逐张或按相册批次获得明确同意，默认云调用关闭。
 
 ## 当前核验状态
 
@@ -39,7 +39,8 @@ API 要求项目注册的 client ID。条款 3.3 将免费使用限定为非商�
 | 官方 API 文档与条款 | 已于上述日期查阅 |
 | Jamendo 项目 client ID / 用途审核 | 待配置 |
 | Jamendo 真实检索、许可字段、媒体重定向 | Pending live smoke |
-| iTunes 真实目录请求与官方页面可达性 | Pending 授权配置后的 smoke |
+| iTunes 真实目录与 lookup | 2026-10-28 已核对真实 ID/标题/艺人，见[本轮记录](album-and-live-2026-10-28.md) |
+| iTunes 官方页与真实换歌端到端 | 本机官方链接转至 /cn/new，身份筛选 0 首；Pending 官方曲目页可用 |
 | 视觉供应商模型 / 项目密钥 / 调用预算 | 待配置；真实调用 0 |
 | 浏览器真实试听 | Pending 合格曲目与试听审核 |
 

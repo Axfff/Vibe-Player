@@ -1,25 +1,23 @@
-# Draft PR: Add isolated Vibe Discovery backend and local demo
+# Draft PR: Add Vibe Discovery backend with album analysis and local demo
 
-照片发现需要把视觉意图、真实目录身份和试听资格分开处理。本改动新增可独立启动的 FastAPI 服务与 `/demo/`：用户主动选图并同意处理，编辑标签和确认目标，再从 Jamendo/iTunes 获取候选；同时支持直接使用文字和标签。
+新增独立 FastAPI 与同源调试页，将图片产生的音乐意图、真实目录身份和试听许可分别处理。用户可以选择单图、多张图片、相册文件夹或直接输入文字；单次/本批同意后分析，编辑标签并确认目标，再查询 Jamendo/iTunes。
 
-结果包含 provider + providerTrackId、标题、艺人、经过校验的官方链接和目录检索依据。默认目标 8 首，来源失败或候选不足返回实际数量。换歌保留服务端排除记录。iTunes 固定外跳；Jamendo 仅在项目审核、CC BY 4.0 逐曲依据、最新能力和流地址检查全部满足时开放最多 30 秒浏览器直连试听。
+相册按索引逐张处理，显示成功/失败/待处理与场景频次，支持预算预检、重复索引幂等和取消。原图只在内存处理，文件名与目录路径留在客户端。目录目标 8 首，实际不足如实返回；换歌保留服务端已返回 ID。iTunes 固定外跳，Jamendo 逐曲许可与项目条件核实后才允许最多 30 秒试听。
 
 ## Scope
 
-- `services/discovery/`：局部 Python 环境配置、服务、静态 demo、接口与控制器测试。
-- `docs/development/discovery/`：接口合同、政策来源、证据、Android 下一批交接。
+仅 `services/discovery/` 与 `docs/development/discovery/`。基线 `947709e4c798a103b9fcc5962172f2e85d349196`，分支 `feat/ai-photo-discovery`。Android、原播放器、多歌单 Sprint 2 AC1–AC9 与公共 CI 保持原状。
 
-基线 `947709e4c798a103b9fcc5962172f2e85d349196`；独立分支 `feat/ai-photo-discovery`。本地多歌单 Story/AC1–AC9、Android 与公共 CI 保持原样。
+本地网络支持显式回环 HTTP CONNECT 代理，默认直连公共 DNS；目标 HTTPS、官方域名和重定向校验保留。selectionIssues 展示官方页身份与网络预算筛选原因。
 
 ## Validation
 
-- Python 单元/接口测试：112 passed（合成 schema fixture 与 MockTransport）。
-- Node 试听控制器：11 passed。
-- Ruff、pip check、JavaScript 语法检查通过。
-- 实际浏览器：手动/照片入口、目标确认、mock 图片方向/尺寸处理、可编辑标签与用户覆盖、明确空结果和取消流程已操作。
-- 真实模型、Jamendo/iTunes live smoke、真实音频试听：Pending 用户授权配置。
-- Android 集成、音频焦点与设备回归：Pending 下一批。
+- Python 单元/接口测试 148 passed；Node 相册与试听控制器 17 passed。
+- Ruff、pip check、JS syntax 和 diff whitespace 检查通过。
+- 实际浏览器验证文件夹、多选、2 成功/1 失败、24 张中第 15 张后取消、单图回归和用户目标优先；视觉为显式 MOCK，云调用 0。
+- iTunes 实际搜索与 ID lookup 成功，本轮服务端共 33 次受限 HTTP 请求。官方曲目页在当前网络跳到 /cn/new，严格筛选为 0 首；真实换歌端到端 Pending 官方曲目页可用。
+- 真实视觉模型、Jamendo 与许可试听、Android 设备/音频互斥待对应配置与下一批验收。
 
-研究文件 06–10 待补齐后核对 D-AC01–D-AC12 的正式定义并映射本批证据。
+详见[本轮记录](album-and-live-2026-10-28.md)。06–10 研究文件仍待补齐，以映射 D-AC01–12 正式定义。
 
-这是本地 PR 草稿，供团队自行审阅和发布。队友 Review、远端 CI、Issue 关联与发布状态由真实远端操作补充。
+本文件是本地 PR 草稿；团队 Review、远端 CI 与发布状态在实际发生后另行记录。
