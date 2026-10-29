@@ -6,13 +6,13 @@ import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.iven.musicplayergo.library.legacyMediaFolderName
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.utils.MusicUtils
 import com.iven.musicplayergo.utils.Permissions
 import com.iven.musicplayergo.utils.Versioning
 import kotlinx.coroutines.*
-import java.io.File
 
 /** A failed/unfinished query must not make saved playlist entries appear deleted. */
 data class PlaylistLibraryState(
@@ -191,11 +191,7 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                          if (Versioning.isQ()) {
                              audioRelativePath ?: application.getString(R.string.slash)
                          } else {
-                             var returnedPath = File(audioRelativePath).parentFile?.name
-                             if (returnedPath == null || returnedPath == "0") {
-                                 returnedPath = application.getString(R.string.slash)
-                             }
-                             returnedPath
+                             legacyMediaFolderName(audioRelativePath, application.getString(R.string.slash))
                          }
 
                      // Add the current music to the list
