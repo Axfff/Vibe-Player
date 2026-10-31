@@ -93,6 +93,18 @@ jobs:
         if: ${{ !cancelled() }}
         working-directory: project
         run: bash ./gradlew --no-daemon --console=plain :app:teamCoverageReport
+      - name: Controlled failure probe - zero line hits (NEVER MERGE)
+        if: ${{ !cancelled() }}
+        run: |
+          python - <<'PY'
+          import xml.etree.ElementTree as ET
+          path = 'project/app/build/reports/coverage/android.xml'
+          tree = ET.parse(path)
+          for line in tree.getroot().iter('line'):
+              line.set('mi', str(int(line.get('mi')) + int(line.get('ci'))))
+              line.set('ci', '0')
+          tree.write(path)
+          PY
       - name: Enforce complete reports, executed tests and exact 80 percent line gate
         if: ${{ !cancelled() }}
         run: python scripts/coverage/coverage.py report
