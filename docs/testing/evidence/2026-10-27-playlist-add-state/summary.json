@@ -1,0 +1,78 @@
+{
+  "verified_at_utc": "2026-10-27T09:11:18.486229+00:00",
+  "source_base": "dc17523be591a72f9fefa98536c61689e4d99ad1",
+  "source_change": "PlaylistAdapters.kt membership-aware Add enabled state and click guard",
+  "adapter_sha256": "eceefd7d7f0faa252089fd2e6e1d71a041abc59d95194703ac14cac7080b7dd3",
+  "debug_apk_sha256": "8e82c1d11cbe968f45273d6f144052f10abdb2676ea453c68d8e37c93941f908",
+  "environment": {
+    "jdk": "17.0.14",
+    "compile_sdk": 33,
+    "emulator": "Medium_Phone_API_37.0 read-only, no snapshots, headless",
+    "android_release": "17",
+    "api": 37,
+    "abi": "arm64-v8a"
+  },
+  "jvm_suites": [
+    {
+      "name": "com.iven.musicplayergo.library.MediaScanPolicyTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.iven.musicplayergo.player.PlaylistFailurePlanTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "com.iven.musicplayergo.playlists.PlaylistRepositoryTest",
+      "tests": "24",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "android_test": {
+    "method": "PlaylistLibraryRegressionTest#rg07_hiddenTrackRemainsPlayableAndOldControlsStillWork",
+    "result": "OK (1 test)"
+  },
+  "manual_ui_observations": {
+    "add_button_enabled": {
+      "added": {
+        "Add Issue8-A to this playlist": false,
+        "Add Issue8-B to this playlist": false,
+        "Add Issue8-C to this playlist": true
+      },
+      "search": {
+        "Add Issue8-B to this playlist": false
+      },
+      "reopened": {
+        "Add Issue8-A to this playlist": false,
+        "Add Issue8-B to this playlist": false,
+        "Add Issue8-C to this playlist": true
+      },
+      "after-remove": {
+        "Add Issue8-A to this playlist": false,
+        "Add Issue8-B to this playlist": true,
+        "Add Issue8-C to this playlist": true
+      }
+    },
+    "membership_messages_after_add": 2,
+    "stored_order_after_disabled_tap": [
+      "Issue8-B.wav",
+      "Issue8-A.wav"
+    ],
+    "stored_order_after_remove_and_readd": [
+      "Issue8-A.wav",
+      "Issue8-B.wav"
+    ]
+  },
+  "limitations": [
+    "Light theme portrait emulator smoke; no new physical-device, TalkBack, large-font or landscape checks.",
+    "AI-assisted checks and independent AI review do not constitute human teammate acceptance.",
+    "Emulator System UI ANR dismissed before UI smoke. A concurrent uiautomator dump was rejected while instrumentation owned UiAutomation; recorded smoke dumps were collected after instrumentation finished."
+  ]
+}
