@@ -1,0 +1,93 @@
+{
+  "test_date": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "tester": "CroissantXinny",
+  "recorder": "Codex; screenshots, XML, file hashes and process restart evidence",
+  "tested_commit": "785e0863e1efa8f44574cec1444b649a4016c911",
+  "app": {
+    "application_id": "com.iven.musicplayergo.debug",
+    "version_name": "4.4.24",
+    "version_code": 187,
+    "apk_sha256": "e491b14079004a86b062a3a8a01326878d41b2dae99b15ac9935a3d2514309c6"
+  },
+  "device": {
+    "model": "REDMI K90 Pro Max",
+    "reported_model": "25102RKBEC",
+    "android": "16",
+    "api": 36
+  },
+  "fixtures": [
+    {
+      "alias": "A",
+      "filename": "Test-A.wav",
+      "duration_seconds": 24,
+      "sample_rate": 44100,
+      "channels": 1,
+      "cue": "每四秒 1 声提示音",
+      "sha256": "1b8db0110c9273e2a9bbee5926d21f1f8193e1672db4d4d1a69ae93fe2c9b99a"
+    },
+    {
+      "alias": "B",
+      "filename": "Test-B.wav",
+      "duration_seconds": 24,
+      "sample_rate": 44100,
+      "channels": 1,
+      "cue": "每四秒 2 声提示音",
+      "sha256": "f822a1bc604687c4b5620f27fbb6c48e5b26bc4d5e9bb5c76eb976e715c6196d"
+    },
+    {
+      "alias": "C",
+      "filename": "Test-C.wav",
+      "duration_seconds": 24,
+      "sample_rate": 44100,
+      "channels": 1,
+      "cue": "每四秒 3 声提示音",
+      "sha256": "9314f9caa438a06233c1c07b2bf31929e72668f18fd0fba8a1dea419c518d6be"
+    }
+  ],
+  "result_counts": {
+    "pass": 10,
+    "pending": 10,
+    "fail": 0,
+    "blocked": 0
+  },
+  "passed_cases": [
+    "TC01",
+    "TC02",
+    "TC03",
+    "TC04",
+    "TC05",
+    "TC06",
+    "TC07",
+    "TC08",
+    "TC09",
+    "TC10"
+  ],
+  "pending_cases": [
+    "TC11",
+    "TC12",
+    "TC13",
+    "RG01",
+    "RG02",
+    "RG03",
+    "RG04",
+    "RG05",
+    "RG06",
+    "RG07"
+  ],
+  "persistence_method": "TC07-TC10: am force-stop; pidof confirms no process; am start -W reports COLD; same installation/data retained; operator checks restored contents.",
+  "playback_configuration": "TC06 operator-confirmed setup: saved order C,A,B; single repeat off; continue after song completion; list end Stop.",
+  "companion_report": {
+    "url": "https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md",
+    "tested_commit": "785e0863e1efa8f44574cec1444b649a4016c911",
+    "report_commit": "6e92066dbadbd1d6abf5db2fc6b632b975aafa26",
+    "device": "Android Emulator, Medium Phone API 37.0, Android 17, Google Play x86_64, 1080x2400, 420 dpi",
+    "reported_results": "TC01-TC13 Pass"
+  },
+  "tracked_feedback": [
+    "https://github.com/Axfff/Vibe-Player/issues/4",
+    "https://github.com/Axfff/Vibe-Player/issues/5",
+    "https://github.com/Axfff/Vibe-Player/issues/6"
+  ],
+  "next_checks": "Reuse companion TC01-TC13 results for current code; execute RG01-RG07, prioritizing RG03/RG05/RG07; repeat affected cases after fixes."
+}

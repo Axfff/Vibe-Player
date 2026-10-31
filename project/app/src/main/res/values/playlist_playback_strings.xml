@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="playlist_playback_open">Playlists</string>
+    <string name="playlist_playback_unavailable">No available songs to play.</string>
+    <string name="playlist_playback_files_unavailable">None of the remaining playlist files could be played. Refresh the library and try again.</string>
+</resources>

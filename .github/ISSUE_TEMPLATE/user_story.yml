@@ -1,0 +1,80 @@
+name: User Story
+description: Define a course feature and its acceptance criteria in one issue.
+title: "[Story] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Keep the User Story and Acceptance Criteria in this issue. Sprint documents and PRs should link here instead of maintaining another requirements copy.
+        Describe expected behavior now; leave acceptance checkboxes unchecked until supported by verification evidence.
+  - type: input
+    id: iteration
+    attributes:
+      label: Sprint and target review
+      placeholder: "Sprint 2 / Release 1"
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: Background and user problem
+      description: Explain the existing behavior and the user need this feature addresses.
+    validations:
+      required: true
+  - type: textarea
+    id: user-story
+    attributes:
+      label: User Story
+      value: |
+        As a [user],
+        I want to [achieve a goal],
+        so that [user benefit].
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and product rules
+      value: |
+        In scope:
+        - [Describe included behavior]
+
+        Out of scope:
+        - [Describe deferred behavior]
+
+        Product rules / decisions to confirm:
+        - [Describe a rule or open decision]
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Use stable AC identifiers and observable outcomes. Include relevant empty, invalid, and failure cases.
+      value: |
+        - [ ] AC1 — Given [context], when [action], then [observable outcome].
+        - [ ] AC2 — Given [edge case], when [action], then [observable outcome].
+    validations:
+      required: true
+  - type: textarea
+    id: implementation-tasks
+    attributes:
+      label: Implementation tasks
+      description: Optional technical breakdown. These tasks do not replace the acceptance criteria.
+      placeholder: |
+        - [ ] Data and persistence
+        - [ ] UI and interactions
+        - [ ] Playback integration and tests
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification plan
+      description: Map AC IDs to test cases. Record actual results, environment, commit, and evidence when executed.
+      placeholder: "AC1 -> test case / expected result; actual result: Pending"
+    validations:
+      required: true
+  - type: textarea
+    id: links
+    attributes:
+      label: Related work and decisions
+      description: Link relevant research, PRs, dependencies, and scope-change discussions. Assign owners only after team agreement.

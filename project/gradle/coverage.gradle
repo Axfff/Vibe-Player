@@ -1,0 +1,63 @@
+// AGP 8.0.2 / Gradle 8.0 / JDK 17. Keep both collectors on the same debug classes.
+apply plugin: 'jacoco'
+jacoco { toolVersion = '0.8.10' }
+android {
+    testCoverage { jacocoVersion = '0.8.10' }
+    buildTypes {
+        debug {
+            enableUnitTestCoverage true
+            enableAndroidTestCoverage true
+        }
+    }
+}
+
+def productionClasses = files(
+    layout.buildDirectory.dir('tmp/kotlin-classes/debug'),
+    layout.buildDirectory.dir('intermediates/javac/debug/classes')
+)
+def collectedCoverage = files(
+    fileTree(layout.buildDirectory.dir('outputs/unit_test_code_coverage/debugUnitTest')) { include '*.exec' },
+    fileTree(layout.buildDirectory.dir('outputs/code_coverage/debugAndroidTest/connected')) { include '**/*.ec' }
+)
+// Exclude only generated binding/resource/build/Moshi adapter classes, never UI or player code.
+def reportClasses = productionClasses.collect { directory ->
+    fileTree(directory) {
+        exclude '**/R.class', '**/R$*.class', '**/BuildConfig.class'
+        exclude '**/databinding/**', '**/*JsonAdapter.class'
+    }
+}
+
+configurations { coverageAudit }
+dependencies { coverageAudit 'org.jacoco:org.jacoco.core:0.8.10' }
+tasks.register('compileCoverageAudit', JavaCompile) {
+    source rootProject.file('../scripts/coverage/JacocoAudit.java')
+    classpath = configurations.coverageAudit
+    destinationDirectory = layout.buildDirectory.dir('coverage-audit')
+    options.release = 17
+}
+tasks.register('auditCoverageData', JavaExec) {
+    dependsOn 'compileCoverageAudit', 'compileDebugKotlin', 'compileDebugJavaWithJavac'
+    mustRunAfter 'testDebugUnitTest', 'connectedDebugAndroidTest'
+    classpath = configurations.coverageAudit + files(layout.buildDirectory.dir('coverage-audit'))
+    mainClass = 'JacocoAudit'
+    doFirst {
+        def data = collectedCoverage.files
+        if (data.empty) throw new GradleException('No fresh JaCoCo execution data was generated')
+        args = [productionClasses.asPath] + data.collect { it.absolutePath }
+    }
+}
+tasks.register('teamCoverageReport', JacocoReport) {
+    group = 'verification'
+    description = 'Full debug HTML/XML from real JVM and Android hits (tests run separately).'
+    dependsOn 'auditCoverageData'
+    mustRunAfter 'testDebugUnitTest', 'connectedDebugAndroidTest'
+    executionData collectedCoverage
+    classDirectories.setFrom(reportClasses)
+    sourceDirectories.setFrom(files('src/main/java', 'src/main/kotlin'))
+    reports {
+        xml.required = true
+        html.required = true
+        xml.outputLocation = layout.buildDirectory.file('reports/coverage/android.xml')
+        html.outputLocation = layout.buildDirectory.dir('reports/coverage/android-html')
+    }
+}

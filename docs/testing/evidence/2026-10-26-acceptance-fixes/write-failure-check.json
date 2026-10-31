@@ -1,0 +1,171 @@
+{
+  "source": "70d2f8d3a2431921b0cca96d20387e1a2ce45190",
+  "fault": "Debug emulator: shared_prefs mode 500 during add C; restored to 771 afterward",
+  "key": "custom_playlists_v1",
+  "before": {
+    "schemaVersion": 1,
+    "playlists": [
+      {
+        "id": "3a071fda-2520-4189-a0cd-39f457f081e1",
+        "name": "Study",
+        "tracks": [
+          {
+            "mediaId": 1000000030,
+            "title": "Test-A",
+            "displayName": "Test-A.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          }
+        ]
+      },
+      {
+        "id": "4f9ffc1b-2ed7-4732-a0d4-200853e5d322",
+        "name": "Running",
+        "tracks": [
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000033,
+            "title": "Test-C",
+            "displayName": "Test-C.wav",
+            "artist": "<unknown>",
+            "album": "Folder-Two",
+            "duration": 24000
+          }
+        ]
+      },
+      {
+        "id": "cf4b3e2f-3f22-41af-aa0f-9a013a3cb09a",
+        "name": "Order",
+        "tracks": [
+          {
+            "mediaId": 1000000033,
+            "title": "Test-C",
+            "displayName": "Test-C.wav",
+            "artist": "<unknown>",
+            "album": "Folder-Two",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000030,
+            "title": "Test-A",
+            "displayName": "Test-A.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          }
+        ]
+      }
+    ]
+  },
+  "after": {
+    "schemaVersion": 1,
+    "playlists": [
+      {
+        "id": "3a071fda-2520-4189-a0cd-39f457f081e1",
+        "name": "Study",
+        "tracks": [
+          {
+            "mediaId": 1000000030,
+            "title": "Test-A",
+            "displayName": "Test-A.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          }
+        ]
+      },
+      {
+        "id": "4f9ffc1b-2ed7-4732-a0d4-200853e5d322",
+        "name": "Running",
+        "tracks": [
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000033,
+            "title": "Test-C",
+            "displayName": "Test-C.wav",
+            "artist": "<unknown>",
+            "album": "Folder-Two",
+            "duration": 24000
+          }
+        ]
+      },
+      {
+        "id": "cf4b3e2f-3f22-41af-aa0f-9a013a3cb09a",
+        "name": "Order",
+        "tracks": [
+          {
+            "mediaId": 1000000033,
+            "title": "Test-C",
+            "displayName": "Test-C.wav",
+            "artist": "<unknown>",
+            "album": "Folder-Two",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000030,
+            "title": "Test-A",
+            "displayName": "Test-A.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          },
+          {
+            "mediaId": 1000000031,
+            "title": "Test-B",
+            "displayName": "Test-B.wav",
+            "artist": "<unknown>",
+            "album": "VibeAcceptance",
+            "duration": 24000
+          }
+        ]
+      }
+    ]
+  },
+  "unchanged": true,
+  "sha256_utf8_value": "af17656415eb5cc027019188671fce900b32ae62670bead6eea9696b2fba0b56",
+  "feedback": [
+    "Could not save this change. Your previous playlists have been kept. Please try again."
+  ],
+  "feedback_after_rotation": [
+    "Could not save this change. Your previous playlists have been kept. Please try again."
+  ]
+}
