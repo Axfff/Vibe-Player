@@ -69,6 +69,31 @@ class CoverageContractTest(unittest.TestCase):
         self.assertEqual("web", coverage.module("services/discovery/static/app.js"))
         self.assertIsNone(coverage.module("project/app/src/test/java/NewTest.kt"))
 
+    def test_node_flat_junit_preserves_cases_and_failures(self):
+        original = coverage.ROOT
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                coverage.ROOT = Path(directory)
+                (coverage.ROOT / "node.xml").write_text(
+                    '<testsuites><testcase name="pass"/><testcase name="fail"><failure/></testcase>'
+                    '<testcase name="error"><error/></testcase><testcase name="skip"><skipped/></testcase></testsuites>')
+                self.assertEqual({"tests": 4, "failures": 1, "errors": 1, "skipped": 1},
+                                 coverage.test_counts(["*.xml"]))
+        finally:
+            coverage.ROOT = original
+
+    def test_nested_junit_does_not_double_count_suite_totals(self):
+        original = coverage.ROOT
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                coverage.ROOT = Path(directory)
+                (coverage.ROOT / "nested.xml").write_text(
+                    '<testsuites><testsuite tests="1"><testsuite tests="1">'
+                    '<testcase name="pass"/></testsuite></testsuite></testsuites>')
+                self.assertEqual(1, coverage.test_counts(["*.xml"])["tests"])
+        finally:
+            coverage.ROOT = original
+
 
 if __name__ == "__main__":
     unittest.main()

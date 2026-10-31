@@ -27,6 +27,14 @@ public final class JacocoAudit {
             throw new IllegalStateException("JaCoCo class ID mismatch: " +
                 coverage.getNoMatchClasses().stream().map(c -> c.getName()).toList());
         }
+        var currentIds = new java.util.HashMap<String, Long>();
+        coverage.getClasses().forEach(c -> currentIds.put(c.getName(), c.getId()));
+        for (var executed : data.getExecutionDataStore().getContents()) {
+            Long current = currentIds.get(executed.getName());
+            if (current != null && current.longValue() != executed.getId()) {
+                throw new IllegalStateException("Mixed JaCoCo class revisions: " + executed.getName());
+            }
+        }
         System.out.println("JaCoCo class IDs verified; analyzed " + classes + " classes, including unexecuted classes.");
     }
 }
