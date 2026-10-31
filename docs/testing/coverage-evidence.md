@@ -14,6 +14,8 @@ The first test additions at `8188733497ce8ac0f73137a06ddba8181c6504c6` measured 
 
 Original Discovery `fa86950d0f8955a8b0718de95f7a0509dedee832`: backend 905/957 (94.566353%), 148 tests; web 216/825 (26.181818%), 17 tests. The web denominator includes previously unexecuted `app.js` and `images.mjs`. After settings and DOM/image behavior tests: backend 919/957 (96.029258%), 159 tests; web 812/825 (98.424242%), 22 tests. The combined branch must collect its own fresh Android data and pass all three gates. Android Discovery is still absent and must be tested after its separate implementation.
 
+Fresh local combined collection at `973b20b9d65efc6cb0e0b339d31525900c0e65a3` passed 46 JVM, 36 Android, 159 backend and 22 web tests, with APK generation and 286 class identities verified. Android: 1182/1391 (84.974838%); backend: 919/957 (96.029258%); web: 812/825 (98.424242%). Its APK SHA-256 is `15540e578743f58021de32b44850238eddd70d8a1286f59ff3fd8fb437d06352`. Subsequent CI-only gate hardening requires both JVM/device data independently and fresh HTML indexes in addition to XML; final PR heads are verified again in Actions rather than relabeling these local results.
+
 ## Failure evidence
 
 - [Assertion injection](https://github.com/Axfff/Vibe-Player/actions/runs/41219146717), SHA `04be535fccab94e0ba24402b22c35d0b9c0b9875`: 32 JVM tests, one deliberately failed assertion; CI failed, APK and diagnostics uploaded.
