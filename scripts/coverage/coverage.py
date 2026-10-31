@@ -173,6 +173,19 @@ def fraction(covered, total):
             "passed": total > 0 and covered * 100 >= total * 80}
 
 
+def validate_execution_data(root, started_ns, unit_only=False):
+    required = list(root.glob('project/*/build/outputs/unit_test_code_coverage/**/*.exec'))
+    if not required:
+        raise ValueError('Required JVM execution data missing')
+    if not unit_only:
+        device = list(root.glob('project/*/build/outputs/code_coverage/**/*.ec'))
+        if not device:
+            raise ValueError('Required Android execution data missing')
+        required += device
+    if any(p.stat().st_size == 0 or p.stat().st_mtime_ns < started_ns for p in required):
+        raise ValueError('Empty or stale coverage execution data; clean and rerun')
+
+
 def summarize(scope, reports):
     groups = {}
     for entry in scope["files"]:
@@ -263,14 +276,7 @@ def main():
     if stamp['sha'] != git('rev-parse', 'HEAD') or stamp['source_fingerprint'] != source_fingerprint():
         raise ValueError("Source/commit changed during collection; rerun tests from a fresh build")
     if not args.measure_only:
-        required = list(ROOT.glob('project/*/build/outputs/unit_test_code_coverage/**/*.exec'))
-        if not args.unit_only:
-            device = list(ROOT.glob('project/*/build/outputs/code_coverage/**/*.ec'))
-            if not device:
-                raise ValueError('Required Android execution data missing')
-            required += device
-        if not required or any(p.stat().st_mtime_ns < stamp.get('started_ns', 0) for p in required):
-            raise ValueError('Missing or stale coverage execution data; clean and rerun')
+        validate_execution_data(ROOT, stamp['started_ns'], args.unit_only)
     names = {f["module"] for f in scope["files"]}
     reports, tests = {}, {}
     def fresh(path):
@@ -279,6 +285,7 @@ def main():
         return path
     if "android" in names:
         xml = fresh(ROOT / "project/app/build/reports/coverage/android.xml")
+        fresh(xml.parent / 'android-html/index.html')
         reports["android"] = jacoco(xml)
         shutil.copyfile(xml, OUTPUT / "android.xml")
         shutil.copytree(xml.parent / "android-html", OUTPUT / "android", dirs_exist_ok=True)
@@ -287,10 +294,12 @@ def main():
             tests["android"] = test_counts(["project/app/build/outputs/androidTest-results/connected/**/TEST-*.xml"])
     if "backend" in names:
         reports["backend"] = cobertura(fresh(OUTPUT / "backend.xml"))
+        fresh(OUTPUT / 'backend/index.html')
         fresh(OUTPUT / 'backend-junit.xml')
         tests["backend"] = test_counts(["artifacts/coverage/backend-junit.xml"])
     if "web" in names:
         reports["web"] = lcov(fresh(OUTPUT / "web/lcov.info"))
+        fresh(OUTPUT / 'web/index.html')
         shutil.copyfile(fresh(OUTPUT / 'web/cobertura-coverage.xml'), OUTPUT / 'web.xml')
         fresh(OUTPUT / 'web-junit.xml')
         tests["web"] = test_counts(["artifacts/coverage/web-junit.xml"])

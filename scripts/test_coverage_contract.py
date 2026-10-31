@@ -94,6 +94,34 @@ class CoverageContractTest(unittest.TestCase):
         finally:
             coverage.ROOT = original
 
+    def test_neither_jvm_nor_device_data_can_replace_the_other(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            unit = root / 'project/app/build/outputs/unit_test_code_coverage/unit.exec'
+            device = root / 'project/app/build/outputs/code_coverage/device.ec'
+            device.parent.mkdir(parents=True)
+            device.write_bytes(b'fixture-device')
+            with self.assertRaisesRegex(ValueError, 'JVM'):
+                coverage.validate_execution_data(root, 0)
+            unit.parent.mkdir(parents=True)
+            unit.write_bytes(b'fixture-unit')
+            coverage.validate_execution_data(root, 0)
+            device.unlink()
+            with self.assertRaisesRegex(ValueError, 'Android'):
+                coverage.validate_execution_data(root, 0)
+
+    def test_stale_or_empty_execution_data_is_rejected(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            unit = root / 'project/app/build/outputs/unit_test_code_coverage/unit.exec'
+            unit.parent.mkdir(parents=True)
+            unit.write_bytes(b'')
+            with self.assertRaisesRegex(ValueError, 'Empty or stale'):
+                coverage.validate_execution_data(root, 0, unit_only=True)
+            unit.write_bytes(b'fixture-unit')
+            with self.assertRaisesRegex(ValueError, 'Empty or stale'):
+                coverage.validate_execution_data(root, unit.stat().st_mtime_ns + 1, unit_only=True)
+
 
 if __name__ == "__main__":
     unittest.main()
