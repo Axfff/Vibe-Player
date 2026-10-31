@@ -238,15 +238,17 @@ class PlaylistCoverageBehaviorTest {
 
     private fun add(f: RegressionFixture, playlistId: String, label: String, order: List<String>) {
         f.onMain { (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<EditText>(R.id.playlist_song_search)!!.setText(f.tracks.getValue(label).displayName) }
-        f.await("one filtered song") { f.onMain {
+        // RecyclerView may rebind after the save/refresh callback. Lookup and click
+        // in one main-thread action so a holder cannot disappear between them.
+        f.await("one filtered song ready to click") { f.onMain {
             val list = (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<RecyclerView>(R.id.playlist_picker_rows)!!
-            list.adapter?.itemCount == 1 && list.findViewHolderForAdapterPosition(0) != null
+            if (list.adapter?.itemCount != 1 || list.hasPendingAdapterUpdates()) return@onMain false
+            val row = list.findViewHolderForAdapterPosition(0) ?: return@onMain false
+            val action = row.itemView.findViewById<View>(R.id.playlist_track_action)
+            if (action.isEnabled) assertTrue(action.performClick())
+            // A membership-disabled button is equally safe; persistence is asserted below.
+            true
         } }
-        f.onMain {
-            val list = (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<RecyclerView>(R.id.playlist_picker_rows)!!
-            val action = list.findViewHolderForAdapterPosition(0)!!.itemView.findViewById<View>(R.id.playlist_track_action)
-            if (action.isEnabled) action.performClick() // A future membership-disabled button is equally safe.
-        }
         f.await("saved click order $order") { success(f.repository.getPlaylist(playlistId)).tracks.map { it.mediaId } == order.map { f.tracks.getValue(it).id } }
         f.await("picker save finished") { f.onMain { (child(f, "playlist_add").requireDialog() as AlertDialog).getButton(AlertDialog.BUTTON_NEGATIVE).isEnabled } }
     }

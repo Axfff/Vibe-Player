@@ -24,6 +24,7 @@ import com.iven.musicplayergo.preferences.SettingsFragment
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.atomic.AtomicBoolean
 
 /** Reproductions of PR #3's search-refresh and playlist presentation review findings. */
 @RunWith(AndroidJUnit4::class)
@@ -97,8 +98,20 @@ class PlaylistPresentationRegressionTest {
             }
             f.playPlaylist(playlist.id)
             f.expectPlaying("C")
-            f.onMain { f.player.seekTo(5_000) }
-            f.await("playlist seeks away from zero") { f.onMain { f.player.currentPosition >= 4_800 } }
+            val seekCompleted = AtomicBoolean(false)
+            f.onMain {
+                f.player.setOnSeekCompleteListener { player ->
+                    player.setOnSeekCompleteListener(null)
+                    seekCompleted.set(true)
+                }
+                f.player.seekTo(5_000)
+            }
+            // getCurrentPosition can expose the requested position before the
+            // asynchronous decoder seek has completed. Checkpoints need settled audio.
+            f.await("playlist seek callback") { seekCompleted.get() }
+            val settledPosition = f.onMain { f.player.currentPosition }
+            assertTrue("playlist seeks away from zero", settledPosition >= 4_800)
+            f.await("decoded audio advances after seek") { f.onMain { f.player.currentPosition >= settledPosition + 100 } }
             val originalPlayer = f.player
             assertMiniPlayer(f, actualTracks.getValue("C").displayName!!.substringBeforeLast('.'))
 
@@ -227,8 +240,9 @@ class PlaylistPresentationRegressionTest {
         assertEquals(f.tracks.getValue("C").id, f.holder.currentSong?.id)
         assertEquals(3, f.holder.getCurrentAlbumSize())
         val elapsed = SystemClock.elapsedRealtime() - before.elapsed
-        assertTrue("A display change cannot restart or jump the playing position",
-            f.player.currentPosition >= before.position - 150 && f.player.currentPosition <= before.position + elapsed + 1_500)
+        val after = f.player.currentPosition
+        assertTrue("A display change cannot restart or jump the playing position: before=${before.position}, after=$after, elapsed=$elapsed",
+            after >= before.position - 150 && after <= before.position + elapsed + 1_500)
     }
 
     private fun songFragment(f: RegressionFixture): AllMusicFragment {
