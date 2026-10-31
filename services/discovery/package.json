@@ -1,0 +1,11 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"test:coverage": "c8 --all --include=static/** --check-coverage --lines=80 --reporter=text --reporter=html --reporter=cobertura --reporter=lcov --reports-dir=../../artifacts/coverage/web node --test --test-reporter=spec --test-reporter=junit --test-reporter-destination=stdout --test-reporter-destination=../../artifacts/coverage/web-junit.xml tests/*.test.mjs"
+	},
+	"devDependencies": {
+		"c8": "12.0.0",
+		"jsdom": "30.1.3"
+	}
+}

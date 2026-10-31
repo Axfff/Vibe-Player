@@ -1,0 +1,13 @@
+[run]
+source = discovery
+relative_files = True
+
+[report]
+show_missing = True
+fail_under = 80
+
+[html]
+directory = ../../artifacts/coverage/backend
+
+[xml]
+output = ../../artifacts/coverage/backend.xml
