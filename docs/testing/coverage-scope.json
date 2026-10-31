@@ -2,7 +2,12 @@
   "schema": 1,
   "baseline": "947709e4c798a103b9fcc5962172f2e85d349196",
   "minimum_line_percent": 80,
-  "non_production_exceptions": [],
+  "non_production_exceptions": [
+    {
+      "path": "services/discovery/smoke.py",
+      "reason": "Operator verification harness (exercised by tests/test_smoke.py); not a served backend module"
+    }
+  ],
   "files": [
     {
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
@@ -884,6 +889,267 @@
       ],
       "source_commits": [
         "24beffad3c0c89739b13420d2a07cedb947770c0"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/__init__.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "3c36230e0c29d7526f470c0dc0bd53470622a95aed8da7124604b78da7e60cbb",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          1
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/albums.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "ee1fa3871b8b33611168db864eb32cad5248b7645c75af6c6f28cc34a6041ade",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          188
+        ]
+      ],
+      "source_commits": [
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/app.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "6ebd32ba9d21761714e84327bdb28d7fef4b232f5119b0e3edc3892843e510af",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          239
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/catalog.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "3df938da5b18f15fcf931437462efa82385ddd9c75f7bb482b580019add6cc05",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          285
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/config.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "b9899d98984d7d661d8eaab3106722253aab57efdb30bc9dec9ca4ef59fdf1e4",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          65
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/errors.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "ed4efe6c4bd168d0c6c576f9c56d2f86422e7ffdc90338fa7c7e8d20bf3dc0d2",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          7
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/models.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "f367bb5473322f1bd09cdfdb3b67a1294a9b6c35588bd8385749d9d6c520f6d8",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          161
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/network.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "b792f95844ffefac3af7f080355b5233535df5bddf605c655f8a4a8265977ab0",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          246
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/policy.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "0a9ed7c39a6581d20d8c9a3b5c8cd3058410420748a3c9d7c3dc902955d80412",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          76
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/service.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "ca0052bb7c7bed672020687ff837af3c62d754f9d8c6c98f8b13ce881c9076d1",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          170
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/discovery/vision.py",
+      "module": "backend",
+      "change": "added",
+      "source_sha256": "c14cbf2788c657bceedda7a7eaed9e9062249059f2ae40e96f5aa12f743fb9f8",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          164
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/static/album.mjs",
+      "module": "web",
+      "change": "added",
+      "source_sha256": "4e0cbe8befa77b514f0498a8dede1c3d0b7da0e3f0153ea327958060e41caa30",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          108
+        ]
+      ],
+      "source_commits": [
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/static/app.js",
+      "module": "web",
+      "change": "added",
+      "source_sha256": "e84a9d5defdfc4c6a7864a48a19f476fa5fe81139a357d313d9143f731f31948",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          558
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688",
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/static/images.mjs",
+      "module": "web",
+      "change": "added",
+      "source_sha256": "4943895b453ad18873b7abe72ba5088b52f53fb059b8da716ebf723bd4a255b3",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          41
+        ]
+      ],
+      "source_commits": [
+        "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "services/discovery/static/preview.mjs",
+      "module": "web",
+      "change": "added",
+      "source_sha256": "7041242b38c11e00c4b69eac70d6e7de95b124a0fd1b931f602dd92e4f6e8d35",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          118
+        ]
+      ],
+      "source_commits": [
+        "a4458fe06ba12479c946286062660e37f7706688"
       ],
       "exception_reason": null
     }
