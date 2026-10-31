@@ -93,6 +93,9 @@ jobs:
         if: ${{ !cancelled() }}
         working-directory: project
         run: bash ./gradlew --no-daemon --console=plain :app:teamCoverageReport
+      - name: Controlled failure probe - remove required XML (NEVER MERGE)
+        if: ${{ !cancelled() }}
+        run: python -c "from pathlib import Path; Path('project/app/build/reports/coverage/android.xml').unlink()"
       - name: Enforce complete reports, executed tests and exact 80 percent line gate
         if: ${{ !cancelled() }}
         run: python scripts/coverage/coverage.py report
