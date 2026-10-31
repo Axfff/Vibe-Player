@@ -118,7 +118,10 @@ internal class PlaylistMusicAdapter(
         init {
             binding.playlistTrackAction.setOnClickListener {
                 val position = bindingAdapterPosition
-                if (actionsEnabled && position != RecyclerView.NO_POSITION) onAdd(getItem(position).music)
+                if (actionsEnabled && position != RecyclerView.NO_POSITION) {
+                    val row = getItem(position)
+                    if (!row.alreadyAdded) onAdd(row.music)
+                }
             }
         }
 
@@ -131,7 +134,7 @@ internal class PlaylistMusicAdapter(
             playlistTrackStatus.isVisible = row.alreadyAdded
             playlistTrackAction.setText(R.string.playlist_add)
             playlistTrackAction.contentDescription = context.getString(R.string.playlist_add_description, title)
-            playlistTrackAction.isEnabled = actionsEnabled
+            playlistTrackAction.isEnabled = actionsEnabled && !row.alreadyAdded
         }
     }
 }

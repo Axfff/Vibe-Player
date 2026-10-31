@@ -34,6 +34,18 @@ class PlaylistRepositoryTest {
     }
 
     @Test
+    fun invalidThrowingOrRepeatedIdFactoryCannotOverwriteACollection() {
+        val original = success(repository.create("Original"))
+        val saved = storage.json
+        for (factory in listOf<() -> String>({ "not-a-uuid" }, { original.id }, { throw IllegalStateException("ID source unavailable") })) {
+            val candidate = PlaylistRepository(storage, factory)
+            error(PlaylistError.STORAGE_WRITE_FAILED, candidate.create("New"))
+            assertEquals(saved, storage.json)
+            assertEquals(listOf(original), success(candidate.getPlaylists()))
+        }
+    }
+
+    @Test
     fun createsIndependentPlaylistsWithTrimmedNamesAndStableUuids() {
         val study = success(repository.create("  Study  "))
         val running = success(repository.create("Running"))

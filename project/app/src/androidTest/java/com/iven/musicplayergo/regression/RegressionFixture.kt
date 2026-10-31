@@ -90,6 +90,9 @@ class RegressionFixture private constructor(private val taggedAudio: Boolean) : 
 
     private fun initialize(scanApplication: Application?) {
         require(context.packageName.endsWith(".debug")) { "Use the isolated debug app" }
+        require(Build.HARDWARE in setOf("ranchu", "goldfish")) {
+            "These reset fixtures require a disposable emulator; never a personal phone"
+        }
         require(Build.VERSION.SDK_INT >= 29) { "Fixtures require MediaStore scoped storage" }
         grantMediaPermission()
         if (Build.VERSION.SDK_INT >= 33) {

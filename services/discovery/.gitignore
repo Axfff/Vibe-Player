@@ -1,0 +1,15 @@
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+runtime/
+# JavaScript test dependencies and coverage output
+node_modules/
+coverage/
+.coverage
