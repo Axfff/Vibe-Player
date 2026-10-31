@@ -149,7 +149,16 @@ def test_counts(paths):
     counts = {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
     for path in files:
         root = ET.parse(path).getroot()
+        # Node's native reporter emits testcase children directly under testsuites.
+        # Count actual cases when available; do not double-count nested suite totals.
+        cases = root.findall(".//testcase")
+        if cases:
+            counts["tests"] += len(cases)
+            for name, tag in (("failures", "failure"), ("errors", "error"), ("skipped", "skipped")):
+                counts[name] += sum(case.find(tag) is not None for case in cases)
+            continue
         suites = [root] if root.tag == "testsuite" else root.findall(".//testsuite")
+        suites = [suite for suite in suites if not suite.findall("testsuite")]
         for suite in suites:
             for name in counts:
                 counts[name] += int(suite.get(name, 0))
@@ -206,7 +215,7 @@ def write_reports(summary):
               "Android Discovery is not present in this revision; integration must regenerate the scope manifest."]
     if summary.get("run_url"):
         lines.append(f"[Workflow and full HTML/XML report artifacts]({summary['run_url']})")
-    (OUTPUT / "summary.md").write_text("\n\n".join(lines) + "\n", encoding="utf-8")
+    (OUTPUT / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     body = ["<!doctype html><html><meta charset='utf-8'><title>Vibe-Player team coverage</title>",
             "<style>body{font:16px system-ui;margin:3rem;max-width:1200px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccc;padding:.6rem;text-align:left}code{overflow-wrap:anywhere}.fail{color:#a00}.pass{color:#075}</style>",
             f"<h1>Team line coverage</h1><p>SHA <code>{summary['sha']}</code></p><p>Baseline <code>{BASE}</code></p>",
@@ -245,6 +254,8 @@ def main():
         stale += list(ROOT.glob('project/*/build/test-results/**/*.xml'))
         if stale:
             raise ValueError('Old test/coverage outputs exist: run Gradle clean before starting collection')
+        for name in ('summary.json', 'summary.md', 'index.html'):
+            (OUTPUT / name).unlink(missing_ok=True)
         stamp_path.write_text(json.dumps({"sha": git("rev-parse", "HEAD"), "source_fingerprint": source_fingerprint(),
                                         "started_ns": time.time_ns()}), encoding="utf-8")
         return

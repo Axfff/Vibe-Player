@@ -62,7 +62,7 @@ jobs:
             core.setOutput('run_id', runId);
             core.setOutput('sha', sha);
             core.setOutput('prs', JSON.stringify(current));
-            core.setOutput('result', eventRun ? run.conclusion : process.env.INPUT_RESULT);
+            core.setOutput('build_result', eventRun ? run.conclusion : process.env.INPUT_RESULT);
             core.setOutput('valid', 'true');
       - name: Download reports as data
         if: steps.context.outputs.valid == 'true'
@@ -79,7 +79,7 @@ jobs:
           TEST_RUN: ${{ steps.context.outputs.run_id }}
           TEST_SHA: ${{ steps.context.outputs.sha }}
           TEST_PRS: ${{ steps.context.outputs.prs }}
-          TEST_RESULT: ${{ steps.context.outputs.result }}
+          TEST_RESULT: ${{ steps.context.outputs.build_result }}
         with:
           script: |
             const fs = require('fs');
@@ -139,3 +139,4 @@ jobs:
             const payload = {...context.repo, name: 'Team line coverage', status: 'completed', conclusion: status, details_url: runUrl, external_id: String(runId), output: {title: `Team line coverage: ${status}`, summary: text}};
             if (previous) await github.rest.checks.update({...payload, check_run_id: previous.id});
             else await github.rest.checks.create({...payload, head_sha: sha});
+            if (status !== 'success') core.setFailed('Coverage publication failed validation or build/test/coverage gate failed');
