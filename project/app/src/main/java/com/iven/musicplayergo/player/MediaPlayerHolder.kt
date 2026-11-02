@@ -46,8 +46,6 @@ import com.iven.musicplayergo.ui.MainActivity
 import com.iven.musicplayergo.ui.UIControlInterface
 import com.iven.musicplayergo.utils.Lists
 import com.iven.musicplayergo.utils.Versioning
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.math.ln
 
@@ -163,7 +161,7 @@ class MediaPlayerHolder:
 
     // Media player
     private lateinit var mediaPlayer: MediaPlayer
-    private var mExecutor: ScheduledExecutorService? = null
+    private val playbackProgressHandler = Handler(Looper.getMainLooper())
     private var mSeekBarPositionUpdateTask: Runnable? = null
 
     var currentSong: Music? = null
@@ -415,7 +413,7 @@ class MediaPlayerHolder:
     }
 
     fun onRestartSeekBarCallback() {
-        if (mExecutor == null) startUpdatingCallbackWithPosition()
+        if (mSeekBarPositionUpdateTask == null) startUpdatingCallbackWithPosition()
     }
 
     fun onPauseSeekBarCallback() {
@@ -626,24 +624,25 @@ class MediaPlayerHolder:
      * Syncs the mMediaPlayer position with mSeekBarPositionUpdateTask via recurring task.
      */
     private fun startUpdatingCallbackWithPosition() {
-
-        if (mSeekBarPositionUpdateTask == null) {
-            mSeekBarPositionUpdateTask = Runnable { updateProgressCallbackTask() }
+        if (mSeekBarPositionUpdateTask != null) return
+        // MediaPlayer is not thread-safe. Serialize reads with main-thread player
+        // replacement/prepare; a background read during prepare can cause error -38.
+        val task = object : Runnable {
+            override fun run() {
+                if (mSeekBarPositionUpdateTask !== this) return
+                updateProgressCallbackTask()
+                if (mSeekBarPositionUpdateTask === this) {
+                    playbackProgressHandler.postDelayed(this, 1_000)
+                }
+            }
         }
-
-        mExecutor = Executors.newSingleThreadScheduledExecutor()
-        mExecutor?.scheduleAtFixedRate(
-            mSeekBarPositionUpdateTask!!,
-            0,
-            1000,
-            TimeUnit.MILLISECONDS
-        )
+        mSeekBarPositionUpdateTask = task
+        playbackProgressHandler.post(task)
     }
 
     // Reports media playback position to mPlaybackProgressCallback.
     private fun stopUpdatingCallbackWithPosition() {
-        mExecutor?.shutdownNow()
-        mExecutor = null
+        mSeekBarPositionUpdateTask?.let { playbackProgressHandler.removeCallbacks(it) }
         mSeekBarPositionUpdateTask = null
     }
 
@@ -866,7 +865,7 @@ class MediaPlayerHolder:
             mediaPlayerInterface.onQueueStartedOrEnded(started = isQueueStarted)
         }
 
-        if (mExecutor == null) startUpdatingCallbackWithPosition()
+        if (mSeekBarPositionUpdateTask == null) startUpdatingCallbackWithPosition()
 
         if (!::mAudioFocusRequestCompat.isInitialized) {
             initializeAudioFocusRequestCompat()
