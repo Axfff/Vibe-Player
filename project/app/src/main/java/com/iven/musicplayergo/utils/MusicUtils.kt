@@ -21,15 +21,29 @@ object MusicUtils {
         selectedArtist: String?,
         deviceAlbumsByArtist: MutableMap<String, List<Album>>?
     ) = try {
-        val album = getAlbumFromList(
+        getPlayingAlbumPosition(
             selectedArtist,
-            MediaPlayerHolder.getInstance().currentSong?.album,
-            deviceAlbumsByArtist
+            deviceAlbumsByArtist,
+            MediaPlayerHolder.getInstance().currentSong
         )
-        album?.second ?: RecyclerView.NO_POSITION
     } catch (e: Exception) {
         e.printStackTrace()
         RecyclerView.NO_POSITION
+    }
+
+    internal fun getPlayingAlbumPosition(
+        selectedArtist: String?,
+        deviceAlbumsByArtist: MutableMap<String, List<Album>>?,
+        currentSong: Music?
+    ): Int {
+        if (currentSong == null || selectedArtist != currentSong.artist) {
+            return RecyclerView.NO_POSITION
+        }
+        return getAlbumFromList(
+            selectedArtist,
+            currentSong.album,
+            deviceAlbumsByArtist
+        )?.second ?: RecyclerView.NO_POSITION
     }
 
     @JvmStatic
