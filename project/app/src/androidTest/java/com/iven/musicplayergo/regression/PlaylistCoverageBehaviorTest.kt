@@ -237,14 +237,22 @@ class PlaylistCoverageBehaviorTest {
     }
 
     private fun add(f: RegressionFixture, playlistId: String, label: String, order: List<String>) {
-        f.onMain { (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<EditText>(R.id.playlist_song_search)!!.setText(f.tracks.getValue(label).displayName) }
+        val expected = f.tracks.getValue(label)
+        f.onMain { (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<EditText>(R.id.playlist_song_search)!!.setText(expected.displayName) }
         // RecyclerView may rebind after the save/refresh callback. Lookup and click
         // in one main-thread action so a holder cannot disappear between them.
         f.await("one filtered song ready to click") { f.onMain {
             val list = (child(f, "playlist_add").requireDialog() as AlertDialog).findViewById<RecyclerView>(R.id.playlist_picker_rows)!!
             if (list.adapter?.itemCount != 1 || list.hasPendingAdapterUpdates()) return@onMain false
+            // A one-row list can still contain the previous query while AsyncListDiffer
+            // calculates the new result. Wait for the requested identity and bound title.
+            val adapter = list.adapter as PlaylistMusicAdapter
+            val candidate = adapter.currentList.singleOrNull() ?: return@onMain false
+            if (candidate.music.id != expected.id || !adapter.actionsEnabled) return@onMain false
             val row = list.findViewHolderForAdapterPosition(0) ?: return@onMain false
+            if (row.itemView.findViewById<TextView>(R.id.playlist_track_title).text.toString() != expected.title) return@onMain false
             val action = row.itemView.findViewById<View>(R.id.playlist_track_action)
+            if (!action.isEnabled && !candidate.alreadyAdded) return@onMain false
             if (action.isEnabled) assertTrue(action.performClick())
             // A membership-disabled button is equally safe; persistence is asserted below.
             true
