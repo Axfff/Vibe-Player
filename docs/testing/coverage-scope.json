@@ -105,6 +105,31 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/dialogs/QueueAdapter.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "12f74e30634b8c127a618bf10f88c20dd1b4d8df944315a3e2712e16055bb2ee",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          82,
+          97
+        ],
+        [
+          108,
+          108
+        ],
+        [
+          118,
+          118
+        ]
+      ],
+      "source_commits": [
+        "5115024e3dad12cd4f2d86e98d6f11ade544199a"
+      ],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/AllMusicFragment.kt",
       "module": "android",
       "change": "modified",
@@ -932,32 +957,41 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/utils/MusicUtils.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "c546f379e4d1d74ab7939849ecdea045fc0c2638c27beef2132df56a2d951a00",
+      "source_sha256": "6f2b01214368c2d6b5a7230cc538dc4fbd5b49885fb6ee2d0adda325954525e2",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
-          29,
-          29
+          24,
+          24
         ],
         [
-          40,
-          40
+          26,
+          27
         ],
         [
-          45,
-          45
-        ],
-        [
-          48,
+          34,
           48
         ],
         [
-          53,
-          56
+          54,
+          54
+        ],
+        [
+          59,
+          59
+        ],
+        [
+          62,
+          62
+        ],
+        [
+          67,
+          70
         ]
       ],
       "source_commits": [
-        "d7535bfd7f8ffd90848a9b8c804ad593147acd22"
+        "d7535bfd7f8ffd90848a9b8c804ad593147acd22",
+        "7591a676b8fa273cc5970d2152fa8bfef1c1bd96"
       ],
       "exception_reason": null
     },
