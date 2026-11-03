@@ -62,6 +62,26 @@ class CoverageContractTest(unittest.TestCase):
         finally:
             coverage.ROOT = original
 
+    def test_instrumentation_errors_fail_even_when_junit_cases_pass(self):
+        original = coverage.ROOT
+        try:
+            with tempfile.TemporaryDirectory() as directory:
+                coverage.ROOT = Path(directory)
+                path = coverage.ROOT / 'instrumentation.xml'
+                for diagnostic in (
+                    'Cannot process instrumented class app/Example. Please supply original non-instrumented classes.',
+                    'java.lang.instrument.IllegalClassFormatException: Error while instrumenting app/Example with JaCoCo 0.8.10.',
+                ):
+                    path.write_text('<testsuite tests="1" failures="0"><testcase name="passes"/>'
+                                    f'<system-err>{diagnostic}</system-err></testsuite>')
+                    with self.assertRaisesRegex(ValueError, 'instrumentation'):
+                        coverage.test_counts(['*.xml'])
+                path.write_text('<testsuite tests="1"><testcase name="passes"/>'
+                                '<system-err>Unrelated deprecation warning</system-err></testsuite>')
+                self.assertEqual(1, coverage.test_counts(['*.xml'])['tests'])
+        finally:
+            coverage.ROOT = original
+
     def test_java_kotlin_backend_and_web_entries_are_detected(self):
         self.assertEqual("android", coverage.module("project/app/src/main/java/a/discovery/New.kt"))
         self.assertEqual("android", coverage.module("project/app/src/main/kotlin/New.java"))

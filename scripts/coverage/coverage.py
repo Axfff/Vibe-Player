@@ -149,6 +149,11 @@ def test_counts(paths):
     counts = {"tests": 0, "failures": 0, "errors": 0, "skipped": 0}
     for path in files:
         root = ET.parse(path).getroot()
+        diagnostics = '\n'.join(node.text or '' for tag in ('system-out', 'system-err')
+                                for node in root.iter(tag))
+        if ('Cannot process instrumented class' in diagnostics or
+                ('IllegalClassFormatException' in diagnostics and 'JaCoCo' in diagnostics)):
+            raise ValueError(f'JaCoCo instrumentation error in test output: {path}')
         # Node's native reporter emits testcase children directly under testsuites.
         # Count actual cases when available; do not double-count nested suite totals.
         cases = root.findall(".//testcase")

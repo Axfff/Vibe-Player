@@ -10,6 +10,8 @@ New source files use all executable lines. Modified upstream files use executabl
 
 The generated JaCoCo report analyzes all compiled production classes, including never-executed classes. Only generated R, BuildConfig, view binding and Moshi JSON adapters are removed. No source UI, adapter, player, error handling, or device-only path is exempted. Abstract interfaces with no executable lines remain listed with 0/0; they do not create a false 100% module result. Resource XML and tests are not production executable line coverage.
 
+With AGP 8.0.2's unit and Android collectors both enabled, the JVM runtime app JAR already has offline probes. The JVM agent is configured to skip a second transformation of `com.iven.musicplayergo.*`, while still collecting the original offline probes, as described in [JaCoCo's offline/agent guidance](https://www.jacoco.org/jacoco/trunk/doc/offline.html). This agent-only setting removes no classes from `reportClasses`, the manifest or the line denominator. JaCoCo class-ID auditing still analyzes all original production classes. A new contract rejects instrumentation errors in JUnit output even when all test assertions passed; a clean collection must have both valid execution streams and error-free instrumentation.
+
 Android, Python backend and web modules have separate gates. One module's result cannot compensate for another. A new production file, changed source hash, missing report/source, zero executed required suite, incompatible JaCoCo class IDs, changed source during collection, missing device data or stale execution data fails validation. Counts use integer comparison `covered * 100 >= total * 80`; 79.96% fails.
 
 ## Audited adjacent work
