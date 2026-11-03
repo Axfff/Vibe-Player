@@ -11,6 +11,15 @@ android {
     }
 }
 
+// AGP's runtime app JAR already contains offline probes when Android test
+// coverage is enabled. Keep the JVM agent to collect those probes, but do not
+// transform the same app classes a second time. This is NOT a report/scope
+// exclusion: all original production classes below remain in the denominator.
+// https://www.jacoco.org/jacoco/trunk/doc/offline.html
+tasks.withType(Test).configureEach {
+    jacoco { excludes = ['com.iven.musicplayergo.*'] }
+}
+
 def productionClasses = files(
     layout.buildDirectory.dir('tmp/kotlin-classes/debug'),
     layout.buildDirectory.dir('intermediates/javac/debug/classes')
