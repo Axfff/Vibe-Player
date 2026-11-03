@@ -2,8 +2,6 @@ name: Question
 description: Ask a question
 title: "[Q&A]: "
 labels: ["question"]
-assignees:
-  - enricocid
 body:
   - type: textarea
     id: question

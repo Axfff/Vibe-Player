@@ -1,0 +1,117 @@
+{
+  "source": "70d2f8d3a2431921b0cca96d20387e1a2ce45190",
+  "device": "Pixel_7 AVD / Android 13 API 33 / x86_64",
+  "executor": "Codex via ADB on the disposable emulator; no phone gestures",
+  "android_regressions": {
+    "tests": 24,
+    "failures": 0,
+    "seconds": 87.979,
+    "classes": [
+      "PlaylistPlaybackRegressionTest",
+      "PlaylistLibraryRegressionTest",
+      "PlaylistRecoveryRegressionTest"
+    ],
+    "initial_run": "ea358f08: 23 passed, RG07 timed out when rapid clicks hit the 500 ms debounce",
+    "correction": "70d2f8d3: 550 ms between Activity-control gestures; same assertions; identical application APK"
+  },
+  "TC03": {
+    "status": "Pass",
+    "duplicate_attempts": [
+      "B",
+      "A"
+    ],
+    "Study": [
+      "1. Test-A",
+      "2. Test-B"
+    ],
+    "Running": [
+      "1. Test-B",
+      "2. Test-C"
+    ]
+  },
+  "TC07": {
+    "status": "Pass",
+    "restart": "same install force-stop and cold launch, without reinstall/data reset within the case",
+    "restored_orders": {
+      "Study": [
+        "1. Test-A",
+        "2. Test-B"
+      ],
+      "Running": [
+        "1. Test-B",
+        "2. Test-C"
+      ],
+      "Order": [
+        "1. Test-C",
+        "2. Test-A",
+        "3. Test-B"
+      ]
+    }
+  },
+  "issue6": {
+    "api33": "Pass: continuous add, buttons, duplicate feedback, real preference write failure, rotation retains error"
+  },
+  "issue5": {
+    "api33": "Pass: stopped, empty, denied permission, portrait/landscape and 200% text; accessibility label present"
+  },
+  "issue4": {
+    "api33": "Pass: accessible candidates, no candidates, permission explanation, Files-copy guidance and post-scan refresh",
+    "import_observation": "ADB-created MP3 was pending=1. System Files copy into Music published Download and Music rows; both appeared after app scan."
+  },
+  "pending": [
+    "REDMI API36 and audible playback",
+    "Original API37 MP3/OGG import replay",
+    "System scanner partial failure",
+    "Scanner callback timeout",
+    "Rotation while system scan is still running",
+    "TalkBack navigation and speech",
+    "Issues 13-15 review-reproducer tests",
+    "Teammate review and AC sign-off"
+  ],
+  "regression_screenshots": [
+    {
+      "published": "RG01-ended-on-A-old-B-not-restored.png",
+      "original": "VibeRegression_4400221754300-RG01-ended-on-A-old-B-not-restored.png"
+    },
+    {
+      "published": "RG02-next-play-uses-edited-C-B.png",
+      "original": "VibeRegression_4397184629800-RG02-next-play-uses-edited-C-B.png"
+    },
+    {
+      "published": "RG03-background-return-next-is-B.png",
+      "original": "VibeRegression_4404776661700-RG03-background-return-next-is-B.png"
+    },
+    {
+      "published": "RG03-playing-landscape.png",
+      "original": "VibeRegression_4409554734400-RG03-playing-landscape.png"
+    },
+    {
+      "published": "RG03-paused-landscape.png",
+      "original": "VibeRegression_4414174898300-RG03-paused-landscape.png"
+    },
+    {
+      "published": "RG04-1-refresh-3-empty.png",
+      "original": "VibeRegression_4384531874200-RG04-1-refresh-3-empty.png"
+    },
+    {
+      "published": "RG05-all-files-unavailable-bounded-stop.png",
+      "original": "VibeRegression_4350841108000-RG05-all-files-unavailable-bounded-stop.png"
+    },
+    {
+      "published": "RG06-live-failed-query-unknown-and-disabled-play.png",
+      "original": "VibeRegression_4389410507100-RG06-live-failed-query-unknown-and-disabled-play.png"
+    },
+    {
+      "published": "RG06-live-denied-permission-unknown-and-disabled-play.png",
+      "original": "VibeRegression_4371964533300-RG06-live-denied-permission-unknown-and-disabled-play.png"
+    },
+    {
+      "published": "RG06-successful-empty-unavailable-retained.png",
+      "original": "VibeRegression_4363778571500-RG06-successful-empty-unavailable-retained.png"
+    },
+    {
+      "published": "RG07-library-favorites-queue-and-controls.png",
+      "original": "VibeRegression_4374945288300-RG07-library-favorites-queue-and-controls.png"
+    }
+  ]
+}

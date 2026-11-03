@@ -1,0 +1,26 @@
+{
+  "package": "com.iven.musicplayergo.debug",
+  "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+  "pid_before": "11702",
+  "fixture_preparation": "User confirmed independent F1 and removed B from Study; Study=[A], Running=[B,C]",
+  "before_detail": "TC09-before-study.xml and TC09-before-study.png",
+  "started_at_shanghai": "2026-10-26T20:25:13.6545383+08:00",
+  "force_stop_exit_code": 0,
+  "pidof_after_stop_exit_code": 1,
+  "pid_after_stop": "",
+  "process_stopped_verified": true,
+  "launch_output": [
+    "Starting: Intent { cmp=com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity }",
+    "Status: ok",
+    "LaunchState: COLD",
+    "Activity: com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity",
+    "TotalTime: 195",
+    "WaitTime: 198",
+    "Complete"
+  ],
+  "launch_exit_code": 0,
+  "pid_after_launch": "21492",
+  "completed_at_shanghai": "2026-10-26T20:25:14.2906054+08:00",
+  "app_data_action": "Kept existing installation and application data; no fixture changes during restart",
+  "result": "Pass: removal persisted across verified force-stop and cold launch; Study detail visually verified; user confirmed Running order and B playback; B file hash unchanged"
+}

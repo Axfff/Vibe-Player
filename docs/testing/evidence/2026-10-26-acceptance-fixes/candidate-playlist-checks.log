@@ -1,0 +1,6 @@
+{"case":"candidate-Study","tracks":["1. Test-A","2. Test-B"]}
+{"case":"candidate-Running","tracks":["1. Test-B","2. Test-C"]}
+{"case":"candidate-Order","tracks":["1. Test-C","2. Test-A","3. Test-B"]}
+{"case":"TC07-Study","tracks":["1. Test-A","2. Test-B"]}
+{"case":"TC07-Running","tracks":["1. Test-B","2. Test-C"]}
+{"case":"TC07-Order","tracks":["1. Test-C","2. Test-A","3. Test-B"]}

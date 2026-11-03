@@ -1,0 +1,40 @@
+{
+  "tested_commit": "8f2e46160cf4fa2c2942d38421855ec05fa53784",
+  "project_tree": "4428850dffd9c784929c1522d88b20ed15064e3d",
+  "source_diff_empty": true,
+  "android": {
+    "tests": 29,
+    "failures": 0,
+    "seconds": 215.954,
+    "device": "Android17/API37 arm64 disposable emulator, host audio disabled"
+  },
+  "jvm": {
+    "tests": 30,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "com.iven.musicplayergo.playlists.PlaylistRepositoryTest",
+        "tests": 24,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "suite": "com.iven.musicplayergo.library.MediaScanPolicyTest",
+        "tests": 1,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "suite": "com.iven.musicplayergo.player.PlaylistFailurePlanTest",
+        "tests": 5,
+        "failures": 0,
+        "errors": 0
+      }
+    ]
+  },
+  "command": "JAVA_HOME=<JDK17> ANDROID_HOME=<SDK> ANDROID_SERIAL=emulator-5554 REGRESSION_EVIDENCE_DIR=<temp>/automated bash scripts/check-playlist-regressions.sh",
+  "ai_assistance": true,
+  "human_review": "Deferred by owner to issue17; no new human approval claimed",
+  "additional_device_validation": "Issue18",
+  "course_and_release_preparation": "Issue19"
+}

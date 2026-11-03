@@ -1,0 +1,26 @@
+{
+  "package": "com.iven.musicplayergo.debug",
+  "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+  "pid_before": "793",
+  "fixture_preparation": "User confirmed independent F1, Study renamed to Focus, Focus=[A,B], Running=[B,C]",
+  "before_list": "TC08-before-list.xml and TC08-before-list.png",
+  "started_at_shanghai": "2026-10-26T20:18:20.3394647+08:00",
+  "force_stop_exit_code": 0,
+  "pidof_after_stop_exit_code": 1,
+  "pid_after_stop": "",
+  "process_stopped_verified": true,
+  "launch_output": [
+    "Starting: Intent { cmp=com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity }",
+    "Status: ok",
+    "LaunchState: COLD",
+    "Activity: com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity",
+    "TotalTime: 197",
+    "WaitTime: 202",
+    "Complete"
+  ],
+  "launch_exit_code": 0,
+  "pid_after_launch": "11702",
+  "completed_at_shanghai": "2026-10-26T20:18:20.9798061+08:00",
+  "app_data_action": "Kept existing installation and application data; no fixture changes during restart",
+  "result": "Pass: rename persisted across verified force-stop and cold launch; operator confirmed all names, memberships and orders; Focus detail visually verified"
+}

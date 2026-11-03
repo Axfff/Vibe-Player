@@ -1,0 +1,92 @@
+INSTRUMENTATION_STATUS: class=com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest:
+INSTRUMENTATION_STATUS: test=mediaSessionPauseDoesNotResumePausedPlaylist
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Unexpected real MediaPlayer audio: explicit MediaSession Pause while paused
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:236)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:235)
+	at com.iven.musicplayergo.regression.RegressionFixture.onMain$lambda$6(RegressionFixture.kt:137)
+	at com.iven.musicplayergo.regression.RegressionFixture.$r8$lambda$u4gHqXlQ2tdfQ5RVHKpkreCuUfQ(RegressionFixture.kt:0)
+	at com.iven.musicplayergo.regression.RegressionFixture$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:4)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2657)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:296)
+	at android.os.Looper.loop(Looper.java:397)
+	at android.app.ActivityThread.main(ActivityThread.java:9523)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+
+INSTRUMENTATION_STATUS: stream=
+Error in mediaSessionPauseDoesNotResumePausedPlaylist(com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest):
+java.lang.AssertionError: Unexpected real MediaPlayer audio: explicit MediaSession Pause while paused
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:236)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:235)
+	at com.iven.musicplayergo.regression.RegressionFixture.onMain$lambda$6(RegressionFixture.kt:137)
+	at com.iven.musicplayergo.regression.RegressionFixture.$r8$lambda$u4gHqXlQ2tdfQ5RVHKpkreCuUfQ(RegressionFixture.kt:0)
+	at com.iven.musicplayergo.regression.RegressionFixture$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:4)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2657)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:296)
+	at android.os.Looper.loop(Looper.java:397)
+	at android.app.ActivityThread.main(ActivityThread.java:9523)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+
+INSTRUMENTATION_STATUS: test=mediaSessionPauseDoesNotResumePausedPlaylist
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.054
+There was 1 failure:
+1) mediaSessionPauseDoesNotResumePausedPlaylist(com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest)
+java.lang.AssertionError: Unexpected real MediaPlayer audio: explicit MediaSession Pause while paused
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertFalse(Assert.java:65)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:236)
+	at com.iven.musicplayergo.regression.PlaylistRecoveryRegressionTest$assertSilent$1$1.invoke(PlaylistRecoveryRegressionTest.kt:235)
+	at com.iven.musicplayergo.regression.RegressionFixture.onMain$lambda$6(RegressionFixture.kt:137)
+	at com.iven.musicplayergo.regression.RegressionFixture.$r8$lambda$u4gHqXlQ2tdfQ5RVHKpkreCuUfQ(RegressionFixture.kt:0)
+	at com.iven.musicplayergo.regression.RegressionFixture$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:4)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:520)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2657)
+	at android.os.Handler.handleCallback(Handler.java:1095)
+	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+	at android.os.Handler.dispatchMessage(Handler.java:125)
+	at android.os.Looper.loopOnce(Looper.java:296)
+	at android.os.Looper.loop(Looper.java:397)
+	at android.app.ActivityThread.main(ActivityThread.java:9523)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:939)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

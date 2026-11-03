@@ -89,6 +89,16 @@
                 app:srcCompat="@drawable/ic_queue_music" />
 
             <ImageButton
+                android:id="@+id/playlists_button"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:background="?android:attr/actionBarItemBackground"
+                android:contentDescription="@string/playlist_playback_open"
+                android:padding="8dp"
+                app:srcCompat="@drawable/ic_custom_playlists" />
+
+            <ImageButton
                 android:id="@+id/favorites_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,0 +1,15 @@
+{
+  "source": "70d2f8d3a2431921b0cca96d20387e1a2ce45190",
+  "old_pid": "20032",
+  "after_stop": null,
+  "new_pid": "20996",
+  "launch": [
+    "Starting: Intent { cmp=com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity }",
+    "Status: ok",
+    "LaunchState: COLD",
+    "Activity: com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity",
+    "TotalTime: 686",
+    "WaitTime: 688",
+    "Complete"
+  ]
+}

@@ -4,14 +4,23 @@ import android.app.Application
 import android.content.res.Resources
 import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.utils.MusicUtils
+import com.iven.musicplayergo.utils.Permissions
 import com.iven.musicplayergo.utils.Versioning
 import kotlinx.coroutines.*
 import java.io.File
-import kotlin.random.Random
+
+/** A failed/unfinished query must not make saved playlist entries appear deleted. */
+data class PlaylistLibraryState(
+    val songs: List<Music> = emptyList(),
+    val isLoading: Boolean = false,
+    val hasLoaded: Boolean = false,
+    val refreshFailed: Boolean = false
+)
 
 
 class MusicViewModel(application: Application): AndroidViewModel(application) {
@@ -22,16 +31,15 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
      */
     private val mViewModelJob = SupervisorJob()
 
-    private val mHandler = CoroutineExceptionHandler { _, exception ->
-        exception.printStackTrace()
-        deviceMusic.value = null
-    }
-
     private val mUiDispatcher = Dispatchers.Main
-    private val mIoDispatcher = Dispatchers.IO + mViewModelJob + mHandler
-    private val mUiScope = CoroutineScope(mUiDispatcher)
+    private val mUiScope = CoroutineScope(mUiDispatcher + mViewModelJob)
+    private var scanJob: Job? = null
 
     val deviceMusic = MutableLiveData<MutableList<Music>?>()
+    private val mutablePlaylistLibraryState = MutableLiveData(PlaylistLibraryState())
+    val playlistLibraryState: LiveData<PlaylistLibraryState> = mutablePlaylistLibraryState
+    val playlistLibrary: List<Music>
+        get() = mutablePlaylistLibraryState.value?.songs.orEmpty()
 
     private var mDeviceMusicList = mutableListOf<Music>()
 
@@ -52,12 +60,7 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
     //keys: artist || value: songs contained in the folder
     var deviceMusicByFolder: Map<String, List<Music>>? = null
 
-    fun getRandomMusic(): Music? {
-        deviceMusicFiltered?.shuffled()?.run {
-           return get(Random.nextInt(size))
-        }
-        return deviceMusicFiltered?.random()
-    }
+    fun getRandomMusic(): Music? = deviceMusicFiltered?.randomOrNull()
 
     /**
      * Cancel all coroutines when the ViewModel is cleared
@@ -72,20 +75,52 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getDeviceMusic() {
-        mUiScope.launch {
-            withContext(mIoDispatcher) {
-                val music = getMusic(getApplication()) // get music from MediaStore on IO thread
-                withContext(mUiDispatcher) {
-                    deviceMusic.value = music // post values on Main thread
-                }
+        scanLibrary(updateSavedPlayback = true)
+    }
+
+    /** Refresh both library views while leaving the running playback snapshot alone. */
+    fun refreshPlaylistLibrary() {
+        scanLibrary(updateSavedPlayback = false)
+    }
+
+    private fun scanLibrary(updateSavedPlayback: Boolean) {
+        if (scanJob?.isActive == true) return
+        scanJob = mUiScope.launch {
+            val previous = mutablePlaylistLibraryState.value ?: PlaylistLibraryState()
+            mutablePlaylistLibraryState.value = previous.copy(isLoading = true, refreshFailed = false)
+            val scanned = try {
+                val scanned = withContext(Dispatchers.IO) { queryForMusic(getApplication()) }
+                    ?: throw IllegalStateException("The media library query did not complete")
+                mDeviceMusicList = scanned
+                buildLibrary(getApplication<Application>().resources, updateSavedPlayback)
+                scanned
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (exception: Exception) {
+                exception.printStackTrace()
+                mutablePlaylistLibraryState.value = previous.copy(
+                    isLoading = false, refreshFailed = true
+                )
+                if (!previous.hasLoaded) deviceMusic.value = null
+                return@launch
             }
+            // Observer/UI failures are not failed MediaStore queries. Publish only
+            // after query and index construction have completed successfully.
+            mutablePlaylistLibraryState.value = PlaylistLibraryState(
+                songs = scanned.toList(), hasLoaded = true
+            )
+            deviceMusic.value = scanned.toMutableList()
         }
     }
 
     @Suppress("DEPRECATION")
-    fun queryForMusic(application: Application) =
-
-         try {
+    fun queryForMusic(application: Application): MutableList<Music>? {
+         return try {
+             // A permission-limited MediaStore query may succeed with a filtered or empty
+             // result. It cannot establish that saved playlist files have disappeared.
+             if (Permissions.hasToAskForReadStoragePermission(application)) return null
+             // Build a fresh result: a refresh must not retain deleted rows or add duplicates.
+             val scannedMusic = mutableListOf<Music>()
              val pathColumn = if (Versioning.isQ()) {
                  MediaStore.Audio.AudioColumns.BUCKET_DISPLAY_NAME
              } else {
@@ -110,9 +145,10 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
              val sortOrder = MediaStore.Audio.Media.DEFAULT_SORT_ORDER
 
              val musicCursor = application.contentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, selection, null, sortOrder)
+                 ?: return null
 
              // Query the storage for music files
-             musicCursor?.use { cursor ->
+             musicCursor.use { cursor ->
 
                  val artistIndex =
                      cursor.getColumnIndexOrThrow(MediaStore.Audio.AudioColumns.ARTIST)
@@ -163,7 +199,7 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                          }
 
                      // Add the current music to the list
-                     mDeviceMusicList.add(
+                     scannedMusic.add(
                          Music(
                              audioArtist,
                              audioYear,
@@ -182,28 +218,14 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                      )
                  }
              }
-             mDeviceMusicList
+             scannedMusic
          } catch (e: Exception) {
              e.printStackTrace()
              null
          }
-
-    private fun getMusic(application: Application): MutableList<Music> {
-        synchronized(startQuery(application)) {
-            if (mDeviceMusicList.isNotEmpty()) {
-                buildLibrary(application.resources)
-            }
-        }
-        return mDeviceMusicList
     }
 
-    private fun startQuery(application: Application) {
-        queryForMusic(application)?.let { fm ->
-            mDeviceMusicList = fm
-        }
-    }
-
-    private fun buildLibrary(resources: Resources) {
+    private fun buildLibrary(resources: Resources, updateSavedPlayback: Boolean) {
         // Removing duplicates by comparing everything except path which is different
         // if the same song is hold in different paths
         deviceMusicFiltered =
@@ -217,13 +239,14 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
         }
 
         deviceMusicFiltered?.let { dsf ->
-            dsf.filterNot { GoPreferences.getPrefsInstance().filters?.contains(it.artist)!!}
             // group music by artist
             deviceSongsByArtist = dsf.groupBy { it.artist }
             deviceMusicByAlbum = dsf.groupBy { it.album }
             deviceMusicByFolder = dsf.groupBy { it.relativePath!! }
         }
 
+        // Rebuild derived indexes even when a successful scan has no songs.
+        deviceAlbumsByArtist = mutableMapOf()
         // group artists songs by albums
         deviceSongsByArtist?.keys?.iterator()?.let { iterate ->
             while (iterate.hasNext()) {
@@ -235,7 +258,9 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                 }
             }
         }
-        updatePreferences()
+        // Saved playlists are resolved without deleting unavailable memberships.
+        // A user-requested refresh also must not replace an active playback snapshot.
+        if (updateSavedPlayback) updatePreferences()
     }
 
     private fun updatePreferences() {
@@ -253,7 +278,9 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                     it.copy(albumId = music?.albumId, id= music?.id)
                 }
                 // filter queue to remove songs not available on the device
-                prefs.queue = updatedQueue.filter { deviceMusic.contains(it.copy(startFrom = 0))}
+                prefs.queue = updatedQueue.filter {
+                    deviceMusic.contains(it.copy(startFrom = 0, launchedBy = GoConstants.ARTIST_VIEW))
+                }
             }
 
             // update favorite songs id
@@ -262,7 +289,10 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                     val music = findMusic(it)
                     it.copy(albumId = music?.albumId, id= music?.id)
                 }
-                prefs.favorites = updatedFavorites.filter { deviceMusic.contains(it.copy(startFrom = 0))}
+                prefs.favorites = updatedFavorites.filter {
+                    // Playback source is not file identity (e.g. a playlist position bookmark).
+                    deviceMusic.contains(it.copy(startFrom = 0, launchedBy = GoConstants.ARTIST_VIEW))
+                }
             }
 
             // check if pre queue song exists and update id

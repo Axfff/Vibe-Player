@@ -1,0 +1,8 @@
+{
+  "screen": "focus",
+  "xml": "TC08-after-focus.xml",
+  "screenshot": "TC08-after-focus.png",
+  "observed": "Focus contains Test-A then Test-B",
+  "pid": "11702",
+  "checked_at_shanghai": "2026-10-26T20:20:50.8347678+08:00"
+}

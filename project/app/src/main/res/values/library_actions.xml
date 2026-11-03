@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="library_open_playlists_description">Open and manage saved playlists</string>
+    <string name="library_scan_music">Scan local music</string>
+    <string name="library_import_help">Missing songs?</string>
+    <string name="library_import_instructions">Allow music and audio access in system settings, then tap Scan local music.\n\nIf copied songs are still missing, use the system Files app to copy them into Music, wait for Android to index them, then scan again. Also check hidden artists, albums and folders.\n\nEach scan checks up to 1,000 recent audio files accessible to this app and refreshes the library. Refresh inside a playlist updates its library view.</string>
+    <string name="library_scan_running">Asking Android to index accessible audio…</string>
+    <string name="library_scan_refreshing">Refreshing the music library…</string>
+    <string name="library_scan_permission">Allow music and audio access in system settings, then try again. Saved playlists are kept.</string>
+    <string name="library_scan_failed">Could not scan accessible audio. Check access and try again; saved playlists are kept.</string>
+    <string name="library_scan_refresh_failed">The indexing request ended, but the music library could not be read. Check access and try again.</string>
+    <string name="library_scan_timeout">Android did not finish indexing in time. Some files may still be processing. Try again after the system finishes.</string>
+    <string name="library_scan_no_candidates">No accessible audio to scan. See Missing songs? for help.</string>
+    <string name="library_scan_partial">Scanned %1$d of %2$d audio files. Some entries were skipped or the 1,000-file limit was reached. See Missing songs? for help.</string>
+    <string name="library_scan_complete">Scanned %1$d audio files. Music library refreshed.</string>
+</resources>

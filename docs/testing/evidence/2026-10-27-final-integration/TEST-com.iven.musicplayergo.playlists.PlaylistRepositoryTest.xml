@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2026-10-26T16:28:33" hostname="zhaojdeMacBook-Air.local" time="0.122">
+  <properties/>
+  <testcase name="storageExceptionsAreReturnedAsFailures" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.046"/>
+  <testcase name="invalidJsonAndUnsupportedVersionAreNeverSilentlyOverwritten" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.003"/>
+  <testcase name="obviousIdReuseDoesNotResolveToADifferentFile" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.002"/>
+  <testcase name="deletionPreservesOtherPlaylistsAndDoesNotReappearAfterRestart" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.006"/>
+  <testcase name="additionOrderSurvivesRestartAndDuplicatesKeepTheirPosition" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="duplicateNamesDoNotDependOnTheDevicesDefaultLocale" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="missingTrackRetainsItsSnapshotAndAvailableTracksKeepSavedOrder" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="removalAffectsOnlyOneMembershipAndPersistsAfterRestart" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.002"/>
+  <testcase name="emptyPlaylistHasNoPlayableTracks" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="removingThenAddingAgainAppendsTheTrackToTheEnd" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.002"/>
+  <testcase name="invalidMediaReferencesAreRejectedWithoutChangingThePlaylist" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="invalidStoredNamesIdentitiesAndDuplicateMembershipsAreRejected" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.007"/>
+  <testcase name="renameExcludesItselfAndKeepsIdentityMembershipAndOrder" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.005"/>
+  <testcase name="failedMutationsNeverReportSuccessOrReplaceTheSavedDocument" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.003"/>
+  <testcase name="concurrentAddsOnTheSharedRepositoryDoNotLoseUpdates" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.029"/>
+  <testcase name="unknownPlaylistAndTrackOperationsAreExplicitAndLeaveStorageUntouched" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.002"/>
+  <testcase name="differentMediaIdsWithTheSameTitleAreDistinctTracks" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="allUnavailableEntriesStayVisibleAndBecomeAvailableAgainWhenRestored" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="invalidRenameKeepsTheSavedNameAndTracks" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="freshStorageHasNoPlaylists" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="nullDisplayMetadataCanBePersistedAndResolvedWithoutTitleGuessing" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.001"/>
+  <testcase name="createsIndependentPlaylistsWithTrimmedNamesAndStableUuids" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.0"/>
+  <testcase name="blankAndCaseInsensitiveDuplicateNamesDoNotWriteAnything" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.0"/>
+  <testcase name="sameTitleUnderAnotherIdNeverRebindsAnUnavailableEntry" classname="com.iven.musicplayergo.playlists.PlaylistRepositoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

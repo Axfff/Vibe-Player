@@ -3,6 +3,7 @@ package com.iven.musicplayergo.fragments
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
@@ -11,6 +12,7 @@ import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.databinding.FragmentErrorBinding
 import com.iven.musicplayergo.ui.UIControlInterface
+import com.iven.musicplayergo.ui.MainActivity
 
 /**
  * A simple [Fragment] subclass.
@@ -76,6 +78,14 @@ class ErrorFragment : Fragment() {
 
             errorToolbar.setNavigationOnClickListener {
                 mUIControlInterface.onCloseActivity()
+            }
+            // Saved playlists remain useful when the device library is empty or inaccessible.
+            errorToolbar.menu.add(R.string.playlist_playback_open).apply {
+                setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS or MenuItem.SHOW_AS_ACTION_WITH_TEXT)
+                setOnMenuItemClickListener {
+                    (activity as? MainActivity)?.openPlaylists()
+                    true
+                }
             }
         }
     }

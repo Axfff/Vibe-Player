@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.iven.musicplayergo.player.PlaylistFailurePlanTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-25T15:24:11" hostname="LAPTOP-VDSRFII8" time="0.03">
+  <properties/>
+  <testcase name="positionAndPlaybackSourceDoNotChangeTrackIdentity" classname="com.iven.musicplayergo.player.PlaylistFailurePlanTest" time="0.029"/>
+  <testcase name="failedMiddleTrackAdvancesWithoutChangingSavedOrder" classname="com.iven.musicplayergo.player.PlaylistFailurePlanTest" time="0.001"/>
+  <testcase name="aLateDuplicateFailureCannotStartAnotherTrack" classname="com.iven.musicplayergo.player.PlaylistFailurePlanTest" time="0.0"/>
+  <testcase name="aFullyUnavailablePlaylistExhaustsAfterOneAttemptPerEntry" classname="com.iven.musicplayergo.player.PlaylistFailurePlanTest" time="0.0"/>
+  <testcase name="failedLastTrackRespectsListEndPreference" classname="com.iven.musicplayergo.player.PlaylistFailurePlanTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,2 @@
+--------- beginning of main
+10-26 23:27:55.929  5123  5167 I PlaylistRegression: fixture-ready: song=VibeRegression_420050897074_C.wav, state=2, queue=[], playlist=false

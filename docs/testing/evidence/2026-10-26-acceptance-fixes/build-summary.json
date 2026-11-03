@@ -1,0 +1,42 @@
+{
+  "source": "70d2f8d3a2431921b0cca96d20387e1a2ce45190",
+  "upstream": "60b7afc882ea1da542eb1b08310a1990e539fa01",
+  "command": "gradlew.bat --no-daemon --console=plain :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest",
+  "environment": "Windows; Temurin 17.0.20.1+1; SDK 33; Gradle Wrapper 8.0",
+  "result": "BUILD SUCCESSFUL in 18s; 71 actionable tasks: 5 executed, 66 up-to-date",
+  "unit_tests": [
+    {
+      "name": "com.iven.musicplayergo.library.MediaScanPolicyTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "com.iven.musicplayergo.player.PlaylistFailurePlanTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0
+    },
+    {
+      "name": "com.iven.musicplayergo.playlists.PlaylistRepositoryTest",
+      "tests": 24,
+      "failures": 0,
+      "errors": 0
+    }
+  ],
+  "apks": [
+    {
+      "file": "app-debug-androidTest.apk",
+      "bytes": 550234,
+      "sha256": "a3ff3b54b3d297451d7a93430ba4abe21657fddea6600e6776ab8d799f13c83e"
+    },
+    {
+      "file": "app-debug.apk",
+      "bytes": 8345303,
+      "sha256": "f0e430a869e8b8f3878da5222a23ba869598b007e15ab91a3af4566d7a902d07"
+    }
+  ],
+  "initial_attempt": "Maven AAR TLS handshake failed; same command retry succeeded",
+  "candidate_zip_sha256": "5cda8d88c41ea44135f3e0a9cc86b6730b8400ce136dd7b9767a1600b7239955",
+  "regression_result": "24 Android RG01-RG07 tests passed; first run 23 passed and RG07 timed out at a debounced click; test gesture timing corrected"
+}

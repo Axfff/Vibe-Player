@@ -1,0 +1,7 @@
+source_commit=60b7afc882ea1da542eb1b08310a1990e539fa01
+device_serial=emulator-5554
+android_release=17
+android_api=37
+abi=arm64-v8a
+test_filter=com.iven.musicplayergo.regression.PlaylistPresentationRegressionTest,com.iven.musicplayergo.regression.PlaylistAudioEffectRegressionTest
+started_utc=2026-10-26T15:24:52Z

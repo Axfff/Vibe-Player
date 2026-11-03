@@ -1,0 +1,26 @@
+{
+  "package": "com.iven.musicplayergo.debug",
+  "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+  "pid_before": "21492",
+  "fixture_preparation": "User confirmed independent F1, deleted Study and checked only Running=[B,C] remains",
+  "before_detail": "TC10-before-running.xml and TC10-before-running.png",
+  "started_at_shanghai": "2026-10-26T20:31:34.7275932+08:00",
+  "force_stop_exit_code": 0,
+  "pidof_after_stop_exit_code": 1,
+  "pid_after_stop": "",
+  "process_stopped_verified": true,
+  "launch_output": [
+    "Starting: Intent { cmp=com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity }",
+    "Status: ok",
+    "LaunchState: COLD",
+    "Activity: com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity",
+    "TotalTime: 193",
+    "WaitTime: 199",
+    "Complete"
+  ],
+  "launch_exit_code": 0,
+  "pid_after_launch": "22355",
+  "completed_at_shanghai": "2026-10-26T20:31:35.4090495+08:00",
+  "app_data_action": "Kept existing installation and application data; no fixture changes during restart",
+  "result": "Pass: user confirmed Study remains deleted and Running=[B,C] after verified force-stop/cold launch; all three Songs entries visually verified and all file hashes unchanged"
+}

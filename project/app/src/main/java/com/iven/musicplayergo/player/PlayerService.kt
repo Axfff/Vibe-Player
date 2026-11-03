@@ -46,11 +46,11 @@ class PlayerService : Service() {
     private val mMediaSessionCallback = object : MediaSessionCompat.Callback() {
 
         override fun onPlay() {
-            mMediaPlayerHolder.resumeOrPause()
+            mMediaPlayerHolder.resumeMediaPlayer()
         }
 
         override fun onPause() {
-            mMediaPlayerHolder.resumeOrPause()
+            mMediaPlayerHolder.pauseMediaPlayer()
         }
 
         override fun onSkipToNext() {
@@ -232,7 +232,20 @@ class PlayerService : Service() {
 
                 if (event.action == KeyEvent.ACTION_DOWN) {
                     when (event.keyCode) {
-                        KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_HEADSETHOOK -> {
+                        KeyEvent.KEYCODE_MEDIA_PLAY -> {
+                            // Explicit commands are idempotent and do not form headset clicks.
+                            headsetClicks = 0
+                            mLastTimeClick = 0L
+                            mMediaPlayerHolder.resumeMediaPlayer()
+                            return true
+                        }
+                        KeyEvent.KEYCODE_MEDIA_PAUSE -> {
+                            headsetClicks = 0
+                            mLastTimeClick = 0L
+                            mMediaPlayerHolder.pauseMediaPlayer()
+                            return true
+                        }
+                        KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_HEADSETHOOK -> {
                             // respond to double click
                             if (eventTime - mLastTimeClick <= DOUBLE_CLICK) headsetClicks = 2
                             if (headsetClicks == 2) {

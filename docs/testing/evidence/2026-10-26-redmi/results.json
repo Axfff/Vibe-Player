@@ -1,0 +1,565 @@
+{
+  "head": "785e0863e1efa8f44574cec1444b649a4016c911",
+  "device": "REDMI K90 Pro Max / Android 16 API 36",
+  "cases": [
+    {
+      "id": "TC01",
+      "status": "Pass",
+      "actual": "用户人工执行全部 TC01 步骤并确认符合预期：Study 名称去除首尾空格，Running 独立创建，两歌单均为空；空名称、纯空格和 study 重名输入均被拒绝。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "TC01全部符合",
+          "recorded_at_shanghai": "2026-10-26T18:26:59.9906802+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC01-list.xml",
+          "screenshot": "TC01-list.png",
+          "observed": "Playlist list contains Study (0 songs) and Running (0 songs)",
+          "captured_at_shanghai": "2026-10-26T18:28:35.5808329+08:00"
+        }
+      ],
+      "screenshot_status": "Captured and visually checked: Study and Running each show 0 songs"
+    },
+    {
+      "id": "TC02",
+      "status": "Pass",
+      "actual": "用户确认全部 TC02 步骤符合预期：改名去除首尾空格；空名称、纯空格、其他歌单的大小写变体重名均被拒绝；保留自身名称和仅改变自身名称大小写均可保存；两歌单成员和顺序保持不变。设备 XML 和截图确认最终名称为 fOcUs，曲目为 [Test-A, Test-B]。Running=[B,C] 和中间校验反馈依据用户人工报告。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "text": "TC02全部符合",
+          "source": "Current conversation",
+          "recorded_at_shanghai": "2026-10-26T18:59:04.9351239+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC02-focus.xml",
+          "screenshot": "TC02-focus.png",
+          "observed_name": "fOcUs",
+          "observed_order": [
+            "Test-A",
+            "Test-B"
+          ],
+          "observed_count": 2,
+          "captured_at_shanghai": "2026-10-26T18:58:42.3685412+08:00",
+          "visual_check": "fOcUs heading, 2 songs, 1. Test-A followed by 2. Test-B"
+        }
+      ]
+    },
+    {
+      "id": "TC03",
+      "status": "Pass",
+      "actual": "用户按 A→B 重新添加并完成去重复核；设备 XML 与截图显示 Study 恰有 Test-A、Test-B 两首，顺序为 [A,B]。Running=[B,C]、跨歌单共享 B 及重复添加反馈依据用户的用例完成报告。首次观察到的 [B,A] 与用户确认的首次添加顺序相符。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "text": "TC03全部符合",
+          "source": "Current conversation"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC03-study.xml",
+          "screenshot": "TC03-study.png",
+          "observed_order": [
+            "Test-B",
+            "Test-A"
+          ],
+          "observed_count": 2,
+          "captured_at_shanghai": "2026-10-26T18:32:01.6651555+08:00"
+        },
+        {
+          "type": "user_clarification",
+          "text": "最初就是先加 B 再加 A",
+          "interpretation": "Observed Study order matches actual insertion order",
+          "recorded_at_shanghai": "2026-10-26T18:33:10.6227061+08:00"
+        },
+        {
+          "type": "user_report",
+          "text": "已按A，B复核完成",
+          "source": "Current conversation",
+          "recorded_at_shanghai": "2026-10-26T18:38:59.711755+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC03-study-recheck.xml",
+          "screenshot": "TC03-study-recheck.png",
+          "observed_order": [
+            "Test-A",
+            "Test-B"
+          ],
+          "observed_count": 2,
+          "captured_at_shanghai": "2026-10-26T18:34:55.3886221+08:00",
+          "visual_check": "Study heading, 2 songs, 1. Test-A followed by 2. Test-B"
+        }
+      ]
+    },
+    {
+      "id": "TC04",
+      "status": "Pass",
+      "actual": "用户确认 TC04 全部符合预期：从 Study 移除 B 后 Study=[A]，Running 保持 [B,C]，B 在曲库仍可播放并听到对应声音。ADB 验证 Test-B.wav 仍存在，SHA256 与原始测试文件一致；补拍的 XML 与截图确认 Study 只剩 Test-A 一首。Running 状态及播放声音依据用户人工报告。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "text": "TC04全部符合",
+          "source": "Current conversation",
+          "recorded_at_shanghai": "2026-10-26T19:33:39.5719988+08:00"
+        },
+        {
+          "type": "device_file_hash",
+          "file": "TC04-test-b-sha256.txt",
+          "device_path": "/storage/emulated/0/Music/VibePlayerSprint2-20261026/Folder-One/Test-B.wav",
+          "sha256": "f822a1bc604687c4b5620f27fbb6c48e5b26bc4d5e9bb5c76eb976e715c6196d",
+          "result": "Matches original test fixture",
+          "checked_at_shanghai": "2026-10-26T19:33:39.5777117+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC04-study.xml",
+          "screenshot": "TC04-study.png",
+          "observed_name": "Study",
+          "observed_order": [
+            "Test-A"
+          ],
+          "observed_count": 1,
+          "captured_at_shanghai": "2026-10-26T19:35:13.777388+08:00",
+          "visual_check": "Study heading, 1 song, 1. Test-A; no Test-B row"
+        }
+      ],
+      "screenshot_status": "Captured and visually checked: Study contains only Test-A"
+    },
+    {
+      "id": "TC05",
+      "status": "Pass",
+      "actual": "用户确认 TC05 全部符合预期：删除 Study 后仅剩 Running，Running 保持 [B,C]，曲库仍有 A/B/C，Test-A 能播放并听到对应声音。设备 XML 与截图确认歌单列表只显示 Running（2 首歌曲）；ADB 校验三个测试音频文件均存在，SHA256 分别与原始素材一致。Running 内部顺序及播放声音依据用户人工报告。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "text": "TC05全部符合",
+          "source": "Current conversation",
+          "recorded_at_shanghai": "2026-10-26T19:40:25.3850814+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC05-list.xml",
+          "screenshot": "TC05-list.png",
+          "observed_playlists": [
+            "Running"
+          ],
+          "observed_song_count": 2,
+          "captured_at_shanghai": "2026-10-26T19:39:36.6234401+08:00",
+          "visual_check": "Playlist list contains only Running, showing 2 songs"
+        },
+        {
+          "type": "device_file_hash",
+          "file": "TC05-fixture-sha256.txt",
+          "files": [
+            "Folder-One/Test-A.wav",
+            "Folder-One/Test-B.wav",
+            "Folder-Two/Test-C.wav"
+          ],
+          "device_directory": "/storage/emulated/0/Music/VibePlayerSprint2-20261026",
+          "result": "All three SHA256 values match original test fixtures",
+          "checked_at_shanghai": "2026-10-26T19:39:36.7260823+08:00"
+        }
+      ],
+      "screenshot_status": "Captured and visually checked: only Running remains, showing 2 songs"
+    },
+    {
+      "id": "TC06",
+      "status": "Pass",
+      "actual": "用户确认 TC06 全部符合预期：Order 按 C→A→B 添加；从歌单播放以 C 开始，手动下一首依次为 A、B；再次从歌单播放，C 自然结束后自动到 A。播放行为及播放设置依据用户人工报告。设备 XML 与截图确认保存歌单 Order 恰有 Test-C、Test-A、Test-B 三首，顺序保持 [C,A,B]。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "text": "TC06全部符合",
+          "source": "Current conversation",
+          "reported_manual_sequence": [
+            "Test-C",
+            "Test-A",
+            "Test-B"
+          ],
+          "reported_natural_transition": [
+            "Test-C",
+            "Test-A"
+          ],
+          "reported_saved_order": [
+            "Test-C",
+            "Test-A",
+            "Test-B"
+          ],
+          "test_preconditions": "Per instructed TC06: single repeat off; continue playback after song completion; list end Stop",
+          "recorded_at_shanghai": "2026-10-26T19:54:37.1746384+08:00"
+        },
+        {
+          "type": "ui_snapshot",
+          "xml": "TC06-order.xml",
+          "screenshot": "TC06-order.png",
+          "observed_name": "Order",
+          "observed_order": [
+            "Test-C",
+            "Test-A",
+            "Test-B"
+          ],
+          "observed_count": 3,
+          "captured_at_shanghai": "2026-10-26T19:54:59.8377828+08:00",
+          "visual_check": "Order heading, 3 songs, Test-C then Test-A then Test-B"
+        }
+      ],
+      "screenshot_status": "Captured and visually checked: Order contains Test-C, Test-A, Test-B in saved insertion order"
+    },
+    {
+      "id": "TC07",
+      "status": "Pass",
+      "actual": "用户逐个核对并确认 TC07 全部符合预期：强停并重开同一安装后，Study=[A,B]、Running=[B,C]、Order=[C,A,B]，名称、成员和顺序均保留。重启前后 XML 与截图确认三个歌单名称及曲目数 2、2、3 一致；具体曲目及顺序依据用户逐个检查报告。ADB 记录旧进程 30192 已结束，冷启动后新进程为 793，验收截图时仍为 793。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "准备好了",
+          "context": "TC07 independent fixture preparation: Study=[A,B], Running=[B,C], Order=[C,A,B]"
+        },
+        {
+          "type": "ui_snapshot_before_restart",
+          "xml": "TC07-before-list.xml",
+          "screenshot": "TC07-before-list.png",
+          "observed_names": [
+            "Study",
+            "Running",
+            "Order"
+          ],
+          "observed_counts": [
+            2,
+            2,
+            3
+          ],
+          "captured_at_shanghai": "2026-10-26T20:04:01.5631022+08:00",
+          "visual_check": "Three playlists shown with counts 2, 2 and 3"
+        },
+        {
+          "type": "process_restart",
+          "file": "TC07-restart.json",
+          "method": "adb shell am force-stop followed by am start -W",
+          "process_stopped_verified": true,
+          "pid_before": "30192",
+          "pid_after_launch": "793",
+          "launch_state": "COLD",
+          "application_data": "Existing installation and data retained"
+        },
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "TC07全部符合",
+          "reported_playlists": {
+            "Study": [
+              "Test-A",
+              "Test-B"
+            ],
+            "Running": [
+              "Test-B",
+              "Test-C"
+            ],
+            "Order": [
+              "Test-C",
+              "Test-A",
+              "Test-B"
+            ]
+          },
+          "recorded_at_shanghai": "2026-10-26T20:10:51.30686+08:00"
+        },
+        {
+          "type": "ui_snapshot_after_restart",
+          "xml": "TC07-after-list.xml",
+          "screenshot": "TC07-after-list.png",
+          "observed_names": [
+            "Study",
+            "Running",
+            "Order"
+          ],
+          "observed_counts": [
+            2,
+            2,
+            3
+          ],
+          "captured_at_shanghai": "2026-10-26T20:10:13.9903693+08:00",
+          "visual_check": "Study 2 songs, Running 2 songs, Order 3 songs"
+        },
+        {
+          "type": "process_check_at_verification",
+          "file": "TC07-process-after-check.json",
+          "pid": "793",
+          "result": "Matches cold-started process"
+        }
+      ],
+      "screenshot_status": "Before and after playlist lists captured and visually checked; individual membership/order checked by operator"
+    },
+    {
+      "id": "TC08",
+      "status": "Pass",
+      "actual": "用户确认 TC08 全部符合预期：同一安装强停重启后，仅有 Focus=[A,B]、Running=[B,C]，旧名 Study 未恢复。重启前列表截图确认改名已保存；重启后 XML 与截图直接确认 Focus 名称以及 Test-A→Test-B 的顺序，Running 与旧名检查依据用户报告。ADB 已验证旧进程结束并冷启动新进程 11702，结果核对时仍为该进程。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "准备好了",
+          "context": "TC08 independent F1; Study renamed to Focus; Focus=[A,B], Running=[B,C]"
+        },
+        {
+          "type": "ui_snapshot_before_restart",
+          "xml": "TC08-before-list.xml",
+          "screenshot": "TC08-before-list.png",
+          "observed_names": [
+            "Focus",
+            "Running"
+          ],
+          "observed_counts": [
+            2,
+            2
+          ],
+          "captured_at_shanghai": "2026-10-26T20:17:51.5892682+08:00",
+          "visual_check": "Focus 2 songs, Running 2 songs; no Study"
+        },
+        {
+          "type": "process_restart",
+          "file": "TC08-restart.json",
+          "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+          "process_stopped_verified": true,
+          "pid_before": "793",
+          "pid_after_launch": "11702",
+          "application_data": "Existing installation and data retained"
+        },
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "全部符合",
+          "context": "Post-restart TC08: Focus=[A,B], Running=[B,C], no Study",
+          "recorded_at_shanghai": "2026-10-26T20:21:15.2126957+08:00"
+        },
+        {
+          "type": "ui_snapshot_after_restart",
+          "xml": "TC08-after-focus.xml",
+          "screenshot": "TC08-after-focus.png",
+          "observed": "Focus contains Test-A then Test-B",
+          "observed_name": "Focus",
+          "observed_order": [
+            "Test-A",
+            "Test-B"
+          ],
+          "captured_at_shanghai": "2026-10-26T20:20:50.8347678+08:00",
+          "visual_check": "Focus heading, 2 songs, Test-A followed by Test-B"
+        },
+        {
+          "type": "process_check_at_verification",
+          "file": "TC08-after-observation.json",
+          "pid": "11702",
+          "matches_cold_start": true
+        }
+      ],
+      "screenshot_status": "Before list and after Focus detail captured and visually checked"
+    },
+    {
+      "id": "TC09",
+      "status": "Pass",
+      "actual": "用户确认 TC09 全部符合预期：同一安装强停重启后 Study 仅有 A，B 未重新出现；Running 保持 [B,C]；在 Songs 播放 B 并听到对应提示音。重启前后 XML 与截图直接确认 Study 只剩 Test-A，Test-B 文件前后 SHA256 均与原始素材一致。Running 顺序及播放声音依据用户报告。ADB 已验证旧进程结束并冷启动新进程 21492，核对时仍为该进程。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "准备好了",
+          "context": "TC09 independent F1; removed Test-B from Study; Study=[A], Running=[B,C]"
+        },
+        {
+          "type": "ui_snapshot_before_restart",
+          "xml": "TC09-before-study.xml",
+          "screenshot": "TC09-before-study.png",
+          "observed_name": "Study",
+          "observed_tracks": [
+            "Test-A"
+          ],
+          "captured_at_shanghai": "2026-10-26T20:24:39.8436972+08:00",
+          "visual_check": "Study contains only Test-A"
+        },
+        {
+          "type": "process_restart",
+          "file": "TC09-restart.json",
+          "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+          "process_stopped_verified": true,
+          "pid_before": "11702",
+          "pid_after_launch": "21492",
+          "application_data": "Existing installation and data retained"
+        },
+        {
+          "type": "device_file_hash",
+          "before": "TC09-before-test-b-sha256.txt",
+          "after": "TC09-after-test-b-sha256.txt",
+          "device_path": "/storage/emulated/0/Music/VibePlayerSprint2-20261026/Folder-One/Test-B.wav",
+          "sha256": "f822a1bc604687c4b5620f27fbb6c48e5b26bc4d5e9bb5c76eb976e715c6196d",
+          "result": "Before and after restart match original fixture"
+        },
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "全部符合",
+          "context": "Post-restart TC09: Study=[A], Running=[B,C], Test-B playable with expected sound",
+          "recorded_at_shanghai": "2026-10-26T20:27:56.8713446+08:00"
+        },
+        {
+          "type": "ui_snapshot_after_restart",
+          "xml": "TC09-after-study.xml",
+          "screenshot": "TC09-after-study.png",
+          "observed": "Study contains only Test-A; Test-B remains removed",
+          "observed_name": "Study",
+          "observed_tracks": [
+            "Test-A"
+          ],
+          "captured_at_shanghai": "2026-10-26T20:27:30.7431302+08:00",
+          "visual_check": "Study heading, 1 song, only Test-A"
+        },
+        {
+          "type": "process_check_at_verification",
+          "file": "TC09-after-observation.json",
+          "pid": "21492",
+          "matches_cold_start": true
+        }
+      ],
+      "screenshot_status": "Before and after Study detail captured and visually checked"
+    },
+    {
+      "id": "TC10",
+      "status": "Pass",
+      "actual": "用户确认 TC10 全部符合预期：同一安装强停重启后 Study 未恢复，仅剩 Running=[B,C]；Songs 中仍有 A/B/C。重启前 XML 与截图确认 Running 的 B→C 顺序；重启后 XML 与截图确认 Songs 中 Test-A、Test-B、Test-C 均可见。删除状态及重启后 Running 顺序依据用户报告。三个文件前后 SHA256 均与原始素材一致。ADB 已验证进程结束和冷启动，新进程 22355 在核对时保持运行。",
+      "evidence": [
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "准备好了",
+          "context": "TC10 independent F1; Study deleted; only Running=[B,C] remains"
+        },
+        {
+          "type": "ui_snapshot_before_restart",
+          "xml": "TC10-before-running.xml",
+          "screenshot": "TC10-before-running.png",
+          "observed_name": "Running",
+          "observed_order": [
+            "Test-B",
+            "Test-C"
+          ],
+          "captured_at_shanghai": "2026-10-26T20:30:59.9658547+08:00",
+          "visual_check": "Running contains Test-B then Test-C"
+        },
+        {
+          "type": "process_restart",
+          "file": "TC10-restart.json",
+          "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+          "process_stopped_verified": true,
+          "pid_before": "21492",
+          "pid_after_launch": "22355",
+          "application_data": "Existing installation and data retained"
+        },
+        {
+          "type": "device_file_hash",
+          "before": "TC10-before-fixture-sha256.txt",
+          "after": "TC10-after-fixture-sha256.txt",
+          "device_directory": "/storage/emulated/0/Music/VibePlayerSprint2-20261026",
+          "files": [
+            "Folder-One/Test-A.wav",
+            "Folder-One/Test-B.wav",
+            "Folder-Two/Test-C.wav"
+          ],
+          "result": "Before and after restart all hashes match original fixtures"
+        },
+        {
+          "type": "user_report",
+          "source": "Current conversation",
+          "text": "全部符合",
+          "context": "Post-restart TC10: only Running=[B,C], Study absent, all three fixtures visible in Songs",
+          "recorded_at_shanghai": "2026-10-26T20:34:43.4398279+08:00"
+        },
+        {
+          "type": "ui_snapshot_after_restart",
+          "xml": "TC10-after-songs.xml",
+          "screenshot": "TC10-after-songs.png",
+          "observed": "Songs list contains Test-A, Test-B, Test-C",
+          "observed_songs": [
+            "Test-A",
+            "Test-B",
+            "Test-C"
+          ],
+          "captured_at_shanghai": "2026-10-26T20:34:17.1133061+08:00",
+          "visual_check": "Songs screen shows all three test audio entries"
+        },
+        {
+          "type": "process_check_at_verification",
+          "file": "TC10-after-observation.json",
+          "pid": "22355",
+          "matches_cold_start": true
+        }
+      ],
+      "screenshot_status": "Before Running detail and after Songs list captured and visually checked; playlist deletion confirmed by operator"
+    },
+    {
+      "id": "TC11",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "TC12",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "TC13",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG01",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG02",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG03",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG04",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG05",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG06",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    },
+    {
+      "id": "RG07",
+      "status": "Pending",
+      "actual": "",
+      "evidence": []
+    }
+  ],
+  "tester": "CroissantXinny",
+  "execution_method": "Tester operates the phone and confirms visible/audio behavior; Codex records reports, app UI snapshots, file hashes and ADB force-stop/cold-launch evidence."
+}

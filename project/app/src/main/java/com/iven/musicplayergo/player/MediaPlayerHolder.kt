@@ -17,6 +17,8 @@ import android.media.audiofx.Equalizer
 import android.media.audiofx.Virtualizer
 import android.os.Build
 import android.os.CountDownTimer
+import android.os.Handler
+import android.os.Looper
 import android.os.PowerManager
 import android.support.v4.media.MediaMetadataCompat
 import android.support.v4.media.MediaMetadataCompat.*
@@ -96,6 +98,7 @@ class MediaPlayerHolder:
     private var mEqualizer: Equalizer? = null
     private var mBassBoost: BassBoost? = null
     private var mVirtualizer: Virtualizer? = null
+    private var audioEffectSessionId: Int? = null
 
     // Audio focus
     private var mAudioManager: AudioManager? = null
@@ -112,6 +115,24 @@ class MediaPlayerHolder:
 
     private val mOnAudioFocusChangeListener =
         AudioManager.OnAudioFocusChangeListener { focusChange ->
+            // A failed track has already set state=PAUSED, but the queued recovery still
+            // carries the user's play intent. Handle loss before the usual state filter.
+            if (isStandalonePlaylist && playlistRecovery != null &&
+                (focusChange == AudioManager.AUDIOFOCUS_LOSS ||
+                    focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT)) {
+                sPlayOnFocusGain = focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT && isPlay
+                sRestoreVolume = false
+                isPlay = false
+                mCurrentAudioFocusState = if (focusChange == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT) {
+                    AUDIO_FOCUS_LOSS_TRANSIENT
+                } else {
+                    AUDIO_NO_FOCUS_NO_DUCK
+                }
+                stopPlaybackService(stopPlayback = true, fromUser = false, fromFocus = true)
+                // Preparing the next surviving track may finish, but onPrepared must keep
+                // it paused. A transient gain can subsequently resume that same track.
+                return@OnAudioFocusChangeListener
+            }
             when (focusChange) {
                 AudioManager.AUDIOFOCUS_GAIN -> mCurrentAudioFocusState = AUDIO_FOCUSED
                 AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> {
@@ -148,11 +169,23 @@ class MediaPlayerHolder:
     var currentSong: Music? = null
     private var mPlayingSongs: List<Music>? = null
     var launchedBy = GoConstants.ARTIST_VIEW
+    val isPlaylistPlayback get() = launchedBy == PLAYLIST_SOURCE
+    private val isStandalonePlaylist get() = isPlaylistPlayback && isQueue == null && !canRestoreQueue && !isCurrentSongFM
+    private val playlistRecoveryHandler = Handler(Looper.getMainLooper())
+    private var playlistRecovery: Runnable? = null
+    private var nextPlaylistRecoverySong: Music? = null
+    private var playlistRecoveryAllowed = true
+    private var mediaAttempt = 0L
+    private var failedPlaylistAttempt = -1L
+    private var playlistExhausted = false
+    private val isUnavailablePlaylistPlayer get() = isStandalonePlaylist &&
+        (playlistExhausted || failedPlaylistAttempt == mediaAttempt)
 
     var currentVolumeInPercent = GoPreferences.getPrefsInstance().latestVolume
     private var currentPlaybackSpeed = GoPreferences.getPrefsInstance().latestPlaybackSpeed
 
     val playerPosition get() = when {
+        isUnavailablePlaylistPlayer -> 0
         isSongFromPrefs && !isCurrentSongFM -> GoPreferences.getPrefsInstance().latestPlayedSong?.startFrom!!
         isCurrentSongFM -> 0
         else -> mediaPlayer.currentPosition
@@ -194,13 +227,16 @@ class MediaPlayerHolder:
     private var mMusicNotificationManager: MusicNotificationManager? = null
 
     fun setMusicService(playerService: PlayerService) {
+        // A started service can outlive all Activity bindings during rotation. Rebinding
+        // to that same service must retain its prepared player, position and session.
+        if (::mPlayerService.isInitialized && mPlayerService === playerService && isMediaPlayer) return
         mediaPlayer = MediaPlayer()
         mPlayerService = playerService
         mAudioManager = mPlayerService.getSystemService()
         if (mMusicNotificationManager == null) mMusicNotificationManager = mPlayerService.musicNotificationManager
         registerActionsReceiver()
         mPlayerService.configureMediaSession()
-        openOrCloseAudioEffectAction(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION)
+        openAudioEffectSession()
     }
 
     fun getMediaMetadataCompat() = mMediaMetadataCompat
@@ -256,12 +292,18 @@ class MediaPlayerHolder:
     }
 
     fun updateCurrentSong(song: Music?, albumSongs: List<Music>?, songLaunchedBy: String) {
+        cancelPlaylistRecovery()
+        playlistRecoveryAllowed = true
+        mediaAttempt++
+        playlistExhausted = false
         currentSong = song
         mPlayingSongs = albumSongs
         launchedBy = songLaunchedBy
     }
 
     fun updateCurrentSongs(sortedMusic: List<Music>?) {
+        // Sorting a library view must not reorder a previously started playlist snapshot.
+        if (isPlaylistPlayback) return
         if (sortedMusic.isNullOrEmpty()) {
             currentSong?.findRestoreSorting(launchedBy)?.let { sorting ->
                 mPlayingSongs = Lists.getSortedMusicList(sorting, mPlayingSongs?.toMutableList())
@@ -273,11 +315,25 @@ class MediaPlayerHolder:
 
     fun getCurrentAlbumSize() = mPlayingSongs?.size ?: 0
 
-    private fun openOrCloseAudioEffectAction(event: String) {
+    private fun openAudioEffectSession() {
+        val sessionId = mediaPlayer.audioSessionId
+        if (sessionId <= 0 || audioEffectSessionId == sessionId) return
+        closeAudioEffectSession()
+        audioEffectSessionId = sessionId
+        sendAudioEffectSessionAction(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION, sessionId)
+    }
+
+    private fun closeAudioEffectSession() {
+        val sessionId = audioEffectSessionId ?: return
+        audioEffectSessionId = null
+        sendAudioEffectSessionAction(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION, sessionId)
+    }
+
+    private fun sendAudioEffectSessionAction(event: String, sessionId: Int) {
         mPlayerService.sendBroadcast(
             Intent(event)
                 .putExtra(AudioEffect.EXTRA_PACKAGE_NAME, mPlayerService.packageName)
-                .putExtra(AudioEffect.EXTRA_AUDIO_SESSION, mediaPlayer.audioSessionId)
+                .putExtra(AudioEffect.EXTRA_AUDIO_SESSION, sessionId)
                 .putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
         )
     }
@@ -324,6 +380,8 @@ class MediaPlayerHolder:
 
     override fun onCompletion(mediaPlayer: MediaPlayer) {
 
+        if (mediaPlayer !== this.mediaPlayer || isUnavailablePlaylistPlayer) return
+
         if (isCurrentSongFM) currentSongFM = null
 
         when {
@@ -351,6 +409,7 @@ class MediaPlayerHolder:
             }
         }
 
+        if (isUnavailablePlaylistPlayer) return
         mPlayerService.acquireWakeLock()
         if (::mediaPlayerInterface.isInitialized) mediaPlayerInterface.onStateChanged()
     }
@@ -410,7 +469,7 @@ class MediaPlayerHolder:
                 .setActions(mMediaSessionActions)
                 .setState(
                     if (isPlaying) GoConstants.PLAYING else GoConstants.PAUSED,
-                    mediaPlayer.currentPosition.toLong(),
+                    playerPosition.toLong(),
                     currentPlaybackSpeed
                 ).build()
         )
@@ -433,6 +492,23 @@ class MediaPlayerHolder:
 
     fun resumeMediaPlayer() {
 
+        playlistRecoveryAllowed = true
+
+        if (isUnavailablePlaylistPlayer) {
+            if (playlistExhausted) {
+                notifyPlaylistUnavailable()
+            } else {
+                // Focus can return before the posted recovery runs; retain that play
+                // intent so its eventual onPrepared resumes instead of staying paused.
+                isPlay = true
+                if (playlistRecovery == null) {
+                    currentSong = nextPlaylistRecoverySong ?: mPlayingSongs?.firstOrNull()
+                    initMediaPlayer(currentSong, forceReset = true)
+                }
+            }
+            return
+        }
+
         if (!isPlaying) {
 
             if (sFocusEnabled) tryToGetAudioFocus()
@@ -444,6 +520,8 @@ class MediaPlayerHolder:
             } else {
                 startOrChangePlaybackSpeed()
             }
+
+            if (isUnavailablePlaylistPlayer) return
 
             state = if (isSongFromPrefs) {
                 isSongFromPrefs = false
@@ -460,6 +538,10 @@ class MediaPlayerHolder:
     }
 
     fun pauseMediaPlayer() {
+        if (isUnavailablePlaylistPlayer) {
+            isPlay = false
+            return
+        }
         // Do not pause foreground service, we will need to resume likely
         MediaPlayerUtils.safePause(mediaPlayer)
         sNotificationOngoing = false
@@ -475,6 +557,7 @@ class MediaPlayerHolder:
     }
 
     fun repeatSong(startFrom: Int) {
+        if (isUnavailablePlaylistPlayer) return
         isRepeat1X = false
         mediaPlayer.setOnSeekCompleteListener { mp ->
             mp.setOnSeekCompleteListener(null)
@@ -565,12 +648,16 @@ class MediaPlayerHolder:
     }
 
     private fun updateProgressCallbackTask() {
-        if (isPlaying && ::mediaPlayerInterface.isInitialized) {
+        if (isPlaying && !isUnavailablePlaylistPlayer && ::mediaPlayerInterface.isInitialized) {
             mediaPlayerInterface.onPositionChanged(mediaPlayer.currentPosition)
         }
     }
 
     fun instantReset() {
+        if (isUnavailablePlaylistPlayer) {
+            skip(isNext = false)
+            return
+        }
         if (isMediaPlayer && !isSongFromPrefs || isMediaPlayer) {
             when {
                 mediaPlayer.currentPosition < 5000 -> skip(isNext = false)
@@ -590,18 +677,56 @@ class MediaPlayerHolder:
      */
     fun initMediaPlayer(song: Music?, forceReset: Boolean) {
 
+        cancelPlaylistRecovery()
+        val attempt = ++mediaAttempt
+        val recoverPlaylistFailure = isStandalonePlaylist
+
         try {
 
-            if (isMediaPlayer && !forceReset) {
+            if (recoverPlaylistFailure) {
+                // A new instance makes callbacks from a failed/previous attempt identifiable.
+                if (isMediaPlayer) {
+                    closeAudioEffectSession()
+                    runCatching {
+                        mediaPlayer.setOnErrorListener(null)
+                        mediaPlayer.setOnPreparedListener(null)
+                        mediaPlayer.setOnCompletionListener(null)
+                        mediaPlayer.release()
+                    }
+                }
+                runCatching { releaseBuiltInEqualizer() }
+                mediaPlayer = MediaPlayer()
+            } else if (isMediaPlayer && !forceReset) {
                 mediaPlayer.reset()
             } else {
+                closeAudioEffectSession()
                 mediaPlayer = MediaPlayer()
             }
+            // External controllers attach effects to the audio session, not this holder.
+            // Every replacement must register its new session before playback can start.
+            openAudioEffectSession()
 
             with(mediaPlayer) {
-                setOnPreparedListener(this@MediaPlayerHolder)
-                setOnCompletionListener(this@MediaPlayerHolder)
-                setOnErrorListener(this@MediaPlayerHolder)
+                if (recoverPlaylistFailure) {
+                    setOnPreparedListener { prepared ->
+                        if (attempt == mediaAttempt && prepared === mediaPlayer && failedPlaylistAttempt != attempt) {
+                            onPrepared(prepared)
+                        }
+                    }
+                    setOnCompletionListener { completed ->
+                        if (attempt == mediaAttempt && completed === mediaPlayer && failedPlaylistAttempt != attempt) {
+                            onCompletion(completed)
+                        }
+                    }
+                    setOnErrorListener { failed, _, _ ->
+                        if (failed === mediaPlayer) handlePlaylistFailure(song, attempt)
+                        true
+                    }
+                } else {
+                    setOnPreparedListener(this@MediaPlayerHolder)
+                    setOnCompletionListener(this@MediaPlayerHolder)
+                    setOnErrorListener(this@MediaPlayerHolder)
+                }
                 setWakeMode(mPlayerService, PowerManager.PARTIAL_WAKE_LOCK)
                 setAudioAttributes(
                     AudioAttributes.Builder()
@@ -619,11 +744,88 @@ class MediaPlayerHolder:
 
         } catch (e: Exception) {
             e.printStackTrace()
+            if (recoverPlaylistFailure) handlePlaylistFailure(song, attempt)
         }
+    }
+
+    private fun cancelPlaylistRecovery(keepNextSong: Boolean = false) {
+        playlistRecovery?.let { playlistRecoveryHandler.removeCallbacks(it) }
+        playlistRecovery = null
+        if (!keepNextSong) nextPlaylistRecoverySong = null
+    }
+
+    private fun handlePlaylistFailure(song: Music?, attempt: Long) {
+        // prepare() can both throw and dispatch onError. Count that attempt exactly once.
+        if (!isStandalonePlaylist || attempt != mediaAttempt || failedPlaylistAttempt == attempt) return
+        failedPlaylistAttempt = attempt
+        state = GoConstants.PAUSED
+        stopUpdatingCallbackWithPosition()
+        // A failed player cannot be used by the effect controller, even if recovery stops.
+        closeAudioEffectSession()
+        if (isMediaPlayer) {
+            runCatching {
+                mediaPlayer.setOnPreparedListener(null)
+                mediaPlayer.setOnCompletionListener(null)
+                mediaPlayer.setOnErrorListener(null)
+                mediaPlayer.reset()
+            }.onFailure {
+                runCatching { mediaPlayer.release() }
+                mediaPlayer = MediaPlayer()
+            }
+        }
+        runCatching { releaseBuiltInEqualizer() }
+        // Stop may arrive before onError is delivered. Clean up that player, but do not
+        // enqueue new work after the user has requested a stop.
+        if (!playlistRecoveryAllowed) return
+        val plan = planAfterPlaylistFailure(
+            mPlayingSongs.orEmpty(), song,
+            repeatList = GoPreferences.getPrefsInstance().onListEnded == GoConstants.CONTINUE
+        )
+        mPlayingSongs = plan.remaining
+        val next = plan.next
+        if (next == null) {
+            playlistExhausted = plan.remaining.isEmpty()
+            isPlay = false
+            GoPreferences.getPrefsInstance().hasCompletedPlayback = !playlistExhausted
+            cancelSleepTimer()
+            giveUpAudioFocus()
+            mPlayerService.releaseWakeLock()
+            ServiceCompat.stopForeground(mPlayerService, ServiceCompat.STOP_FOREGROUND_REMOVE)
+            sNotificationOngoing = false
+            mMusicNotificationManager?.cancelNotification()
+            updatePlaybackStatus(updateUI = true)
+            if (::mediaPlayerInterface.isInitialized) mediaPlayerInterface.onStopSleepTimer()
+            if (playlistExhausted) {
+                notifyPlaylistUnavailable()
+            } else if (::mediaPlayerInterface.isInitialized) {
+                mediaPlayerInterface.onListEnded()
+            }
+            return
+        }
+        // The shrinking snapshot bounds retries. Posting prevents recursive prepare/error loops.
+        nextPlaylistRecoverySong = next
+        playlistRecovery = Runnable {
+            playlistRecovery = null
+            if (playlistRecoveryAllowed && attempt == mediaAttempt && isStandalonePlaylist && failedPlaylistAttempt == attempt) {
+                currentSong = next.copy(startFrom = 0)
+                initMediaPlayer(currentSong, forceReset = true)
+            }
+        }.also { playlistRecoveryHandler.post(it) }
+    }
+
+    private fun notifyPlaylistUnavailable() {
+        Toast.makeText(mPlayerService, R.string.playlist_playback_files_unavailable, Toast.LENGTH_LONG).show()
     }
 
     override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {
 
+        if (mp !== mediaPlayer) return true
+        if (isStandalonePlaylist) {
+            handlePlaylistFailure(currentSong, mediaAttempt)
+            return true
+        }
+
+        closeAudioEffectSession()
         mediaPlayer.release()
         releaseBuiltInEqualizer()
 
@@ -642,6 +844,8 @@ class MediaPlayerHolder:
     }
 
     override fun onPrepared(mp: MediaPlayer) {
+
+        if (mp !== mediaPlayer || isUnavailablePlaylistPlayer) return
 
         if (currentSong?.startFrom != 0 && !isCurrentSongFM) {
             mediaPlayer.seekTo(currentSong?.startFrom!!)
@@ -677,6 +881,8 @@ class MediaPlayerHolder:
             play()
         }
 
+        if (isUnavailablePlaylistPlayer) return
+
         updateMediaSessionMetaData()
 
         mPlayerService.releaseWakeLock()
@@ -686,6 +892,7 @@ class MediaPlayerHolder:
 
     private fun play() {
         startOrChangePlaybackSpeed()
+        if (isUnavailablePlaylistPlayer) return
         state = GoConstants.PLAYING
         updatePlaybackStatus(updateUI = true)
     }
@@ -790,8 +997,10 @@ class MediaPlayerHolder:
     }
 
     fun release() {
+        cancelPlaylistRecovery()
+        mediaAttempt++
         if (isMediaPlayer) {
-            openOrCloseAudioEffectAction(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION)
+            closeAudioEffectSession()
             releaseBuiltInEqualizer()
             mediaPlayer.release()
             giveUpAudioFocus()
@@ -900,6 +1109,21 @@ class MediaPlayerHolder:
     }
 
     fun skip(isNext: Boolean) {
+        playlistRecoveryAllowed = true
+        if (isUnavailablePlaylistPlayer) {
+            if (playlistExhausted) {
+                notifyPlaylistUnavailable()
+            } else if (playlistRecovery == null) {
+                isPlay = true
+                currentSong = if (isNext) {
+                    nextPlaylistRecoverySong ?: mPlayingSongs?.firstOrNull()
+                } else {
+                    mPlayingSongs?.lastOrNull()
+                }
+                initMediaPlayer(currentSong, forceReset = true)
+            }
+            return
+        }
         if (isCurrentSongFM) currentSongFM = null
         when {
             isQueue != null && !canRestoreQueue -> manageQueue(isNext = isNext)
@@ -912,6 +1136,7 @@ class MediaPlayerHolder:
     }
 
     fun fastSeek(isForward: Boolean) {
+        if (isUnavailablePlaylistPlayer) return
         val step = GoPreferences.getPrefsInstance().fastSeekingStep * 1000
         if (isMediaPlayer) {
             with(mediaPlayer) {
@@ -926,6 +1151,7 @@ class MediaPlayerHolder:
     }
 
     fun seekTo(position: Int, updatePlaybackStatus: Boolean, restoreProgressCallBack: Boolean) {
+        if (isUnavailablePlaylistPlayer) return
         if (isMediaPlayer) {
             mediaPlayer.setOnSeekCompleteListener { mp ->
                 mp.setOnSeekCompleteListener(null)
@@ -999,6 +1225,15 @@ class MediaPlayerHolder:
     }
 
     fun stopPlaybackService(stopPlayback: Boolean, fromUser: Boolean, fromFocus: Boolean) {
+        if (stopPlayback && !fromFocus && isStandalonePlaylist) {
+            // stopSelf does not immediately destroy a bound service. Cancel here, not
+            // only in release(), and retain the failed-attempt marker for safe getters.
+            playlistRecoveryAllowed = false
+            cancelPlaylistRecovery(keepNextSong = true)
+            isPlay = false
+            sPlayOnFocusGain = false
+            pauseMediaPlayer()
+        }
         try {
             if (mPlayerService.isRunning && isMediaPlayer && stopPlayback) {
                 if (sNotificationOngoing) {
@@ -1080,7 +1315,13 @@ class MediaPlayerHolder:
 
         if (event.action == KeyEvent.ACTION_DOWN) {
             when (event.keyCode) {
-                KeyEvent.KEYCODE_MEDIA_STOP, KeyEvent.KEYCODE_MEDIA_PAUSE -> if (isPlaying) {
+                KeyEvent.KEYCODE_MEDIA_STOP -> if (isCurrentSong) {
+                    stopPlaybackService(stopPlayback = true, fromUser = true, fromFocus = false)
+                    return true
+                }
+                // Failed-file recovery temporarily reports PAUSED while a next track is
+                // queued. An explicit pause must clear its play intent in that state too.
+                KeyEvent.KEYCODE_MEDIA_PAUSE -> if (isCurrentSong) {
                     pauseMediaPlayer()
                     return true
                 }
@@ -1112,6 +1353,7 @@ class MediaPlayerHolder:
     }
 
     companion object {
+        const val PLAYLIST_SOURCE = "CUSTOM_PLAYLIST"
         @Volatile private var INSTANCE: MediaPlayerHolder? = null
 
         /** Get/Instantiate the single instance of [MediaPlayerHolder]. */

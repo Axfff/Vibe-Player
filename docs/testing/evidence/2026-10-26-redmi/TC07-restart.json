@@ -1,0 +1,26 @@
+{
+  "package": "com.iven.musicplayergo.debug",
+  "method": "adb shell am force-stop; verify pidof is empty; adb shell am start -W existing MainActivity",
+  "pid_before": "30192",
+  "fixture_preparation": "User confirmed Study=[A,B], Running=[B,C], Order=[C,A,B] were recreated and checked",
+  "before_list": "TC07-before-list.xml and TC07-before-list.png",
+  "started_at_shanghai": "2026-10-26T20:04:53.9638317+08:00",
+  "force_stop_exit_code": 0,
+  "pidof_after_stop_exit_code": 1,
+  "pid_after_stop": "",
+  "process_stopped_verified": true,
+  "launch_output": [
+    "Starting: Intent { cmp=com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity }",
+    "Status: ok",
+    "LaunchState: COLD",
+    "Activity: com.iven.musicplayergo.debug/com.iven.musicplayergo.ui.MainActivity",
+    "TotalTime: 209",
+    "WaitTime: 215",
+    "Complete"
+  ],
+  "launch_exit_code": 0,
+  "pid_after_launch": "793",
+  "completed_at_shanghai": "2026-10-26T20:04:54.6044071+08:00",
+  "app_data_action": "Kept existing installation and application data; no fixture changes during restart",
+  "result": "Pass: force-stop and cold launch verified; user confirmed all names, memberships and orders restored; before/after playlist lists match"
+}

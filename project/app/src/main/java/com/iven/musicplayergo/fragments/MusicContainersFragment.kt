@@ -95,10 +95,21 @@ class MusicContainersFragment : Fragment(),
         mMusicViewModel =
             ViewModelProvider(requireActivity())[MusicViewModel::class.java].apply {
                 deviceMusic.observe(viewLifecycleOwner) { returnedMusic ->
-                    if (!returnedMusic.isNullOrEmpty()) {
+                    if (returnedMusic != null) {
                         mSorting = getSortingMethodFromPrefs()
-                        mList = getSortedList()
-                        finishSetup()
+                        mList = getSortedList() ?: mutableListOf()
+                        if (_musicContainerListBinding?.artistsFoldersRv?.adapter == null) {
+                            finishSetup()
+                        } else {
+                            stopActionMode()
+                            val search = _musicContainerListBinding?.searchToolbar?.menu
+                                ?.findItem(R.id.action_search)?.actionView as? SearchView
+                            if (!search?.query.isNullOrEmpty()) {
+                                mList = Lists.processQueryForStringsLists(search?.query.toString(), mList)
+                                    .orEmpty().toMutableList()
+                            }
+                            mListAdapter.swapList(mList)
+                        }
                     }
                 }
             }
@@ -117,6 +128,7 @@ class MusicContainersFragment : Fragment(),
 
         _musicContainerListBinding?.searchToolbar?.let { stb ->
 
+            stb.menu.clear()
             stb.inflateMenu(R.menu.menu_search)
             stb.title = getFragmentTitle()
             stb.overflowIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_sort)
