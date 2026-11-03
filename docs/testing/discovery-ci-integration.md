@@ -1,6 +1,8 @@
 # Android Discovery CI integration — 2026-11-03
 
-This is preparation for the Android feature, not a new coverage measurement. The feature owner edits Discovery production code; the CI owner maintains shared Gradle/workflows/coverage scripts. Android Discovery implementation is now in progress; its final committed source and coverage have not been supplied yet.
+The feature owner supplied Android Discovery commit `8ef69e0bdfd113dc690ac935a40e40e298c8cbe7` on 2026-11-03. The CI owner has created an independent `ci/discovery-feature-coverage` worktree at exactly that base and reviewed its 46-file cumulative manifest (30 Android / 12 backend / 4 web), including Release 1. The pending six-PR review candidate is separate. Full clean collection follows the committed manifest; the feature owner's targeted results and the earlier CI percentages are not coverage for this new candidate.
+
+The feature owner edits Discovery production code; the CI owner maintains shared Gradle/workflows/coverage scripts. The original preparation notes below retain their dates/source context. This collection uses the CI-owned emulator-5584; emulator-5582 remains reserved for the feature owner's device evidence. New Android tests start test-only HTTP servers on random device-loopback ports and require no live provider/model credentials.
 
 ## Verified Git starting points
 
