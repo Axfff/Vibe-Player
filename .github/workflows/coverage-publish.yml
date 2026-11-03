@@ -1,0 +1,142 @@
+name: Publish team coverage
+
+on:
+  workflow_call:
+    inputs:
+      run_id:
+        type: number
+        required: true
+      pr_number:
+        type: number
+        required: true
+      head_sha:
+        type: string
+        required: true
+      build_result:
+        type: string
+        required: true
+  # Activated for fork PRs once this trusted workflow is present on main.
+  workflow_run:
+    workflows: [Android CI]
+    types: [completed]
+
+permissions:
+  actions: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  publish:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.event == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # No checkout. Artifacts are bounded JSON data, never executable code.
+      - name: Validate run and resolve current PR
+        id: context
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        env:
+          INPUT_RUN: ${{ inputs.run_id }}
+          INPUT_SHA: ${{ inputs.head_sha }}
+          INPUT_PR: ${{ inputs.pr_number }}
+          INPUT_RESULT: ${{ inputs.build_result }}
+        with:
+          script: |
+            const eventRun = context.payload.workflow_run;
+            const runId = eventRun?.id || Number(process.env.INPUT_RUN);
+            const {data: run} = await github.rest.actions.getWorkflowRun({...context.repo, run_id: runId});
+            if (run.repository.full_name !== `${context.repo.owner}/${context.repo.repo}` || run.event !== 'pull_request' || run.path !== '.github/workflows/android.yml') throw new Error('Unexpected run/repo/workflow');
+            const sha = eventRun ? run.head_sha : process.env.INPUT_SHA;
+            if (!/^[0-9a-f]{40}$/.test(sha) || run.head_sha !== sha) throw new Error('Run SHA mismatch');
+            let numbers = eventRun ? run.pull_requests.map(p => p.number) : [Number(process.env.INPUT_PR)];
+            if (!numbers.length) {
+              const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({...context.repo, commit_sha: sha});
+              numbers = prs.data.map(p => p.number);
+            }
+            const current = [];
+            for (const number of numbers) {
+              const {data: pr} = await github.rest.pulls.get({...context.repo, pull_number: number});
+              if (pr.state === 'open' && pr.base.repo.full_name === run.repository.full_name && pr.head.sha === sha && pr.head.repo.full_name === run.head_repository.full_name) current.push(number);
+            }
+            if (!current.length) { core.notice('Stale run: publishing skipped'); return; }
+            core.setOutput('run_id', runId);
+            core.setOutput('sha', sha);
+            core.setOutput('prs', JSON.stringify(current));
+            core.setOutput('build_result', eventRun ? run.conclusion : process.env.INPUT_RESULT);
+            core.setOutput('valid', 'true');
+      - name: Download reports as data
+        if: steps.context.outputs.valid == 'true'
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
+        with:
+          name: team-coverage-${{ steps.context.outputs.run_id }}
+          run-id: ${{ steps.context.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: incoming
+      - name: Publish PR check and update one bot comment
+        if: ${{ always() && steps.context.outputs.valid == 'true' }}
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        env:
+          TEST_RUN: ${{ steps.context.outputs.run_id }}
+          TEST_SHA: ${{ steps.context.outputs.sha }}
+          TEST_PRS: ${{ steps.context.outputs.prs }}
+          TEST_RESULT: ${{ steps.context.outputs.build_result }}
+        with:
+          script: |
+            const fs = require('fs');
+            const runId = Number(process.env.TEST_RUN), sha = process.env.TEST_SHA;
+            const base = '947709e4c798a103b9fcc5962172f2e85d349196';
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}`;
+            let status = 'failure';
+            let text = `Tested SHA: \`${sha}\`\n\nBaseline: \`${base}\`\n\nBuild/test result: **${process.env.TEST_RESULT}**\n\n`;
+            try {
+              const path = 'incoming/artifacts/coverage/summary.json';
+              const stat = fs.lstatSync(path);
+              if (!stat.isFile() || stat.isSymbolicLink() || stat.size > 2000000) throw new Error('Invalid report file');
+              const data = JSON.parse(fs.readFileSync(path, 'utf8'));
+              if (data.schema !== 1 || data.sha !== sha || data.baseline !== base || data.dirty || data.measurement_only) throw new Error('Report provenance mismatch');
+              const modules = Object.entries(data.modules);
+              if (!modules.length || !data.modules.android) throw new Error('Missing Android scope');
+              let passing = true;
+              text += '| Module | Covered / executable lines | Line coverage | >=80% |\n|---|---:|---:|---|\n';
+              for (const [name, value] of modules) {
+                if (!['android','backend','web'].includes(name) || !Number.isSafeInteger(value.total) || !Number.isSafeInteger(value.covered) || value.total <= 0 || value.total > 10000000 || value.covered < 0 || value.covered > value.total) throw new Error('Invalid coverage counts');
+                const ok = value.covered * 100 >= value.total * 80;
+                passing &&= ok;
+                text += `| ${name} | ${value.covered}/${value.total} | ${(100 * value.covered / value.total).toFixed(4)}% | ${ok ? 'PASS' : 'FAIL'} |\n`;
+              }
+              if (!data.tests.jvm || !data.tests.android) throw new Error('Missing required test suites');
+              text += '\nExecuted tests:\n';
+              for (const [name, value] of Object.entries(data.tests)) {
+                if (!['jvm','android','backend','web'].includes(name)) throw new Error('Invalid suite');
+                for (const k of ['tests','failures','errors','skipped']) if (!Number.isSafeInteger(value[k]) || value[k] < 0 || value[k] > 1000000) throw new Error('Invalid test counts');
+                if (value.tests - value.skipped <= 0 || value.failures || value.errors) passing = false;
+                text += `- ${name}: ${value.tests} tests, ${value.failures} failures, ${value.errors} errors, ${value.skipped} skipped\n`;
+              }
+              status = passing && process.env.TEST_RESULT === 'success' ? 'success' : 'failure';
+            } catch (error) {
+              text += '\n**Coverage not generated or rejected. This is a failure, not 0% or a pass.**\n';
+              core.warning(String(error.message).slice(0, 300));
+            }
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({...context.repo, run_id: runId});
+            const report = artifacts.data.artifacts.find(a => a.name === `team-coverage-${runId}` && !a.expired);
+            if (!report) status = 'failure';
+            text += `\n[Workflow, logs and APK](${runUrl})`;
+            if (report) text += ` · [Complete HTML/XML, scope and uncovered lines](${runUrl}/artifacts/${report.id})`;
+            text += '\n\nScope: all executable lines in new production files; cumulative changed executable lines in modified upstream files, with whole-file context. Includes Release 1. No UI/player/error-branch exemptions. Generated resources/bindings/Moshi adapters are excluded. Modules are gated separately.';
+            text += '\n\nAndroid Discovery is not implemented in this revision. Its later integration must regenerate and pass the scope manifest.';
+            const marker = '<!-- vibe-team-coverage -->';
+            for (const number of JSON.parse(process.env.TEST_PRS)) {
+              const {data: pr} = await github.rest.pulls.get({...context.repo, pull_number: number});
+              if (pr.state !== 'open' || pr.head.sha !== sha) { core.notice('Newer SHA detected; no stale overwrite'); continue; }
+              const comments = await github.paginate(github.rest.issues.listComments, {...context.repo, issue_number: number});
+              const previous = comments.find(c => c.user.login === 'github-actions[bot]' && c.body.startsWith(marker));
+              const body = `${marker}\n## Sprint 3 line coverage: ${status === 'success' ? 'PASS' : 'FAIL'}\n\n${text}`;
+              if (previous) await github.rest.issues.updateComment({...context.repo, comment_id: previous.id, body});
+              else await github.rest.issues.createComment({...context.repo, issue_number: number, body});
+            }
+            const checks = await github.rest.checks.listForRef({...context.repo, ref: sha, check_name: 'Team line coverage'});
+            const previous = checks.data.check_runs.find(c => c.external_id === String(runId));
+            const payload = {...context.repo, name: 'Team line coverage', status: 'completed', conclusion: status, details_url: runUrl, external_id: String(runId), output: {title: `Team line coverage: ${status}`, summary: text}};
+            if (previous) await github.rest.checks.update({...payload, check_run_id: previous.id});
+            else await github.rest.checks.create({...payload, head_sha: sha});
+            if (status !== 'success') core.setFailed('Coverage publication failed validation or build/test/coverage gate failed');
