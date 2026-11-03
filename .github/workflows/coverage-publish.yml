@@ -123,7 +123,7 @@ jobs:
             text += `\n[Workflow, logs and APK](${runUrl})`;
             if (report) text += ` · [Complete HTML/XML, scope and uncovered lines](${runUrl}/artifacts/${report.id})`;
             text += '\n\nScope: all executable lines in new production files; cumulative changed executable lines in modified upstream files, with whole-file context. Includes Release 1. No UI/player/error-branch exemptions. Generated resources/bindings/Moshi adapters are excluded. Modules are gated separately.';
-            text += '\n\nAndroid Discovery is not implemented in this revision. Its later integration must regenerate and pass the scope manifest.';
+            text += '\n\nCoverage applies only to production sources in this SHA\'s scope manifest. New integrations must regenerate the manifest and collect fresh coverage.';
             const marker = '<!-- vibe-team-coverage -->';
             for (const number of JSON.parse(process.env.TEST_PRS)) {
               const {data: pr} = await github.rest.pulls.get({...context.repo, pull_number: number});

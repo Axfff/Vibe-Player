@@ -225,7 +225,7 @@ def write_reports(summary):
     lines += ["", "Tests: `" + json.dumps(summary["tests"]) + "`.",
               "", "New files: all executable lines. Modified upstream files: cumulative changed executable lines; full-file context and uncovered lines are in the report.",
               "No UI/player/error-path exemptions. Generated bindings/resources/Moshi adapters only are excluded.",
-              "Android Discovery is not present in this revision; integration must regenerate the scope manifest."]
+              "Coverage applies only to production sources in this SHA's scope manifest. New integrations must regenerate the manifest and collect fresh coverage."]
     if summary.get("run_url"):
         lines.append(f"[Workflow and full HTML/XML report artifacts]({summary['run_url']})")
     (OUTPUT / "summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
