@@ -18,12 +18,13 @@ Android, Python backend and web modules have separate gates. One module's result
 
 | Work | Audited head | Relationship to this branch |
 | --- | --- | --- |
-| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Pending separate PR; regenerate manifest after integration |
-| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Pending separate PR; has four JVM tests |
-| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Pending separate PR; has six JVM tests |
-| PR #30 missing album lookup | `d7535bfd7f8ffd90848a9b8c804ad593147acd22` | Pending separate PR; has five JVM tests |
+| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Included in this validation branch; separate PR remains open |
+| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Included with four JVM tests; separate PR remains open |
+| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Included with six JVM tests; separate PR remains open |
+| PR #30 missing/playing album lookup | `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` | Latest 2026-11-02 head included with ten JVM tests; separate PR remains open |
+| PR #34 queue removal persistence | `5115024e3dad12cd4f2d86e98d6f11ade544199a` | Included with three Android tests; separate PR remains open |
 | PR #20 / #24 | Release closeout / README | Documentation; no executable source |
-| Local Discovery | `fa86950d0f8955a8b0718de95f7a0509dedee832` | Backend + web, not yet on main; measured in independent validation worktree |
+| Local Discovery | `fa86950d0f8955a8b0718de95f7a0509dedee832` | Backend + web included in this independent validation branch; not on main |
 
 Android Discovery is absent from these audited revisions. The user is arranging its implementation separately. No imaginary Android Discovery report is generated. Its eventual source must be integrated, inventoried and tested before claiming the **whole Sprint 3 feature** is complete. Historical Redmi evidence and other PRs' test counts are not reused as coverage inputs.
 
