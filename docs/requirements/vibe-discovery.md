@@ -62,6 +62,7 @@ Human member assignments and dates require the actual team's confirmation; agent
 
 ## Evidence and implementation
 
+- [Dated delivery and per-AC evidence, including Blocked/partial items](../development/discovery/sprint3-delivery-2026-11-03.md). The 2026-11-03 emulator demonstrates real manual discovery and durable Collection. S3-AC5 song-page availability remains unpassed because Apple redirected the actual song link to a regional homepage; S3-AC2 remains Blocked. Neither condition is waived by CI.
 - [Sprint 3 plan/status](../sprints/sprint-3.md)
 - [API contract](../development/discovery/api-contract.md)
 - [Provider review](../development/discovery/provider-verification.md)

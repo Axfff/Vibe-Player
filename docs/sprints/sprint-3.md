@@ -15,8 +15,16 @@ Reused `feat/ai-photo-discovery` at `fa86950d0f8955a8b0718de95f7a0509dedee832`, 
 | Jamendo | Adapter exists; no authorized client/project review, no live completion claim |
 | Vision | Adapter exists; mode unconfigured, cloud authorization false, budget zero; S3-AC2 **Blocked** |
 | Web developer demo | Existing mock/fixture and live diagnostics, not the Android deliverable |
-| Android Discovery / Collection | Absent at inherited SHA; current implementation in progress |
+| Android Discovery / Collection | Absent at inherited SHA; now implemented in `8ef69e0b`, including persistent independent Collection |
 | Coverage | Existing backend/web coverage commit `c87d4e6d`; CI agent owns public Gradle/workflow/scope integration. Old measurements exclude new Android code. |
+
+## Current increment and acceptance limits
+
+The native Android manual increment is implemented and installed on a disposable API 33 emulator. The actual sequence was confirmed intent (`city`, `focused`, `piano`, US) → eight live iTunes songs → official browser launch → save → force-stop → reopen Collection. The saved identity survived restart. No audio permission, model call, account sign-in or fixture catalog was used for this demonstration. See the [dated delivery record and AC evidence](../development/discovery/sprint3-delivery-2026-11-03.md), [run instructions](../development/discovery/android-sprint3.md) and [machine-readable build/device record](../development/discovery/evidence/sprint3-device-summary.json).
+
+S3-AC2 remains **Blocked**: no authorized real vision configuration. S3-AC5 is **partial / not accepted**: the validated Apple song link launched Chrome, but this environment redirected it to `/cn/new`, not the target song. Catalog identity validation is not song-page availability. S3-AC8 records that actual limitation rather than treating the complete external-song path as passed. All human acceptance checkboxes remain open.
+
+Feature-only verification at `8ef69e0b`: six new JVM tests, twelve Android Discovery tests, 166 Python tests and 22 web tests passed. Full fresh cumulative coverage, including Release 1 and all new executable production files, is coordinated in the independent CI worktree; its exact candidate/report is recorded separately in the delivery record. These test counts are not a substitute for that gate.
 
 ## Delivery sequence and assignments
 

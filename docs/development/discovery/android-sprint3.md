@@ -2,6 +2,8 @@
 
 Parent [Story #36](https://github.com/Axfff/Vibe-Player/issues/36); [requirements / staged AC](../../requirements/vibe-discovery.md). Existing backend work and its commit history are retained. This document supersedes the earlier Android-next planning note for implemented behavior.
 
+The actual API 33 run, APK checksum, screenshots, test results and unresolved region/model requirements are in the [2026-11-03 delivery record](sprint3-delivery-2026-11-03.md). Official link launch succeeded; Apple redirected the tested song to `/cn/new`, so that run does not pass song-page availability.
+
 ## Run
 
 Use JDK 17 / SDK 33 / Gradle 8.0 and the existing project wrapper. No SDK/Kotlin upgrade. `:app:assembleDebug` builds `project/app/build/outputs/apk/debug/app-debug.apk`; `:app:testDebugUnitTest` runs JVM behavior tests. CI agent owns shared build/coverage configuration.

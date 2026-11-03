@@ -4,7 +4,7 @@
 
 重新查阅 [Apple Search API 官方文档](https://performance-partners.apple.com/search-api)：公开 Search/ID Lookup 提供标题、艺人、trackId 和用于打开内容的 trackViewUrl；无需引入付费账户。沿用 iTunes，以用户选择的 country 检索（本机小规模 US 测试）。不读取/缓存 previewUrl 或封面，不把推广音频条款解释为独立娱乐试听授权。Collection 保存用户选中的来源书签、标题/艺人小型快照和用户意图；不缓存推广素材或音频。广泛部署前仍须审核目标用途/地域政策。
 
-本机 bounded smoke 再次确认原始真实曲目身份，但 HEAD 仍跳向 `/cn/new`。技术决策：以目录原始 URL 的协议、准确域名和 native song ID 作为外跳校验，单独提示官方页面受用户所在地和账户影响；不宣称 HEAD/HTTP200 证明内容许可或本地可播放。完整实测与 APK 证据在本轮交付记录。
+本机 bounded smoke 再次确认原始真实曲目身份，但 HEAD 仍跳向 `/cn/new`。技术决策：以目录原始 URL 的协议、准确域名和 native song ID 作为外跳校验，单独提示官方页面受用户所在地和账户影响；不宣称 HEAD/HTTP200 证明内容许可或本地可播放。实际 Android Chrome 也跳到了 `/cn/new`；S3-AC5 的目标歌曲页可用性未通过，不能以目录校验代替。完整实测与 APK 证据见[本轮交付记录](sprint3-delivery-2026-11-03.md)。
 
 未配置/未调用真实照片模型或 Jamendo；没有扩张其授权。既有授权、schema、安全和逐曲试听检查保留。合法短试听与音频互斥正式保留到 [Sprint 4 AC](../../requirements/vibe-discovery.md)。下文为历史核查与适配器政策，旧「HEAD 筛成零首」状态只描述当时版本。
 
@@ -40,7 +40,7 @@ API 要求项目注册的 client ID。条款 3.3 将免费使用限定为非商�
 
 `store=false` 是请求参数；接收者的数据处理规则以其官方政策和用户账户约定为准。页面逐张或按相册批次获得明确同意，默认云调用关闭。
 
-## 当前核验状态
+## 2026-10-28 历史核验状态（本轮结果见页首）
 
 | 项目 | 状态 |
 | --- | --- |

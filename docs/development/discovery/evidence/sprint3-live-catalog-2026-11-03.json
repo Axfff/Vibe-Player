@@ -1,0 +1,518 @@
+{
+  "checkedAt": "2026-11-03T06:21:01.151104+00:00",
+  "mode": "live",
+  "provider": "itunes",
+  "initial": {
+    "sessionId": "Ft9YAoazRgQBngh2IADDDp5imQfZ2P1u",
+    "inputMode": "manual",
+    "effectiveIntent": {
+      "targetMood": "focused",
+      "musicTags": [],
+      "text": "piano",
+      "energy": "any",
+      "instrumental": null
+    },
+    "market": "US",
+    "tracks": [
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1440861221"
+        },
+        "title": "Piano",
+        "artist": "Ariana Grande",
+        "officialUrl": "https://music.apple.com/us/album/piano/1440860819?i=1440861221&uo=4",
+        "artwork": null,
+        "tags": [
+          "Pop"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Pop�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.148795+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "844514243"
+        },
+        "title": "Piano (Emotional Music)",
+        "artist": "Solenne Whisper",
+        "officialUrl": "https://music.apple.com/us/album/piano-emotional-music/844514128?i=844514243&uo=4",
+        "artwork": null,
+        "tags": [
+          "Instrumental"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Instrumental�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149146+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "158815547"
+        },
+        "title": "Piano Man",
+        "artist": "Billy Joel",
+        "officialUrl": "https://music.apple.com/us/album/piano-man/158815463?i=158815547&uo=4",
+        "artwork": null,
+        "tags": [
+          "Rock"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Rock�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149220+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1065946789"
+        },
+        "title": "Classical Piano Music for Baby Sleep",
+        "artist": "Baby Lullaby Academy",
+        "officialUrl": "https://music.apple.com/us/album/classical-piano-music-for-baby-sleep/1065946325?i=1065946789&uo=4",
+        "artwork": null,
+        "tags": [
+          "Children's Music"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Children's Music�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149283+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1536952277"
+        },
+        "title": "Piano",
+        "artist": "Study Academy & Soft Piano",
+        "officialUrl": "https://music.apple.com/us/album/piano/1536952276?i=1536952277&uo=4",
+        "artwork": null,
+        "tags": [
+          "Ambient"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Ambient�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149336+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1761370261"
+        },
+        "title": "PIANO",
+        "artist": "Oxlade",
+        "officialUrl": "https://music.apple.com/us/album/piano/1761369738?i=1761370261&uo=4",
+        "artwork": null,
+        "tags": [
+          "Afrobeats"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Afrobeats�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149383+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1044222535"
+        },
+        "title": "Piano (Replayed Version)",
+        "artist": "Yiruma",
+        "officialUrl": "https://music.apple.com/us/album/piano-replayed-version/1044222525?i=1044222535&uo=4",
+        "artwork": null,
+        "tags": [
+          "New Age"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�New Age�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149432+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      },
+      {
+        "ref": {
+          "provider": "itunes",
+          "providerTrackId": "1810704212"
+        },
+        "title": "Piano",
+        "artist": "Werenoi & GIMS",
+        "officialUrl": "https://music.apple.com/us/album/piano/1810704200?i=1810704212&uo=4",
+        "artwork": null,
+        "tags": [
+          "Hip-Hop/Rap"
+        ],
+        "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Hip-Hop/Rap�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+        "linkVerification": "catalog_identity",
+        "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+        "capability": {
+          "mode": "EXTERNAL_ONLY",
+          "reasonCode": "itunes_external_only",
+          "policyEvidence": [
+            "https://performance-partners.apple.com/search-api"
+          ],
+          "checkedAt": "2026-11-03T06:21:01.149488+00:00",
+          "expiresAt": null,
+          "previewUrl": null,
+          "maxPreviewSeconds": 30,
+          "licenseUrl": null,
+          "attribution": null
+        }
+      }
+    ],
+    "requested": 8,
+    "returned": 8,
+    "shortageReason": null,
+    "vision": {
+      "provider": "vision",
+      "mode": "unconfigured",
+      "configured": false,
+      "policyBasis": "explicit_cloud_consent",
+      "previewPolicyReady": false,
+      "configurationIssues": [
+        "mode_not_enabled"
+      ],
+      "state": "not_run",
+      "liveTested": false,
+      "requestsMade": 0,
+      "errorCode": null
+    },
+    "catalogs": [
+      {
+        "provider": "itunes",
+        "mode": "live",
+        "configured": true,
+        "policyBasis": "https://performance-partners.apple.com/search-api",
+        "previewPolicyReady": false,
+        "configurationIssues": [],
+        "state": "ok",
+        "liveTested": true,
+        "requestsMade": 1,
+        "errorCode": null
+      }
+    ],
+    "selectionIssues": []
+  },
+  "replacements": [
+    {
+      "sessionId": "Ft9YAoazRgQBngh2IADDDp5imQfZ2P1u",
+      "inputMode": "manual",
+      "effectiveIntent": {
+        "targetMood": "focused",
+        "musicTags": [],
+        "text": "piano",
+        "energy": "any",
+        "instrumental": null
+      },
+      "market": "US",
+      "tracks": [
+        {
+          "ref": {
+            "provider": "itunes",
+            "providerTrackId": "1095365599"
+          },
+          "title": "Piano (Feat. )",
+          "artist": "Relax Focus",
+          "officialUrl": "https://music.apple.com/us/album/piano-feat/1095365452?i=1095365599&uo=4",
+          "artwork": null,
+          "tags": [
+            "Lounge"
+          ],
+          "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Lounge�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+          "linkVerification": "catalog_identity",
+          "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+          "capability": {
+            "mode": "EXTERNAL_ONLY",
+            "reasonCode": "itunes_external_only",
+            "policyEvidence": [
+              "https://performance-partners.apple.com/search-api"
+            ],
+            "checkedAt": "2026-11-03T06:21:01.399830+00:00",
+            "expiresAt": null,
+            "previewUrl": null,
+            "maxPreviewSeconds": 30,
+            "licenseUrl": null,
+            "attribution": null
+          }
+        }
+      ],
+      "requested": 1,
+      "returned": 1,
+      "shortageReason": null,
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "ok",
+          "liveTested": true,
+          "requestsMade": 2,
+          "errorCode": null
+        }
+      ],
+      "selectionIssues": []
+    },
+    {
+      "sessionId": "Ft9YAoazRgQBngh2IADDDp5imQfZ2P1u",
+      "inputMode": "manual",
+      "effectiveIntent": {
+        "targetMood": "focused",
+        "musicTags": [],
+        "text": "piano",
+        "energy": "any",
+        "instrumental": null
+      },
+      "market": "US",
+      "tracks": [
+        {
+          "ref": {
+            "provider": "itunes",
+            "providerTrackId": "1713955133"
+          },
+          "title": "PIANO",
+          "artist": "Oxlade",
+          "officialUrl": "https://music.apple.com/us/album/piano/1713955128?i=1713955133&uo=4",
+          "artwork": null,
+          "tags": [
+            "Afrobeats"
+          ],
+          "recommendationReason": "iTunes �ı�������piano����Ŀ¼���ɣ�Afrobeats�� �������ݣ�Ŀ¼��ǩƥ�� 0 �����/���˴�ƥ�� 1 ����б�����Դ����˳�򣬲��������л���Ƶ������",
+          "linkVerification": "catalog_identity",
+          "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+          "capability": {
+            "mode": "EXTERNAL_ONLY",
+            "reasonCode": "itunes_external_only",
+            "policyEvidence": [
+              "https://performance-partners.apple.com/search-api"
+            ],
+            "checkedAt": "2026-11-03T06:21:01.625065+00:00",
+            "expiresAt": null,
+            "previewUrl": null,
+            "maxPreviewSeconds": 30,
+            "licenseUrl": null,
+            "attribution": null
+          }
+        }
+      ],
+      "requested": 1,
+      "returned": 1,
+      "shortageReason": null,
+      "vision": {
+        "provider": "vision",
+        "mode": "unconfigured",
+        "configured": false,
+        "policyBasis": "explicit_cloud_consent",
+        "previewPolicyReady": false,
+        "configurationIssues": [
+          "mode_not_enabled"
+        ],
+        "state": "not_run",
+        "liveTested": false,
+        "requestsMade": 0,
+        "errorCode": null
+      },
+      "catalogs": [
+        {
+          "provider": "itunes",
+          "mode": "live",
+          "configured": true,
+          "policyBasis": "https://performance-partners.apple.com/search-api",
+          "previewPolicyReady": false,
+          "configurationIssues": [],
+          "state": "ok",
+          "liveTested": true,
+          "requestsMade": 3,
+          "errorCode": null
+        }
+      ],
+      "selectionIssues": []
+    }
+  ],
+  "checks": {
+    "real_results": true,
+    "unique_initial_ids": true,
+    "selected_provider_only": true,
+    "vision_disabled": true,
+    "replacement_1_new_id": true,
+    "replacement_2_new_id": true,
+    "lookup_identity": true,
+    "external_only_without_preview": true
+  },
+  "lookup": {
+    "ref": {
+      "provider": "itunes",
+      "providerTrackId": "1713955133"
+    },
+    "title": "PIANO",
+    "artist": "Oxlade",
+    "officialUrl": "https://music.apple.com/us/album/piano/1713955128?i=1713955133&uo=4",
+    "artwork": null,
+    "tags": [
+      "Afrobeats"
+    ],
+    "recommendationReason": "iTunes �ı�������ID lookup����Ŀ¼���ɣ�Afrobeats��",
+    "linkVerification": "catalog_identity",
+    "linkNotice": "��ԴĿ¼���ṩ��Ŀ���ݼ��ٷ����ӣ�ҳ������������ڵ������˻�Ӱ�졣",
+    "capability": {
+      "mode": "EXTERNAL_ONLY",
+      "reasonCode": "itunes_external_only",
+      "policyEvidence": [
+        "https://performance-partners.apple.com/search-api"
+      ],
+      "checkedAt": "2026-11-03T06:21:01.942877+00:00",
+      "expiresAt": null,
+      "previewUrl": null,
+      "maxPreviewSeconds": 30,
+      "licenseUrl": null,
+      "attribution": null
+    }
+  },
+  "requestsMade": 4,
+  "catalogs": [
+    {
+      "provider": "itunes",
+      "mode": "live",
+      "configured": true,
+      "policyBasis": "https://performance-partners.apple.com/search-api",
+      "previewPolicyReady": false,
+      "configurationIssues": [],
+      "state": "ok",
+      "liveTested": true,
+      "requestsMade": 4,
+      "errorCode": null
+    }
+  ],
+  "passed": true,
+  "httpBudget": 6,
+  "networkRoute": "loopback_proxy",
+  "httpRequests": [
+    {
+      "method": "GET",
+      "host": "itunes.apple.com",
+      "path": "/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "host": "itunes.apple.com",
+      "path": "/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "host": "itunes.apple.com",
+      "path": "/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "host": "itunes.apple.com",
+      "path": "/lookup",
+      "status": 200
+    }
+  ]
+}
