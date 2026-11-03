@@ -5,6 +5,7 @@ This is the team's course repository, based on [Music Player GO](https://github.
 - [Course workflow and documentation](docs/README.md)
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
+- [Sprint 3 Vibe Discovery](docs/sprints/sprint-3.md) · [Android run instructions](docs/development/discovery/android-sprint3.md) · [Device evidence and acceptance limits](docs/development/discovery/sprint3-delivery-2026-11-03.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
