@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-10-27T06:45:27.439958+00:00",
+  "remote_directory": "/sdcard/Music/VibePlayerReview15-20261027",
+  "preparation": "Repository sine-tone MP3 audio frames repeated six times; fresh ID3 title differs from filename.",
+  "files": [
+    {
+      "label": "A",
+      "filename": "File15-A.mp3",
+      "title": "Title15-A",
+      "source": "project\\app\\src\\androidTest\\assets\\playlist-display-A.mp3",
+      "source_sha256": "732dc5d515a19ab79e59aa339055761a22b8e7171e783deef74093e9897c28d5",
+      "sha256": "203311073ec32e9dd2f951d7700c1b545c307ccfbc48de97fad80269bbb6d26d",
+      "bytes": 721691,
+      "frame_duration_seconds": 180.40163265306123,
+      "push_result": "",
+      "device_sha256": "203311073ec32e9dd2f951d7700c1b545c307ccfbc48de97fad80269bbb6d26d",
+      "scan_result": "Broadcasting: Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x400000 }\nBroadcast completed: result=0"
+    },
+    {
+      "label": "B",
+      "filename": "File15-B.mp3",
+      "title": "Title15-B",
+      "source": "project\\app\\src\\androidTest\\assets\\playlist-display-B.mp3",
+      "source_sha256": "e47a1fdda00107a7f7a19f1168c7a5bbf3d1aca6e4039f6a28ff2f512ab313cb",
+      "sha256": "847ff73191db6d746cd42222b9c8aca23d911f8e7a0b486d7abd2e39fd5202f3",
+      "bytes": 721691,
+      "frame_duration_seconds": 180.40163265306123,
+      "push_result": "",
+      "device_sha256": "847ff73191db6d746cd42222b9c8aca23d911f8e7a0b486d7abd2e39fd5202f3",
+      "scan_result": "Broadcasting: Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x400000 }\nBroadcast completed: result=0"
+    },
+    {
+      "label": "C",
+      "filename": "File15-C.mp3",
+      "title": "Title15-C",
+      "source": "project\\app\\src\\androidTest\\assets\\playlist-display-C.mp3",
+      "source_sha256": "85b157a6b185cb9e9a57ec308b868f8360de90ce99068f5211acef9fe32970eb",
+      "sha256": "715e40989f1020d6e88dbd2be214427b1ff8da5e5d21cc2f823037f12b2b4480",
+      "bytes": 721691,
+      "frame_duration_seconds": 180.40163265306123,
+      "push_result": "",
+      "device_sha256": "715e40989f1020d6e88dbd2be214427b1ff8da5e5d21cc2f823037f12b2b4480",
+      "scan_result": "Broadcasting: Intent { act=android.intent.action.MEDIA_SCANNER_SCAN_FILE dat=file:///... flg=0x400000 }\nBroadcast completed: result=0"
+    }
+  ]
+}

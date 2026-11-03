@@ -1,0 +1,16 @@
+{
+  "stage": "baseline",
+  "recorded_utc": "2026-10-27T06:26:01.2759409+00:00",
+  "operator_report": "看到了",
+  "visible_tracks": [
+    "Test-A",
+    "Test-B",
+    "Test-C"
+  ],
+  "shuffle_text": "3",
+  "shuffle_enabled": true,
+  "shuffle_clickable": true,
+  "visual_note": "Floating lyrics were visible over the header; operator asked to dismiss them and pause other music before continuing",
+  "issue13_result": "Pending",
+  "publication_note": "Structured baseline observation retained. Baseline image and UI XML with an unrelated floating lyrics overlay are kept in the local archive."
+}

@@ -1,0 +1,271 @@
+{
+  "prepared_utc": "2026-10-27T08:17:45.311262+00:00",
+  "files": [
+    {
+      "path": "issue13/filtered-ui.png",
+      "sha256": "e8c1dea757e060bf144537283d2d5ef251f553e168a7971446edf033d9b60716",
+      "source_sha256": "e8c1dea757e060bf144537283d2d5ef251f553e168a7971446edf033d9b60716",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/filtered-ui.xml",
+      "sha256": "afcbc2245f2c790f4870f3c70787e8744fe58f8b1f6eec6200f2f7be34f6405b",
+      "source_sha256": "afcbc2245f2c790f4870f3c70787e8744fe58f8b1f6eec6200f2f7be34f6405b",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/filtered-observation.json",
+      "sha256": "a23ae6845f7ad67f7b7f3a5e0b42f26fb9439f9a48576098f54c25c31881e6a9",
+      "source_sha256": "b8e267bf181557c896d188c53350884b3d42bd8dd31c09d834316988871c5d54",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue13/refreshed-ui.png",
+      "sha256": "8a8248a8c37cae4b953173acafab349b56873e9fe60f2d9cd1e4a3b6f19296db",
+      "source_sha256": "8a8248a8c37cae4b953173acafab349b56873e9fe60f2d9cd1e4a3b6f19296db",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/refreshed-ui.xml",
+      "sha256": "afcbc2245f2c790f4870f3c70787e8744fe58f8b1f6eec6200f2f7be34f6405b",
+      "source_sha256": "afcbc2245f2c790f4870f3c70787e8744fe58f8b1f6eec6200f2f7be34f6405b",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/refreshed-observation.json",
+      "sha256": "dc7e95242e350e30a5e4df489bbc1c13bc33b75a86dd3561c520e800415e25fa",
+      "source_sha256": "98a726032df62f1c1f5ce88d55530d424fa725a47f07d421550e77dc18383e4d",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue13/restored-ui.png",
+      "sha256": "db7130cbaf164e93c8c99a8be07c2f420cdc36551eed73478d80e475a53d30e7",
+      "source_sha256": "db7130cbaf164e93c8c99a8be07c2f420cdc36551eed73478d80e475a53d30e7",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/restored-ui.xml",
+      "sha256": "a8cd47081130d869fdce0f9a623854f1328bfec21ca3be7272cdbf6aa7e6baca",
+      "source_sha256": "a8cd47081130d869fdce0f9a623854f1328bfec21ca3be7272cdbf6aa7e6baca",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/restored-observation.json",
+      "sha256": "30d80b9f4a2de8a9498633178b49ee757c3f12ae35f3229e0ab12c50c78dfe6d",
+      "source_sha256": "f35fc1028d0f26159ec837271cf64172f45d962701b6d2eb364a2a38b8716d44",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue13/playback-ui.png",
+      "sha256": "1c0822a8af06f25af4000c536366b9426832a5c8f4e1a7dcc4db64b9ea3328da",
+      "source_sha256": "1c0822a8af06f25af4000c536366b9426832a5c8f4e1a7dcc4db64b9ea3328da",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/playback-ui.xml",
+      "sha256": "a8cd47081130d869fdce0f9a623854f1328bfec21ca3be7272cdbf6aa7e6baca",
+      "source_sha256": "a8cd47081130d869fdce0f9a623854f1328bfec21ca3be7272cdbf6aa7e6baca",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue13/playback-observation.json",
+      "sha256": "57a83986b65a44c20fc132043358879ee1e77dd3ea2ac27f088128771c3e1492",
+      "source_sha256": "a83648f2c8a62122c09218971239f91b5544eb8657af305f15da508cb82910bb",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue13/playback-media-session.json",
+      "sha256": "68b7f189dc37cc35eba52d2d439adee2a6247fae3f88eb8e4d053dd8bac4ab75",
+      "source_sha256": "97a1708b0359934bab4a74dc3cef15067425cc3f6534eeebd5a46595129becea",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue13/baseline-observation.json",
+      "sha256": "e6b6bd991603412112757364e151559209f9299e6d513e7890034ef2beef0e6d",
+      "source_sha256": "a5439972ac4b199d0e6643f531e00e4079634be9e30cdedc7bc7f408b9238bf1",
+      "mode": "structured baseline; local-only overlay attachments omitted; original observations retained; LF-normalized"
+    },
+    {
+      "path": "issue15/playlist-ready-ui.png",
+      "sha256": "f8e58f04fa4d25dbc9d8aca48d9f2afa589ebc85dea05112042a12c1cdf81128",
+      "source_sha256": "f8e58f04fa4d25dbc9d8aca48d9f2afa589ebc85dea05112042a12c1cdf81128",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/playlist-ready-ui.xml",
+      "sha256": "79b7b2041a3e65851167f38fb70053228bf311237b23f6408a8e24208ca2e745",
+      "source_sha256": "79b7b2041a3e65851167f38fb70053228bf311237b23f6408a8e24208ca2e745",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/playlist-ready-observation.json",
+      "sha256": "24698b6525bcd93cff2b5a7cac60bf5f36b79e996617d0b52ff0d5942170c5c6",
+      "source_sha256": "5fa0a5c00c11bd276d78e45f48c789204b3009d7a344625c1bf8cb68b70efe70",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/playlist-ready-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/filename-playing-ui.png",
+      "sha256": "d5d2dbf2784969c1838edea839acae4e113d853bbf0fffc5b6b2ba4d1da33d2e",
+      "source_sha256": "d5d2dbf2784969c1838edea839acae4e113d853bbf0fffc5b6b2ba4d1da33d2e",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/filename-playing-ui.xml",
+      "sha256": "1f8d97deaba2f675bdf47abc3be37a02fc5cd5f39085453c23bd5f567a2c89ee",
+      "source_sha256": "1f8d97deaba2f675bdf47abc3be37a02fc5cd5f39085453c23bd5f567a2c89ee",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/filename-playing-observation.json",
+      "sha256": "55900bbf7fad8164275b5e6ef44a341592a0545c40943ced3981bfd319e8f62d",
+      "source_sha256": "8f63ce393dae07d889da097ef50d22ea9d0ad23a83f9fb0ee05f4aee6c168e7c",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/filename-playing-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/title-after-ui.png",
+      "sha256": "eed995c9066e4669f9b9d812f7251c3f151989f0d0d0bdad89549298b26813d8",
+      "source_sha256": "eed995c9066e4669f9b9d812f7251c3f151989f0d0d0bdad89549298b26813d8",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/title-after-ui.xml",
+      "sha256": "2013b071c42d95b331951775dcc0b4342878bbd6b12e43e203c05e43616ee2a3",
+      "source_sha256": "2013b071c42d95b331951775dcc0b4342878bbd6b12e43e203c05e43616ee2a3",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/title-after-observation.json",
+      "sha256": "844f18e95a801bb45cfa4019e90fa0f972b68350147eb87fca06b962b229d6b8",
+      "source_sha256": "82f091260cac5ee145bca3c830f4a1b2d2c76d59268f6752a4b0a364e092394a",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/title-after-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/filename-restored-ui.png",
+      "sha256": "c054a0e21f31d7a855d2793724824877ce42827a1b2d67ae9cb81dc3699c6390",
+      "source_sha256": "c054a0e21f31d7a855d2793724824877ce42827a1b2d67ae9cb81dc3699c6390",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/filename-restored-ui.xml",
+      "sha256": "63e5458bbc7269c4d4842faf3fab96283d13f50c2462a52cb0eaee900e0b05c4",
+      "source_sha256": "63e5458bbc7269c4d4842faf3fab96283d13f50c2462a52cb0eaee900e0b05c4",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/filename-restored-observation.json",
+      "sha256": "85f865ba605ffde42079230c4b0115dbc5710f31920fdb56c36b9cb1637e45ee",
+      "source_sha256": "920d2cfed0871bc456c981f7514b216f3146af4dc22e5c36f45ee013d80ea2c1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/filename-restored-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/unexpected-next-test-a-ui.png",
+      "sha256": "f148a74a2a7bcdef59733f9968972155a4ab759b250d8422c7ffbc1f90cfe451",
+      "source_sha256": "f148a74a2a7bcdef59733f9968972155a4ab759b250d8422c7ffbc1f90cfe451",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/unexpected-next-test-a-ui.xml",
+      "sha256": "bcca961b049cc6f6b8a7d5bbf037bdc66b1c17b50ee3c9350b1b0c1ac7b5aa43",
+      "source_sha256": "bcca961b049cc6f6b8a7d5bbf037bdc66b1c17b50ee3c9350b1b0c1ac7b5aa43",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/unexpected-next-test-a-observation.json",
+      "sha256": "fa8a5cc65fdf68839de525009325710a2007da12774cdbc69e3f6a9d5834ac7e",
+      "source_sha256": "31b8cf5d9a3b046e53ade37309552f744182dc65ab1d0e3e00daa856ae338b8b",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/unexpected-next-test-a-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/order-confirmed-ui.png",
+      "sha256": "b6d112fa565c44693b4ea7776f2f4ec0c70f0afb961d35339040f210fafdc903",
+      "source_sha256": "b6d112fa565c44693b4ea7776f2f4ec0c70f0afb961d35339040f210fafdc903",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/order-confirmed-ui.xml",
+      "sha256": "11fc99530c68513b9dc624323a65848cafa0a0a2b75341b8b3d3597060af2e30",
+      "source_sha256": "11fc99530c68513b9dc624323a65848cafa0a0a2b75341b8b3d3597060af2e30",
+      "mode": "unaltered copy"
+    },
+    {
+      "path": "issue15/order-confirmed-observation.json",
+      "sha256": "8fef59961c06e924525dd812aa4845512bffda9628e616cf65cc2da62c89d795",
+      "source_sha256": "3983e89312b25a873b09c879b687cebd8bfe7be828e48e61e951cb1f9342cfe3",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/order-confirmed-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/continuous-run-complete-observation.json",
+      "sha256": "b5c070ec8188508c45a08d88cf56c037a0fbc1aee8fe535e2ac7604892059076",
+      "source_sha256": "4bb3b288192241b89c1d22b9bf1b99e210481a80acbfa1c42c6c236ea0e5db92",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/continuous-run-complete-playlists.json",
+      "sha256": "9b1476ef4a80fd9ef6d757b20265945ca1681e3900492f17684cc6350f454132",
+      "source_sha256": "aac92fea8e8ecc7bd1e32d834600e3dfddfa49206cb23779594928889ed269f1",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/operator-clarification.json",
+      "sha256": "36a0825db2fefd382796d24bcb035b5e9c40d96f83cf4d26b8bfae24a4a46d56",
+      "source_sha256": "b21664fc85f9c57528de79f5529351a3330f734d2882edd16cfff9a4d8a9fbd4",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/verification-checks.json",
+      "sha256": "3a0f8be7640c81683171ce0cd67873ec5c9f0e67a1f786de652cc9231dd666f8",
+      "source_sha256": "5d3a480825be496070dc0834b779d5f0341a600cee83363b1204cd9c48898f9e",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/fixtures.json",
+      "sha256": "aaab73c9091ff09cb7e7215c17743575e3038ffc73f71ad09188913c53919c33",
+      "source_sha256": "d34415b7202a70a24d0bb0595886b35b6c49dea742b09fa16e03c9a66bb8c5af",
+      "mode": "LF-normalized text copy"
+    },
+    {
+      "path": "issue15/mediastore-fixtures.txt",
+      "sha256": "797f8998853d458ad14569602dfd33b282c61346dd00c72d200195164dbc0c25",
+      "source_sha256": "b34c5e4331a206b130526861f459b288a8b68befdddf538b1408d62bb4db433b",
+      "mode": "LF-normalized text copy"
+    }
+  ],
+  "publication_scope": "Case evidence and synthetic playlist data. Device preferences archives, local APKs, host-specific helpers and the unrelated baseline overlay remain in the local archive.",
+  "text_publication_format": "LF line endings; source_sha256 retains the original local bytes; PNG copies are byte-identical."
+}

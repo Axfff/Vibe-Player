@@ -95,6 +95,9 @@ The external-effect tests check actual broadcast delivery and real player sessio
 IDs. Host audio is disabled; they do not claim audible verification with a vendor
 or third-party equalizer. Only the emulator/API actually executed will be reported.
 
-Prepared with Codex assistance for Axfff. AI implementation/review, automated tests
-and human teammate review are separate records. The new fixes require teammate
-review before merge under the team's documented workflow.
+Prepared with Codex assistance for Axfff. The fixes were subsequently included in
+PR #3's main merge `81b22ee5` and published as `release1`. Human teammate review of
+these later fixes remains Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17)
+under the owner's recorded merge-first arrangement. Use the
+[human-review packet](../releases/release-1-human-review.md) and
+[final integration report](playlist-final-integration.md) for the merged version.

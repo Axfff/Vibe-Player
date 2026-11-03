@@ -1,0 +1,31 @@
+{
+  "stage": "continuous-run-complete",
+  "recorded_utc": "2026-10-27T08:06:43.708043+00:00",
+  "operator_report": "全部符合，连续操作完成，已暂停在 A",
+  "operator_confirmed_sequence": [
+    "Review15 Play C",
+    "Title preference: Songs titles and mini-player immediately updated; audio and progress continuous",
+    "Filename preference: Songs filenames and mini-player immediately updated; audio and progress continuous",
+    "Without selecting a Songs row, Next played B then Next played A; both audible",
+    "Paused A"
+  ],
+  "display_preference": "1",
+  "saved_playlist_order": [
+    "File15-C.mp3",
+    "File15-B.mp3",
+    "File15-A.mp3"
+  ],
+  "playlist_document_sha256": "b7c28d5bd59334b100265a41d74a1a9108fd6145e13d7e6a6f4b57f215dd5b5f",
+  "media_session": [
+    "package=com.iven.musicplayergo.debug",
+    "active=true",
+    "state=PlaybackState {state=PAUSED(2), position=5767, buffered position=0, speed=1.0, updated=1168780799, actions=823, custom actions=[], active item id=-1, error=null}",
+    "metadata: size=13, description=File15-A, Review 15, null",
+    "queueTitle=null, size=0"
+  ],
+  "ui_capture_status": "Final run: foreground guard skipped screenshot. ADB media-session and saved-playlist records captured; prior order-confirmed-ui.png belongs to the earlier retry checkpoint.",
+  "evidence": [
+    "continuous-run-complete-playlists.json"
+  ],
+  "issue15_result": "PASS"
+}

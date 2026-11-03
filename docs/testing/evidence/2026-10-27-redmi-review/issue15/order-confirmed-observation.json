@@ -1,0 +1,203 @@
+{
+  "stage": "order-confirmed",
+  "recorded_utc": "2026-10-27T07:52:22.102298+00:00",
+  "operator_report": "回到 Songs 后，又点了列表中的歌曲；重新从 Review15 播放后，已确认 B → A，两首都有声音，已暂停在 A",
+  "display_preference": "1",
+  "playlist_document_sha256": "b7c28d5bd59334b100265a41d74a1a9108fd6145e13d7e6a6f4b57f215dd5b5f",
+  "visible_ui": [
+    {
+      "id": "com.iven.musicplayergo.debug:id/library_open_playlists",
+      "text": "歌单",
+      "description": "打开和管理已保存的歌单",
+      "enabled": "true",
+      "bounds": "[36,144][588,288]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/library_scan_music",
+      "text": "扫描本地音乐",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[612,144][1164,288]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/library_import_help",
+      "text": "找不到歌曲？",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[845,288][1164,432]"
+    },
+    {
+      "id": "",
+      "text": "Songs",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[216,476][392,556]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "00:24, 26 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,648][402,697]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "Test-A",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,715][1152,780]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/subtitle",
+      "text": "<unknown> / Folder-One",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,780][535,836]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "00:24, 26 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,932][402,981]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "Test-B",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,999][1152,1064]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/subtitle",
+      "text": "<unknown> / Folder-One",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1064][535,1120]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "00:24, 26 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1216][402,1265]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "Test-C",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1283][1152,1348]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/subtitle",
+      "text": "<unknown> / Folder-Two",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1348][529,1404]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "03:00, 27 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1500][403,1549]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "File15-A",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1567][1152,1632]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/subtitle",
+      "text": "Vibe Player test audio / Review 15",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1632][701,1688]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "03:00, 27 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1784][403,1833]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "File15-B",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1851][1152,1916]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/subtitle",
+      "text": "Vibe Player test audio / Review 15",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1916][701,1972]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/duration",
+      "text": "03:00, 27 10月 2026",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,2068][403,2117]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/title",
+      "text": "File15-C",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,2135][1152,2148]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/shuffle_fab",
+      "text": "6",
+      "description": "Shuffle all songs",
+      "enabled": "true",
+      "bounds": "[792,1956][1152,2100]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/song_progress",
+      "text": "",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[0,2148][1200,2154]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playing_song",
+      "text": "File15-A",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[36,2185][678,2241]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/playing_artist",
+      "text": "Vibe Player test audio / Review 15",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[36,2241][678,2290]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/play_pause_button",
+      "text": "",
+      "description": "Play/pause",
+      "enabled": "true",
+      "bounds": "[684,2178][804,2298]"
+    }
+  ],
+  "media_session": [
+    "package=com.iven.musicplayergo.debug",
+    "active=true",
+    "state=PlaybackState {state=PAUSED(2), position=2754, buffered position=0, speed=1.0, updated=1167768941, actions=823, custom actions=[], active item id=-1, error=null}",
+    "metadata: size=13, description=File15-A, Review 15, null",
+    "queueTitle=null, size=0"
+  ],
+  "evidence": [
+    "order-confirmed-ui.xml",
+    "order-confirmed-ui.png",
+    "order-confirmed-playlists.json"
+  ]
+}

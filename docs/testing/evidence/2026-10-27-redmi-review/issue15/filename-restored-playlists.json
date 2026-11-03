@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "playlists": [
+    {
+      "id": "f909d29d-f71c-4ee7-9864-498dbb287fcd",
+      "name": "Running",
+      "tracks": [
+        {
+          "mediaId": 13526,
+          "title": "Test-B",
+          "displayName": "Test-B.wav",
+          "artist": "<unknown>",
+          "album": "Folder-One",
+          "duration": 24000
+        },
+        {
+          "mediaId": 13528,
+          "title": "Test-C",
+          "displayName": "Test-C.wav",
+          "artist": "<unknown>",
+          "album": "Folder-Two",
+          "duration": 24000
+        }
+      ]
+    },
+    {
+      "id": "be7e2a24-ae50-4b8f-a297-bdacfb82b4e8",
+      "name": "Review15",
+      "tracks": [
+        {
+          "mediaId": 14636,
+          "title": "Title15-C",
+          "displayName": "File15-C.mp3",
+          "artist": "Vibe Player test audio",
+          "album": "Review 15",
+          "duration": 180402
+        },
+        {
+          "mediaId": 14635,
+          "title": "Title15-B",
+          "displayName": "File15-B.mp3",
+          "artist": "Vibe Player test audio",
+          "album": "Review 15",
+          "duration": 180402
+        },
+        {
+          "mediaId": 14634,
+          "title": "Title15-A",
+          "displayName": "File15-A.mp3",
+          "artist": "Vibe Player test audio",
+          "album": "Review 15",
+          "duration": 180402
+        }
+      ]
+    }
+  ]
+}
