@@ -62,11 +62,11 @@ Every media app should deal with audio focus. This option is ON by default so th
 
 ### Does Music Player GO play music tracks from online sources?
 
-No, local library only.
+Playback in the current Vibe-Player increment uses the local library. Vibe Discovery retrieves online catalog metadata and opens official platform links. Legally permitted in-app previews and their audio interaction with local playback remain Sprint 4 work.
 
 ### Does Music Player GO access the Internet?
 
-No. Internet permission is not required.
+The Vibe-Player course fork requests INTERNET for its optional Discovery service. Manual searches send the confirmed query/country to the configured catalog through that service. A photo is sent only after explicit upload consent and with an authorized live model. Local playback remains available independently. See the [Discovery privacy information](PRIVACY_POLICY.md#vibe-player-course-fork-discovery-data-handling-2026-11-03).
 
 
 ### How does Music Player GO categorized music tracks?
@@ -116,6 +116,6 @@ Apps > All apps > Music Player GO > Battery > Unrestricted
 
 ### Does this app keep any info or data about me or my device?
 
-No. Neither the device's nor owner info.
+Discovery keeps its saved source identities, title/artist snapshots, user music intent and hidden identities locally. It also retains the selected service address. It does not persist the photo, model key or audio URL. Searches and consented photo analysis have the network boundaries described in the [privacy information](PRIVACY_POLICY.md); this feature adds no analytics SDK or user account.
 
 Pose other questions by creating issues, and we will answer them.

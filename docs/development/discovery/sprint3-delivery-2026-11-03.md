@@ -2,6 +2,8 @@
 
 The manual Android increment is runnable: confirmed music intent → live iTunes results → validated official link launch → independent Collection save → restore after force-stop. This is an engineering delivery record, not human sign-off. [Story #36](https://github.com/Axfff/Vibe-Player/issues/36), [formal SR/AC/tasks](../../requirements/vibe-discovery.md), [Sprint 3/4 plan](../../sprints/sprint-3.md) and [run instructions](android-sprint3.md) are linked together.
 
+Implementation is published as [draft PR #37](https://github.com/Axfff/Vibe-Player/pull/37). Its exact-head cloud check and coverage bot comment contain the current downloadable full reports/APK; they are separate from the dated local measurements below.
+
 Two acceptance limits remain explicit: **S3-AC2 Blocked** without real vision authorization; **S3-AC5 partial** because the actual browser redirected the official song link to an Apple regional homepage. Full hybrid playback remains the overall goal; second-source authorization, legally permitted previews and local/preview audio exclusivity remain S4-AC1–4.
 
 ## Provenance and runnable artifact
@@ -80,14 +82,24 @@ python scripts/require-disposable-emulator.py
 .\gradlew.bat :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.package=com.iven.musicplayergo.discovery --offline --console=plain
 ```
 
-Python: 166 passed, whole-package lines 917/955 (96.02%); web: 22 passed, 812/825 (98.42%). These are local module measurements, not a final cumulative Android gate. Test execution uncovered and fixed actual AtomicFile failure reporting, default bitmap sampling and device-UI issues before the passing rerun; earlier failed logs were retained in the local verification directory.
+The feature owner's targeted Python run had 166 passing tests and the web run had 22. Final coverage numbers below come from the CI owner's complete clean collection. Test execution uncovered and fixed actual AtomicFile failure reporting, default bitmap sampling and device-UI issues before the passing rerun; earlier failed logs were retained in the local verification directory.
 
-The CI agent owns the complete clean same-revision collection and scope audit, including Release 1, all eight new Android source files, the changed entry and backend ranking. It uses its own disposable `emulator-5584`. No UI, transport, image, storage or unexecuted code is excluded to inflate results. Full candidate, counts and report links will be recorded here after the collection completes; no earlier PR's percentages are substituted.
+The CI agent completed the clean same-revision collection at **`00bad97bfb9eade7ec6ef9361de50b1554f2fbab`**, using its own disposable `emulator-5584`. This includes Release 1, all eight new Android source files, the changed entry and backend ranking. No UI, transport, image, storage or unexecuted code is excluded to inflate results. The [unaltered machine summary](evidence/sprint3-coverage-00bad97b.json) records a clean tree and `measurement_only=false`.
+
+| Module | Tests (failure/error/skipped all zero) | Covered / executable | Gate |
+| --- | --- | --- | --- |
+| Android JVM + device | 37 JVM + 49 instrumentation | 1727 / 1952 = 88.473361% | Pass |
+| Python | 166 | 954 / 992 = 96.169355% | Pass |
+| Web | 22 | 812 / 825 = 98.424242% | Pass |
+
+The class-ID audit matched all 336 production classes. JVM instrumentation diagnostics contain zero duplicate-instrumentation errors; actual JVM execution data still contains 35 production-class probe hits. The first exploratory collection reported duplicate instrumentation and is explicitly invalid; those percentages are not used here. The public fix avoids transforming already offline-instrumented app classes twice, without excluding them from report classes or the scope. Twelve gate-contract tests include rejection of a passing JUnit report with instrumentation errors.
+
+The exact full local report is `Vibe-Player-ci-feature/artifacts/coverage/index.html`; an immutable copy is under the workspace's `verification/sprint3-coverage/discovery-feature-20261103/final-00bad97b/`. Source fingerprint: `ed924bdc122dd1aa92c0402a963a27bc68f5a9b5daba1f06e91a597621ec83be`. The current feature branch includes this configuration and identical production source, plus delivery documents. This local result stays attributed to `00bad97b`; the draft PR's final head must pass its own cloud run and is never relabeled as this local measurement.
 
 ## Remaining work and handoff
 
 - Account owner + Discovery implementer: explicitly authorize/configure and verify a real vision model, or have the human team formally decide a scope change. Until then S3-AC2 stays Blocked in Sprint 3.
 - Discovery implementer + reviewer: verify the original official song URL on a supported actual storefront/device. Keep the current availability disclosure and browser evidence; do not infer availability from an ID match or HTTP 200.
-- CI agent + Discovery implementer: finish full cumulative gate and publish the exact source/report/APK in the draft PR; resolve genuine missed behaviors if the gate fails.
+- CI agent + Discovery implementer: local cumulative gate is complete; verify the final draft PR head's cloud gate and downloadable report/APK. Any later production change requires new scope review and fresh collection.
 - Sprint 4: authorized second source, per-track legal preview/attribution, local/preview audio focus and lifecycle exclusivity, then the complete hybrid device flow (D4-01–03 / S4-AC1–4).
 - Human team: review and sign acceptance, assign actual member names and dates. This work does not merge the PR, close the Story or change `release1`.
