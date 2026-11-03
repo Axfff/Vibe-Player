@@ -1,12 +1,13 @@
 # Android Discovery CI integration — 2026-11-03
 
-This is preparation for the Android feature, not a new coverage measurement. The feature owner edits Discovery production code; the CI owner maintains shared Gradle/workflows/coverage scripts. The current feature source has no Android Discovery implementation yet.
+This is preparation for the Android feature, not a new coverage measurement. The feature owner edits Discovery production code; the CI owner maintains shared Gradle/workflows/coverage scripts. Android Discovery implementation is now in progress; its final committed source and coverage have not been supplied yet.
 
 ## Verified Git starting points
 
 - Latest remote main: `dc17523be591a72f9fefa98536c61689e4d99ad1`.
-- Existing local `feat/ai-photo-discovery`: `fa86950d0f8955a8b0718de95f7a0509dedee832`.
-- Their merge base is `947709e4c798a103b9fcc5962172f2e85d349196`; main has 38 exclusive commits and Discovery has 4. Discovery does not yet contain Release 1, JVM tests, instrumentation tests or their Gradle configuration.
+- Initial local `feat/ai-photo-discovery`: `fa86950d0f8955a8b0718de95f7a0509dedee832`.
+- At that initial revision, its merge base with main is `947709e4c798a103b9fcc5962172f2e85d349196`; main has 38 exclusive commits and Discovery has 4. That revision lacks Release 1 and its JVM/instrumentation configuration.
+- The feature owner has since merged main in `f59e830ab31ac368268775813a9ddb47e1cc1238`. Release 1 and its existing test dependencies are therefore present now. Android and backend source edits are ongoing in that owner's worktree; this CI work does not alter them.
 - Public CI branch: `26d5c3fc68075bd9d3470135b9160520655ed29c`, based on current main and including the tested playback progress race fix. The readiness branch containing this document is a descendant of it.
 - Reusable backend/web coverage commit: `c87d4e6d64433dbcdda908a2b10740d30c851021`. Its sole parent is exactly `fa86950d0f8955a8b0718de95f7a0509dedee832`. Its 8 changed files are backend/web tests and coverage/package configuration; production Python/static source trees are identical to fa86950d.
 - A three-way merge dry run of public CI 26d5c3fc and c87d4e6d completed without conflicts: tree `53035b73417590fbdfb261ad9cd3bfcb2074e8c7`. This is a tree object, not a tested commit SHA.
@@ -33,11 +34,15 @@ The project already resolves `androidx.activity:activity-ktx:1.7.2`. Local javap
 
 No extra runtime dependency is needed for HttpURLConnection, SharedPreferences or org.json on Android. No new test dependency has been added speculatively. If the feature tests require controlling the external system picker UI, name that requirement before adding a shared UI Automator dependency; the app's existing test libraries can exercise its own UI and returned-URI behavior.
 
+For the feature owner's requested local EXIF orientation handling, shared app Gradle now explicitly declares `implementation 'androidx.exifinterface:exifinterface:1.3.6'`. Before the declaration, Gradle dependencyInsight already resolved exactly 1.3.6 through Coil 2.4.0; this makes the direct feature dependency explicit without upgrading it or another Android component. [Official 1.3.6 release](https://developer.android.com/jetpack/androidx/releases/exifinterface#1.3.6). Image orientation/re-encoding/metadata-removal behavior still needs the feature's own tests on its final source.
+
+After the declaration, `:app:dependencyInsight --dependency androidx.exifinterface --configuration debugRuntimeClasspath :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest` succeeded on the unchanged toolchain. Dependency resolution shows the direct root plus Coil path both selecting 1.3.6. The JVM task executed 31 tests, with zero failures/errors/skips; app and instrumentation APK build tasks passed. No device tests or new feature coverage are claimed by this dependency-only validation. Local logs/JUnit XML are retained under `verification/sprint3-coverage/exif-*-20261103*` outside the repository.
+
 ## Network configuration ownership and acceptance
 
 The feature owner owns the Discovery Activity declarations, INTERNET permission, endpoint policy and debug/main network-security resources. The CI owner will review merged manifests and test results and change shared Gradle only if needed.
 
-Use a main network-security resource with cleartext disabled by default and a debug resource override permitting only the exact hosts `10.0.2.2` and `127.0.0.1` (no subdomains). Keep release's resource strict. For example, the debug resource can contain:
+The feature owner's latest declared resource name is `discovery_network_security.xml`. Use a main resource with cleartext disabled by default and a debug resource override permitting only the exact hosts `10.0.2.2`, `127.0.0.1` and `localhost` (no subdomains). Keep release's resource strict. The client-side allowlist and tests must agree with those three explicitly named hosts. For example, the debug resource can contain:
 
 ```xml
 <network-security-config>
@@ -45,13 +50,14 @@ Use a main network-security resource with cleartext disabled by default and a de
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="false">10.0.2.2</domain>
         <domain includeSubdomains="false">127.0.0.1</domain>
+        <domain includeSubdomains="false">localhost</domain>
     </domain-config>
 </network-security-config>
 ```
 
 Reference the resource from the application manifest. `debug-overrides` configures trust anchors; it is not a host-specific HTTP switch. API 21–23 cannot rely on the API 24+ network-security XML for host restriction, so endpoint/request code must independently enforce release HTTPS and debug HTTP only for the exact allowed hosts. If debug uses a manifest cleartext opt-in for older API support, the client-side host policy is essential. Reject disallowed schemes/hosts after each redirect too, or disable automatic redirects and handle validated redirects explicitly. Never disable TLS/certificate checks. See [Android Network Security Configuration](https://developer.android.com/privacy-and-security/security-config).
 
-Tests should check the pure endpoint/redirect policy, allowed loopback HTTP with a fixture service, denied other HTTP hosts, malformed/empty responses, error statuses, timeouts/cancellation/stale responses, and saved-state behavior. On API 33, verify NetworkSecurityPolicy allows the two debug hosts and denies others. Inspect both debug and release merged manifests/resources to ensure the release artifact has no debug-only HTTP exception. This is acceptance guidance; those new feature checks have not run yet.
+Tests should check the pure endpoint/redirect policy, allowed loopback HTTP with a fixture service, denied other HTTP hosts, malformed/empty responses, error statuses, timeouts/cancellation/stale responses, and saved-state behavior. On API 33, verify NetworkSecurityPolicy allows the three debug hosts and denies others. Inspect both debug and release merged manifests/resources to ensure the release artifact has no debug-only HTTP exception. This is acceptance guidance; those new feature checks have not run yet.
 
 ## Local Windows execution and device ownership
 
