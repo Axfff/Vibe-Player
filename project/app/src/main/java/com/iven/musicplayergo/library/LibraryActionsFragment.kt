@@ -1,6 +1,7 @@
 package com.iven.musicplayergo.library
 
 import android.os.Bundle
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,9 @@ class LibraryActionsFragment : Fragment() {
         scanner = owner[LibraryScanViewModel::class.java]
         binding?.libraryOpenPlaylists?.setOnClickListener { (activity as? MainActivity)?.openPlaylists() }
         binding?.libraryScanMusic?.setOnClickListener { scanner.startScan() }
+        binding?.libraryDiscovery?.setOnClickListener {
+            startActivity(Intent(requireContext(), com.iven.musicplayergo.discovery.DiscoveryActivity::class.java))
+        }
         binding?.libraryImportHelp?.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(R.string.library_import_help)
