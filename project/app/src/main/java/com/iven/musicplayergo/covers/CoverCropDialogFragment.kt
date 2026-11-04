@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.core.view.setPadding
@@ -25,10 +26,20 @@ class CoverCropDialogFragment : DialogFragment() {
     private var cropView: CropImageView? = null
     private var status: TextView? = null
     private var selected: Bitmap? = null
+    private var selectedUri: Uri? = null
     private var launched = false
 
-    private val picker = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-        if (uri == null) dismissAllowingStateLoss() else load(uri)
+    private val picker = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+        if (uri == null) dismissAllowingStateLoss() else {
+            selectedUri = uri
+            load(uri)
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        launched = savedInstanceState?.getBoolean(LAUNCHED) ?: false
+        selectedUri = savedInstanceState?.getString(URI)?.let(Uri::parse)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -61,9 +72,11 @@ class CoverCropDialogFragment : DialogFragment() {
                         isEnabled = selected != null
                         setOnClickListener { save(dialog) }
                     }
-                    if (!launched && selected == null) {
+                    if (selectedUri != null && selected == null) {
+                        load(selectedUri!!)
+                    } else if (!launched && selected == null) {
                         launched = true
-                        picker.launch("image/*")
+                        picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
                     }
                 }
             }
@@ -138,6 +151,12 @@ class CoverCropDialogFragment : DialogFragment() {
         super.onDestroyView()
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putBoolean(LAUNCHED, launched)
+        outState.putString(URI, selectedUri?.toString())
+        super.onSaveInstanceState(outState)
+    }
+
     override fun onDestroy() {
         selected?.recycle()
         selected = null
@@ -153,6 +172,8 @@ class CoverCropDialogFragment : DialogFragment() {
         private const val TITLE = "title"
         private const val ALBUM = "album"
         private const val PLAYLIST = "playlist"
+        private const val LAUNCHED = "picker_launched"
+        private const val URI = "selected_uri"
 
         fun forAlbum(albumId: Long, artist: String?, title: String?) = CoverCropDialogFragment().apply {
             arguments = bundleOf(TYPE to ALBUM, ID to albumId, ARTIST to artist, TITLE to title)

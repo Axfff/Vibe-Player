@@ -158,6 +158,12 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
 
     internal fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
+        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+            val target = CoverTarget.Playlist(id)
+            if (CoverRepositories.get(requireContext()).hasCover(target)) {
+                CoverRepositories.get(requireContext()).removeCover(target)
+            }
+        }
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))
     }

@@ -4,13 +4,14 @@ import android.widget.ImageView
 import coil.Coil
 import coil.request.ImageRequest
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.extensions.toAlbumArtURI
 
 fun ImageView.loadCover(target: CoverTarget) {
     val source = RepositoryCoverResolver(CoverRepositories.get(context)).resolve(target)
     val data = when (source) {
         is CoverDisplaySource.CustomFile -> source.file
-        is CoverDisplaySource.MediaStoreAlbum -> source.albumId.toAlbumArtURI()
+        is CoverDisplaySource.MediaStoreAlbum -> if (GoPreferences.getPrefsInstance().isCovers) source.albumId.toAlbumArtURI() else null
         CoverDisplaySource.DefaultAlbum, CoverDisplaySource.DefaultPlaylist -> null
     }
     val fallback = if (target is CoverTarget.Playlist) R.drawable.ic_custom_playlists else R.drawable.ic_music_note_cover_alt

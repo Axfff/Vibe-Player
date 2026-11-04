@@ -35,6 +35,7 @@ import com.iven.musicplayergo.covers.CoverCropDialogFragment
 import com.iven.musicplayergo.covers.CoverRepositories
 import com.iven.musicplayergo.covers.CoverResult
 import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.loadCover
 import com.iven.musicplayergo.extensions.*
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
@@ -354,9 +355,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
                             albumViewArt.layoutParams = LinearLayout.LayoutParams(dim, dim)
                         }
                     }
-                    firstSong?.albumId?.waitForCover(requireContext()) { bmp, error ->
-                        albumViewArt.loadWithError(bmp, error, R.drawable.ic_music_note_cover)
-                    }
+                    firstSong?.let { albumViewArt.loadCover(CoverTarget.Album(it.albumId ?: 0, it.artist, it.album)) }
                 }
 
                 val searchView =
@@ -616,9 +615,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
             _detailsFragmentBinding?.albumsRv?.adapter?.notifyDataSetChanged()
         } else {
             val song = mSongsList?.firstOrNull()
-            song?.albumId?.waitForCover(requireContext()) { bmp, error ->
-                _detailsFragmentBinding?.albumViewArt?.loadWithError(bmp, error, R.drawable.ic_music_note_cover)
-            }
+            song?.let { _detailsFragmentBinding?.albumViewArt?.loadCover(CoverTarget.Album(it.albumId ?: 0, it.artist, it.album)) }
         }
         setupMenu()
     }
@@ -769,8 +766,8 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
 
                     image.background.alpha = Theming.getAlbumCoverAlpha(requireContext())
 
-                    itemAlbum?.music?.firstOrNull()?.albumId?.waitForCover(requireContext()) { bmp, error ->
-                        image.loadWithError(bmp, error, R.drawable.ic_music_note_cover_alt)
+                    itemAlbum?.music?.firstOrNull()?.let { song ->
+                        image.loadCover(CoverTarget.Album(song.albumId ?: 0, song.artist, song.album))
                     }
 
                     root.setOnClickListener {
@@ -784,6 +781,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
                             mSelectedAlbumPosition = position
                             updateSelectedAlbumTitle()
                             swapAlbum(selected.music)
+                            setupMenu()
                         } else {
                             if (sPlayFirstSong) {
                                 with(mMediaPlayerHolder) {
