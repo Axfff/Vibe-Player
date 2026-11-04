@@ -21,6 +21,18 @@
     <group android:id="@+id/more_options_folder">
 
         <item
+            android:id="@+id/action_set_cover"
+            android:orderInCategory="-2"
+            android:title="@string/cover_set"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_remove_cover"
+            android:orderInCategory="-1"
+            android:title="@string/cover_remove"
+            app:showAsAction="never" />
+
+        <item
             android:id="@+id/action_add_queue"
             android:orderInCategory="0"
             android:title="@string/queue_add"

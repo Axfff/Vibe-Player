@@ -11,6 +11,18 @@
         tools:ignore="AlwaysShowAction" />
 
     <group>
+        <item
+            android:id="@+id/action_set_cover"
+            android:orderInCategory="-2"
+            android:title="@string/cover_set"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/action_remove_cover"
+            android:orderInCategory="-1"
+            android:title="@string/cover_remove"
+            app:showAsAction="never" />
+
         <!-- am = all artist music, sa = selected album -->
         <item
             android:id="@+id/action_shuffle_am"

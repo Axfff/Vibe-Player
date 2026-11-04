@@ -19,6 +19,7 @@ import androidx.core.view.doOnLayout
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,10 @@ import com.iven.musicplayergo.databinding.AlbumItemBinding
 import com.iven.musicplayergo.databinding.FragmentDetailsBinding
 import com.iven.musicplayergo.databinding.GenericItemBinding
 import com.iven.musicplayergo.dialogs.Dialogs
+import com.iven.musicplayergo.covers.CoverCropDialogFragment
+import com.iven.musicplayergo.covers.CoverRepositories
+import com.iven.musicplayergo.covers.CoverResult
+import com.iven.musicplayergo.covers.CoverTarget
 import com.iven.musicplayergo.extensions.*
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
@@ -41,6 +46,9 @@ import com.iven.musicplayergo.utils.Lists
 import com.iven.musicplayergo.utils.Popups
 import com.iven.musicplayergo.utils.Theming
 import me.zhanghai.android.fastscroll.FastScrollerBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -156,6 +164,10 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        childFragmentManager.setFragmentResultListener(
+            CoverCropDialogFragment.RESULT_KEY, viewLifecycleOwner
+        ) { _, _ -> refreshVisibleCovers() }
 
         mMusicViewModel = ViewModelProvider(requireActivity())[MusicViewModel::class.java]
         mMusicViewModel.deviceMusic.observe(viewLifecycleOwner) { returnedMusic ->
@@ -527,11 +539,20 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
                         }
                     }
                 }
+                val target = currentCoverTarget()
+                findItem(R.id.action_set_cover)?.title = getString(
+                    if (target != null && CoverRepositories.get(requireContext()).hasCover(target))
+                        R.string.cover_change else R.string.cover_set
+                )
+                findItem(R.id.action_remove_cover)?.isVisible =
+                    target != null && CoverRepositories.get(requireContext()).hasCover(target)
             }
 
             tb.setOnMenuItemClickListener {
 
                 when (it.itemId) {
+                    R.id.action_set_cover -> showCoverPicker()
+                    R.id.action_remove_cover -> removeCurrentCover()
                     R.id.action_add_queue -> mMediaControlInterface.onAddAlbumToQueue(
                         mSongsList?.toMutableList(),
                         Pair(first = false, second = null)
@@ -566,6 +587,40 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
         _detailsFragmentBinding?.detailsToolbar?.run {
             Theming.tintSleepTimerMenuItem(this, enabled)
         }
+    }
+
+    private fun currentCoverTarget(): CoverTarget.Album? {
+        val song = if (sLaunchedByArtistView) mSelectedAlbum?.music?.firstOrNull() else mSongsList?.firstOrNull()
+        val id = song?.albumId ?: return null
+        if (id <= 0) return null
+        return CoverTarget.Album(id, song.artist, song.album)
+    }
+
+    private fun showCoverPicker() {
+        val target = currentCoverTarget() ?: return
+        CoverCropDialogFragment.forAlbum(target.albumId, target.artistSnapshot, target.albumTitleSnapshot)
+            .show(childFragmentManager, "album-cover-crop")
+    }
+
+    private fun removeCurrentCover() {
+        val target = currentCoverTarget() ?: return
+        lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) { CoverRepositories.get(requireContext()).removeCover(target) }
+            if (result is CoverResult.Success) refreshVisibleCovers()
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun refreshVisibleCovers() {
+        if (sLaunchedByArtistView) {
+            _detailsFragmentBinding?.albumsRv?.adapter?.notifyDataSetChanged()
+        } else {
+            val song = mSongsList?.firstOrNull()
+            song?.albumId?.waitForCover(requireContext()) { bmp, error ->
+                _detailsFragmentBinding?.albumViewArt?.loadWithError(bmp, error, R.drawable.ic_music_note_cover)
+            }
+        }
+        setupMenu()
     }
 
     private fun applySortingToMusic(order: Int) {
