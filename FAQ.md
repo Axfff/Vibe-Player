@@ -32,7 +32,7 @@ The inherited settings offer light, dark/pure black and automatic themes, plus a
 
 ## Does the app need internet access?
 
-The [Android manifest](project/app/src/main/AndroidManifest.xml) does not declare the `INTERNET` permission. Music access lets the player read your local library; saved playlists are stored locally in app preferences. The retained [upstream privacy policy](PRIVACY_POLICY.md) describes the original Music Player GO project and developer.
+The current Android app's [manifest](project/app/src/main/AndroidManifest.xml) does not declare the `INTERNET` permission. Music access lets the player read your local library; saved playlists are stored locally in app preferences. The separately run [Discovery service and browser demo](services/discovery/README.md) use the network according to their configured providers and authorization. The retained [upstream privacy policy](PRIVACY_POLICY.md) describes the original Music Player GO project and developer.
 
 ## How do I report a bug or contribute?
 

@@ -79,6 +79,22 @@ class QueueAdapter : RecyclerView.Adapter<QueueAdapter.QueueHolder>() {
     fun performQueueSongDeletion(context: Context, adapterPosition: Int): Boolean {
         val song = queueSongs[adapterPosition]
         val prefs = GoPreferences.getPrefsInstance()
+
+        fun removeSong() {
+            with(mediaPlayerHolder) {
+                queueSongs.remove(song)
+                notifyItemRemoved(adapterPosition)
+
+                if (queueSongs.isEmpty()) {
+                    isQueue = null
+                    mediaPlayerInterface.onQueueStartedOrEnded(started = false)
+                    onQueueCleared?.invoke()
+                }
+
+                prefs.queue = queueSongs
+            }
+        }
+
         if (prefs.isAskForRemoval) {
             notifyItemChanged(adapterPosition)
             return if (song != mSelectedSong || mediaPlayerHolder.isQueue == null) {
@@ -89,21 +105,7 @@ class QueueAdapter : RecyclerView.Adapter<QueueAdapter.QueueHolder>() {
                         song.title
                     ))
                     .setPositiveButton(R.string.yes) { _, _ ->
-                        with(mediaPlayerHolder) {
-                            // remove and update adapter
-                            queueSongs.remove(song)
-                            notifyItemRemoved(adapterPosition)
-
-                            // dismiss sheet if empty
-                            if (queueSongs.isEmpty()) {
-                                isQueue = null
-                                mediaPlayerInterface.onQueueStartedOrEnded(started = false)
-                                onQueueCleared?.invoke()
-                            }
-
-                            // update queue songs
-                            prefs.queue = queueSongs
-                        }
+                        removeSong()
                     }
                     .setNegativeButton(R.string.no, null)
                     .show()
@@ -113,8 +115,7 @@ class QueueAdapter : RecyclerView.Adapter<QueueAdapter.QueueHolder>() {
             }
         } else {
             return if (song != mSelectedSong || mediaPlayerHolder.isQueue == null) {
-                queueSongs.remove(song)
-                notifyItemRemoved(adapterPosition)
+                removeSong()
                 true
             } else {
                 false

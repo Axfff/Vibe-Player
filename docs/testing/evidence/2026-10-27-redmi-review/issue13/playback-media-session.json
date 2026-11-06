@@ -1,0 +1,11 @@
+{
+  "recorded_utc": "2026-10-27T06:34:57.055709+00:00",
+  "adb_exit_code": 0,
+  "app_fields": [
+    "package=com.iven.musicplayergo.debug",
+    "active=true",
+    "state=PlaybackState {state=PAUSED(2), position=7854, buffered position=0, speed=1.0, updated=1163230464, actions=823, custom actions=[], active item id=-1, error=null}",
+    "metadata: size=13, description=Test-A, Folder-One, null",
+    "queueTitle=null, size=0"
+  ]
+}

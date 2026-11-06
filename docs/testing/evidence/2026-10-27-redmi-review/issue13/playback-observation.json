@@ -1,0 +1,22 @@
+{
+  "stage": "shuffle-playback-after-clearing-query",
+  "recorded_utc": "2026-10-27T06:34:57.055709+00:00",
+  "operator_reports": [
+    "可以实际播放",
+    "是，点击 Shuffle 后可以听到测试音"
+  ],
+  "audible_playback": "PASS; explicitly confirmed by the human operator after pressing Shuffle",
+  "ui_snapshot": {
+    "playing_song": "Test-B",
+    "shuffle_text": "3",
+    "shuffle_enabled": true,
+    "play_pause_icon_visual": "Play icon in saved playback-ui.png",
+    "file_captured_utc": "2026-10-27T06:31:21.522852+00:00"
+  },
+  "evidence": [
+    "playback-ui.xml",
+    "playback-ui.png",
+    "playback-media-session.json"
+  ],
+  "issue13_result": "PASS"
+}

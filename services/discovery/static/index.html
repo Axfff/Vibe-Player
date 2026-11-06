@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Vibe Discovery · 本地实验室</title>
+    <link rel="stylesheet" href="/demo/style.css" />
+    <script src="/demo/app.js" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <header>
+        <a class="brand" href="/demo/">VIBE / DISCOVERY</a
+        ><span class="local">LOCAL LAB · 01</span>
+      </header>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">从眼前的风景，到下一首歌</p>
+          <h1>这一刻，<em>想听什么？</em></h1>
+          <p class="lede">
+            用照片开启灵感，或直接描述想要的氛围。<br />你来决定方向，我们从音乐目录寻找真实曲目。
+          </p>
+        </div>
+        <div class="orbit" aria-hidden="true">
+          <div></div>
+          <span>SEE<br />FEEL<br />DISCOVER</span>
+        </div>
+      </section>
+      <aside id="providers" class="providers" aria-live="polite">
+        正在读取来源配置…
+      </aside>
+      <div class="workspace">
+        <section class="panel inputs">
+          <div class="step">
+            <span>01</span>
+            <h2>给灵感一个起点</h2>
+          </div>
+          <div class="tabs">
+            <button type="button" id="manualMode" aria-pressed="true">
+              文字 / 标签</button
+            ><button type="button" id="photoMode" aria-pressed="false">
+              一张照片
+            </button>
+            <button type="button" id="albumMode" aria-pressed="false">
+              整个相册
+            </button>
+          </div>
+          <div id="photoPanel" hidden>
+            <div id="singlePicker">
+              <label class="filebox" for="photo"
+                >选择单张照片 <small>JPEG · PNG · WebP / 最大 5 MiB</small
+                ><input
+                  id="photo"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+              /></label>
+              <img id="photoPreview" alt="所选照片的本地预览" hidden />
+            </div>
+            <div id="albumPicker" hidden>
+              <label class="filebox" for="albumFiles"
+                >多选照片
+                <small>JPEG · PNG · WebP / 每张最大 5 MiB</small>
+                <input
+                  id="albumFiles"
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  multiple
+                />
+              </label>
+              <label class="filebox" for="albumFolder"
+                >选择相册文件夹
+                <small>包含子文件夹；仅本次所选范围，文件名留在本机</small>
+                <input id="albumFolder" type="file" webkitdirectory multiple />
+              </label>
+              <p class="small" id="albumSelection">
+                逐张处理所选文件，单批最多 500 张。失败项会列出。
+              </p>
+              <progress
+                id="albumProgress"
+                value="0"
+                max="1"
+                aria-label="相册处理进度"
+              ></progress>
+              <ol
+                id="albumItems"
+                class="album-items"
+                aria-label="所选文件与处理状态"
+              ></ol>
+            </div>
+            <p class="small" id="cloudNotice"></p>
+            <label class="check"
+              ><input id="consent" type="checkbox" /><span id="consentText"
+                >我同意将这张处理后的图片发送给上述接收者分析</span
+              ></label
+            >
+            <p class="small">
+              图片先在本机校正方向、缩小到最长边 1280 像素并去掉
+              EXIF；本服务在内存处理。云端数据规则由所选供应商提供。
+            </p>
+            <div class="actions">
+              <button id="analyze" type="button" disabled>分析照片</button
+              ><button id="stopAlbum" type="button" class="quiet" hidden>
+                停止本批，保留标签</button
+              ><button id="cancelPhoto" type="button" class="quiet">
+                取消 / 清除
+              </button>
+            </div>
+            <p id="analysisStatus" role="status">
+              选择图片后，由你主动发起分析。
+            </p>
+            <p id="suggestions" class="small"></p>
+            <fieldset>
+              <legend>场景标签 · 可修改</legend>
+              <div class="chips" id="scenes"></div>
+            </fieldset>
+          </div>
+          <label for="searchText">用文字描述想听的音乐</label
+          ><input
+            id="searchText"
+            maxlength="160"
+            placeholder="例如：piano、jazz，或艺人 / 歌曲关键词"
+          />
+          <div class="step second">
+            <span>02</span>
+            <h2>确认你的目标氛围</h2>
+          </div>
+          <p class="small">视觉建议用于提供灵感，最终检索以你的选择为准。</p>
+          <label for="mood">这次想达到的氛围</label
+          ><select id="mood" required>
+            <option value="">请选择…</option>
+            <option value="calm">平静</option>
+            <option value="bright">明亮</option>
+            <option value="energetic">活力</option>
+            <option value="melancholic">忧郁</option>
+            <option value="dreamy">梦幻</option>
+            <option value="focused">专注</option>
+          </select>
+          <fieldset>
+            <legend>音乐标签 · 最多 8 项</legend>
+            <div class="chips" id="musicTags"></div>
+          </fieldset>
+          <div class="row">
+            <div>
+              <label for="energy">节奏能量（Jamendo 筛选）</label
+              ><select id="energy">
+                <option value="any">不限</option>
+                <option value="low">低</option>
+                <option value="medium">中</option>
+                <option value="high">高</option>
+              </select>
+            </div>
+            <div>
+              <label for="vocals">人声（Jamendo 筛选）</label
+              ><select id="vocals">
+                <option value="any">不限</option>
+                <option value="instrumental">器乐</option>
+                <option value="vocal">人声</option>
+              </select>
+            </div>
+          </div>
+          <label for="market">iTunes 市场 · 默认 US 是测试配置</label
+          ><select id="market">
+            <option>US</option>
+            <option>GB</option>
+            <option>CN</option>
+            <option>HK</option>
+            <option>JP</option>
+            <option>DE</option>
+            <option>FR</option>
+            <option>CA</option>
+            <option>AU</option>
+          </select>
+          <label class="check"
+            ><input
+              id="confirmed"
+              type="checkbox"
+            />确认以上目标，搜索音乐目录</label
+          >
+          <button id="discover" class="primary" type="button">
+            发现歌曲 <span>↗</span>
+          </button>
+        </section>
+        <section class="results">
+          <div class="step">
+            <span>03</span>
+            <h2>你的发现清单</h2>
+            <span id="count" class="count">0 / 8</span>
+          </div>
+          <p class="small">
+            默认寻找 8 首；目录、地区和筛选条件决定实际数量。iTunes
+            提供官方外跳。
+          </p>
+          <p id="resultStatus" role="status">
+            手动模式已就绪。选择目标氛围后开始发现。
+          </p>
+          <div id="results">
+            <div class="empty">
+              <span>♫</span>
+              <h3>给下一首歌留个位置</h3>
+              <p>结果会显示真实来源、标题、艺人与检索依据。</p>
+            </div>
+          </div>
+          <section id="playerPanel" hidden>
+            <p id="playing"></p>
+            <div id="audioSlot"></div>
+            <button id="stop" type="button">停止试听</button>
+          </section>
+        </section>
+      </div>
+      <footer>
+        <span>Vibe Discovery · 本地调试</span>
+        <p>
+          试听最长 30
+          秒，资格取决于来源许可与本项目使用条件。曲目链接按来源校验；封面使用本地占位图形。
+        </p>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 # Playlist final integration — 2026-10-27
 
-PR #16 adds the acceptance-feedback changes for #4–#6 to the feature in PR #3. The integrated application and regression tests were verified at `8f2e46160cf4fa2c2942d38421855ec05fa53784`, which includes the `f659ff7e` fixes for #13–#15. This record was prepared with Codex assistance. AI source reviews do not constitute human teammate approval.
+PR #16 adds the acceptance-feedback changes for #4–#6 to the feature in PR #3. The integrated application and regression tests were verified at `8f2e46160cf4fa2c2942d38421855ec05fa53784`, which includes the `f659ff7e` fixes for #13–#15. This execution record was prepared with Codex assistance. The merged release is `release1` / `81b22ee5`; human review and formal acceptance remain Pending in #17. The [closeout matrix](../releases/release-1-evidence-matrix.md) links each AC to its version-specific evidence.
 
 ## Build and automated execution
 
@@ -28,19 +28,19 @@ The same installed build was exercised through ADB input and UIAutomator observa
 | Empty library, stopped player | The labelled Playlists button is visible and opens playlist management. |
 | Scan with no accessible audio | A readable no-candidates message appears; Missing songs? remains available. |
 | Import guidance | The dialog explains audio permission, system Files → Music copying, indexing and hidden media. |
-| Scan accessible audio | After shell publication/indexing of two owned test files, the app reports scanning two files and refreshes the library. This is re-indexing evidence, not wholly unindexed-file discovery. |
+| Scan accessible audio | After shell publication/indexing of two owned test files, the app reports scanning two existing accessible candidates and refreshes the library. Wholly unindexed-file discovery remains in #4. |
 | Add and duplicate | Adding A updates the membership row; repeating A produces readable inline feedback, leaves Refresh/Done enabled and unobscured, and retains exactly one saved member. |
 | Rotation | The duplicate explanation survives portrait → landscape → portrait recreation. |
 | Actual media permission denial/restoration | The Playlists entry remains usable, scan explains permission denial, saved membership stays Unknown with Play/Add disabled, and granting access plus relaunch restores scanning. |
 | Cold restart on the same installation | After `am force-stop` and relaunch, FinalSmoke still has its one accepted member. |
 
-Screenshots, UI XML and the exact command log are in [the smoke evidence folder](evidence/2026-10-27-final-integration/smoke/). They cover affected behaviors, not a new complete execution of collaborators' TC01–TC13. Storage write errors, full accessibility coverage and the scan edge-case matrix remain follow-up #18.
+Screenshots, UI XML and the exact command log are in [the smoke evidence folder](evidence/2026-10-27-final-integration/smoke/). This run covers the scenarios listed above; full manual TC01–TC13 results retain their historical revision in the collaborator reports below. Storage write-error UI checks, full accessibility coverage and the scan edge-case matrix remain Pending in #18.
 
-The emulator displayed a **System UI** ANR dialog after the automated suite. It was captured as `01-empty-library.png`, then closed before app UI checks. The successful runner output is retained; the dialog is not presented as an application failure or hidden from the evidence.
+The emulator displayed a **System UI** ANR dialog after the automated suite. It was captured as `01-empty-library.png`, then closed before app UI checks. The successful runner output and the system dialog screenshot are retained together.
 
 ## Review and acceptance traceability
 
-Three independent AI source checks covered the scan/lifecycle path, picker and main-screen UI, and player/permission/presentation fixes. They found no remaining concrete merge blocker in the reviewed source. No new human approval is claimed.
+Three independent AI source checks covered the scan/lifecycle path, picker and main-screen UI, and player/permission/presentation fixes. They found no remaining concrete merge blocker in the reviewed source. Human teammate review of these changes remains Pending in #17.
 
 | AC | Existing evidence retained | Current integration support |
 | --- | --- | --- |
@@ -51,15 +51,15 @@ Three independent AI source checks covered the scan/lifecycle path, picker and m
 | AC7 | TC07–TC10; repository reload tests | Current JVM reload tests and same-install cold-restart smoke pass. |
 | AC8–AC9 | Teammate emulator TC11–TC13; empty, unavailable, failed/denied query and bounded recovery tests | Current Android regression suite passes. |
 
-Historical acceptance: [Redmi TC01–TC10](custom-playlists-redmi-results.md) and [teammate emulator TC01–TC13](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) tested `785e0863`. Their version-specific results have not been relabelled as a complete new manual run.
+Historical acceptance: [Redmi TC01–TC10](custom-playlists-redmi-results.md) and [teammate emulator TC01–TC13](https://github.com/Axfff/Vibe-Player/blob/6e92066dbadbd1d6abf5db2fc6b632b975aafa26/docs/testing/custom-playlists-manual-results.md) tested `785e0863` on 2026-10-26. Their results remain associated with that source; the current J/I/S results are indexed separately in the closeout matrix.
 
-Formal AC1–AC9 sign-off remains in Story #2 and follow-up #17. The owner explicitly authorized merging after available verification and moving external review/extra work into future issues on 2026-10-27. This is a recorded exception to the team's suggested review-before-merge order; it does not complete human review, formal team acceptance, a retrospective or a release.
+Formal AC1–AC9 sign-off remains Pending in Story #2 and follow-up #17. The owner explicitly authorized merging after available verification and tracking external review/extra work separately on 2026-10-27. This is the recorded exception to the team's suggested review-before-merge order. Human review and acceptance use the [review packet](../releases/release-1-human-review.md); contribution confirmation and a short retrospective use the [#19 template](../releases/release-1-retrospective.md). CroissantXinny clarified on 2026-10-27 that Release 1 and Release 2 require no classroom presentation; that item is N/A and an internal Demo is optional.
 
 ## Follow-up work
 
 - [#17 — Human teammate review and formal AC sign-off](https://github.com/Axfff/Vibe-Player/issues/17): review the merged changes and record the team decision; Story #2 stays open until acceptance.
 - [#18 — Additional device/accessibility/scan verification](https://github.com/Axfff/Vibe-Player/issues/18): current physical-device acceptance, audible playback/vendor EQ, TalkBack/large text, timeout/partial/row-limit and in-progress rotation cases.
-- [#19 — Team retrospective and release preparation](https://github.com/Axfff/Vibe-Player/issues/19): actual team/course records and release/demo decisions.
+- [#19 — Short team retrospective and closeout](https://github.com/Axfff/Vibe-Player/issues/19): actual contribution/date confirmation, a short retrospective, 1–2 improvement actions and links to acceptance/follow-up decisions; classroom presentation N/A, internal Demo optional. Release publication is complete.
 - [#4 — Discovery limitation](https://github.com/Axfff/Vibe-Player/issues/4): the scanner only sees existing accessible MediaStore candidates. Wholly unindexed files may still require system Files/Music indexing; no unsupported storage access is added.
 - [#8 — Optional duplicate Add styling](https://github.com/Axfff/Vibe-Player/issues/8): duplicate membership is prevented; disabling its Add control remains separate.
 
@@ -67,4 +67,6 @@ Formal AC1–AC9 sign-off remains in Story #2 and follow-up #17. The owner expli
 
 [PR #16](https://github.com/Axfff/Vibe-Player/pull/16) merged into `feat/custom-playlists` as `a489a243895d6e39aea56198eacb89f448b7f17b` at 2026-10-27 00:41:50 Asia/Shanghai. Its `project/` tree is `4428850dffd9c784929c1522d88b20ed15064e3d`, exactly the tested tree; `git diff 8f2e4616 a489a243 -- project scripts .github/workflows` is empty. The subsequent integration-status commit also changes documentation only.
 
-The owner authorized [PR #3 → main](https://github.com/Axfff/Vibe-Player/pull/3) after final candidate CI. The PR records the actual final head, CI runs and main merge commit; follow its GitHub state and merge-completion comment for the final result. Formal human review/AC acceptance and release preparation remain separate follow-ups.
+[PR #3](https://github.com/Axfff/Vibe-Player/pull/3) merged into `main` as `81b22ee5868e0cd5ac6a75472296caab3753a7b5` at 2026-10-27 00:51:01 Asia/Shanghai. Its final feature head was `2501c95f8257c5ba7ccdc7484c09747307f78d36`. Both final-head CI runs passed, followed by [main CI 40363054583](https://github.com/Axfff/Vibe-Player/actions/runs/40363054583), which ran 30 JVM tests and built the evaluation APK.
+
+[Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) was published at 2026-10-27 01:00:15 Asia/Shanghai and points to the main merge above. Its CI APK has SHA256 `81c6fde3da1909ff3fb86efe099f265a967af5f8284b40f15f33251b1d3cfd92`; the local Android-tested APK hash remains in the original execution record. `git diff 8f2e4616 release1 -- project scripts .github/workflows` is empty. The subsequent main commit `dc17523b` records publication in documentation. These merge/publication facts were reconciled during doc-only closeout; the build and device results above retain their original execution dates and revisions.

@@ -1,0 +1,9 @@
+{
+  "recorded_utc": "2026-10-27T07:54:33.814744+00:00",
+  "initial_report": "按播放旁边的下一首到了test A",
+  "followup_report": "刚刚那个是因为我不小心退出歌单了，重新进歌单就好了",
+  "confirmed_action": "回到 Songs 后，又点了列表中的歌曲",
+  "confirmed_retry": "已确认 B → A，两首都有声音，已暂停在 A",
+  "interpretation": "Selecting a Songs row changed the playback source to the library; starting Review15 again restored playlist playback. Retried sequence reached B then A with audible playback.",
+  "final_continuous_run": "PASS: operator explicitly confirmed both display toggles followed directly by Next B then Next A, audible playback, and pause on A."
+}

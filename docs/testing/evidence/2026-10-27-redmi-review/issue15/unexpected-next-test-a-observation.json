@@ -1,0 +1,63 @@
+{
+  "stage": "unexpected-next-test-a",
+  "recorded_utc": "2026-10-27T07:48:03.974859+00:00",
+  "operator_report": "按播放旁边的下一首到了test A",
+  "display_preference": "1",
+  "playlist_document_sha256": "b7c28d5bd59334b100265a41d74a1a9108fd6145e13d7e6a6f4b57f215dd5b5f",
+  "visible_ui": [
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_seek",
+      "text": "02:37",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,1755][600,1804]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_duration",
+      "text": "03:00",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[600,1755][1152,1804]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_song",
+      "text": "File15-C",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[0,1864][1200,1941]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_artist_album",
+      "text": "Vibe Player test audio / Review 15",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[0,1941][1200,1997]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_rates",
+      "text": "22050 kHz, 32 kbps",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[0,2009][1200,2058]"
+    },
+    {
+      "id": "com.iven.musicplayergo.debug:id/np_volume_value",
+      "text": "100",
+      "description": "",
+      "enabled": "true",
+      "bounds": "[48,2337][108,2378]"
+    }
+  ],
+  "media_session": [
+    "package=com.iven.musicplayergo.debug",
+    "active=true",
+    "state=PlaybackState {state=PAUSED(2), position=147680, buffered position=0, speed=1.0, updated=1167654318, actions=823, custom actions=[], active item id=-1, error=null}",
+    "metadata: size=13, description=File15-C, Review 15, null",
+    "queueTitle=null, size=0"
+  ],
+  "evidence": [
+    "unexpected-next-test-a-ui.xml",
+    "unexpected-next-test-a-ui.png",
+    "unexpected-next-test-a-playlists.json"
+  ]
+}

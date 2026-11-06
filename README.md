@@ -17,7 +17,7 @@ Android 5.0 (API 21) or later is required. The application still uses the upstre
 
 Get the course evaluation APK and `SHA256SUMS.txt` from [Release 1 (`release1`)](https://github.com/Axfff/Vibe-Player/releases/tag/release1). The release contains the playlist feature merged in [PR #3](https://github.com/Axfff/Vibe-Player/pull/3). It is a debug build (version `4.4.24` / `187`, package `com.iven.musicplayergo.debug`). The F-Droid and Google Play listings for Music Player GO distribute the upstream application.
 
-For builds of other revisions, open a successful [Android CI run](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml) and download its `app-debug` artifact while available. CI artifacts are retained for 14 days; the Release 1 APK is attached separately to its release.
+For builds of other revisions, open a successful [Android CI run](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml) and download its `app-debug-<run_id>` artifact while available. Current CI APK and `team-coverage-<run_id>` report artifacts are retained for 90 days; the Release 1 APK is attached separately to its release.
 
 After installation, allow music/audio access, then open **Playlists** to create a collection and add songs. If songs are missing, use **Missing songs?** and **Scan local music**. Android must index copied files before the app can discover them; see the [FAQ](FAQ.md).
 
@@ -44,18 +44,25 @@ The APK is written to `project/app/build/outputs/apk/debug/app-debug.apk` relati
 
 Device regression instructions and evidence are in the [playlist test plan](docs/testing/custom-playlists.md) and [final integration report](docs/testing/playlist-final-integration.md). Android instrumentation is a separate check requiring a test device or emulator.
 
+The commands above cover the JVM tests and APK build. Full CI also runs Android regressions on a disposable emulator, Discovery backend and web tests, and separate 80% line-coverage gates for each module. See the [coverage workflow and reproduction instructions](docs/testing/coverage-scope.md) for the complete checks. The separately run [Discovery service and browser demo](services/discovery/README.md) have their own setup; Android Discovery integration is tracked in [#36](https://github.com/Axfff/Vibe-Player/issues/36).
+
 ## Course documentation and status
 
 - [Course workflow and documentation](docs/README.md)
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
 - [Playlist requirements — Story #2](https://github.com/Axfff/Vibe-Player/issues/2)
+- [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Short retrospective template](docs/releases/release-1-retrospective.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
 
-Release 1 is published. Its CI passed 30 JVM tests and built the evaluation APK. The matching application source at `8f2e4616` passed 29 Android integration tests; environments, revisions and UI checks are recorded in the [final integration report](docs/testing/playlist-final-integration.md). These are recorded results for those revisions.
+**DSAA2044 Release 1 is published.** [PR #3](https://github.com/Axfff/Vibe-Player/pull/3), including PR #12 and PR #16, merged into `main` as `81b22ee5`. [Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) points to that commit and provides the CI-built debug/evaluation APK and checksum (app version 4.4.24 / 187).
 
-Human teammate review and formal AC sign-off remain tracked in [#17](https://github.com/Axfff/Vibe-Player/issues/17), broader device/accessibility validation in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and contribution confirmation and retrospective work in [#19](https://github.com/Axfff/Vibe-Player/issues/19). Unindexed-file discovery is tracked in [#4](https://github.com/Axfff/Vibe-Player/issues/4). Manual playlist reordering, import/export and cloud sync are outside the current playlist scope.
+The release CI passed 30 JVM tests and built the APK. The matching application source at `8f2e4616` passed 29 Android integration tests on Android 17 / API 37 arm64, plus documented UI smoke checks. Historical manual TC results retain their original `785e0863` revision. See the [evidence matrix](docs/releases/release-1-evidence-matrix.md) for environments, commits and results.
+
+Human review and formal AC1–AC9 sign-off remain Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17) and [Story #2](https://github.com/Axfff/Vibe-Player/issues/2); expanded device/accessibility verification is tracked in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and contribution confirmation plus a short retrospective in [#19](https://github.com/Axfff/Vibe-Player/issues/19). On 2026-10-27, CroissantXinny clarified that Release 1 and Release 2 require no classroom presentation: that item is N/A, and an internal Demo is optional.
+
+Unindexed-file discovery is tracked in [#4](https://github.com/Axfff/Vibe-Player/issues/4). Manual playlist reordering, import/export and cloud sync are outside the current playlist scope.
 
 ## Contributing and reporting problems
 
