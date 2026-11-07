@@ -24,9 +24,12 @@ object PhotoSearchPolicy {
  * compileSdk 33 cannot reference these symbols; no alpha AndroidX dependency is needed.
  * Never adds album highlight, location access, or grants for unselected search results.
  */
-class SystemPhotoSearchLauncher(private val context: Context) {
-    fun capability(): SystemPhotoSearchCapability = PhotoSearchPolicy.capability(Build.VERSION.SDK_INT,
-        if (Build.VERSION.SDK_INT >= 33) runCatching { SdkExtensions.getExtensionVersion(33) }.getOrNull() else null)
+class SystemPhotoSearchLauncher(private val context: Context,
+    private val detect: () -> SystemPhotoSearchCapability = {
+        PhotoSearchPolicy.capability(Build.VERSION.SDK_INT,
+            if (Build.VERSION.SDK_INT >= 33) runCatching { SdkExtensions.getExtensionVersion(33) }.getOrNull() else null)
+    }) {
+    fun capability(): SystemPhotoSearchCapability = detect()
     fun intent(query: String): Intent {
         val text = PhotoSearchPolicy.query(query)
         require(text.isNotEmpty())

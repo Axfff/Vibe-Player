@@ -59,4 +59,14 @@ class PhotoAndroidTest {
         val playlist=CoverTarget.Playlist(UUID.randomUUID().toString());assertEquals(playlist,playlist.toPhotoBundle().photoTarget())
         assertFalse(targetExists(context,playlist))
     }
+    @Test fun supportedRequestHasExactPublicBundleAndLaunchFailureFallsBack() {
+        val launcher=SystemPhotoSearchLauncher(context) { SystemPhotoSearchCapability.MAY_REQUEST }
+        val intent=launcher.intent("  lakeside  ")
+        assertEquals(MediaStore.ACTION_PICK_IMAGES,intent.action)
+        val bundle=intent.getBundleExtra(SystemPhotoSearchLauncher.EXTRA_SEARCH)!!
+        assertEquals("lakeside",bundle.getString(SystemPhotoSearchLauncher.KEY_QUERY));assertEquals(1,bundle.getInt(SystemPhotoSearchLauncher.KEY_TYPE))
+        assertFalse(intent.hasExtra("android.provider.extra.PICK_IMAGES_HIGHLIGHT_ALBUM"))
+        var fallback=false;launcher.launch("lake",{throw android.content.ActivityNotFoundException()},{fallback=true});assertTrue(fallback)
+        assertThrows(IllegalArgumentException::class.java){launcher.intent(" ")}
+    }
 }

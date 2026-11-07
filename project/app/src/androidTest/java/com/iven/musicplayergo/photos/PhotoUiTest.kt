@@ -1,0 +1,77 @@
+package com.iven.musicplayergo.photos
+
+import android.view.View
+import android.view.ViewGroup
+import android.view.inspector.WindowInspector
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.regression.RegressionFixture
+import org.junit.Assert.*
+import org.junit.Test
+import org.junit.runner.RunWith
+
+/** App windows only; no synthetic picker result is counted as a real grant. */
+@RunWith(AndroidJUnit4::class)
+class PhotoUiTest {
+    private fun all(view: View): List<View> = listOf(view) + if(view is ViewGroup) (0 until view.childCount).flatMap { all(view.getChildAt(it)) } else emptyList()
+    private fun views()=WindowInspector.getGlobalWindowViews().flatMap(::all)
+    private fun texts()=views().filterIsInstance<TextView>().map { it.text.toString() }
+    private fun click(label: String) { val button=views().filterIsInstance<Button>().lastOrNull { it.text.toString()==label } ?: error("Missing button $label");assertTrue(button.performClick()) }
+    private fun back() { InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);InstrumentationRegistry.getInstrumentation().waitForIdleSync() }
+    @Test fun sourceUiShowsUncertainCountKeepsBindingsOnCancellationAndRecreation() {
+        RegressionFixture.open().use { f ->
+            val playlist=f.createPlaylist("Photo target A","A");val target=CoverTarget.Playlist(playlist.id)
+            val repo=PhotoRepositories.get(f.context)
+            val source=PhotoSource("ui-source","Unreachable source",PhotoSourceKind.SELECTED,listOf("content://unavailable/photo"))
+            repo.attach(target,repo.request(target),source)
+            f.onActivity { PhotoSourcesDialogFragment.newInstance(target,playlist.name).showNow(it.supportFragmentManager,"source-ui") }
+            f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("数量未知") } } }
+            f.onMain { click("添加照片文件夹") }
+            f.onMain { click("取消") }
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.scenario.recreate()
+            f.await("source dialog restored") { f.onMain { texts().any { it.contains("Unreachable source") } } }
+            f.onMain { click("刷新目录与权限") }
+            f.await("refreshed invalid grant") { f.onMain { texts().any { it.contains("需要重新授权") } } }
+            f.onMain { click("恢复已移除候选");click("取消加载／分析") }
+            f.onMain { click("从系统搜索添加照片") }
+            f.onMain { views().filterIsInstance<EditText>().last().setText("private query");click("取消") }
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.onMain { click("从系统搜索添加照片") }
+            assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
+            f.onMain { click("请求系统搜索") }
+            f.await("ordinary picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
+            back()
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.onMain { click("手动选择单张封面") }
+            f.await("manual picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
+            back()
+            f.onMain { click("关闭") }
+            repo.deleteTarget(target)
+        }
+    }
+    @Test fun manualAtmosphereWithEmptyScopeDoesNotInventRecommendation() {
+        RegressionFixture.open().use { f ->
+            val playlist=f.createPlaylist("Empty photos","A");val target=CoverTarget.Playlist(playlist.id)
+            f.onActivity { PhotoRecommendationsDialogFragment.newInstance(target).showNow(it.supportFragmentManager,"recommend-ui") }
+            f.onMain { click("使用我选择的氛围") }
+            f.onMain {
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
+                // List row click through its ListView parent, as Android dispatches it.
+                val parent=text.parent as android.widget.ListView
+                parent.performItemClick(text,parent.getPositionForView(text),0)
+            }
+            f.await("empty scope explains no readable photos") { f.onMain { texts().any { it.contains("没有可读取照片") } } }
+            f.onMain { click("选择／更换代表曲并分析") }
+            f.await("representative chooser shows actual title") { f.onMain { texts().any { it.contains("代表曲（默认") } } }
+            f.onMain { click("取消") }
+            f.onMain { click("取消分析") }
+            assertTrue(f.onMain { texts().any { it.contains("封面未改变") } })
+            f.onMain { click("关闭") }
+        }
+    }
+}

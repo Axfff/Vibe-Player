@@ -30,6 +30,7 @@ class RealPhotoRankingTest {
         }
         val results = JSONArray()
         for (index in 1..4) {
+            OnnxPhotoFeatureExtractor.clearCache()
             val caseId = "case_0$index"
             val data = JSONObject(assets.open("photo-cases/$caseId.json").bufferedReader().use { it.readText() })
             val audio = data.getJSONObject("audio")
