@@ -1,9 +1,9 @@
 
-| Name | Student ID |
-| --- | --- |
-| Peihan ZENG | Student ID |
-| Shiyuan LIN | Student ID |
-| Jingyao ZHAO | 50025074 |
+| Name | Student ID | GitHub |
+| --- | --- | --- |
+| Peihan ZENG | Student ID | |
+| Shiyuan LIN | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
+| Jingyao ZHAO | 50025074 | |
 
 # Vibe-Player — course project
 
