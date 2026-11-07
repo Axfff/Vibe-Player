@@ -1,0 +1,159 @@
+{
+  "asset": {
+    "asset_id": "img_0030",
+    "kind": "image",
+    "path": "media/images/img_0030.jpg",
+    "title": "1981 ICF Canoe Slalom World Championships, Bala, Wales 03",
+    "creator": "Ridiculopathy",
+    "source_page": "https://commons.wikimedia.org/wiki/File:1981_ICF_Canoe_Slalom_World_Championships,_Bala,_Wales_03.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "1981 ICF Canoe Slalom World Championships, Bala, Wales 03 — Ridiculopathy. https://commons.wikimedia.org/wiki/File:1981_ICF_Canoe_Slalom_World_Championships,_Bala,_Wales_03.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; cropped source to rectangle [0, 247, 1456, 1028] (left, top, right, bottom) to exclude visible faces; converted to RGB; maximum edge 1280 without upscaling; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS removed. Author and license retained in accompanying attribution.",
+    "modifications": "EXIF orientation applied; cropped source to rectangle [0, 247, 1456, 1028] (left, top, right, bottom) to exclude visible faces; converted to RGB; maximum edge 1280 without upscaling; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS removed. Author and license retained in accompanying attribution.",
+    "original_sha256": "853584a8dbda38b1276cdde244dc45872ed5706457d1e1da64a389ddc5579323",
+    "sha256": "df9208b0ab57117ee4f2f6ee32ffe958f0bd68693e0daf6cc464ddd9d2bf1535",
+    "original_size_bytes": 1208010,
+    "size_bytes": 192162,
+    "width": 1280,
+    "height": 687,
+    "source_dimensions": [
+      1456,
+      1028
+    ],
+    "commons_page_id": 150020050,
+    "crop_xyxy": [
+      0,
+      247,
+      1456,
+      1028
+    ]
+  },
+  "commons_imageinfo": {
+    "pageid": 150020050,
+    "ns": 6,
+    "title": "File:1981 ICF Canoe Slalom World Championships, Bala, Wales 03.jpg",
+    "index": 8,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 1208010,
+        "width": 1456,
+        "height": 1028,
+        "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg/500px-1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "thumbwidth": 500,
+        "thumbheight": 353,
+        "responsiveUrls": {
+          "2": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg/1280px-1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+        },
+        "thumbattribs": {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg/500px-1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+          "decoding": "async",
+          "loading": "lazy",
+          "width": 500,
+          "height": 353,
+          "srcset": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg/1280px-1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail 2x"
+        },
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/1981_ICF_Canoe_Slalom_World_Championships%2C_Bala%2C_Wales_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:1981_ICF_Canoe_Slalom_World_Championships,_Bala,_Wales_03.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=150020050",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2024-07-04 19:23:03",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "1981 ICF Canoe Slalom World Championships, Bala, Wales 03",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Canoeing in Wales|CC-Zero|ICF Canoe Slalom World Championships|Self-published work|Files with coordinates missing SDC location of creation (52° N, 4° W)|K-1 (slalom kayak)",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "52.910306",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "-3.589544",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "1981 ICF Canoe Slalom World Championships, Bala, Wales",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "1981-07-15",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Ridiculopathy\" title=\"User:Ridiculopathy\">Ridiculopathy</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "54e0657e2952a25da20b52b8841d8fc781b40c56bb7b08ddf383c1204d88e9c6",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

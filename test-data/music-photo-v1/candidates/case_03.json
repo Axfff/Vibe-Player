@@ -1,0 +1,89 @@
+{
+  "case_id": "case_03",
+  "audio": {
+    "asset_id": "audio_0011",
+    "path": "media/audio/audio_0011.mp3"
+  },
+  "photos": [
+    {
+      "asset_id": "img_0033",
+      "path": "media/images/img_0033.jpg"
+    },
+    {
+      "asset_id": "img_0010",
+      "path": "media/images/img_0010.jpg"
+    },
+    {
+      "asset_id": "img_0009",
+      "path": "media/images/img_0009.jpg"
+    },
+    {
+      "asset_id": "img_0005",
+      "path": "media/images/img_0005.jpg"
+    },
+    {
+      "asset_id": "img_0004",
+      "path": "media/images/img_0004.jpg"
+    },
+    {
+      "asset_id": "img_0035",
+      "path": "media/images/img_0035.jpg"
+    },
+    {
+      "asset_id": "img_0013",
+      "path": "media/images/img_0013.jpg"
+    },
+    {
+      "asset_id": "img_0019",
+      "path": "media/images/img_0019.jpg"
+    },
+    {
+      "asset_id": "img_0037",
+      "path": "media/images/img_0037.jpg"
+    },
+    {
+      "asset_id": "img_0011",
+      "path": "media/images/img_0011.jpg"
+    },
+    {
+      "asset_id": "img_0036",
+      "path": "media/images/img_0036.jpg"
+    },
+    {
+      "asset_id": "img_0007",
+      "path": "media/images/img_0007.jpg"
+    },
+    {
+      "asset_id": "img_0001",
+      "path": "media/images/img_0001.jpg"
+    },
+    {
+      "asset_id": "img_0016",
+      "path": "media/images/img_0016.jpg"
+    },
+    {
+      "asset_id": "img_0008",
+      "path": "media/images/img_0008.jpg"
+    },
+    {
+      "asset_id": "img_0023",
+      "path": "media/images/img_0023.jpg"
+    },
+    {
+      "asset_id": "img_0024",
+      "path": "media/images/img_0024.jpg"
+    },
+    {
+      "asset_id": "img_0017",
+      "path": "media/images/img_0017.jpg"
+    },
+    {
+      "asset_id": "img_0015",
+      "path": "media/images/img_0015.jpg"
+    },
+    {
+      "asset_id": "img_0021",
+      "path": "media/images/img_0021.jpg"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+playlist_id,track_id,is_representative,label_scope,difference_note,opening_window_seconds,label_status,listening_review
+bright,audio_0001,true,representative-level provisional prior,尤克里里与轻打击，作者标签 Bouncy/Bright/Uplifting；代表曲，偏轻松而非强烈运动。,30,provisional,not_performed
+bright,audio_0002,false,playlist prior only; not independently rated per photo,木管与拨弦的幽默、跳跃感；比代表曲更俏皮，不能等同于所有欢快场景。,30,provisional,not_performed
+bright,audio_0003,false,playlist prior only; not independently rated per photo,短小滑稽的管弦与打击；活泼、卡通感较强。,30,provisional,not_performed
+bright,audio_0004,false,playlist prior only; not independently rated per photo,作者标签 Bouncy/Bright/Grooving/Uplifting，节奏轻快。,30,provisional,not_performed
+bright,audio_0005,false,playlist prior only; not independently rated per photo,明亮、轻松、上扬的吉他风格；比本组最快曲目更舒展。,30,provisional,not_performed
+calm,audio_0006,true,representative-level provisional prior,柔和电钢琴，作者标签 Calming/Relaxed；代表曲。,30,provisional,not_performed
+calm,audio_0007,false,playlist prior only; not independently rated per photo,轻盈简洁的钢琴独奏，作者标签 Calming/Relaxed。,30,provisional,not_performed
+calm,audio_0008,false,playlist prior only; not independently rated per photo,平静合成器织体；音色与本组钢琴不同，不能假定逐图适配完全相同。,30,provisional,not_performed
+calm,audio_0009,false,playlist prior only; not independently rated per photo,简洁、以五声音阶为主的慢钢琴；怀旧但作者未以悲伤为主标签。,30,provisional,not_performed
+calm,audio_0010,false,playlist prior only; not independently rated per photo,New-age 钢琴，Calming/Relaxed/Uplifting；比代表曲略带希望感。,30,provisional,not_performed
+melancholic,audio_0011,true,representative-level provisional prior,作者以失望与失落描述钢琴曲，Calming/Somber；代表曲。,30,provisional,not_performed
+melancholic,audio_0012,false,playlist prior only; not independently rated per photo,钢琴、弦乐与无歌词声乐织体；作者描述悲伤中带安宁与释然，不是纯悲痛。,30,provisional,not_performed
+melancholic,audio_0013,false,playlist prior only; not independently rated per photo,围绕反复动机的安静钢琴，Calming/Relaxed/Somber；变化在结尾，不应由开头推断整曲。,30,provisional,not_performed
+melancholic,audio_0014,false,playlist prior only; not independently rated per photo,作者说明适合内省片刻的安静钢琴，3/4 拍；忧郁而非只因慢速归组。,30,provisional,not_performed
+melancholic,audio_0015,false,playlist prior only; not independently rated per photo,钢琴华尔兹，Calming/Relaxed/Somber；有摇摆感，与代表曲不同。,30,provisional,not_performed
+energetic,audio_0016,true,representative-level provisional prior,7/4 拍、强铜管和重打击，Action/Aggressive/Intense；代表曲，偏紧张而非欢乐。,30,provisional,not_performed
+energetic,audio_0017,false,playlist prior only; not independently rated per photo,大编制逐渐推进，Action/Driving/Epic/Intense；开头只代表构建阶段，不代表结尾高潮。,30,provisional,not_performed
+energetic,audio_0018,false,playlist prior only; not independently rated per photo,低音、弦乐、合唱与打击，Dark/Driving/Epic/Intense；76 BPM 也可有高能量。,30,provisional,not_performed
+energetic,audio_0019,false,playlist prior only; not independently rated per photo,低音区持续脉冲，Driving/Mysterious；紧迫感来自持续节奏，不单看速度。,30,provisional,not_performed
+energetic,audio_0020,false,playlist prior only; not independently rated per photo,铜管与打击的行进感，作者说明对旅行背景而言偏活跃；后半铜管段不在 30 秒窗口内。,30,provisional,not_performed
