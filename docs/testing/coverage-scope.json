@@ -105,118 +105,135 @@
       "exception_reason": null
     },
     {
-<<<<<<< HEAD
-      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverCropDialogFragment.kt",
-      "module": "android",
-      "change": "added",
-      "source_sha256": "3b59d239275ee0bbc808f0b8d58836342fdebac2c6fb52be306ab07ddd3f558b",
-=======
       "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/AndroidAudioDecoder.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "6be943cd3262053b4e84ae3592e2e78a4d4bd510bfa6c97dfcb88b4e5f3d7c87",
->>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-<<<<<<< HEAD
-          186
-        ]
-      ],
-      "source_commits": [
-        "bbb4e1e7127469d7c2c5c444de070871b93c5834"
-=======
           165
         ]
       ],
       "source_commits": [
         "b64979733feb6b28f83ade0876b0af0b0613eb5d"
->>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
-<<<<<<< HEAD
-      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverModels.kt",
-      "module": "android",
-      "change": "added",
-      "source_sha256": "21ab205a6088ff948dac9963de7e57bf7539712d1c5fbb878cc95c9681a449cd",
-=======
       "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/EffnetFeatures.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "221ab0a0203d7c78d06bdea763c54df457b3b7b17a72bdd1a4489be2e036238a",
->>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-<<<<<<< HEAD
-          68
-        ]
-      ],
-      "source_commits": [
-        "f1f3843adc435936260a4a488f84558d43af05f1"
-=======
           110
         ]
       ],
       "source_commits": [
         "b64979733feb6b28f83ade0876b0af0b0613eb5d"
->>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
-<<<<<<< HEAD
-      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRecordRepository.kt",
-      "module": "android",
-      "change": "added",
-      "source_sha256": "f777bfa7058afcb9536da654de12c62e2bfb8464a54841627719719dba3fb118",
-=======
       "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodAnalyzer.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "0b8117e5f17bb00acbc74ba23b992fe36d46c9372560fbf07c6b814aaa7ee4f9",
->>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-<<<<<<< HEAD
-          133
-        ]
-      ],
-      "source_commits": [
-        "f1f3843adc435936260a4a488f84558d43af05f1"
-=======
           111
         ]
       ],
       "source_commits": [
         "b64979733feb6b28f83ade0876b0af0b0613eb5d"
->>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
-<<<<<<< HEAD
-      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRepository.kt",
-      "module": "android",
-      "change": "added",
-      "source_sha256": "eb5e5877c8baf9a375fac53813401fe01183423fda0b26c7ecdd85f23ced603b",
-=======
       "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodInference.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "d7fdf9b6886af45f16e562f5ac5414efe2b4aae14dd1faf6f18f432e573cf38a",
->>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-<<<<<<< HEAD
+          93
+        ]
+      ],
+      "source_commits": [
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverCropDialogFragment.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "915dc09343e17cea26672ca554eb496aac0ded978c6f1d02ef41666bda6420dc",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          199
+        ]
+      ],
+      "source_commits": [
+        "bbb4e1e7127469d7c2c5c444de070871b93c5834",
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverModels.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "21ab205a6088ff948dac9963de7e57bf7539712d1c5fbb878cc95c9681a449cd",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          68
+        ]
+      ],
+      "source_commits": [
+        "f1f3843adc435936260a4a488f84558d43af05f1"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRecordRepository.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "f777bfa7058afcb9536da654de12c62e2bfb8464a54841627719719dba3fb118",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          133
+        ]
+      ],
+      "source_commits": [
+        "f1f3843adc435936260a4a488f84558d43af05f1"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRepository.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "eb5e5877c8baf9a375fac53813401fe01183423fda0b26c7ecdd85f23ced603b",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
           225
         ]
       ],
@@ -255,7 +272,8 @@
         ]
       ],
       "source_commits": [
-        "bbb4e1e7127469d7c2c5c444de070871b93c5834"
+        "bbb4e1e7127469d7c2c5c444de070871b93c5834",
+        "e51ed58e4a54cc6378641e421172a46fd703b666"
       ],
       "exception_reason": null
     },
@@ -273,13 +291,6 @@
       ],
       "source_commits": [
         "bbb4e1e7127469d7c2c5c444de070871b93c5834"
-=======
-          93
-        ]
-      ],
-      "source_commits": [
-        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
->>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
@@ -371,7 +382,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/DetailsFragment.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "0e0f024b1e81ec596dd02f9c418afc5c2e391ca7fc3d34afc1cee2c7ba318de0",
+      "source_sha256": "3b416c430ed2e159c880faffca6dd730e7403b81757eec67b607c3014f9a35d7",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -496,84 +507,86 @@
         ],
         [
           541,
-          547
+          548
         ],
         [
-          553,
-          554
+          554,
+          559
         ],
         [
-          591,
-          622
+          596,
+          627
         ],
         [
-          653,
-          653
+          658,
+          658
         ],
         [
-          677,
-          677
+          682,
+          682
         ],
         [
-          721,
-          721
+          726,
+          726
         ],
         [
-          740,
-          740
+          745,
+          745
         ],
         [
-          744,
-          744
-        ],
-        [
-          769,
-          770
+          749,
+          749
         ],
         [
           774,
-          781
+          775
         ],
         [
-          783,
-          784
+          779,
+          786
         ],
         [
-          791,
-          792
+          788,
+          789
         ],
         [
-          816,
-          816
+          796,
+          797
         ],
         [
-          820,
-          820
+          821,
+          821
         ],
         [
-          865,
-          867
+          825,
+          825
         ],
         [
-          873,
-          873
+          870,
+          872
         ],
         [
           878,
-          881
+          878
         ],
         [
-          888,
-          890
+          883,
+          886
         ],
         [
           893,
-          894
+          895
+        ],
+        [
+          898,
+          899
         ]
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
-        "35dd6e6572258b21c5b7b81bc1fd2c8c3a20572f"
+        "35dd6e6572258b21c5b7b81bc1fd2c8c3a20572f",
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
       ],
       "exception_reason": null
     },
@@ -631,7 +644,8 @@
         ]
       ],
       "source_commits": [
-        "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+        "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+        "e51ed58e4a54cc6378641e421172a46fd703b666"
       ],
       "exception_reason": null
     },
@@ -719,6 +733,179 @@
       ],
       "source_commits": [
         "5fc5d13825413f2c58ee80af9840528116f4ebc8"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoAccess.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "a645c27f10cb0559346e4e5abd8caaa4b8b7423163ef3b932d7bec54400b95fe",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          121
+        ]
+      ],
+      "source_commits": [
+        "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoCandidateGuard.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "0e2291d131c102248f8cd42f2e4a287724be3b51280f5cd6516b6b3dc14a1c89",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          23
+        ]
+      ],
+      "source_commits": [
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoFeatureExtractor.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "cc36d534e042040c9fbba929a8a7bca6cf7375e78212811e09644136cf1dcadd",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          76
+        ]
+      ],
+      "source_commits": [
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRanker.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "217bbbe55693f26cceca8d72b7194d2736460f51777b0dd704bce9fd8a39a2d8",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          47
+        ]
+      ],
+      "source_commits": [
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRecommendationsDialogFragment.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "bef95883f2fd5b36edaecfdb3711a36ff80748f8cf36fb85bcedcd87075b31dc",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          157
+        ]
+      ],
+      "source_commits": [
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoScopeRepository.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "5c2a9d8ce39cadb1b829dab1825d35377394cfc132f1fd9b7647e0cdada3604a",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          96
+        ]
+      ],
+      "source_commits": [
+        "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoSourcesDialogFragment.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "147dab1e587d0b55829c631eed9234f8df4c366d35766ef9bdac299360e56bca",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          217
+        ]
+      ],
+      "source_commits": [
+        "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+        "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoTargetAccess.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "37c39e23df7f68146f6d867122d038bcf625d3cb4967e4ac7463c09239ea78e6",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "source_commits": [
+        "a9d97b375242a7a29fe63eb41e7ff57695a61f57"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/SafePhotoDecoder.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "a2fc7170507bbb09f7b8814c8401483e4c59636d5bf4b327d69e036f685af2e7",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          49
+        ]
+      ],
+      "source_commits": [
+        "a9d97b375242a7a29fe63eb41e7ff57695a61f57"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/photos/SystemPhotoSearch.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "1bf429d3f1d738df498d864a59dfc5792e45f65a01b861955b24a586515d6785",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          50
+        ]
+      ],
+      "source_commits": [
+        "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d"
       ],
       "exception_reason": null
     },
@@ -1070,17 +1257,19 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistsDialogFragment.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "986d7d697843632617908ed2fdeef4dd9eb18f1f24f220f9986584fabac9e638",
+      "source_sha256": "e76715b70bf2d163e00aafb99990ecd3330053aa96f26f20f7835f4e16b59d52",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          340
+          346
         ]
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
-        "8b52992e385e6992da21d891e4eb87bbfccbef62"
+        "8b52992e385e6992da21d891e4eb87bbfccbef62",
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
       ],
       "exception_reason": null
     },
