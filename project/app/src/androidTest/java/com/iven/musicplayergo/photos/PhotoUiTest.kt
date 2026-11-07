@@ -50,6 +50,18 @@ class PhotoUiTest {
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("从系统搜索添加照片") }
             assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
+            f.onMain { click("从我选择的氛围生成建议词") }
+            f.await("manual search atmosphere choices") { f.onMain { texts().contains("calm") } }
+            f.onMain {
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
+                val list=text.parent as android.widget.ListView
+                list.performItemClick(text,list.getPositionForView(text),0)
+            }
+            f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("lakeside") } }
+            f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("请求系统搜索") }
+            f.await("empty query stays in app") { f.onMain { texts().any { it.contains("请输入关键词") } } }
+            assertEquals(f.context.packageName,InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString())
+            f.onMain { click("从系统搜索添加照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
             f.onMain { click("请求系统搜索") }
             f.await("ordinary picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
             back(f)
