@@ -1,3 +1,10 @@
+
+| Name | Student ID | GitHub |
+| --- | --- | --- |
+| Peihan ZENG | Student ID | |
+| Shiyuan LIN | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
+| Jingyao ZHAO | 50025074 | |
+
 # Vibe-Player — course project
 
 This is the team's course repository, based on [Music Player GO](https://github.com/enricocid/Music-Player-GO). Upstream attribution and licensing are retained below.
