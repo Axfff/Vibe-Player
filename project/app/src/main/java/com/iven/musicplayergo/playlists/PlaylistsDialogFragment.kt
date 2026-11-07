@@ -94,6 +94,11 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             reloadPlaylists()
             musicViewModel.refreshPlaylistLibrary()
         }
+        views.playlistPhotoSources.setOnClickListener {
+            val selected = currentPlaylist() ?: return@setOnClickListener
+            com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(CoverTarget.Playlist(selected.id), selected.name)
+                .show(childFragmentManager, "playlist-photo-sources")
+        }
         views.playlistSetCover.setOnClickListener {
             val id = selectedPlaylistId ?: return@setOnClickListener
             if (childFragmentManager.findFragmentByTag(COVER_DIALOG) == null) {
@@ -160,6 +165,7 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
         if (selectedPlaylistId == id) selectedPlaylistId = null
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val target = CoverTarget.Playlist(id)
+            com.iven.musicplayergo.photos.PhotoRepositories.get(requireContext()).deleteTarget(target)
             if (CoverRepositories.get(requireContext()).hasCover(target)) {
                 CoverRepositories.get(requireContext()).removeCover(target)
             }

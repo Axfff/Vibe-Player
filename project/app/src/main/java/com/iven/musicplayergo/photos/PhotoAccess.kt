@@ -24,7 +24,7 @@ object PhotoRepositories {
                 try { stream.write(value.toByteArray(Charsets.UTF_8)); file.finishWrite(stream) }
                 catch (e: Exception) { file.failWrite(stream); throw e }
             }
-        }).also { instance = it }
+        }, { OnnxPhotoFeatureExtractor.clearCache() }).also { instance = it }
     }
 }
 
@@ -40,9 +40,9 @@ class PhotoAccessManager(context: Context) {
         hasGrant(uri)
     } catch (_: Exception) { false }
     fun hasGrant(uri: Uri) = resolver.persistedUriPermissions.any { it.uri == uri && it.isReadPermission }
-    fun check(uri: Uri): PhotoReadState = try {
+    fun check(uri: Uri, signal: CancellationSignal? = null): PhotoReadState = try {
         if (uri.scheme != "content" || resolver.getType(uri) !in MIME_TYPES) PhotoReadState.UNSUPPORTED
-        else resolver.openAssetFileDescriptor(uri, "r")?.use { PhotoReadState.AVAILABLE } ?: PhotoReadState.MISSING_OR_OFFLINE
+        else resolver.openAssetFileDescriptor(uri, "r", signal)?.use { PhotoReadState.AVAILABLE } ?: PhotoReadState.MISSING_OR_OFFLINE
     } catch (_: SecurityException) { PhotoReadState.REAUTHORIZE }
       catch (_: Exception) { PhotoReadState.MISSING_OR_OFFLINE }
     // No releasePersistableUriPermission: other app modules may own the same grant.
@@ -60,7 +60,9 @@ class PhotoCandidateProvider(context: Context) {
         val start = SystemClock.elapsedRealtime()
         val coroutine = currentCoroutineContext()
         val signal = CancellationSignal()
-        val cancellation = coroutine[Job]?.invokeOnCompletion { signal.cancel() }
+        val cancellation = launch(Dispatchers.Default) {
+            try { delay(budgetMs); signal.cancel() } finally { signal.cancel() }
+        }
         fun withinBudget(): Boolean {
             coroutine.ensureActive()
             val valid = examined < limit && SystemClock.elapsedRealtime() - start < budgetMs
@@ -70,19 +72,21 @@ class PhotoCandidateProvider(context: Context) {
         fun add(uri: Uri) {
             val id = photoId(uri.toString())
             if (id in excluded || id in found) return
-            when (access.check(uri)) {
+            when (access.check(uri, signal)) {
                 PhotoReadState.AVAILABLE -> found[id] = ScopedPhoto(id, uri.toString())
                 PhotoReadState.REAUTHORIZE -> { unavailable++; state = PhotoReadState.REAUTHORIZE }
                 else -> { unavailable++; if (state == PhotoReadState.AVAILABLE) state = PhotoReadState.PARTIAL }
             }
         }
         try {
-            if (source.uris.any { !access.hasGrant(Uri.parse(it)) }) return@withContext SourceCandidates(source,
+            if (source.kind == PhotoSourceKind.DIRECTORY && !access.hasGrant(Uri.parse(source.uris.single()))) return@withContext SourceCandidates(source,
                 emptyList(), PhotoReadState.REAUTHORIZE, 0, 0)
             if (source.kind == PhotoSourceKind.SELECTED) {
                 for (value in source.uris.distinct()) {
                     if (!withinBudget()) break
-                    examined++; add(Uri.parse(value))
+                    examined++
+                    if (!access.hasGrant(Uri.parse(value))) { unavailable++; state = PhotoReadState.REAUTHORIZE }
+                    else add(Uri.parse(value))
                 }
             } else {
                 val tree = Uri.parse(source.uris.single())
@@ -107,8 +111,8 @@ class PhotoCandidateProvider(context: Context) {
             }
         } catch (e: CancellationException) { throw e }
           catch (_: SecurityException) { state = PhotoReadState.REAUTHORIZE }
-          catch (_: Exception) { state = PhotoReadState.MISSING_OR_OFFLINE }
-        finally { cancellation?.dispose() }
+          catch (_: Exception) { state = if (signal.isCanceled) PhotoReadState.BUDGET_REACHED else PhotoReadState.MISSING_OR_OFFLINE }
+        finally { cancellation.cancel() }
         SourceCandidates(source, found.values.toList(), state, examined, unavailable)
     }
 }

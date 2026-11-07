@@ -539,6 +539,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
                     }
                 }
                 val target = currentCoverTarget()
+                findItem(R.id.action_photo_sources)?.isVisible = target != null
                 findItem(R.id.action_set_cover)?.title = getString(
                     if (target != null && CoverRepositories.get(requireContext()).hasCover(target))
                         R.string.cover_change else R.string.cover_set
@@ -550,6 +551,10 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
             tb.setOnMenuItemClickListener {
 
                 when (it.itemId) {
+                    R.id.action_photo_sources -> currentCoverTarget()?.let { target ->
+                        com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(target, target.albumTitleSnapshot ?: "音乐专辑")
+                            .show(childFragmentManager, "album-photo-sources")
+                    }
                     R.id.action_set_cover -> showCoverPicker()
                     R.id.action_remove_cover -> removeCurrentCover()
                     R.id.action_add_queue -> mMediaControlInterface.onAddAlbumToQueue(

@@ -76,6 +76,14 @@
             android:src="@drawable/ic_custom_playlists" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/playlist_photo_sources"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/photo_sources" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/playlist_set_cover"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"

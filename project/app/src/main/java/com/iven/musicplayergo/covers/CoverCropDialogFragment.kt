@@ -2,10 +2,7 @@ package com.iven.musicplayergo.covers
 
 import android.app.Dialog
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -21,6 +18,8 @@ import com.iven.musicplayergo.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.CancellationException
+import com.iven.musicplayergo.photos.*
 
 class CoverCropDialogFragment : DialogFragment() {
     private var cropView: CropImageView? = null
@@ -39,7 +38,7 @@ class CoverCropDialogFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         launched = savedInstanceState?.getBoolean(LAUNCHED) ?: false
-        selectedUri = savedInstanceState?.getString(URI)?.let(Uri::parse)
+        selectedUri = (savedInstanceState?.getString(URI) ?: arguments?.getString(URI))?.let(Uri::parse)
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -85,7 +84,10 @@ class CoverCropDialogFragment : DialogFragment() {
     private fun load(uri: Uri) {
         status?.setText(R.string.cover_crop_loading)
         lifecycleScope.launch {
-            val bitmap = withContext(Dispatchers.IO) { decode(uri) }
+            val bitmap = try { withContext(Dispatchers.IO) {
+                candidateRequest()?.let { verifyCandidate(requireContext(), target()!!, it, uri.toString(), requireArguments().getString("fingerprint")!!) }
+                SafePhotoDecoder(requireContext()).let { it.decode(it.bytes(uri), 2048) }
+            } } catch(e: CancellationException) { throw e } catch (_: Exception) { null }
             if (bitmap == null) {
                 status?.setText(R.string.cover_error_decode)
                 return@launch
@@ -98,30 +100,26 @@ class CoverCropDialogFragment : DialogFragment() {
         }
     }
 
-    private fun decode(uri: Uri): Bitmap? = try {
-        if (Build.VERSION.SDK_INT >= 28) {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uri)) { decoder, info, _ ->
-                val scale = minOf(1f, 2048f / maxOf(info.size.width, info.size.height))
-                decoder.setTargetSize((info.size.width * scale).toInt(), (info.size.height * scale).toInt())
-                decoder.allocator = ImageDecoder.ALLOCATOR_SOFTWARE
-            }
-        } else {
-            requireContext().contentResolver.openInputStream(uri)?.use(BitmapFactory::decodeStream)
-        }
-    } catch (_: Exception) { null }
-
     private fun save(dialog: AlertDialog) {
         val target = target() ?: return
         val output = try { cropView?.export() } catch (_: Exception) { null } ?: return
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
         status?.setText(R.string.cover_saving)
         lifecycleScope.launch {
-            val result = withContext(Dispatchers.IO) {
-                CoverRepositories.get(requireContext()).setCover(
-                    target, CoverImageInput.CroppedBitmap(output), CoverSource.USER_SELECTED
-                )
-            }
-            output.recycle()
+            val result = try { withContext(Dispatchers.IO) {
+                val request = candidateRequest()
+                if (request == null) CoverRepositories.get(requireContext()).setCover(
+                    target, CoverImageInput.CroppedBitmap(output), CoverSource.USER_SELECTED)
+                else {
+                    verifyCandidate(requireContext(), target, request, selectedUri.toString(), requireArguments().getString("fingerprint")!!)
+                    PhotoRepositories.get(requireContext()).guarded(target, request) {
+                        check(targetExists(requireContext(), target))
+                        CoverRepositories.get(requireContext()).setCover(target, CoverImageInput.CroppedBitmap(output), CoverSource.RECOMMENDED)
+                    }
+                }
+            } } catch(e: CancellationException) { throw e }
+              catch (_: Exception) { CoverResult.Failure(CoverError.SOURCE_NOT_READABLE) }
+              finally { output.recycle() }
             when (result) {
                 is CoverResult.Success -> {
                     parentFragmentManager.setFragmentResult(RESULT_KEY, bundleOf(CHANGED_KEY to target.storageKey))
@@ -143,6 +141,10 @@ class CoverCropDialogFragment : DialogFragment() {
         )
         PLAYLIST -> requireArguments().getString(ID)?.let(CoverTarget::Playlist)
         else -> null
+    }
+
+    private fun candidateRequest(): PhotoRequest? = requireArguments().getString("request_id")?.let {
+        PhotoRequest(target()!!.storageKey, requireArguments().getString("scope_identity")!!, requireArguments().getLong("scope_revision"), it)
     }
 
     override fun onDestroyView() {
@@ -180,6 +182,17 @@ class CoverCropDialogFragment : DialogFragment() {
         }
         fun forPlaylist(id: String) = CoverCropDialogFragment().apply {
             arguments = bundleOf(TYPE to PLAYLIST, ID to id)
+        }
+        fun forCandidate(target: CoverTarget, uri: String, request: PhotoRequest, fingerprint: String): CoverCropDialogFragment {
+            val dialog = when (target) {
+                is CoverTarget.Playlist -> forPlaylist(target.playlistId)
+                is CoverTarget.Album -> forAlbum(target.albumId, target.artistSnapshot, target.albumTitleSnapshot)
+            }
+            dialog.requireArguments().apply {
+                putString(URI, uri); putString("request_id", request.requestId); putString("scope_identity", request.identity)
+                putLong("scope_revision", request.revision); putString("fingerprint", fingerprint)
+            }
+            return dialog
         }
     }
 }

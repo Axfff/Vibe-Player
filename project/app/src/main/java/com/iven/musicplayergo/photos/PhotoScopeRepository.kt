@@ -22,7 +22,7 @@ interface PhotoScopeStorage { fun read(): String?; fun write(value: String) }
 class PhotoScopeException(message: String) : IllegalStateException(message)
 
 /** No global candidate query exists. Each operation starts with one stable target. */
-class PhotoScopeRepository(private val storage: PhotoScopeStorage) {
+class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val invalidateFeatures: () -> Unit = {}) {
     private val adapter = Moshi.Builder().build().adapter(PhotoScopeCollection::class.java)
     private fun read(): PhotoScopeCollection = try {
         val state = storage.read()?.let { adapter.fromJson(it) ?: error("invalid") } ?: PhotoScopeCollection()
@@ -57,7 +57,7 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage) {
     private fun write(state: PhotoScopeCollection, updated: PhotoScope) {
         val scopes = state.scopes.filterNot { it.key == updated.key } + updated
         val referenced = scopes.flatMap { it.sources }.toSet()
-        try { storage.write(adapter.toJson(state.copy(scopes = scopes, sources = state.sources.filter { it.id in referenced }))) }
+        try { storage.write(adapter.toJson(state.copy(scopes = scopes, sources = state.sources.filter { it.id in referenced }))); invalidateFeatures() }
         catch (_: Exception) { throw PhotoScopeException("保存来源失败；原范围保持不变。") }
     }
     @Synchronized fun attach(target: CoverTarget, request: PhotoRequest, source: PhotoSource) {
@@ -65,6 +65,7 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage) {
         require(source.uris.isNotEmpty() && source.uris.size <= 500 && source.uris.all { it.startsWith("content://") })
         require(source.kind != PhotoSourceKind.DIRECTORY || source.uris.size == 1)
         val state = read(); val scope = scope(state, target)
+        require(source.id in scope.sources || scope.sources.size < 20) { "每个目标最多 20 个来源" }
         val existing = state.sources.firstOrNull { it.id == source.id }
         require(existing == null || existing == source)
         write(state.copy(sources = state.sources.filterNot { it.id == source.id } + source.copy(uris = source.uris.distinct())),

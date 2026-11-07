@@ -3,6 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <item android:id="@+id/action_photo_sources" android:title="@string/photo_sources" app:showAsAction="never" />
+
     <item
         android:id="@+id/sleeptimer"
         android:icon="@drawable/ic_sleeptimer"
