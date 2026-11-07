@@ -75,30 +75,34 @@
             android:scaleType="centerCrop"
             android:src="@drawable/ic_custom_playlists" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/playlist_photo_sources"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/playlist_photo_sources"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="@string/photo_sources" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/playlist_set_cover"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
             android:text="@string/cover_set" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/playlist_remove_cover"
             style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="@string/cover_remove" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
