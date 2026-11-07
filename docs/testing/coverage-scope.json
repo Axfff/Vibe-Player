@@ -105,65 +105,118 @@
       "exception_reason": null
     },
     {
+<<<<<<< HEAD
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverCropDialogFragment.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "3b59d239275ee0bbc808f0b8d58836342fdebac2c6fb52be306ab07ddd3f558b",
+=======
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/AndroidAudioDecoder.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "6be943cd3262053b4e84ae3592e2e78a4d4bd510bfa6c97dfcb88b4e5f3d7c87",
+>>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
+<<<<<<< HEAD
           186
         ]
       ],
       "source_commits": [
         "bbb4e1e7127469d7c2c5c444de070871b93c5834"
+=======
+          165
+        ]
+      ],
+      "source_commits": [
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+>>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
+<<<<<<< HEAD
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverModels.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "21ab205a6088ff948dac9963de7e57bf7539712d1c5fbb878cc95c9681a449cd",
+=======
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/EffnetFeatures.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "221ab0a0203d7c78d06bdea763c54df457b3b7b17a72bdd1a4489be2e036238a",
+>>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
+<<<<<<< HEAD
           68
         ]
       ],
       "source_commits": [
         "f1f3843adc435936260a4a488f84558d43af05f1"
+=======
+          110
+        ]
+      ],
+      "source_commits": [
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+>>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
+<<<<<<< HEAD
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRecordRepository.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "f777bfa7058afcb9536da654de12c62e2bfb8464a54841627719719dba3fb118",
+=======
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodAnalyzer.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "0b8117e5f17bb00acbc74ba23b992fe36d46c9372560fbf07c6b814aaa7ee4f9",
+>>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
+<<<<<<< HEAD
           133
         ]
       ],
       "source_commits": [
         "f1f3843adc435936260a4a488f84558d43af05f1"
+=======
+          111
+        ]
+      ],
+      "source_commits": [
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+>>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
     {
+<<<<<<< HEAD
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRepository.kt",
       "module": "android",
       "change": "added",
       "source_sha256": "eb5e5877c8baf9a375fac53813401fe01183423fda0b26c7ecdd85f23ced603b",
+=======
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodInference.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "d7fdf9b6886af45f16e562f5ac5414efe2b4aae14dd1faf6f18f432e573cf38a",
+>>>>>>> origin/feat/local-mood-inference
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
+<<<<<<< HEAD
           225
         ]
       ],
@@ -220,6 +273,13 @@
       ],
       "source_commits": [
         "bbb4e1e7127469d7c2c5c444de070871b93c5834"
+=======
+          93
+        ]
+      ],
+      "source_commits": [
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+>>>>>>> origin/feat/local-mood-inference
       ],
       "exception_reason": null
     },
