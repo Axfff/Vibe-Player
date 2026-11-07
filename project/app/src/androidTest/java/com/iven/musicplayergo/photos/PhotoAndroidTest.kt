@@ -69,4 +69,41 @@ class PhotoAndroidTest {
         var fallback=false;launcher.launch("lake",{throw android.content.ActivityNotFoundException()},{fallback=true});assertTrue(fallback)
         assertThrows(IllegalArgumentException::class.java){launcher.intent(" ")}
     }
+    @Test fun decodeHonorsExifRotationAndMirroringInsteadOfReadingGps() {
+        val file=java.io.File(context.cacheDir,"orientation-test.jpg")
+        val original=Bitmap.createBitmap(80,40,Bitmap.Config.ARGB_8888).apply {
+            eraseColor(Color.RED)
+            for(y in 0 until 40) for(x in 40 until 80) setPixel(x,y,Color.BLUE)
+        }
+        try {
+            for (orientation in 1..8) {
+                file.outputStream().use { original.compress(Bitmap.CompressFormat.JPEG,100,it) }
+                androidx.exifinterface.media.ExifInterface(file).apply {
+                    setAttribute(androidx.exifinterface.media.ExifInterface.TAG_ORIENTATION,orientation.toString());saveAttributes()
+                }
+                val decoded=SafePhotoDecoder(context).decode(file.readBytes())
+                try {
+                    assertEquals(if(orientation>=5) 40 else 80,decoded.width)
+                    assertEquals(if(orientation>=5) 80 else 40,decoded.height)
+                    val topLeft=decoded.getPixel(4,4)
+                    val expectedBlue=orientation in setOf(2,3,7,8)
+                    assertEquals("Orientation $orientation",expectedBlue,Color.blue(topLeft)>Color.red(topLeft))
+                } finally { decoded.recycle() }
+            }
+        } finally { original.recycle();file.delete() }
+    }
+    @Test fun candidateGuardRejectsReadableButUnboundPhotoAndRevokedRequest() = runBlocking {
+        val playlists=com.iven.musicplayergo.playlists.PlaylistRepositories.get(context)
+        val created=playlists.create("Guard ${UUID.randomUUID()}") as com.iven.musicplayergo.playlists.PlaylistResult.Success
+        val target=CoverTarget.Playlist(created.value.id);val repo=PhotoRepositories.get(context);val request=repo.request(target)
+        try {
+            var rejected=false
+            try { verifyCandidate(context,target,request,"content://unbound/photo","unused") } catch (_: IllegalStateException) { rejected=true }
+            assertTrue(rejected)
+            repo.refresh(target)
+            rejected=false
+            try { verifyCandidate(context,target,request,"content://unbound/photo","unused") } catch (_: PhotoScopeException) { rejected=true }
+            assertTrue(rejected)
+        } finally { playlists.delete(target.playlistId);repo.deleteTarget(target) }
+    }
 }
