@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0025",
+    "kind": "image",
+    "path": "media/images/img_0025.jpg",
+    "title": "Waves crashing up through the boardwalk in Lysekil during Storm Ciara 1",
+    "creator": "W.carter",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Waves crashing up through the boardwalk in Lysekil during Storm Ciara 1 — W.carter. https://commons.wikimedia.org/wiki/File:Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "97101495faee5c8802141d92ae2540b171519942d6df33eea90db934cbf06de0",
+    "sha256": "1e4ececfde40b2b1e3686e0fff2273367b6b4c4f87494aa89aad7ced5d2230b3",
+    "original_size_bytes": 10222060,
+    "size_bytes": 410417,
+    "width": 1280,
+    "height": 932,
+    "source_dimensions": [
+      4301,
+      3131
+    ],
+    "commons_page_id": 86908122
+  },
+  "commons_imageinfo": {
+    "pageid": 86908122,
+    "ns": 6,
+    "title": "File:Waves crashing up through the boardwalk in Lysekil during Storm Ciara 1.jpg",
+    "index": 2,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 10222060,
+        "width": 4301,
+        "height": 3131,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Waves_crashing_up_through_the_boardwalk_in_Lysekil_during_Storm_Ciara_1.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=86908122",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2020-02-11 10:38:48",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Waves crashing up through the boardwalk in Lysekil during Storm Ciara 1",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|Boardwalks in Sweden|Storms in Sweden|Sheets of liquid|Images by W.carter|Files with coordinates missing SDC location of creation|Water waves of Sweden|Sweden photographs taken on 2020-02-10|Storm Ciara in Sweden|Quays in Lysekil|Norra hamnen, Lysekil",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "58.278864",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "11.425727",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Waves crashing up through the boardwalk during Storm Ciara 2020 in the north harbour, Lysekil, Sweden. During the storm, sea levels along the west coast of Sweden were the highest in 34 years, in some areas as high as 137 cm (54 in) above average. In this photo, the sea is about 100 cm (39 in) above average with wind speed at 22 m/s (49 mph).",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2020-02-10 16:22:30",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:W.carter\" title=\"User:W.carter\">W.carter</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "fb6d4a504a716c2a64bce2c0ce2c90f36851da420104e4bd21445b6cc8b9b712",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

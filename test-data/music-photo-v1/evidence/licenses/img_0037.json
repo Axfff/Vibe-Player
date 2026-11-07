@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0037",
+    "kind": "image",
+    "path": "media/images/img_0037.jpg",
+    "title": "Bare tree in Kent, WA (2025) - 0010",
+    "creator": "Roc0ast3r",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Bare_tree_in_Kent,_WA_(2025)_-_0010.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bare_tree_in_Kent%2C_WA_%282025%29_-_0010.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Bare tree in Kent, WA (2025) - 0010 — Roc0ast3r. https://commons.wikimedia.org/wiki/File:Bare_tree_in_Kent,_WA_(2025)_-_0010.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "f14c8b799d6dce1e848e7428dbfcd6ef46ea3e5927c7026496789985b4357397",
+    "sha256": "01af205eaeba56478f3f5adbe8293142e3e1b5b4d1a875ca47d0ff8b46020040",
+    "original_size_bytes": 4474800,
+    "size_bytes": 330390,
+    "width": 960,
+    "height": 1280,
+    "source_dimensions": [
+      3000,
+      4000
+    ],
+    "commons_page_id": 159267078
+  },
+  "commons_imageinfo": {
+    "pageid": 159267078,
+    "ns": 6,
+    "title": "File:Bare tree in Kent, WA (2025) - 0010.jpg",
+    "index": 2,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 4474800,
+        "width": 3000,
+        "height": 4000,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Bare_tree_in_Kent%2C_WA_%282025%29_-_0010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Bare_tree_in_Kent,_WA_(2025)_-_0010.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=159267078",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2025-02-07 02:29:21",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Bare tree in Kent, WA (2025) - 0010",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|February 2025 in Washington (state)|2025 photographs by Roc0ast3r|Photographs by Roc0ast3r|Photographs of Kent, Washington by Roc0ast3r|Bare trees in Kent, Washington|Winter in Kent, Washington|Blue sky in Kent, Washington|Photographs by Roc0ast3r taken with Nikon Coolpix P7700",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "A bare tree in the city of Kent, Washington.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2025-02-04 01:46:52",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Roc0ast3r\" title=\"User:Roc0ast3r\">Roc0ast3r</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "30bdfb3fc9333fd7a1115275ef64690fa7e71be714b1607e75a473847f610211",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

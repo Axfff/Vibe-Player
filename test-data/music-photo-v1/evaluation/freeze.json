@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "frozen_on": "2026-11-07T12:43:43Z",
+  "seed": 50027204,
+  "stage": "before any model ranking",
+  "files": {
+    "manifest.json": "87b72939afab818f52ec3833ddd0a3061cc5f1f8bcb6ecdf0868bda9a32d4cd0",
+    "evaluation/protocol.json": "177a10aa4884ee69c7d2b41635842d7bfd23a5639689d25cd58d471b16003fa7",
+    "candidates/case_01.json": "b95da80cd1751af376c1726262e6dccf44e6b2b4eb248b3062f18d92d4fa9793",
+    "candidates/case_02.json": "3a665e390add12f95d6c53974dcb9d3a95ac4736dd528f42e6290b832658d525",
+    "candidates/case_03.json": "ac576da8478281301eb7222aeaeefaf6baf90fcddb2f2306f8a8fbdf8ad4f200",
+    "candidates/case_04.json": "3e2baa859829c4e0a42768e5c3cd4bfdf04641a3bad0ef978818cc3dfc9ba074",
+    "playlists/bright.json": "f36b14e911cef3c86622ca75796df04e829b0af056b703a129b6496b362a5915",
+    "playlists/calm.json": "6012c3a79961eddec15830f1cfaf89245f6c4835845edbfd8c209b486fd6d493",
+    "playlists/energetic.json": "7da11e9c734b96db0d41e71f9bde856acd450b648ec8f51b76f689e18eb6bb5b",
+    "playlists/melancholic.json": "9356dd218201cf7854f69c55f3e84e69defe59e03dcc6955360160f0135c6b27",
+    "evaluation/expected-relevance.csv": "49981542fc76c670cea6293ba66edcbd1fac5ecf852eafebbaf029141c8b538a",
+    "evaluation/per-track-overrides.csv": "ffb3b073389a48c1eec2fe012b81d93ed02a87de9efe77ab447dcc1aca41bf33"
+  }
+}

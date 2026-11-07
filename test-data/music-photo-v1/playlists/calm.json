@@ -1,0 +1,21 @@
+{
+  "playlist_id": "calm",
+  "display_name": "安静舒缓",
+  "track_ids": [
+    "audio_0006",
+    "audio_0007",
+    "audio_0008",
+    "audio_0009",
+    "audio_0010"
+  ],
+  "representative_track_id": "audio_0006",
+  "paths": [
+    "media/audio/audio_0006.mp3",
+    "media/audio/audio_0007.mp3",
+    "media/audio/audio_0008.mp3",
+    "media/audio/audio_0009.mp3",
+    "media/audio/audio_0010.mp3"
+  ],
+  "app_import_status": "APP_PLAYLISTS_PENDING",
+  "note": "Ordered portable list; the current app has no M3U/JSON playlist import."
+}

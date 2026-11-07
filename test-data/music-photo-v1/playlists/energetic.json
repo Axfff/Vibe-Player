@@ -1,0 +1,21 @@
+{
+  "playlist_id": "energetic",
+  "display_name": "激昂有力",
+  "track_ids": [
+    "audio_0016",
+    "audio_0017",
+    "audio_0018",
+    "audio_0019",
+    "audio_0020"
+  ],
+  "representative_track_id": "audio_0016",
+  "paths": [
+    "media/audio/audio_0016.mp3",
+    "media/audio/audio_0017.mp3",
+    "media/audio/audio_0018.mp3",
+    "media/audio/audio_0019.mp3",
+    "media/audio/audio_0020.mp3"
+  ],
+  "app_import_status": "APP_PLAYLISTS_PENDING",
+  "note": "Ordered portable list; the current app has no M3U/JSON playlist import."
+}

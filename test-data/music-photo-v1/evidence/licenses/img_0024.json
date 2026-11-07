@@ -1,0 +1,131 @@
+{
+  "asset": {
+    "asset_id": "img_0024",
+    "kind": "image",
+    "path": "media/images/img_0024.jpg",
+    "title": "Void 4",
+    "creator": "Максим Барбухин",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Void_4_(215863465).jpeg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Void_4_%28215863465%29.jpeg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Void 4 — Максим Барбухин. https://commons.wikimedia.org/wiki/File:Void_4_(215863465).jpeg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "80180a1cd98d070d029dbab15803c1639ca75cb7c8346726311133b8bab77c04",
+    "sha256": "ffcbd888bba911f567f5f89842557d2d2a227ed045d439afa80d87bf7d00cb1c",
+    "original_size_bytes": 529079,
+    "size_bytes": 213338,
+    "width": 1280,
+    "height": 720,
+    "source_dimensions": [
+      2048,
+      1152
+    ],
+    "commons_page_id": 71413112
+  },
+  "commons_imageinfo": {
+    "pageid": 71413112,
+    "ns": 6,
+    "title": "File:Void 4 (215863465).jpeg",
+    "index": 1,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 529079,
+        "width": 2048,
+        "height": 1152,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Void_4_%28215863465%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Void_4_(215863465).jpeg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=71413112",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2018-08-06 22:16:03",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "<div class=\"fn\">\nVoid 4</div>",
+            "source": "commons-desc-page"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Photos imported with import-500px|Files from 500px.com with bad file names|Empty streets",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Artist": {
+            "value": "<div class=\"fn value\">\n<a rel=\"nofollow\" class=\"external text\" href=\"https://500px.com/mbarbuchin\">Максим Барбухин</a></div>",
+            "source": "commons-desc-page"
+          },
+          "ImageDescription": {
+            "value": "<div class=\"description\">\n500px provided description: Void 4 [#city ,#street ,#travel ,#house ,#old ,#urban ,#architecture ,#road ,#building ,#pavement ,#town ,#outdoors ,#no person]</div>",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "13 June 2017, 08:30:54 (UTC)",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "Imported from <a rel=\"nofollow\" class=\"external text\" href=\"https://500px.com/photo/215863465/void-4-by-%D0%9C%D0%B0%D0%BA%D1%81%D0%B8%D0%BC-%D0%91%D0%B0%D1%80%D0%B1%D1%83%D1%85%D0%B8%D0%BD\">500px</a> (<a rel=\"nofollow\" class=\"external text\" href=\"https://web.archive.org/web/201807id_/https://drscdn.500px.org/photo/215863465/m%3D2048/v2?webp=true&amp;sig=b417babfc300d71d9ae28a4402fa76ac22887414bfd5777ec6931ad831b57bb1\">archived version</a>) by <a rel=\"nofollow\" class=\"external text\" href=\"https://www.archiveteam.org/index.php?title=500px\">the Archive Team</a>. (<a href=\"https://iw.toolforge.org/import-500px/photo/215863465\" class=\"extiw\" title=\"toolforge:import-500px/photo/215863465\">detail page</a>)",
+            "source": "commons-desc-page"
+          },
+          "Permission": {
+            "value": "<table style=\"width:100%; clear:both; text-align:center; margin:0.5em auto; background-color:var(--background-color-neutral-subtle, #f8f9fa); border:var(--border-subtle, 2px solid #c8ccd1); padding: 0; border-spacing: 8px; color:var(--color-base, #202122);\" dir=\"ltr\" class=\"layouttemplate licensetpl\" lang=\"en\">\n<tbody><tr>\n<td style=\"width:90px;\" rowspan=\"2\"><span class=\"skin-invert\" typeof=\"mw:File\"><span title=\"Creative Commons\"><img alt=\"Creative Commons\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/40px-Cc.logo.circle.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"28\" height=\"28\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Cc.logo.circle.svg/60px-Cc.logo.circle.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"64\" data-file-height=\"64\"></span></span> <span class=\"skin-invert\" typeof=\"mw:File\"><span title=\"CC-Zero\"><img alt=\"CC-Zero\" src=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Cc-zero.svg/40px-Cc-zero.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail\" decoding=\"async\" loading=\"lazy\" width=\"28\" height=\"28\" class=\"mw-file-element\" srcset=\"https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Cc-zero.svg/60px-Cc-zero.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=parser&amp;utm_content=thumbnail 2x\" data-file-width=\"64\" data-file-height=\"64\"></span></span>\n</td>\n<td>This file is made available under the <a href=\"https://en.wikipedia.org/wiki/en:Creative_Commons\" class=\"extiw\" title=\"w:en:Creative Commons\">Creative Commons</a> <a href=\"https://creativecommons.org/publicdomain/zero/1.0/deed.en\" class=\"extiw\" title=\"ccorg:publicdomain/zero/1.0/deed.en\">CC0 1.0 Universal Public Domain Dedication</a>.\n</td></tr>\n<tr style=\"text-align:left;\">\n<td>The person who associated a work with this deed has dedicated the work to the <a href=\"https://en.wikipedia.org/wiki/en:public_domain\" class=\"extiw\" title=\"w:en:public domain\">public domain</a> by waiving all of their rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law. You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission.\n<p><span class=\"licensetpl_link\" style=\"display:none;\">http://creativecommons.org/publicdomain/zero/1.0/deed.en</span><span class=\"licensetpl_short\" style=\"display:none;\">CC0</span><span class=\"licensetpl_long\" style=\"display:none;\">Creative Commons Zero, Public Domain Dedication</span><span class=\"licensetpl_link_req\" style=\"display:none;\">false</span><span class=\"licensetpl_attr_req\" style=\"display:none;\">false</span>\n</p>\n</td></tr></tbody></table>",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "b7d770fb2b029e8c71b93296559dd951d5cbd0bf84900a180ea3554c7b87becf",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

@@ -1,0 +1,137 @@
+{
+  "asset": {
+    "asset_id": "img_0039",
+    "kind": "image",
+    "path": "media/images/img_0039.jpg",
+    "title": "Central Eruption with Eruption Column at Mount Bromo Volcano in Indonesia",
+    "creator": "Xavier Bolós",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Central_Eruption_with_Eruption_Column_at_Mount_Bromo_Volcano_in_Indonesia.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Central_Eruption_with_Eruption_Column_at_Mount_Bromo_Volcano_in_Indonesia.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Central Eruption with Eruption Column at Mount Bromo Volcano in Indonesia — Xavier Bolós. https://commons.wikimedia.org/wiki/File:Central_Eruption_with_Eruption_Column_at_Mount_Bromo_Volcano_in_Indonesia.jpg. CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: EXIF orientation applied; cropped source to rectangle [0, 0, 1162, 760] (left, top, right, bottom) to remove foreground people and horses; converted to RGB; maximum edge 1280 without upscaling; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS removed. Author and license retained in accompanying attribution.",
+    "modifications": "EXIF orientation applied; cropped source to rectangle [0, 0, 1162, 760] (left, top, right, bottom) to remove foreground people and horses; converted to RGB; maximum edge 1280 without upscaling; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS removed. Author and license retained in accompanying attribution.",
+    "original_sha256": "89b00e9c003c2a90144653708210221f3197e4534b3d290b3377f7e401a293c1",
+    "sha256": "1aeadacb44d51e4ab06804439d09f8220da01e5e76050bc99b80da8fc1f1e766",
+    "original_size_bytes": 528562,
+    "size_bytes": 68318,
+    "width": 1162,
+    "height": 760,
+    "source_dimensions": [
+      1162,
+      1268
+    ],
+    "commons_page_id": 154026879,
+    "crop_xyxy": [
+      0,
+      0,
+      1162,
+      760
+    ]
+  },
+  "commons_imageinfo": {
+    "pageid": 154026879,
+    "ns": 6,
+    "title": "File:Central Eruption with Eruption Column at Mount Bromo Volcano in Indonesia.jpg",
+    "index": 3,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 528562,
+        "width": 1162,
+        "height": 1268,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Central_Eruption_with_Eruption_Column_at_Mount_Bromo_Volcano_in_Indonesia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Central_Eruption_with_Eruption_Column_at_Mount_Bromo_Volcano_in_Indonesia.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=154026879",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2024-10-17 20:55:02",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Central Eruption with Eruption Column at Mount Bromo Volcano in Indonesia",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Mount Bromo eruptions|Eruption columns in Indonesia",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Central eruption, with eruption column, at Mount Bromo volcano in Indonesia.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2024",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "Xavier Bolós, Stéphanie Barde-Cabusson, Adelina Geyer, Nieves Sánchez, Inés Galindo, Eugenio Fraile-Nuez, Juan Tomás Vázquez (2024) <i>\"El riesgo volcánico\"</i>, published by CSIC (Madrid, Spain). <a rel=\"nofollow\" class=\"external free\" href=\"https://www.researchgate.net/publication/382704848_El_riesgo_volcanico_Ciencia_para_las_Politicas_Publicas\">https://www.researchgate.net/publication/382704848_El_riesgo_volcanico_Ciencia_para_las_Politicas_Publicas</a>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "Xavier Bolós",
+            "source": "commons-desc-page"
+          },
+          "Permission": {
+            "value": "Este es un libro de acceso abierto distribuido bajo los términos de la licencia de uso y distribución Creative Commons Reconocimiento 4.0 Internacional (CC BY 4.0). Más información sobre esta licencia en <a rel=\"nofollow\" class=\"external free\" href=\"https://creativecommons.org/licenses/by/4.0/\">https://creativecommons.org/licenses/by/4.0/</a> .",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseShortName": {
+            "value": "CC BY 4.0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Attribution 4.0",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "true",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "https://creativecommons.org/licenses/by/4.0",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc-by-4.0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "5aa0524fbe82ba9452a125f5312a13755b18189e7d3f45ee298c2cdf5948396e",
+  "file_page_license_path_confirmed": "licenses/by/4.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}
