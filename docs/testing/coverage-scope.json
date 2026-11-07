@@ -896,16 +896,17 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/photos/SystemPhotoSearch.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "1bf429d3f1d738df498d864a59dfc5792e45f65a01b861955b24a586515d6785",
+      "source_sha256": "e734094df0edd663923b49343c578bf5bcf92143b8bb5e1b1b67eb4ec61e45b4",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          50
+          53
         ]
       ],
       "source_commits": [
-        "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d"
+        "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d",
+        "a057aa5aad4fcd4cdc30551d56aa47c4ccd1c948"
       ],
       "exception_reason": null
     },
