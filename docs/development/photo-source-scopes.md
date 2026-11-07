@@ -1,0 +1,21 @@
+# Target-scoped photo sources
+
+Formal requirements: [#41](https://github.com/Axfff/Vibe-Player/issues/41), manual cover dependency [#40](https://github.com/Axfff/Vibe-Player/issues/40). The pending Issue extension is a publication payload, not accepted requirements: the connector rejected its write with 403.
+
+Baseline: main `844caf7c`; cover foundation `25849a42`; mood PR #46 `4776e4e1`. Dependency merge `d987943b` integrates both existing contributions. No main/tag rewrite. Integration owner for this worktree is this task; existing member attribution is preserved. Shared CI scripts/workflows are unchanged; scope inventory is regenerated with the existing cumulative script, including all new Kotlin UI/permission/error paths and Release 1.
+
+Entry: Playlist detail → 封面照片来源; Album detail overflow → 封面照片来源. Manual single-cover and restore-default remain available. The new screen adds fixed multi-selected photos, SAF directories, explicit sharing of an existing source, refresh, exclusion/restoration of individual candidates, local recommendations and system search additions. Directory reauthorization currently uses explicit re-selection/addition and removal of the old binding; cancelling either operation preserves existing sources.
+
+`CoverTarget` typed stable keys are reused. Album artist/title snapshots are length-delimited and checked. A renamed playlist retains its UUID. Restorable fragment arguments fix the target before launching a picker; callbacks never consult the currently selected playlist. Request UUID plus durable scope revision reject stale attachment/recommendation/save. Deletion keeps a revision tombstone and never deletes source images. Target existence is checked through the existing PlaylistRepository or MediaStore audio album identity.
+
+Schema 1 JSON uses AtomicFile under noBackupFilesDir; corruption/future schema fails closed rather than replacing state. Binding updates prune unreferenced source metadata. Atomic write failure retains old data. No grant is released: this module cannot prove exclusive ownership across the whole app. Removing a binding is not a complete OS revocation; users can revoke app access in system settings. No original images or persistent thumbnails/features are copied. Final confirmed cover storage remains the pre-existing CustomCoverRepository and is unaffected by source removal.
+
+Both selectors request read access. Fixed selections are deduplicated and persisted only after explicit local-analysis confirmation; inability to take a persistent grant is an explicit error. There is no READ_MEDIA_IMAGES/MANAGE_EXTERNAL_STORAGE addition. Cloud-provider fetches may require connectivity; neither URI possession nor a grant proves offline availability. Missing/moved/deleted vs offline cannot always be distinguished by ContentResolver; the UI states this uncertainty.
+
+Directories default to direct children. Explicit recursion is capped at depth 3; each traversal examines at most 500 rows within a 10-second cooperative budget. A cancellation signal is passed to directory queries and read probes. Providers may delay cancellation; no claim of a hard wall-clock guarantee. Non-images are ignored, failures are isolated, and partial/budget states are displayed. Each target allows at most 20 sources and each recommendation at most 500 unique URIs. Candidate thumbnails are paged in batches of 30. All traversal/model/decoding uses IO dispatchers; dialog rendering uses the main thread.
+
+JPEG/PNG/WebP only: bounded stream read <=20 MiB (also bounds unknown-length providers), positive image dimensions <=40 million pixels, sampled decode, all eight EXIF orientations, no requested GPS. Candidate crops use the same bounded decoder. Before preview/save, re-enumerate the issuing scope, check target/revision/grant, and compare SHA-256 of actual current bytes. The serialized final save guard prevents app-scope mutations from interleaving. External provider revocation after the final check cannot be made atomic with local cover storage.
+
+Known verification gaps must be read with the results document: comprehensive provider/offline behavior, API 21/23 runtime, rotation during confirmation, target deletion racing external library changes, and full device reboot persistence are not implied by JVM tests.
+
+Student ID (CroissantXinny): 50027204

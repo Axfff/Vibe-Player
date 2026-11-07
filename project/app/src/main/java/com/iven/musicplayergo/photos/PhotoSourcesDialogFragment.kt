@@ -23,6 +23,16 @@ class PhotoSourcesDialogFragment : DialogFragment() {
     private var job: Job? = null
     private var pending: PhotoRequest? = null
     private var recursive = false
+    private var searchQuery = ""
+    private val systemSearch = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == android.app.Activity.RESULT_OK) {
+            val uris = mutableListOf<Uri>()
+            result.data?.data?.let { uris += it }
+            result.data?.clipData?.let { clip -> for (index in 0 until minOf(clip.itemCount, 100)) uris += clip.getItemAt(index).uri }
+            if (uris.isNotEmpty()) confirm(uris.distinct(), PhotoSourceKind.SELECTED)
+            else status?.text = "未选择照片。关键词已保留；可使用普通选图或文件夹。"
+        } else status?.text = "已取消；范围保持不变。若系统忽略关键词或无结果，可重新打开并选择普通选图。"
+    }
     private val photos = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) confirm(uris.distinct(), PhotoSourceKind.SELECTED)
     }
@@ -34,10 +44,15 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         savedInstanceState?.getString("request")?.let { id -> pending = PhotoRequest(target.storageKey,
             savedInstanceState.getString("identity") ?: "", savedInstanceState.getLong("revision"), id) }
         recursive = savedInstanceState?.getBoolean("recursive") ?: false
+        searchQuery = savedInstanceState?.getString("search_query") ?: ""
+        parentFragmentManager.setFragmentResultListener("photo-search-suggestions:${target.storageKey}", this) { _, bundle ->
+            searchQuery = bundle.getString("query") ?: searchQuery
+        }
     }
     override fun onSaveInstanceState(outState: Bundle) {
         pending?.let { outState.putString("request", it.requestId); outState.putString("identity", it.identity); outState.putLong("revision", it.revision) }
         outState.putBoolean("recursive", recursive)
+        outState.putString("search_query", searchQuery)
         super.onSaveInstanceState(outState)
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -119,7 +134,16 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                 for (source in snapshot.second) {
                     val result = PhotoCandidateProvider(requireContext()).enumerate(source, snapshot.first.excluded.toSet())
                     val row = Button(requireContext()).apply {
-                        text = "${source.name} · ${source.kind}\n${result.state} · 可用 ${result.photos.size} 张 · 已检查 ${result.examined} 项"
+                        val label = when(result.state) {
+                            PhotoReadState.AVAILABLE -> "可读取"
+                            PhotoReadState.REAUTHORIZE -> "需要重新授权"
+                            PhotoReadState.MISSING_OR_OFFLINE -> "已移动、删除或提供方暂时离线；无法确认原因"
+                            PhotoReadState.UNSUPPORTED -> "不支持的格式"
+                            PhotoReadState.PARTIAL -> "部分图片不可读取"
+                            PhotoReadState.BUDGET_REACHED -> "达到扫描预算，未扫描全部"
+                        }
+                        val count = if (result.photos.isEmpty() && result.state in setOf(PhotoReadState.REAUTHORIZE, PhotoReadState.MISSING_OR_OFFLINE)) "数量未知" else "当前可用 ${result.photos.size} 张"
+                        text = "${source.name} · ${if(source.kind == PhotoSourceKind.DIRECTORY) "目录" else "固定照片组"}\n$label · $count · 已检查 ${result.examined} 项"
                         setOnClickListener { sourceActions(source, result) }
                     }; body?.addView(row)
                 }
@@ -140,7 +164,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         val preview = AlertDialog.Builder(requireContext()).setTitle("当前候选 · ${photos.size} 张")
             .setView(ScrollView(requireContext()).apply { addView(rows) }).setNegativeButton("关闭", null).create()
         val previewJob = lifecycleScope.launch {
-            for (photo in photos) {
+            for (photo in photos.take(30)) {
                 ensureActive()
                 val bitmap = withContext(Dispatchers.IO) { runCatching { SafePhotoDecoder(requireContext()).let { it.decode(it.bytes(Uri.parse(photo.uri)), 160) } }.getOrNull() }
                 val image = ImageView(requireContext()).apply { layoutParams = LinearLayout.LayoutParams(-1, 220); setImageBitmap(bitmap); contentDescription = "候选 ${photo.id.take(8)}；点击从范围移除" }
@@ -148,6 +172,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                 image.setOnClickListener { AlertDialog.Builder(requireContext()).setMessage("只从此目标移除候选？")
                     .setNegativeButton("取消", null).setPositiveButton("移除") { _, _ -> work { repository.exclude(target, photo.id); preview.dismiss(); reload() } }.show() }
             }
+            if (photos.size > 30) rows.addView(Button(requireContext()).apply { text = "查看后续 ${photos.size - 30} 张"; setOnClickListener { preview.dismiss(); showCandidates(photos.drop(30)) } })
         }
         preview.setOnDismissListener { previewJob.cancel(); rows.removeAllViews() }; preview.show()
     }
@@ -155,8 +180,36 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         try { action() } catch (e: CancellationException) { throw e }
         catch (e: Exception) { status?.text = e.message ?: "操作失败，原范围保留" }
     } }
-    private fun recommend() { status?.text = "推荐模块正在准备；仍可手动设置封面。" }
-    private fun search() { begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
+    private fun recommend() { PhotoRecommendationsDialogFragment.newInstance(target).show(parentFragmentManager, "photo-recommendations") }
+    private fun search() {
+        val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 8, 24, 8) }
+        val edit = EditText(requireContext()).apply { setText(searchQuery); hint = "输入／修改关键词（最多 200 字）" }
+        layout.addView(edit)
+        layout.addView(Button(requireContext()).apply {
+            text = "从我选择的氛围生成建议词"
+            setOnClickListener {
+                val moods = PhotoRanker.mapping.keys.toList()
+                AlertDialog.Builder(requireContext()).setTitle("用户选择的氛围").setItems(moods.toTypedArray()) { _, index ->
+                    edit.setText(PhotoRanker.suggestions(listOf(com.iven.musicplayergo.analysis.MoodScore(moods[index], 1f))).joinToString(" "))
+                }.show()
+            }
+        })
+        val launcher = SystemPhotoSearchLauncher(requireContext())
+        AlertDialog.Builder(requireContext()).setTitle("从系统搜索添加照片")
+            .setMessage("能力：${launcher.capability()}。关键词将交给系统选图器及其媒体提供方处理；可能显示范围外照片。仅你选中并确认的图片会加入本目标。系统可能忽略关键词；可随时使用普通选图／文件夹。")
+            .setView(layout).setNegativeButton("取消") { _, _ -> searchQuery = edit.text.toString() }
+            .setNeutralButton("普通选图") { _, _ -> searchQuery = edit.text.toString(); begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
+            .setPositiveButton("请求系统搜索") { _, _ ->
+                searchQuery = PhotoSearchPolicy.query(edit.text.toString())
+                if (searchQuery.isEmpty()) { status?.text = "请输入关键词，或使用普通选图。" }
+                else begin {
+                    launcher.launch(searchQuery, { systemSearch.launch(it); status?.text = "已请求搜索高亮；实际效果由系统提供方决定。" }, {
+                        status?.text = "当前系统未提供可用的搜索增强，你仍可手动选择照片。关键词已保留。"
+                        photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                    })
+                }
+            }.show()
+    }
     override fun onDestroyView() { job?.cancel(); body = null; status = null; super.onDestroyView() }
     companion object { fun newInstance(target: CoverTarget, display: String) = PhotoSourcesDialogFragment().apply {
         arguments = target.toPhotoBundle().apply { putString("display", display) }
