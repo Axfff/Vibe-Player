@@ -16,6 +16,6 @@ Directories default to direct children. Explicit recursion is capped at depth 3;
 
 JPEG/PNG/WebP only: bounded stream read <=20 MiB (also bounds unknown-length providers), positive image dimensions <=40 million pixels, sampled decode, all eight EXIF orientations, no requested GPS. Candidate crops use the same bounded decoder. Before preview/save, re-enumerate the issuing scope, check target/revision/grant, and compare SHA-256 of actual current bytes. The serialized final save guard prevents app-scope mutations from interleaving. External provider revocation after the final check cannot be made atomic with local cover storage.
 
-Known verification gaps must be read with the results document: comprehensive provider/offline behavior, API 21/23 runtime, rotation during confirmation, target deletion racing external library changes, and full device reboot persistence are not implied by JVM tests.
+Known verification gaps must be read with the results document: comprehensive provider/offline behavior, API 21/23 runtime, rotation during confirmation, and target deletion racing external library changes are not implied by JVM tests. Real process/device restart persistence and shared source removal are documented separately in the device results.
 
 Student ID (CroissantXinny): 50027204
