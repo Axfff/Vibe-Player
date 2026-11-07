@@ -18,6 +18,14 @@ import java.util.UUID
 @RunWith(AndroidJUnit4::class)
 class PhotoAndroidTest {
     private val context = ApplicationProvider.getApplicationContext<android.content.Context>()
+    @Test fun mergedApplicationHasNoUploadOrBroadPhotoPermission() {
+        val permissions = context.packageManager.getPackageInfo(context.packageName,
+            android.content.pm.PackageManager.GET_PERMISSIONS).requestedPermissions.orEmpty().toSet()
+        for (permission in listOf("android.permission.INTERNET", "android.permission.READ_MEDIA_IMAGES",
+            "android.permission.MANAGE_EXTERNAL_STORAGE", "android.permission.ACCESS_MEDIA_LOCATION")) {
+            assertFalse("Unexpected permission: $permission", permission in permissions)
+        }
+    }
     @Test fun safeDecodeHandlesRealContentAndRejectsBytesTypesAndCorruption() {
         val uri=context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,ContentValues().apply {
             put(MediaStore.Images.Media.DISPLAY_NAME,"scoped-test.png");put(MediaStore.Images.Media.MIME_TYPE,"image/png")

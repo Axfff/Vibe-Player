@@ -21,7 +21,14 @@ class PhotoUiTest {
     private fun views()=WindowInspector.getGlobalWindowViews().flatMap(::all)
     private fun texts()=views().filterIsInstance<TextView>().map { it.text.toString() }
     private fun click(label: String) { val button=views().filterIsInstance<Button>().lastOrNull { it.text.toString()==label } ?: error("Missing button $label");assertTrue(button.performClick()) }
-    private fun back() { InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);InstrumentationRegistry.getInstrumentation().waitForIdleSync() }
+    private fun back(f: RegressionFixture) {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+        f.await("picker has returned to the app") {
+            instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString() == f.context.packageName
+        }
+        instrumentation.waitForIdleSync()
+    }
     @Test fun sourceUiShowsUncertainCountKeepsBindingsOnCancellationAndRecreation() {
         RegressionFixture.open().use { f ->
             val playlist=f.createPlaylist("Photo target A","A");val target=CoverTarget.Playlist(playlist.id)
@@ -45,11 +52,14 @@ class PhotoUiTest {
             assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
             f.onMain { click("请求系统搜索") }
             f.await("ordinary picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
-            back()
+            back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("手动选择单张封面") }
             f.await("manual picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
-            back()
+            back(f)
+            f.await("cancelled manual crop dismissed") { f.onMain {
+                texts().contains("关闭") && !texts().contains(f.context.getString(com.iven.musicplayergo.R.string.cover_crop_title))
+            } }
             f.onMain { click("关闭") }
             repo.deleteTarget(target)
         }
