@@ -30,8 +30,12 @@ refresh cause is unproven. No gallery database or personal album setting was cha
 The new **找不到相册？从文件选择照片** action provides a separate public SAF image
 multi-select route with the same target/grant confirmation. More than 100 selected
 URIs are rejected without adding a partial source. Emulator UI tests verified
-launch and cancellation without changing the existing source. Physical-device
-verification of this new route is pending the user's screen unlock.
+launch and cancellation without changing the existing source. After the user
+unlocked the phone, the new route also returned two explicitly selected fixture
+images through Xiaomi's file picker. Target confirmation added a readable
+two-image source; both images remained readable after force-stop/relaunch. Removing
+that temporary source retained the original six-image directory. Cancelling a
+subsequent file selection displayed that the photo scope remained unchanged.
 
 ## Model and explanation changes
 
@@ -103,6 +107,37 @@ for this real-inference pass has SHA-256
 The run occurred before commit; the evidence records its base and a digest of the
 complete production source tree rather than pretending it was a clean-HEAD run.
 
+## Final physical-device follow-up
+
+After the user unlocked the phone, the clean `1b10cc42` APK was installed in place
+(SHA-256 `6ae9395fcc240f0ab3338bd7c018cd2ccee1edeb91db72dd1c00273f32aa7ce6`).
+The model page correctly showed the old photo model as update-required while both
+music models remained ready. The new TinyCLIP artifact was selected through the
+system file picker, passed length/hash validation, and all three models became
+ready. The installed photo artifact hash matches the documented export. Readiness
+survived force-stop/relaunch; the previous photo-model file was retained.
+
+Real Carefree analysis used 29 effective patches / 29.824 seconds and the existing
+six-photo authorized directory. The phone returned **two flower candidates**,
+reported **three uncertain images** and **zero read/analysis failures**. Both the
+pink flower and sunflower now have Chinese flower explanations; the UI explicitly
+identifies model guesses, preset music/scene associations and non-accuracy scores.
+The pink-flower crop preview opened, and cancellation retained the saved sunflower
+cover. This six-photo regression confirms the intended explanation change, not
+overall ranking quality. No instrumented phone latency benchmark was taken.
+
+![Imported models ready on Redmi](evidence/photo-quality-2026-11-08/phone-model-ready.png)
+![Actual flower recommendations on Redmi](evidence/photo-quality-2026-11-08/phone-recommendations.png)
+![File-selected source readable alongside the existing folder](evidence/photo-quality-2026-11-08/phone-file-source.png)
+![Actual extension 17 explanation](evidence/photo-quality-2026-11-08/phone-search-extension17.png)
+
+The two original playlist records, all ten previously seeded files and the saved
+cover were checked unchanged after all operations. The QA playlist retains its
+original six-photo directory and sunflower cover; temporary selected-photo groups
+were removed. The test APK and imported experiment remain installed for review.
+The temporary USB stay-awake setting was restored to its original `0` value.
+Only licensed QA images were selected; no broad photo permission was added.
+
 ## Verification boundaries
 
 - JVM tests cover score ordering/deduplication, no-match behavior, version messaging,
@@ -115,13 +150,15 @@ complete production source tree rather than pretending it was a clean-HEAD run.
   were not weakened. An existing CI race at PhotoUiTest's immediate window check
   was replaced by waiting for the actual app window. DocumentsUI Back can traverse
   parent directories; cancellation now waits for the real return with a bounded loop.
-- Full-suite, exact-HEAD coverage and CI status are recorded on PR #50 after this
-  change. Test execution does not constitute subjective recommendation acceptance.
-- Original phone playlists, ten seeded files and saved cover were verified
-  unchanged after ordinary picker selection/removal. The phone subsequently locked.
-  A new model file was copied into the dedicated QA Models directory, but new-model
-  import, new file-picker success and the new recommendation UI on the physical
-  device require the user's unlock and are not reported as passed.
+- Clean `1b10cc42`: 104 JVM, 63 executed Android, 159 backend and 22 web tests passed;
+  four optional-resource Android tests skipped, not counted as real inference.
+  Cumulative line coverage over all 67 production files, including Release 1:
+  Android 2584/3168 = 81.565657%, backend 882/920 = 95.869565% (local Python 3.14),
+  web 812/825 = 98.424242%. No scope or gate reduction; JaCoCo class-ID audit passed.
+  [Push CI](https://github.com/Axfff/Vibe-Player/actions/runs/42495110075) and
+  [PR CI](https://github.com/Axfff/Vibe-Player/actions/runs/42495117310) both passed.
+  This final follow-up adds documentation/screenshots only; production remains at
+  that tested commit. Test execution does not constitute subjective acceptance.
 
 The screenshot fixtures retain complete creator/license/source/change information
 in [attribution](evidence/photo-quality-2026-11-08/fixture-attribution.json). The full
