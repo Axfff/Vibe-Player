@@ -65,6 +65,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         button("明确共用已有来源") { share() }
         button("刷新目录与权限") { work { repository.refresh(target); reload() } }
         button("恢复已移除候选") { work { repository.refresh(target, true); reload() } }
+        button("配置本地分析模型") { PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
         button("推荐当前照片范围") { recommend() }
         button("从系统搜索添加照片") { search() }
         button("手动选择单张封面") {
@@ -195,8 +196,13 @@ class PhotoSourcesDialogFragment : DialogFragment() {
             }
         })
         val launcher = SystemPhotoSearchLauncher(requireContext())
+        val support = when (launcher.capability()) {
+            SystemPhotoSearchCapability.MAY_REQUEST -> "此系统允许请求搜索增强，实际效果由选图器决定。"
+            SystemPhotoSearchCapability.UNSUPPORTED -> "此系统暂不支持搜索增强，将打开普通选图。"
+            SystemPhotoSearchCapability.UNKNOWN -> "无法确认系统是否支持搜索增强，将打开普通选图。"
+        }
         AlertDialog.Builder(requireContext()).setTitle("从系统搜索添加照片")
-            .setMessage("能力：${launcher.capability()}。关键词将交给系统选图器及其媒体提供方处理；可能显示范围外照片。仅你选中并确认的图片会加入本目标。系统可能忽略关键词；可随时使用普通选图／文件夹。")
+            .setMessage("$support\n关键词将交给系统选图器及其媒体提供方处理；可能显示范围外照片。仅你选中并确认的图片会加入本目标。系统可能忽略关键词；可随时使用普通选图／文件夹。")
             .setView(layout).setNegativeButton("取消") { _, _ -> searchQuery = edit.text.toString() }
             .setNeutralButton("普通选图") { _, _ -> searchQuery = edit.text.toString(); begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
             .setPositiveButton("请求系统搜索") { _, _ ->

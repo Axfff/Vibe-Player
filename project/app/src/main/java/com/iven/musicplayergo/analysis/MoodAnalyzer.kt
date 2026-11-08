@@ -104,7 +104,7 @@ class MoodAnalyzer(context: Context, private val models: MoodModelFiles) {
         return digest.digest().joinToString("") { "%02x".format(it.toInt() and 0xff) }
     }
 
-    private companion object {
+    internal companion object {
         const val BACKBONE_SHA256 = "a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c"
         const val HEAD_SHA256 = "7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff"
     }

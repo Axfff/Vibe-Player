@@ -20,7 +20,7 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
     private val environment = OrtEnvironment.getEnvironment()
     private val session: OrtSession
     init {
-        check(model.isFile) { "图片模型缺失；请按开发文档配置 MobileNet v2-7，或手动选择封面。" }
+        check(model.isFile) { "照片模型缺失；请打开“配置本地分析模型”导入照片内容模型，或手动选择封面。" }
         check(model.inputStream().use { input ->
             val digest = MessageDigest.getInstance("SHA-256"); val buffer = ByteArray(16384)
             while (true) { val n = input.read(buffer); if (n < 0) break; digest.update(buffer, 0, n) }

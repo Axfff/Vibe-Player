@@ -21,16 +21,23 @@ import java.io.File
 class PhotoRecommendationsDialogFragment : DialogFragment() {
     private val target get() = requireArguments().photoTarget()
     private var status: TextView? = null
+    private var modelStatus: TextView? = null
+    private var modelCheck: Job? = null
     private var rows: LinearLayout? = null
     private var job: Job? = null
     private var representative: Long? = null
     private val viewModel by lazy { ViewModelProvider(requireActivity())[MusicViewModel::class.java] }
-    override fun onCreate(savedInstanceState: Bundle?) { super.onCreate(savedInstanceState); representative = savedInstanceState?.getLong("representative")?.takeIf { it > 0 } }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState); representative = savedInstanceState?.getLong("representative")?.takeIf { it > 0 }
+        parentFragmentManager.setFragmentResultListener("photo-models-updated", this) { _, _ -> checkModels() }
+    }
     override fun onSaveInstanceState(outState: Bundle) { representative?.let { outState.putLong("representative", it) }; super.onSaveInstanceState(outState) }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(24,16,24,16) }
         status = TextView(requireContext()).also { it.text = "选择当前目标的代表曲；只分析开头最多 30 秒，不分析歌词或整份歌单。"; layout.addView(it) }
+        modelStatus = TextView(requireContext()).also { layout.addView(it) }
         fun button(label: String, action: () -> Unit) { layout.addView(Button(requireContext()).apply { text = label; setOnClickListener { action() } }) }
+        button("配置本地分析模型") { job?.cancel(); rows?.removeAllViews(); PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
         button("选择／更换代表曲并分析") { chooseSong() }
         button("使用我选择的氛围") {
             val moods = PhotoRanker.mapping.keys.toList()
@@ -42,6 +49,15 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         rows = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }.also { layout.addView(it) }
         return AlertDialog.Builder(requireContext()).setTitle("推荐当前照片范围")
             .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton("关闭", null).create()
+    }
+    override fun onStart() { super.onStart(); checkModels() }
+    private fun checkModels() {
+        modelCheck?.cancel()
+        modelCheck = lifecycleScope.launch {
+            val models = PhotoModelStore(requireContext()).inspect()
+            modelStatus?.text = if (models.values.all { it == PhotoModelStatus.READY }) "本地分析模型已就绪。"
+                else "模型尚未就绪：${models.filterValues { it != PhotoModelStatus.READY }.keys.joinToString("、") { it.title }}。请先配置本地分析模型。"
+        }
     }
     private fun chooseSong() {
         job?.cancel()
@@ -72,6 +88,11 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         status?.text = "正在分析代表曲：${song.title ?: song.displayName}，开头最多 30 秒…"
         job = lifecycleScope.launch {
             try {
+                val models = PhotoModelStore(requireContext()).inspect()
+                if (models.values.any { it != PhotoModelStatus.READY }) {
+                    status?.text = "请先配置本地分析模型；导入并校验三个模型后再分析音乐。也可手动选择封面。"
+                    return@launch
+                }
                 val repo = PhotoRepositories.get(requireContext()); val request = withContext(Dispatchers.IO) { repo.request(target) }
                 val root = File(requireContext().noBackupFilesDir, "photo-models")
                 val result = MoodAnalyzer(requireContext(), MoodModelFiles(File(root, "discogs-effnet-bsdynamic-1.onnx"),
@@ -151,7 +172,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         currentCoroutineContext().ensureActive()
         withContext(Dispatchers.IO) { check(targetExists(requireContext(), target)) { "目标已删除或不可用" }; PhotoRepositories.get(requireContext()).validate(target, request) }
     }
-    override fun onStop() { job?.cancel(); rows?.removeAllViews(); super.onStop() }
-    override fun onDestroyView() { job?.cancel(); rows = null; status = null; super.onDestroyView() }
+    override fun onStop() { job?.cancel(); modelCheck?.cancel(); rows?.removeAllViews(); super.onStop() }
+    override fun onDestroyView() { job?.cancel(); modelCheck?.cancel(); rows = null; status = null; modelStatus = null; super.onDestroyView() }
     companion object { fun newInstance(target: CoverTarget) = PhotoRecommendationsDialogFragment().apply { arguments = target.toPhotoBundle() } }
 }
