@@ -23,4 +23,6 @@ Related stories: [#40](https://github.com/Axfff/Vibe-Player/issues/40), [#41](ht
 
 AI-assisted implementation, test execution and preliminary labeling are distinct from human acceptance. Human Review, fixture-label validation, model/product suitability and noncommercial model redistribution terms remain open. End-user model import is now implemented and device-verified, with UX acceptance pending. API 21–23 and additional OEM/cloud/offline behavior remain unverified.
 
+Physical-phone follow-up: [REDMI K90 Pro Max verification](../testing/phone-photo-verification-2026-11-08.md) passed real UI model import, wrong-file protection, persisted SAF directory authorization, real inference, crop/save, relaunch and source removal/restoration. This phone is API 36 but T extension 17, so search enhancement correctly falls back. The OEM picker did not expose the newly seeded test album; selected-image grants on this phone and actual search highlighting remain unverified. Existing playlists and original fixture files were preserved.
+
 Student ID (CroissantXinny): 50027204
