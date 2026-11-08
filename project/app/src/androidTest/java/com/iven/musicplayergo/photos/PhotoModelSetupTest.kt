@@ -95,19 +95,20 @@ class PhotoModelSetupTest {
             f.scenario.recreate()
             f.await("setup restored") { f.onMain { texts().contains("本地分析模型") && texts().contains("模型状态已更新。") } }
             f.onMain { click("导入音乐氛围模型") }
-            f.await("system documents picker") { instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("documentsui") == true }
+            try { f.await("system documents picker") { PhotoSystemUi.hasPackage("documentsui") } }
+            catch (e: AssertionError) { PhotoSystemUi.diagnose(); throw e }
             // DocumentsUI restores its last folder; Back may first traverse parent folders.
             instrumentation.uiAutomation.waitForIdle(300, 5_000)
             for (attempt in 0 until 8) {
-                if (instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString() == f.context.packageName) break
+                if (PhotoSystemUi.hasPackage(f.context.packageName)) break
                 instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
                 instrumentation.waitForIdleSync()
                 instrumentation.uiAutomation.waitForIdle(300, 5_000)
                 if (runCatching { f.await("picker transition", 2_000) {
-                    instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString() == f.context.packageName
+                    PhotoSystemUi.hasPackage(f.context.packageName)
                 } }.isSuccess) break
             }
-            f.await("returned with no import") { instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString() == f.context.packageName }
+            f.await("returned with no import") { PhotoSystemUi.hasPackage(f.context.packageName) }
             f.await("ready after picker cancellation") { f.onMain { texts().contains("模型状态已更新。") } }
             f.onMain { click("返回"); click("推荐当前照片范围") }
             f.await("recommendation model status") { f.onMain { texts().any { it.contains("本地分析模型已就绪") || it.contains("模型尚未就绪") } } }

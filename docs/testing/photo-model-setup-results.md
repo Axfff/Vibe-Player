@@ -53,3 +53,12 @@ An initial full run exposed a cancellation finalization bug and an over-eager te
 Production APK: 40,511,691 bytes, SHA-256 `1f21b7438499bbc12380eb537272ef8edb7b35100eeb1a5b2ff478f03e3d3fd0`. Model weights remain outside Git and the production APK. Machine-readable [coverage summary](evidence/photo-model-setup-2026-11-08/coverage-5a87ae60.json).
 
 Still pending: human AC/product review, model redistribution suitability, API 21–23 runtime, OEM phone behavior, cloud-provider outages, and real search highlighting on a supporting provider. Student ID (CroissantXinny): 50027204.
+
+## CI follow-up
+
+At documentation head `6688a36c`, [push CI](https://github.com/Axfff/Vibe-Player/actions/runs/42468516641) passed all executed tests and the exact gate (Android 2505/3103 = 80.728327%, backend 919/957 = 96.029258%, web 812/825 = 98.424242%). [PR CI](https://github.com/Axfff/Vibe-Player/actions/runs/42468520820) had two unsuccessful attempts, retained as failures:
+
+- Attempt 1: an existing, unchanged playback-position assertion reported before=6389 ms, after=5952 ms, elapsed=754 ms. All new model tests and the coverage percentages passed. No playback tolerance or player code was changed.
+- Attempt 2: three photo UI tests timed out or observed package `android` instead of the expected app/picker. Logcat showed DocumentsUI displayed and its storage-root directory loaded while the accessibility-root checks failed. This run's Android coverage was 73.960683%, so its gate correctly failed.
+
+The photo test helpers now inspect Android's public user-interactable windows, refresh the nodes, and identify the top application window including its descendants instead of relying solely on `rootInActiveWindow`. Background application windows cannot satisfy the return-to-app check, and modal consent is still exercised through actual UI. Timeouts, grant assertions and coverage thresholds are unchanged; failures include window diagnostics in logcat. All seven affected local tests passed after this test-only adjustment. The latest PR checks record full-run status; the production application and the API 36 verification above are unchanged.

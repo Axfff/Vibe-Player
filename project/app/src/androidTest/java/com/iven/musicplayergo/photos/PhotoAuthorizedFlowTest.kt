@@ -7,7 +7,6 @@ import android.net.Uri
 import android.provider.MediaStore
 import android.view.View
 import android.view.ViewGroup
-import android.view.accessibility.AccessibilityNodeInfo
 import android.view.inspector.WindowInspector
 import android.widget.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -38,18 +37,15 @@ class PhotoAuthorizedFlowTest {
             assertTrue(parent.performItemClick(view, parent.getPositionForView(view), 0))
         }
     }
-    private fun nodes(node: AccessibilityNodeInfo): List<AccessibilityNodeInfo> = listOf(node) +
-        (0 until node.childCount).mapNotNull { node.getChild(it) }.flatMap(::nodes)
     private fun systemClick(f: RegressionFixture, label: String) {
         val bounds = android.graphics.Rect()
         instrumentation.uiAutomation.waitForIdle(300, 5_000)
-        f.await("system control $label", 20_000) {
-            val root = instrumentation.uiAutomation.rootInActiveWindow ?: return@await false
-            val node = nodes(root).firstOrNull { it.text?.toString().equals(label, ignoreCase = true) }
+        try { f.await("system control $label", 20_000) {
+            val node = PhotoSystemUi.nodes().firstOrNull { it.text?.toString().equals(label, ignoreCase = true) }
                 ?: return@await false
             node.getBoundsInScreen(bounds)
             !bounds.isEmpty
-        }
+        } } catch (e: AssertionError) { PhotoSystemUi.diagnose(); throw e }
         // Tap bounds read from the actual accessibility node, including breadcrumb links
         // whose text node does not implement ACTION_CLICK itself.
         instrumentation.uiAutomation.executeShellCommand("input tap ${bounds.centerX()} ${bounds.centerY()}").use {
@@ -88,9 +84,7 @@ class PhotoAuthorizedFlowTest {
                 systemClick(f, "Pictures")
                 systemClick(f, folder)
                 f.await("DocumentsUI entered owned directory") {
-                    instrumentation.uiAutomation.rootInActiveWindow?.let { root ->
-                        nodes(root).any { it.text?.toString() == "Files in $folder" }
-                    } == true
+                    PhotoSystemUi.nodes().any { it.text?.toString() == "Files in $folder" }
                 }
                 systemClick(f, "USE THIS FOLDER")
                 systemClick(f, "ALLOW")

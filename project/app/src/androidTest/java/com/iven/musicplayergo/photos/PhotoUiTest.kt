@@ -25,7 +25,7 @@ class PhotoUiTest {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
         f.await("picker has returned to the app") {
-            instrumentation.uiAutomation.rootInActiveWindow?.packageName?.toString() == f.context.packageName
+            PhotoSystemUi.hasPackage(f.context.packageName)
         }
         instrumentation.waitForIdleSync()
     }
@@ -60,14 +60,14 @@ class PhotoUiTest {
             f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("lakeside") } }
             f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("请求系统搜索") }
             f.await("empty query stays in app") { f.onMain { texts().any { it.contains("请输入关键词") } } }
-            assertEquals(f.context.packageName,InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString())
+            assertTrue(PhotoSystemUi.hasPackage(f.context.packageName))
             f.onMain { click("从系统搜索添加照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
             f.onMain { click("请求系统搜索") }
-            f.await("ordinary picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
+            f.await("ordinary picker launched") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("手动选择单张封面") }
-            f.await("manual picker launched") { InstrumentationRegistry.getInstrumentation().uiAutomation.rootInActiveWindow?.packageName?.toString()?.contains("providers.media")==true }
+            f.await("manual picker launched") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             f.await("cancelled manual crop dismissed") { f.onMain {
                 texts().contains("关闭") && !texts().contains(f.context.getString(com.iven.musicplayergo.R.string.cover_crop_title))
