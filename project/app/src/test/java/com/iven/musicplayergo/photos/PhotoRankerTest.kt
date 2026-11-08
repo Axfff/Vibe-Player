@@ -9,7 +9,7 @@ class PhotoRankerTest {
         PhotoFeatures(ScopedPhoto(id, "content://test/$id"), hash, "fixture-model", listOf(PhotoLabel(label, score)))
     @Test fun formulaUsesIndependentMusicAndPhotoScores() {
         val result = PhotoRanker.rank(listOf(MoodScore("calm", .8f), MoodScore("happy", .2f)), listOf(photo("a"))).single()
-        assertEquals(.64f, result.score, .00001f); assertTrue(result.reasons.single().contains("calm")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
+        assertEquals(.64f, result.score, .00001f); assertTrue(result.reasons.single().contains("舒缓")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
     }
     @Test fun tiesAreStableAndDefaultIsFive() {
         val candidates = (10 downTo 1).map { photo(it.toString().padStart(2,'0')) }
@@ -33,15 +33,22 @@ class PhotoRankerTest {
     }
     @Test fun suggestionsComeOnlyFromExplicitSignals() {
         assertTrue(PhotoRanker.suggestions(emptyList()).isEmpty())
-        assertEquals(listOf("lakeside","valley"),PhotoRanker.suggestions(listOf(MoodScore("calm",1f))))
+        assertEquals(listOf("树林","湖面","山谷"),PhotoRanker.suggestions(listOf(MoodScore("calm",1f))))
     }
-    @Test fun softmaxIsNumericallyStableAndRejectsBadModelOutput() {
-        val logits=FloatArray(1000){10000f};val probabilities=PhotoRanker.softmax(logits)
-        assertEquals(.001f,probabilities[0],.00001f)
-        assertThrows(IllegalArgumentException::class.java){PhotoRanker.softmax(floatArrayOf(1f))}
-        logits[1]=Float.NaN;assertThrows(IllegalArgumentException::class.java){PhotoRanker.softmax(logits)}
+    @Test fun unrelatedAndUncertainScenesDoNotBecomeMoodRecommendations() {
+        val happy = listOf(MoodScore("happy",1f))
+        assertTrue(PhotoRanker.rank(happy,listOf(photo("a","document"),photo("b").copy(labels=emptyList()))).isEmpty())
+        val result=PhotoRanker.rank(happy,listOf(photo("flower","flowers"))).single()
+        assertTrue(result.reasons.single().contains("花卉"))
+        assertFalse(result.reasons.single().contains("蝴蝶"))
+        assertTrue(PhotoRanker.mapping.values.flatten().all { it in PhotoScenePolicy.names || it in PhotoScenePolicy.broadNames })
     }
     @Test fun searchCapabilityDistinguishesExtensionAndUnknown() {
+        assertTrue(PhotoSearchPolicy.explanation(36,17).contains("17"))
+        assertTrue(PhotoSearchPolicy.explanation(36,17).contains("19"))
+        assertFalse(PhotoSearchPolicy.explanation(36,19).contains("更新 App"))
+        assertTrue(PhotoSearchPolicy.explanation(32,null).contains("此 Android 版本"))
+        assertTrue(PhotoSearchPolicy.explanation(36,null).contains("无法读取"))
         assertEquals(SystemPhotoSearchCapability.UNSUPPORTED,PhotoSearchPolicy.capability(32,99))
         assertEquals(SystemPhotoSearchCapability.UNKNOWN,PhotoSearchPolicy.capability(36,null))
         assertEquals(SystemPhotoSearchCapability.UNSUPPORTED,PhotoSearchPolicy.capability(36,18))

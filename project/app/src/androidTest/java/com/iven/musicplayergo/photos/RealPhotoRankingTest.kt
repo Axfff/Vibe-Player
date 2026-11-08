@@ -24,8 +24,9 @@ class RealPhotoRankingTest {
     private val assets = instrumentation.context.assets
     @Test fun fourFrozenCasesUseRealAudioAndImageInference() = runBlocking {
         assumeTrue("Supply optional neutral photo-test fixtures and licensed model files", assets.list("")!!.contains("photo-cases"))
+        check(android.os.Build.HARDWARE in setOf("ranchu","goldfish")) { "Fixture model replacement is only allowed on a disposable emulator" }
         val directory = File(context.noBackupFilesDir, "photo-models").apply { mkdirs() }
-        for (name in listOf("discogs-effnet-bsdynamic-1.onnx", "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", "mobilenetv2-7.onnx")) {
+        for (name in PhotoModel.values().map { it.filename }) {
             assets.open("photo-models/$name").use { input -> File(directory, name).outputStream().use { input.copyTo(it) } }
         }
         val results = JSONArray()
@@ -46,7 +47,7 @@ class RealPhotoRankingTest {
             val failures = JSONArray(); val coldStarted = SystemClock.elapsedRealtime()
             var cachedMs = 0L
             try {
-                OnnxPhotoFeatureExtractor(context, File(directory,"mobilenetv2-7.onnx")).use { extractor ->
+                OnnxPhotoFeatureExtractor(context, File(directory,OnnxPhotoFeatureExtractor.FILENAME)).use { extractor ->
                     for (i in 0 until photos.length()) {
                         val item=photos.getJSONObject(i); val id=item.getString("asset_id")
                         val uri=context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,ContentValues().apply {

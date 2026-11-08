@@ -16,11 +16,11 @@ enum class PhotoModel(val title: String, val filename: String, val bytes: Long, 
         "https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
     MOOD("音乐氛围", "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", 2739322, MoodAnalyzer.HEAD_SHA256,
         "https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
-    PHOTO("照片内容", "mobilenetv2-7.onnx", 14246826, OnnxPhotoFeatureExtractor.SHA256,
-        "https://github.com/onnx/models/tree/main/validated/vision/classification/mobilenet", "Apache 2.0");
+    PHOTO("照片内容", OnnxPhotoFeatureExtractor.FILENAME, 33305014, OnnxPhotoFeatureExtractor.SHA256,
+        "https://github.com/Axfff/Vibe-Player/blob/feat/scoped-photo-recommendations/docs/development/photo-scene-model.md", "MIT（TinyCLIP；本项目转换为 ONNX）");
 }
 
-enum class PhotoModelStatus(val label: String) { MISSING("未导入"), READY("已校验，可用"), INVALID("文件不完整或版本不匹配，请重新导入"), UNREADABLE("无法读取，请重新导入") }
+enum class PhotoModelStatus(val label: String) { MISSING("未导入"), UPDATE_REQUIRED("检测到旧版照片模型，请导入新版；音乐模型与已保存封面不受影响"), READY("已校验，可用"), INVALID("文件不完整或版本不匹配，请重新导入"), UNREADABLE("无法读取，请重新导入") }
 
 /** App-private copies; no persisted source URI or photo-library permission is needed. */
 class PhotoModelStore(private val directory: File) {
@@ -33,7 +33,10 @@ class PhotoModelStore(private val directory: File) {
             directory.listFiles()?.filter { it.name.startsWith("import-") && it.name.endsWith(".part") }?.forEach { it.delete() }
             PhotoModel.values().associateWith { model ->
                 val file = file(model)
-                if (!file.exists()) PhotoModelStatus.MISSING
+                if (!file.exists()) {
+                    if (model == PhotoModel.PHOTO && File(directory, "mobilenetv2-7.onnx").exists()) PhotoModelStatus.UPDATE_REQUIRED
+                    else PhotoModelStatus.MISSING
+                }
                 else try {
                     if (file.length() == model.bytes && file.inputStream().use { digest(it) } == model.sha256)
                         PhotoModelStatus.READY else PhotoModelStatus.INVALID

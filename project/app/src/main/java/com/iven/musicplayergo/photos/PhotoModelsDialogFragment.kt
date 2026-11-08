@@ -98,7 +98,7 @@ class PhotoModelsDialogFragment : DialogFragment() {
                 setOnClickListener {
                     val info = TextView(requireContext()).apply {
                         setPadding(padding, padding, padding, padding)
-                        text = "所需文件：${item.filename}\n大小：${item.bytes} 字节\n许可：${item.license}\n\n官方来源（在浏览器中打开）：\n${item.source}\n\n下载完成后回到此页导入。文件会复制到应用私有存储；卸载或清除应用数据后需重新导入。\n\nSHA-256：${item.sha256}"
+                        text = "所需文件：${item.filename}\n大小：${item.bytes} 字节\n许可：${item.license}\n\n来源与准备说明（在浏览器中打开）：\n${item.source}\n\n${if (item == PhotoModel.PHOTO) "照片模型需按说明从官方 TinyCLIP 权重转换，或使用与下列校验值一致的已转换文件。" else "下载完成后回到此页导入。"}文件会复制到应用私有存储；卸载或清除应用数据后需重新导入。\n\nSHA-256：${item.sha256}"
                         Linkify.addLinks(this, Linkify.WEB_URLS)
                     }
                     AlertDialog.Builder(requireContext()).setTitle(item.title).setView(ScrollView(requireContext()).apply { addView(info) }).setPositiveButton("知道了", null).show()

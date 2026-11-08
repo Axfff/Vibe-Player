@@ -1,8 +1,14 @@
 # Local model setup
 
+The current experimental photo slot uses **tinyclip-scenes-v2.onnx**; see the
+[pinned artifact and preparation instructions](photo-scene-model.md). Existing
+MobileNet imports show an update-required message; the music slots and saved
+covers are retained. The earlier setup verification below used the original
+MobileNet version and does not certify the new model's recommendation quality.
+
 Entry: **封面照片来源 → 配置本地分析模型**, or the same button in **推荐当前照片范围**. Available without granting a photo source first.
 
-1. Review each model's filename, size, official source and license under **文件与来源说明**. External links open the user's browser; the app does not download weights itself.
+1. Review each model's filename, size, preparation/source instructions and license under **文件与来源说明**. External links open the user's browser; the app does not download weights itself. The new photo model is exported from pinned official TinyCLIP weights; it is not an official upstream ONNX file.
 2. Select **导入音乐特征模型**, **导入音乐氛围模型**, or **导入照片内容模型**, then choose the corresponding file in Android's document picker. The filename may differ; exact bytes and SHA-256 establish identity. No archive or executable is accepted as a substitute.
 3. Observe per-model validation and progress. Three ready models enable the complete music-to-photo flow. Manually choosing an atmosphere still requires the photo model. Missing or invalid models lead back to setup or manual cover selection.
 4. Return to recommendations, choose a representative track and analyze. Model readiness certifies the installed version, not runtime support or the relevance of the resulting recommendations.

@@ -1,5 +1,11 @@
 # Music to photo ranking v1
 
+This documents the original MobileNet baseline. The current branch contains a
+[conservative TinyCLIP experiment](photo-scene-model.md), Chinese explanations
+and explicit uncertainty handling. The [four-case comparison](../testing/photo-quality-and-picker-2026-11-08.md)
+records ranking regressions; overall quality acceptance remains open. Historical
+v1 results below are not presented as results for the new model.
+
 Use the existing `MoodAnalyzer` from PR #46. The user chooses a representative track within the target (first available is the displayed default). It decodes at most the initial 30 seconds, skips silent patches and reports decoded seconds, effective patch seconds and patch count. No lyrics, whole-song or playlist aggregation is claimed. Missing/invalid models, silence, short/unreadable audio and inference errors remain explicit. Manual atmosphere input is labelled 用户选择.
 
 Runtime: existing ONNX Runtime Android 1.20.0, no new dependency or SDK upgrade. minSdk 21, compile/target SDK 33, Kotlin 1.8.21, AGP 8.0.2/Gradle 8 remain unchanged. Actual AAR manifest/merged manifest and API 33 execution are compatibility evidence; API 21–23 device behavior is still pending. ML Kit's [current labeler](https://developers.google.com/ml-kit/vision/image-labeling/android) requires API 23 and was not introduced.

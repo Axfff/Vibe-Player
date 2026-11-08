@@ -23,7 +23,14 @@ class PhotoUiTest {
     private fun click(label: String) { val button=views().filterIsInstance<Button>().lastOrNull { it.text.toString()==label } ?: error("Missing button $label");assertTrue(button.performClick()) }
     private fun back(f: RegressionFixture) {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
-        instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+        // DocumentsUI may restore a nested directory; Back first traverses parents.
+        for (attempt in 0 until 8) {
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK)
+            instrumentation.waitForIdleSync()
+            if (runCatching { f.await("picker transition", 2_000) {
+                PhotoSystemUi.hasPackage(f.context.packageName)
+            } }.isSuccess) break
+        }
         f.await("picker has returned to the app") {
             PhotoSystemUi.hasPackage(f.context.packageName)
         }
@@ -51,19 +58,23 @@ class PhotoUiTest {
             f.onMain { click("从系统搜索添加照片") }
             assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
             f.onMain { click("从我选择的氛围生成建议词") }
-            f.await("manual search atmosphere choices") { f.onMain { texts().contains("calm") } }
+            f.await("manual search atmosphere choices") { f.onMain { texts().contains("舒缓") } }
             f.onMain {
-                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
                 val list=text.parent as android.widget.ListView
                 list.performItemClick(text,list.getPositionForView(text),0)
             }
-            f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("lakeside") } }
+            f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("湖面") } }
             f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("请求系统搜索") }
             f.await("empty query stays in app") { f.onMain { texts().any { it.contains("请输入关键词") } } }
-            assertTrue(PhotoSystemUi.hasPackage(f.context.packageName))
+            f.await("app window after empty search dialog closes") { PhotoSystemUi.hasPackage(f.context.packageName) }
             f.onMain { click("从系统搜索添加照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
             f.onMain { click("请求系统搜索") }
             f.await("ordinary picker launched") { PhotoSystemUi.hasPackage("providers.media") }
+            back(f)
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.onMain { click("找不到相册？从文件选择照片") }
+            f.await("document picker launched") { PhotoSystemUi.hasPackage("documentsui") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("手动选择单张封面") }
@@ -82,7 +93,7 @@ class PhotoUiTest {
             f.onActivity { PhotoRecommendationsDialogFragment.newInstance(target).showNow(it.supportFragmentManager,"recommend-ui") }
             f.onMain { click("使用我选择的氛围") }
             f.onMain {
-                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
                 // List row click through its ListView parent, as Android dispatches it.
                 val parent=text.parent as android.widget.ListView
                 parent.performItemClick(text,parent.getPositionForView(text),0)

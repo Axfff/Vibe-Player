@@ -69,6 +69,9 @@ class PhotoModelSetupTest {
             File(root, PhotoModel.MOOD.filename).writeText("wrong model")
             assertEquals(PhotoModelStatus.INVALID, store.inspect()[PhotoModel.MOOD])
             assertEquals(PhotoModelStatus.MISSING, store.inspect()[PhotoModel.PHOTO])
+            File(root,"mobilenetv2-7.onnx").writeText("old photo model")
+            assertEquals(PhotoModelStatus.UPDATE_REQUIRED, store.inspect()[PhotoModel.PHOTO])
+            assertEquals("old photo model",File(root,"mobilenetv2-7.onnx").readText())
             assertFalse(File(root, "import-interrupted.part").exists())
             try { store.import(PhotoModel.MOOD, { "bad".byteInputStream() }); fail("Official identity must be verified") }
             catch (_: IllegalStateException) {}

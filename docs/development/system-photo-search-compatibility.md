@@ -24,3 +24,32 @@ Verification layers: JVM capability/query tests; instrumentation intent/fallback
 ## Physical Redmi follow-up — 2026-11-08
 
 The user's REDMI K90 Pro Max (Android 16 / API 36, `OS3.0.310.0.WPMCNXM`) reports T extension **17**, below the public search-highlighting requirement. The app correctly displays unsupported search enhancement, falls back to ordinary selection, and preserves the keyword after cancellation without adding a source. This is not the API-36-emulator case in which extension 19 allowed a request that the provider ignored. The Xiaomi picker did not expose the newly seeded fixture album during this session, while SAF directory authorization and full real recommendation/crop/save succeeded. See the [physical-device evidence and limitations](../testing/phone-photo-verification-2026-11-08.md).
+
+### Later investigation on the same phone
+
+The standard system update screen was opened and **Check for update** returned
+“系统已是最新版本”. The tested security settings page did not expose a Google Play
+system-module update entry, and `android.settings.MODULE_UPDATE_SETTINGS` had no
+handler. No firmware, picker APK, module, developer feature flag, or security
+setting was installed/overridden to fake extension support. As documented in
+[SDK Extensions](https://developer.android.com/guide/sdk-extensions), module updates
+are delivered by the system; changing this app's compile/target SDK cannot raise
+the phone's extension. The UI now states the observed extension and required 19,
+explains the official update paths, and retains ordinary selection.
+
+All six test images were present in MediaStore and had no `.nomedia` ancestor.
+After opening Xiaomi Gallery, the directory appeared in **影集 → 相册 → 其他相册**.
+Reopening the app's ordinary picker exposed the same folder under **影集 → 相册
+(swipe horizontally) → 其他相册**. A fixture was selected, confirmed for QA1108,
+and read successfully as a one-photo source. That temporary source was then
+removed through the app; the six-photo directory and saved cover were retained.
+No file timestamps, gallery database, or personal album settings were altered.
+This resolves the observed selection gap, but the session does not isolate
+gallery startup from elapsed indexing time as the exact cause.
+
+The new **找不到相册？从文件选择照片** action uses public SAF
+`OpenMultipleDocuments` restricted to `image/*`. It retains explicit target
+confirmation and persisted read grants, rejects more than 100 selections as a
+whole, and changes nothing on cancellation. It is an explicit alternative when
+an OEM gallery omits an album, independent of search-extension support. See the
+[follow-up evidence](../testing/photo-quality-and-picker-2026-11-08.md).

@@ -1,5 +1,10 @@
 # Photo/model flow on a physical Redmi — 2026-11-08
 
+Later follow-up: ordinary Xiaomi selection is now verified through **其他相册**.
+The original observations below remain the record of the earlier session.
+See [the picker investigation and model comparison](photo-quality-and-picker-2026-11-08.md)
+for the subsequent changes and quality limitations.
+
 The local model import → explicitly authorized photo directory → real music/photo inference → crop and saved cover flow passed on the user's **REDMI K90 Pro Max**. Public system-search highlighting is unsupported on this device's current SDK extension. Ordinary picker launch/cancellation passed; fixture selection through that picker remains unverified because its album list did not expose the new test folder during this session.
 
 Production implementation: `5a87ae60`; tested APK SHA-256 `1f21b7438499bbc12380eb537272ef8edb7b35100eeb1a5b2ff478f03e3d3fd0`. Test-helper head: `1b076946`. This follow-up adds verification evidence only, with no application, model, SDK, permission, or CI changes. Related: [Draft PR #50](https://github.com/Axfff/Vibe-Player/pull/50), [Issue #41](https://github.com/Axfff/Vibe-Player/issues/41).

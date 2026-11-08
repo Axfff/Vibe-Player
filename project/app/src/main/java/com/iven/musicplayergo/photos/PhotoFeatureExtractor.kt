@@ -5,6 +5,10 @@ import ai.onnxruntime.OrtEnvironment
 import ai.onnxruntime.OrtSession
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.net.Uri
 import kotlinx.coroutines.*
 import java.io.Closeable
@@ -14,7 +18,7 @@ import java.security.MessageDigest
 
 interface PhotoFeatureExtractor : Closeable { suspend fun extract(photo: ScopedPhoto): PhotoFeatures }
 
-/** Official ONNX Model Zoo MobileNet v2-7; no weights or downloads are bundled. */
+/** Pinned TinyCLIP image tower + fixed scene prototypes; weights stay outside the APK. */
 class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExtractor {
     private val decoder = SafePhotoDecoder(context)
     private val environment = OrtEnvironment.getEnvironment()
@@ -36,23 +40,12 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
         synchronized(cache) { cache[key] }?.let { return@withContext it.copy(photo = photo) }
         val bitmap = decoder.decode(bytes, 256)
         try {
-            val edge = minOf(bitmap.width, bitmap.height)
-            val cropped = Bitmap.createBitmap(bitmap, (bitmap.width-edge)/2, (bitmap.height-edge)/2, edge, edge)
-            val scaled = Bitmap.createScaledBitmap(cropped, 224, 224, true)
-            if (cropped !== bitmap && cropped !== scaled) cropped.recycle()
-            val input = FloatArray(3 * 224 * 224)
-            try {
-                val pixels = IntArray(224 * 224); scaled.getPixels(pixels, 0, 224, 0, 0, 224, 224)
-                val means = floatArrayOf(.485f, .456f, .406f); val stds = floatArrayOf(.229f, .224f, .225f)
-                for (c in 0..2) for (i in pixels.indices) input[c*pixels.size+i] = (((pixels[i] shr (16-c*8)) and 255)/255f-means[c])/stds[c]
-            } finally { if (scaled !== bitmap) scaled.recycle() }
+            val input = PhotoSceneInput.encode(bitmap)
             ensureActive()
-            val labels = OnnxTensor.createTensor(environment, FloatBuffer.wrap(input), longArrayOf(1,3,224,224)).use { tensor ->
+            val labels = OnnxTensor.createTensor(environment, FloatBuffer.wrap(input), longArrayOf(2,3,224,224)).use { tensor ->
                 session.run(mapOf(session.inputNames.single() to tensor)).use { result ->
-                    @Suppress("UNCHECKED_CAST") val logits = (result[0].value as Array<FloatArray>).single()
-                    val probabilities = PhotoRanker.softmax(logits)
-                    // Verified ImageNet synset indices; unsupported concepts are intentionally absent.
-                    LABELS.entries.map { (name, indices) -> PhotoLabel(name, indices.sumOf { probabilities[it].toDouble() }.toFloat()) }
+                    @Suppress("UNCHECKED_CAST") val scores = result[0].value as Array<FloatArray>
+                    PhotoScenePolicy.labels(scores)
                 }
             }
             ensureActive()
@@ -64,13 +57,46 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
     }
     override fun close() = session.close()
     companion object {
-        const val VERSION = "mobilenetv2-7-c1c51358-center224-v1"
-        const val SHA256 = "c1c513582d56afceff8516c73804e484c81c6a830712ab6d682253f4a3cd042f"
-        val LABELS = linkedMapOf("alp" to listOf(970), "cliff" to listOf(972), "lakeside" to listOf(975),
-            "seashore" to listOf(978), "valley" to listOf(979), "volcano" to listOf(980), "daisy" to listOf(985),
-            "butterfly" to (321..326).toList(), "canoe" to listOf(472), "volleyball" to listOf(890))
+        const val VERSION = "tinyclip-scenes-v2-425e98a2-dual224-families"
+        const val FILENAME = "tinyclip-scenes-v2.onnx"
+        const val SHA256 = "425e98a2cf201054928c7a2d2c649ac59713636e1667fbc95eb50e1bdd2a0492"
         private val cache = linkedMapOf<String, PhotoFeatures>()
         fun clearCache() = synchronized(cache) { cache.clear() }
+    }
+}
+
+/** NCHW RGB: central square and aspect-preserving whole image, with neutral padding. */
+internal object PhotoSceneInput {
+    fun encode(bitmap: Bitmap): FloatArray {
+        val input = FloatArray(2 * 3 * 224 * 224)
+        for (view in 0..1) {
+            val scaled = Bitmap.createBitmap(224, 224, Bitmap.Config.ARGB_8888)
+            var viewSource = bitmap
+            try {
+                val canvas = Canvas(scaled)
+                canvas.drawColor(Color.rgb(123, 117, 104))
+                val source: Rect; val destination: Rect
+                if (view == 0) {
+                    val edge = minOf(bitmap.width, bitmap.height)
+                    val left = (bitmap.width-edge)/2; val top = (bitmap.height-edge)/2
+                    // Materialize the crop before filtering, so pixels outside it cannot bleed in.
+                    viewSource = Bitmap.createBitmap(bitmap,left,top,edge,edge)
+                    source = Rect(0,0,edge,edge); destination = Rect(0,0,224,224)
+                } else {
+                    val ratio = 224f / maxOf(bitmap.width, bitmap.height)
+                    val width = (bitmap.width * ratio).toInt().coerceIn(1,224)
+                    val height = (bitmap.height * ratio).toInt().coerceIn(1,224)
+                    val left = (224-width)/2; val top = (224-height)/2
+                    source = Rect(0,0,bitmap.width,bitmap.height); destination = Rect(left,top,left+width,top+height)
+                }
+                canvas.drawBitmap(viewSource, source, destination, Paint(Paint.FILTER_BITMAP_FLAG))
+                val pixels = IntArray(224 * 224); scaled.getPixels(pixels, 0, 224, 0, 0, 224, 224)
+                val means = floatArrayOf(.48145466f,.4578275f,.40821073f)
+                val stds = floatArrayOf(.26862954f,.26130258f,.27577711f)
+                for (c in 0..2) for (i in pixels.indices) input[(view*3+c)*pixels.size+i] = (((pixels[i] shr (16-c*8)) and 255)/255f-means[c])/stds[c]
+            } finally { scaled.recycle(); if (viewSource !== bitmap) viewSource.recycle() }
+        }
+        return input
     }
 }
 private fun ByteArray.hex() = joinToString("") { "%02x".format(it.toInt() and 255) }

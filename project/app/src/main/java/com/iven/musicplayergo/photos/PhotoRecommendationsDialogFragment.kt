@@ -41,8 +41,8 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         button("选择／更换代表曲并分析") { chooseSong() }
         button("使用我选择的氛围") {
             val moods = PhotoRanker.mapping.keys.toList()
-            AlertDialog.Builder(requireContext()).setTitle("用户选择（不是音频模型分析）").setItems(moods.toTypedArray()) { _, index ->
-                rank(listOf(MoodScore(moods[index], 1f)), "用户选择：${moods[index]}")
+            AlertDialog.Builder(requireContext()).setTitle("用户选择（不是音频模型分析）").setItems(moods.map { PhotoRanker.moodName(it) }.toTypedArray()) { _, index ->
+                rank(listOf(MoodScore(moods[index], 1f)), "用户选择：${PhotoRanker.moodName(moods[index])}")
             }.show()
         }
         button("取消分析") { job?.cancel(); rows?.removeAllViews(); status?.text = "已取消，封面未改变。" }
@@ -134,7 +134,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         }
         if (candidates.isEmpty()) { status?.text = "当前范围没有可读取照片；请检查来源与授权。"; return }
         var failures = 0; val features = mutableListOf<PhotoFeatures>()
-        val extractor = withContext(Dispatchers.IO) { OnnxPhotoFeatureExtractor(context, File(context.noBackupFilesDir, "photo-models/mobilenetv2-7.onnx")) }
+        val extractor = withContext(Dispatchers.IO) { OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }
         try {
             for ((index, photo) in candidates.values.withIndex()) {
                 ensureActiveRequest(request)
@@ -147,7 +147,8 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         parentFragmentManager.setFragmentResult("photo-search-suggestions:${target.storageKey}", Bundle().apply {
             putString("query", PhotoRanker.suggestions(signal).joinToString(" "))
         })
-        status?.text = "$description\n${if (ranked.isEmpty()) "没有足够置信的语义匹配" else "${ranked.size} 张通过阈值；分数不是准确率"}；失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。"
+        val uncertain = features.count { it.labels.isEmpty() }
+        status?.text = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面线索不确定，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n画面描述为模型推测，音乐与画面的搭配来自预设规则，可自行改选。"
         if (ranked.isEmpty()) return
         var shown = 0
         suspend fun showNext() {
@@ -157,7 +158,10 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
                 val bitmap = withContext(Dispatchers.IO) { runCatching { SafePhotoDecoder(context).let { it.decode(it.bytes(Uri.parse(candidate.features.photo.uri)), 200) } }.getOrNull() }
                 val image = ImageView(requireContext()).apply { layoutParams = LinearLayout.LayoutParams(-1, 240); setImageBitmap(bitmap); contentDescription = "推荐候选" }
                 rows?.addView(image)
-                rows?.addView(TextView(requireContext()).apply { text = "匹配分 ${candidate.score}\n${candidate.reasons.joinToString("\n")}" })
+                rows?.addView(TextView(requireContext()).apply { text = "推荐理由：${candidate.reasons.take(2).joinToString("；")}\n参考匹配分 ${String.format(java.util.Locale.ROOT, "%.2f", candidate.score)}，仅用于本批排序，不是准确率。" })
+                if (candidate.features.labels.any { it.label in PhotoScenePolicy.broadNames }) rows?.addView(TextView(requireContext()).apply {
+                    text = "仅支持宽泛画面描述，具体内容仍需你确认。"
+                })
                 image.setOnClickListener { CoverCropDialogFragment.forCandidate(target, candidate.features.photo.uri, request,
                     candidate.features.fingerprint).show(parentFragmentManager, "recommended-crop") }
             }

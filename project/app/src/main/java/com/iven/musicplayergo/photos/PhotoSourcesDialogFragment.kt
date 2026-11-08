@@ -36,6 +36,14 @@ class PhotoSourcesDialogFragment : DialogFragment() {
     private val photos = registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(100)) { uris ->
         if (uris.isNotEmpty()) confirm(uris.distinct(), PhotoSourceKind.SELECTED)
     }
+    // Some OEM galleries omit newly created folders even after MediaStore indexing.
+    // SAF lets the user explicitly choose files without granting a whole directory.
+    private val files = registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+        if (uris.isNotEmpty()) {
+            if (uris.distinct().size > 100) status?.text = "一次最多选择 100 张；本次未加入，请减少数量后重试。"
+            else confirm(uris.distinct(), PhotoSourceKind.SELECTED)
+        } else status?.text = "已取消文件选择，照片范围保持不变。"
+    }
     private val tree = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         result.data?.data?.takeIf { result.resultCode == android.app.Activity.RESULT_OK }?.let { confirm(listOf(it), PhotoSourceKind.DIRECTORY) }
     }
@@ -61,6 +69,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         body = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }
         fun button(label: String, action: () -> Unit) { layout.addView(Button(requireContext()).apply { text = label; setOnClickListener { action() } }) }
         button("添加一组照片") { begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
+        button("找不到相册？从文件选择照片") { begin { files.launch(arrayOf("image/*")) } }
         button("添加照片文件夹") { chooseTree() }
         button("明确共用已有来源") { share() }
         button("刷新目录与权限") { work { repository.refresh(target); reload() } }
@@ -190,17 +199,13 @@ class PhotoSourcesDialogFragment : DialogFragment() {
             text = "从我选择的氛围生成建议词"
             setOnClickListener {
                 val moods = PhotoRanker.mapping.keys.toList()
-                AlertDialog.Builder(requireContext()).setTitle("用户选择的氛围").setItems(moods.toTypedArray()) { _, index ->
+                AlertDialog.Builder(requireContext()).setTitle("用户选择的氛围").setItems(moods.map { PhotoRanker.moodName(it) }.toTypedArray()) { _, index ->
                     edit.setText(PhotoRanker.suggestions(listOf(com.iven.musicplayergo.analysis.MoodScore(moods[index], 1f))).joinToString(" "))
                 }.show()
             }
         })
         val launcher = SystemPhotoSearchLauncher(requireContext())
-        val support = when (launcher.capability()) {
-            SystemPhotoSearchCapability.MAY_REQUEST -> "此系统允许请求搜索增强，实际效果由选图器决定。"
-            SystemPhotoSearchCapability.UNSUPPORTED -> "此系统暂不支持搜索增强，将打开普通选图。"
-            SystemPhotoSearchCapability.UNKNOWN -> "无法确认系统是否支持搜索增强，将打开普通选图。"
-        }
+        val support = launcher.explanation()
         AlertDialog.Builder(requireContext()).setTitle("从系统搜索添加照片")
             .setMessage("$support\n关键词将交给系统选图器及其媒体提供方处理；可能显示范围外照片。仅你选中并确认的图片会加入本目标。系统可能忽略关键词；可随时使用普通选图／文件夹。")
             .setView(layout).setNegativeButton("取消") { _, _ -> searchQuery = edit.text.toString() }
