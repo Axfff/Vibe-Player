@@ -40,7 +40,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         button("配置本地分析模型") { job?.cancel(); rows?.removeAllViews(); PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
         button("选择／更换代表曲并分析") { chooseSong() }
         button("使用我选择的氛围") {
-            val moods = PhotoRanker.mapping.keys.toList()
+            val moods = PhotoRanker.mapping.keys.filter { it != "nature" }
             AlertDialog.Builder(requireContext()).setTitle("用户选择（不是音频模型分析）").setItems(moods.map { PhotoRanker.moodName(it) }.toTypedArray()) { _, index ->
                 rank(listOf(MoodScore(moods[index], 1f)), "用户选择：${PhotoRanker.moodName(moods[index])}")
             }.show()
@@ -134,25 +134,27 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         }
         if (candidates.isEmpty()) { status?.text = "当前范围没有可读取照片；请检查来源与授权。"; return }
         var failures = 0; val features = mutableListOf<PhotoFeatures>()
-        val extractor = withContext(Dispatchers.IO) { OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }
-        try {
+        withPhotoExtractor({ OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }) { extractor ->
             for ((index, photo) in candidates.values.withIndex()) {
                 ensureActiveRequest(request)
-                status?.text = "$description\n本地图片分析 ${index + 1}/${candidates.size}；可取消。"
+                withContext(Dispatchers.Main) { status?.text = "$description\n本地图片分析 ${index + 1}/${candidates.size}；可取消。" }
                 try { features += extractor.extract(photo) } catch(e: CancellationException) { throw e } catch (_: Exception) { failures++ }
             }
-        } finally { withContext(Dispatchers.IO) { extractor.close() } }
+        }
         ensureActiveRequest(request)
         val ranked = PhotoRanker.rank(signal, features, features.size.coerceAtLeast(1))
         parentFragmentManager.setFragmentResult("photo-search-suggestions:${target.storageKey}", Bundle().apply {
             putString("query", PhotoRanker.suggestions(signal).joinToString(" "))
         })
-        val uncertain = features.count { it.labels.isEmpty() }
-        status?.text = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面线索不确定，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n画面描述为模型推测，音乐与画面的搭配来自预设规则，可自行改选。"
+        val uncertain = features.count { it.atmospheres.isEmpty() }
+        status?.text = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面氛围不确定或不适用，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。"
         if (ranked.isEmpty()) return
-        var shown = 0
+        val pages = PhotoPageCursor(ranked.size)
         suspend fun showNext() {
-            val page = ranked.drop(shown).take(5)
+            val reservation = pages.begin() ?: return
+            var success = false
+            try {
+            val page = reservation.map { ranked[it] }
             for (candidate in page) {
                 ensureActiveRequest(request)
                 val bitmap = withContext(Dispatchers.IO) { runCatching { SafePhotoDecoder(context).let { it.decode(it.bytes(Uri.parse(candidate.features.photo.uri)), 200) } }.getOrNull() }
@@ -165,11 +167,18 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
                 image.setOnClickListener { CoverCropDialogFragment.forCandidate(target, candidate.features.photo.uri, request,
                     candidate.features.fingerprint).show(parentFragmentManager, "recommended-crop") }
             }
-            shown += page.size
+            success = true
+            } finally { pages.finish(success) }
         }
         showNext()
-        if (shown < ranked.size) rows?.addView(Button(requireContext()).apply { text = "继续查看"; setOnClickListener {
-            job = lifecycleScope.launch { try { showNext(); isEnabled = shown < ranked.size } catch(e: Exception) { status?.text = "范围已变化；请重新推荐。"; rows?.removeAllViews() } }
+        if (pages.shown < ranked.size) rows?.addView(Button(requireContext()).apply { text = "继续查看"; setOnClickListener {
+            if (job?.isActive == true) return@setOnClickListener
+            isEnabled = false
+            job = lifecycleScope.launch {
+                try { showNext(); isEnabled = pages.shown < ranked.size }
+                catch (e: CancellationException) { throw e }
+                catch(e: Exception) { status?.text = "范围已变化；请重新推荐。"; rows?.removeAllViews() }
+            }
         } })
     }
     private suspend fun ensureActiveRequest(request: PhotoRequest) {

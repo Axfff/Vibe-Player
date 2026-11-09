@@ -16,7 +16,7 @@ enum class PhotoModel(val title: String, val filename: String, val bytes: Long, 
         "https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
     MOOD("音乐氛围", "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", 2739322, MoodAnalyzer.HEAD_SHA256,
         "https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
-    PHOTO("照片内容", OnnxPhotoFeatureExtractor.FILENAME, 33305014, OnnxPhotoFeatureExtractor.SHA256,
+    PHOTO("照片内容", OnnxPhotoFeatureExtractor.FILENAME, 33313206, OnnxPhotoFeatureExtractor.SHA256,
         "https://github.com/Axfff/Vibe-Player/blob/feat/scoped-photo-recommendations/docs/development/photo-scene-model.md", "MIT（TinyCLIP；本项目转换为 ONNX）");
 }
 
@@ -34,7 +34,7 @@ class PhotoModelStore(private val directory: File) {
             PhotoModel.values().associateWith { model ->
                 val file = file(model)
                 if (!file.exists()) {
-                    if (model == PhotoModel.PHOTO && File(directory, "mobilenetv2-7.onnx").exists()) PhotoModelStatus.UPDATE_REQUIRED
+                    if (model == PhotoModel.PHOTO && listOf("mobilenetv2-7.onnx", "tinyclip-scenes-v2.onnx").any { File(directory, it).exists() }) PhotoModelStatus.UPDATE_REQUIRED
                     else PhotoModelStatus.MISSING
                 }
                 else try {

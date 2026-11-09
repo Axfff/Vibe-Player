@@ -19,7 +19,8 @@ data class PhotoScopeCollection(val schemaVersion: Int = 1,
     val sources: List<PhotoSource> = emptyList(), val scopes: List<PhotoScope> = emptyList())
 data class PhotoRequest(val key: String, val identity: String, val revision: Long, val requestId: String = UUID.randomUUID().toString())
 interface PhotoScopeStorage { fun read(): String?; fun write(value: String) }
-class PhotoScopeException(message: String) : IllegalStateException(message)
+open class PhotoScopeException(message: String) : IllegalStateException(message)
+class PhotoScopeIdentityChanged(val previous: PhotoScope) : PhotoScopeException("音乐专辑身份已变化，请重新绑定来源。")
 
 /** No global candidate query exists. Each operation starts with one stable target. */
 class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val invalidateFeatures: () -> Unit = {}) {
@@ -39,7 +40,7 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
     private fun scope(state: PhotoScopeCollection, target: CoverTarget): PhotoScope {
         require(target.isValid())
         val existing = state.scopes.firstOrNull { it.key == target.storageKey }
-        if (existing != null && existing.identity != identity(target)) throw PhotoScopeException("音乐专辑身份已变化，请重新绑定来源。")
+        if (existing != null && existing.identity != identity(target)) throw PhotoScopeIdentityChanged(existing)
         return existing ?: PhotoScope(target.storageKey, identity(target))
     }
     @Synchronized fun snapshot(target: CoverTarget): Pair<PhotoScope, List<PhotoSource>> {
@@ -89,8 +90,29 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
         write(state, scope.copy(revision = scope.revision + 1, sources = emptyList(), excluded = emptyList()))
     }
     @Synchronized fun shareableSources(): List<PhotoSource> = read().sources
+    /** Explicitly confirmed empty rebind. Never inherit the old album's grants or
+     * reset its revision: callbacks from either identity must remain stale. */
+    @Synchronized fun rebindAlbum(target: CoverTarget.Album, previous: PhotoScope) {
+        require(target.isValid())
+        val state = read()
+        val current = state.scopes.firstOrNull { it.key == target.storageKey }
+        check(current == previous && previous.identity != identity(target)) { "来源已变化，请重新打开后确认。" }
+        write(state, previous.copy(identity=identity(target), revision=previous.revision + 1, sources=emptyList(), excluded=emptyList()))
+    }
     @Synchronized fun <T> guarded(target: CoverTarget, request: PhotoRequest, action: () -> T): T {
         validate(target, request)
         return action()
     }
+}
+
+/** Both cleanup operations are attempted after playlist deletion. Partial failure
+ * is reported; it cannot undo an already committed playlist deletion. */
+internal fun cleanupDeletedPlaylistPhotos(removeScope: () -> Unit, removeCover: () -> Unit): List<String> {
+    val failed = mutableListOf<String>()
+    for ((label, action) in listOf("照片来源" to removeScope, "封面" to removeCover)) {
+        try { action() }
+        catch (e: java.util.concurrent.CancellationException) { throw e }
+        catch (_: Exception) { failed += label }
+    }
+    return failed
 }

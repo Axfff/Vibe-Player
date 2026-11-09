@@ -44,3 +44,26 @@ object PhotoScenePolicy {
         return listOf(PhotoLabel(family.key, (views[0][ordered[0][0]] + views[1][ordered[1][0]]) / 2))
     }
 }
+
+/** Broad picture atmosphere, independent of whether a specific object can be named.
+ * Relative support among four text prototypes is not a probability or person-emotion inference.
+ */
+object PhotoAtmospherePolicy {
+    val names = linkedMapOf("lively" to "轻快鲜活", "peaceful" to "宁静舒缓",
+        "reflective" to "沉静内省", "intense" to "强烈动势")
+    fun cues(views: Array<FloatArray>, sceneViews: Array<FloatArray>): List<PhotoLabel> {
+        require(views.size == 2 && views.all { it.size == names.size && it.all { score -> score.isFinite() && score in -1f..1f } })
+        require(sceneViews.size == 2 && sceneViews.all { it.size == PhotoScenePolicy.names.size && it.all { score -> score.isFinite() && score in -1f..1f } })
+        val scenes = PhotoScenePolicy.names.keys.toList()
+        // A document/screenshot winning either view must not gain a recommendation
+        // merely because one of the four atmosphere prompts is least dissimilar.
+        if (sceneViews.any { row -> scenes[row.indices.maxBy { row[it] }] in setOf("document", "screenshot") }) return emptyList()
+        val conservative = FloatArray(names.size) { minOf(views[0][it], views[1][it]) }
+        val maximum = conservative.maxOrNull()!!
+        if (maximum < .20f) return emptyList()
+        val support = conservative.map { kotlin.math.exp(((it - maximum) / .05f).toDouble()).toFloat() }
+        val total = support.sum()
+        if (support.maxOrNull()!! / total < .30f) return emptyList()
+        return names.keys.mapIndexed { index, name -> PhotoLabel(name, support[index] / total) }
+    }
+}

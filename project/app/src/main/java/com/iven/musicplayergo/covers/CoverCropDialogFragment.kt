@@ -85,8 +85,10 @@ class CoverCropDialogFragment : DialogFragment() {
         status?.setText(R.string.cover_crop_loading)
         lifecycleScope.launch {
             val bitmap = try { withContext(Dispatchers.IO) {
-                candidateRequest()?.let { verifyCandidate(requireContext(), target()!!, it, uri.toString(), requireArguments().getString("fingerprint")!!) }
-                SafePhotoDecoder(requireContext()).let { it.decode(it.bytes(uri), 2048) }
+                val decoder = SafePhotoDecoder(requireContext())
+                val bytes = candidateRequest()?.let { verifyCandidate(requireContext(), target()!!, it, uri.toString(), requireArguments().getString("fingerprint")!!) }
+                    ?: decoder.bytes(uri)
+                decoder.decode(bytes, 2048)
             } } catch(e: CancellationException) { throw e } catch (_: Exception) { null }
             if (bitmap == null) {
                 status?.setText(R.string.cover_error_decode)

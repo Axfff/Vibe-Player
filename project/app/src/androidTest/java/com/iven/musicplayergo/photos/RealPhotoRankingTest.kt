@@ -62,6 +62,7 @@ class RealPhotoRankingTest {
                     cachedMs=SystemClock.elapsedRealtime()-cachedStarted
                 }
                 val ranking=PhotoRanker.rank(mood.scores,features)
+                assertEquals("Candidate input order must not influence actual rankings", ranking, PhotoRanker.rank(mood.scores,features.reversed()))
                 assertTrue(ranking.all { r -> features.any { it.photo.id==r.features.photo.id } })
                 results.put(JSONObject().put("case_id",caseId).put("audio_id",audio.getString("asset_id"))
                     .put("photo_ids",JSONArray(ranking.map { it.features.photo.id })).put("audio_ms",audioMs)
@@ -69,7 +70,8 @@ class RealPhotoRankingTest {
                     .put("decoded_seconds",mood.decodedSeconds).put("analyzed_seconds",mood.analyzedSeconds)
                     .put("music_scores",JSONArray(mood.scores.map { JSONObject().put("label",it.label).put("score",it.score) }))
                     .put("image_features",JSONArray(features.map { f -> JSONObject().put("photo_id",f.photo.id).put("fingerprint",f.fingerprint)
-                        .put("labels",JSONArray(f.labels.map { JSONObject().put("label",it.label).put("confidence",it.confidence) })) }))
+                        .put("labels",JSONArray(f.labels.map { JSONObject().put("label",it.label).put("confidence",it.confidence) }))
+                        .put("atmospheres",JSONArray(f.atmospheres.map { JSONObject().put("label",it.label).put("support",it.confidence) })) }))
                     .put("ranked",JSONArray(ranking.map { JSONObject().put("photo_id",it.features.photo.id).put("score",it.score).put("reasons",JSONArray(it.reasons)) }))
                     .put("failures",failures))
             } finally { uris.forEach { context.contentResolver.delete(it,null,null) }; audioFile.delete() }

@@ -35,4 +35,18 @@ class PhotoScenePolicyTest {
         assertEquals("水景",PhotoScenePolicy.title("waterscape"))
         assertTrue(PhotoScenePolicy.labels(arrayOf(scores("river",.19f),scores("lakeside",.19f))).isEmpty())
     }
+    @Test fun atmosphereRetainsAmbiguousObjectsButRejectsFlatWeakAndDocumentInputs() {
+        val scene = arrayOf(scores("flowers"),scores("butterfly"))
+        val views = arrayOf(floatArrayOf(.4f,.25f,.20f,.25f),floatArrayOf(.35f,.25f,.2f,.25f))
+        assertTrue(PhotoScenePolicy.labels(scene).isEmpty())
+        val cues = PhotoAtmospherePolicy.cues(views,scene)
+        assertEquals("lively",cues.maxBy { it.confidence }.label)
+        assertEquals(1f,cues.sumOf { it.confidence.toDouble() }.toFloat(),.00001f)
+        assertTrue(PhotoAtmospherePolicy.cues(arrayOf(FloatArray(4){.3f},FloatArray(4){.3f}),scene).isEmpty())
+        assertTrue(PhotoAtmospherePolicy.cues(arrayOf(FloatArray(4){.1f},FloatArray(4){.1f}),scene).isEmpty())
+        for (kind in listOf("document","screenshot"))
+            assertTrue(PhotoAtmospherePolicy.cues(views,arrayOf(scores(kind),scores("flowers"))).isEmpty())
+        assertThrows(IllegalArgumentException::class.java) { PhotoAtmospherePolicy.cues(arrayOf(FloatArray(4){Float.NaN},views[1]),scene) }
+        assertThrows(IllegalArgumentException::class.java) { PhotoAtmospherePolicy.cues(arrayOf(floatArrayOf(.3f)),scene) }
+    }
 }

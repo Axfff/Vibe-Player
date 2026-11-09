@@ -46,6 +46,8 @@ def main():
     assert hashlib.sha256((args.source / "model.safetensors").read_bytes()).hexdigest() == CHECKPOINT_SHA256
     vocabulary_path = Path(__file__).with_name("scene-vocabulary-v2.json")
     vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
+    atmosphere_path = Path(__file__).with_name("atmosphere-vocabulary-v3.json")
+    atmospheres = json.loads(atmosphere_path.read_text(encoding="utf-8"))
     policy = Path(__file__).resolve().parents[2] / "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoScenePolicy.kt"
     kotlin_names = re.findall(r'"([^"]+)" to "([^"]+)"', policy.read_text(encoding="utf-8").split("private val families", 1)[0])
     assert kotlin_names == [(scene[0], scene[2]) for scene in vocabulary["classes"]], "Android class order differs from exported model"
@@ -58,6 +60,12 @@ def main():
         text = text / text.norm(dim=-1, keepdim=True)
         text = text.reshape(len(vocabulary["classes"]), len(vocabulary["templates"]), -1).mean(dim=1)
         text = text / text.norm(dim=-1, keepdim=True)
+        prompts = [prompt for scene in atmospheres["classes"] for prompt in scene[2]]
+        atmosphere = model.get_text_features(**tokenizer(prompts, padding=True, return_tensors="pt"))
+        atmosphere = atmosphere / atmosphere.norm(dim=-1, keepdim=True)
+        atmosphere = atmosphere.reshape(len(atmospheres["classes"]), 4, -1).mean(dim=1)
+        atmosphere = atmosphere / atmosphere.norm(dim=-1, keepdim=True)
+        text = torch.cat([text, atmosphere], dim=0)
         export = SceneModel(model, text).eval()
         torch.manual_seed(0)
         example = torch.randn(2, 3, 224, 224)
@@ -72,12 +80,13 @@ def main():
     receipt = {"upstream": "wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M", "revision": REVISION,
                "checkpoint_sha256": CHECKPOINT_SHA256,
                "vocabulary_sha256": hashlib.sha256(vocabulary_path.read_bytes()).hexdigest(),
+               "atmosphere_vocabulary_sha256": hashlib.sha256(atmosphere_path.read_bytes()).hexdigest(),
                "filename": args.output.name, "bytes": args.output.stat().st_size,
                "sha256": hashlib.sha256(args.output.read_bytes()).hexdigest(),
                "input_shape": [2, 3, 224, 224], "output_shape": list(actual.shape),
                "onnx_opset": 17, "onnx_ir": graph.ir_version,
                "max_export_difference": float(abs(expected-actual).max()),
-               "torch": torch.__version__, "classes": vocabulary["classes"]}
+               "torch": torch.__version__, "classes": vocabulary["classes"], "atmospheres": atmospheres["classes"]}
     args.output.with_suffix(".json").write_text(json.dumps(receipt, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({k: v for k, v in receipt.items() if k != "classes"}, indent=2))
 

@@ -56,6 +56,36 @@ class PhotoScopeRepositoryTest {
         repo.attach(album, repo.request(album), source); assertTrue(repo.snapshot(a).second.isEmpty())
         assertThrows(PhotoScopeException::class.java) { repo.snapshot(album.copy(artistSnapshot = "another")) }
     }
+    @Test fun explicitAlbumRebindStartsEmptyAndNeverRevivesRequestsEvenWhenIdentityReturns() {
+        val memory = Memory(); val repo = PhotoScopeRepository(memory)
+        val album = CoverTarget.Album(1,"artist","title"); val changed = album.copy(artistSnapshot="changed")
+        repo.attach(album,repo.request(album),source); repo.attach(a,repo.request(a),source)
+        val old = repo.request(album)
+        val previous = assertThrows(PhotoScopeIdentityChanged::class.java) { repo.request(changed) }.previous
+        memory.fail = true
+        assertThrows(PhotoScopeException::class.java) { repo.rebindAlbum(changed,previous) }
+        assertEquals(listOf(source),repo.snapshot(album).second)
+        memory.fail = false; repo.rebindAlbum(changed,previous)
+        assertTrue(repo.snapshot(changed).second.isEmpty()); assertEquals(listOf(source),repo.snapshot(a).second)
+        assertThrows(PhotoScopeException::class.java) { repo.validate(changed,old) }
+        assertThrows(IllegalStateException::class.java) { repo.rebindAlbum(changed,previous) }
+        repo.rebindAlbum(album,repo.snapshot(changed).first)
+        assertThrows(PhotoScopeException::class.java) { repo.validate(album,old) }
+        repo.attach(album,repo.request(album),source)
+        assertEquals(listOf(source),repo.snapshot(album).second)
+    }
+    @Test fun deletionReportsFailedScopeReadAndWriteAndStillAttemptsCoverCleanup() {
+        val memory = Memory(); val repo = PhotoScopeRepository(memory); repo.attach(a,repo.request(a),source)
+        val valid = memory.value
+        for (readFailure in listOf(true,false)) {
+            memory.value = if(readFailure) "broken" else valid; memory.fail = !readFailure
+            var coverCleaned = false
+            assertEquals(listOf("照片来源"),cleanupDeletedPlaylistPhotos({repo.deleteTarget(a)},{coverCleaned=true}))
+            assertTrue(coverCleaned); assertEquals(if(readFailure) "broken" else valid,memory.value)
+        }
+        assertEquals(listOf("封面"),cleanupDeletedPlaylistPhotos({}, {error("cover disk failure")}))
+        assertEquals(emptyList<String>(),cleanupDeletedPlaylistPhotos({},{}))
+    }
     @Test fun selectionDuplicatesAreFixedAndDeduplicated() {
         val repo = PhotoScopeRepository(Memory()); repo.attach(a, repo.request(a), source.copy(uris = source.uris + source.uris))
         assertEquals(1, repo.snapshot(a).second.single().uris.size)

@@ -69,6 +69,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         body = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }
         fun button(label: String, action: () -> Unit) { layout.addView(Button(requireContext()).apply { text = label; setOnClickListener { action() } }) }
         button("添加一组照片") { begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
+        button("小米相册搜索后添加") { albumHelp() }
         button("找不到相册？从文件选择照片") { begin { files.launch(arrayOf("image/*")) } }
         button("添加照片文件夹") { chooseTree() }
         button("明确共用已有来源") { share() }
@@ -107,6 +108,20 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                 recursive = option.isChecked
                 begin { tree.launch(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE).addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION)) }
             }.show()
+    }
+    private fun albumHelp() {
+        AlertDialog.Builder(requireContext()).setTitle("用小米相册先筛选照片")
+            .setMessage("1. 在小米相册搜索关键词，多选想要的结果。\n" +
+                "2. 选择“添加到 → 新建相册”；出现移动／复制选项时选“复制”，保留原图。\n" +
+                "3. 回到这里，选择整理好的照片（每批最多 100 张），确认加入当前目标。\n" +
+                "4. 点击“推荐当前照片范围”。\n\n" +
+                "建相册本身不等于授权。已选照片组不会自动纳入新增照片；需要随目录刷新时可授权照片文件夹。\n\n" +
+                "找不到相册时，可返回使用“从文件选择照片”。移除 App 内来源不删除图片或已保存封面。小米相册的删除可能同步到云端和其他设备；清理时请只确认临时副本。")
+            .setPositiveButton("选择整理好的照片") { _, _ ->
+                begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }
+            }
+            .setNeutralButton("授权照片文件夹") { _, _ -> chooseTree() }
+            .setNegativeButton("返回", null).show()
     }
     private fun confirm(uris: List<Uri>, kind: PhotoSourceKind) {
         val request = pending ?: return
@@ -158,6 +173,22 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                     }; body?.addView(row)
                 }
                 status?.text = "仅当前目标范围；移除不会删除原图或已保存封面。应用内移除不等于撤销系统授权。"
+            } catch (e: PhotoScopeIdentityChanged) {
+                status?.text = e.message
+                body?.addView(Button(requireContext()).apply {
+                    text = "为当前专辑重新授权"
+                    setOnClickListener {
+                        AlertDialog.Builder(requireContext()).setTitle("清空旧绑定并重新授权？")
+                            .setMessage("此音乐专辑的身份已变化。确认后会移除旧专辑的照片来源绑定，当前专辑从空范围开始；原图和其他目标的来源保留。然后可重新选择照片。")
+                            .setNegativeButton("取消", null).setPositiveButton("重新授权") { _, _ -> work {
+                                withContext(Dispatchers.IO) {
+                                    check(targetExists(requireContext(), target)) { "目标已删除或暂不可用" }
+                                    repository.rebindAlbum(target as CoverTarget.Album, e.previous)
+                                }
+                                pending = null; reload()
+                            } }.show()
+                    }
+                })
             } catch (e: CancellationException) { throw e }
               catch (e: Exception) { status?.text = e.message ?: "来源暂不可用" }
         }

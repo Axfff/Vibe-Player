@@ -44,6 +44,16 @@ class PhotoUiTest {
             repo.attach(target,repo.request(target),source)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(target,playlist.name).showNow(it.supportFragmentManager,"source-ui") }
             f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("数量未知") } } }
+            f.onMain { click("小米相册搜索后添加"); click("返回") }
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.onMain { click("小米相册搜索后添加"); click("授权照片文件夹") }
+            f.await("album guide folder options displayed") { f.onMain { texts().contains("选择照片文件夹") } }
+            f.onMain { click("取消") }
+            assertEquals(listOf(source),repo.snapshot(target).second)
+            f.onMain { click("小米相册搜索后添加"); click("选择整理好的照片") }
+            f.await("album guide opens ordinary picker") { PhotoSystemUi.hasPackage("providers.media") }
+            back(f)
+            assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("添加照片文件夹") }
             f.onMain { click("取消") }
             assertEquals(listOf(source),repo.snapshot(target).second)
@@ -105,6 +115,25 @@ class PhotoUiTest {
             f.onMain { click("取消分析") }
             assertTrue(f.onMain { texts().any { it.contains("封面未改变") } })
             f.onMain { click("关闭") }
+        }
+    }
+    @Test fun changedAlbumOffersExplicitEmptyRebindAndCancellationPreservesOldScope() {
+        RegressionFixture.open().use { f ->
+            val song=f.songs.first()
+            val current=CoverTarget.Album(song.albumId!!,song.artist,song.album)
+            val old=current.copy(artistSnapshot="Previous album artist")
+            val repo=PhotoRepositories.get(f.context)
+            val source=PhotoSource("old-album-source","Old album",PhotoSourceKind.SELECTED,listOf("content://unavailable/photo"))
+            repo.attach(old,repo.request(old),source)
+            val oldRequest=repo.request(old)
+            f.onActivity { PhotoSourcesDialogFragment.newInstance(current,"Current album").showNow(it.supportFragmentManager,"rebind-ui") }
+            f.await("changed album offers recovery") { f.onMain { texts().contains("为当前专辑重新授权") } }
+            f.onMain { click("为当前专辑重新授权"); click("取消") }
+            assertEquals(listOf(source),repo.snapshot(old).second)
+            f.onMain { click("为当前专辑重新授权"); click("重新授权") }
+            f.await("confirmed current album is empty") { runCatching { repo.snapshot(current).second.isEmpty() }.getOrDefault(false) }
+            assertThrows(PhotoScopeException::class.java) { repo.validate(current,oldRequest) }
+            f.onMain { click("关闭") }; repo.deleteTarget(current)
         }
     }
 }

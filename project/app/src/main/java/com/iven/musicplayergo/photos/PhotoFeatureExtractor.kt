@@ -18,6 +18,13 @@ import java.security.MessageDigest
 
 interface PhotoFeatureExtractor : Closeable { suspend fun extract(photo: ScopedPhoto): PhotoFeatures }
 
+/** Construct, use and close in one dispatcher ownership scope, including cancellation
+ * while the blocking native constructor runs or while the caller is suspended. */
+internal suspend fun <T> withPhotoExtractor(create: () -> PhotoFeatureExtractor,
+    block: suspend (PhotoFeatureExtractor) -> T): T = withContext(Dispatchers.IO) {
+    create().use { extractor -> ensureActive(); block(extractor) }
+}
+
 /** Pinned TinyCLIP image tower + fixed scene prototypes; weights stay outside the APK. */
 class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExtractor {
     private val decoder = SafePhotoDecoder(context)
@@ -42,14 +49,16 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
         try {
             val input = PhotoSceneInput.encode(bitmap)
             ensureActive()
-            val labels = OnnxTensor.createTensor(environment, FloatBuffer.wrap(input), longArrayOf(2,3,224,224)).use { tensor ->
+            val cues = OnnxTensor.createTensor(environment, FloatBuffer.wrap(input), longArrayOf(2,3,224,224)).use { tensor ->
                 session.run(mapOf(session.inputNames.single() to tensor)).use { result ->
                     @Suppress("UNCHECKED_CAST") val scores = result[0].value as Array<FloatArray>
-                    PhotoScenePolicy.labels(scores)
+                    require(scores.size == 2 && scores.all { it.size == 44 })
+                    val scenes = Array(2) { scores[it].copyOfRange(0, 40) }
+                    PhotoScenePolicy.labels(scenes) to PhotoAtmospherePolicy.cues(Array(2) { scores[it].copyOfRange(40, 44) }, scenes)
                 }
             }
             ensureActive()
-            PhotoFeatures(photo, fingerprint, VERSION, labels).also { synchronized(cache) {
+            PhotoFeatures(photo, fingerprint, VERSION, cues.first, cues.second).also { synchronized(cache) {
                 cache[key] = it
                 while (cache.size > 256) cache.remove(cache.keys.first())
             } }
@@ -57,9 +66,9 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
     }
     override fun close() = session.close()
     companion object {
-        const val VERSION = "tinyclip-scenes-v2-425e98a2-dual224-families"
-        const val FILENAME = "tinyclip-scenes-v2.onnx"
-        const val SHA256 = "425e98a2cf201054928c7a2d2c649ac59713636e1667fbc95eb50e1bdd2a0492"
+        const val VERSION = "tinyclip-atmospheres-v3-d7c4c554-dual224"
+        const val FILENAME = "tinyclip-atmospheres-v3.onnx"
+        const val SHA256 = "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95"
         private val cache = linkedMapOf<String, PhotoFeatures>()
         fun clearCache() = synchronized(cache) { cache.clear() }
     }

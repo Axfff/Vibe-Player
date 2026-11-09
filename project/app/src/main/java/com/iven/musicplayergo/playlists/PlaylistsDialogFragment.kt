@@ -163,12 +163,18 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
 
     internal fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+        val context = requireContext().applicationContext
+        lifecycleScope.launch {
             val target = CoverTarget.Playlist(id)
-            com.iven.musicplayergo.photos.PhotoRepositories.get(requireContext()).deleteTarget(target)
-            if (CoverRepositories.get(requireContext()).hasCover(target)) {
-                CoverRepositories.get(requireContext()).removeCover(target)
+            val failed = withContext(Dispatchers.IO) {
+                com.iven.musicplayergo.photos.cleanupDeletedPlaylistPhotos(
+                    { com.iven.musicplayergo.photos.PhotoRepositories.get(context).deleteTarget(target) },
+                    {
+                        val result = CoverRepositories.get(context).removeCover(target)
+                        check(result is CoverResult.Success || result is CoverResult.Failure && result.error == com.iven.musicplayergo.covers.CoverError.COVER_NOT_FOUND)
+                    })
             }
+            if (isAdded && failed.isNotEmpty()) showFeedback("歌单已删除，但${failed.joinToString("、")}清理失败，旧记录可能保留。")
         }
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))

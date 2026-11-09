@@ -132,6 +132,20 @@ class PhotoAuthorizedFlowTest {
                 val photo = direct.photos.first()
                 val bytes = SafePhotoDecoder(f.context).bytes(Uri.parse(photo.uri))
                 val fingerprint = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 255) }
+                // A provider can change between verification and preview decoding.
+                // Decode the returned verified snapshot, then reject the new content.
+                val requestBeforeChange = repo.request(b)
+                val verified = runBlocking { verifyCandidate(f.context,b,requestBeforeChange,photo.uri,fingerprint) }
+                assertArrayEquals(bytes,verified)
+                bitmap.eraseColor(Color.MAGENTA)
+                owned.forEach { uri -> resolver.openOutputStream(uri,"wt")!!.use { bitmap.compress(Bitmap.CompressFormat.PNG,100,it) } }
+                val preview = SafePhotoDecoder(f.context).decode(verified,2048)
+                try { assertEquals(Color.CYAN,preview.getPixel(0,0)) } finally { preview.recycle() }
+                assertThrows(IllegalStateException::class.java) {
+                    runBlocking { verifyCandidate(f.context,b,requestBeforeChange,photo.uri,fingerprint) }
+                }
+                bitmap.eraseColor(Color.CYAN)
+                owned.forEach { uri -> resolver.openOutputStream(uri,"wt")!!.use { bitmap.compress(Bitmap.CompressFormat.PNG,100,it) } }
                 fun crop() {
                     val request = repo.request(b)
                     f.onActivity { CoverCropDialogFragment.forCandidate(b, photo.uri, request, fingerprint).showNow(it.supportFragmentManager, "guarded-crop") }
