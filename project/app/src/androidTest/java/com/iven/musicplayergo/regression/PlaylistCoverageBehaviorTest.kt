@@ -52,7 +52,13 @@ class PlaylistCoverageBehaviorTest {
             }
             assertEquals(saved, success(f.repository.getPlaylist(saved.id)))
             assertEquals(f.songs.map { it.id }.toSet(), f.onMain { f.viewModel.playlistLibrary.map { it.id }.toSet() })
-            f.onActivity { assertTrue(it.findViewById<View>(R.id.library_scan_music).isEnabled) }
+            // Completed ViewModel state can precede the observer's next UI update.
+            // Still require the actual scan action to become enabled, within a bound.
+            f.await("scan action re-enabled after indexing and refresh") {
+                var enabled = false
+                f.onActivity { enabled = it.findViewById<View>(R.id.library_scan_music).isEnabled }
+                enabled
+            }
         }
     }
 
