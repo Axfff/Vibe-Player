@@ -3,6 +3,7 @@ package com.iven.musicplayergo.covers
 import android.widget.ImageView
 import coil.Coil
 import coil.request.ImageRequest
+import coil.size.Scale
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.extensions.toAlbumArtURI
@@ -19,6 +20,14 @@ fun ImageView.loadCover(target: CoverTarget) {
         ImageRequest.Builder(context)
             .data(data)
             .target(this)
+            // Details can grow after a small decode. Photos must fill the new bounds;
+            // placeholder/error icons keep their natural size, including recycled views.
+            .scale(Scale.FILL)
+            .listener(
+                onStart = { scaleType = ImageView.ScaleType.CENTER_INSIDE },
+                onError = { _, _ -> scaleType = ImageView.ScaleType.CENTER_INSIDE },
+                onSuccess = { _, _ -> scaleType = ImageView.ScaleType.CENTER_CROP }
+            )
             .placeholder(fallback)
             .error(fallback)
             .fallback(fallback)

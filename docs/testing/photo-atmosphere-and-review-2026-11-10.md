@@ -125,4 +125,22 @@ This does **not** establish in-app import or phone UI behavior. Those checks awa
 the user's unlock. The two pre-existing playlists, all ten seed files and saved
 cover hash remain unchanged. No personal photos are needed for the remaining step.
 
+## Cold-start cover rendering follow-up
+
+An actual emulator reboot retained the saved cover and v3 model byte-for-byte,
+but exposed a display defect: the photo could remain small in the enlarged
+details-art frame. The shared cover loader inherited `CENTER_INSIDE` from XML;
+a small cold decode did not scale up when the frame grew. Successful photos now
+use `CENTER_CROP` with fill decoding, while placeholders and error icons retain
+`CENTER_INSIDE`. The existing Coil ImageView target retains lifecycle and request
+cancellation behavior.
+
+`CoverRenderingDeviceTest` captures actual screen pixels after a 64-to-256-pixel
+view expansion, restores the default icon, and loads a replacement cover. The
+expanded-photo edge assertion failed before the production fix and all three
+rendered states passed after it. All 111 JVM tests also passed. The first test
+harness draft incorrectly assumed a raw BitmapDrawable despite the application's
+crossfade wrapper; its failure is not counted as evidence of the production bug.
+Actual details-page reboot verification and fresh full CI are reported on #50.
+
 Student ID (CroissantXinny): 50027204

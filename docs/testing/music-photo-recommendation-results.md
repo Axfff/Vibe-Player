@@ -1,5 +1,9 @@
 # Music/photo recommendation verification — 2026-11-07
 
+Historical MobileNet baseline. For the current atmosphere model, unchanged-label
+four-case comparison and Xiaomi route, see the [November 10 follow-up](photo-atmosphere-and-review-2026-11-10.md).
+The older scores and GitHub permission status below describe that earlier run.
+
 Status is evidence-specific, not human acceptance. Integration branch `feat/scoped-photo-recommendations` uses main `844caf7c`, cover `25849a42` and PR #46 `4776e4e1`. Real inference below ran from `e27c4398c3d67ab9d4188421f3ccbc2c0035f437`. App APK SHA-256: `a7c24120896b858759737e0fb21f07167565a047728e95a10e44af99a2dc88ae`. Human Review/Story acceptance remain pending.
 
 ## Real inference, separate from UI authorization tests
