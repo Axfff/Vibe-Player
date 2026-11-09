@@ -102,8 +102,27 @@ and position bounds (`−150 ms`, `elapsed + 1500 ms`) are unchanged. Local targ
 playback tests pass; this strengthens the precondition and does not prove that
 every CI failure had the same cause. Current-head CI is reported on the PR.
 
-The new APK and v3 model file have been prepared on the connected phone. Final
-phone UI/import verification awaits the user's unlock; the earlier v2 phone flow
-is not presented as verification of v3. No personal photos are needed for this step.
+Full clean local validation at `abf503ea` passed: 111 JVM tests, 68 Android tests
+(four optional asset tests skipped in this general run; real model inference was
+verified separately above), 159 backend tests, 22 web tests and 12 coverage-contract
+tests. Measured coverage is Android 2672/3262 (81.91%), backend 882/920 (95.87%,
+local Python 3.14) and web 812/825 (98.42%). Both [push CI](https://github.com/Axfff/Vibe-Player/actions/runs/42662115932)
+and [PR CI](https://github.com/Axfff/Vibe-Player/actions/runs/42662133181) passed
+at that head. Latest-head results remain linked on the PR.
+
+Fixture PR #49's `7592fbac` CI independently exposed a final scan-button assertion
+that preceded the observer's UI update. A bounded wait now requires the actual
+button to re-enable; it does not bypass the assertion. Its targeted Android test
+passed locally, and the same test-only fix is included in #37, #49 and #50. The
+[failed run](https://github.com/Axfff/Vibe-Player/actions/runs/42660921992) remains
+available; no failure was erased or relabeled as a pass.
+
+The full-build debug APK, SHA-256
+`9ecc3ac2107c1d9c87b281643aa43fa6de0948d8e137d14073107ad8fc8fbdea`,
+was installed in place on the connected phone. The exact pinned v3 model is
+hash-verified in app-private storage via debug provisioning; earlier models remain.
+This does **not** establish in-app import or phone UI behavior. Those checks await
+the user's unlock. The two pre-existing playlists, all ten seed files and saved
+cover hash remain unchanged. No personal photos are needed for the remaining step.
 
 Student ID (CroissantXinny): 50027204

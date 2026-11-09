@@ -24,6 +24,6 @@ Entry: **封面照片来源 → 配置本地分析模型**, or the same button i
 
 ## Scope and licensing
 
-No Manifest, SDK/Gradle version, network permission, player behavior or public coverage exclusion changed. The two music models retain CC BY-NC-SA 4.0 terms; MobileNet v2-7 retains Apache 2.0. The setup screen exposes these terms and official sources. Redistribution/production-use review remains a human task; this feature does not bundle or redistribute weights.
+No Manifest, SDK/Gradle version, network permission, player behavior or public coverage exclusion changed. The two music models retain CC BY-NC-SA 4.0 terms. The current photo model is exported from MIT-licensed TinyCLIP weights; the earlier MobileNet artifact retains its Apache 2.0 terms. The setup screen exposes the current terms and sources. Redistribution/production-use review remains a human task; this feature does not bundle or redistribute weights.
 
 Installer regression tests use isolated tiny known byte sequences to verify atomic replacement and failures, not to claim model inference. Actual official-file imports and system-search behavior are recorded separately in the device verification report.

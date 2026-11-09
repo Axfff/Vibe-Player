@@ -1,6 +1,6 @@
 # Review handoff: scoped photo recommendations
 
-Published [Draft PR #50](https://github.com/Axfff/Vibe-Player/pull/50): **feat: scoped photo sources, music-photo recommendations and picker search**.
+Published [Draft PR #50](https://github.com/Axfff/Vibe-Player/pull/50): **feat: scoped photo recommendations with local atmosphere ranking**.
 
 Users can give each Playlist or music Album its own photo sources, choose a representative track, rank only that target's readable photos, and confirm a candidate through the existing crop and cover repository. An independent system-search entry lets users edit suggested terms and explicitly add selected photos; it does not expand a recommendation's scope automatically.
 
@@ -21,7 +21,7 @@ See [initial test results](../testing/music-photo-recommendation-results.md), [m
 
 Related stories: [#40](https://github.com/Axfff/Vibe-Player/issues/40), [#41](https://github.com/Axfff/Vibe-Player/issues/41); fixture source [#49](https://github.com/Axfff/Vibe-Player/pull/49). Do not close these stories merely because code or fixtures exist. The proposed #41 extension is retained in [the pending publication payload](photo-requirements-publication-pending.md), preserving its original bilingual content. Suggested phases 1/2 → Sprint 3, phase 3 → Sprint 4 remain **待团队确认**, not an invented assignment or deadline.
 
-AI-assisted implementation, test execution and preliminary labeling are distinct from human acceptance. Human Review, fixture-label validation, model/product suitability and noncommercial model redistribution terms remain open. End-user model import is now implemented and device-verified, with UX acceptance pending. API 21–23 and additional OEM/cloud/offline behavior remain unverified.
+AI-assisted implementation, test execution and preliminary labeling are distinct from human acceptance. Human Review, fixture-label validation, model/product suitability and noncommercial model redistribution terms remain open. End-user model import was device-verified with the earlier models; the current v3 phone UI/import check awaits unlock. API 21–23 and additional OEM/cloud/offline behavior remain unverified.
 
 Physical-phone follow-up: earlier [November 8 tests](../testing/phone-photo-verification-2026-11-08.md) used API 36 / T extension 17. After the user's system upgrade the phone is **API 37 / T extension 22**. The [seven public-API probes](system-photo-search-compatibility.md) still found no working automatic keyword handoff in this Xiaomi provider. Manual search → select → new album → copy → explicit Vibe-Player authorization was investigated: the search-result menu exists, and a separately created two-fixture album became readable in the app. The new **小米相册搜索后添加** guide exposes the verified manual route. Original playlists, fixtures and saved cover survived cleanup. See the [current report](../testing/photo-atmosphere-and-review-2026-11-10.md) for the latest model and review-fix verification status.
 
