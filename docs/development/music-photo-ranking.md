@@ -1,10 +1,11 @@
 # Music to photo ranking v1
 
-This documents the original MobileNet baseline. The current branch contains a
-[conservative TinyCLIP experiment](photo-scene-model.md), Chinese explanations
-and explicit uncertainty handling. The [four-case comparison](../testing/photo-quality-and-picker-2026-11-08.md)
-records ranking regressions; overall quality acceptance remains open. Historical
-v1 results below are not presented as results for the new model.
+This documents the original MobileNet baseline. The current branch ranks broad
+[TinyCLIP picture atmosphere](photo-scene-model.md), independently of specific
+object naming, with Chinese explanations and uncertainty handling. The
+[November 10 comparison](../testing/photo-atmosphere-and-review-2026-11-10.md)
+records recovery beyond the old baseline; human quality acceptance remains open.
+Historical v1 results below are not results for the current model.
 
 Use the existing `MoodAnalyzer` from PR #46. The user chooses a representative track within the target (first available is the displayed default). It decodes at most the initial 30 seconds, skips silent patches and reports decoded seconds, effective patch seconds and patch count. No lyrics, whole-song or playlist aggregation is claimed. Missing/invalid models, silence, short/unreadable audio and inference errors remain explicit. Manual atmosphere input is labelled 用户选择.
 

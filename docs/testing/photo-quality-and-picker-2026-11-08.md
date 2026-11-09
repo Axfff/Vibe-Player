@@ -1,5 +1,10 @@
 # Picker investigation and conservative scene-model experiment
 
+Historical November 8 result. See the [November 10 follow-up](photo-atmosphere-and-review-2026-11-10.md)
+for atmosphere ranking, review fixes and the manual Xiaomi album workflow. The
+phone was subsequently upgraded to API 37 / T extension 22; automatic query
+highlighting still failed in the [November 9 provider investigation](../development/system-photo-search-compatibility.md).
+
 The Xiaomi album selection gap was resolved in the observed session, and the two
 flower fixtures no longer produce a butterfly explanation with the new model.
 **The new model is not accepted as an overall ranking-quality improvement.** It

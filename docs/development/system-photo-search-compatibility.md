@@ -123,3 +123,21 @@ files stay outside the repository. See the
 [sanitized device receipt](../testing/evidence/xiaomi-search-2026-11-09.json).
 This investigation changes documentation only; automatic search remains
 unverified/unsupported on this provider, and formal AC remain unchecked.
+
+## November 10: usable manual album bridge
+
+The app now offers **小米相册搜索后添加** alongside ordinary photo selection. It
+explains search → select results → Add to / New album → Copy, then opens ordinary
+selection or the existing folder-authorization confirmation. Creating an album
+alone grants the app nothing. Selected groups are fixed snapshots; directory
+sources can include new files only through the documented refresh behavior.
+
+The search-results Add to / New album menu was observed separately from a full
+two-fixture test. The latter copied known licensed flower images from their QA
+album into a new Xiaomi Gallery album, which appeared in the system picker. Both
+explicitly selected images became readable in the target scope. The temporary
+binding and copies were then removed, preserving originals and the saved cover.
+Xiaomi's delete confirmation warned that deletion also applies to cloud/other
+synced devices; the guide therefore tells users to confirm only temporary copies.
+No automatic download, copy, delete, hidden API or permission expansion was added.
+See [the detailed limits and receipt](../testing/photo-atmosphere-and-review-2026-11-10.md).

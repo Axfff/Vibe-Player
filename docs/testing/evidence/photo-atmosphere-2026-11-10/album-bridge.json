@@ -1,0 +1,41 @@
+{
+  "started_local": "2026-11-09",
+  "completed_local": "2026-11-10",
+  "timezone": "Asia/Singapore",
+  "search_result_menu_verified": [
+    "multi-select",
+    "Add to",
+    "New album"
+  ],
+  "search_limit": "The attempted QA album-name query was altered by the IME; no claim of exact query or relevance accuracy. Menu inspection did not copy, move or grant personal photos.",
+  "fixture_album_test": {
+    "album": "1109001",
+    "fixture_files": [
+      "img_0001.jpg",
+      "img_0002.jpg"
+    ],
+    "creation": "Gallery Add to > New album > Copy (not Move)",
+    "path": "Pictures/Gallery/owner/1109001/",
+    "files_match_original_sha256": true,
+    "system_picker_album_visible": true,
+    "app_confirmation_target": "QA1108",
+    "app_readable_selected_photos": 2,
+    "model_quality_not_retested": true
+  },
+  "cleanup": {
+    "temporary_app_source_removed": true,
+    "original_directory_source_retained": true,
+    "temporary_gallery_album_deleted": true,
+    "active_media_rows_remaining": 0,
+    "gallery_dialog": "Deletes from all devices/cloud and is recoverable in Recently deleted. Applied only to the two fixture copies created in this session; not a permanent trash purge.",
+    "original_playlists_unchanged": true,
+    "all_ten_seed_files_unchanged": true,
+    "saved_cover_sha256": "79670aba3f9e37cae5fdc0d76f5b63e240611d3a0be3cd9afc80122b71227335",
+    "stay_on_while_plugged_in": 0
+  },
+  "limitations": [
+    "Search, album creation and authorization require explicit user actions; no automatic access to Xiaomi search results.",
+    "Full creation test used known fixtures from their existing QA album; the search-result Add to entry was separately verified.",
+    "UI evidence containing personal media stays local; no product code or permissions changed."
+  ]
+}

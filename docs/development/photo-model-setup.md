@@ -1,8 +1,8 @@
 # Local model setup
 
-The current experimental photo slot uses **tinyclip-scenes-v2.onnx**; see the
+The current experimental photo slot uses **tinyclip-atmospheres-v3.onnx**; see the
 [pinned artifact and preparation instructions](photo-scene-model.md). Existing
-MobileNet imports show an update-required message; the music slots and saved
+MobileNet and scenes-v2 imports show an update-required message; the music slots and saved
 covers are retained. The earlier setup verification below used the original
 MobileNet version and does not certify the new model's recommendation quality.
 
