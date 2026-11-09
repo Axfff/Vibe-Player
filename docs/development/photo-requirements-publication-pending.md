@@ -1,6 +1,8 @@
-# Requirements publication pending
+# Requirements publication payload — historical archive
 
-GitHub issue #41 remains the formal entry. Updating it through the connected GitHub integration returned HTTP 403 `Resource not accessible by integration` on 2026-11-07. No alternate credential was used to bypass that denial. The following is a pending publication payload, not a second accepted specification. A repository-authorized maintainer must apply it to #41; human acceptance is not claimed.
+[GitHub issue #41](https://github.com/Axfff/Vibe-Player/issues/41) is the single formal requirements entry. The connected GitHub integration returned HTTP 403 `Resource not accessible by integration` on 2026-11-07. After the user explicitly requested PowerShell, the existing authorized GitHub CLI account published the extension and created [PR #50](https://github.com/Axfff/Vibe-Player/pull/50) on November 8. No new credentials or accounts were substituted.
+
+The original bilingual payload below is retained for history. It is no longer awaiting publication, must not be copied into #41 again, and is not a separate live specification. Current requirement changes and human AC sign-off belong in #41; publication and implementation do not imply acceptance.
 
 ## User story
 

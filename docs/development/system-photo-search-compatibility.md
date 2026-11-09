@@ -141,3 +141,15 @@ Xiaomi's delete confirmation warned that deletion also applies to cloud/other
 synced devices; the guide therefore tells users to confirm only temporary copies.
 No automatic download, copy, delete, hidden API or permission expansion was added.
 See [the detailed limits and receipt](../testing/photo-atmosphere-and-review-2026-11-10.md).
+
+## Android 5.0 / 6.0 ordinary-selection fallback
+
+On November 10, the unchanged production APK was exercised on isolated official
+AOSP x86_64 API 21 and API 23 images. Both show the unsupported-search explanation;
+requesting system search opens actual `android.intent.action.OPEN_DOCUMENT`
+(`image/*`) in `com.android.documentsui/.DocumentsActivity`. Both displayed the
+six licensed fixture photos and returned to the source screen on cancellation
+without changing its scope or cover. This verifies the real document-picker
+fallback on these two systems, not search highlighting or query retention after
+cancellation. Normal folder consent and all three model imports also worked
+through DocumentsUI. See the [runtime evidence and limits](../testing/photo-atmosphere-and-review-2026-11-10.md#android-50-and-60-runtime-follow-up).

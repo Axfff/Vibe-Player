@@ -1,6 +1,6 @@
 # Target-scoped photo sources
 
-Formal requirements: [#41](https://github.com/Axfff/Vibe-Player/issues/41), manual cover dependency [#40](https://github.com/Axfff/Vibe-Player/issues/40). The pending Issue extension is a publication payload, not accepted requirements: the connector rejected its write with 403.
+Formal requirements: [#41](https://github.com/Axfff/Vibe-Player/issues/41), manual cover dependency [#40](https://github.com/Axfff/Vibe-Player/issues/40). The source/ranking/search AC extension was published to #41 on November 8 using the existing authorized GitHub CLI account after the user explicitly requested PowerShell. The connector's earlier 403 is historical; [PR #50](https://github.com/Axfff/Vibe-Player/pull/50) and the Issue updates now exist. Publication is distinct from human acceptance. The retained [original publication payload](photo-requirements-publication-pending.md) is an archive, not a second requirements entry.
 
 Baseline: main `844caf7c`; cover foundation `25849a42`; mood PR #46 `4776e4e1`. Dependency merge `d987943b` integrates both existing contributions. No main/tag rewrite. Integration owner for this worktree is this task; existing member attribution is preserved. Shared CI scripts/workflows are unchanged; scope inventory is regenerated with the existing cumulative script, including all new Kotlin UI/permission/error paths and Release 1.
 
@@ -16,6 +16,6 @@ Directories default to direct children. Explicit recursion is capped at depth 3;
 
 JPEG/PNG/WebP only: bounded stream read <=20 MiB (also bounds unknown-length providers), positive image dimensions <=40 million pixels, sampled decode, all eight EXIF orientations, no requested GPS. Candidate crops use the same bounded decoder. Before preview/save, re-enumerate the issuing scope, check target/revision/grant, and compare SHA-256 of actual current bytes. The serialized final save guard prevents app-scope mutations from interleaving. External provider revocation after the final check cannot be made atomic with local cover storage.
 
-Known verification gaps must be read with the results document: comprehensive provider/offline behavior, API 21/23 runtime, rotation during confirmation, and target deletion racing external library changes are not implied by JVM tests. Real process/device restart persistence and shared source removal are documented separately in the device results.
+Known verification gaps must be read with the results document: comprehensive provider/offline behavior, rotation during confirmation, and target deletion racing external library changes are not implied by JVM tests. The [November 10 API 21/23 runtime checks](../testing/photo-atmosphere-and-review-2026-11-10.md#android-50-and-60-runtime-follow-up) verify normal model import, six-photo directory consent, actual inference, crop cancellation/save, ordinary document-picker fallback and full device-reboot persistence on isolated official x86_64 emulators. This is basic runtime evidence, not exhaustive legacy-device or provider coverage. Shared source removal is documented separately in the earlier device results.
 
 Student ID (CroissantXinny): 50027204

@@ -141,6 +141,67 @@ expanded-photo edge assertion failed before the production fix and all three
 rendered states passed after it. All 111 JVM tests also passed. The first test
 harness draft incorrectly assumed a raw BitmapDrawable despite the application's
 crossfade wrapper; its failure is not counted as evidence of the production bug.
-Actual details-page reboot verification and fresh full CI are reported on #50.
+Actual API 33 details-page reboot verification passed: the saved sunflower fills
+the frame after boot, three imported models and six authorized photos remain
+readable, and the saved cover plus seven media fixtures retain their hashes.
+Production fix `5e5c9438`, branch head `d6133ee7`, APK SHA-256
+`c301335aba5f41f7cbd89bc5ad69e7e53b3902ea582f71c451ffa244a924c3be`.
+Both [push CI](https://github.com/Axfff/Vibe-Player/actions/runs/42674911413) and
+[PR CI](https://github.com/Axfff/Vibe-Player/actions/runs/42674919106) passed at
+that head: 111 JVM tests, 69 Android tests (four optional model-asset skips), 159
+backend tests and 22 web tests; zero failures/errors. Android coverage is
+2666/3264 (81.68%); the cumulative scope and 80% gate are unchanged. Later
+documentation-only heads retain their own CI links on #50.
+
+## Android 5.0 and 6.0 runtime follow-up
+
+The same APK and pinned v3 model were then exercised through normal app UI on
+fresh official AOSP x86_64 API 21 (Android 5.0.2, image revision 5) and API 23
+(Android 6.0, revision 10) emulators. Emulator version is 37.2.12.0; each isolated
+AVD uses two CPUs, 2 GB RAM, a 720 × 1280 screen and a 512 MB virtual SD card.
+The image archives match the official catalog's size and SHA-1. Image URLs,
+SHA-256s, build fingerprints and preservation hashes are in the
+[sanitized runtime receipt](evidence/photo-atmosphere-2026-11-10/legacy-runtime.json).
+No project SDK, dependency, minSdk or product code change was needed.
+
+| Real UI operation | API 21 | API 23 |
+| --- | --- | --- |
+| Import three pinned models using DocumentsUI | All three validated | All three validated |
+| Confirm the six-image QA folder for Royalty Free | Six readable | Six readable |
+| Analyse Carefree's first 30 seconds and recommend | 29 valid frames / 29.824 s; three candidates | Same |
+| Photo extraction on this six-image sample | Zero extraction failures or uncertain atmosphere | Same |
+| Open crop and cancel | No cover file created | No cover file created |
+| Reopen crop and Save cover | Sunflower saved and fills details frame | Same |
+| Request unavailable system search | Real image-only OPEN_DOCUMENT fallback | Same |
+| Cancel fallback | No scope or cover mutation | Same |
+| Reboot the whole emulator, reopen source/models/details | Six readable; three models ready; full-sized cover | Same |
+
+The recommendation explanation describes broad lively/peaceful picture
+atmosphere, identifies it as model inference and says the matching score is
+only for ranking this batch. It does not call the sunflower a butterfly. These
+two six-photo runs establish runtime compatibility; they are not a new four-case
+P@5 evaluation or human quality acceptance.
+
+| Evidence | API 21 | API 23 |
+| --- | --- | --- |
+| Actual inference | [Result screen](evidence/photo-atmosphere-2026-11-10/api21-recommendations.png) | [Recommendation explanation](evidence/photo-atmosphere-2026-11-10/api23-recommendation-reasons.png) |
+| After full reboot | [Cover](evidence/photo-atmosphere-2026-11-10/api21-cover-after-reboot.png), [source](evidence/photo-atmosphere-2026-11-10/api21-source-after-reboot.png), [models](evidence/photo-atmosphere-2026-11-10/api21-models-after-reboot.png) | [Cover](evidence/photo-atmosphere-2026-11-10/api23-cover-after-reboot.png), [source](evidence/photo-atmosphere-2026-11-10/api23-source-after-reboot.png), [models](evidence/photo-atmosphere-2026-11-10/api23-models-after-reboot.png) |
+
+Both kernel boot IDs changed. Before/after SHA-256 checks matched all three
+app-private model files, the source JSON, the saved cover and all seven fixture
+media files. The source screen re-enumerated six readable photos after reboot.
+API 21's UIAutomator XML rendered non-ASCII text as question marks; the actual
+screenshots above show correct Chinese and were checked visually. The initial
+API 21 fixture upload failed because that AVD had no writable shared storage;
+adding its ordinary virtual SD card fixed the fixture setup before imports.
+Neither limitation is hidden or counted as a product test pass.
+
+Screenshots contain only licensed fixtures: sunflower `img_0001`, leaf
+`img_0019`, and metadata for Kevin MacLeod's Carefree. Their source/license
+attribution is retained in the [fixture credits](https://github.com/Axfff/Vibe-Player/blob/7592fbac/test-data/music-photo-v2/ATTRIBUTION.md);
+shown images are resized/cropped by the app. No private gallery content is
+published. These x86_64 checks do not establish legacy ARM-device performance,
+cloud/offline provider behavior, all lifecycle races, search highlighting or
+the still-pending v3 UI acceptance on the locked physical Xiaomi phone.
 
 Student ID (CroissantXinny): 50027204
