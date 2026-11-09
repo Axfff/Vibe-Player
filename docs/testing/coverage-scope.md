@@ -18,16 +18,17 @@ Android, Python backend and web modules have separate gates. One module's result
 
 | Work | Audited head | Relationship to this branch |
 | --- | --- | --- |
-| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Pending separate PR; regenerate manifest after integration |
-| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Pending separate PR; has four JVM tests |
-| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Pending separate PR; has six JVM tests |
-| PR #30 missing album lookup | `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` | Pending separate PR; includes artist matching and ten JVM tests |
+| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Included through main `844caf7c`; existing authorship retained |
+| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Included through main, with its JVM tests |
+| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Included through main, with its JVM tests |
+| PR #30 missing/playing album lookup | `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` | Included through main, with its JVM tests |
+| PR #34 queue removal persistence | `5115024e3dad12cd4f2d86e98d6f11ade544199a` | Included through main, with its Android tests |
 | PR #20 / #24 | Release closeout / README | Documentation; no executable source |
-| Local Discovery | `8ef69e0bdfd113dc690ac935a40e40e298c8cbe7` | This candidate's exact feature base, including Android, backend and web; contains main, readiness b076966e and backend test setup c87d4e6d |
+| Local Discovery | `8ef69e0bdfd113dc690ac935a40e40e298c8cbe7` | Original Android/backend/web feature base; current branch also includes the #51 link-validation fix |
 
-The 2026-11-03 feature candidate contains Android Discovery. Its refreshed manifest has **46 production files: 30 Android, 12 backend, 4 web**. All eight new Android Discovery source files, the cumulative LibraryActionsFragment change and backend ranking.py are included alongside Release 1. Android layout/manifest/resources are retained as application inputs, not executable line denominators. Test fixtures are test-only. No UI, photo, network, storage, cancellation or error branch is exempted.
+The current feature candidate contains Android Discovery and incoming main fixes. Its refreshed manifest has **51 production files: 35 Android, 12 backend, 4 web**. The earlier November 3 snapshot contained 46 files before this integration. All eight new Android Discovery source files, the cumulative LibraryActionsFragment change and backend ranking.py are included alongside Release 1. Android layout/manifest/resources are retained as application inputs, not executable line denominators. Test fixtures are test-only. No UI, photo, network, storage, cancellation or error branch is exempted.
 
-The six pending PRs #20/#21/#24/#26/#28/#30 remain outside this feature candidate. Their separate local integration result does not contribute execution data here. Feature-owner targeted tests and historical reports are context only; final coverage requires a clean full collection on the committed scope/config candidate. A passing coverage gate does not imply human acceptance, real model authorization or completion of the live-provider acceptance criteria.
+On 2026-11-10, main `844caf7c` was merged into this feature branch to resolve the README and coverage-document conflicts. The README retains both Discovery and Release 1 review links, and the generated manifest includes the incoming production changes. Original commits and authorship are retained; main and release tags were not changed. Feature-owner targeted tests and historical reports are context only; final coverage requires a clean full collection on the committed scope/config candidate. A passing coverage gate does not imply human acceptance, real model authorization or completion of the live-provider acceptance criteria.
 
 ## Reproduce
 

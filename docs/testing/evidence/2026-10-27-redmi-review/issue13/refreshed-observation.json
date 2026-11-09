@@ -1,0 +1,16 @@
+{
+  "stage": "filtered-after-playlist-refresh",
+  "recorded_utc": "2026-10-27T06:29:19.6442905+00:00",
+  "operator_report": "已刷新，三项均符合",
+  "operator_actions": "Opened Playlists, pressed Refresh, waited, then Done while retaining search query",
+  "query": "zz_no_song_13",
+  "visible_tracks": [],
+  "shuffle_text": "0",
+  "shuffle_enabled": false,
+  "shuffle_clickable": true,
+  "evidence": [
+    "refreshed-ui.xml",
+    "refreshed-ui.png"
+  ],
+  "issue13_result": "Pending"
+}

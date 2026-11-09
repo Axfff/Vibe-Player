@@ -21,15 +21,29 @@ object MusicUtils {
         selectedArtist: String?,
         deviceAlbumsByArtist: MutableMap<String, List<Album>>?
     ) = try {
-        val album = getAlbumFromList(
+        getPlayingAlbumPosition(
             selectedArtist,
-            MediaPlayerHolder.getInstance().currentSong?.album,
-            deviceAlbumsByArtist
+            deviceAlbumsByArtist,
+            MediaPlayerHolder.getInstance().currentSong
         )
-        album.second
     } catch (e: Exception) {
         e.printStackTrace()
         RecyclerView.NO_POSITION
+    }
+
+    internal fun getPlayingAlbumPosition(
+        selectedArtist: String?,
+        deviceAlbumsByArtist: MutableMap<String, List<Album>>?,
+        currentSong: Music?
+    ): Int {
+        if (currentSong == null || selectedArtist != currentSong.artist) {
+            return RecyclerView.NO_POSITION
+        }
+        return getAlbumFromList(
+            selectedArtist,
+            currentSong.album,
+            deviceAlbumsByArtist
+        )?.second ?: RecyclerView.NO_POSITION
     }
 
     @JvmStatic
@@ -37,32 +51,23 @@ object MusicUtils {
         artist: String?,
         album: String?,
         deviceAlbumsByArtist: MutableMap<String, List<Album>>?
-    ) = try {
+    ) =
         getAlbumFromList(
             artist,
             album,
             deviceAlbumsByArtist
-        ).first.music
-    } catch (e: Exception) {
-        e.printStackTrace()
-        null
-    }
+        )?.first?.music
 
     @JvmStatic
-    // Returns a pair of album and its position given a list of albums
+    // Returns the exact album and its position, or null when it is no longer in the library.
     fun getAlbumFromList(
         artist: String?,
         album: String?,
         deviceAlbumsByArtist: MutableMap<String, List<Album>>?
-    ): Pair<Album, Int> {
-        val albums = deviceAlbumsByArtist?.get(artist)
-        return try {
-            val position = albums?.indexOfFirst { it.title == album }!!
-            Pair(first = albums[position], second = position)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Pair(first = albums?.first()!!, second = 0)
-        }
+    ): Pair<Album, Int>? {
+        val albums = deviceAlbumsByArtist?.get(artist) ?: return null
+        val position = albums.indexOfFirst { it.title == album }
+        return albums.getOrNull(position)?.let { it to position }
     }
 
     @JvmStatic

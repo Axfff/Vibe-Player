@@ -5,6 +5,8 @@ Integration evidence (Discovery backend/web and PRs #21/#26/#28/#30):
 [PR #32](https://github.com/Axfff/Vibe-Player/pull/32). This validation branch is not a request to merge the feature PRs.
 The single bot comment on each PR records the latest tested full SHA, module counts, test counts and direct HTML/XML artifact link. Reports and APKs are retained for 90 days; download them before expiry for longer course archiving.
 
+On 2026-11-02, this validation branch also incorporated PR #30's updated artist-specific lookup at `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` and new PR #34 at `5115024e3dad12cd4f2d86e98d6f11ade544199a`. The inventory now has 27 Android, 11 backend and 4 web production files. These additions require a fresh run; the earlier counts below remain attributed to their original SHAs.
+
 ## Measured starting points
 
 All Android counts use baseline `947709e4c798a103b9fcc5962172f2e85d349196`, including Release 1.
