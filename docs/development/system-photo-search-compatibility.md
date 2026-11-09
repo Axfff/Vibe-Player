@@ -53,3 +53,73 @@ confirmation and persisted read grants, rejects more than 100 selections as a
 whole, and changes nothing on cancellation. It is an explicit alternative when
 an OEM gallery omits an album, independent of search-extension support. See the
 [follow-up evidence](../testing/photo-quality-and-picker-2026-11-08.md).
+
+## Upgraded Redmi: query handoff investigation — 2026-11-09
+
+After the user's system update, the same phone reports Android 17 / API 37,
+T extension **22** and `OS4.0.5.0.XPMCNXM`. The former extension-17 blocker is
+resolved. The unchanged production APK from `1b10cc42` correctly allows the
+request, but real `flowers` and `花卉` requests still open **全部**. Opening the
+picker's search page then reveals an empty input. Manual `flowers` entry does
+produce a result grid; this establishes manual UI availability, not relevance
+accuracy or automatic handoff.
+
+A separate temporary app with **no requested permissions** reproduced the
+failure using only public Android APIs. These independent cases exclude the
+Vibe-Player editor, model and saved state as the cause:
+
+| Entry | Public request | Observed initial UI |
+| --- | --- | --- |
+| Default Xiaomi picker | `flowers`, expanded, max 100 | 全部; search input empty when opened |
+| Default Xiaomi picker | `flowers`, collapsed, max 100 | 全部; search input empty when opened |
+| Default Xiaomi picker | `flowers`, expanded, single selection | 全部; search input empty when opened |
+| Default Xiaomi picker | `花卉`, expanded, max 100 | 全部; search input empty when opened |
+| Enabled MediaProvider picker | `flowers`, expanded, max 100 | Ordinary 照片 / 相册; no search control |
+| Enabled MediaProvider picker | `flowers`, expanded, single selection | Ordinary 照片 / 相册; no search control |
+| Embedded system picker | `flowers`, expanded, max 100 | Session opens successfully; 全部照片 grid, no query results section |
+
+The first six cases use `ACTION_PICK_IMAGES` and the documented nested Bundle.
+The alternate handler is the already enabled/exported
+`com.android.providers.media.module/com.android.providers.media.photopicker.PhotoPickerActivity`;
+it was selected by public `Intent.setPackage` in the probe only. It is distinct
+from the **disabled** `com.android.photopicker.MainActivity`, which was neither
+enabled nor launched. No production routing was changed.
+
+The seventh case uses the public
+[EmbeddedPhotoPickerProvider](https://developer.android.com/reference/android/widget/photopicker/EmbeddedPhotoPickerProvider)
+and [feature builder](https://developer.android.com/reference/android/widget/photopicker/EmbeddedPhotoPickerFeatureInfo.Builder):
+`setHighlightSearchMediaTextQuery("flowers")`, `setHighlightType(1)` and
+`setPickerLaunchedInExpandedState(true)`. Runtime U extension is also 22.
+`onSessionOpened` succeeds and the surface renders, but it displays the ordinary
+all-photos grid. Only the disposable probe compiles against the installed API-37
+SDK; the product's SDK, dependencies and minimum version are unchanged.
+
+Read-only inspection of the installed picker package explains the black-box
+behavior. The shared intent parser recognizes the exact public Bundle keys and
+stores the highlight query in configuration. The active
+`com.android.photopicker/.hyper.HyperMainActivity` startup chooses the image or
+album tab; its search navigation opens a page without forwarding that query.
+The inspected search page does not consume the highlight configuration. The
+embedded service uses a separate Xiaomi UI that also starts on its grid. These
+are implementation findings for this installed build, corroborated by the
+device tests, not a claim about every Xiaomi release. Partial decompiler errors
+in unrelated methods were retained locally; the inspected parser/startup paths
+were readable. No vendor source or APK is redistributed.
+
+**Decision:** no working public adapter was found on this firmware. Do not
+hardcode a component switch that still ignores the query, treat an ADB-generated
+tap/keystroke as an app capability, enable disabled system components, call hidden
+interfaces, or change system feature flags. The public MediaStore contract makes
+highlighting conditional on provider feasibility. Keep the standard request,
+truthful explanation, ordinary picker / SAF alternatives and explicit selection
+confirmation. A provider update that connects this parameter to its search UI
+is needed for the requested automatic behavior on the tested paths.
+
+The probe was removed after testing and USB stay-awake restored to 0. No personal
+photo was selected, no result URI was retained and no source was added. The two
+original playlists, ten fixture files and saved cover hash remain unchanged.
+Raw UI dumps, screenshots containing personal media, system APKs and decompiled
+files stay outside the repository. See the
+[sanitized device receipt](../testing/evidence/xiaomi-search-2026-11-09.json).
+This investigation changes documentation only; automatic search remains
+unverified/unsupported on this provider, and formal AC remain unchecked.
