@@ -265,17 +265,18 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverViewExt.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "c769e6c6784182656bbc59af47f9263b4fc619dd02a7db40fa78e0c1e15565b0",
+      "source_sha256": "bce09d5ac167763d59934e04820cbec2ac505757c1dad88b48e407a46a2b6336",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          28
+          37
         ]
       ],
       "source_commits": [
         "bbb4e1e7127469d7c2c5c444de070871b93c5834",
-        "e51ed58e4a54cc6378641e421172a46fd703b666"
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "5e5c94383858ea14d4507bfde91ff8d4dab8fe96"
       ],
       "exception_reason": null
     },
