@@ -25,6 +25,24 @@ class DiscoveryPolicyTest {
         assertFalse(track().copy(artist = "a".repeat(301)).valid())
     }
 
+    @Test fun onlyKnownTrackRoutesAndUnambiguousDecodedIdentityAreAccepted() {
+        val apple = DiscoveryRef("itunes","123")
+        listOf("https://music.apple.com/us/new?i=123", "https://music.apple.com/us/artist/someone/123",
+            "https://music.apple.com/us/album/title/123", "https://music.apple.com/us/song/title/999?i=123",
+            "https://music.apple.com/us/song/123?i=123&%69=999", "https://music.apple.com/us/song/123?%69=999",
+            "https://music.apple.com/us/song/123?%2569=999", "https://music.apple.com/us/song/123?i",
+            "https://music.apple.com/us/song/../123", "https://music.apple.com/us/song/%2e%2e/123",
+            "https://music.apple.com/us/song/a%2fb/123", "https://music.apple.com/us/song/%252e%252e/123")
+            .forEach { assertFalse(it,DiscoveryLinks.valid(apple,it)) }
+        listOf("https://music.apple.com/us/song/title/123", "https://itunes.apple.com/gb/album/title/id99?i=123&uo=4",
+            "https://music.apple.com/us/song/123?%69=%31%32%33", "https://music.apple.com/us/album/title/99?i=123")
+            .forEach { assertTrue(it,DiscoveryLinks.valid(apple,it)) }
+        val jamendo = DiscoveryRef("jamendo","123")
+        listOf("https://www.jamendo.com/track/123/../../discover", "https://jamendo.com/track/123/%2e%2e",
+            "https://jamendo.com/track/123/a/b", "https://jamendo.com/track/123/a%2fb", "https://jamendo.com/track/123/%252e%252e")
+            .forEach { assertFalse(it,DiscoveryLinks.valid(jamendo,it)) }
+        assertTrue(DiscoveryLinks.valid(jamendo,"https://www.jamendo.com/track/123/some-title"))
+    }
     @Test fun releaseRequiresHttpsAndDebugHttpIsLimitedToExactLoopbackHosts() {
         assertEquals("https://example.org", DiscoveryLinks.endpoint(" https://example.org/ ", false))
         listOf("127.0.0.1", "10.0.2.2", "localhost").forEach {

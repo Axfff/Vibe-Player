@@ -67,17 +67,26 @@ object DiscoveryLinks {
             "jamendo" -> setOf("jamendo.com", "www.jamendo.com")
             else -> emptySet()
         }
+        val path = uri.path.orEmpty()
+        val safePath = path.split('/').none { it == "." || it == ".." } &&
+            path.none { it.code < 32 || it == '\\' } &&
+            !Regex("(?i)%(?:2f|5c)").containsMatchIn(uri.rawPath.orEmpty()) &&
+            !Regex("(?i)%(?:2e|2f|5c)").containsMatchIn(path)
         ref.valid() && url.length <= 2048 && url.none { it.code <= 32 || it == '\\' } &&
             uri.scheme == "https" && uri.host in hosts && uri.rawUserInfo == null &&
-            uri.port in listOf(-1, 443) && uri.fragment == null && when (ref.provider) {
-                "jamendo" -> Regex("^/track/${ref.id}(/.*)?$").matches(uri.path)
+            uri.port in listOf(-1, 443) && uri.fragment == null && safePath && when (ref.provider) {
+                "jamendo" -> Regex("^/track/${ref.id}(?:/[^/]+)?/?$").matches(path)
                 else -> {
                     val songIds = uri.rawQuery.orEmpty().split('&').mapNotNull {
                         val pair = it.split('=', limit = 2)
-                        if (pair.size == 2 && pair[0] == "i") URLDecoder.decode(pair[1], "UTF-8") else null
+                        val key = URLDecoder.decode(pair[0], "UTF-8")
+                        require('%' !in key)
+                        if (key == "i") URLDecoder.decode(pair.getOrElse(1) { "" }, "UTF-8") else null
                     }
-                    if (songIds.isNotEmpty()) songIds == listOf(ref.id)
-                    else Regex(".*/(?:id)?${ref.id}/?$").matches(uri.path)
+                    val song = Regex("^/[a-zA-Z]{2}/song/(?:[^/]+/)?(?:id)?([1-9][0-9]{0,19})/?$").matchEntire(path)
+                    val album = Regex("^/[a-zA-Z]{2}/album/(?:[^/]+/)?(?:id)?[1-9][0-9]{0,19}/?$").matches(path)
+                    if (song != null) song.groupValues[1] == ref.id && (songIds.isEmpty() || songIds == listOf(ref.id))
+                    else album && songIds == listOf(ref.id)
                 }
             }
     } catch (_: Exception) { false }
