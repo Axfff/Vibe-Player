@@ -1,0 +1,133 @@
+{
+  "asset": {
+    "asset_id": "img_0040",
+    "kind": "image",
+    "path": "media/images/img_0040.jpg",
+    "title": "Mayon Volcano Eruption at Night",
+    "creator": "Bien02",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Mayon_Volcano_Eruption_at_Night.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Mayon_Volcano_Eruption_at_Night.jpg",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Mayon Volcano Eruption at Night — Bien02. https://commons.wikimedia.org/wiki/File:Mayon_Volcano_Eruption_at_Night.jpg. CC BY 4.0: https://creativecommons.org/licenses/by/4.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here. Original JPEG copyright notice: Bien Bacarra Jr. Original JPEG author: Bien Orellana Bacarra Jr.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "c561293e459f2b92ad851ad6ec195fad1bf28309c3a93b6032d1963d4ccbe53c",
+    "sha256": "168137d99deedeed92a60b0c351aff8df51fbd6a836be15d0c40352939f23887",
+    "original_size_bytes": 7002960,
+    "size_bytes": 250715,
+    "width": 1280,
+    "height": 853,
+    "source_dimensions": [
+      3600,
+      2400
+    ],
+    "commons_page_id": 149951473,
+    "copyright_notice": "Bien Bacarra Jr"
+  },
+  "commons_imageinfo": {
+    "pageid": 149951473,
+    "ns": 6,
+    "title": "File:Mayon Volcano Eruption at Night.jpg",
+    "index": 4,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 7002960,
+        "width": 3600,
+        "height": 2400,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Mayon_Volcano_Eruption_at_Night.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Mayon_Volcano_Eruption_at_Night.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=149951473",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2024-07-03 03:50:29",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Mayon Volcano Eruption at Night",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Self-published work|Philippines photographs taken on 2023-06-18|Mayon 2023 eruptions|Remote views of Mayon",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "My photo of <a href=\"//commons.wikimedia.org/wiki/Category:Mayon\" title=\"Category:Mayon\">Mayon</a> Volcano spewing lava which can be visually seen at night.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "Taken on 18 June 2023, 20:01:23",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Bien02&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Bien02 (page does not exist)\">Bien02</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC BY 4.0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Attribution 4.0",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "true",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "https://creativecommons.org/licenses/by/4.0",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc-by-4.0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "355e308f4dedd1d0f537956351ead486a807d154ca26a71bcdc9aac8bd54c725",
+  "file_page_license_path_confirmed": "licenses/by/4.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license.",
+  "notice_review": {
+    "date": "2026-11-10",
+    "source": "https://commons.wikimedia.org/wiki/File:Mayon_Volcano_Eruption_at_Night.jpg#Metadata",
+    "copyright_notice": "Bien Bacarra Jr",
+    "author_metadata": "Bien Orellana Bacarra Jr"
+  }
+}

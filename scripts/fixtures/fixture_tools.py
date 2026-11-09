@@ -25,7 +25,7 @@ import urllib.request
 from collections import Counter
 from html.parser import HTMLParser
 
-ROOT = Path(__file__).resolve().parents[2] / 'test-data/music-photo-v1'
+ROOT = Path(__file__).resolve().parents[2] / 'test-data/music-photo-v2'
 PLAYLISTS = ('bright', 'calm', 'melancholic', 'energetic')
 ROLES = {'strong_match': 8, 'acceptable_match': 4, 'hard_distractor': 4, 'mismatch': 4}
 LICENSES = {
@@ -88,6 +88,15 @@ def mixed_order(ids, case_number):
         raise ValueError('Duplicate candidates before shuffle')
     random.Random(SEED + case_number).shuffle(ordered)
     return ordered
+
+
+def independent_order(ids, case_number):
+    """Order is a function of neutral identity only, never annotation row order."""
+    ids = list(ids)
+    if len(set(ids)) != len(ids):
+        raise ValueError('Duplicate candidates before ordering')
+    return sorted(ids, key=lambda identity: hashlib.sha256(
+        f'music-photo-v2:{case_number}:{identity}'.encode('ascii')).hexdigest())
 
 
 def check_input(record, assets):
@@ -332,8 +341,10 @@ def validate(root, decode=True, frozen=True, checksums=True):
             if row['representative_track_id'] != playlist['representative_track_id']:
                 raise ValueError('Label representative mismatch')
         base_order = [x['photo_id'] for x in rows]
-        if mixed_order(base_order, case_number) != ids:
-            raise ValueError('Candidate order differs from recorded seeded shuffle')
+        expected = (independent_order(base_order,case_number) if manifest['dataset_id'] == 'music-photo-v2'
+                    else mixed_order(base_order,case_number))
+        if expected != ids:
+            raise ValueError('Candidate order differs from the versioned order rule')
         roles_by_id = {x['photo_id']: x['role'] for x in rows}
         if len({roles_by_id[x] for x in ids[:8]}) == 1:
             raise ValueError('Candidate roles not mixed')
@@ -388,7 +399,7 @@ def validate(root, decode=True, frozen=True, checksums=True):
             'decoded': decode, 'decode_results': details, 'near_duplicate_candidates': near,
             'checksum_files_verified': checksum_count,
             'near_duplicate_note': 'dHash is an aid only; visual review is recorded separately.',
-            'recommendation_status': 'Blocked: no image-content ranking implementation is connected',
+            'recommendation_status': 'Not measured by fixture validation; evaluate external actual rankings separately',
             'app_playlists_status': 'APP_PLAYLISTS_PENDING', 'photo_import_status': 'PHOTO_IMPORT_PENDING'}
 
 

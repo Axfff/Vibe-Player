@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0033",
+    "kind": "image",
+    "path": "media/images/img_0033.jpg",
+    "title": "Nopple sky 1",
+    "creator": "Nopple",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Nopple_sky_1.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Nopple_sky_1.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Nopple sky 1 — Nopple. https://commons.wikimedia.org/wiki/File:Nopple_sky_1.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "b7716abe43c08ba5108d1c5d6050aab818557a02118d1cb00e7b8e74eb493751",
+    "sha256": "b92c54f879c53f152d64e6c1c739427ec928c417604ba10968c2baf8ccf40445",
+    "original_size_bytes": 419763,
+    "size_bytes": 100974,
+    "width": 1280,
+    "height": 960,
+    "source_dimensions": [
+      3264,
+      2448
+    ],
+    "commons_page_id": 23219784
+  },
+  "commons_imageinfo": {
+    "pageid": 23219784,
+    "ns": 6,
+    "title": "File:Nopple sky 1.jpg",
+    "index": 4,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 419763,
+        "width": 3264,
+        "height": 2448,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Nopple_sky_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Nopple_sky_1.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=23219784",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2012-12-16 15:15:57",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Nopple sky 1",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Taken with Canon Digital IXUS 950 IS|CC-Zero|Self-published work|Kite trains",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Invasion",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2012-08-17 15:23:46",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Nopple\" title=\"User:Nopple\">Nopple</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "5641d88c8e40ffeebf23702659c9d5c21b141ba4685f15d99e3c28abc180a554",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

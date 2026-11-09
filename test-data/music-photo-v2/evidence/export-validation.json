@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "first_export": {
+    "status": "PASS",
+    "cases": 4,
+    "audio_copies": 20,
+    "photo_copies": 80,
+    "app_created": false,
+    "export_is_not_an_app_import": true
+  },
+  "repeat_export": {
+    "status": "PASS",
+    "cases": 4,
+    "audio_copies": 20,
+    "photo_copies": 80,
+    "app_created": false,
+    "export_is_not_an_app_import": true
+  },
+  "unchanged_bytes_and_mtimes": true,
+  "inference_case_counts": {
+    "cases": 4,
+    "songs_per_case": 5,
+    "photos_per_case": 20
+  },
+  "answers_in_cases": false,
+  "reconstructed_ids": [
+    "img_0033",
+    "img_0039"
+  ],
+  "reconstructed_hashes_match": true,
+  "existing_asset_download_check": "all 53 existing assets hash-verified without replacement",
+  "export_location": "outside Git; not an Android import",
+  "downloaded_on": "2026-11-07"
+}

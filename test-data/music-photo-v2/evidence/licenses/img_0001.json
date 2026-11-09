@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0001",
+    "kind": "image",
+    "path": "media/images/img_0001.jpg",
+    "title": "Sončnica - Sunflower - Helianthus annuus (1)",
+    "creator": "Jonson22",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_(1).JPG",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_%281%29.JPG",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Sončnica - Sunflower - Helianthus annuus (1) — Jonson22. https://commons.wikimedia.org/wiki/File:Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_(1).JPG. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "5680e53e3951b7cf7629dfc01b443a5498e2d5ae313f301539170c4f7f35327b",
+    "sha256": "6828e2b269a35e5ccd45302d17dfc80166c4b1b2940e7894d8cfc1dc24787c1b",
+    "original_size_bytes": 2457194,
+    "size_bytes": 182480,
+    "width": 1280,
+    "height": 960,
+    "source_dimensions": [
+      3072,
+      2304
+    ],
+    "commons_page_id": 23103734
+  },
+  "commons_imageinfo": {
+    "pageid": 23103734,
+    "ns": 6,
+    "title": "File:Sončnica - Sunflower - Helianthus annuus (1).JPG",
+    "index": 6,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 2457194,
+        "width": 3072,
+        "height": 2304,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_%281%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Son%C4%8Dnica_-_Sunflower_-_Helianthus_annuus_(1).JPG",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=23103734",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2012-12-09 17:42:22",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Sončnica - Sunflower - Helianthus annuus (1)",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Helianthus annuus|Sunflowers|Taken with Canon Digital IXUS 70|CC-Zero|Self-published work",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Sunflower. Helianthus annuus.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2012-08-14 16:18:22",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Jonson22&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Jonson22 (page does not exist)\">Jonson22</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "c3c3fb91f6490c7fb44c87105a92a18a62cb94bcce233d1bec2f712fdef81893",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0031",
+    "kind": "image",
+    "path": "media/images/img_0031.jpg",
+    "title": "Wave splash in Brofjorden at Lahälla 3",
+    "creator": "W.carter",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Wave_splash_in_Brofjorden_at_Lah%C3%A4lla_3.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Wave_splash_in_Brofjorden_at_Lah%C3%A4lla_3.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Wave splash in Brofjorden at Lahälla 3 — W.carter. https://commons.wikimedia.org/wiki/File:Wave_splash_in_Brofjorden_at_Lah%C3%A4lla_3.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "eb8fde3af81dc44249a04a4e15c79ad7a32742a707227d9cc2364047a5e1501f",
+    "sha256": "6d4403fd246417885a94372da3f87ef57353ccecd33fd4abe21439012b0d71fe",
+    "original_size_bytes": 9884473,
+    "size_bytes": 757326,
+    "width": 1280,
+    "height": 1280,
+    "source_dimensions": [
+      3283,
+      3283
+    ],
+    "commons_page_id": 87511602
+  },
+  "commons_imageinfo": {
+    "pageid": 87511602,
+    "ns": 6,
+    "title": "File:Wave splash in Brofjorden at Lahälla 3.jpg",
+    "index": 6,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 9884473,
+        "width": 3283,
+        "height": 3283,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Wave_splash_in_Brofjorden_at_Lah%C3%A4lla_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Wave_splash_in_Brofjorden_at_Lah%C3%A4lla_3.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=87511602",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2020-02-27 19:28:13",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Wave splash in Brofjorden at Lahälla 3",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|Splashing water waves|Images by W.carter|Files with coordinates missing SDC location of creation|Water waves of Sweden|Wind in Sweden|Lahälla tugboat station",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "58.357746",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "11.447728",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Breaking waves splashing in Brofjorden at Lahälla, Lysekil Municipality, Sweden.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2019-09-15 15:08:43",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:W.carter\" title=\"User:W.carter\">W.carter</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "46f1a1712fa807455fbfb8c9836822ced46f22134c45ce05a3414c66b0e64152",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

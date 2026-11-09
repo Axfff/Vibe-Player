@@ -28,11 +28,13 @@ def evaluate(root, predictions):
         if case['audio_id']!=inputs['audio']['asset_id']:
             raise ValueError('This evaluation entry expects the frozen representative track')
         ids=case['photo_ids']
-        if len(ids)!=5 or len(set(ids))!=5 or not set(ids)<= {p['asset_id'] for p in inputs['photos']}:
-            raise ValueError('Top-5 must contain five distinct candidate IDs')
+        if not isinstance(ids,list) or len(ids)>5 or any(not isinstance(x,str) for x in ids) or len(set(ids))!=len(ids) or not set(ids)<= {p['asset_id'] for p in inputs['photos']}:
+            raise ValueError('Top-5 must contain zero to five distinct in-scope candidate IDs')
         rows={x['photo_id']:x for x in labels if x['playlist_id']==group}
         precision=sum(int(rows[x]['expected_relevance'])>=2 for x in ids)/5
         result.append({'case_id':case['case_id'],'audio_id':case['audio_id'],'top_5':ids,
+                       'returned':len(ids),
+                       'precision_at_returned':precision*5/len(ids) if ids else None,
                        'provisional_precision_at_5':precision,
                        'hard_distractors_at_5':sum(rows[x]['role']=='hard_distractor' for x in ids),
                        'uniform_random_expected_precision_at_5':sum(int(x['expected_relevance'])>=2 for x in rows.values())/20,

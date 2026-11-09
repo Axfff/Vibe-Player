@@ -31,7 +31,7 @@ class FixtureToolsTest(unittest.TestCase):
         for path in ('../secret', '/tmp/data', 'C:/secret', 'media/../secret', 'https://x', 'a\\b', 'a//b', 'a/./b'):
             with self.subTest(path=path), self.assertRaises(ValueError):
                 f.safe_path(self.root, path)
-        self.assertEqual(f.safe_path(self.root, 'media/images/img_0001.jpg'), self.root/'media/images/img_0001.jpg')
+        self.assertEqual(f.safe_path(self.root, 'media/images/img_0001.jpg'), (self.root/'media/images/img_0001.jpg').resolve())
 
     def test_existing_unequal_export_file_is_preserved(self):
         source = self.root/'source'; dest = self.root/'dest'
@@ -62,6 +62,15 @@ class FixtureToolsTest(unittest.TestCase):
         self.assertNotEqual(first, ids)
         self.assertNotEqual(first, f.mixed_order(ids, 2))
         with self.assertRaises(ValueError): f.mixed_order(['same', 'same'], 1)
+
+    def test_v2_order_is_independent_of_annotation_row_permutations(self):
+        ids = [f'img_{i:04}' for i in range(20)]
+        first = f.independent_order(ids,1)
+        self.assertEqual(first,f.independent_order(reversed(ids),1))
+        self.assertEqual(first,f.independent_order(f.mixed_order(ids,4),1))
+        self.assertEqual(set(first),set(ids))
+        self.assertNotEqual(first,f.independent_order(ids,2))
+        with self.assertRaises(ValueError): f.independent_order(['same','same'],1)
 
     def input(self):
         assets = {'audio_0001': {'kind':'audio','path':'media/audio/audio_0001.mp3'}}
@@ -251,10 +260,24 @@ class FixtureToolsTest(unittest.TestCase):
             result=e.evaluate(f.ROOT,predictions)
             self.assertEqual(len(result['cases']),4)
             first=result['cases'][0]
-            self.assertEqual(first['provisional_precision_at_5'],3/5)
-            self.assertEqual(first['hard_distractors_at_5'],1)
+            with (f.ROOT/'evaluation/expected-relevance.csv').open(encoding='utf8') as stream:
+                labels={r['photo_id']:r for r in f.csv.DictReader(stream) if r['playlist_id']=='bright'}
+            selected=predictions['cases'][0]['photo_ids']
+            relevant=sum(int(labels[x]['expected_relevance'])>=2 for x in selected)
+            self.assertEqual(first['provisional_precision_at_5'],relevant/5)
+            self.assertEqual(first['hard_distractors_at_5'],sum(labels[x]['role']=='hard_distractor' for x in selected))
             self.assertEqual(first['uniform_random_expected_precision_at_5'],12/20)
             predictions['cases'][0]['photo_ids'][1]=predictions['cases'][0]['photo_ids'][0]
+            with self.assertRaises(ValueError):e.evaluate(f.ROOT,predictions)
+            predictions['cases'][0]['photo_ids']=selected[:1]
+            short=e.evaluate(f.ROOT,predictions)['cases'][0]
+            self.assertEqual(short['returned'],1)
+            self.assertEqual(short['provisional_precision_at_5'],int(int(labels[selected[0]]['expected_relevance'])>=2)/5)
+            predictions['cases'][0]['photo_ids']=[]
+            empty=e.evaluate(f.ROOT,predictions)['cases'][0]
+            self.assertEqual(empty['provisional_precision_at_5'],0)
+            self.assertIsNone(empty['precision_at_returned'])
+            predictions['cases'][0]['photo_ids']=['outside']
             with self.assertRaises(ValueError):e.evaluate(f.ROOT,predictions)
             predictions['source_sha']='not-a-commit'
             with self.assertRaises(ValueError):e.evaluate(f.ROOT,predictions)
