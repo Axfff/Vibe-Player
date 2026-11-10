@@ -121,8 +121,9 @@ The full-build debug APK, SHA-256
 `9ecc3ac2107c1d9c87b281643aa43fa6de0948d8e137d14073107ad8fc8fbdea`,
 was installed in place on the connected phone. The exact pinned v3 model is
 hash-verified in app-private storage via debug provisioning; earlier models remain.
-This does **not** establish in-app import or phone UI behavior. Those checks await
-the user's unlock. The two pre-existing playlists, all ten seed files and saved
+This did **not** establish in-app import or phone UI behavior. Those checks awaited
+the user's unlock at that point; the later phone section below closes that gap.
+The two pre-existing playlists, all ten seed files and saved
 cover hash remain unchanged. No personal photos are needed for the remaining step.
 
 ## Cold-start cover rendering follow-up
@@ -202,6 +203,71 @@ attribution is retained in the [fixture credits](https://github.com/Axfff/Vibe-P
 shown images are resized/cropped by the app. No private gallery content is
 published. These x86_64 checks do not establish legacy ARM-device performance,
 cloud/offline provider behavior, all lifecycle races, search highlighting or
-the still-pending v3 UI acceptance on the locked physical Xiaomi phone.
+the subsequent physical Xiaomi UI flow described below.
+
+## Unlocked Redmi: v3 import and recommendation follow-up
+
+After the user unlocked the phone on November 10, the same installed APK
+`c301335aba5f41f7cbd89bc5ad69e7e53b3902ea582f71c451ffa244a924c3be`
+was verified through its normal UI on the Redmi API 37 device. No product code,
+model, dependency, permission or phone firmware was changed in this follow-up.
+
+- The real Xiaomi file-selection handler for `ACTION_OPEN_DOCUMENT` selected
+  `tinyclip-atmospheres-v3.onnx` from the known QA folder. After explicit selection
+  confirmation, the app displayed **照片内容已导入并通过校验** and all three models
+  ready. The imported photo SHA-256 matches the pinned v3 model; music models
+  imported in the earlier phone session were retained and revalidated.
+- Carefree's first 30 seconds produced 29 valid frames / 29.824 effective seconds.
+  The existing six-photo authorized directory yielded three candidates, zero
+  uncertain atmosphere results and zero extraction failures. The first candidate
+  is the sunflower, with lively/peaceful atmosphere reasons and a batch score
+  of .40 explicitly described as a ranking score, not accuracy.
+- Opening the crop and cancelling retained the old cover hash
+  `79670aba3f9e37cae5fdc0d76f5b63e240611d3a0be3cd9afc80122b71227335`.
+  Reopening and explicitly saving wrote a `RECOMMENDED` sunflower cover for
+  QA1108, SHA-256 `73a1cc6da6f9b00782aee746ca7a84dfdd55e2db02453542aa2e4da49bd21b76`
+  (93,246 bytes).
+- After force-stop and relaunch, the cover fills its playlist image frame,
+  all three models validate and all six photos remain readable. The scope JSON
+  and new cover hashes are unchanged. This is process-restart evidence, not a
+  physical phone reboot.
+- The two original playlists and all ten original seed files remain unchanged.
+  No personal photo was selected or uploaded. Temporary USB stay-awake was
+  restored to its original value, 0; the app is left at QA1108 for inspection.
+
+[Import](evidence/photo-atmosphere-2026-11-10/phone-v3-photo-model-imported.png) ·
+[actual recommendations and explanation](evidence/photo-atmosphere-2026-11-10/phone-v3-recommendations.png) ·
+[cover after restart](evidence/photo-atmosphere-2026-11-10/phone-v3-cover-after-restart.png) ·
+[source after restart](evidence/photo-atmosphere-2026-11-10/phone-v3-source-after-restart.png) ·
+[models after restart](evidence/photo-atmosphere-2026-11-10/phone-v3-models-after-restart.png) ·
+[sanitized receipt](evidence/photo-atmosphere-2026-11-10/phone-v3-runtime.json).
+Published screenshots contain only the known QA fixtures; sunflower/leaf/music
+credits are retained in the linked fixture attribution above. Raw file-picker
+screenshots/dumps containing private media remain local. The initial filename
+search was altered by the active IME; no search result was selected, and browsing
+the known QA folder completed import. This small real flow is not a new four-case
+benchmark, human quality acceptance, or a re-test of Xiaomi automatic search.
+
+### Newly observed native-library compatibility warning
+
+The debug app shows an Android 16 KB alignment warning on cold launch. The phone's
+actual `getconf PAGE_SIZE` is **4096**, and real inference above succeeds after
+acknowledging the warning; this is not proof of a working 16 KB runtime. The
+warning was not disabled. Direct ELF inspection confirms the current official
+ONNX Runtime 1.20.0 JNI wrapper has 4096-byte LOAD alignment on arm64-v8a and
+x86_64. Its main runtime libraries have 16384-byte alignment; the phone's separate
+"unknown error" message for the main library is not treated as proof otherwise.
+
+Official Maven AARs 1.21.1 and 1.22.0 have aligned 64-bit libraries, but both
+declare **minSdk 24**, whereas 1.20.0 and the product retain **21**. Downloads were
+verified against their published SHA-256 checksums; AAR hashes, manifest minimums
+and ELF LOAD alignments are included in the receipt. These two versions are not
+a direct upgrade under the existing minimum-version constraint. No forced
+manifest override, runtime binary patch, build-stack upgrade or warning suppression
+was applied. A reproducible API-21-compatible native backport or a separately
+agreed support-policy change needs its own validation, including a real 16 KB
+runtime. This compatibility issue remains open despite the passing 4 KB phone flow.
+See [Android's alignment/testing guidance](https://developer.android.com/guide/practices/page-sizes)
+and the [upstream JNI linker fix](https://github.com/microsoft/onnxruntime/pull/24947).
 
 Student ID (CroissantXinny): 50027204
