@@ -1,41 +1,42 @@
-# Music-Player-GO - Frequently Asked Questions (FAQ)
+# Vibe-Player — Frequently Asked Questions
 
-For a list of **supported media formats** and related issues, please refer to [supported formats page](https://github.com/enricocid/Music-Player-GO/blob/master/FORMATS.md).
+Vibe-Player is the course fork of [Music Player GO](https://github.com/enricocid/Music-Player-GO). This FAQ describes this repository; upstream credits remain in the [README](README.md#upstream-credits-and-license).
 
-This FAQ will be continually updated to accommodate new information with respect to new updates and changes on the app, and will be used to help users find answers to their questions.
+## Where can I download the course project?
 
+Download the evaluation APK and checksum from [Release 1 (`release1`)](https://github.com/Axfff/Vibe-Player/releases/tag/release1), or build from source using the [README instructions](README.md#build-and-test). The F-Droid and Google Play listings for Music Player GO distribute upstream builds.
 
-### What is Music Player GO?
+The evaluation APK uses the debug package `com.iven.musicplayergo.debug`. The installed app still uses the upstream name and icon; new branding is tracked in [#22](https://github.com/Axfff/Vibe-Player/issues/22).
 
-A lightweight, original, privacy-friendly, **ad-free** player to play music from your local library, in a colorful and simple UI.
+## How do I create and use a playlist?
 
+Open **Playlists**, choose **New playlist**, enter a name and save. Open that playlist and choose **Add songs** to select tracks from your local library. Tracks play in the order you add them; duplicate tracks are rejected. Press **Play** to start the saved collection. Changes apply the next time you press **Play**.
 
-### Where can I download Music Player GO?
+Playlists are saved on this device and survive app restarts. Removing a track or deleting a playlist keeps the audio files and other playlists. Manual reordering, import/export and cloud sync are outside the current scope.
 
-- [F-Droid](https://f-droid.org/packages/com.iven.musicplayergo/).
-- [Google Play Store](https://play.google.com/store/apps/details?id=com.iven.musicplayergo).
+## Why are copied songs missing?
 
-### How can I contribute to translations?
+Allow music/audio access in Android settings, then use **Scan local music**. Also check hidden artists, albums and folders. **Missing songs?** in the app explains these steps.
 
-Join us on [Hosted Weblate](https://hosted.weblate.org/engage/music-player-go/).
+Each scan checks up to 1,000 recent audio files already accessible through Android's media library. It cannot discover every file that Android has never indexed. If songs are still missing, use the system Files app to copy them into **Music**, wait for Android to index them, then scan again. This discovery limitation is tracked in [#4](https://github.com/Axfff/Vibe-Player/issues/4).
 
-PS: pull requests are welcome too :)
+**Refresh** inside a playlist updates its library view. Saved entries are kept when files or permissions are unavailable; restore access and refresh before trying them again.
 
+## Which audio formats are supported? Can I stream music?
 
-### Can I customise the app's theme to my taste?
+Playback uses Android's native MediaPlayer support; see the inherited [supported formats reference](FORMATS.md). This player uses your local music library and does not provide online streaming.
 
-1. Yes, 3 themes are available:
+## Can I change the theme or use an equalizer?
 
- - Light
- - Dark/Pure Black
- - Automatic: still follows system settings in Android Q and battery levels in pre-Q as suggested in the [guidelines](https://developer.android.com/guide/topics/ui/look-and-feel/darktheme).
+The inherited settings offer light, dark/pure black and automatic themes, plus accent colors. The equalizer is available from **Now Playing**. The app can use a system equalizer when available or the built-in equalizer selected in settings; device support varies.
 
-2. 19 accents.
+## Does the app need internet access?
 
-Note: MPGO will strictly follow [material design color guidelines](https://material.io/design/color/the-color-system.html). No requests to modify the color system will be taken into account.
+The current Android app's [manifest](project/app/src/main/AndroidManifest.xml) does not declare the `INTERNET` permission. Music access lets the player read your local library; saved playlists are stored locally in app preferences. The separately run [Discovery service and browser demo](services/discovery/README.md) use the network according to their configured providers and authorization. The retained [upstream privacy policy](PRIVACY_POLICY.md) describes the original Music Player GO project and developer.
 
-As per [guidelines](https://material.io/design/color/dark-theme.html) **desaturated primary colors** are to be used in night themes as a more **accessible**/legible alternative to saturared colors used in light theme. In fact, the latter visually vibrate against dark surfaces, which can induce eye strain.
+## How do I report a bug or contribute?
 
+Use [Vibe-Player issues](https://github.com/Axfff/Vibe-Player/issues), including your revision/APK, Android version, reproduction steps and relevant logs or screenshots. Check existing issues first.
 
 ### Does Music Player GO have or use an equalizer?
 
@@ -119,3 +120,4 @@ Apps > All apps > Music Player GO > Battery > Unrestricted
 Discovery keeps its saved source identities, title/artist snapshots, user music intent and hidden identities locally. It also retains the selected service address. It does not persist the photo, model key or audio URL. Searches and consented photo analysis have the network boundaries described in the [privacy information](PRIVACY_POLICY.md); this feature adds no analytics SDK or user account.
 
 Pose other questions by creating issues, and we will answer them.
+For code, documentation or translation changes, open a PR against `main` and follow the [course workflow](docs/README.md). Translation resources for this fork live under `project/app/src/main/res/values-*/`; submit changes here rather than relying on the upstream Weblate project to update this fork.
