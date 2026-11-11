@@ -13,7 +13,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "ecc9ad1907630c1b26f3ba16d1a3b8f8456084bea29842e952dcc7347aaa1cc4",
+      "source_sha256": "6944ca228fbddbd478eb16e188131c8cbe69efae3c25eef611ec47b22eb8ae47",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -95,6 +95,10 @@
         [
           288,
           291
+        ],
+        [
+          317,
+          321
         ]
       ],
       "source_commits": [
