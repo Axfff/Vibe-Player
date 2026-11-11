@@ -14,7 +14,7 @@ This is the team's course repository, based on [Music Player GO](https://github.
 
 | Name | Student ID | GitHub |
 | --- | --- | --- |
-| Peihan ZENG | | [peihanZENG](https://github.com/peihanZENG) |
+| Peihan ZENG |50027876 | [peihanZENG](https://github.com/peihanZENG) |
 | Shiyuan LIN | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
 | Jingyao ZHAO | 50025074 | [Axfff](https://github.com/Axfff) |
 
