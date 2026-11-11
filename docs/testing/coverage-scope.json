@@ -1513,6 +1513,29 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/preferences/FiltersAdapter.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "2a714165a53a6fc8da46fc85b5afd26d5007fe3dc5145aac27165f62a7bec2a7",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          40,
+          48
+        ],
+        [
+          52,
+          56
+        ],
+        [
+          61,
+          61
+        ]
+      ],
+      "source_commits": [],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/ui/MainActivity.kt",
       "module": "android",
       "change": "modified",
