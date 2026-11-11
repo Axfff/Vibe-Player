@@ -100,7 +100,9 @@ For full verification follow all Android, backend and web steps in the workflow;
 
 ## Repository protection
 
-The owner/admin enables the peer-review and CI gates using the [forwardable administrator instructions](github-admin-handoff.md). That document records observed permissions, required contexts and a nondestructive verification procedure. Written policy alone does not configure GitHub protection.
+The owner/admin should activate the existing `main branch protection` ruleset for main: require PRs, at least one non-author approval, renewed approval after reviewable changes, conversation resolution, and successful `build` plus `Team line coverage` checks. Keep force pushes/deletion disallowed and routine bypass actors absent. Require a publisher check only when its exact name exists for every allowed PR source; fork publication uses a separate workflow. See [GitHub's protection settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+
+On 2026-11-11, main was unprotected, the existing ruleset was disabled, and this account lacked admin permission. Written policy does not enable protection. Verify activation by observing that an existing PR with missing approval or failed required checks cannot merge; do not merge or force-push to test it.
 
 ## Course alignment
 

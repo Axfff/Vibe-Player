@@ -4,7 +4,7 @@
 
 - [From source to a running app](development/workflow.md#from-source-to-a-running-app)
 - [Story form](../.github/ISSUE_TEMPLATE/user_story.yml) · [PR template](../.github/PULL_REQUEST_TEMPLATE.md)
-- [Team members](../README.md#team-members) · [Administrator handoff](development/github-admin-handoff.md)
+- [Team members](../README.md#team-members)
 - [Coverage scope and calculation](testing/coverage-scope.md) · [Coverage evidence](testing/coverage-evidence.md)
 
 ## Where each fact belongs
