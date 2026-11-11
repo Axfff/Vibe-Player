@@ -217,4 +217,17 @@
     <string name="brown">Brown</string>
     <string name="grey">Grey</string>
     <string name="blue_grey">Blue grey</string>
+    <string name="cover_crop_title">Position cover</string>
+    <string name="cover_crop_preview">Cover crop preview</string>
+    <string name="cover_crop_loading">Loading image…</string>
+    <string name="cover_crop_help">Drag to position. Pinch to zoom.</string>
+    <string name="cover_save">Save cover</string>
+    <string name="cover_saving">Saving cover…</string>
+    <string name="cover_error_decode">This image could not be opened.</string>
+    <string name="cover_error_save">Could not save cover (%1$s).</string>
+    <string name="cover_set">Set custom cover</string>
+    <string name="cover_change">Change custom cover</string>
+    <string name="cover_remove">Restore default cover</string>
+    <string name="cover_removed">Default cover restored.</string>
+    <string name="photo_sources">封面照片来源</string>
 </resources>

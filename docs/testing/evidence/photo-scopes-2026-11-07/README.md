@@ -1,0 +1,7 @@
+# Licensed photo-scope evidence
+
+See [the test report](../../music-photo-recommendation-results.md) for exact source revisions, APK hash, device, steps, failures and pending checks. Screenshots are from a dedicated test emulator using only the existing licensed fixture package, not a personal gallery. No weights, private original photos, content URIs or credentials are included.
+
+The raw inference JSON comes from production `MoodAnalyzer`, `OnnxPhotoFeatureExtractor` and `PhotoRanker`. The separate evaluation JSON was calculated after inference against frozen provisional labels. It is not a general accuracy claim. Run `python evaluate.py <frozen-fixture-root>` to reproduce it. Relevance means the frozen `expected_relevance >= 2` (strong or weak match); missing Top-5 slots count as zero. This evaluator is never imported into the Android app or model test.
+
+Fixture attribution, license evidence and transformations are retained in [PR #49's frozen package](https://github.com/Axfff/Vibe-Player/tree/ef6dae8d5ff2277cc8489776a8541ea88f7cac73/test-data/music-photo-v1), especially `LICENSES.md` and per-image evidence. The visible sunflower (img_0001) is Jonson22, “Sončnica - Sunflower - Helianthus annuus (1)”, CC0 1.0; the meadow-saffron image (img_0002) is Gerda Arendt, CC0 1.0. The app resizes/crops the fixture thumbnail for display. Carefree is Kevin MacLeod, CC BY 4.0; screenshots show its title, without embedding audio.

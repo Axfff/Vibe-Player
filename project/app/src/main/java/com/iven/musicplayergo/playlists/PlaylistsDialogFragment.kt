@@ -17,6 +17,11 @@ import com.iven.musicplayergo.MusicViewModel
 import com.iven.musicplayergo.PlaylistLibraryState
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.databinding.PlaylistSheetBinding
+import com.iven.musicplayergo.covers.CoverCropDialogFragment
+import com.iven.musicplayergo.covers.CoverRepositories
+import com.iven.musicplayergo.covers.CoverResult
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.loadCover
 import com.iven.musicplayergo.ui.MediaControlInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -89,6 +94,24 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             reloadPlaylists()
             musicViewModel.refreshPlaylistLibrary()
         }
+        views.playlistPhotoSources.setOnClickListener {
+            val selected = currentPlaylist() ?: return@setOnClickListener
+            com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(CoverTarget.Playlist(selected.id), selected.name)
+                .show(childFragmentManager, "playlist-photo-sources")
+        }
+        views.playlistSetCover.setOnClickListener {
+            val id = selectedPlaylistId ?: return@setOnClickListener
+            if (childFragmentManager.findFragmentByTag(COVER_DIALOG) == null) {
+                CoverCropDialogFragment.forPlaylist(id).show(childFragmentManager, COVER_DIALOG)
+            }
+        }
+        views.playlistRemoveCover.setOnClickListener { removePlaylistCover() }
+        childFragmentManager.setFragmentResultListener(
+            CoverCropDialogFragment.RESULT_KEY, viewLifecycleOwner
+        ) { _, _ ->
+            playlistAdapter.notifyDataSetChanged()
+            render()
+        }
 
         val initialBottomPadding = views.root.paddingBottom
         ViewCompat.setOnApplyWindowInsetsListener(views.root) { root, insets ->
@@ -140,6 +163,19 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
 
     internal fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
+        val context = requireContext().applicationContext
+        lifecycleScope.launch {
+            val target = CoverTarget.Playlist(id)
+            val failed = withContext(Dispatchers.IO) {
+                com.iven.musicplayergo.photos.cleanupDeletedPlaylistPhotos(
+                    { com.iven.musicplayergo.photos.PhotoRepositories.get(context).deleteTarget(target) },
+                    {
+                        val result = CoverRepositories.get(context).removeCover(target)
+                        check(result is CoverResult.Success || result is CoverResult.Failure && result.error == com.iven.musicplayergo.covers.CoverError.COVER_NOT_FOUND)
+                    })
+            }
+            if (isAdded && failed.isNotEmpty()) showFeedback("歌单已删除，但${failed.joinToString("、")}清理失败，旧记录可能保留。")
+        }
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))
     }
@@ -238,6 +274,16 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
         views.playlistRename.isEnabled = storageReady
         views.playlistDelete.isVisible = detail
         views.playlistDelete.isEnabled = storageReady
+        views.playlistCoverActions.isVisible = detail
+        if (selected != null) {
+            val target = CoverTarget.Playlist(selected.id)
+            val hasCover = CoverRepositories.get(requireContext()).hasCover(target)
+            views.playlistCover.loadCover(target)
+            views.playlistSetCover.setText(if (hasCover) R.string.cover_change else R.string.cover_set)
+            views.playlistSetCover.isEnabled = storageReady
+            views.playlistRemoveCover.isVisible = hasCover
+            views.playlistRemoveCover.isEnabled = storageReady
+        }
         views.playlistRefresh.isEnabled = !loadingPlaylists && !mutating && !libraryState.isLoading
         views.playlistProgress.isVisible = loadingPlaylists || mutating || libraryState.isLoading
         tracksAdapter.actionsEnabled = storageReady
@@ -275,10 +321,32 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
         binding?.root?.let { Snackbar.make(it, message, Snackbar.LENGTH_LONG).show() }
     }
 
+    private fun removePlaylistCover() {
+        val id = selectedPlaylistId ?: return
+        if (mutating) return
+        mutating = true
+        render()
+        viewLifecycleOwner.lifecycleScope.launch {
+            val result = withContext(Dispatchers.IO) {
+                CoverRepositories.get(requireContext()).removeCover(CoverTarget.Playlist(id))
+            }
+            mutating = false
+            when (result) {
+                is CoverResult.Success -> {
+                    playlistAdapter.notifyDataSetChanged()
+                    showFeedback(getString(R.string.cover_removed))
+                }
+                is CoverResult.Failure -> showFeedback(getString(R.string.cover_error_save, result.error.name))
+            }
+            render()
+        }
+    }
+
     companion object {
         private const val SELECTED_PLAYLIST = "selected_playlist"
         private const val NAME_DIALOG = "playlist_name"
         private const val DELETE_DIALOG = "playlist_delete"
         private const val ADD_DIALOG = "playlist_add"
+        private const val COVER_DIALOG = "playlist_cover"
     }
 }
