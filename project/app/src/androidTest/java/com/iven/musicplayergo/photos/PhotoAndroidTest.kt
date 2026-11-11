@@ -18,10 +18,14 @@ import java.util.UUID
 @RunWith(AndroidJUnit4::class)
 class PhotoAndroidTest {
     private val context = ApplicationProvider.getApplicationContext<android.content.Context>()
-    @Test fun mergedApplicationHasNoUploadOrBroadPhotoPermission() {
+    @Test fun mergedApplicationKeepsPhotoAccessScopedWhileDiscoveryCanReachItsCatalog() {
         val permissions = context.packageManager.getPackageInfo(context.packageName,
             android.content.pm.PackageManager.GET_PERMISSIONS).requestedPermissions.orEmpty().toSet()
-        for (permission in listOf("android.permission.INTERNET", "android.permission.READ_MEDIA_IMAGES",
+        // INTERNET is required by Discovery's real catalog and explicitly consented cloud path.
+        // A package permission cannot establish whether local photo inference uploads anything;
+        // DiscoveryFlowTest checks the selected local path never calls the photo endpoint.
+        assertTrue("Discovery catalog requires network access", "android.permission.INTERNET" in permissions)
+        for (permission in listOf("android.permission.READ_MEDIA_IMAGES",
             "android.permission.MANAGE_EXTERNAL_STORAGE", "android.permission.ACCESS_MEDIA_LOCATION")) {
             assertFalse("Unexpected permission: $permission", permission in permissions)
         }
