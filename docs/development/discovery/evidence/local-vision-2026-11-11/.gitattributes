@@ -1,0 +1,4 @@
+.gitattributes -text
+*.json -text
+*.xml -text
+*.log -text

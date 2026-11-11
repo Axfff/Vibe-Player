@@ -69,7 +69,7 @@ def create_app(settings=None, http=None, vision=None, catalogs=None):
     )
     app.state.service = service
     app.state.albums = albums
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost"])
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "10.0.2.2"])
 
     @app.middleware("http")
     async def local_boundary(request, call_next):

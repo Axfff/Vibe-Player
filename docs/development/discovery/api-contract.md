@@ -1,5 +1,9 @@
 # Vibe Discovery API v0.1
 
+2026-11-03 更新：原生 Android 的实现与网络/保存合同见 [Sprint 3 实现](android-sprint3.md)。以下旧版「所有官方页先 HEAD」描述由本节覆盖：iTunes 使用 Search/Lookup 原始 trackViewUrl 的 HTTPS/准确域名/曲目 ID 校验，返回 `linkVerification=catalog_identity` 与地区/账户 `linkNotice`；Jamendo 仍校验页重定向，标记 `page_resolved`。目录身份有效不等于当前地域可播放。不会把服务器跳到 storefront 首页改造成新曲目地址。
+
+排序已升级为实际目录标签匹配数、标题/艺人查询词匹配数、交替来源原始检索位置的确定性优先级。全来源同一规范化艺人最多两首，缺标签降级为零分；理由明确非音频分析。查询输入合同兼容，已有相册/试听适配器保留。
+
 默认地址：`http://127.0.0.1:8765`。静态 UI：`/demo/`。机器可读 schema：`/openapi.json`。本批是单用户回环开发服务。
 
 ## 本地调用边界
