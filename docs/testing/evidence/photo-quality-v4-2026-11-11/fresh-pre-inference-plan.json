@@ -1,0 +1,23 @@
+{
+  "status": "AI provisional expectations recorded before inference; exploratory, not a new accuracy claim",
+  "Carefree": [
+    "sunny sunflowers and tulips should generally suit this cheerful excerpt",
+    "butterfly species alone does not imply a cheerful picture"
+  ],
+  "Thinking of You": [
+    "still lake, soft waterfall and quiet landscapes are plausible",
+    "compare with Heartbreaking: peaceful and reflective are allowed to overlap"
+  ],
+  "Heartbreaking": [
+    "foggy street, rainy street, muted or monochrome scenes are plausible",
+    "inspect whether a bright lake or fireworks displace these"
+  ],
+  "Volatile Reaction": [
+    "surfers, powerful water and fireworks are plausible",
+    "inspect whether mild flowers displace strong action scenes"
+  ],
+  "diagnostics": [
+    "do not assert butterfly for the two sunflower pictures",
+    "do not change model, thresholds, pool or labels after seeing rankings"
+  ]
+}

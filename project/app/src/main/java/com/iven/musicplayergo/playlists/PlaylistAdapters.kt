@@ -11,6 +11,8 @@ import com.iven.musicplayergo.R
 import com.iven.musicplayergo.databinding.PlaylistItemBinding
 import com.iven.musicplayergo.databinding.PlaylistTrackItemBinding
 import com.iven.musicplayergo.models.Music
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.loadCover
 
 internal class PlaylistListAdapter(
     private val onOpen: (Playlist) -> Unit
@@ -33,6 +35,7 @@ internal class PlaylistListAdapter(
         }
 
         fun bind(playlist: Playlist) {
+            binding.playlistRowCover.loadCover(CoverTarget.Playlist(playlist.id))
             binding.playlistRowTitle.text = playlist.name
             binding.playlistRowSubtitle.text = binding.root.resources.getQuantityString(
                 R.plurals.playlist_track_count, playlist.tracks.size, playlist.tracks.size

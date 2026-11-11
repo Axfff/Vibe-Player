@@ -1,0 +1,3 @@
+a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c  no_backup/photo-models/discogs-effnet-bsdynamic-1.onnx
+7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff  no_backup/photo-models/mtg_jamendo_moodtheme-discogs-effnet-1.onnx
+c1c513582d56afceff8516c73804e484c81c6a830712ab6d682253f4a3cd042f  no_backup/photo-models/mobilenetv2-7.onnx

@@ -63,8 +63,10 @@ def official_link(value, provider, identifier):
         if not re.match(rf"^/track/{identifier}(?:/|$)", parsed.path):
             raise ValueError
     else:
-        song_id = parse_qs(parsed.query).get("i", [None])[0]
-        if song_id != identifier and not re.search(rf"/(?:id)?{identifier}/?$", parsed.path):
+        song_ids = parse_qs(parsed.query, keep_blank_values=True).get("i")
+        if (song_ids is not None and song_ids != [identifier]) or (
+            song_ids is None and not re.search(rf"/(?:id)?{identifier}/?$", parsed.path)
+        ):
             raise ValueError
     return value
 

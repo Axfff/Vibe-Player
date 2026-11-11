@@ -1,8 +1,42 @@
+
+| Name | Student ID | GitHub |
+| --- | --- | --- |
+| Peihan ZENG | 50027876 | [peihanZENG](https://github.com/peihanZENG) |
+| Shiyuan LIN | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
+| Jingyao ZHAO | 50025074 | [Axfff](https://github.com/Axfff) |
+
 # Vibe-Player — course project
 
 [![Android CI](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml/badge.svg)](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml)
 
+
 Vibe-Player is the team's Android local music player course project, based on [Music Player GO](https://github.com/enricocid/Music-Player-GO). It adds persistent, named playlists to the upstream player. This repository contains the application, course workflow and verification evidence.
+- [Course workflow and documentation](docs/README.md)
+- [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
+- [Release 1 review index](docs/releases/release-1.md)
+- [Sprint 3 Vibe Discovery](docs/sprints/sprint-3.md) · [Android run instructions](docs/development/discovery/android-sprint3.md) · [Device evidence and acceptance limits](docs/development/discovery/sprint3-delivery-2026-11-03.md)
+- [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Short retrospective template](docs/releases/release-1-retrospective.md)
+- [Feature research and decisions](docs/thinking/README.md)
+- [Implementation and verification record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
+
+**DSAA2044 Release 1 is published.** [PR #3](https://github.com/Axfff/Vibe-Player/pull/3), including PR #12 and PR #16, merged into `main` as `81b22ee5`. [Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) points to that commit and provides the CI-built debug/evaluation APK and checksum (app version 4.4.24 / 187).
+
+The release CI passed 30 JVM tests and built the APK. The matching application source at `8f2e4616` passed 29 Android integration tests on Android 17 / API 37 arm64, plus documented UI smoke checks. Historical manual TC results retain their original `785e0863` revision. See the [evidence matrix](docs/releases/release-1-evidence-matrix.md) for environments, commits and results.
+
+Human review and formal AC1–AC9 sign-off remain Pending in [#17](https://github.com/Axfff/Vibe-Player/issues/17) and [Story #2](https://github.com/Axfff/Vibe-Player/issues/2); expanded device verification is tracked in [#18](https://github.com/Axfff/Vibe-Player/issues/18), and contribution confirmation plus a short retrospective in [#19](https://github.com/Axfff/Vibe-Player/issues/19). On 2026-10-27, CroissantXinny clarified that Release 1 and Release 2 require no classroom presentation: that item is N/A, and an internal Demo is optional. Unindexed-file discovery [#4](https://github.com/Axfff/Vibe-Player/issues/4) and optional Add-control styling [#8](https://github.com/Axfff/Vibe-Player/issues/8) remain follow-up work outside this closeout. The badges and downloads below belong to the upstream application.
+
+---
+
+<p align="center">
+<img width="128" src="https://github.com/enricocid/Music-Player-GO/blob/main/fastlane/metadata/android/en-US/images/icon.png">
+</p>
+
+<h1 align="center">Music Player GO</h1>
+
+<p align="center">
+<img width="400" src="art16.gif">
+</p>
+
 
 ## Features
 
