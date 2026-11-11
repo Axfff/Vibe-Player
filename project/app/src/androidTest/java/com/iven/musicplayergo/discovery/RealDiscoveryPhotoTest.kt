@@ -1,7 +1,11 @@
 package com.iven.musicplayergo.discovery
 
+import android.content.ContentValues
 import android.net.Uri
+import android.os.Build
+import android.os.ParcelFileDescriptor
 import android.os.SystemClock
+import android.provider.MediaStore
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
@@ -11,29 +15,41 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.iven.musicplayergo.photos.*
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.ui.MainActivity
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
+import org.junit.After
 import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.util.UUID
 
 /** Opt-in real phone inference/catalog evidence; never replaces models or clears user data. */
 @RunWith(AndroidJUnit4::class)
 class RealDiscoveryPhotoTest {
+    private val createdPhotos = mutableListOf<Uri>()
+
     @Test fun importedModelProducesEditableIntentAndRealCatalogResults() = runBlocking<Unit> {
         assumeTrue(InstrumentationRegistry.getArguments().getString("discoveryReal") == "true")
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext
         val files = instrumentation.context.assets.list("photo-discovery/media/images")!!.sorted()
         assertTrue("Supply public JPEG fixtures separately", files.isNotEmpty())
+        // Use the exported launcher like a foreground user. Some phones reject
+        // ActivityScenario's internal screen launch while another app is on top.
+        val launch = instrumentation.uiAutomation.executeShellCommand(
+            "am start -W -n ${context.packageName}/${MainActivity::class.java.name}")
+        val launchResult = ParcelFileDescriptor.AutoCloseInputStream(launch).bufferedReader().use { it.readText() }
+        assertTrue("Normal app launch failed: $launchResult", launchResult.contains("Status: ok"))
         val evidence = JSONArray()
         var first: PhotoIntent? = null
         var firstUri: Uri? = null
         for (name in files) {
-            val uri = Uri.parse("content://${instrumentation.context.packageName}.photo-fixtures/photo-discovery/media/images/$name")
+            val uri = fixtureUri(name)
+            assertEquals("Fixture must expose its real JPEG type", "image/jpeg", context.contentResolver.getType(uri))
             val started = SystemClock.elapsedRealtime()
             val features = withPhotoExtractor({ OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }) {
                 it.extract(ScopedPhoto("discovery-selected", uri.toString()))
@@ -106,6 +122,46 @@ class RealDiscoveryPhotoTest {
                     .put("external_navigation_verified", false).put("cold_restart_verified", false).toString(2))
             }
         }
+    }
+
+    private fun fixtureUri(name: String): Uri {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val path = "photo-discovery/media/images/$name"
+        if (Build.VERSION.SDK_INT < 29) {
+            // Legacy devices cannot insert media without broad storage permission.
+            return Uri.parse("content://${instrumentation.context.packageName}.photo-fixtures/$path")
+        }
+        val resolver = instrumentation.targetContext.contentResolver
+        val uri = checkNotNull(resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "discovery-test-${UUID.randomUUID()}-$name")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/VibeDiscoveryTest")
+            put(MediaStore.Images.Media.IS_PENDING, 1)
+        }))
+        // Register immediately: @After also removes a row when copying/assertions fail.
+        createdPhotos += uri
+        instrumentation.context.assets.open(path).use { input ->
+            checkNotNull(resolver.openOutputStream(uri)).use { output -> input.copyTo(output) }
+        }
+        check(resolver.update(uri, ContentValues().apply { put(MediaStore.Images.Media.IS_PENDING, 0) }, null, null) == 1)
+        return uri
+    }
+
+    @After fun removeOnlyPhotosCreatedByThisTest() {
+        if (createdPhotos.isEmpty()) return
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val failures = mutableListOf<String>()
+        var deleted = 0
+        for (uri in createdPhotos) {
+            runCatching {
+                check(context.contentResolver.delete(uri, null, null) == 1) { "Fixture row was not removed: $uri" }
+                deleted++
+            }.onFailure { failures += it.toString() }
+        }
+        File(context.filesDir, "discovery-real-cleanup.json").writeText(JSONObject()
+            .put("created", createdPhotos.size).put("deleted", deleted)
+            .put("errors", JSONArray(failures)).toString(2))
+        assertTrue("Fixture cleanup failed: $failures", failures.isEmpty())
     }
 
     private fun await(scenario: ActivityScenario<DiscoveryActivity>, predicate: (DiscoveryActivity) -> Boolean) {
