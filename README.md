@@ -69,7 +69,7 @@ Names/IDs reuse the team's [PR #48 metadata](https://github.com/Axfff/Vibe-Playe
 
 ## Release evidence
 
-Release coordination: **Release 1 — zph** ([peihanZENG](https://github.com/peihanZENG)); **Release 2 — Shiyuan Lin** ([CroissantXinny](https://github.com/CroissantXinny)). These are the release owners confirmed by the team on 2026-11-11; individual contributions and historical review records remain in the linked evidence.
+Release coordination: **Release 1 — Peihan ZENG** ([peihanZENG](https://github.com/peihanZENG)); **Release 2 — Shiyuan Lin** ([CroissantXinny](https://github.com/CroissantXinny)). These are the release owners confirmed by the team on 2026-11-11; individual contributions and historical review records remain in the linked evidence.
 
 **DSAA2044 Release 1 is published.** [PR #3](https://github.com/Axfff/Vibe-Player/pull/3), including PR #12 and PR #16, merged into `main` as `81b22ee5`. [Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) points to that commit and provides the CI-built debug/evaluation APK and checksum (app version 4.4.24 / 187).
 
