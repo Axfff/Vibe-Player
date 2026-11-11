@@ -373,7 +373,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/MusicContainersFragment.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "215e2c5664b01a964d1be1654e8d11611f58250e9fcaff06926692d1ddf1ffbf",
+      "source_sha256": "f2812f99284437bf01108a050775e0ec0c608a1979ff83787d6a94feb894407b",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -387,6 +387,10 @@
         [
           131,
           131
+        ],
+        [
+          210,
+          210
         ]
       ],
       "source_commits": [
