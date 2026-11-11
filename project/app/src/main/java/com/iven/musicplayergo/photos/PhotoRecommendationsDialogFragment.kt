@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.ContentUris
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -24,6 +25,8 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
     private var modelStatus: TextView? = null
     private var modelCheck: Job? = null
     private var rows: LinearLayout? = null
+    private var analysisDetails = ""
+    private var cancelButton: Button? = null
     private var job: Job? = null
     private var representative: Long? = null
     private val viewModel by lazy { ViewModelProvider(requireActivity())[MusicViewModel::class.java] }
@@ -37,7 +40,6 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         status = TextView(requireContext()).also { it.text = "选择当前目标的代表曲；只分析开头最多 30 秒，不分析歌词或整份歌单。"; layout.addView(it) }
         modelStatus = TextView(requireContext()).also { layout.addView(it) }
         fun button(label: String, action: () -> Unit) { layout.addView(Button(requireContext()).apply { text = label; setOnClickListener { action() } }) }
-        button("配置本地分析模型") { job?.cancel(); rows?.removeAllViews(); PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
         button("选择／更换代表曲并分析") { chooseSong() }
         button("使用我选择的氛围") {
             val moods = PhotoRanker.mapping.keys.filter { it != "nature" }
@@ -45,7 +47,19 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
                 rank(listOf(MoodScore(moods[index], 1f)), "用户选择：${PhotoRanker.moodName(moods[index])}")
             }.show()
         }
-        button("取消分析") { job?.cancel(); rows?.removeAllViews(); status?.text = "已取消，封面未改变。" }
+        button("更多") {
+            AlertDialog.Builder(requireContext()).setTitle("推荐选项")
+                .setItems(arrayOf("分析详情", "配置本地分析模型")) { _, index ->
+                    if (index == 0) AlertDialog.Builder(requireContext()).setTitle("分析详情")
+                        .setMessage(analysisDetails.ifEmpty { "只分析代表曲开头最多 30 秒，在当前授权照片中推荐。匹配分用于本批排序，不是准确率。" })
+                        .setPositiveButton("知道了", null).show()
+                    else { job?.cancel(); rows?.removeAllViews(); PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
+                }.setNegativeButton("取消", null).show()
+        }
+        cancelButton = Button(requireContext()).apply {
+            text = "取消分析"; visibility = View.GONE
+            setOnClickListener { job?.cancel(); visibility = View.GONE; rows?.removeAllViews(); analysisDetails = ""; status?.text = "已取消，封面未改变。" }
+        }.also { layout.addView(it) }
         rows = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }.also { layout.addView(it) }
         return AlertDialog.Builder(requireContext()).setTitle("推荐当前照片范围")
             .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton("关闭", null).create()
@@ -56,7 +70,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         modelCheck = lifecycleScope.launch {
             val models = PhotoModelStore(requireContext()).inspect()
             modelStatus?.text = if (models.values.all { it == PhotoModelStatus.READY }) "本地分析模型已就绪。"
-                else "模型尚未就绪：${models.filterValues { it != PhotoModelStatus.READY }.keys.joinToString("、") { it.title }}。请先配置本地分析模型。"
+                else "模型尚未就绪：${models.filterValues { it != PhotoModelStatus.READY }.keys.joinToString("、") { it.title }}。请在“更多”中配置模型。"
         }
     }
     private fun chooseSong() {
@@ -83,6 +97,8 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         }
     }
     private fun analyze(song: Music) {
+        analysisDetails = ""
+        cancelButton?.visibility = View.VISIBLE
         representative = song.id
         job?.cancel(); rows?.removeAllViews()
         status?.text = "正在分析代表曲：${song.title ?: song.displayName}，开头最多 30 秒…"
@@ -108,15 +124,19 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
             } catch (e: CancellationException) { throw e }
               catch (e: Exception) { status?.text = e.message ?: "分析不可用" }
               catch (_: LinkageError) { status?.text = "此设备的模型运行库不可用；请手动选择封面。" }
+            finally { if (job === currentCoroutineContext()[Job]) cancelButton?.visibility = View.GONE }
         }
     }
     private fun rank(signal: List<MoodScore>, description: String) {
+        analysisDetails = ""
+        cancelButton?.visibility = View.VISIBLE
         job?.cancel(); rows?.removeAllViews()
         job = lifecycleScope.launch {
             try { performRank(signal, description, withContext(Dispatchers.IO) { PhotoRepositories.get(requireContext()).request(target) }) }
             catch (e: CancellationException) { throw e }
             catch (e: Exception) { status?.text = e.message ?: "图片分析不可用" }
             catch (_: LinkageError) { status?.text = "此设备的模型运行库不可用；请手动选择封面。" }
+            finally { if (job === currentCoroutineContext()[Job]) cancelButton?.visibility = View.GONE }
         }
     }
     private suspend fun performRank(signal: List<MoodScore>, description: String, request: PhotoRequest) {
@@ -147,7 +167,11 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
             putString("query", PhotoRanker.suggestions(signal).joinToString(" "))
         })
         val uncertain = features.count { it.atmospheres.isEmpty() }
-        status?.text = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面氛围不确定或不适用，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。"
+        analysisDetails = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面氛围不确定或不适用，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。"
+        status?.text = "${description.substringBefore('；').substringBefore('\n')}\n" +
+            (if (ranked.isEmpty()) "暂未找到明确匹配，可更换氛围或手动选图。" else "找到 ${ranked.size} 张，点按图片预览。") +
+            "\n优先匹配主要氛围，不足 5 张时不补入其他氛围。" +
+            (if (failures > 0 || partial) "\n部分照片未能分析，详见分析详情。" else "")
         if (ranked.isEmpty()) return
         val pages = PhotoPageCursor(ranked.size)
         suspend fun showNext() {
@@ -186,6 +210,6 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         withContext(Dispatchers.IO) { check(targetExists(requireContext(), target)) { "目标已删除或不可用" }; PhotoRepositories.get(requireContext()).validate(target, request) }
     }
     override fun onStop() { job?.cancel(); modelCheck?.cancel(); rows?.removeAllViews(); super.onStop() }
-    override fun onDestroyView() { job?.cancel(); modelCheck?.cancel(); rows = null; status = null; modelStatus = null; super.onDestroyView() }
+    override fun onDestroyView() { job?.cancel(); modelCheck?.cancel(); rows = null; status = null; modelStatus = null; cancelButton = null; super.onDestroyView() }
     companion object { fun newInstance(target: CoverTarget) = PhotoRecommendationsDialogFragment().apply { arguments = target.toPhotoBundle() } }
 }

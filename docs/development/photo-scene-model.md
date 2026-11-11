@@ -3,7 +3,9 @@
 The photo slot accepts `tinyclip-atmospheres-v4.onnx`, **158,993,255 bytes**, SHA-256
 `c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9`.
 This project-exported ONNX file uses the stronger 40M image tower in place of v3's
-8M tower (33,313,206 bytes). The prompts and ranking formula are unchanged. Plan
+8M tower (33,313,206 bytes). Its prompts remain unchanged. The current ranking
+policy is `music-atmosphere-v4-valence`, described below; no new model import is
+needed for this ranking/UI update. Plan
 for the larger local file and temporary import copy. Old model files remain intact;
 music models, photo grants, playlists and saved covers do not change on import.
 
@@ -34,7 +36,7 @@ not bypassing the app's check. The generated JSON records provenance and prompt 
 Both scripts accept `--variant 8m` to reproduce the previous v3 artifact with the
 unchanged [v3 source manifest](../../scripts/photo-model/source-manifest.json).
 
-Copy the verified file to the phone, then select **封面照片来源 → 配置本地分析模型 →
+Copy the verified file to the phone, then select **选择封面 → 更多 → 配置本地分析模型 →
 导入照片内容模型**. Only a complete matching size/hash becomes active. The app has
 no model downloader or photo upload. No public ready-made model distribution URL
 has been published; reproducible export and the locally prepared artifact are available.
@@ -65,14 +67,32 @@ support with temperature `.05`. The maximum raw cosine must reach `.20`, and
 maximum relative support `.30`; otherwise the image is uncertain. A document or
 screenshot winning either scene view is ineligible regardless of atmosphere scores.
 
-`music-atmosphere-v3` groups finite audio scores ≥ `.05`, deduplicating repeated
-labels by their maximum score. Groups are lively (happy/positive/upbeat/fun/summer),
-peaceful (calm/relaxing/meditative/soft), reflective (sad/melancholic/dark), intense
-(epic/action/energetic/powerful/adventure/sport). Group sums are normalized and
-dotted with the four relative picture supports. Scores below `.26` are rejected;
-uniform support would score `.25`. These are explicit heuristics, not calibrated
-accuracy thresholds. Identical image contents are deduplicated, ties use neutral
-photo ID, and only the current authorized scope can supply candidates.
+`music-atmosphere-v4-valence` keeps finite audio scores in `[.05, 1]`, deduplicating
+repeated labels by their maximum score. It starts with the same four group sums:
+lively (happy/positive/upbeat/fun/summer), peaceful (calm/relaxing/meditative/soft),
+reflective (sad/melancholic/dark), intense
+(epic/action/energetic/powerful/adventure/sport).
+
+Relaxing describes pace and can coexist with sadness. Let `R` be relaxing support,
+`N = max(0, sad + melancholic - lively)` and `S = N + peaceful - R`. If `S > 0`,
+transfer `R * N / S` from peaceful to reflective; otherwise transfer zero.
+Darkness alone cannot make that transfer, and positive cues counterbalance sadness.
+Square each resulting group sum and normalize to emphasize the leading preference.
+These are explicit editorial heuristics, **not calibrated music probabilities**.
+
+If a normalized musical preference reaches `.65`, retain only photos whose support
+for that atmosphere is tied for or greater than every other picture atmosphere.
+Otherwise retain blended ranking. This rejects a calm-leading picture for clearly
+reflective music without a butterfly/object blacklist. It applies to every group
+and can return fewer than five photos, or none. Manual atmosphere and single-cover
+selection remain available. A quiet photo is not automatically a sad photo.
+
+The score is the dot product of these normalized music weights and the four image
+supports. Reject scores below `.26` (uniform support scores `.25`). Object labels,
+filenames, directories and evaluation labels do not participate. Identical contents
+are deduplicated; ties use neutral photo ID. Only the authorized scope is eligible.
+See the [ranking and UI follow-up](../testing/photo-ranking-refinement-2026-11-11.md)
+for the fixed input comparisons and the lower candidate-count tradeoff.
 
 Reasons name the contributing music and broad picture atmosphere. A specific
 scene is supplementary, never required and never substituted for an uncertain
@@ -89,7 +109,8 @@ API 33 inference with v4 still reproduces
 `1.00 / 1.00 / .80 / 1.00` versus v2 `.60 / .60 / .20 / .20` and old MobileNet
 `1.00 / 1.00 / .40 / .80`. These are development comparisons on already-seen,
 provisional labels, **not held-out generalization or human acceptance**.
-An open, bright lake remains a difficult distractor in the reflective case.
+That historical result used the v3 ranking rule. The current rule comparison is
+recorded separately; historical evidence is preserved, not overwritten.
 See the [v3 report](../testing/photo-atmosphere-and-review-2026-11-10.md) and
 [v4 new-photo review](../testing/photo-quality-v4-2026-11-11.md).
 

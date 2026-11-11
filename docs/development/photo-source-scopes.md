@@ -4,7 +4,19 @@ Formal requirements: [#41](https://github.com/Axfff/Vibe-Player/issues/41), manu
 
 Baseline: main `844caf7c`; cover foundation `25849a42`; mood PR #46 `4776e4e1`. Dependency merge `d987943b` integrates both existing contributions. No main/tag rewrite. Integration owner for this worktree is this task; existing member attribution is preserved. Shared CI scripts/workflows are unchanged; scope inventory is regenerated with the existing cumulative script, including all new Kotlin UI/permission/error paths and Release 1.
 
-Entry: Playlist detail → 封面照片来源; Album detail overflow → 封面照片来源. Manual single-cover and restore-default remain available. The new screen adds fixed multi-selected photos, SAF directories, explicit sharing of an existing source, refresh, exclusion/restoration of individual candidates, local recommendations and system search additions. Directory reauthorization currently uses explicit re-selection/addition and removal of the old binding; cancelling either operation preserves existing sources.
+Entry: Playlist detail / Album detail overflow → **选择封面**. The first screen has
+four actions: **推荐封面**, **直接选一张**, **添加照片**, **更多**, with the target name
+and current photo sources above the secondary action row. Empty, unavailable and
+unknown counts remain distinct. Loading cancellation appears only during loading.
+
+**添加照片** groups selected photos, folders, file-picker fallback, system search,
+Xiaomi album guidance and explicit source sharing. **更多** groups refresh, excluded
+candidate recovery, model setup, restoring the default cover (with confirmation)
+and photo-use information. A source row opens previews, removal or source details.
+Recommendation details (audio duration, uncertainty, failures) and model setup are
+under its own **更多** menu; cancellation appears during analysis. No authorization
+or manual-cover capability was removed. Directory reauthorization still requires
+explicit re-selection/addition; cancellation preserves existing sources.
 
 `CoverTarget` typed stable keys are reused. Album artist/title snapshots are length-delimited and checked. A renamed playlist retains its UUID. Restorable fragment arguments fix the target before launching a picker; callbacks never consult the currently selected playlist. Request UUID plus durable scope revision reject stale attachment/recommendation/save. Deletion keeps a revision tombstone and never deletes source images. Target existence is checked through the existing PlaylistRepository or MediaStore audio album identity.
 

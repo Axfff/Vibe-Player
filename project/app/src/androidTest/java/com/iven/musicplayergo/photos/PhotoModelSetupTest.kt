@@ -87,12 +87,20 @@ class PhotoModelSetupTest {
         (0 until view.childCount).flatMap { descendants(view.getChildAt(it)) } else emptyList()
     private fun views() = WindowInspector.getGlobalWindowViews().flatMap(::descendants)
     private fun texts() = views().filterIsInstance<TextView>().map { it.text.toString() }
-    private fun click(label: String) { assertTrue(views().filterIsInstance<Button>().last { it.text.toString() == label }.performClick()) }
+    private fun click(label: String) {
+        val view = views().filterIsInstance<TextView>().last { it.text.toString() == label }
+        if (view is Button) assertTrue(view.performClick()) else {
+            val list = view.parent as android.widget.ListView
+            assertTrue(list.performItemClick(view, list.getPositionForView(view), 0))
+        }
+    }
 
     @Test fun setupCanBeOpenedFromSourcesAndRecommendationsAndSurvivesRotationAndPickerCancellation() {
         RegressionFixture.open().use { f ->
             val target = CoverTarget.Playlist(f.createPlaylist("Model setup", "A").id)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(target, "Model setup").showNow(it.supportFragmentManager, "source-model-test") }
+            f.onMain { click("更多") }
+            f.await("menu item 配置本地分析模型 is visible") { f.onMain { texts().contains("配置本地分析模型") } }
             f.onMain { click("配置本地分析模型") }
             f.await("model check completed") { f.onMain { texts().contains("模型状态已更新。") } }
             f.onMain { click("音乐氛围：文件与来源说明") }
@@ -117,8 +125,10 @@ class PhotoModelSetupTest {
             }
             f.await("returned with no import") { PhotoSystemUi.hasPackage(f.context.packageName) }
             f.await("ready after picker cancellation") { f.onMain { texts().contains("模型状态已更新。") } }
-            f.onMain { click("返回"); click("推荐当前照片范围") }
+            f.onMain { click("返回"); click("推荐封面") }
             f.await("recommendation model status") { f.onMain { texts().any { it.contains("本地分析模型已就绪") || it.contains("模型尚未就绪") } } }
+            f.onMain { click("更多") }
+            f.await("menu item 配置本地分析模型 is visible") { f.onMain { texts().contains("配置本地分析模型") } }
             f.onMain { click("配置本地分析模型") }
             f.await("setup from recommendation") { f.onMain { texts().contains("模型状态已更新。") } }
             f.onMain { click("返回"); click("关闭"); click("关闭") }

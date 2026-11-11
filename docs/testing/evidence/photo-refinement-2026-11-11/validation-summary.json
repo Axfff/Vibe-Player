@@ -1,0 +1,15 @@
+{
+  "jvm": {
+    "tests": 115,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android_real_inference_cases": 12,
+  "android_real_image_inputs": 208,
+  "android_ui_model_input_authorization_tests": 9,
+  "android_inference_failures": 0,
+  "apk_sha256": "f7b7b9242730dded8827c5dda140e647645a1a271d5581826ca5ee773411c58e",
+  "physical_phone": "PENDING_UNLOCK",
+  "ci": "PENDING"
+}

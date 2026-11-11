@@ -80,7 +80,9 @@ class PhotoAuthorizedFlowTest {
                     resolver.openOutputStream(uri)!!.use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
                 show(a)
-                f.onMain { click("添加照片文件夹"); click("选择目录") }
+                f.onMain { click("添加照片") }
+            f.await("menu item 选择照片文件夹 is visible") { f.onMain { texts().contains("选择照片文件夹") } }
+            f.onMain { click("选择照片文件夹"); click("选择目录") }
                 systemClick(f, "Pictures")
                 systemClick(f, folder)
                 f.await("DocumentsUI entered owned directory") {
@@ -104,16 +106,20 @@ class PhotoAuthorizedFlowTest {
                 f.scenario.recreate()
                 f.await("real grant survives recreation") { f.onMain { texts().any { it.contains("当前可用 2 张") } } }
                 f.onMain { clickMatching { it.startsWith("照片文件夹 ·") } }
-                f.await("candidate action menu") { f.onMain { texts().any { it.startsWith("查看候选") } } }
-                f.onMain { clickMatching { it.startsWith("查看候选") } }
+                f.await("candidate action menu") { f.onMain { texts().any { it == "查看照片" } } }
+                f.onMain { clickMatching { it == "查看照片" } }
                 f.await("readable thumbnails") { f.onMain { views().filterIsInstance<ImageView>().count { it.contentDescription?.startsWith("候选 ") == true } == 2 } }
                 f.onMain { views().filterIsInstance<ImageView>().first { it.contentDescription?.startsWith("候选 ") == true }.performClick(); click("移除") }
                 f.await("one excluded candidate") { f.onMain { texts().any { it.contains("当前可用 1 张") } } }
-                f.onMain { click("恢复已移除候选") }
+                f.onMain { click("更多") }
+            f.await("menu item 恢复已移除候选 is visible") { f.onMain { texts().contains("恢复已移除候选") } }
+            f.onMain { click("恢复已移除候选") }
                 f.await("exclusion restored") { f.onMain { texts().any { it.contains("当前可用 2 张") } } }
                 f.onMain { click("关闭") }
                 show(b)
-                f.onMain { click("明确共用已有来源") }
+                f.onMain { click("添加照片") }
+            f.await("menu item 共用已有来源 is visible") { f.onMain { texts().contains("共用已有来源") } }
+            f.onMain { click("共用已有来源") }
                 f.await("share source list") { f.onMain { texts().any { it.endsWith(source.id.take(6)) } } }
                 f.onMain { clickMatching { it.endsWith(source.id.take(6)) } }
                 f.await("sharing consent") { f.onMain { texts().contains("共用") } }
@@ -169,7 +175,9 @@ class PhotoAuthorizedFlowTest {
                 assertEquals(saved, (covers.getCover(b) as CoverResult.Success).value)
                 f.onMain { click(f.context.getString(android.R.string.cancel)) }
                 show(b)
-                f.onMain { click("恢复默认封面") }
+                f.onMain { click("更多") }
+            f.await("menu item 恢复默认封面 is visible") { f.onMain { texts().contains("恢复默认封面") } }
+            f.onMain { click("恢复默认封面"); click("恢复") }
                 f.await("default cover restored") { !covers.hasCover(b) }
                 f.onMain { click("关闭") }
                 assertTrue(PhotoAccessManager(f.context).hasGrant(Uri.parse(source.uris.single())))

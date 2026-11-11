@@ -7,6 +7,8 @@ object naming, with Chinese explanations and uncertainty handling. The
 records recovery beyond the old baseline; human quality acceptance remains open.
 The [November 11 v4 review](../testing/photo-quality-v4-2026-11-11.md) compares the
 stronger image tower on the same new-photo pool and documents the remaining overlap.
+The [ranking/UI refinement](../testing/photo-ranking-refinement-2026-11-11.md)
+separates relaxation from negative valence while keeping the v4 image model.
 Historical v1 results below are not results for the current model.
 
 Use the existing `MoodAnalyzer` from PR #46. The user chooses a representative track within the target (first available is the displayed default). It decodes at most the initial 30 seconds, skips silent patches and reports decoded seconds, effective patch seconds and patch count. No lyrics, whole-song or playlist aggregation is claimed. Missing/invalid models, silence, short/unreadable audio and inference errors remain explicit. Manual atmosphere input is labelled 用户选择.
@@ -17,7 +19,7 @@ Photo extractor: [official ONNX Model Zoo MobileNet v2-7](https://github.com/onn
 
 The two existing music graph hashes/official links are in [mood-inference.md](mood-inference.md). [MTG model terms](https://essentia.upf.edu/licensing_information.html) specify CC BY-NC-SA 4.0 for noncommercial use. All weights are externally provisioned for this educational experiment, never committed or bundled in the app APK. Intended redistribution remains for human review. The optional test APK may contain locally supplied test assets and must not be published with weights.
 
-Use **配置本地分析模型** from the photo-source or recommendation screen to import the three official files through Android DocumentsUI. Each file is copied to app-private `no_backup/photo-models/` only after its exact length and SHA-256 match the evaluated version. Existing developer-provisioned files are recognized after the same validation. The app has no automatic network/model downloader and its production Manifest has no INTERNET permission. See [model setup](photo-model-setup.md) for the user flow, atomic installation and recovery behavior.
+Use **更多 → 配置本地分析模型** from the photo-source or recommendation screen to import the three official files through Android DocumentsUI. Each file is copied to app-private `no_backup/photo-models/` only after its exact length and SHA-256 match the evaluated version. Existing developer-provisioned files are recognized after the same validation. The app has no automatic network/model downloader and its production Manifest has no INTERNET permission. See [model setup](photo-model-setup.md) for the user flow, atomic installation and recovery behavior.
 
 `PhotoFeatureExtractor` is replaceable. Content is hashed on each use, including providers without modification timestamps. The bounded in-memory cache keys photo identity/content hash/model version; it never authorizes candidates. Only already enumerated current-scope photos are queried, before any feature lookup. Cache holds at most 256 entries and is cleared on scope mutations; no sensitive feature backup/persistent thumbnails. Cache reconstruction after process death is intentional. Identical content is deduplicated in ranking.
 

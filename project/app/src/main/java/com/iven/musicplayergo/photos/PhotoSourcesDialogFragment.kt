@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,6 +21,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
     private val repository get() = PhotoRepositories.get(requireContext())
     private var body: LinearLayout? = null
     private var status: TextView? = null
+    private var cancelLoading: Button? = null
     private var job: Job? = null
     private var pending: PhotoRequest? = null
     private var recursive = false
@@ -64,35 +66,74 @@ class PhotoSourcesDialogFragment : DialogFragment() {
         super.onSaveInstanceState(outState)
     }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(24, 12, 24, 12) }
-        status = TextView(requireContext()).also { layout.addView(it) }
-        body = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }
+        val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(dp(24), dp(8), dp(24), dp(12)) }
+        layout.addView(TextView(requireContext()).apply {
+            text = requireArguments().getString("display") ?: "当前音乐集合"
+            textSize = 16f
+        })
         fun button(label: String, action: () -> Unit) { layout.addView(Button(requireContext()).apply { text = label; setOnClickListener { action() } }) }
-        button("添加一组照片") { begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) } }
-        button("小米相册搜索后添加") { albumHelp() }
-        button("找不到相册？从文件选择照片") { begin { files.launch(arrayOf("image/*")) } }
-        button("添加照片文件夹") { chooseTree() }
-        button("明确共用已有来源") { share() }
-        button("刷新目录与权限") { work { repository.refresh(target); reload() } }
-        button("恢复已移除候选") { work { repository.refresh(target, true); reload() } }
-        button("配置本地分析模型") { PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
-        button("推荐当前照片范围") { recommend() }
-        button("从系统搜索添加照片") { search() }
-        button("手动选择单张封面") {
-            val crop = when(val t = target) { is CoverTarget.Playlist -> CoverCropDialogFragment.forPlaylist(t.playlistId)
-                is CoverTarget.Album -> CoverCropDialogFragment.forAlbum(t.albumId, t.artistSnapshot, t.albumTitleSnapshot) }
-            crop.show(parentFragmentManager, "manual-cover")
-        }
-        button("恢复默认封面") { work {
-            if (!targetExists(requireContext(), target)) error("目标已删除或暂不可用")
-            val result = CoverRepositories.get(requireContext()).removeCover(target)
-            if (result is CoverResult.Failure) error(result.error.name)
-            parentFragmentManager.setFragmentResult(CoverCropDialogFragment.RESULT_KEY, Bundle())
-        } }
-        button("取消加载／分析") { job?.cancel(); status?.text = "已取消；原范围和封面保持不变。" }
-        layout.addView(body)
-        return AlertDialog.Builder(requireContext()).setTitle("封面照片来源")
+        button("推荐封面") { recommend() }
+        button("直接选一张") { manualCover() }
+        layout.addView(TextView(requireContext()).apply {
+            text = "用于推荐的照片"; textSize = 16f; setPadding(0, dp(16), 0, dp(4))
+        })
+        status = TextView(requireContext()).also { layout.addView(it) }
+        body = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }.also { layout.addView(it) }
+        val actions = LinearLayout(requireContext())
+        fun action(label: String, run: () -> Unit) { actions.addView(Button(requireContext()).apply {
+            text = label; layoutParams = LinearLayout.LayoutParams(0, -2, 1f); setOnClickListener { run() }
+        }) }
+        action("添加照片") { addPhotos() }
+        action("更多") { more() }
+        layout.addView(actions)
+        cancelLoading = Button(requireContext()).apply {
+            text = "取消加载"; visibility = View.GONE
+            setOnClickListener { job?.cancel(); visibility = View.GONE; status?.text = "已取消加载，照片范围保持不变。" }
+        }.also { layout.addView(it) }
+        return AlertDialog.Builder(requireContext()).setTitle("选择封面")
             .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton("关闭", null).create()
+    }
+    private fun dp(value: Int) = (value * resources.displayMetrics.density).toInt()
+    private fun addPhotos() {
+        AlertDialog.Builder(requireContext()).setTitle("添加用于推荐的照片")
+            .setItems(arrayOf("选择照片", "选择照片文件夹", "从文件选择照片", "从系统搜索添加照片", "小米相册搜索后添加", "共用已有来源")) { _, index ->
+                when (index) {
+                    0 -> begin { photos.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)) }
+                    1 -> chooseTree()
+                    2 -> begin { files.launch(arrayOf("image/*")) }
+                    3 -> search()
+                    4 -> albumHelp()
+                    5 -> share()
+                }
+            }.setNegativeButton("取消", null).show()
+    }
+    private fun more() {
+        AlertDialog.Builder(requireContext()).setTitle("封面与照片管理")
+            .setItems(arrayOf("刷新照片来源", "恢复已移除候选", "配置本地分析模型", "恢复默认封面", "照片使用说明")) { _, index ->
+                when (index) {
+                    0 -> work { repository.refresh(target); reload() }
+                    1 -> work { repository.refresh(target, true); reload() }
+                    2 -> PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models")
+                    3 -> AlertDialog.Builder(requireContext()).setTitle("恢复默认封面？")
+                        .setMessage("只移除当前自定义封面，照片来源和原图保留。")
+                        .setNegativeButton("取消", null).setPositiveButton("恢复") { _, _ -> work {
+                            check(targetExists(requireContext(), target)) { "目标已删除或暂不可用" }
+                            val result = CoverRepositories.get(requireContext()).removeCover(target)
+                            if (result is CoverResult.Failure) error(result.error.name)
+                            parentFragmentManager.setFragmentResult(CoverCropDialogFragment.RESULT_KEY, Bundle())
+                        } }.show()
+                    4 -> AlertDialog.Builder(requireContext()).setTitle("照片使用说明")
+                        .setMessage("推荐只分析你为当前目标选择的照片，在本机完成。照片提供方可能需要联网下载。\n\n移除来源或候选不会删除原图或已保存封面，也不等于撤销系统授权。新增照片需要重新选择，或刷新已授权文件夹。")
+                        .setPositiveButton("知道了", null).show()
+                }
+            }.setNegativeButton("取消", null).show()
+    }
+    private fun manualCover() {
+        val crop = when (val t = target) {
+            is CoverTarget.Playlist -> CoverCropDialogFragment.forPlaylist(t.playlistId)
+            is CoverTarget.Album -> CoverCropDialogFragment.forAlbum(t.albumId, t.artistSnapshot, t.albumTitleSnapshot)
+        }
+        crop.show(parentFragmentManager, "manual-cover")
     }
     override fun onStart() { super.onStart(); reload() }
     private fun begin(action: () -> Unit) = work {
@@ -114,7 +155,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
             .setMessage("1. 在小米相册搜索关键词，多选想要的结果。\n" +
                 "2. 选择“添加到 → 新建相册”；出现移动／复制选项时选“复制”，保留原图。\n" +
                 "3. 回到这里，选择整理好的照片（每批最多 100 张），确认加入当前目标。\n" +
-                "4. 点击“推荐当前照片范围”。\n\n" +
+                "4. 点击“推荐封面”。\n\n" +
                 "建相册本身不等于授权。已选照片组不会自动纳入新增照片；需要随目录刷新时可授权照片文件夹。\n\n" +
                 "找不到相册时，可返回使用“从文件选择照片”。移除 App 内来源不删除图片或已保存封面。小米相册的删除可能同步到云端和其他设备；清理时请只确认临时副本。")
             .setPositiveButton("选择整理好的照片") { _, _ ->
@@ -151,7 +192,8 @@ class PhotoSourcesDialogFragment : DialogFragment() {
     }
     private fun reload() {
         job?.cancel()
-        status?.text = "正在校验授权与候选…"
+        status?.text = "正在读取照片来源…"
+        cancelLoading?.visibility = View.VISIBLE
         body?.removeAllViews()
         job = lifecycleScope.launch {
             try {
@@ -168,11 +210,11 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                             PhotoReadState.BUDGET_REACHED -> "达到扫描预算，未扫描全部"
                         }
                         val count = if (result.photos.isEmpty() && result.state in setOf(PhotoReadState.REAUTHORIZE, PhotoReadState.MISSING_OR_OFFLINE)) "数量未知" else "当前可用 ${result.photos.size} 张"
-                        text = "${source.name} · ${if(source.kind == PhotoSourceKind.DIRECTORY) "目录" else "固定照片组"}\n$label · $count · 已检查 ${result.examined} 项"
+                        text = "${source.name} · ${if(source.kind == PhotoSourceKind.DIRECTORY) "目录" else "固定照片组"}\n$label · $count"
                         setOnClickListener { sourceActions(source, result) }
                     }; body?.addView(row)
                 }
-                status?.text = "仅当前目标范围；移除不会删除原图或已保存封面。应用内移除不等于撤销系统授权。"
+                status?.text = if (snapshot.second.isEmpty()) "还没有照片。添加后即可推荐，或直接选一张封面。" else "已关联 ${snapshot.second.size} 个来源，点按可查看照片或移除。"
             } catch (e: PhotoScopeIdentityChanged) {
                 status?.text = e.message
                 body?.addView(Button(requireContext()).apply {
@@ -191,13 +233,17 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                 })
             } catch (e: CancellationException) { throw e }
               catch (e: Exception) { status?.text = e.message ?: "来源暂不可用" }
+            finally { if (job === currentCoroutineContext()[Job]) cancelLoading?.visibility = View.GONE }
         }
     }
     private fun sourceActions(source: PhotoSource, result: SourceCandidates) {
         AlertDialog.Builder(requireContext()).setTitle(source.name)
-            .setItems(arrayOf("查看候选（点击移除；重新添加来源可重新授权）", "从当前目标移除来源")) { _, index ->
+            .setItems(arrayOf("查看照片", "从当前目标移除来源", "来源详情与授权说明")) { _, index ->
                 if (index == 1) work { repository.remove(target, source.id); reload() }
-                else showCandidates(result.photos)
+                else if (index == 0) showCandidates(result.photos)
+                else AlertDialog.Builder(requireContext()).setTitle(source.name)
+                    .setMessage("本次已检查 ${result.examined} 项。${if (source.kind == PhotoSourceKind.DIRECTORY) "文件夹可刷新纳入新增照片。" else "已选照片组不会自动增加照片。"}\n\n需要重新授权时，请从“添加照片”重新选择该来源。移除只影响当前目标，不删除原图或已保存封面。")
+                    .setPositiveButton("知道了", null).show()
             }.show()
     }
     private fun showCandidates(photos: List<ScopedPhoto>) {
@@ -252,7 +298,7 @@ class PhotoSourcesDialogFragment : DialogFragment() {
                 }
             }.show()
     }
-    override fun onDestroyView() { job?.cancel(); body = null; status = null; super.onDestroyView() }
+    override fun onDestroyView() { job?.cancel(); body = null; status = null; cancelLoading = null; super.onDestroyView() }
     companion object { fun newInstance(target: CoverTarget, display: String) = PhotoSourcesDialogFragment().apply {
         arguments = target.toPhotoBundle().apply { putString("display", display) }
     } }
