@@ -1,0 +1,22 @@
+[
+  {
+    "id": "mountain",
+    "description": "A hiker on a mountain ridge beneath storm clouds.",
+    "human_assigned_vibes": ["adventurous", "dramatic"]
+  },
+  {
+    "id": "shore",
+    "description": "A quiet shore and still water in the morning.",
+    "human_assigned_vibes": ["peaceful"]
+  },
+  {
+    "id": "celebration",
+    "description": "Friends smiling together at a celebration.",
+    "human_assigned_vibes": ["joyful"]
+  },
+  {
+    "id": "document",
+    "description": "A close-up of a printed receipt on a desk.",
+    "human_assigned_vibes": []
+  }
+]
