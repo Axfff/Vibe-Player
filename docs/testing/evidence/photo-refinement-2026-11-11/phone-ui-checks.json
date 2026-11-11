@@ -1,0 +1,9 @@
+{
+  "source_home_four_actions": true,
+  "all_add_methods_visible": true,
+  "management_actions_visible": true,
+  "manual_picker_opens_and_cancels": true,
+  "default_restore_confirmation_cancels": true,
+  "folder_options_cancel": true,
+  "available_authorized_photos": 20
+}

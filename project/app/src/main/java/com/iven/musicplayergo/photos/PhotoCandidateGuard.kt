@@ -15,7 +15,7 @@ suspend fun verifyCandidate(context: Context, target: CoverTarget, request: Phot
     for (source in sources) {
         if (PhotoCandidateProvider(context).enumerate(source, scope.excluded.toSet()).photos.any { it.uri == uri }) { found = true; break }
     }
-    check(found) { "候选已移除、离线或需要重新授权" }
+    check(found) { "候选已移除、离线或请重新选择照片" }
     val bytes = SafePhotoDecoder(context).bytes(Uri.parse(uri))
     val actual = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 255) }
     check(actual == fingerprint) { "原图内容已变化，请重新推荐" }

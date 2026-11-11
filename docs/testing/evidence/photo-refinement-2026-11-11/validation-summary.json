@@ -1,0 +1,16 @@
+{
+  "jvm": {
+    "tests": 115,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android_real_inference_cases": 12,
+  "android_real_image_inputs": 208,
+  "android_ui_model_input_authorization_tests": 9,
+  "android_inference_failures": 0,
+  "apk_sha256": "ae44a664a8cde119596ebe3868e59d966c5e3086cab03cbba64794db4ae6ca40",
+  "physical_phone": "VERIFIED_FOUR_SONGS_AND_FINAL_COPY",
+  "ci": "See current PR head checks; previous ranking commit 351c8d1e passed.",
+  "copy_followup_android_tests": 9
+}

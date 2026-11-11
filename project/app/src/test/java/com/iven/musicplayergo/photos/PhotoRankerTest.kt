@@ -10,7 +10,7 @@ class PhotoRankerTest {
             PhotoAtmospherePolicy.names.keys.map { PhotoLabel(it, if (it == if (label == "flowers") "lively" else "peaceful") score else (1f-score)/3f) })
     @Test fun formulaUsesIndependentMusicAndPhotoScores() {
         val result = PhotoRanker.rank(listOf(MoodScore("calm", .8f), MoodScore("happy", .2f)), listOf(photo("a"))).single()
-        assertEquals(.6533333f, result.score, .00001f); assertTrue(result.reasons.first().contains("舒缓")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
+        assertEquals(.7568627f, result.score, .00001f); assertTrue(result.reasons.first().contains("舒缓")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
     }
     @Test fun tiesAreStableAndDefaultIsFive() {
         val candidates = (10 downTo 1).map { photo(it.toString().padStart(2,'0')) }
@@ -42,9 +42,9 @@ class PhotoRankerTest {
     @Test fun multipleAtmospheresDoNotHideTheConcreteSceneExplanation() {
         val feature = photo("mixed").copy(atmospheres=listOf(PhotoLabel("lively",.05f), PhotoLabel("peaceful",.45f),
             PhotoLabel("reflective",.4f), PhotoLabel("intense",.1f)))
-        val result = PhotoRanker.rank(listOf(MoodScore("relaxing",.6f),MoodScore("sad",.4f)),listOf(feature)).single()
+        val result = PhotoRanker.rank(listOf(MoodScore("calm",.6f),MoodScore("sad",.4f)),listOf(feature)).single()
         assertEquals(2,result.reasons.size)
-        assertTrue(result.reasons.first().contains("放松")); assertTrue(result.reasons.first().contains("伤感"))
+        assertTrue(result.reasons.first().contains("舒缓")); assertTrue(result.reasons.first().contains("伤感"))
         assertTrue(result.reasons.last().contains("湖面")); assertTrue(result.reasons.last().contains("模型推测"))
     }
     @Test fun musicSummaryReportsMixedEvidenceAndRejectsInvalidOrUnmappedSignals() {
@@ -89,5 +89,29 @@ class PhotoRankerTest {
         assertEquals(SystemPhotoSearchCapability.MAY_REQUEST,PhotoSearchPolicy.capability(33,19))
         assertEquals(200,PhotoSearchPolicy.query("x".repeat(201)).length)
         assertEquals("lake",PhotoSearchPolicy.query(" lake "))
+    }
+    private fun atmosphere(id: String, peaceful: Float, reflective: Float) = photo(id, "butterfly").copy(
+        atmospheres = listOf(PhotoLabel("lively", .1f), PhotoLabel("peaceful", peaceful),
+            PhotoLabel("reflective", reflective), PhotoLabel("intense", .1f)))
+    @Test fun relaxedSadMusicAndRelaxedPositiveMusicPreferDifferentAtmospheres() {
+        val calm = atmosphere("calm", .55f, .25f)
+        val sad = atmosphere("sad", .25f, .55f)
+        val pool = listOf(calm, sad)
+        val shared = listOf(MoodScore("relaxing", .15f), MoodScore("meditative", .06f))
+        val sadMusic = shared + listOf(MoodScore("sad", .07f), MoodScore("melancholic", .06f))
+        val calmMusic = shared + listOf(MoodScore("calm", .08f), MoodScore("happy", .08f), MoodScore("sad", .07f))
+        assertEquals(listOf("sad"), PhotoRanker.rank(sadMusic, pool).map { it.features.photo.id })
+        assertEquals(listOf("calm"), PhotoRanker.rank(calmMusic, pool).map { it.features.photo.id })
+        // Both fixtures have the same object label: no butterfly blacklist or ID rule.
+        assertEquals(PhotoRanker.rank(sadMusic, pool), PhotoRanker.rank(sadMusic + sadMusic, pool.reversed()))
+    }
+    @Test fun clearPreferenceDoesNotPadWithConflictingPicturesAndMixedMusicKeepsChoices() {
+        val calm = atmosphere("calm", .45f, .35f)
+        val sad = atmosphere("sad", .35f, .45f)
+        assertTrue(PhotoRanker.rank(listOf(MoodScore("sad", 1f)), listOf(calm)).isEmpty())
+        assertEquals(2, PhotoRanker.rank(listOf(MoodScore("calm", .5f), MoodScore("sad", .5f)), listOf(calm, sad)).size)
+        val tied = atmosphere("tie", .4f, .4f)
+        assertEquals("tie", PhotoRanker.rank(listOf(MoodScore("sad", 1f)), listOf(tied)).single().features.photo.id)
+        assertEquals("calm", PhotoRanker.rank(listOf(MoodScore("relaxing", 1f)), listOf(calm, sad)).single().features.photo.id)
     }
 }

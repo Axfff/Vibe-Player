@@ -18,7 +18,7 @@ import java.util.concurrent.atomic.AtomicReference
 data class PhotoModelSetupState(
     val models: Map<PhotoModel, PhotoModelStatus> = emptyMap(),
     val busy: Boolean = false,
-    val message: String = "正在检查模型…"
+    val message: String = "正在检查所需文件…"
 )
 
 /** Survives rotation; does not hold an Activity, View, or retained source grant. */
@@ -29,7 +29,7 @@ class PhotoModelSetupViewModel(application: Application) : AndroidViewModel(appl
     private var job: Job? = null
     private val input = AtomicReference<InputStream?>()
 
-    fun refresh() { if (job?.isActive != true) runOperation("正在校验模型…") {} }
+    fun refresh() { if (job?.isActive != true) runOperation("正在检查所需文件…") {} }
     fun import(model: PhotoModel, uri: Uri) {
         if (job?.isActive == true) return
         runOperation("正在导入${model.title}…") {
@@ -39,16 +39,16 @@ class PhotoModelSetupViewModel(application: Application) : AndroidViewModel(appl
             }) { percent -> withContext(Dispatchers.Main) {
                 mutableState.value = PhotoModelSetupState(state.value?.models.orEmpty(), true, "正在导入${model.title}：$percent%")
             } }
-            "${model.title}已导入并通过校验。"
+            "${model.title}已准备好。"
         }
     }
     private fun runOperation(message: String, action: suspend () -> Any?) {
         mutableState.value = PhotoModelSetupState(state.value?.models.orEmpty(), true, message)
         job = viewModelScope.launch(start = CoroutineStart.UNDISPATCHED) {
-            var result = "模型状态已更新。"
+            var result = "已检查所需文件。"
             try { (action() as? String)?.let { result = it } }
-            catch (e: CancellationException) { result = "操作已取消；已完成的导入以校验状态为准，原有模型保留。" }
-            catch (e: Exception) { result = if (e is IllegalStateException) e.message ?: "导入失败。" else "无法导入，请检查文件读取权限和可用空间；原模型保留。" }
+            catch (e: CancellationException) { result = "已取消。已完成的文件会保留。" }
+            catch (e: Exception) { result = if (e is IllegalStateException) e.message ?: "导入失败。" else "导入失败，请检查文件是否能打开、手机空间是否充足。原有文件保留。" }
             finally {
                 input.getAndSet(null)?.let { runCatching { it.close() } }
                 // Publish the terminal state before returning to the cancelled dispatcher.
@@ -83,18 +83,18 @@ class PhotoModelsDialogFragment : DialogFragment() {
         val padding = (16 * resources.displayMetrics.density).toInt()
         val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(padding, padding / 2, padding, padding / 2) }
         fun text(value: String) = TextView(requireContext()).apply { text = value; layout.addView(this) }
-        text("导入后在本机分析音乐和已授权照片，不上传媒体。模型供所有歌单／音乐专辑共用；不会扩大照片授权范围。")
+        text("首次使用需导入下面 3 个文件。准备好后，所有歌单和专辑都能使用；音乐和照片不会上传。")
         val summary = text("")
         val status = text("")
         val rows = PhotoModel.values().associateWith { item ->
             val state = text(item.title)
             val button = Button(requireContext()).apply {
-                text = "导入${item.title}模型"
+                text = "导入${item.title}文件"
                 setOnClickListener { pending = item; picker.launch(arrayOf("*/*")) }
             }
             layout.addView(button)
             layout.addView(Button(requireContext()).apply {
-                text = "${item.title}：文件与来源说明"
+                text = "${item.title}：文件说明"
                 setOnClickListener {
                     val info = TextView(requireContext()).apply {
                         setPadding(padding, padding, padding, padding)
@@ -106,24 +106,25 @@ class PhotoModelsDialogFragment : DialogFragment() {
             })
             state to button
         }
-        val cancel = Button(requireContext()).apply { text = "取消导入／检查"; setOnClickListener { model.cancel() } }
+        val cancel = Button(requireContext()).apply { text = "取消操作"; setOnClickListener { model.cancel() } }
         layout.addView(cancel)
-        val refresh = Button(requireContext()).apply { text = "重新检查模型"; setOnClickListener { model.refresh() } }
+        val refresh = Button(requireContext()).apply { text = "重新检查"; setOnClickListener { model.refresh() } }
         layout.addView(refresh)
         model.state.observe(this) { value ->
             if (!value.busy && value.models.isNotEmpty()) parentFragmentManager.setFragmentResult("photo-models-updated", Bundle())
             summary.text = if (value.models.size == 3 && value.models.values.all { it == PhotoModelStatus.READY })
-                "模型已就绪，可返回推荐页分析。实际运行仍取决于音频、照片与设备支持。"
-            else "已就绪 ${value.models.values.count { it == PhotoModelStatus.READY }}/3。音乐分析需要两个音乐模型；手选氛围推荐仍需要照片模型。"
+                "准备好了，可以返回推荐封面。"
+            else "已准备 ${value.models.values.count { it == PhotoModelStatus.READY }}/3，请导入缺少的文件。"
             status.text = value.message
             rows.forEach { (item, row) ->
                 row.first.text = "${item.title} · ${String.format(java.util.Locale.ROOT, "%.1f", item.bytes / 1_000_000.0)} MB\n${value.models[item]?.label ?: "待检查"}"
                 row.second.isEnabled = !value.busy
             }
+            cancel.visibility = if (value.busy) android.view.View.VISIBLE else android.view.View.GONE
             cancel.isEnabled = value.busy
             refresh.isEnabled = !value.busy
         }
-        return AlertDialog.Builder(requireContext()).setTitle("本地分析模型")
+        return AlertDialog.Builder(requireContext()).setTitle("推荐功能设置")
             .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton("返回") { _, _ -> model.cancel() }.create()
     }
     override fun onStart() { super.onStart(); if (model.state.value?.models.isNullOrEmpty()) model.refresh() }

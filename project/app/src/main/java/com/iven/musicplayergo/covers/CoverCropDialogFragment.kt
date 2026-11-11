@@ -43,9 +43,8 @@ class CoverCropDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val padding = (20 * resources.displayMetrics.density).toInt()
-        val cropSize = minOf(resources.displayMetrics.widthPixels - padding * 4, (360 * resources.displayMetrics.density).toInt())
         val crop = CropImageView(requireContext()).apply {
-            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, cropSize)
+            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             contentDescription = getString(R.string.cover_crop_preview)
         }
         val message = TextView(requireContext()).apply {
@@ -85,10 +84,13 @@ class CoverCropDialogFragment : DialogFragment() {
         status?.setText(R.string.cover_crop_loading)
         lifecycleScope.launch {
             val bitmap = try { withContext(Dispatchers.IO) {
-                val decoder = SafePhotoDecoder(requireContext())
-                val bytes = candidateRequest()?.let { verifyCandidate(requireContext(), target()!!, it, uri.toString(), requireArguments().getString("fingerprint")!!) }
-                    ?: decoder.bytes(uri)
-                decoder.decode(bytes, 2048)
+                val request = candidateRequest()
+                if (request == null) {
+                    (CoverImageDecoder(requireContext()).decode(uri) as? CoverResult.Success)?.value
+                } else {
+                    val bytes = verifyCandidate(requireContext(), target()!!, request, uri.toString(), requireArguments().getString("fingerprint")!!)
+                    SafePhotoDecoder(requireContext()).decode(bytes, 2048)
+                }
             } } catch(e: CancellationException) { throw e } catch (_: Exception) { null }
             if (bitmap == null) {
                 status?.setText(R.string.cover_error_decode)
@@ -128,7 +130,13 @@ class CoverCropDialogFragment : DialogFragment() {
                     dismiss()
                 }
                 is CoverResult.Failure -> {
-                    status?.text = getString(R.string.cover_error_save, result.error.name)
+                    status?.setText(when (result.error) {
+                        CoverError.SOURCE_NOT_READABLE, CoverError.COVER_NOT_FOUND -> R.string.cover_error_source
+                        CoverError.INVALID_TARGET -> R.string.cover_error_target
+                        CoverError.UNSUPPORTED_IMAGE_TYPE, CoverError.IMAGE_TOO_LARGE,
+                        CoverError.IMAGE_DECODE_FAILED -> R.string.cover_error_decode
+                        else -> R.string.cover_error_save
+                    })
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = true
                 }
             }

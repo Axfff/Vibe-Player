@@ -42,7 +42,7 @@ class CoverRecordRepository(
                 localFileName = localFileName,
                 source = source,
                 createdAt = previous?.createdAtEpochMs ?: now,
-                updatedAt = now
+                updatedAt = maxOf(now, previous?.updatedAtEpochMs ?: now)
             )
             val updated = collection.copy(
                 covers = collection.covers.filterNot { it.key() == target.storageKey } + cover
