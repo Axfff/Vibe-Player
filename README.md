@@ -1,3 +1,10 @@
+
+| Name | Student ID | GitHub |
+| --- | --- | --- |
+| Peihan ZENG | 50027876 | [peihanZENG](https://github.com/peihanZENG) |
+| Shiyuan LIN | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
+| Jingyao ZHAO | 50025074 | [Axfff](https://github.com/Axfff) |
+
 # Vibe-Player — course project
 
 [![Android CI](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml/badge.svg)](https://github.com/Axfff/Vibe-Player/actions/workflows/android.yml)
