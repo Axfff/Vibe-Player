@@ -142,6 +142,7 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         photo?.let {
             intent = intent.copy(mood = it.moods.first(), tags = it.tags.ifEmpty { intent.tags })
             scene = it.scenes.firstOrNull()
+            message = "photo_applied"
         }
         changed()
     }

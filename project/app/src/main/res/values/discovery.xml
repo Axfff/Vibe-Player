@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="discovery_local_title">在手机上分析照片</string>
+    <string name="discovery_photo_applied">照片建议已应用，搜索词和已选风格已保留。请按自己的需要修改，再确认搜索。</string>
     <string name="discovery_local_consent">使用你已导入的照片模型，只读取这张照片。照片不会上传；识别结果只是画面氛围建议，仍需你修改并确认。之后搜索音乐时只发送确认的文字与标签。</string>
     <string name="discovery_local_analyze">在手机上分析照片</string>
     <string name="discovery_local_models">配置本地照片模型</string>

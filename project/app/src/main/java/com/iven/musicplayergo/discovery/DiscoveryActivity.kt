@@ -217,6 +217,7 @@ class DiscoveryActivity : BaseActivity() {
         "exclusions_cleared" -> getString(R.string.discovery_exclusions_cleared)
         "photo_selected" -> getString(R.string.discovery_photo_selected)
         "photo_suggested" -> getString(R.string.discovery_photo_suggested)
+        "photo_applied" -> getString(R.string.discovery_photo_applied)
         "local_photo_model_missing" -> getString(R.string.discovery_local_missing)
         "local_photo_uncertain" -> getString(R.string.discovery_local_uncertain)
         "local_photo_failed" -> getString(R.string.discovery_local_failed)
