@@ -19,6 +19,7 @@ import com.iven.musicplayergo.R
 import com.iven.musicplayergo.databinding.ActivityDiscoveryBinding
 import com.iven.musicplayergo.databinding.DiscoveryTrackBinding
 import com.iven.musicplayergo.utils.Theming
+import com.iven.musicplayergo.photos.PhotoModelsDialogFragment
 
 class DiscoveryActivity : BaseActivity() {
     private lateinit var binding: ActivityDiscoveryBinding
@@ -63,6 +64,13 @@ class DiscoveryActivity : BaseActivity() {
             picker.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         }
         binding.discoveryAnalyzePhoto.setOnClickListener { showPhotoConsent() }
+        binding.discoveryAnalyzeLocal.setOnClickListener {
+            MaterialAlertDialogBuilder(this).setTitle(R.string.discovery_local_title)
+                .setMessage(R.string.discovery_local_consent)
+                .setPositiveButton(R.string.discovery_local_analyze) { _, _ -> model.analyzeLocal() }
+                .setNegativeButton(android.R.string.cancel, null).show()
+        }
+        binding.discoveryPhotoModels.setOnClickListener { PhotoModelsDialogFragment().show(supportFragmentManager, "discovery-models") }
         binding.discoveryManual.setOnClickListener { model.useManual() }
         binding.discoveryApplyPhoto.setOnClickListener {
             model.applySuggestions()
@@ -131,6 +139,7 @@ class DiscoveryActivity : BaseActivity() {
         binding.discoveryProgress.isVisible = model.busy
         binding.discoveryCancel.isVisible = model.busy
         listOf(binding.discoveryConnect, binding.discoveryPickPhoto, binding.discoveryAnalyzePhoto, binding.discoveryApplyPhoto,
+            binding.discoveryAnalyzeLocal, binding.discoveryPhotoModels,
             binding.discoveryScene, binding.discoveryMood, binding.discoveryTag, binding.discoveryMarket,
             binding.discoveryQuery, binding.discoveryEndpoint, binding.discoveryConfirm).forEach { it.isEnabled = !model.busy }
     }
@@ -144,11 +153,12 @@ class DiscoveryActivity : BaseActivity() {
         binding.discoveryProviderStatus.text = if (status == null) getString(R.string.discovery_status_unknown)
             else (status.catalogs + status.vision).joinToString("\n") { "${it.name}: ${it.mode} / ${it.state}${it.error?.let { error -> " ($error)" }.orEmpty()}" }
         binding.discoveryPhotoStatus.text = when {
-            model.photo != null -> "${model.photo!!.scenes.joinToString()}\n${model.photo!!.moods.joinToString()} · ${model.photo!!.tags.joinToString()}"
+            model.photo != null -> model.localPhotoDescription ?: "${model.photo!!.scenes.joinToString()}\n${model.photo!!.moods.joinToString()} · ${model.photo!!.tags.joinToString()}"
             model.photoUri != null -> getString(R.string.discovery_photo_selected)
             else -> getString(R.string.discovery_photo_none)
         }
         binding.discoveryAnalyzePhoto.isVisible = model.photoUri != null
+        binding.discoveryAnalyzeLocal.isVisible = model.photoUri != null
         binding.discoveryApplyPhoto.isVisible = model.photo != null
         binding.discoveryClearExclusions.isVisible = model.collection.excluded.isNotEmpty()
         binding.discoveryMessage.text = if (model.collectionError != null) getString(R.string.discovery_storage_error) else message(model.message)
@@ -207,6 +217,9 @@ class DiscoveryActivity : BaseActivity() {
         "exclusions_cleared" -> getString(R.string.discovery_exclusions_cleared)
         "photo_selected" -> getString(R.string.discovery_photo_selected)
         "photo_suggested" -> getString(R.string.discovery_photo_suggested)
+        "local_photo_model_missing" -> getString(R.string.discovery_local_missing)
+        "local_photo_uncertain" -> getString(R.string.discovery_local_uncertain)
+        "local_photo_failed" -> getString(R.string.discovery_local_failed)
         "invalid_endpoint" -> getString(R.string.discovery_invalid_endpoint)
         "invalid_input", "http_422" -> getString(R.string.discovery_invalid_input)
         "invalid_response" -> getString(R.string.discovery_invalid_response)

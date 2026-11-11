@@ -29,6 +29,8 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         private set
     var photo: PhotoIntent? = null
         private set
+    var localPhotoDescription: String? = null
+        private set
     var status: DiscoveryStatus? = null
         private set
     var results: DiscoveryResults? = null
@@ -57,8 +59,10 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     fun selectPhoto(uri: Uri?) {
+        cancel()
         photoUri = uri
         photo = null
+        localPhotoDescription = null
         message = if (uri == null) "photo_cancelled" else "photo_selected"
         changed()
     }
@@ -67,6 +71,7 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         cancel()
         photoUri = null
         photo = null
+        localPhotoDescription = null
         message = "manual"
         changed()
     }
@@ -100,13 +105,44 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
             if (current.recipient != consentedStatus?.recipient || current.model != consentedStatus.model) throw DiscoveryFailure("vision_consent_changed")
             val jpeg = DiscoveryPhoto.prepare(getApplication<Application>().contentResolver, selected)
             val suggestion = client.analyze(current.token, jpeg)
-            return@runOperation { status = current; photo = suggestion; photoUri = null; message = "photo_suggested" }
+            return@runOperation { status = current; photo = suggestion; localPhotoDescription = null; photoUri = null; message = "photo_suggested" }
+        }
+    }
+
+    /** Explicit local action; never falls back to uploading when model/read/inference fails. */
+    fun analyzeLocal() {
+        if (busy) return
+        val selected = photoUri ?: return
+        val version = ++generation
+        busy = true
+        message = "loading"
+        changed()
+        job = viewModelScope.launch {
+            try {
+                val suggestion = withTimeout(60_000) { DiscoveryLocalPhoto(getApplication()).analyze(selected) }
+                if (version == generation) {
+                    photo = suggestion.intent
+                    localPhotoDescription = suggestion.description
+                    photoUri = null
+                    message = "photo_suggested"
+                }
+            } catch (error: CancellationException) {
+                if (version == generation) message = "cancelled"
+                throw error
+            } catch (error: Exception) {
+                if (version == generation) message = (error as? DiscoveryFailure)?.code ?: "local_photo_failed"
+            } finally {
+                if (version == generation) { busy = false; changed() }
+            }
         }
     }
 
     /** Suggestions are applied only by an explicit user choice; existing music intent always wins. */
     fun applySuggestions() {
-        photo?.let { intent = MusicIntent(it.moods.first(), it.tags); scene = it.scenes.firstOrNull() }
+        photo?.let {
+            intent = intent.copy(mood = it.moods.first(), tags = it.tags.ifEmpty { intent.tags })
+            scene = it.scenes.firstOrNull()
+        }
         changed()
     }
 

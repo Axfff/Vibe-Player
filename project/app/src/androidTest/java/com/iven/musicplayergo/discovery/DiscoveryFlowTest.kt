@@ -274,6 +274,39 @@ class DiscoveryFlowTest {
         }
     }
 
+    @Test fun localPhotoFailureNeverUploadsOrChangesIntentAndCancellationRemainsManual() {
+        DiscoveryFixtureServer().use { server ->
+            prepare(server)
+            ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    activity.model.intent = MusicIntent("energetic", listOf("rock"), "my search")
+                    activity.model.analyzeLocal() // no selected image
+                    assertFalse(activity.model.busy)
+                    activity.model.selectPhoto(Uri.parse("content://unreadable/discovery"))
+                    activity.findViewById<View>(R.id.discovery_analyze_local).performClick()
+                    dialog().findViewById<View>(android.R.id.button2).performClick()
+                    assertNull(activity.model.photo)
+                    activity.findViewById<View>(R.id.discovery_analyze_local).performClick()
+                    dialog().findViewById<View>(android.R.id.button1).performClick()
+                }
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    assertTrue(activity.model.message in setOf("local_photo_model_missing", "local_photo_failed"))
+                    assertEquals("my search", activity.model.intent.text)
+                    assertNull(activity.model.photo)
+                    activity.model.analyzeLocal()
+                    activity.model.analyzeLocal() // duplicate tap does not start another job
+                    activity.model.useManual()
+                    assertNull(activity.model.photoUri)
+                    assertNull(activity.model.localPhotoDescription)
+                    assertFalse(activity.model.busy)
+                }
+                assertTrue(server.requests.none { it.path.contains("photo") })
+            }
+        }
+    }
+
     private fun dialog(): View = android.view.inspector.WindowInspector.getGlobalWindowViews()
         .last { it.findViewById<View>(android.R.id.button1) != null }
 

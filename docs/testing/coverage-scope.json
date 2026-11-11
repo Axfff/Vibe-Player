@@ -326,12 +326,12 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryActivity.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "c8eced3375360627668bbdc1deb27a2ade5197d170a4b4935381fa3cae5206df",
+      "source_sha256": "bac06f2a5c1251e562e976e258d4d5805e8aecb277f64db35f4829a8c62339ae",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          231
+          244
         ]
       ],
       "source_commits": [
@@ -391,6 +391,21 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryLocalPhoto.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "3bacf6394a7f4ebcef1a340c291773ccb7321dc0bdaf34c01d335a0e344e9e0c",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          56
+        ]
+      ],
+      "source_commits": [],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryModels.kt",
       "module": "android",
       "change": "added",
@@ -446,12 +461,12 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryViewModel.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "dbad723423332a65e9bb626df76cabfaf92c3ca780327e73c80b0280754f249f",
+      "source_sha256": "21867df52279bc8886f2a72372704e70ae411602b4d113219b14c2c9700445d2",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          189
+          225
         ]
       ],
       "source_commits": [

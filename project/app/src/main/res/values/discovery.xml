@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="discovery_local_title">在手机上分析照片</string>
+    <string name="discovery_local_consent">使用你已导入的照片模型，只读取这张照片。照片不会上传；识别结果只是画面氛围建议，仍需你修改并确认。之后搜索音乐时只发送确认的文字与标签。</string>
+    <string name="discovery_local_analyze">在手机上分析照片</string>
+    <string name="discovery_local_models">配置本地照片模型</string>
+    <string name="discovery_local_missing">尚未导入本地照片模型。请配置模型，或继续手动输入；照片没有上传。</string>
+    <string name="discovery_local_uncertain">照片没有明确的可用氛围线索。请手动选择想听的音乐；照片没有上传。</string>
+    <string name="discovery_local_failed">本地分析未完成。请检查照片读取权限及模型版本，或继续手动输入；照片没有上传。</string>
     <string name="discovery_title">Vibe Discovery</string>
     <string name="discovery_intro">Find music for the atmosphere you want. Open the official platform and keep your discoveries here.</string>
     <string name="discovery_collection">Discovery Collection (%1$d)</string>
@@ -31,7 +38,7 @@
     <string name="discovery_consent">Recipient: %1$s\nModel: %2$s\n\nThis app sends a resized image with metadata removed through your configured service. The service sends it to the model provider. Neither the app nor this service stores the photo. Provider retention follows its account policy; store=false does not mean zero retention.\n\nYou can refuse and use manual input.</string>
     <string name="discovery_agree">Agree and analyze this photo</string>
     <string name="discovery_refuse">Use manual input</string>
-    <string name="discovery_blocked">Real photo analysis is blocked: no authorized live model. Manual discovery is available.</string>
+    <string name="discovery_blocked">Cloud photo analysis has no authorized live model. You can use an imported local photo model or continue with manual input.</string>
     <string name="discovery_ready">Choose a scene and your music intent. No photo is required.</string>
     <string name="discovery_loading">Contacting the discovery service…</string>
     <string name="discovery_cancelled">Request cancelled. You can edit and try again.</string>
