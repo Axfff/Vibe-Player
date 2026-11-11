@@ -3,6 +3,7 @@
   "published_source_fingerprint": "fe8f08381c13f218b24612397481f51d183663060f3c9a7fdc35c15c511022cf",
   "harness_note": "API 33 and phone execution precede the test-only legacy provider adaptation; production APK is unchanged. API 21/23 execute the final adapted harness. Current-head CI verifies the final complete source tree.",
   "artifacts": {
+    ".gitattributes": "7930a6a09f082e7984ca8a94575e7b4c0a0d0e01ff26d7f6c4b9b1b2378e6bdb",
     "api21-inference.json": "c35590227fbbf26346b61c3cceb49afcbe2c11dd72381825246a4813e4474b78",
     "api23-inference.json": "e14c4ecbc6e5e0a724e97707375bd04b986fdb9f70d45d0e9d257046b9b7f354",
     "development-evaluation.json": "71f41dfe21fbfa6885013bb282d4a38b06689c4562a4e9260a60884461bd3685",
