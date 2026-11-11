@@ -2,10 +2,7 @@ package com.iven.musicplayergo.covers
 
 import android.app.Dialog
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -44,9 +41,8 @@ class CoverCropDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val padding = (20 * resources.displayMetrics.density).toInt()
-        val cropSize = minOf(resources.displayMetrics.widthPixels - padding * 4, (360 * resources.displayMetrics.density).toInt())
         val crop = CropImageView(requireContext()).apply {
-            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, cropSize)
+            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
             contentDescription = getString(R.string.cover_crop_preview)
         }
         val message = TextView(requireContext()).apply {
@@ -98,17 +94,8 @@ class CoverCropDialogFragment : DialogFragment() {
         }
     }
 
-    private fun decode(uri: Uri): Bitmap? = try {
-        if (Build.VERSION.SDK_INT >= 28) {
-            ImageDecoder.decodeBitmap(ImageDecoder.createSource(requireContext().contentResolver, uri)) { decoder, info, _ ->
-                val scale = minOf(1f, 2048f / maxOf(info.size.width, info.size.height))
-                decoder.setTargetSize((info.size.width * scale).toInt(), (info.size.height * scale).toInt())
-                decoder.allocator = ImageDecoder.ALLOCATOR_SOFTWARE
-            }
-        } else {
-            requireContext().contentResolver.openInputStream(uri)?.use(BitmapFactory::decodeStream)
-        }
-    } catch (_: Exception) { null }
+    private fun decode(uri: Uri): Bitmap? =
+        (CoverImageDecoder(requireContext()).decode(uri) as? CoverResult.Success)?.value
 
     private fun save(dialog: AlertDialog) {
         val target = target() ?: return
