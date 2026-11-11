@@ -1,23 +1,18 @@
-# Draft PR: Add Vibe Discovery backend with album analysis and local demo
+# Draft PR: Deliver Android Vibe Discovery manual increment with a real catalog and persistent Collection
 
-新增独立 FastAPI 与同源调试页，将图片产生的音乐意图、真实目录身份和试听许可分别处理。用户可以选择单图、多张图片、相册文件夹或直接输入文字；单次/本批同意后分析，编辑标签并确认目标，再查询 Jamendo/iTunes。
+Android users can now confirm scene/music intent, retrieve validated live iTunes songs, open their official links and save discoveries in an independent Collection that survives app restart. The existing local Python/provider work is retained and extended with deterministic metadata ranking, source identity checks, exclusions, artist diversity and explicit failures. The new native Kotlin/XML screen includes a consent-gated single-photo branch, bounded cancellable HTTP and durable AtomicFile storage.
 
-相册按索引逐张处理，显示成功/失败/待处理与场景频次，支持预算预检、重复索引幂等和取消。原图只在内存处理，文件名与目录路径留在客户端。目录目标 8 首，实际不足如实返回；换歌保留服务端已返回 ID。iTunes 固定外跳，Jamendo 逐曲许可与项目条件核实后才允许最多 30 秒试听。
-
-## Scope
-
-仅 `services/discovery/` 与 `docs/development/discovery/`。基线 `947709e4c798a103b9fcc5962172f2e85d349196`，分支 `feat/ai-photo-discovery`。Android、原播放器、多歌单 Sprint 2 AC1–AC9 与公共 CI 保持原状。
-
-本地网络支持显式回环 HTTP CONNECT 代理，默认直连公共 DNS；目标 HTTPS、官方域名和重定向校验保留。selectionIssues 展示官方页身份与网络预算筛选原因。
+Published as [draft PR #37](https://github.com/Axfff/Vibe-Player/pull/37), linked parent [Story #36](https://github.com/Axfff/Vibe-Player/issues/36). [Requirements, Sprint 3/4 AC and task ownership](../../requirements/vibe-discovery.md), [run instructions](android-sprint3.md), and [dated device/AC evidence](sprint3-delivery-2026-11-03.md) are included. Complete hybrid discovery remains the overall goal; legal previews and audio exclusivity are explicitly retained in Sprint 4.
 
 ## Validation
 
-- Python 单元/接口测试 148 passed；Node 相册与试听控制器 17 passed。
-- Ruff、pip check、JS syntax 和 diff whitespace 检查通过。
-- 实际浏览器验证文件夹、多选、2 成功/1 失败、24 张中第 15 张后取消、单图回归和用户目标优先；视觉为显式 MOCK，云调用 0。
-- iTunes 实际搜索与 ID lookup 成功，本轮服务端共 33 次受限 HTTP 请求。官方曲目页在当前网络跳到 /cn/new，严格筛选为 0 首；真实换歌端到端 Pending 官方曲目页可用。
-- 真实视觉模型、Jamendo 与许可试听、Android 设备/音频互斥待对应配置与下一批验收。
+- Full clean local candidate `00bad97b`: 37 JVM, 49 Android, 166 Python and 22 web tests passed, with no failures/errors/skips. Cumulative coverage: Android 1727/1952 (88.47%), backend 954/992 (96.17%), web 812/825 (98.42%); all pass. All 46 production files, Release 1 and the 336-class matching audit are included. Final PR cloud results are separately attributed to their head SHA.
+- Actual disposable API 33 run: confirm `city / focused / piano / US` → eight live iTunes results → launch Chrome → save → force-stop/reopen → restored Collection. APK hash and screenshots are recorded in the delivery evidence.
+- Two bounded live catalog smoke runs each used four requests and passed result identity, nonrepeat replacement, lookup and external-only checks. Real model calls: zero. Automated transport fixtures are separate from this live evidence.
 
-详见[本轮记录](album-and-live-2026-10-28.md)。06–10 研究文件仍待补齐，以映射 D-AC01–12 正式定义。
+## Acceptance limits
 
-本文件是本地 PR 草稿；团队 Review、远端 CI 与发布状态在实际发生后另行记录。
+- **S3-AC2 Blocked:** no authorized real vision configuration. Manual mode is usable; fixture photo tests do not satisfy recognition acceptance.
+- **S3-AC5 partial:** the actual browser opened the validated Apple URL but was redirected to `/cn/new`; target-song page availability remains unpassed.
+- Jamendo live authorization, legal in-app previews, audio mutual exclusion and full hybrid device acceptance remain unfinished and explicitly assigned to Sprint 4.
+- Human review and acceptance remain pending. Story #2 and `release1` are unchanged; no release artifact is replaced and no merge is requested automatically.

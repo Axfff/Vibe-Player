@@ -35,6 +35,14 @@
             android:text="@string/library_scan_music" />
     </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/library_discovery"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="@string/discovery_title" />
+
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/library_scan_progress"
         android:layout_width="match_parent"

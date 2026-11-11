@@ -24,6 +24,8 @@
 | --- | --- |
 | [Sprint 1](sprints/sprint-1.md) | #1 结项、环境、构建和安装运行证据 |
 | [Sprint 2](sprints/sprint-2.md) | 目标、Story 链接、工作拆分、进度与回顾 |
+| [Sprint 3 Discovery](sprints/sprint-3.md) | [正式 Story #36](https://github.com/Axfff/Vibe-Player/issues/36)、Sprint 3/4 AC/任务、Android 可运行增量与未通过项 |
+| [Discovery 实测交付](development/discovery/sprint3-delivery-2026-11-03.md) | APK/源码身份、真实目录、模拟器截图、测试和照片授权/歌曲页地区限制 |
 | [Release 1](releases/release-1.md) | 两个 Sprint 的交付和审阅证据索引 |
 | [Release 1 evidence matrix](releases/release-1-evidence-matrix.md) | AC1–AC9 对应的历史 TC、最终集成测试、环境和源码版本 |
 | [Human-review packet](releases/release-1-human-review.md) | #17 的复审范围、合并提交、证据及真人填写模板 |

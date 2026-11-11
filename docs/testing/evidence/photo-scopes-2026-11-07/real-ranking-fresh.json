@@ -1,0 +1,4833 @@
+{
+  "cases": [
+    {
+      "case_id": "case_01",
+      "audio_id": "audio_0001",
+      "photo_ids": [
+        "img_0001",
+        "img_0002",
+        "img_0006",
+        "img_0005",
+        "img_0010"
+      ],
+      "audio_ms": 3604,
+      "cold_photo_ms": 1301,
+      "cached_photo_ms": 316,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "happy",
+          "score": 0.41840753
+        },
+        {
+          "label": "uplifting",
+          "score": 0.12979916
+        },
+        {
+          "label": "love",
+          "score": 0.12619069
+        },
+        {
+          "label": "melodic",
+          "score": 0.11510892
+        },
+        {
+          "label": "upbeat",
+          "score": 0.11047159
+        },
+        {
+          "label": "fun",
+          "score": 0.10960602
+        },
+        {
+          "label": "positive",
+          "score": 0.0996801
+        },
+        {
+          "label": "inspiring",
+          "score": 0.09608803
+        },
+        {
+          "label": "advertising",
+          "score": 0.09468221
+        },
+        {
+          "label": "background",
+          "score": 0.08623831
+        },
+        {
+          "label": "corporate",
+          "score": 0.07840003
+        },
+        {
+          "label": "romantic",
+          "score": 0.076338366
+        },
+        {
+          "label": "energetic",
+          "score": 0.07609771
+        },
+        {
+          "label": "soft",
+          "score": 0.06690681
+        },
+        {
+          "label": "christmas",
+          "score": 0.06277245
+        },
+        {
+          "label": "relaxing",
+          "score": 0.05871334
+        },
+        {
+          "label": "funny",
+          "score": 0.057687234
+        },
+        {
+          "label": "ballad",
+          "score": 0.05657388
+        },
+        {
+          "label": "children",
+          "score": 0.051413257
+        },
+        {
+          "label": "film",
+          "score": 0.049299948
+        },
+        {
+          "label": "motivational",
+          "score": 0.0463336
+        },
+        {
+          "label": "meditative",
+          "score": 0.044934675
+        },
+        {
+          "label": "hopeful",
+          "score": 0.043159693
+        },
+        {
+          "label": "summer",
+          "score": 0.04297082
+        },
+        {
+          "label": "sad",
+          "score": 0.04117814
+        },
+        {
+          "label": "commercial",
+          "score": 0.0384321
+        },
+        {
+          "label": "calm",
+          "score": 0.033012185
+        },
+        {
+          "label": "emotional",
+          "score": 0.032349683
+        },
+        {
+          "label": "holiday",
+          "score": 0.031876553
+        },
+        {
+          "label": "cool",
+          "score": 0.029076807
+        },
+        {
+          "label": "slow",
+          "score": 0.028332056
+        },
+        {
+          "label": "dream",
+          "score": 0.02821727
+        },
+        {
+          "label": "drama",
+          "score": 0.027601598
+        },
+        {
+          "label": "melancholic",
+          "score": 0.027402615
+        },
+        {
+          "label": "adventure",
+          "score": 0.025452135
+        },
+        {
+          "label": "documentary",
+          "score": 0.024799084
+        },
+        {
+          "label": "movie",
+          "score": 0.02464832
+        },
+        {
+          "label": "party",
+          "score": 0.023442559
+        },
+        {
+          "label": "groovy",
+          "score": 0.021851446
+        },
+        {
+          "label": "deep",
+          "score": 0.01924191
+        },
+        {
+          "label": "travel",
+          "score": 0.018645171
+        },
+        {
+          "label": "nature",
+          "score": 0.017988548
+        },
+        {
+          "label": "dark",
+          "score": 0.01771555
+        },
+        {
+          "label": "game",
+          "score": 0.016880052
+        },
+        {
+          "label": "epic",
+          "score": 0.01332766
+        },
+        {
+          "label": "action",
+          "score": 0.012944197
+        },
+        {
+          "label": "retro",
+          "score": 0.012484523
+        },
+        {
+          "label": "sexy",
+          "score": 0.011200591
+        },
+        {
+          "label": "sport",
+          "score": 0.0107422825
+        },
+        {
+          "label": "dramatic",
+          "score": 0.009038778
+        },
+        {
+          "label": "fast",
+          "score": 0.008730621
+        },
+        {
+          "label": "space",
+          "score": 0.007838778
+        },
+        {
+          "label": "soundscape",
+          "score": 0.007059455
+        },
+        {
+          "label": "heavy",
+          "score": 0.003118367
+        },
+        {
+          "label": "trailer",
+          "score": 0.0030275625
+        },
+        {
+          "label": "powerful",
+          "score": 0.0027110649
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "img_0035",
+          "fingerprint": "854ed4082ab430cd772c92aca7ccd928c79d3197e595b52077ab55c0a130a839",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0001299146
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0001907072
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0020973212
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.002841972
+            },
+            {
+              "label": "valley",
+              "confidence": 3.862653e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0010689663
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0001239909
+            },
+            {
+              "label": "butterfly",
+              "confidence": 7.052748e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0004506353
+            },
+            {
+              "label": "volleyball",
+              "confidence": 5.6481156e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0015",
+          "fingerprint": "cb48c04fd2930f4adf1316239ec017007015edcee67b39a9e32c762c0a87de41",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00014465813
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2541342e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.9307768
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.386216e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0034680557
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00016786398
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.5798106e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.5317175e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.004981856
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.304707e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0006",
+          "fingerprint": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.6502463e-06
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2698964e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00026015597
+            },
+            {
+              "label": "seashore",
+              "confidence": 3.2095543e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3761488e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 7.2431617e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.54896814
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.05019723
+            },
+            {
+              "label": "canoe",
+              "confidence": 3.1028114e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.0160355e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0033",
+          "fingerprint": "b92c54f879c53f152d64e6c1c739427ec928c417604ba10968c2baf8ccf40445",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0009509089
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00010058136
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0039055885
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010065756
+            },
+            {
+              "label": "valley",
+              "confidence": 7.642221e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.000122028636
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.0079256e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.8710838e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.989636e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.0016286296
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0026",
+          "fingerprint": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007862485
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.15410054
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.002319431
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018344885
+            },
+            {
+              "label": "valley",
+              "confidence": 0.048226506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.058234576
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.993135e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00012869583
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00015245815
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.692335e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0002",
+          "fingerprint": "f0b3a0d89182d128592a7ffcb0d7ceb848b79693bb8df60c0f34aa35e42ac4dc",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.4072764e-07
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.5394046e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 1.5809688e-05
+            },
+            {
+              "label": "seashore",
+              "confidence": 6.124901e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 2.836691e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 7.119725e-07
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.06492146
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.57419777
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.866307e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.1759334e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0008",
+          "fingerprint": "7146b33c0a10735f82d2ed8839c93d1f2d4f81362d0349590206b0af68c9c59c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.02563242
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0191208
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0070519014
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0072680097
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0105473455
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0007581255
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.5622244e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.898893e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.000100567144
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.031887e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0005",
+          "fingerprint": "7020a172b2056276dc357543ddb69791317ef5de9a8c21d9a41ce12e7ad62f6f",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 4.863095e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.7789754e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00035249285
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00028117574
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3857124e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.951312e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0011723995
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.15644471
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00018068228
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.894226e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0037",
+          "fingerprint": "01af205eaeba56478f3f5adbe8293142e3e1b5b4d1a875ca47d0ff8b46020040",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007160803
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.002476302
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.038247008
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010076052
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0026991079
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0026090918
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.9846428e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 8.195692e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0002500676
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.00036658676
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0004",
+          "fingerprint": "ae91b236635c4d26a5fda90591233ec655b98f1bec020d55134c818604c1c9c5",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00026927385
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00023471794
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.099118955
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.874307e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00020916201
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.2148256e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.436197e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.4901695e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.02194122
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.0845e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "fingerprint": "1ae9136fa7dfd9c002fbbe521bd3633b0d1efb3127005d589b7431a59e3202df",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0003151035
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0042756307
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.3598796
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.14893617
+            },
+            {
+              "label": "valley",
+              "confidence": 0.1382215
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00062526483
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.24436e-07
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.0619163e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.010943944
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.944724e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0028",
+          "fingerprint": "973fa2adea7851354eb20b184f4d1ac5a888b1701449d9ba1f8339a6f4579591",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.02670972
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.012636581
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0050213872
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.05485041
+            },
+            {
+              "label": "valley",
+              "confidence": 0.021857504
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.17430136
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00010836823
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.04786395e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00027155937
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.5802552e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0040",
+          "fingerprint": "168137d99deedeed92a60b0c351aff8df51fbd6a836be15d0c40352939f23887",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0014118322
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.000770149
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.037427012
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.009092245
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0027845083
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.5919764
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.569799e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00024817203
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.008702734
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.477902e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0025",
+          "fingerprint": "1e4ececfde40b2b1e3686e0fff2273367b6b4c4f87494aa89aad7ced5d2230b3",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.0430822e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 6.465657e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.021877125
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018529728
+            },
+            {
+              "label": "valley",
+              "confidence": 2.0611256e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0034578e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.8104057e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.54028e-09
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0005130611
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.715622e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0001",
+          "fingerprint": "6828e2b269a35e5ccd45302d17dfc80166c4b1b2940e7894d8cfc1dc24787c1b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 3.3608438e-07
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.1103692e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 7.469279e-06
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.753285e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 6.1238583e-09
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.6259917e-07
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.9784482
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0022923232
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.5048442e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.937256e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0007",
+          "fingerprint": "6a888130df4cdd85540a17cf4a7316c8b52397d873b5fb03436ca77fc452b22d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.262631e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0006474446
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0032319576
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.10364199
+            },
+            {
+              "label": "valley",
+              "confidence": 3.13995e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.4528024e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00060563156
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.000101679056
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0040689837
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.890736e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0023",
+          "fingerprint": "5efadd9501729059ff0cc7a36e043dac11cb7ef50a3ff9ad2ba3f9250173650d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0013877735
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0044306335
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.019272491
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0061285333
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00062544097
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.749625e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.365119e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 5.1676587e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.0948199e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.3082222e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0027",
+          "fingerprint": "9ccb0f75ca590d5967e40bc976ec57ac8bea4186ff40c20b29026960e576dd8b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.01271967
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.019704735
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.016569149
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0687711
+            },
+            {
+              "label": "valley",
+              "confidence": 0.015761487
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.054699685
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00011341573
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.0599862e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0019299539
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.544435e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0011",
+          "fingerprint": "2fcec7e81e963acd4f7a210154ad19ee32612022863c803199651c34c71ff007",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00090342056
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.8412294
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00014292554
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00029652927
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0018179506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0002998037
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.1772619e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 5.283207e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.2962608e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.279614e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "fingerprint": "83a0e73117758efc042ea8bfb10ec07486a1de7cfc5bc9aceada8632df145d5c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.013424244
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00040529566
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.43328494
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018919947
+            },
+            {
+              "label": "valley",
+              "confidence": 0.050116207
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0018887207
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.276303e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.74602e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.028484082
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.7999076e-05
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "img_0001",
+          "score": 0.622553,
+          "reasons": [
+            "happy (0.41840753) \u2192 daisy (0.9784482)",
+            "positive (0.0996801) \u2192 daisy (0.9784482)"
+          ]
+        },
+        {
+          "photo_id": "img_0002",
+          "score": 0.5205355,
+          "reasons": [
+            "happy (0.41840753) \u2192 butterfly (0.57419777)",
+            "upbeat (0.11047159) \u2192 butterfly (0.57419777)",
+            "fun (0.10960602) \u2192 butterfly (0.57419777)",
+            "positive (0.0996801) \u2192 butterfly (0.57419777)"
+          ]
+        },
+        {
+          "photo_id": "img_0006",
+          "score": 0.3492896,
+          "reasons": [
+            "happy (0.41840753) \u2192 daisy (0.54896814)",
+            "positive (0.0996801) \u2192 daisy (0.54896814)"
+          ]
+        },
+        {
+          "photo_id": "img_0005",
+          "score": 0.141824,
+          "reasons": [
+            "happy (0.41840753) \u2192 butterfly (0.15644471)",
+            "upbeat (0.11047159) \u2192 butterfly (0.15644471)",
+            "fun (0.10960602) \u2192 butterfly (0.15644471)",
+            "positive (0.0996801) \u2192 butterfly (0.15644471)"
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "score": 0.07653057,
+          "reasons": [
+            "happy (0.41840753) \u2192 seashore (0.14893617)"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_02",
+      "audio_id": "audio_0006",
+      "photo_ids": [
+        "img_0015",
+        "img_0010",
+        "img_0009",
+        "img_0011",
+        "img_0002"
+      ],
+      "audio_ms": 2839,
+      "cold_photo_ms": 1160,
+      "cached_photo_ms": 336,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "relaxing",
+          "score": 0.13101591
+        },
+        {
+          "label": "slow",
+          "score": 0.08193791
+        },
+        {
+          "label": "sad",
+          "score": 0.07808498
+        },
+        {
+          "label": "emotional",
+          "score": 0.07723151
+        },
+        {
+          "label": "calm",
+          "score": 0.07590238
+        },
+        {
+          "label": "happy",
+          "score": 0.07492751
+        },
+        {
+          "label": "meditative",
+          "score": 0.07045081
+        },
+        {
+          "label": "background",
+          "score": 0.066441156
+        },
+        {
+          "label": "dark",
+          "score": 0.05358348
+        },
+        {
+          "label": "motivational",
+          "score": 0.051231336
+        },
+        {
+          "label": "advertising",
+          "score": 0.050335344
+        },
+        {
+          "label": "dream",
+          "score": 0.050316185
+        },
+        {
+          "label": "inspiring",
+          "score": 0.049613424
+        },
+        {
+          "label": "romantic",
+          "score": 0.049455974
+        },
+        {
+          "label": "film",
+          "score": 0.048047997
+        },
+        {
+          "label": "soft",
+          "score": 0.047251847
+        },
+        {
+          "label": "melodic",
+          "score": 0.04463129
+        },
+        {
+          "label": "love",
+          "score": 0.04010664
+        },
+        {
+          "label": "uplifting",
+          "score": 0.036841862
+        },
+        {
+          "label": "melancholic",
+          "score": 0.035754375
+        },
+        {
+          "label": "space",
+          "score": 0.03480961
+        },
+        {
+          "label": "soundscape",
+          "score": 0.03369734
+        },
+        {
+          "label": "documentary",
+          "score": 0.02897914
+        },
+        {
+          "label": "hopeful",
+          "score": 0.02723566
+        },
+        {
+          "label": "corporate",
+          "score": 0.02637699
+        },
+        {
+          "label": "drama",
+          "score": 0.01801494
+        },
+        {
+          "label": "nature",
+          "score": 0.0179489
+        },
+        {
+          "label": "cool",
+          "score": 0.017039327
+        },
+        {
+          "label": "deep",
+          "score": 0.016943479
+        },
+        {
+          "label": "energetic",
+          "score": 0.015453212
+        },
+        {
+          "label": "positive",
+          "score": 0.014996005
+        },
+        {
+          "label": "ballad",
+          "score": 0.014743136
+        },
+        {
+          "label": "children",
+          "score": 0.014394783
+        },
+        {
+          "label": "dramatic",
+          "score": 0.013746856
+        },
+        {
+          "label": "movie",
+          "score": 0.01337887
+        },
+        {
+          "label": "commercial",
+          "score": 0.013300168
+        },
+        {
+          "label": "summer",
+          "score": 0.012234442
+        },
+        {
+          "label": "christmas",
+          "score": 0.011955893
+        },
+        {
+          "label": "epic",
+          "score": 0.011317292
+        },
+        {
+          "label": "holiday",
+          "score": 0.0109532885
+        },
+        {
+          "label": "fun",
+          "score": 0.00997418
+        },
+        {
+          "label": "adventure",
+          "score": 0.009871094
+        },
+        {
+          "label": "travel",
+          "score": 0.009701811
+        },
+        {
+          "label": "action",
+          "score": 0.007220787
+        },
+        {
+          "label": "upbeat",
+          "score": 0.007124871
+        },
+        {
+          "label": "game",
+          "score": 0.0065894844
+        },
+        {
+          "label": "funny",
+          "score": 0.0055725463
+        },
+        {
+          "label": "groovy",
+          "score": 0.004785077
+        },
+        {
+          "label": "retro",
+          "score": 0.004369029
+        },
+        {
+          "label": "party",
+          "score": 0.00414665
+        },
+        {
+          "label": "sport",
+          "score": 0.003106406
+        },
+        {
+          "label": "trailer",
+          "score": 0.0030721098
+        },
+        {
+          "label": "sexy",
+          "score": 0.0027612243
+        },
+        {
+          "label": "fast",
+          "score": 0.0014911767
+        },
+        {
+          "label": "heavy",
+          "score": 0.0012838994
+        },
+        {
+          "label": "powerful",
+          "score": 0.0011333772
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "img_0013",
+          "fingerprint": "ba956b3a6c947c9a72084f1c7bc5cab188ba02a2ae7030ac6f2e7e8ed231c65d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.9085779
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00031811683
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.010670193
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.1236005e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.049894925
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00049478456
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.2609794e-09
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.4740377e-08
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0007810169
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.7310453e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0040",
+          "fingerprint": "168137d99deedeed92a60b0c351aff8df51fbd6a836be15d0c40352939f23887",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0014118322
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.000770149
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.037427012
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.009092245
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0027845083
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.5919764
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.569799e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00024817203
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.008702734
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.477902e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0037",
+          "fingerprint": "01af205eaeba56478f3f5adbe8293142e3e1b5b4d1a875ca47d0ff8b46020040",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007160803
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.002476302
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.038247008
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010076052
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0026991079
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0026090918
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.9846428e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 8.195692e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0002500676
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.00036658676
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0030",
+          "fingerprint": "df9208b0ab57117ee4f2f6ee32ffe958f0bd68693e0daf6cc464ddd9d2bf1535",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00057475216
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0019760858
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00016794221
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.044036e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 4.862756e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.5377747e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 2.4784224e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00012360098
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00096443767
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.0004523659
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0034",
+          "fingerprint": "45297908b8f3d263c7d19454ee5c5b80b145346acf533e97bc8a41b8da7abaf4",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.5824588e-08
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.1432147e-09
+            },
+            {
+              "label": "lakeside",
+              "confidence": 8.711891e-09
+            },
+            {
+              "label": "seashore",
+              "confidence": 2.0884097e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 1.8006185e-08
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.5925926e-09
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.07076e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.1856993e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.6137604e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.3213957e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0011",
+          "fingerprint": "2fcec7e81e963acd4f7a210154ad19ee32612022863c803199651c34c71ff007",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00090342056
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.8412294
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00014292554
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00029652927
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0018179506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0002998037
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.1772619e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 5.283207e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.2962608e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.279614e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0031",
+          "fingerprint": "6d4403fd246417885a94372da3f87ef57353ccecd33fd4abe21439012b0d71fe",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0005586544
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.1151069
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.035874505
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.16162036
+            },
+            {
+              "label": "valley",
+              "confidence": 0.03234612
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0015265533
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.3678175e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.647388e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.0559814e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.825197e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0025",
+          "fingerprint": "1e4ececfde40b2b1e3686e0fff2273367b6b4c4f87494aa89aad7ced5d2230b3",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.0430822e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 6.465657e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.021877125
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018529728
+            },
+            {
+              "label": "valley",
+              "confidence": 2.0611256e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0034578e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.8104057e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.54028e-09
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0005130611
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.715622e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0015",
+          "fingerprint": "cb48c04fd2930f4adf1316239ec017007015edcee67b39a9e32c762c0a87de41",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00014465813
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2541342e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.9307768
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.386216e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0034680557
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00016786398
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.5798106e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.5317175e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.004981856
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.304707e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0026",
+          "fingerprint": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007862485
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.15410054
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.002319431
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018344885
+            },
+            {
+              "label": "valley",
+              "confidence": 0.048226506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.058234576
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.993135e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00012869583
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00015245815
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.692335e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0005",
+          "fingerprint": "7020a172b2056276dc357543ddb69791317ef5de9a8c21d9a41ce12e7ad62f6f",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 4.863095e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.7789754e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00035249285
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00028117574
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3857124e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.951312e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0011723995
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.15644471
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00018068228
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.894226e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0006",
+          "fingerprint": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.6502463e-06
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2698964e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00026015597
+            },
+            {
+              "label": "seashore",
+              "confidence": 3.2095543e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3761488e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 7.2431617e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.54896814
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.05019723
+            },
+            {
+              "label": "canoe",
+              "confidence": 3.1028114e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.0160355e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "fingerprint": "83a0e73117758efc042ea8bfb10ec07486a1de7cfc5bc9aceada8632df145d5c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.013424244
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00040529566
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.43328494
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018919947
+            },
+            {
+              "label": "valley",
+              "confidence": 0.050116207
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0018887207
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.276303e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.74602e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.028484082
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.7999076e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "fingerprint": "1ae9136fa7dfd9c002fbbe521bd3633b0d1efb3127005d589b7431a59e3202df",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0003151035
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0042756307
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.3598796
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.14893617
+            },
+            {
+              "label": "valley",
+              "confidence": 0.1382215
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00062526483
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.24436e-07
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.0619163e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.010943944
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.944724e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0029",
+          "fingerprint": "822b7dbd8a1cc9233f92f6c3f904d6534cfca72aeca74b40247c8d225a023aa8",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0007244683
+            },
+            {
+              "label": "cliff",
+              "confidence": 1.65209e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 1.403022e-07
+            },
+            {
+              "label": "seashore",
+              "confidence": 1.7871649e-08
+            },
+            {
+              "label": "valley",
+              "confidence": 3.4504384e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.191502e-08
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.1216914e-10
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.9143632e-10
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.141497e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.4975861e-10
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0019",
+          "fingerprint": "7b692f3f4da7043612684cdae943bd9f0703122b4ae68e67cbcf8f8b5bd3580d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 6.762651e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.705886e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 8.6977205e-05
+            },
+            {
+              "label": "seashore",
+              "confidence": 1.8837409e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 5.494159e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0038316e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0008833464
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0005464578
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0004983692
+            },
+            {
+              "label": "volleyball",
+              "confidence": 4.344644e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0014",
+          "fingerprint": "c0a35187491ee3b13613b555b9e38052c9eb0bbd8b2795d22aa4c4ef9d6ed895",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0011374447
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0031359736
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.016222483
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00066540623
+            },
+            {
+              "label": "valley",
+              "confidence": 0.06969505
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0021790601
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0026234807
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00071796443
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.000254076
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.1233825e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0002",
+          "fingerprint": "f0b3a0d89182d128592a7ffcb0d7ceb848b79693bb8df60c0f34aa35e42ac4dc",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.4072764e-07
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.5394046e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 1.5809688e-05
+            },
+            {
+              "label": "seashore",
+              "confidence": 6.124901e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 2.836691e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 7.119725e-07
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.06492146
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.57419777
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.866307e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.1759334e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0027",
+          "fingerprint": "9ccb0f75ca590d5967e40bc976ec57ac8bea4186ff40c20b29026960e576dd8b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.01271967
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.019704735
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.016569149
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0687711
+            },
+            {
+              "label": "valley",
+              "confidence": 0.015761487
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.054699685
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00011341573
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.0599862e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0019299539
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.544435e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0039",
+          "fingerprint": "1aeadacb44d51e4ab06804439d09f8220da01e5e76050bc99b80da8fc1f1e766",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00033240046
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00016696159
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0005564081
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00080372364
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00011853799
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.78893405
+            },
+            {
+              "label": "daisy",
+              "confidence": 2.5173063e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.8224616e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 8.113254e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.4666811e-05
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "img_0015",
+          "score": 0.59986,
+          "reasons": [
+            "relaxing (0.13101591) \u2192 lakeside (0.9307768)",
+            "calm (0.07590238) \u2192 lakeside (0.9307768)",
+            "meditative (0.07045081) \u2192 lakeside (0.9307768)"
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "score": 0.28293943,
+          "reasons": [
+            "relaxing (0.13101591) \u2192 lakeside (0.3598796)",
+            "sad (0.07808498) \u2192 valley (0.1382215)",
+            "calm (0.07590238) \u2192 lakeside (0.3598796)",
+            "happy (0.07492751) \u2192 seashore (0.14893617)",
+            "meditative (0.07045081) \u2192 lakeside (0.3598796)"
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "score": 0.27924022,
+          "reasons": [
+            "relaxing (0.13101591) \u2192 lakeside (0.43328494)",
+            "calm (0.07590238) \u2192 lakeside (0.43328494)",
+            "meditative (0.07045081) \u2192 lakeside (0.43328494)"
+          ]
+        },
+        {
+          "photo_id": "img_0011",
+          "score": 0.15262592,
+          "reasons": [
+            "sad (0.07808498) \u2192 cliff (0.8412294)"
+          ]
+        },
+        {
+          "photo_id": "img_0002",
+          "score": 0.09996526,
+          "reasons": [
+            "happy (0.07492751) \u2192 butterfly (0.57419777)"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_03",
+      "audio_id": "audio_0011",
+      "photo_ids": [
+        "img_0015",
+        "img_0011",
+        "img_0010",
+        "img_0009"
+      ],
+      "audio_ms": 3367,
+      "cold_photo_ms": 1207,
+      "cached_photo_ms": 279,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "relaxing",
+          "score": 0.15303701
+        },
+        {
+          "label": "film",
+          "score": 0.10049086
+        },
+        {
+          "label": "emotional",
+          "score": 0.09356658
+        },
+        {
+          "label": "background",
+          "score": 0.07304163
+        },
+        {
+          "label": "romantic",
+          "score": 0.07124134
+        },
+        {
+          "label": "christmas",
+          "score": 0.06941288
+        },
+        {
+          "label": "melodic",
+          "score": 0.064674154
+        },
+        {
+          "label": "sad",
+          "score": 0.06427309
+        },
+        {
+          "label": "drama",
+          "score": 0.06016662
+        },
+        {
+          "label": "meditative",
+          "score": 0.058188137
+        },
+        {
+          "label": "inspiring",
+          "score": 0.055943567
+        },
+        {
+          "label": "melancholic",
+          "score": 0.05266381
+        },
+        {
+          "label": "soft",
+          "score": 0.03974915
+        },
+        {
+          "label": "happy",
+          "score": 0.03718509
+        },
+        {
+          "label": "epic",
+          "score": 0.037124284
+        },
+        {
+          "label": "documentary",
+          "score": 0.0357353
+        },
+        {
+          "label": "ballad",
+          "score": 0.03205566
+        },
+        {
+          "label": "adventure",
+          "score": 0.027198428
+        },
+        {
+          "label": "love",
+          "score": 0.027052967
+        },
+        {
+          "label": "corporate",
+          "score": 0.026919829
+        },
+        {
+          "label": "motivational",
+          "score": 0.026393356
+        },
+        {
+          "label": "hopeful",
+          "score": 0.02464208
+        },
+        {
+          "label": "holiday",
+          "score": 0.024594387
+        },
+        {
+          "label": "dream",
+          "score": 0.024258515
+        },
+        {
+          "label": "nature",
+          "score": 0.023663634
+        },
+        {
+          "label": "uplifting",
+          "score": 0.023459308
+        },
+        {
+          "label": "dark",
+          "score": 0.022153331
+        },
+        {
+          "label": "dramatic",
+          "score": 0.020802263
+        },
+        {
+          "label": "action",
+          "score": 0.020354802
+        },
+        {
+          "label": "energetic",
+          "score": 0.020329127
+        },
+        {
+          "label": "children",
+          "score": 0.01978748
+        },
+        {
+          "label": "calm",
+          "score": 0.019785512
+        },
+        {
+          "label": "advertising",
+          "score": 0.01920696
+        },
+        {
+          "label": "movie",
+          "score": 0.01877767
+        },
+        {
+          "label": "positive",
+          "score": 0.016344469
+        },
+        {
+          "label": "space",
+          "score": 0.013178173
+        },
+        {
+          "label": "slow",
+          "score": 0.011850544
+        },
+        {
+          "label": "soundscape",
+          "score": 0.011535198
+        },
+        {
+          "label": "cool",
+          "score": 0.010589512
+        },
+        {
+          "label": "commercial",
+          "score": 0.010250807
+        },
+        {
+          "label": "funny",
+          "score": 0.008038276
+        },
+        {
+          "label": "game",
+          "score": 0.008019724
+        },
+        {
+          "label": "fun",
+          "score": 0.007874053
+        },
+        {
+          "label": "trailer",
+          "score": 0.007124468
+        },
+        {
+          "label": "travel",
+          "score": 0.0069927233
+        },
+        {
+          "label": "summer",
+          "score": 0.006389743
+        },
+        {
+          "label": "deep",
+          "score": 0.0062850066
+        },
+        {
+          "label": "upbeat",
+          "score": 0.0044514793
+        },
+        {
+          "label": "sport",
+          "score": 0.0031345147
+        },
+        {
+          "label": "groovy",
+          "score": 0.0029981774
+        },
+        {
+          "label": "party",
+          "score": 0.0023768153
+        },
+        {
+          "label": "retro",
+          "score": 0.0021259477
+        },
+        {
+          "label": "powerful",
+          "score": 0.001975633
+        },
+        {
+          "label": "heavy",
+          "score": 0.0019171074
+        },
+        {
+          "label": "sexy",
+          "score": 0.0017573186
+        },
+        {
+          "label": "fast",
+          "score": 0.0016688437
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "img_0033",
+          "fingerprint": "b92c54f879c53f152d64e6c1c739427ec928c417604ba10968c2baf8ccf40445",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0009509089
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00010058136
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0039055885
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010065756
+            },
+            {
+              "label": "valley",
+              "confidence": 7.642221e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.000122028636
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.0079256e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.8710838e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.989636e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.0016286296
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "fingerprint": "1ae9136fa7dfd9c002fbbe521bd3633b0d1efb3127005d589b7431a59e3202df",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0003151035
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0042756307
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.3598796
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.14893617
+            },
+            {
+              "label": "valley",
+              "confidence": 0.1382215
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00062526483
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.24436e-07
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.0619163e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.010943944
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.944724e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "fingerprint": "83a0e73117758efc042ea8bfb10ec07486a1de7cfc5bc9aceada8632df145d5c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.013424244
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00040529566
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.43328494
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018919947
+            },
+            {
+              "label": "valley",
+              "confidence": 0.050116207
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0018887207
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.276303e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.74602e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.028484082
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.7999076e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0005",
+          "fingerprint": "7020a172b2056276dc357543ddb69791317ef5de9a8c21d9a41ce12e7ad62f6f",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 4.863095e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.7789754e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00035249285
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00028117574
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3857124e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.951312e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0011723995
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.15644471
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00018068228
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.894226e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0004",
+          "fingerprint": "ae91b236635c4d26a5fda90591233ec655b98f1bec020d55134c818604c1c9c5",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00026927385
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00023471794
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.099118955
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.874307e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00020916201
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.2148256e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.436197e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.4901695e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.02194122
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.0845e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0035",
+          "fingerprint": "854ed4082ab430cd772c92aca7ccd928c79d3197e595b52077ab55c0a130a839",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0001299146
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0001907072
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0020973212
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.002841972
+            },
+            {
+              "label": "valley",
+              "confidence": 3.862653e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0010689663
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0001239909
+            },
+            {
+              "label": "butterfly",
+              "confidence": 7.052748e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0004506353
+            },
+            {
+              "label": "volleyball",
+              "confidence": 5.6481156e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0013",
+          "fingerprint": "ba956b3a6c947c9a72084f1c7bc5cab188ba02a2ae7030ac6f2e7e8ed231c65d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.9085779
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00031811683
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.010670193
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.1236005e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.049894925
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00049478456
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.2609794e-09
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.4740377e-08
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0007810169
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.7310453e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0019",
+          "fingerprint": "7b692f3f4da7043612684cdae943bd9f0703122b4ae68e67cbcf8f8b5bd3580d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 6.762651e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.705886e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 8.6977205e-05
+            },
+            {
+              "label": "seashore",
+              "confidence": 1.8837409e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 5.494159e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0038316e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0008833464
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0005464578
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0004983692
+            },
+            {
+              "label": "volleyball",
+              "confidence": 4.344644e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0037",
+          "fingerprint": "01af205eaeba56478f3f5adbe8293142e3e1b5b4d1a875ca47d0ff8b46020040",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007160803
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.002476302
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.038247008
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010076052
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0026991079
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0026090918
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.9846428e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 8.195692e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0002500676
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.00036658676
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0011",
+          "fingerprint": "2fcec7e81e963acd4f7a210154ad19ee32612022863c803199651c34c71ff007",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00090342056
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.8412294
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00014292554
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00029652927
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0018179506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0002998037
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.1772619e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 5.283207e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.2962608e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.279614e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0036",
+          "fingerprint": "42f5cc475114afedd9f54a05ee662ab9cb8f0bf6bbd9afa4cbec729314deeabd",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0007253907
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00048005767
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0014790526
+            },
+            {
+              "label": "seashore",
+              "confidence": 5.313222e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00036272474
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.885511e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.4562254e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.8651596e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00037238275
+            },
+            {
+              "label": "volleyball",
+              "confidence": 4.403217e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0007",
+          "fingerprint": "6a888130df4cdd85540a17cf4a7316c8b52397d873b5fb03436ca77fc452b22d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.262631e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0006474446
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0032319576
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.10364199
+            },
+            {
+              "label": "valley",
+              "confidence": 3.13995e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.4528024e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00060563156
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.000101679056
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0040689837
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.890736e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0001",
+          "fingerprint": "6828e2b269a35e5ccd45302d17dfc80166c4b1b2940e7894d8cfc1dc24787c1b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 3.3608438e-07
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.1103692e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 7.469279e-06
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.753285e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 6.1238583e-09
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.6259917e-07
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.9784482
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0022923232
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.5048442e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.937256e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0016",
+          "fingerprint": "eb8d76ab1530a80c36ccc8b04c8e882b2eea9168f73d252aa8c4b291b64c442c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.07515712
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.009481167
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.053216014
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.08164081
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0004997599
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0013121254
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.221178e-07
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.2705535e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00042564527
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.132352e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0008",
+          "fingerprint": "7146b33c0a10735f82d2ed8839c93d1f2d4f81362d0349590206b0af68c9c59c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.02563242
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0191208
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0070519014
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0072680097
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0105473455
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0007581255
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.5622244e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.898893e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.000100567144
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.031887e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0023",
+          "fingerprint": "5efadd9501729059ff0cc7a36e043dac11cb7ef50a3ff9ad2ba3f9250173650d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0013877735
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0044306335
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.019272491
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0061285333
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00062544097
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.749625e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.365119e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 5.1676587e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.0948199e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.3082222e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0024",
+          "fingerprint": "ffcbd888bba911f567f5f89842557d2d2a227ed045d439afa80d87bf7d00cb1c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00015150644
+            },
+            {
+              "label": "cliff",
+              "confidence": 1.9288205e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00049555843
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00058312225
+            },
+            {
+              "label": "valley",
+              "confidence": 4.8397033e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.375895e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.4009474e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 7.455022e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.1237605e-07
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.806696e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0017",
+          "fingerprint": "e9f1bd153d7c7e80159697a84e29cc0bed7e9dea129bd0fce80bc55024836688",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00051736285
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00010607642
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.033642817
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.002065643
+            },
+            {
+              "label": "valley",
+              "confidence": 0.006041785
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0035286862
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0002980648
+            },
+            {
+              "label": "butterfly",
+              "confidence": 8.69893e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0014940767
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.00071082567
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0015",
+          "fingerprint": "cb48c04fd2930f4adf1316239ec017007015edcee67b39a9e32c762c0a87de41",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00014465813
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2541342e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.9307768
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.386216e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0034680557
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00016786398
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.5798106e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.5317175e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.004981856
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.304707e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0021",
+          "fingerprint": "40e25ed6cf2229f9dc02344cf8184c509f245cd15d29adcb230b5e4757fc3f99",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.4234159e-06
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2753954e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0003996829
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0014167456
+            },
+            {
+              "label": "valley",
+              "confidence": 3.3848937e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.5188534e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.175964e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.7342357e-08
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.042773e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.374092e-06
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "img_0015",
+          "score": 0.5991048,
+          "reasons": [
+            "relaxing (0.15303701) \u2192 lakeside (0.9307768)",
+            "meditative (0.058188137) \u2192 lakeside (0.9307768)"
+          ]
+        },
+        {
+          "photo_id": "img_0011",
+          "score": 0.29976273,
+          "reasons": [
+            "sad (0.06427309) \u2192 cliff (0.8412294)",
+            "melancholic (0.05266381) \u2192 cliff (0.8412294)"
+          ]
+        },
+        {
+          "photo_id": "img_0010",
+          "score": 0.2808942,
+          "reasons": [
+            "relaxing (0.15303701) \u2192 lakeside (0.3598796)",
+            "sad (0.06427309) \u2192 valley (0.1382215)",
+            "meditative (0.058188137) \u2192 lakeside (0.3598796)",
+            "melancholic (0.05266381) \u2192 valley (0.1382215)"
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "score": 0.27888867,
+          "reasons": [
+            "relaxing (0.15303701) \u2192 lakeside (0.43328494)",
+            "meditative (0.058188137) \u2192 lakeside (0.43328494)"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_04",
+      "audio_id": "audio_0016",
+      "photo_ids": [
+        "img_0039",
+        "img_0040",
+        "img_0013",
+        "img_0028",
+        "img_0026"
+      ],
+      "audio_ms": 2987,
+      "cold_photo_ms": 1137,
+      "cached_photo_ms": 300,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "epic",
+          "score": 0.47872543
+        },
+        {
+          "label": "action",
+          "score": 0.32426414
+        },
+        {
+          "label": "film",
+          "score": 0.25924402
+        },
+        {
+          "label": "trailer",
+          "score": 0.19174618
+        },
+        {
+          "label": "dark",
+          "score": 0.16341247
+        },
+        {
+          "label": "movie",
+          "score": 0.13387293
+        },
+        {
+          "label": "dramatic",
+          "score": 0.11946822
+        },
+        {
+          "label": "emotional",
+          "score": 0.066049516
+        },
+        {
+          "label": "energetic",
+          "score": 0.056087617
+        },
+        {
+          "label": "adventure",
+          "score": 0.0538307
+        },
+        {
+          "label": "soundscape",
+          "score": 0.048341297
+        },
+        {
+          "label": "documentary",
+          "score": 0.047810975
+        },
+        {
+          "label": "drama",
+          "score": 0.036268394
+        },
+        {
+          "label": "inspiring",
+          "score": 0.035125513
+        },
+        {
+          "label": "space",
+          "score": 0.0342554
+        },
+        {
+          "label": "relaxing",
+          "score": 0.031373598
+        },
+        {
+          "label": "game",
+          "score": 0.028285425
+        },
+        {
+          "label": "romantic",
+          "score": 0.026822055
+        },
+        {
+          "label": "happy",
+          "score": 0.021502104
+        },
+        {
+          "label": "advertising",
+          "score": 0.019645551
+        },
+        {
+          "label": "sport",
+          "score": 0.019505285
+        },
+        {
+          "label": "meditative",
+          "score": 0.017747723
+        },
+        {
+          "label": "dream",
+          "score": 0.017621702
+        },
+        {
+          "label": "melodic",
+          "score": 0.017052148
+        },
+        {
+          "label": "uplifting",
+          "score": 0.016905604
+        },
+        {
+          "label": "powerful",
+          "score": 0.015608925
+        },
+        {
+          "label": "corporate",
+          "score": 0.015564645
+        },
+        {
+          "label": "christmas",
+          "score": 0.0142961005
+        },
+        {
+          "label": "heavy",
+          "score": 0.013587486
+        },
+        {
+          "label": "love",
+          "score": 0.0134344995
+        },
+        {
+          "label": "motivational",
+          "score": 0.0130511485
+        },
+        {
+          "label": "sad",
+          "score": 0.0114396475
+        },
+        {
+          "label": "children",
+          "score": 0.010559993
+        },
+        {
+          "label": "background",
+          "score": 0.010329219
+        },
+        {
+          "label": "positive",
+          "score": 0.010225318
+        },
+        {
+          "label": "melancholic",
+          "score": 0.009982082
+        },
+        {
+          "label": "commercial",
+          "score": 0.00864915
+        },
+        {
+          "label": "nature",
+          "score": 0.008177223
+        },
+        {
+          "label": "holiday",
+          "score": 0.008010832
+        },
+        {
+          "label": "cool",
+          "score": 0.007931006
+        },
+        {
+          "label": "fun",
+          "score": 0.0075114802
+        },
+        {
+          "label": "slow",
+          "score": 0.0070607816
+        },
+        {
+          "label": "fast",
+          "score": 0.006033183
+        },
+        {
+          "label": "calm",
+          "score": 0.005292282
+        },
+        {
+          "label": "soft",
+          "score": 0.004978529
+        },
+        {
+          "label": "funny",
+          "score": 0.004862071
+        },
+        {
+          "label": "deep",
+          "score": 0.0047449903
+        },
+        {
+          "label": "upbeat",
+          "score": 0.004207312
+        },
+        {
+          "label": "hopeful",
+          "score": 0.0041620885
+        },
+        {
+          "label": "travel",
+          "score": 0.0040099015
+        },
+        {
+          "label": "retro",
+          "score": 0.0038949682
+        },
+        {
+          "label": "ballad",
+          "score": 0.0026883883
+        },
+        {
+          "label": "party",
+          "score": 0.002527647
+        },
+        {
+          "label": "sexy",
+          "score": 0.0023194284
+        },
+        {
+          "label": "groovy",
+          "score": 0.0018207688
+        },
+        {
+          "label": "summer",
+          "score": 0.0017461036
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "img_0008",
+          "fingerprint": "7146b33c0a10735f82d2ed8839c93d1f2d4f81362d0349590206b0af68c9c59c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.02563242
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0191208
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0070519014
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0072680097
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0105473455
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0007581255
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.5622244e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.898893e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.000100567144
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.031887e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0028",
+          "fingerprint": "973fa2adea7851354eb20b184f4d1ac5a888b1701449d9ba1f8339a6f4579591",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.02670972
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.012636581
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0050213872
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.05485041
+            },
+            {
+              "label": "valley",
+              "confidence": 0.021857504
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.17430136
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00010836823
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.04786395e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00027155937
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.5802552e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0001",
+          "fingerprint": "6828e2b269a35e5ccd45302d17dfc80166c4b1b2940e7894d8cfc1dc24787c1b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 3.3608438e-07
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.1103692e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 7.469279e-06
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.753285e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 6.1238583e-09
+            },
+            {
+              "label": "volcano",
+              "confidence": 8.6259917e-07
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.9784482
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0022923232
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.5048442e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.937256e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0030",
+          "fingerprint": "df9208b0ab57117ee4f2f6ee32ffe958f0bd68693e0daf6cc464ddd9d2bf1535",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00057475216
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0019760858
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00016794221
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.044036e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 4.862756e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.5377747e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 2.4784224e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00012360098
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00096443767
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.0004523659
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0015",
+          "fingerprint": "cb48c04fd2930f4adf1316239ec017007015edcee67b39a9e32c762c0a87de41",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00014465813
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2541342e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.9307768
+            },
+            {
+              "label": "seashore",
+              "confidence": 7.386216e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0034680557
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00016786398
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.5798106e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.5317175e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.004981856
+            },
+            {
+              "label": "volleyball",
+              "confidence": 6.304707e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0021",
+          "fingerprint": "40e25ed6cf2229f9dc02344cf8184c509f245cd15d29adcb230b5e4757fc3f99",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.4234159e-06
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2753954e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0003996829
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0014167456
+            },
+            {
+              "label": "valley",
+              "confidence": 3.3848937e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 1.5188534e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.175964e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.7342357e-08
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.042773e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.374092e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0039",
+          "fingerprint": "1aeadacb44d51e4ab06804439d09f8220da01e5e76050bc99b80da8fc1f1e766",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.00033240046
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00016696159
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0005564081
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.00080372364
+            },
+            {
+              "label": "valley",
+              "confidence": 0.00011853799
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.78893405
+            },
+            {
+              "label": "daisy",
+              "confidence": 2.5173063e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.8224616e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 8.113254e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.4666811e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0029",
+          "fingerprint": "822b7dbd8a1cc9233f92f6c3f904d6534cfca72aeca74b40247c8d225a023aa8",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0007244683
+            },
+            {
+              "label": "cliff",
+              "confidence": 1.65209e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 1.403022e-07
+            },
+            {
+              "label": "seashore",
+              "confidence": 1.7871649e-08
+            },
+            {
+              "label": "valley",
+              "confidence": 3.4504384e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.191502e-08
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.1216914e-10
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.9143632e-10
+            },
+            {
+              "label": "canoe",
+              "confidence": 1.141497e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.4975861e-10
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0025",
+          "fingerprint": "1e4ececfde40b2b1e3686e0fff2273367b6b4c4f87494aa89aad7ced5d2230b3",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.0430822e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 6.465657e-05
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.021877125
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018529728
+            },
+            {
+              "label": "valley",
+              "confidence": 2.0611256e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0034578e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 1.8104057e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 4.54028e-09
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0005130611
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.715622e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0033",
+          "fingerprint": "b92c54f879c53f152d64e6c1c739427ec928c417604ba10968c2baf8ccf40445",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0009509089
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00010058136
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0039055885
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.010065756
+            },
+            {
+              "label": "valley",
+              "confidence": 7.642221e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.000122028636
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.0079256e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.8710838e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.989636e-06
+            },
+            {
+              "label": "volleyball",
+              "confidence": 0.0016286296
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0040",
+          "fingerprint": "168137d99deedeed92a60b0c351aff8df51fbd6a836be15d0c40352939f23887",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0014118322
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.000770149
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.037427012
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.009092245
+            },
+            {
+              "label": "valley",
+              "confidence": 0.0027845083
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.5919764
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.569799e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00024817203
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.008702734
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.477902e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0034",
+          "fingerprint": "45297908b8f3d263c7d19454ee5c5b80b145346acf533e97bc8a41b8da7abaf4",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 1.5824588e-08
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.1432147e-09
+            },
+            {
+              "label": "lakeside",
+              "confidence": 8.711891e-09
+            },
+            {
+              "label": "seashore",
+              "confidence": 2.0884097e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 1.8006185e-08
+            },
+            {
+              "label": "volcano",
+              "confidence": 2.5925926e-09
+            },
+            {
+              "label": "daisy",
+              "confidence": 8.07076e-06
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.1856993e-06
+            },
+            {
+              "label": "canoe",
+              "confidence": 2.6137604e-08
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.3213957e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0031",
+          "fingerprint": "6d4403fd246417885a94372da3f87ef57353ccecd33fd4abe21439012b0d71fe",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.0005586544
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.1151069
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.035874505
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.16162036
+            },
+            {
+              "label": "valley",
+              "confidence": 0.03234612
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0015265533
+            },
+            {
+              "label": "daisy",
+              "confidence": 5.3678175e-08
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.647388e-07
+            },
+            {
+              "label": "canoe",
+              "confidence": 7.0559814e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.825197e-07
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0013",
+          "fingerprint": "ba956b3a6c947c9a72084f1c7bc5cab188ba02a2ae7030ac6f2e7e8ed231c65d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.9085779
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00031811683
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.010670193
+            },
+            {
+              "label": "seashore",
+              "confidence": 9.1236005e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 0.049894925
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.00049478456
+            },
+            {
+              "label": "daisy",
+              "confidence": 7.2609794e-09
+            },
+            {
+              "label": "butterfly",
+              "confidence": 1.4740377e-08
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0007810169
+            },
+            {
+              "label": "volleyball",
+              "confidence": 3.7310453e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0007",
+          "fingerprint": "6a888130df4cdd85540a17cf4a7316c8b52397d873b5fb03436ca77fc452b22d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.262631e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.0006474446
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.0032319576
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.10364199
+            },
+            {
+              "label": "valley",
+              "confidence": 3.13995e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.4528024e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00060563156
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.000101679056
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0040689837
+            },
+            {
+              "label": "volleyball",
+              "confidence": 7.890736e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0026",
+          "fingerprint": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.007862485
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.15410054
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.002319431
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018344885
+            },
+            {
+              "label": "valley",
+              "confidence": 0.048226506
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.058234576
+            },
+            {
+              "label": "daisy",
+              "confidence": 3.993135e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.00012869583
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.00015245815
+            },
+            {
+              "label": "volleyball",
+              "confidence": 8.692335e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0019",
+          "fingerprint": "7b692f3f4da7043612684cdae943bd9f0703122b4ae68e67cbcf8f8b5bd3580d",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 6.762651e-05
+            },
+            {
+              "label": "cliff",
+              "confidence": 4.705886e-06
+            },
+            {
+              "label": "lakeside",
+              "confidence": 8.6977205e-05
+            },
+            {
+              "label": "seashore",
+              "confidence": 1.8837409e-05
+            },
+            {
+              "label": "valley",
+              "confidence": 5.494159e-07
+            },
+            {
+              "label": "volcano",
+              "confidence": 3.0038316e-05
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.0008833464
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.0005464578
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0004983692
+            },
+            {
+              "label": "volleyball",
+              "confidence": 4.344644e-08
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0027",
+          "fingerprint": "9ccb0f75ca590d5967e40bc976ec57ac8bea4186ff40c20b29026960e576dd8b",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.01271967
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.019704735
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.016569149
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.0687711
+            },
+            {
+              "label": "valley",
+              "confidence": 0.015761487
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.054699685
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.00011341573
+            },
+            {
+              "label": "butterfly",
+              "confidence": 3.0599862e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.0019299539
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.544435e-05
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0006",
+          "fingerprint": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 5.6502463e-06
+            },
+            {
+              "label": "cliff",
+              "confidence": 2.2698964e-07
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.00026015597
+            },
+            {
+              "label": "seashore",
+              "confidence": 3.2095543e-06
+            },
+            {
+              "label": "valley",
+              "confidence": 1.3761488e-05
+            },
+            {
+              "label": "volcano",
+              "confidence": 7.2431617e-06
+            },
+            {
+              "label": "daisy",
+              "confidence": 0.54896814
+            },
+            {
+              "label": "butterfly",
+              "confidence": 0.05019723
+            },
+            {
+              "label": "canoe",
+              "confidence": 3.1028114e-05
+            },
+            {
+              "label": "volleyball",
+              "confidence": 1.0160355e-06
+            }
+          ]
+        },
+        {
+          "photo_id": "img_0009",
+          "fingerprint": "83a0e73117758efc042ea8bfb10ec07486a1de7cfc5bc9aceada8632df145d5c",
+          "labels": [
+            {
+              "label": "alp",
+              "confidence": 0.013424244
+            },
+            {
+              "label": "cliff",
+              "confidence": 0.00040529566
+            },
+            {
+              "label": "lakeside",
+              "confidence": 0.43328494
+            },
+            {
+              "label": "seashore",
+              "confidence": 0.018919947
+            },
+            {
+              "label": "valley",
+              "confidence": 0.050116207
+            },
+            {
+              "label": "volcano",
+              "confidence": 0.0018887207
+            },
+            {
+              "label": "daisy",
+              "confidence": 6.276303e-05
+            },
+            {
+              "label": "butterfly",
+              "confidence": 2.74602e-05
+            },
+            {
+              "label": "canoe",
+              "confidence": 0.028484082
+            },
+            {
+              "label": "volleyball",
+              "confidence": 2.7999076e-05
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "img_0039",
+          "score": 0.28978008,
+          "reasons": [
+            "dark (0.16341247) \u2192 volcano (0.78893405)",
+            "energetic (0.056087617) \u2192 volcano (0.78893405)"
+          ]
+        },
+        {
+          "photo_id": "img_0040",
+          "score": 0.21743637,
+          "reasons": [
+            "dark (0.16341247) \u2192 volcano (0.5919764)",
+            "energetic (0.056087617) \u2192 volcano (0.5919764)"
+          ]
+        },
+        {
+          "photo_id": "img_0013",
+          "score": 0.08184371,
+          "reasons": [
+            "adventure (0.0538307) \u2192 alp (0.9085779)"
+          ]
+        },
+        {
+          "photo_id": "img_0028",
+          "score": 0.0640219,
+          "reasons": [
+            "dark (0.16341247) \u2192 volcano (0.17430136)",
+            "energetic (0.056087617) \u2192 volcano (0.17430136)"
+          ]
+        },
+        {
+          "photo_id": "img_0026",
+          "score": 0.056020036,
+          "reasons": [
+            "dark (0.16341247) \u2192 cliff (0.15410054)",
+            "adventure (0.0538307) \u2192 cliff (0.15410054)"
+          ]
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "rule_version": "music-visual-v1",
+  "image_model": "mobilenetv2-7-c1c51358-center224-v1",
+  "source_sha": "e27c4398c3d67ab9d4188421f3ccbc2c0035f437"
+}

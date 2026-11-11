@@ -11,7 +11,7 @@ The model files are not bundled with the app or committed to Git. Obtain the two
 | Discogs-EffNet dynamic-batch backbone | [discogs-effnet-bsdynamic-1.onnx](https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx) | `a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c` |
 | MTG-Jamendo mood/theme classifier | [mtg_jamendo_moodtheme-discogs-effnet-1.onnx](https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx) | `7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff` |
 
-The [official metadata](https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.json) lists the 56 labels in output order. Verify the hashes when provisioning. The model files must be accessible to the app process; a path on a developer's computer is not available automatically on an Android device. There is no end-user model download or file-selection flow yet.
+The [official metadata](https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.json) lists the 56 labels in output order. Verify the hashes when provisioning. The model files must be accessible to the app process; a path on a developer's computer is not available automatically on an Android device. The photo recommendation feature now provides an [end-user file import flow](photo-model-setup.md), sharing these pinned music-model hashes. It does not automatically download weights.
 
 For a developer-side download:
 

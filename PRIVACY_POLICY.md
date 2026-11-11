@@ -1,5 +1,20 @@
 # Privacy Policy
 
+## Vibe-Player course fork: Discovery data handling (2026-11-03)
+
+This section describes the Discovery increment in this repository. The upstream Music Player GO policy below is retained with its attribution and historical date; its statements about no Internet access, external links or stored data do not describe this new feature.
+
+- Android Discovery uses the INTERNET permission to contact the service address selected by the user. Opening Discovery may check service/provider availability. Confirmed searches send music intent, optional scene/suggestions, selected catalog country and saved/hidden source identities to that service. The configured catalog receives the search terms and country; network services can observe connection metadata such as the connecting IP address.
+- The verified manual configuration uses public iTunes metadata and original official links. Opening a result sends the user to the platform app/browser, whose account, region and data policies apply. No audio or artwork is downloaded by the Android Discovery client.
+- Choosing or cancelling a single image does not upload it. Only an explicit positive upload-consent action with a configured live model permits the client to read, orient, resize, remove metadata and send that image through the selected service to the named model recipient. No whole-photo-library permission is requested. Refusal or unavailable analysis leaves manual input available.
+- The app and supplied service do not persist original or processed photo files. Selection and suggestions are held in process memory. The server model request uses `store=false`; this is not a promise of zero provider retention. The account owner must review the actual model provider/account retention policy before enabling that route. Hosting/proxy logs also depend on the operator; the documented local demo disables HTTP access logs. No real model was authorized or called in the recorded Sprint 3 run.
+- Discovery Collection is an app-private local JSON file excluded from Android automatic backup. It stores provider/native ID, official URL, title/artist snapshot, confirmed music intent, catalog country and hidden identities. It contains no photos, audio addresses, model key or local MediaStore track ID. Saved items can be removed; hidden identities can be cleared. Android app-data removal/uninstall clears the app's local Collection. The service address is separately retained in app preferences.
+- The service temporarily holds query/session/returned-identity state in memory with bounded expiry; it does not create a user account. This increment adds no analytics SDK. Credentials remain in the operator's server configuration. Release transport requires HTTPS; the development APK permits HTTP only on explicitly named loopback hosts.
+
+Implementation boundaries and current provider conditions are documented in [Android Discovery](docs/development/discovery/android-sprint3.md) and the [provider review](docs/development/discovery/provider-verification.md). Questions about this fork belong in [the course repository](https://github.com/Axfff/Vibe-Player/issues), not with the upstream author.
+
+## Historical upstream policy
+
 
 ###### Effective date: 2018/07/30, Latest update: 2021/10/15
 
