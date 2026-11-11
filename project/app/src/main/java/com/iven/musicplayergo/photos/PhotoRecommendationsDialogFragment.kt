@@ -101,7 +101,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
                 when(result) {
                     is MoodResult.Unavailable -> status?.text = "音乐信号不可用：${result.reason}。可以手选氛围或手动封面。"
                     is MoodResult.Available -> {
-                        val description = "依据音乐：${song.title ?: song.displayName}；开头解码 ${result.decodedSeconds} 秒，实际 ${result.patchCount} 个有效片段 / ${result.analyzedSeconds} 秒。"
+                        val description = "依据音乐：${song.title ?: song.displayName}；开头解码 ${result.decodedSeconds} 秒，实际 ${result.patchCount} 个有效片段 / ${result.analyzedSeconds} 秒。\n${PhotoRanker.musicDescription(result.scores)}"
                         performRank(result.scores, description, request)
                     }
                 }
@@ -160,7 +160,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
                 val bitmap = withContext(Dispatchers.IO) { runCatching { SafePhotoDecoder(context).let { it.decode(it.bytes(Uri.parse(candidate.features.photo.uri)), 200) } }.getOrNull() }
                 val image = ImageView(requireContext()).apply { layoutParams = LinearLayout.LayoutParams(-1, 240); setImageBitmap(bitmap); contentDescription = "推荐候选" }
                 rows?.addView(image)
-                rows?.addView(TextView(requireContext()).apply { text = "推荐理由：${candidate.reasons.take(2).joinToString("；")}\n参考匹配分 ${String.format(java.util.Locale.ROOT, "%.2f", candidate.score)}，仅用于本批排序，不是准确率。" })
+                rows?.addView(TextView(requireContext()).apply { text = "推荐理由：${candidate.reasons.joinToString("\n")}\n参考匹配分 ${String.format(java.util.Locale.ROOT, "%.2f", candidate.score)}，仅用于本批排序，不是准确率。" })
                 if (candidate.features.labels.any { it.label in PhotoScenePolicy.broadNames }) rows?.addView(TextView(requireContext()).apply {
                     text = "仅支持宽泛画面描述，具体内容仍需你确认。"
                 })

@@ -72,6 +72,10 @@ class PhotoModelSetupTest {
             File(root,"mobilenetv2-7.onnx").writeText("old photo model")
             assertEquals(PhotoModelStatus.UPDATE_REQUIRED, store.inspect()[PhotoModel.PHOTO])
             assertEquals("old photo model",File(root,"mobilenetv2-7.onnx").readText())
+            File(root,"mobilenetv2-7.onnx").delete()
+            File(root,"tinyclip-atmospheres-v3.onnx").writeText("previous atmosphere model")
+            assertEquals(PhotoModelStatus.UPDATE_REQUIRED, store.inspect()[PhotoModel.PHOTO])
+            assertEquals("previous atmosphere model",File(root,"tinyclip-atmospheres-v3.onnx").readText())
             assertFalse(File(root, "import-interrupted.part").exists())
             try { store.import(PhotoModel.MOOD, { "bad".byteInputStream() }); fail("Official identity must be verified") }
             catch (_: IllegalStateException) {}

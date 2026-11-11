@@ -30,13 +30,16 @@ class RealPhotoRankingTest {
             assets.open("photo-models/$name").use { input -> File(directory, name).outputStream().use { input.copyTo(it) } }
         }
         val results = JSONArray()
+        // Separate neutral pools can be replayed without changing labels, model or ranking rules.
+        val pool = InstrumentationRegistry.getArguments().getString("photoPool", "photo-cases")
+        require(pool.matches(Regex("photo-[a-z-]+")))
         for (index in 1..4) {
             OnnxPhotoFeatureExtractor.clearCache()
             val caseId = "case_0$index"
-            val data = JSONObject(assets.open("photo-cases/$caseId.json").bufferedReader().use { it.readText() })
+            val data = JSONObject(assets.open("$pool/$caseId.json").bufferedReader().use { it.readText() })
             val audio = data.getJSONObject("audio")
             val audioFile = File(context.cacheDir, "photo-ranking-audio.mp3")
-            assets.open("photo-cases/" + audio.getString("path")).use { input -> audioFile.outputStream().use { input.copyTo(it) } }
+            assets.open("$pool/" + audio.getString("path")).use { input -> audioFile.outputStream().use { input.copyTo(it) } }
             val started = SystemClock.elapsedRealtime()
             val mood = MoodAnalyzer(context, MoodModelFiles(File(directory,"discogs-effnet-bsdynamic-1.onnx"),
                 File(directory,"mtg_jamendo_moodtheme-discogs-effnet-1.onnx"))).analyze(Uri.fromFile(audioFile))
@@ -53,7 +56,7 @@ class RealPhotoRankingTest {
                         val uri=context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,ContentValues().apply {
                             put(MediaStore.Images.Media.DISPLAY_NAME,"scoped-evaluation-$id.jpg");put(MediaStore.Images.Media.MIME_TYPE,"image/jpeg")
                         })!!; uris += uri
-                        assets.open("photo-cases/"+item.getString("path")).use { input -> context.contentResolver.openOutputStream(uri)!!.use { input.copyTo(it) } }
+                        assets.open("$pool/"+item.getString("path")).use { input -> context.contentResolver.openOutputStream(uri)!!.use { input.copyTo(it) } }
                         try { features += extractor.extract(ScopedPhoto(id,uri.toString())) }
                         catch(e: Exception) { failures.put(JSONObject().put("photo_id",id).put("error_type",e.javaClass.simpleName)) }
                     }
@@ -77,7 +80,7 @@ class RealPhotoRankingTest {
             } finally { uris.forEach { context.contentResolver.delete(it,null,null) }; audioFile.delete() }
         }
         File(context.filesDir,"photo-ranking-results.json").writeText(JSONObject().put("cases",results)
-            .put("rule_version",PhotoRanker.VERSION).put("image_model",OnnxPhotoFeatureExtractor.VERSION).toString(2))
+            .put("pool",pool).put("rule_version",PhotoRanker.VERSION).put("image_model",OnnxPhotoFeatureExtractor.VERSION).toString(2))
         assertEquals(4,results.length())
     }
 }

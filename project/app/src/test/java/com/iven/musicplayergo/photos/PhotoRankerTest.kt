@@ -39,6 +39,23 @@ class PhotoRankerTest {
         assertTrue(PhotoRanker.suggestions(emptyList()).isEmpty())
         assertEquals(listOf("树林","湖面","山谷"),PhotoRanker.suggestions(listOf(MoodScore("calm",1f))))
     }
+    @Test fun multipleAtmospheresDoNotHideTheConcreteSceneExplanation() {
+        val feature = photo("mixed").copy(atmospheres=listOf(PhotoLabel("lively",.05f), PhotoLabel("peaceful",.45f),
+            PhotoLabel("reflective",.4f), PhotoLabel("intense",.1f)))
+        val result = PhotoRanker.rank(listOf(MoodScore("relaxing",.6f),MoodScore("sad",.4f)),listOf(feature)).single()
+        assertEquals(2,result.reasons.size)
+        assertTrue(result.reasons.first().contains("放松")); assertTrue(result.reasons.first().contains("伤感"))
+        assertTrue(result.reasons.last().contains("湖面")); assertTrue(result.reasons.last().contains("模型推测"))
+    }
+    @Test fun musicSummaryReportsMixedEvidenceAndRejectsInvalidOrUnmappedSignals() {
+        val mixed = listOf(MoodScore("relaxing",.15f),MoodScore("sad",.06f))
+        assertTrue(PhotoRanker.musicDescription(mixed).contains("舒缓与伤感线索并存"))
+        assertTrue(PhotoRanker.musicDescription(mixed).contains("放松、伤感"))
+        assertEquals(PhotoRanker.musicDescription(mixed),PhotoRanker.musicDescription(mixed+mixed+listOf(MoodScore("sad",.05f))))
+        assertFalse(PhotoRanker.musicDescription(listOf(MoodScore("happy",.8f))).contains("并存"))
+        assertEquals(PhotoRanker.musicDescription(emptyList()),PhotoRanker.musicDescription(listOf(MoodScore("happy",Float.NaN),
+            MoodScore("sad",.01f),MoodScore("calm",2f),MoodScore("unknown",1f))))
+    }
     @Test fun unrelatedAndUncertainScenesDoNotBecomeMoodRecommendations() {
         val happy = listOf(MoodScore("happy",1f))
         assertTrue(PhotoRanker.rank(happy,listOf(photo("a","document"),photo("b").copy(labels=emptyList()))).isEmpty())

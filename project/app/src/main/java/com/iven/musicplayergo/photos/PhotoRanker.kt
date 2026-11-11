@@ -44,6 +44,17 @@ object PhotoRanker {
         "peaceful" to setOf("calm", "relaxing", "meditative", "soft"),
         "reflective" to setOf("sad", "melancholic", "dark"),
         "intense" to setOf("epic", "action", "energetic", "powerful", "adventure", "sport"))
+    /** Report the excerpt's evidence, including coexistence, without inferring from the song title. */
+    fun musicDescription(signal: List<MoodScore>): String {
+        val usable = signal.filter { it.label in atmosphereMusic.values.flatten() && it.score.isFinite() && it.score in .05f..1f }
+            .groupBy { it.label }.map { (_, values) -> values.maxBy { it.score } }
+            .sortedWith(compareByDescending<MoodScore> { it.score }.thenBy { it.label })
+        if (usable.isEmpty()) return "片段中没有明确的可用氛围信号，可使用“使用我选择的氛围”。"
+        val labels = usable.map { it.label }.toSet()
+        val mixed = labels.any { it in atmosphereMusic.getValue("peaceful") } && labels.any { it in atmosphereMusic.getValue("reflective") }
+        return "片段线索：${usable.take(3).joinToString("、") { moodName(it.label) }}（模型推测）。" +
+            if (mixed) "舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。" else ""
+    }
     fun rank(signal: List<MoodScore>, candidates: List<PhotoFeatures>, limit: Int = 5): List<RankedPhoto> {
         require(limit > 0)
         val usable = signal.filter { it.score.isFinite() && it.score in 0.05f..1f }
@@ -61,13 +72,14 @@ object PhotoRanker {
             // Uniform atmosphere support gives .25; require positive separation.
             // Never pad a weak or unsupported scope just to return five images.
             if (score < .26f) null else {
-                val reasons = contributions.filter { it.second > 0 && it.first.confidence > .25f }
-                    .sortedByDescending { it.second }.map { (cue, _) ->
+                val atmosphereReasons = contributions.filter { it.second > 0 && it.first.confidence > .25f }
+                    .sortedByDescending { it.second }.take(2).map { (cue, _) ->
                         val music = atmosphereMusic.getValue(cue.label).filter { it in usable }
                             .sortedWith(compareByDescending<String> { usable.getValue(it) }.thenBy { it }).first()
                         "${moodName(music)}的音乐氛围 × 模型推测的${PhotoAtmospherePolicy.names.getValue(cue.label)}画面"
-                    }.toMutableList()
-                feature.labels.firstOrNull()?.let { reasons += "另有${PhotoScenePolicy.title(it.label)}线索，具体内容请看预览确认" }
+                    }
+                val reasons = mutableListOf(atmosphereReasons.joinToString("；"))
+                feature.labels.firstOrNull()?.let { reasons += "画面线索：${PhotoScenePolicy.title(it.label)}（模型推测），请看预览确认" }
                 RankedPhoto(feature, score, reasons)
             }
         }.sortedWith(compareByDescending<RankedPhoto> { it.score }.thenBy { it.features.photo.id }).take(limit)

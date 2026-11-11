@@ -66,9 +66,9 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
     }
     override fun close() = session.close()
     companion object {
-        const val VERSION = "tinyclip-atmospheres-v3-d7c4c554-dual224"
-        const val FILENAME = "tinyclip-atmospheres-v3.onnx"
-        const val SHA256 = "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95"
+        const val VERSION = "tinyclip-atmospheres-v4-c6811b6a-dual224"
+        const val FILENAME = "tinyclip-atmospheres-v4.onnx"
+        const val SHA256 = "c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9"
         private val cache = linkedMapOf<String, PhotoFeatures>()
         fun clearCache() = synchronized(cache) { cache.clear() }
     }

@@ -779,7 +779,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoFeatureExtractor.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "0f53f50d0bf3c25b24ca86b60a3013b8d444121d9af40a6ff52086d63e345844",
+      "source_sha256": "e8021b7a1b7b7ac23d257cb89bd5648e5edefb2259a09c356faa0b013667a324",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
@@ -799,7 +799,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoModelStore.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "e9b8709fd26e7c38068142d44e9e5fec3586a1f3aa39de2b6f3beb20ae8c1f2a",
+      "source_sha256": "d7c409b9a014150c8cc6fd4a2e447ee3edad2acf8bd6146b9801136d956ea7e2",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
@@ -836,12 +836,12 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRanker.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "82d5433cd3ae8434b688be50773578f955408869d76cbc63c97bdaee76cce393",
+      "source_sha256": "e89d4260ecff8d3e8cc58297a4dd757f11ccc26a2ecd35e431c3d901160503e5",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          78
+          90
         ]
       ],
       "source_commits": [
@@ -855,7 +855,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRecommendationsDialogFragment.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "58bb69931b08ed6e1a9a391d3b917a883ca613755a04533bdc5e9624572b5aa4",
+      "source_sha256": "11daf1c28182ba4d8d9aca7bafd27cb4f757eb4681833df59a9d0c406a474828",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [

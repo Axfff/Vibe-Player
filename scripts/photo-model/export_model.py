@@ -16,8 +16,12 @@ import onnxruntime as ort
 import torch
 from transformers import CLIPModel, CLIPTokenizerFast
 
-REVISION = "a2a8c6eaa2549ad66eb7c31b85022bf58273a26c"
-CHECKPOINT_SHA256 = "9339ee3d736344d0ddcaa6c03edc9f89688f08caaea5401220885233da726fcc"
+SOURCES = {
+    "8m": ("source-manifest.json", "a2a8c6eaa2549ad66eb7c31b85022bf58273a26c",
+           "9339ee3d736344d0ddcaa6c03edc9f89688f08caaea5401220885233da726fcc"),
+    "40m": ("source-manifest-v4.json", "95ec8197b3f2fe7f747865c61ca556cf0768b2f7",
+            "1b08131ac0ac54429aab216c397c550527d31f5682afb5d21d35091ad39538ae"),
+}
 
 
 class SceneModel(torch.nn.Module):
@@ -37,13 +41,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--variant", choices=SOURCES, default="40m", help="8m reproduces the previous v3 model")
     args = parser.parse_args()
-    manifest = json.loads(Path(__file__).with_name("source-manifest.json").read_text(encoding="utf-8"))
-    assert manifest["revision"] == REVISION
+    manifest_name, revision, checkpoint_sha256 = SOURCES[args.variant]
+    manifest = json.loads(Path(__file__).with_name(manifest_name).read_text(encoding="utf-8"))
+    assert manifest["revision"] == revision
     for item in manifest["files"]:
         path = args.source / item["name"]
         assert path.stat().st_size == item["size"] and hashlib.sha256(path.read_bytes()).hexdigest() == item["sha256"], item["name"]
-    assert hashlib.sha256((args.source / "model.safetensors").read_bytes()).hexdigest() == CHECKPOINT_SHA256
+    assert hashlib.sha256((args.source / "model.safetensors").read_bytes()).hexdigest() == checkpoint_sha256
     vocabulary_path = Path(__file__).with_name("scene-vocabulary-v2.json")
     vocabulary = json.loads(vocabulary_path.read_text(encoding="utf-8"))
     atmosphere_path = Path(__file__).with_name("atmosphere-vocabulary-v3.json")
@@ -77,8 +83,8 @@ def main():
     session = ort.InferenceSession(str(args.output), providers=["CPUExecutionProvider"])
     actual = session.run(None, {"pixels": example.numpy()})[0]
     np.testing.assert_allclose(expected, actual, atol=1e-5, rtol=1e-5)
-    receipt = {"upstream": "wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M", "revision": REVISION,
-               "checkpoint_sha256": CHECKPOINT_SHA256,
+    receipt = {"upstream": manifest["repository"], "revision": revision,
+               "checkpoint_sha256": checkpoint_sha256,
                "vocabulary_sha256": hashlib.sha256(vocabulary_path.read_bytes()).hexdigest(),
                "atmosphere_vocabulary_sha256": hashlib.sha256(atmosphere_path.read_bytes()).hexdigest(),
                "filename": args.output.name, "bytes": args.output.stat().st_size,
