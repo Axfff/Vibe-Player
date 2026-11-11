@@ -5,6 +5,8 @@ This documents the original MobileNet baseline. The current branch ranks broad
 object naming, with Chinese explanations and uncertainty handling. The
 [November 10 comparison](../testing/photo-atmosphere-and-review-2026-11-10.md)
 records recovery beyond the old baseline; human quality acceptance remains open.
+The [November 11 v4 review](../testing/photo-quality-v4-2026-11-11.md) compares the
+stronger image tower on the same new-photo pool and documents the remaining overlap.
 Historical v1 results below are not results for the current model.
 
 Use the existing `MoodAnalyzer` from PR #46. The user chooses a representative track within the target (first available is the displayed default). It decodes at most the initial 30 seconds, skips silent patches and reports decoded seconds, effective patch seconds and patch count. No lyrics, whole-song or playlist aggregation is claimed. Missing/invalid models, silence, short/unreadable audio and inference errors remain explicit. Manual atmosphere input is labelled 用户选择.

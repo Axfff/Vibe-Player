@@ -53,17 +53,24 @@ class RealPhotoRankingTest {
                 OnnxPhotoFeatureExtractor(context, File(directory,OnnxPhotoFeatureExtractor.FILENAME)).use { extractor ->
                     for (i in 0 until photos.length()) {
                         val item=photos.getJSONObject(i); val id=item.getString("asset_id")
-                        val uri=context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,ContentValues().apply {
+                        val uri = if (android.os.Build.VERSION.SDK_INT >= 29) context.contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,ContentValues().apply {
                             put(MediaStore.Images.Media.DISPLAY_NAME,"scoped-evaluation-$id.jpg");put(MediaStore.Images.Media.MIME_TYPE,"image/jpeg")
-                        })!!; uris += uri
-                        assets.open("$pool/"+item.getString("path")).use { input -> context.contentResolver.openOutputStream(uri)!!.use { input.copyTo(it) } }
+                        })!!.also { uris += it } else {
+                            // Older MediaStore requires a broad write permission the app deliberately does not request.
+                            // Read the exact public bytes through a read-only provider in the test APK.
+                            Uri.parse("content://${instrumentation.context.packageName}.photo-fixtures/$pool/${item.getString("path")}")
+                        }
+                        if (android.os.Build.VERSION.SDK_INT >= 29) assets.open("$pool/"+item.getString("path")).use { input -> context.contentResolver.openOutputStream(uri)!!.use { input.copyTo(it) } }
                         try { features += extractor.extract(ScopedPhoto(id,uri.toString())) }
-                        catch(e: Exception) { failures.put(JSONObject().put("photo_id",id).put("error_type",e.javaClass.simpleName)) }
+                        catch(e: Exception) { failures.put(JSONObject().put("photo_id",id).put("error_type",e.javaClass.simpleName)
+                            .put("error_message",e.message).put("origin",e.stackTrace.firstOrNull()?.toString())) }
                     }
                     val cachedStarted=SystemClock.elapsedRealtime()
                     for (feature in features) assertEquals(feature,extractor.extract(feature.photo))
                     cachedMs=SystemClock.elapsedRealtime()-cachedStarted
                 }
+                assertEquals("Every valid fixture must complete inference: $failures", 0, failures.length())
+                assertEquals(photos.length(), features.size)
                 val ranking=PhotoRanker.rank(mood.scores,features)
                 assertEquals("Candidate input order must not influence actual rankings", ranking, PhotoRanker.rank(mood.scores,features.reversed()))
                 assertTrue(ranking.all { r -> features.any { it.photo.id==r.features.photo.id } })

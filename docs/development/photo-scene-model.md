@@ -1,19 +1,20 @@
 # Preparing the local photo atmosphere model
 
-The photo slot accepts `tinyclip-atmospheres-v3.onnx`, **33,313,206 bytes**, SHA-256
-`d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95`.
-This project-exported ONNX file replaces the scenes-v2 experiment. Its additional
-four atmosphere prototypes add only 8,192 bytes. Old model files remain intact;
+The photo slot accepts `tinyclip-atmospheres-v4.onnx`, **158,993,255 bytes**, SHA-256
+`c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9`.
+This project-exported ONNX file uses the stronger 40M image tower in place of v3's
+8M tower (33,313,206 bytes). The prompts and ranking formula are unchanged. Plan
+for the larger local file and temporary import copy. Old model files remain intact;
 music models, photo grants, playlists and saved covers do not change on import.
 
 ## Source and preparation
 
-- Author checkpoint: [TinyCLIP ViT-8M/16 Text-3M, YFCC15M](https://huggingface.co/wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M).
-- Revision `a2a8c6eaa2549ad66eb7c31b85022bf58273a26c`; safetensors 93,812,468 bytes,
-  SHA-256 `9339ee3d736344d0ddcaa6c03edc9f89688f08caaea5401220885233da726fcc`.
+- Author checkpoint: [TinyCLIP ViT-40M/32 Text-19M, LAION400M](https://huggingface.co/wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M).
+- Revision `95ec8197b3f2fe7f747865c61ca556cf0768b2f7`; safetensors 336,859,508 bytes,
+  SHA-256 `1b08131ac0ac54429aab216c397c550527d31f5682afb5d21d35091ad39538ae`.
 - MIT license; preserve [the upstream notice](../../scripts/photo-model/LICENSE-TinyCLIP.txt).
   Music models retain their separate CC BY-NC-SA 4.0 noncommercial terms.
-- [Source manifest](../../scripts/photo-model/source-manifest.json) pins every input;
+- [Source manifest](../../scripts/photo-model/source-manifest-v4.json) pins every input;
   no pickle or remote Python code is loaded. No weights enter Git or the production APK.
 
 In a separate Python 3.12 environment, from the repository root:
@@ -22,13 +23,16 @@ In a separate Python 3.12 environment, from the repository root:
 python -m pip install torch==2.5.1 --index-url https://download.pytorch.org/whl/cpu
 python -m pip install -r scripts/photo-model/requirements.txt
 python scripts/photo-model/download_source.py --output /path/to/tinyclip-source
-python scripts/photo-model/export_model.py --source /path/to/tinyclip-source --output /path/to/tinyclip-atmospheres-v3.onnx
+python scripts/photo-model/export_model.py --source /path/to/tinyclip-source --output /path/to/tinyclip-atmospheres-v4.onnx
 ```
 
 The exporter verifies source hashes and Android scene ordering, exports opset 17 /
 IR 8, and compares ONNX Runtime output with PyTorch on seeded input. The recorded
 maximum difference is `2.682209e-7`. A different artifact hash requires investigation,
 not bypassing the app's check. The generated JSON records provenance and prompt hashes.
+
+Both scripts accept `--variant 8m` to reproduce the previous v3 artifact with the
+unchanged [v3 source manifest](../../scripts/photo-model/source-manifest.json).
 
 Copy the verified file to the phone, then select **封面照片来源 → 配置本地分析模型 →
 导入照片内容模型**. Only a complete matching size/hash becomes active. The app has
@@ -78,13 +82,16 @@ cannot lose a newly created ONNX session or skip its release.
 
 ## Evidence and limits
 
-Both 8M and 40M desktop experiments reached mean provisional P@5 `.95`; 8M was
-retained for its smaller on-device cost. Real Android API 33 inference reproduced
+In the November 10 comparison, both 8M and 40M desktop experiments reached mean
+provisional P@5 `.95`; 8M was then retained for its smaller file. V4 now uses 40M
+after a separate 20-image phone review exposed action mismatches. Real Android
+API 33 inference with v4 still reproduces
 `1.00 / 1.00 / .80 / 1.00` versus v2 `.60 / .60 / .20 / .20` and old MobileNet
 `1.00 / 1.00 / .40 / .80`. These are development comparisons on already-seen,
 provisional labels, **not held-out generalization or human acceptance**.
 An open, bright lake remains a difficult distractor in the reflective case.
-See the [current report](../testing/photo-atmosphere-and-review-2026-11-10.md).
+See the [v3 report](../testing/photo-atmosphere-and-review-2026-11-10.md) and
+[v4 new-photo review](../testing/photo-quality-v4-2026-11-11.md).
 
 Hardware/provider edge cases and model/product/redistribution suitability still
 require review. No SDK, runtime dependency or media permission was added.

@@ -2,6 +2,14 @@
 
 Published [Draft PR #50](https://github.com/Axfff/Vibe-Player/pull/50): **feat: scoped photo recommendations with local atmosphere ranking**.
 
+Current photo model: **v4 / TinyCLIP 40M, 159 MB**, imported separately. The
+[November 11 phone comparison](../testing/photo-quality-v4-2026-11-11.md) removes the
+rainy-street action mismatch and reduces calm/reflective top-five overlap from 4 to
+3; butterfly/reflective ambiguity remains. Scene lines remain visible and mixed
+audio evidence is explained. Original frozen development P@5 stays `.95`; this is
+not human acceptance. API 21/23 native inference is rechecked with v4, separately
+from the earlier v3 picker/crop/reboot verification.
+
 Users can give each Playlist or music Album its own photo sources, choose a representative track, rank only that target's readable photos, and confirm a candidate through the existing crop and cover repository. An independent system-search entry lets users edit suggested terms and explicitly add selected photos; it does not expand a recommendation's scope automatically.
 
 ## Dependency and contribution boundary
