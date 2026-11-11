@@ -1,36 +1,35 @@
-## Problem
+## Why
 
-<!-- What user or project problem does this change solve? -->
+<!-- Concrete problem and intended outcome. -->
 
-## Changes and resulting behavior
+## What
 
-<!-- Describe what changes and what the user can now do. -->
+<!-- Summarize this scope. Keep unrelated feature, CI and documentation work separate. -->
 
-## Related Issue
+## Related Issues
 
-<!-- Link the Story Issue, which owns both the User Story and its Acceptance Criteria. -->
-<!-- Use `Refs #N` for partial work or setup. Use `Closes #N` only when this PR completes the issue and is intended to close it on merge into main. Replace N with a real issue number. -->
+<!-- Refs #N for Story/bugs/partial work. Closes only when the whole Issue is satisfied and closure is intended. Link AC IDs; do not copy the Issue. -->
 
 ## Verification
 
-<!-- Reference AC IDs rather than copying a second requirements list. Documentation-only changes can use N/A with an explanation. Never mark a test as passed unless it was run. -->
+<!-- Actual tested SHA, environment, commands and results. Link CI's coverage summary and full artifacts; do not paste logs. Report failed, skipped and unrun checks accurately. Documentation-only functional checks may be N/A with a reason. -->
 
-| AC / change | Check or test | Result | Evidence |
-| --- | --- | --- | --- |
-| To fill | To fill | Pending | To fill |
+- Tested SHA / environment:
+- Commands and actual results:
+- CI / coverage / evidence:
 
-- Tested commit:
-- Environment / device / Android API:
-- Commands or manual steps:
-- Build / test / recording links:
+Technical review: <!-- Pass / Issues found -->
 
-## Review focus and known limitations
+Tests: <!-- Passed / Failed; Not run or justified N/A when applicable -->
 
-<!-- Mention relevant data persistence, playback, edge cases, and remaining work. -->
+CI: <!-- Passed / Failed; Pending until the current SHA completes -->
 
-## Before merge
+Ready for peer review: <!-- Yes / No -->
 
-- [ ] The linked issue and this PR describe the same scope.
-- [ ] Relevant verification results are recorded; unrun checks are explicitly identified.
-- [ ] A teammate has reviewed the changes and blocking feedback has been addressed.
-- [ ] Sprint / release evidence links are updated where relevant.
+## Review focus
+
+<!-- Affected AC, key boundaries, regression risk and concrete remaining blockers. Peer review and approval are recorded with GitHub Review, not a checkbox here. -->
+
+## Contribution
+
+<!-- Name / GitHub / Student ID; distinguish personally executed work from AI-assisted implementation, testing and preparation. One concise disclosure here unless the course requires more. -->
