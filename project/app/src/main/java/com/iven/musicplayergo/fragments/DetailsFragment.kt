@@ -538,13 +538,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
                         }
                     }
                 }
-                val target = currentCoverTarget()
-                findItem(R.id.action_set_cover)?.title = getString(
-                    if (target != null && CoverRepositories.get(requireContext()).hasCover(target))
-                        R.string.cover_change else R.string.cover_set
-                )
-                findItem(R.id.action_remove_cover)?.isVisible =
-                    target != null && CoverRepositories.get(requireContext()).hasCover(target)
+                refreshCoverActions()
             }
 
             tb.setOnMenuItemClickListener {
@@ -617,7 +611,17 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
             val song = mSongsList?.firstOrNull()
             song?.let { _detailsFragmentBinding?.albumViewArt?.loadCover(CoverTarget.Album(it.albumId ?: 0, it.artist, it.album)) }
         }
-        setupMenu()
+        refreshCoverActions()
+        mMediaControlInterface.onHandleCoverOptionsUpdate()
+    }
+
+    private fun refreshCoverActions() {
+        val target = currentCoverTarget()
+        val hasCover = target != null && CoverRepositories.get(requireContext()).hasCover(target)
+        _detailsFragmentBinding?.detailsToolbar?.menu?.apply {
+            findItem(R.id.action_set_cover)?.setTitle(if (hasCover) R.string.cover_change else R.string.cover_set)
+            findItem(R.id.action_remove_cover)?.isVisible = hasCover
+        }
     }
 
     private fun applySortingToMusic(order: Int) {
