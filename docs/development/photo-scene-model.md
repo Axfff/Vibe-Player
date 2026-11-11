@@ -36,8 +36,8 @@ not bypassing the app's check. The generated JSON records provenance and prompt 
 Both scripts accept `--variant 8m` to reproduce the previous v3 artifact with the
 unchanged [v3 source manifest](../../scripts/photo-model/source-manifest.json).
 
-Copy the verified file to the phone, then select **选择封面 → 更多 → 配置本地分析模型 →
-导入照片内容模型**. Only a complete matching size/hash becomes active. The app has
+Copy the verified file to the phone, then select **选择封面 → 更多 → 推荐设置 →
+导入照片识别文件**. Only a complete matching size/hash becomes active. The app has
 no model downloader or photo upload. No public ready-made model distribution URL
 has been published; reproducible export and the locally prepared artifact are available.
 

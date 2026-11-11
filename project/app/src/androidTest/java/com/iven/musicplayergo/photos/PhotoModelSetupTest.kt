@@ -100,16 +100,16 @@ class PhotoModelSetupTest {
             val target = CoverTarget.Playlist(f.createPlaylist("Model setup", "A").id)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(target, "Model setup").showNow(it.supportFragmentManager, "source-model-test") }
             f.onMain { click("更多") }
-            f.await("menu item 配置本地分析模型 is visible") { f.onMain { texts().contains("配置本地分析模型") } }
-            f.onMain { click("配置本地分析模型") }
-            f.await("model check completed") { f.onMain { texts().contains("模型状态已更新。") } }
-            f.onMain { click("音乐氛围：文件与来源说明") }
+            f.await("menu item 推荐设置 is visible") { f.onMain { texts().contains("推荐设置") } }
+            f.onMain { click("推荐设置") }
+            f.await("model check completed") { f.onMain { texts().contains("已检查所需文件。") } }
+            f.onMain { click("音乐氛围：文件说明") }
             assertTrue(f.onMain { texts().any { it.contains(PhotoModel.MOOD.filename) && it.contains("CC BY-NC-SA") && it.contains(PhotoModel.MOOD.sha256) } })
-            f.onMain { click("知道了"); click("重新检查模型") }
-            f.await("recheck completed") { f.onMain { texts().contains("模型状态已更新。") } }
+            f.onMain { click("知道了"); click("重新检查") }
+            f.await("recheck completed") { f.onMain { texts().contains("已检查所需文件。") } }
             f.scenario.recreate()
-            f.await("setup restored") { f.onMain { texts().contains("本地分析模型") && texts().contains("模型状态已更新。") } }
-            f.onMain { click("导入音乐氛围模型") }
+            f.await("setup restored") { f.onMain { texts().contains("推荐功能设置") && texts().contains("已检查所需文件。") } }
+            f.onMain { click("导入音乐氛围文件") }
             try { f.await("system documents picker") { PhotoSystemUi.hasPackage("documentsui") } }
             catch (e: AssertionError) { PhotoSystemUi.diagnose(); throw e }
             // DocumentsUI restores its last folder; Back may first traverse parent folders.
@@ -124,13 +124,13 @@ class PhotoModelSetupTest {
                 } }.isSuccess) break
             }
             f.await("returned with no import") { PhotoSystemUi.hasPackage(f.context.packageName) }
-            f.await("ready after picker cancellation") { f.onMain { texts().contains("模型状态已更新。") } }
+            f.await("ready after picker cancellation") { f.onMain { texts().contains("已检查所需文件。") } }
             f.onMain { click("返回"); click("推荐封面") }
-            f.await("recommendation model status") { f.onMain { texts().any { it.contains("本地分析模型已就绪") || it.contains("模型尚未就绪") } } }
+            f.await("recommendation model status") { f.onMain { texts().any { it.contains("推荐功能已准备好") || it.contains("还差一步准备") } } }
             f.onMain { click("更多") }
-            f.await("menu item 配置本地分析模型 is visible") { f.onMain { texts().contains("配置本地分析模型") } }
-            f.onMain { click("配置本地分析模型") }
-            f.await("setup from recommendation") { f.onMain { texts().contains("模型状态已更新。") } }
+            f.await("menu item 推荐设置 is visible") { f.onMain { texts().contains("推荐设置") } }
+            f.onMain { click("推荐设置") }
+            f.await("setup from recommendation") { f.onMain { texts().contains("已检查所需文件。") } }
             f.onMain { click("返回"); click("关闭"); click("关闭") }
             assertTrue(PhotoRepositories.get(f.context).snapshot(target).second.isEmpty())
         }
@@ -146,14 +146,14 @@ class PhotoModelSetupTest {
             }
             f.await("model check completed") { f.onMain { vm.state.value?.busy == false } }
             f.onMain { vm.import(PhotoModel.MOOD, Uri.parse("content://unavailable/model")) }
-            f.await("provider failure explained") { f.onMain { vm.state.value?.busy == false && texts().any { it.contains("读取权限和可用空间") } } }
+            f.await("provider failure explained") { f.onMain { vm.state.value?.busy == false && texts().any { it.contains("手机空间是否充足") } } }
             val file = File(f.context.cacheDir, "wrong-model.onnx").apply { writeText("not a model") }
             try {
                 f.onMain { vm.import(PhotoModel.MOOD, Uri.fromFile(file)); vm.cancel() }
-                f.await("cancellation is reported") { f.onMain { vm.state.value?.busy == false && texts().any { it.contains("操作已取消") } } }
+                f.await("cancellation is reported") { f.onMain { vm.state.value?.busy == false && texts().any { it.contains("已取消") } } }
                 f.onMain { vm.import(PhotoModel.MOOD, Uri.fromFile(file)) }
                 f.scenario.recreate()
-                f.await("wrong model explained across recreation") { f.onMain { texts().any { it.contains("版本不匹配") } } }
+                f.await("wrong model explained across recreation") { f.onMain { texts().any { it.contains("版本不对") } } }
                 f.onMain { click("返回") }
             } finally { file.delete() }
         }

@@ -10,10 +10,10 @@ and current photo sources above the secondary action row. Empty, unavailable and
 unknown counts remain distinct. Loading cancellation appears only during loading.
 
 **添加照片** groups selected photos, folders, file-picker fallback, system search,
-Xiaomi album guidance and explicit source sharing. **更多** groups refresh, excluded
-candidate recovery, model setup, restoring the default cover (with confirmation)
+Xiaomi album guidance and explicit source sharing. **更多** groups refresh, removed-photo
+recovery, recommendation setup, restoring the default cover (with confirmation)
 and photo-use information. A source row opens previews, removal or source details.
-Recommendation details (audio duration, uncertainty, failures) and model setup are
+Recommendation details (audio duration, uncertainty, failures) and recommendation setup are
 under its own **更多** menu; cancellation appears during analysis. No authorization
 or manual-cover capability was removed. Directory reauthorization still requires
 explicit re-selection/addition; cancellation preserves existing sources.

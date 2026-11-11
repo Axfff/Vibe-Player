@@ -65,11 +65,11 @@ object PhotoRanker {
         val usable = signal.filter { it.label in atmosphereMusic.values.flatten() && it.score.isFinite() && it.score in .05f..1f }
             .groupBy { it.label }.map { (_, values) -> values.maxBy { it.score } }
             .sortedWith(compareByDescending<MoodScore> { it.score }.thenBy { it.label })
-        if (usable.isEmpty()) return "片段中没有明确的可用氛围信号，可使用“使用我选择的氛围”。"
+        if (usable.isEmpty()) return "片段中没有明确的可用氛围信号，可使用“自己选氛围”。"
         val labels = usable.map { it.label }.toSet()
         val mixed = labels.any { it in atmosphereMusic.getValue("peaceful") } && labels.any { it in atmosphereMusic.getValue("reflective") }
         return "片段线索：${usable.take(3).joinToString("、") { moodName(it.label) }}（模型推测）。" +
-            if (mixed) "舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。" else ""
+            if (mixed) "舒缓与伤感线索并存，推荐可能重叠；可使用“自己选氛围”侧重其中一种。" else ""
     }
     fun rank(signal: List<MoodScore>, candidates: List<PhotoFeatures>, limit: Int = 5): List<RankedPhoto> {
         require(limit > 0)
@@ -104,6 +104,13 @@ object PhotoRanker {
                 RankedPhoto(feature, score, reasons)
             }
         }.sortedWith(compareByDescending<RankedPhoto> { it.score }.thenBy { it.features.photo.id }).take(limit)
+    }
+    /** One short user-facing explanation; detailed scores remain in the details dialog. */
+    fun caption(candidate: RankedPhoto): String {
+        val strongest = candidate.features.atmospheres.maxByOrNull { it.confidence }?.label
+        val feeling = mapOf("lively" to "明快", "peaceful" to "平和", "reflective" to "低沉", "intense" to "有动感")[strongest] ?: "与音乐相配"
+        val scene = candidate.features.labels.firstOrNull()?.let { "画面可能是${PhotoScenePolicy.title(it.label)}，" }.orEmpty()
+        return "${scene}感觉${feeling}。"
     }
     fun suggestions(signal: List<MoodScore>): List<String> = signal.filter { it.score.isFinite() && it.score >= 0.05f }
         .sortedWith(compareByDescending<MoodScore> { it.score }.thenBy { it.label }).flatMap { mapping[it.label].orEmpty().sorted() }

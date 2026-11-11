@@ -49,11 +49,11 @@ class PhotoUiTest {
             val source=PhotoSource("ui-source","Unreachable source",PhotoSourceKind.SELECTED,listOf("content://unavailable/photo"))
             repo.attach(target,repo.request(target),source)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(target,playlist.name).showNow(it.supportFragmentManager,"source-ui") }
-            f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("数量未知") } } }
+            f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("暂时无法统计张数") } } }
             f.onMain {
                 assertTrue(texts().containsAll(listOf("推荐封面", "直接选一张", "添加照片", "更多")))
-                assertFalse(texts().contains("配置本地分析模型"))
-                assertFalse(texts().contains("从系统搜索添加照片"))
+                assertFalse(texts().contains("推荐设置"))
+                assertFalse(texts().contains("按关键词找照片"))
                 click("更多") }
             f.await("menu item 照片使用说明 is visible") { f.onMain { texts().contains("照片使用说明") } }
             f.onMain { click("照片使用说明"); click("知道了")
@@ -82,22 +82,22 @@ class PhotoUiTest {
             f.scenario.recreate()
             f.await("source dialog restored") { f.onMain { texts().any { it.contains("Unreachable source") } } }
             f.onMain { click("更多") }
-            f.await("menu item 刷新照片来源 is visible") { f.onMain { texts().contains("刷新照片来源") } }
-            f.onMain { click("刷新照片来源") }
-            f.await("refreshed invalid grant") { f.onMain { texts().any { it.contains("需要重新授权") } } }
+            f.await("menu item 刷新照片 is visible") { f.onMain { texts().contains("刷新照片") } }
+            f.onMain { click("刷新照片") }
+            f.await("refreshed invalid grant") { f.onMain { texts().any { it.contains("请重新选择照片") } } }
             f.onMain { click("更多") }
-            f.await("menu item 恢复已移除候选 is visible") { f.onMain { texts().contains("恢复已移除候选") } }
-            f.onMain { click("恢复已移除候选") }
+            f.await("menu item 恢复移除的照片 is visible") { f.onMain { texts().contains("恢复移除的照片") } }
+            f.onMain { click("恢复移除的照片") }
             f.onMain { click("添加照片") }
-            f.await("menu item 从系统搜索添加照片 is visible") { f.onMain { texts().contains("从系统搜索添加照片") } }
-            f.onMain { click("从系统搜索添加照片") }
+            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
+            f.onMain { click("按关键词找照片") }
             f.onMain { views().filterIsInstance<EditText>().last().setText("private query");click("取消") }
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.onMain { click("添加照片") }
-            f.await("menu item 从系统搜索添加照片 is visible") { f.onMain { texts().contains("从系统搜索添加照片") } }
-            f.onMain { click("从系统搜索添加照片") }
+            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
+            f.onMain { click("按关键词找照片") }
             assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
-            f.onMain { click("从我选择的氛围生成建议词") }
+            f.onMain { click("按氛围填写关键词") }
             f.await("manual search atmosphere choices") { f.onMain { texts().contains("舒缓") } }
             f.onMain {
                 val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
@@ -105,13 +105,13 @@ class PhotoUiTest {
                 list.performItemClick(text,list.getPositionForView(text),0)
             }
             f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("湖面") } }
-            f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("请求系统搜索") }
+            f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("查找照片") }
             f.await("empty query stays in app") { f.onMain { texts().any { it.contains("请输入关键词") } } }
             f.await("app window after empty search dialog closes") { PhotoSystemUi.hasPackage(f.context.packageName) }
             f.onMain { click("添加照片") }
-            f.await("menu item 从系统搜索添加照片 is visible") { f.onMain { texts().contains("从系统搜索添加照片") } }
-            f.onMain { click("从系统搜索添加照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
-            f.onMain { click("请求系统搜索") }
+            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
+            f.onMain { click("按关键词找照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
+            f.onMain { click("查找照片") }
             f.await("ordinary picker launched") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
@@ -135,16 +135,16 @@ class PhotoUiTest {
         RegressionFixture.open().use { f ->
             val playlist=f.createPlaylist("Empty photos","A");val target=CoverTarget.Playlist(playlist.id)
             f.onActivity { PhotoRecommendationsDialogFragment.newInstance(target).showNow(it.supportFragmentManager,"recommend-ui") }
-            f.onMain { click("使用我选择的氛围") }
+            f.onMain { click("自己选氛围") }
             f.onMain {
                 val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
                 // List row click through its ListView parent, as Android dispatches it.
                 val parent=text.parent as android.widget.ListView
                 parent.performItemClick(text,parent.getPositionForView(text),0)
             }
-            f.await("empty scope explains no readable photos") { f.onMain { texts().any { it.contains("没有可读取照片") } } }
-            f.onMain { click("选择／更换代表曲并分析") }
-            f.await("representative chooser shows actual title") { f.onMain { texts().any { it.contains("代表曲（默认") } } }
+            f.await("empty scope explains no readable photos") { f.onMain { texts().any { it.contains("还没有可用照片") } } }
+            f.onMain { click("选择歌曲") }
+            f.await("representative chooser shows actual title") { f.onMain { texts().any { it == "选择一首歌" } } }
             f.onMain { click("取消") }
             f.onMain { click("取消分析") }
             assertTrue(f.onMain { texts().any { it.contains("封面未改变") } })
@@ -161,10 +161,10 @@ class PhotoUiTest {
             repo.attach(old,repo.request(old),source)
             val oldRequest=repo.request(old)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(current,"Current album").showNow(it.supportFragmentManager,"rebind-ui") }
-            f.await("changed album offers recovery") { f.onMain { texts().contains("为当前专辑重新授权") } }
-            f.onMain { click("为当前专辑重新授权"); click("取消") }
+            f.await("changed album offers recovery") { f.onMain { texts().contains("重新选择照片") } }
+            f.onMain { click("重新选择照片"); click("取消") }
             assertEquals(listOf(source),repo.snapshot(old).second)
-            f.onMain { click("为当前专辑重新授权"); click("重新授权") }
+            f.onMain { click("重新选择照片"); click("继续") }
             f.await("confirmed current album is empty") { runCatching { repo.snapshot(current).second.isEmpty() }.getOrDefault(false) }
             assertThrows(PhotoScopeException::class.java) { repo.validate(current,oldRequest) }
             f.onMain { click("关闭") }; repo.deleteTarget(current)

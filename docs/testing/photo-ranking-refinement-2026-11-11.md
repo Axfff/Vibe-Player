@@ -1,7 +1,8 @@
 # Ranking and cover-source UI refinement — 2026-11-11
 
-Status: implementation and local Android regression verified; physical-phone
-retest and current-head CI are still pending. Human subjective acceptance is open.
+Status: implementation, local Android regression, physical-phone recommendations
+and final wording verified. See PR #50 for current-head CI. Human subjective
+acceptance is open.
 
 ## Change
 
@@ -49,12 +50,52 @@ The first UI test attempt clicked list items before layout completed. Test steps
 now wait for actual menu rows before selecting them; the rerun passed. The app's
 menus and authorization paths were exercised, not replaced by mocked picker grants.
 
-## Outstanding checks
+## Physical Redmi and plain-language follow-up
 
-- Physical Redmi: four-song recommendation and visual UI retest (device locked;
-  user unlock requested). Do not substitute emulator order for phone results.
-- Current-head GitHub CI and cumulative coverage.
-- Human review of subjective matching, fewer-result behavior, and model size/license.
+Actual phone counts: 7 cheerful / 6 calm / 3 reflective / 4 intense candidates.
+The first batches contain at most five. The phone order differs slightly from the
+emulator; only observed phone screenshots/scores are used below.
+
+- Thinking of You: forest waterfall, window-side butterfly, bright lake,
+  monochrome waterfall, rainy trees/path.
+- Heartbreaking: foggy sea, foggy street, rainy night with umbrella.
+- The window-side butterfly moves from reflective rank 2 to not recommended for
+  this song. Calm/reflective first-batch overlap is **3 → 0**, with **5 calm versus
+  only 3 reflective results**. This is not a five-versus-five accuracy claim.
+- Carefree retains flowers/fireworks; Volitile Reaction returns three surfing
+  photos and rushing water (four, without padding).
+- All four actual audio/photo analyses report zero read/inference failures. The
+  existing 20-photo scope, four playlists, stored covers and model files remain
+  unchanged. No new cover was saved. Temporary display/notification settings were
+  restored before handing back the phone.
+
+After the user's additional wording request, the final APK was installed and the
+calm/reflective recommendations rechecked. The ranking methods are byte-for-byte
+unchanged after newline normalization; their hashes are in the phone receipt.
+Visible copy now uses **推荐封面**, **选择歌曲**, **自己选氛围**, **推荐设置**, and
+**设为封面**. Cards show one brief scene/atmosphere sentence; numerical scores,
+analysis duration and diagnostics are in **更多 → 分析详情**. Scope authorization,
+folder refresh behavior, search fallback and cancellation remain explicit in plain
+language. The crop page shows actionable Chinese errors instead of enum codes.
+
+Phone checks also cover the real single-photo picker and cancellation, folder
+options/cancellation, restore-default confirmation/cancellation, model-settings and
+search copy, a recommended crop preview and cancellation. The final nine-test UI
+regression passed. A stale test expectation for the renamed readiness message was
+corrected before that final rerun.
+
+[Exact evidence and checksums](evidence/photo-refinement-2026-11-11/checksums.json),
+[phone result receipt](evidence/photo-refinement-2026-11-11/phone-results.json),
+[development comparison](evidence/photo-refinement-2026-11-11/development-evaluation.json).
+Source-photo attribution and frozen manifests remain in the
+[prior v4 evidence](evidence/photo-quality-v4-2026-11-11/fresh-ATTRIBUTION.txt).
+
+## Remaining review
+
+Human review is still needed for subjective matching, the lower candidate-count
+tradeoff and the existing 159 MB model/license decision. The original and fresh
+pools were used during development; the 12-image pool is an exploratory replay,
+not a newly unseen evaluation. No general accuracy claim or AC sign-off is made.
 
 The existing ONNX 16 KB compatibility issue #55 and Xiaomi automatic-keyword
 handoff limitation are unchanged. No acceptance checkbox is marked by these tests.

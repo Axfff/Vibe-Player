@@ -128,7 +128,13 @@ class CoverCropDialogFragment : DialogFragment() {
                     dismiss()
                 }
                 is CoverResult.Failure -> {
-                    status?.text = getString(R.string.cover_error_save, result.error.name)
+                    status?.setText(when (result.error) {
+                        CoverError.SOURCE_NOT_READABLE, CoverError.COVER_NOT_FOUND -> R.string.cover_error_source
+                        CoverError.INVALID_TARGET -> R.string.cover_error_target
+                        CoverError.UNSUPPORTED_IMAGE_TYPE, CoverError.IMAGE_TOO_LARGE,
+                        CoverError.IMAGE_DECODE_FAILED -> R.string.cover_error_decode
+                        else -> R.string.cover_error_save
+                    })
                     dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = true
                 }
             }
