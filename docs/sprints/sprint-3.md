@@ -6,6 +6,18 @@ Published parent: [Story #36](https://github.com/Axfff/Vibe-Player/issues/36). B
 
 Implementation: [draft PR #37](https://github.com/Axfff/Vibe-Player/pull/37). Local cumulative gate at `00bad97b` passes with 37 JVM / 49 Android / 166 Python / 22 web tests, Android 88.47%, backend 96.17%, web 98.42%. The PR's cloud report is measured separately against its actual head.
 
+## 2026-11-11 local-photo continuation
+
+The completed cover branch at `85e53f20` is integrated without replacing existing
+Discovery work. Local TinyCLIP now feeds editable photo/atmosphere suggestions
+into real catalog discovery. Actual emulator picker → local inference → confirm →
+eight real results → browser → save → cold restore is recorded in the
+[dated delivery](../development/discovery/local-vision-2026-11-11.md).
+The browser still redirects to an Apple regional homepage, so S3-AC5 remains
+unpassed. Phone data was preserved during update; phone UI validation awaits
+unlock. S3-AC2 has real local-model evidence, while cloud configuration remains
+Blocked. Nothing here checks a human AC or replaces the historical results below.
+
 ## Inherited state (2026-11-03)
 
 Reused `feat/ai-photo-discovery` at `fa86950d0f8955a8b0718de95f7a0509dedee832`, in the existing independent `Vibe-Player-discovery` worktree. Inspected all repository-listed local worktrees. No additional AGENTS.md was found in this workspace/ancestors. Latest remote main `dc17523be591a72f9fefa98536c61689e4d99ad1` has been merged into this branch, preserving Release 1. `release1` remains `81b22ee5868e0cd5ac6a75472296caab3753a7b5`.

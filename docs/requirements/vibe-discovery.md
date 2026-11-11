@@ -8,7 +8,7 @@ Formal parent: [Story #36](https://github.com/Axfff/Vibe-Player/issues/36).
 
 As a listener seeking unfamiliar music, I want to select a photo and adjust the atmosphere I want, receive real, verifiable music suggestions, preview them in the app when legitimately permitted or open their official platform otherwise, and save discoveries I like.
 
-The final goal is the complete hybrid experience. Sprint 3 delivers an independently usable manual-intent → real catalog → Android results → official platform → saved Collection increment. Photo recognition remains a Sprint 3 requirement with **Blocked** status until an authorized real model is configured and verified. Only an explicit team scope decision can move it to Sprint 4; a mock does not satisfy it.
+The final goal is the complete hybrid experience. Sprint 3 delivers an independently usable manual-intent → real catalog → Android results → official platform → saved Collection increment. Photo recognition remains a Sprint 3 requirement: a mock does not satisfy it, and only an explicit team scope decision can move it to Sprint 4. As of 2026-11-11, the previously imported local TinyCLIP model has real emulator inference/edit-confirm evidence; physical-phone validation and human acceptance remain pending. Cloud vision stays Blocked without separate authorization/configuration. See the [dated local-vision evidence and limits](../development/discovery/local-vision-2026-11-11.md).
 
 ## Supporting requirements
 
@@ -28,7 +28,7 @@ The final goal is the complete hybrid experience. Sprint 3 delivers an independe
 All checkboxes represent **human acceptance**, not implementation progress.
 
 - [ ] **S3-AC1** — An Android entry is reachable even without local songs. Single-photo picker cancellation, refused upload and manual scene/music inputs can be exercised.
-- [ ] **S3-AC2 — Blocked (real vision authorization)** — With an authorized real model, photo analysis yields editable finite scene/music suggestions, and user overrides win. Unconfigured/failed/mock analysis never claims real photo understanding. Manual mode is independently usable; it does not pass this AC.
+- [ ] **S3-AC2 — Local model verified on emulator; phone/human acceptance pending; cloud path Blocked** — With an authorized real model, photo analysis yields editable finite scene/music suggestions, and user overrides win. Unconfigured/failed/mock analysis never claims real photo understanding. Manual mode is independently usable; it does not pass this AC.
 - [ ] **S3-AC3** — At least one production catalog returns real songs end to end. Each card shows provider/native ID and a verifiable source. Aim for eight; show the actual count when fewer qualify.
 - [ ] **S3-AC4** — Fixed candidate input deterministically reproduces validation, deduplication, exclusions, ranking, tie order and artist diversity. Explanations cite actual metadata, not invented audio analysis.
 - [ ] **S3-AC5** — Open validated official HTTPS song URLs; without an installed music app a browser can handle the same link. Invalid links cannot launch arbitrary targets. Storefront/account/region availability is disclosed separately from URL validity.
@@ -51,7 +51,7 @@ All checkboxes represent **human acceptance**, not implementation progress.
 | D3-02 Reuse backend; strengthen normalization, deterministic rank, exclusions and failure handling | 3 / AC3,4,7 | Discovery agent | Human reviewer |
 | D3-03 Android input/results, picker/consent and bounded/cancellable transport | 3 / AC1,2,3,7 | Discovery agent | Human reviewer |
 | D3-04 Safe official navigation and independent durable Collection | 3 / AC5,6 | Discovery agent | Human reviewer |
-| D3-05 Real vision configuration and smoke | 3 / AC2 | Authorized account owner supplies model/project/budget; Discovery agent integrates | Human team; currently Blocked |
+| D3-05 Real vision configuration and smoke | 3 / AC2 | Discovery agent reuses the imported local photo model; account owner supplies any separately authorized cloud project/budget | Human team; local emulator verified, phone pending, cloud Blocked |
 | D3-06 Automated feature tests and device flow with real catalog | 3 / AC1–8 | Discovery agent | Human team |
 | E3-01 Include every new production file and Release 1 changes in measured CI, build APK, publish reports and enforce failures | 3 / engineering | CI agent (Agent A); Discovery agent supplies behavioral tests | Human reviewer |
 | D4-01 Second catalog and per-track preview authorization/attribution | 4 / AC1,2 | Discovery agent + authorized account owner | Human team |
