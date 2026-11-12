@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.discovery
 
+import com.iven.musicplayergo.R
+import com.iven.musicplayergo.preferences.UiText
 import android.content.Context
 import android.net.Uri
 import com.iven.musicplayergo.photos.*
@@ -16,7 +18,7 @@ class DiscoveryLocalPhoto(private val context: Context) {
     }
 }
 
-data class LocalPhotoSuggestion(val intent: PhotoIntent, val description: String)
+data class LocalPhotoSuggestion(val intent: PhotoIntent, val description: UiText)
 
 /** Editorial picture-to-intent associations, not song analysis or a person's emotions. */
 object DiscoveryPhotoPolicy {
@@ -46,11 +48,11 @@ object DiscoveryPhotoPolicy {
         val scene = features.labels.filter { it.confidence.isFinite() && it.confidence >= .20f }
             .mapNotNull { scenes[it.label] }.distinct()
         val intent = PhotoIntent(scene, selected.map { moods.getValue(it.label) }, emptyList(), if (uncertain) "high" else "medium")
-        val description = "手机本地分析 · ${features.modelVersion}\n画面氛围：" +
-            selected.joinToString("、") { PhotoAtmospherePolicy.names.getValue(it.label) } +
-            (if (scene.isEmpty()) "\n场景未明确识别" else "\n场景建议：${scene.joinToString()}") +
-            "\n这是画面线索与音乐氛围的规则关联，不是人物情绪或歌曲听感识别。请修改并确认。" +
-            (if (uncertain) "\n多种氛围接近，建议不确定。" else "")
+        val description = UiText.Joined(listOfNotNull(
+            UiText.of(R.string.discovery_local_summary, features.modelVersion, UiText.Joined(selected.map { PhotoAtmospherePolicy.names.getValue(it.label) })),
+            if (scene.isEmpty()) UiText.of(R.string.discovery_scene_unclear) else UiText.of(R.string.discovery_scene_suggested, UiText.Joined(scene.map(DiscoveryLabels::text))),
+            UiText.of(R.string.discovery_local_boundary),
+            if (uncertain) UiText.of(R.string.discovery_local_ambiguous) else null), "\n")
         return LocalPhotoSuggestion(intent, description)
     }
 }

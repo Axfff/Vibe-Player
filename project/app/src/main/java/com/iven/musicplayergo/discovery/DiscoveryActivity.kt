@@ -55,6 +55,8 @@ class DiscoveryActivity : BaseActivity() {
         }
         binding.discoveryQuery.doAfterTextChanged { inputChanged() }
         binding.discoveryEndpoint.doAfterTextChanged { if (!bindingInputs) model.endpoint = it.toString() }
+        binding.discoveryCustomService.isChecked = model.customService
+        binding.discoveryCustomService.setOnCheckedChangeListener { _, checked -> model.useCustomService(checked) }
         binding.discoveryConfirm.setOnCheckedChangeListener { _, _ -> renderActions() }
         binding.discoveryConnect.setOnClickListener { readDraft(); model.connect() }
         binding.discoverySearch.setOnClickListener {
@@ -70,7 +72,7 @@ class DiscoveryActivity : BaseActivity() {
                 .setPositiveButton(R.string.discovery_local_analyze) { _, _ -> model.analyzeLocal() }
                 .setNegativeButton(android.R.string.cancel, null).show()
         }
-        binding.discoveryPhotoModels.setOnClickListener { PhotoModelsDialogFragment().show(supportFragmentManager, "discovery-models") }
+        binding.discoveryPhotoModels.setOnClickListener { PhotoModelsDialogFragment.forDiscovery().show(supportFragmentManager, "discovery-models") }
         binding.discoveryManual.setOnClickListener { model.useManual() }
         binding.discoveryApplyPhoto.setOnClickListener {
             model.applySuggestions()
@@ -90,11 +92,11 @@ class DiscoveryActivity : BaseActivity() {
                 binding.discoveryScroll.post { binding.discoveryScroll.smoothScrollTo(0, binding.discoveryMessage.top) }
             }
         }
-        if (model.status == null && model.endpoint.isNotBlank() && !model.busy) model.connect()
+        if (model.status == null && (!model.customService || model.endpoint.isNotBlank()) && !model.busy) model.connect()
     }
 
     private fun choices(view: Spinner, options: List<String>) {
-        view.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
+        view.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options.map { DiscoveryLabels.text(it).resolve(this) })
     }
 
     private fun bindDraft() {
@@ -140,6 +142,7 @@ class DiscoveryActivity : BaseActivity() {
         binding.discoveryCancel.isVisible = model.busy
         listOf(binding.discoveryConnect, binding.discoveryPickPhoto, binding.discoveryAnalyzePhoto, binding.discoveryApplyPhoto,
             binding.discoveryAnalyzeLocal, binding.discoveryPhotoModels,
+            binding.discoveryCustomService,
             binding.discoveryScene, binding.discoveryMood, binding.discoveryTag, binding.discoveryMarket,
             binding.discoveryQuery, binding.discoveryEndpoint, binding.discoveryConfirm).forEach { it.isEnabled = !model.busy }
     }
@@ -150,14 +153,16 @@ class DiscoveryActivity : BaseActivity() {
             else getString(R.string.discovery_collection, model.collection.saved.size)
         binding.discoveryForm.isVisible = !showCollection
         val status = model.status
-        binding.discoveryProviderStatus.text = if (status == null) getString(R.string.discovery_status_unknown)
-            else (status.catalogs + status.vision).joinToString("\n") { "${it.name}: ${it.mode} / ${it.state}${it.error?.let { error -> " ($error)" }.orEmpty()}" }
+        binding.discoveryServiceFields.isVisible = model.customService
+        binding.discoveryProviderStatus.text = if (!model.customService) getString(R.string.discovery_device_ready)
+            else if (status == null) getString(R.string.discovery_status_unknown)
+            else getString(if (status.canAnalyze) R.string.discovery_connected else R.string.discovery_blocked)
         binding.discoveryPhotoStatus.text = when {
-            model.photo != null -> model.localPhotoDescription ?: "${model.photo!!.scenes.joinToString()}\n${model.photo!!.moods.joinToString()} · ${model.photo!!.tags.joinToString()}"
+            model.photo != null -> model.localPhotoDescription?.resolve(this) ?: "${model.photo!!.scenes.joinToString { DiscoveryLabels.text(it).resolve(this) }}\n${model.photo!!.moods.joinToString { DiscoveryLabels.text(it).resolve(this) }} · ${model.photo!!.tags.joinToString { DiscoveryLabels.text(it).resolve(this) }}"
             model.photoUri != null -> getString(R.string.discovery_photo_selected)
             else -> getString(R.string.discovery_photo_none)
         }
-        binding.discoveryAnalyzePhoto.isVisible = model.photoUri != null
+        binding.discoveryAnalyzePhoto.isVisible = model.photoUri != null && model.customService && status?.canAnalyze == true
         binding.discoveryAnalyzeLocal.isVisible = model.photoUri != null
         binding.discoveryApplyPhoto.isVisible = model.photo != null
         binding.discoveryClearExclusions.isVisible = model.collection.excluded.isNotEmpty()
@@ -169,7 +174,8 @@ class DiscoveryActivity : BaseActivity() {
         } else {
             model.results?.let { response ->
                 if (model.message == "results" || model.message == "no_results") {
-                    binding.discoveryMessage.append("\n${response.shortage}\n" + response.catalogs.joinToString("; ") { "${it.name}: ${it.error ?: it.state} (${it.mode})" })
+                    if (response.tracks.size < 8) binding.discoveryMessage.append("\n" + getString(R.string.discovery_shortage, response.tracks.size))
+                    if (response.catalogs.any { it.error != null }) binding.discoveryMessage.append("\n" + getString(R.string.discovery_catalog_partial))
                 }
                 response.tracks.forEach { addTrack(it, savedList = false) }
             }
@@ -181,7 +187,8 @@ class DiscoveryActivity : BaseActivity() {
         row.discoveryTrackTitle.text = track.title
         row.discoveryTrackArtist.text = track.artist
         row.discoveryTrackSource.text = "${track.ref.provider} · ${track.ref.id}\n${track.officialUrl}"
-        row.discoveryTrackReason.text = listOf(track.reason, track.linkNotice, getString(R.string.discovery_official_notice)).filter { it.isNotBlank() }.joinToString("\n")
+        // Service prose may use another language; identity/content is retained while UI copy is local.
+        row.discoveryTrackReason.text = getString(R.string.discovery_metadata_reason) + "\n" + getString(R.string.discovery_official_notice)
         row.discoveryTrackOpen.setOnClickListener { openOfficial(track) }
         val saved = model.collection.saved.any { it.track.ref == track.ref }
         row.discoveryTrackSave.setText(if (savedList) R.string.discovery_remove else if (saved) R.string.discovery_saved else R.string.discovery_save)
@@ -206,7 +213,7 @@ class DiscoveryActivity : BaseActivity() {
     private fun message(code: String): String = when (code) {
         "ready", "manual", "photo_cancelled" -> getString(R.string.discovery_ready)
         "manual_model_blocked", "vision_not_live" -> getString(R.string.discovery_blocked)
-        "connected" -> getString(R.string.discovery_connected)
+        "connected" -> getString(if (model.customService) R.string.discovery_connected else R.string.discovery_device_ready)
         "loading" -> getString(R.string.discovery_loading)
         "cancelled" -> getString(R.string.discovery_cancelled)
         "no_results" -> getString(R.string.discovery_no_results)
@@ -223,7 +230,7 @@ class DiscoveryActivity : BaseActivity() {
         "local_photo_failed" -> getString(R.string.discovery_local_failed)
         "invalid_endpoint" -> getString(R.string.discovery_invalid_endpoint)
         "invalid_input", "http_422" -> getString(R.string.discovery_invalid_input)
-        "invalid_response" -> getString(R.string.discovery_invalid_response)
+        "invalid_response", "response_too_large" -> getString(R.string.discovery_invalid_response)
         "collection_limit" -> getString(R.string.discovery_limit)
         "collection_unreadable", "collection_read_failed", "collection_write_failed" -> getString(R.string.discovery_storage_error)
         "no_browser" -> getString(R.string.discovery_no_browser)

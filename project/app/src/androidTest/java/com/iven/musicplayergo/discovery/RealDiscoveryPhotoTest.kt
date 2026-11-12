@@ -64,11 +64,11 @@ class RealDiscoveryPhotoTest {
             evidence.put(JSONObject().put("file", name).put("fingerprint", features.fingerprint)
                 .put("model", features.modelVersion).put("elapsed_ms", SystemClock.elapsedRealtime() - started)
                 .put("atmospheres", JSONArray(features.atmospheres.map { JSONObject().put("label", it.label).put("support", it.confidence) }))
-                .put("suggestion", policy?.description ?: "uncertain; manual input required"))
+                .put("suggestion", policy?.description?.resolve(context) ?: "uncertain; manual input required"))
         }
         assertNotNull("At least one real fixture must yield a usable suggestion", first)
         val photo = first!!
-        val client = DiscoveryClient("http://127.0.0.1:8765")
+        val client = DeviceDiscoveryCatalog()
         try {
             val status = client.status()
             assertEquals("unconfigured", status.vision.mode)
@@ -84,12 +84,14 @@ class RealDiscoveryPhotoTest {
             val output = JSONObject().put("photos", evidence).put("query", serialized)
                 .put("tracks", JSONArray(results.tracks.map { JSONObject().put("id", it.ref.key).put("title", it.title)
                     .put("artist", it.artist).put("url", it.officialUrl) }))
-                .put("cloud_vision_mode", status.vision.mode).put("ui_flow_verified", false)
+                .put("cloud_vision_mode", status.vision.mode).put("catalog_transport", "phone_https_itunes")
+                .put("ui_flow_verified", false)
             File(context.filesDir, "discovery-real-evidence.json").writeText(output.toString(2))
         } finally { client.cancel() }
         ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
             await(scenario) { !it.model.busy }
             scenario.onActivity {
+                assertFalse("Default discovery must not require a development service", it.model.customService)
                 it.findViewById<EditText>(R.id.discovery_query).setText("piano")
                 it.model.selectPhoto(firstUri)
                 it.model.analyzeLocal()
@@ -118,6 +120,7 @@ class RealDiscoveryPhotoTest {
                 assertTrue(it.model.results!!.tracks.all { track -> track.valid() })
                 File(context.filesDir, "discovery-real-ui-evidence.json").writeText(JSONObject()
                     .put("local_photo", true).put("user_override", it.model.intent.mood)
+                    .put("catalog_transport", "phone_https_itunes").put("custom_service", it.model.customService)
                     .put("text_retained", it.model.intent.text).put("real_results", it.model.results!!.tracks.size)
                     .put("external_navigation_verified", false).put("cold_restart_verified", false).toString(2))
             }

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="discovery_local_title">在手机上分析照片</string>
-    <string name="discovery_photo_applied">照片建议已应用，搜索词和已选风格已保留。请按自己的需要修改，再确认搜索。</string>
-    <string name="discovery_local_consent">使用你已导入的照片模型，只读取这张照片。照片不会上传；识别结果只是画面氛围建议，仍需你修改并确认。之后搜索音乐时只发送确认的文字与标签。</string>
-    <string name="discovery_local_analyze">在手机上分析照片</string>
-    <string name="discovery_local_models">配置本地照片模型</string>
-    <string name="discovery_local_missing">尚未导入本地照片模型。请配置模型，或继续手动输入；照片没有上传。</string>
-    <string name="discovery_local_uncertain">照片没有明确的可用氛围线索。请手动选择想听的音乐；照片没有上传。</string>
-    <string name="discovery_local_failed">本地分析未完成。请检查照片读取权限及模型版本，或继续手动输入；照片没有上传。</string>
+    <string name="discovery_local_title">Analyze photo on this phone</string>
+    <string name="discovery_photo_applied">Photo suggestions applied. Your search words and selected style were retained. Edit and confirm before searching.</string>
+    <string name="discovery_local_consent">Use the imported photo model to read only this photo on your phone. It is not uploaded. The result is an atmosphere suggestion for you to edit and confirm. Music searches send only the confirmed search words or tags.</string>
+    <string name="discovery_local_analyze">Analyze photo on this phone</string>
+    <string name="discovery_local_models">Optional photo model setup</string>
+    <string name="discovery_local_missing">The optional photo model is not imported. Set it up or continue with manual intent. Your photo was not uploaded.</string>
+    <string name="discovery_local_uncertain">No clear atmosphere cues found. Choose the music you want manually. Your photo was not uploaded.</string>
+    <string name="discovery_local_failed">Local analysis did not finish. Check photo access and the model version, or continue manually. Your photo was not uploaded.</string>
     <string name="discovery_title">Vibe Discovery</string>
-    <string name="discovery_intro">Find music for the atmosphere you want. Open the official platform and keep your discoveries here.</string>
+    <string name="discovery_intro">Discover music from an atmosphere, search words or an optional photo. Find real catalog results, open the official song page and save discoveries here.</string>
     <string name="discovery_collection">Discovery Collection (%1$d)</string>
     <string name="discovery_back_search">Back to discovery</string>
     <string name="discovery_endpoint_label">Discovery service address</string>
@@ -40,13 +40,13 @@
     <string name="discovery_agree">Agree and analyze this photo</string>
     <string name="discovery_refuse">Use manual input</string>
     <string name="discovery_blocked">Cloud photo analysis has no authorized live model. You can use an imported local photo model or continue with manual input.</string>
-    <string name="discovery_ready">Choose a scene and your music intent. No photo is required.</string>
-    <string name="discovery_loading">Contacting the discovery service…</string>
+    <string name="discovery_ready">Choose an atmosphere or enter search words, then confirm to find music. No photo or account is required.</string>
+    <string name="discovery_loading">Working on your request…</string>
     <string name="discovery_cancelled">Request cancelled. You can edit and try again.</string>
     <string name="discovery_no_results">No new matching tracks. Try other search words, a different country, or clear hidden tracks.</string>
     <string name="discovery_result_count">%1$d real catalog results</string>
     <string name="discovery_collection_empty">Your Collection is empty. Save a discovery to keep its source and your music intent.</string>
-    <string name="discovery_network_error">Cannot reach the discovery service. Check its address and connection, then retry. Manual input and saved discoveries remain available.</string>
+    <string name="discovery_network_error">Cannot reach the music catalog. Check your internet connection and retry. Saved discoveries remain available.</string>
     <string name="discovery_invalid_input">Check the music intent. Use plain search words up to 160 characters, without URLs.</string>
     <string name="discovery_invalid_endpoint">Enter an HTTPS service address. Debug builds also allow localhost, 127.0.0.1 or 10.0.2.2.</string>
     <string name="discovery_photo_failed">Photo analysis was not completed. Use manual input or select a supported JPEG, PNG or WebP image up to 5 MiB and 20 megapixels.</string>
@@ -60,9 +60,14 @@
     <string name="discovery_excluded_message">Hidden from future discoveries.</string>
     <string name="discovery_exclusions_cleared">Hidden tracks cleared. Saved tracks remain excluded from new discoveries.</string>
     <string name="discovery_photo_suggested">Photo suggestions are ready. Your current choices are unchanged; use the suggestion button to apply them.</string>
-    <string name="discovery_official_notice">Official links can depend on your region or platform account. In-app preview is planned for Sprint 4.</string>
+    <string name="discovery_official_notice">Official links depend on your region and platform account. Listening may require that platform’s subscription. Saving here keeps a reference, not an audio download.</string>
     <string name="discovery_connected">Service connected. Confirm your music intent to discover.</string>
     <string name="discovery_status_unknown">Check the service to see catalog and photo model availability.</string>
     <string name="discovery_invalid_response">The service returned an invalid response. No unverified suggestions were added. Retry or use manual input.</string>
     <string name="discovery_opened">Official link opened. Return here to save a discovery.</string>
+    <string name="discovery_device_ready">Ready on this phone. Searches use Apple’s public music catalog and need internet access; no computer or account is required.</string>
+    <string name="discovery_custom_service">Use a custom service (advanced, optional)</string>
+    <string name="discovery_shortage">Found %1$d of up to 8 tracks after checking official song links, hidden tracks and a maximum of two songs per artist.</string>
+    <string name="discovery_catalog_partial">Some catalog sources were unavailable. Only verified live results are shown.</string>
+    <string name="discovery_metadata_reason">Matched from catalog metadata and your confirmed search intent. This is not an analysis of how the audio sounds.</string>
 </resources>

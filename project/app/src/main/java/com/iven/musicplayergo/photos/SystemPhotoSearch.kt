@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.R
+import com.iven.musicplayergo.preferences.UiText
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -19,12 +21,12 @@ object PhotoSearchPolicy {
         else -> SystemPhotoSearchCapability.UNSUPPORTED
     }
     fun query(value: String) = value.trim().take(200)
-    fun explanation(api: Int, tExtension: Int?): String = when (capability(api, tExtension)) {
-        SystemPhotoSearchCapability.MAY_REQUEST -> "系统支持请求关键词高亮；选图器仍可能忽略关键词。"
-        SystemPhotoSearchCapability.UNKNOWN -> "无法读取系统搜索能力，将使用直接选照片。"
-        SystemPhotoSearchCapability.UNSUPPORTED ->
-            (if (api >= 33 && tExtension != null) "系统扩展版本为 $tExtension，关键词高亮需要 $REQUIRED_EXTENSION。" else "此 Android 版本不支持关键词高亮。") +
-                "可在手机设置中检查系统更新或 Google Play 系统更新；更新 App 无法补齐此能力。当前可直接选照片，找不到相册时可从文件选择。"
+    fun explanation(api: Int, tExtension: Int?): UiText = when (capability(api, tExtension)) {
+        SystemPhotoSearchCapability.MAY_REQUEST -> UiText.of(R.string.photo_search_supported)
+        SystemPhotoSearchCapability.UNKNOWN -> UiText.of(R.string.photo_search_unknown)
+        SystemPhotoSearchCapability.UNSUPPORTED -> UiText.Joined(listOf(
+            if (api >= 33 && tExtension != null) UiText.of(R.string.photo_search_extension, tExtension, REQUIRED_EXTENSION) else UiText.of(R.string.photo_search_old_android),
+            UiText.of(R.string.photo_search_update_help)), " ")
     }
 }
 
@@ -39,7 +41,7 @@ class SystemPhotoSearchLauncher(private val context: Context,
     }) {
     fun capability(): SystemPhotoSearchCapability = detect()
     fun explanation(): String = PhotoSearchPolicy.explanation(Build.VERSION.SDK_INT,
-        if (Build.VERSION.SDK_INT >= 33) runCatching { SdkExtensions.getExtensionVersion(33) }.getOrNull() else null)
+        if (Build.VERSION.SDK_INT >= 33) runCatching { SdkExtensions.getExtensionVersion(33) }.getOrNull() else null).resolve(context)
     fun intent(query: String): Intent {
         val text = PhotoSearchPolicy.query(query)
         require(text.isNotEmpty())

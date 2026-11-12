@@ -24,6 +24,10 @@ private const val DOUBLE_CLICK = 400
 
 class PlayerService : Service() {
 
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(com.iven.musicplayergo.preferences.AppLanguage.context(base))
+    }
+
     // Binder given to clients
     private val binder = LocalBinder()
 
