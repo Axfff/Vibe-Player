@@ -1,0 +1,6847 @@
+{
+  "schema": 1,
+  "sha": "c185ba7541caa5c817815782ec00277781bb0493",
+  "source_fingerprint": "43cd04f746ac3fae1a58eccf62bae1c345228cdd9619be2451038db8a84ffb82",
+  "started_ns": 1794060511611666100,
+  "baseline": "947709e4c798a103b9fcc5962172f2e85d349196",
+  "dirty": false,
+  "measurement_only": false,
+  "modules": {
+    "android": {
+      "covered": 2341,
+      "total": 2921,
+      "percent": 80.14378637452927,
+      "passed": true,
+      "files": [
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "ecc9ad1907630c1b26f3ba16d1a3b8f8456084bea29842e952dcc7347aaa1cc4",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              7,
+              7
+            ],
+            [
+              9,
+              9
+            ],
+            [
+              13,
+              13
+            ],
+            [
+              16,
+              23
+            ],
+            [
+              35,
+              36
+            ],
+            [
+              39,
+              42
+            ],
+            [
+              63,
+              63
+            ],
+            [
+              78,
+              105
+            ],
+            [
+              107,
+              112
+            ],
+            [
+              117,
+              123
+            ],
+            [
+              148,
+              148
+            ],
+            [
+              151,
+              151
+            ],
+            [
+              194,
+              194
+            ],
+            [
+              198,
+              198
+            ],
+            [
+              217,
+              217
+            ],
+            [
+              224,
+              224
+            ],
+            [
+              244,
+              245
+            ],
+            [
+              257,
+              259
+            ],
+            [
+              277,
+              279
+            ],
+            [
+              288,
+              291
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "24beffad3c0c89739b13420d2a07cedb947770c0",
+            "aca7ae7cacf04d594bc42660711ab352c26dd581"
+          ],
+          "exception_reason": null,
+          "covered": 42,
+          "total": 50,
+          "percent": 84.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              18,
+              23
+            ],
+            [
+              35,
+              35
+            ],
+            [
+              39,
+              40
+            ],
+            [
+              42,
+              42
+            ],
+            [
+              63,
+              63
+            ],
+            [
+              78,
+              79
+            ],
+            [
+              83,
+              84
+            ],
+            [
+              87,
+              102
+            ],
+            [
+              104,
+              105
+            ],
+            [
+              109,
+              110
+            ],
+            [
+              112,
+              112
+            ],
+            [
+              118,
+              118
+            ],
+            [
+              121,
+              121
+            ],
+            [
+              123,
+              123
+            ],
+            [
+              148,
+              148
+            ],
+            [
+              151,
+              151
+            ],
+            [
+              194,
+              194
+            ],
+            [
+              198,
+              198
+            ],
+            [
+              217,
+              217
+            ],
+            [
+              245,
+              245
+            ],
+            [
+              259,
+              259
+            ],
+            [
+              277,
+              278
+            ],
+            [
+              288,
+              288
+            ],
+            [
+              290,
+              290
+            ]
+          ],
+          "uncovered_lines": [
+            97,
+            98,
+            148,
+            194,
+            277,
+            278,
+            288,
+            290
+          ],
+          "whole_file": {
+            "covered": 168,
+            "total": 199,
+            "percent": 84.42211055276383,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/AndroidAudioDecoder.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "6be943cd3262053b4e84ae3592e2e78a4d4bd510bfa6c97dfcb88b4e5f3d7c87",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              165
+            ]
+          ],
+          "source_commits": [
+            "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+          ],
+          "exception_reason": null,
+          "covered": 23,
+          "total": 118,
+          "percent": 19.491525423728813,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              22,
+              22
+            ],
+            [
+              25,
+              66
+            ],
+            [
+              68,
+              69
+            ],
+            [
+              71,
+              71
+            ],
+            [
+              74,
+              74
+            ],
+            [
+              76,
+              82
+            ],
+            [
+              84,
+              85
+            ],
+            [
+              87,
+              88
+            ],
+            [
+              90,
+              93
+            ],
+            [
+              95,
+              117
+            ],
+            [
+              119,
+              120
+            ],
+            [
+              122,
+              122
+            ],
+            [
+              127,
+              128
+            ],
+            [
+              130,
+              134
+            ],
+            [
+              139,
+              159
+            ],
+            [
+              162,
+              162
+            ],
+            [
+              164,
+              164
+            ]
+          ],
+          "uncovered_lines": [
+            22,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            68,
+            69,
+            71,
+            74,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            84,
+            85,
+            87,
+            88,
+            90,
+            91,
+            92,
+            93,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            119,
+            120,
+            122,
+            127,
+            128,
+            130,
+            131,
+            132,
+            133,
+            134
+          ],
+          "whole_file": {
+            "covered": 23,
+            "total": 118,
+            "percent": 19.491525423728813,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/EffnetFeatures.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "221ab0a0203d7c78d06bdea763c54df457b3b7b17a72bdd1a4489be2e036238a",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              110
+            ]
+          ],
+          "source_commits": [
+            "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+          ],
+          "exception_reason": null,
+          "covered": 65,
+          "total": 65,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              24,
+              25
+            ],
+            [
+              27,
+              32
+            ],
+            [
+              34,
+              40
+            ],
+            [
+              46,
+              47
+            ],
+            [
+              50,
+              52
+            ],
+            [
+              54,
+              66
+            ],
+            [
+              68,
+              73
+            ],
+            [
+              76,
+              76
+            ],
+            [
+              80,
+              88
+            ],
+            [
+              91,
+              104
+            ],
+            [
+              107,
+              107
+            ],
+            [
+              109,
+              109
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 65,
+            "total": 65,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodAnalyzer.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "0b8117e5f17bb00acbc74ba23b992fe36d46c9372560fbf07c6b814aaa7ee4f9",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              111
+            ]
+          ],
+          "source_commits": [
+            "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+          ],
+          "exception_reason": null,
+          "covered": 21,
+          "total": 55,
+          "percent": 38.18181818181818,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              18,
+              18
+            ],
+            [
+              25,
+              26
+            ],
+            [
+              28,
+              30
+            ],
+            [
+              32,
+              37
+            ],
+            [
+              39,
+              39
+            ],
+            [
+              41,
+              46
+            ],
+            [
+              48,
+              56
+            ],
+            [
+              60,
+              65
+            ],
+            [
+              67,
+              67
+            ],
+            [
+              75,
+              76
+            ],
+            [
+              78,
+              81
+            ],
+            [
+              83,
+              85
+            ],
+            [
+              93,
+              101
+            ],
+            [
+              103,
+              104
+            ]
+          ],
+          "uncovered_lines": [
+            34,
+            35,
+            36,
+            37,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            75,
+            76,
+            78,
+            79,
+            80,
+            81,
+            83,
+            84,
+            85
+          ],
+          "whole_file": {
+            "covered": 21,
+            "total": 55,
+            "percent": 38.18181818181818,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/MoodInference.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "d7fdf9b6886af45f16e562f5ac5414efe2b4aae14dd1faf6f18f432e573cf38a",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              93
+            ]
+          ],
+          "source_commits": [
+            "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+          ],
+          "exception_reason": null,
+          "covered": 57,
+          "total": 57,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              8,
+              8
+            ],
+            [
+              11,
+              11
+            ],
+            [
+              15,
+              22
+            ],
+            [
+              24,
+              24
+            ],
+            [
+              28,
+              34
+            ],
+            [
+              39,
+              44
+            ],
+            [
+              46,
+              47
+            ],
+            [
+              49,
+              49
+            ],
+            [
+              54,
+              59
+            ],
+            [
+              62,
+              62
+            ],
+            [
+              67,
+              79
+            ],
+            [
+              81,
+              82
+            ],
+            [
+              84,
+              91
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 57,
+            "total": 57,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverCropDialogFragment.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "915dc09343e17cea26672ca554eb496aac0ded978c6f1d02ef41666bda6420dc",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              199
+            ]
+          ],
+          "source_commits": [
+            "bbb4e1e7127469d7c2c5c444de070871b93c5834",
+            "e51ed58e4a54cc6378641e421172a46fd703b666",
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 108,
+          "total": 124,
+          "percent": 87.09677419354838,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              24,
+              24
+            ],
+            [
+              31,
+              34
+            ],
+            [
+              36,
+              36
+            ],
+            [
+              39,
+              42
+            ],
+            [
+              45,
+              78
+            ],
+            [
+              80,
+              81
+            ],
+            [
+              85,
+              93
+            ],
+            [
+              95,
+              101
+            ],
+            [
+              104,
+              112
+            ],
+            [
+              114,
+              117
+            ],
+            [
+              120,
+              126
+            ],
+            [
+              128,
+              130
+            ],
+            [
+              133,
+              134
+            ],
+            [
+              136,
+              140
+            ],
+            [
+              142,
+              144
+            ],
+            [
+              146,
+              148
+            ],
+            [
+              151,
+              154
+            ],
+            [
+              157,
+              160
+            ],
+            [
+              163,
+              166
+            ],
+            [
+              180,
+              185
+            ],
+            [
+              187,
+              189
+            ],
+            [
+              191,
+              195
+            ]
+          ],
+          "uncovered_lines": [
+            33,
+            34,
+            90,
+            92,
+            93,
+            112,
+            120,
+            137,
+            138,
+            139,
+            140,
+            143,
+            180,
+            181,
+            182,
+            189
+          ],
+          "whole_file": {
+            "covered": 108,
+            "total": 124,
+            "percent": 87.09677419354838,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverModels.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "21ab205a6088ff948dac9963de7e57bf7539712d1c5fbb878cc95c9681a449cd",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              68
+            ]
+          ],
+          "source_commits": [
+            "f1f3843adc435936260a4a488f84558d43af05f1"
+          ],
+          "exception_reason": null,
+          "covered": 44,
+          "total": 44,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              9,
+              14
+            ],
+            [
+              17,
+              18
+            ],
+            [
+              21,
+              26
+            ],
+            [
+              28,
+              28
+            ],
+            [
+              31,
+              32
+            ],
+            [
+              34,
+              45
+            ],
+            [
+              47,
+              51
+            ],
+            [
+              54,
+              55
+            ],
+            [
+              59,
+              66
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 44,
+            "total": 44,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRecordRepository.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "f777bfa7058afcb9536da654de12c62e2bfb8464a54841627719719dba3fb118",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              133
+            ]
+          ],
+          "source_commits": [
+            "f1f3843adc435936260a4a488f84558d43af05f1"
+          ],
+          "exception_reason": null,
+          "covered": 75,
+          "total": 75,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              11,
+              13
+            ],
+            [
+              15,
+              15
+            ],
+            [
+              19,
+              21
+            ],
+            [
+              27,
+              27
+            ],
+            [
+              35,
+              45
+            ],
+            [
+              47,
+              48
+            ],
+            [
+              50,
+              50
+            ],
+            [
+              56,
+              60
+            ],
+            [
+              65,
+              71
+            ],
+            [
+              73,
+              73
+            ],
+            [
+              76,
+              81
+            ],
+            [
+              84,
+              91
+            ],
+            [
+              97,
+              98
+            ],
+            [
+              100,
+              103
+            ],
+            [
+              110,
+              119
+            ],
+            [
+              121,
+              127
+            ],
+            [
+              129,
+              129
+            ],
+            [
+              131,
+              132
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 75,
+            "total": 75,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRepository.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "eb5e5877c8baf9a375fac53813401fe01183423fda0b26c7ecdd85f23ced603b",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              225
+            ]
+          ],
+          "source_commits": [
+            "902b4244e159bf1176867f842a23b1012044bef4"
+          ],
+          "exception_reason": null,
+          "covered": 117,
+          "total": 139,
+          "percent": 84.1726618705036,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              17,
+              18
+            ],
+            [
+              29,
+              35
+            ],
+            [
+              37,
+              39
+            ],
+            [
+              47,
+              50
+            ],
+            [
+              52,
+              54
+            ],
+            [
+              56,
+              57
+            ],
+            [
+              59,
+              62
+            ],
+            [
+              64,
+              71
+            ],
+            [
+              73,
+              76
+            ],
+            [
+              78,
+              80
+            ],
+            [
+              82,
+              85
+            ],
+            [
+              87,
+              90
+            ],
+            [
+              93,
+              95
+            ],
+            [
+              97,
+              98
+            ],
+            [
+              104,
+              106
+            ],
+            [
+              108,
+              111
+            ],
+            [
+              113,
+              116
+            ],
+            [
+              118,
+              120
+            ],
+            [
+              126,
+              129
+            ],
+            [
+              131,
+              137
+            ],
+            [
+              139,
+              145
+            ],
+            [
+              147,
+              148
+            ],
+            [
+              151,
+              154
+            ],
+            [
+              157,
+              167
+            ],
+            [
+              169,
+              170
+            ],
+            [
+              174,
+              176
+            ],
+            [
+              179,
+              184
+            ],
+            [
+              188,
+              189
+            ],
+            [
+              191,
+              199
+            ],
+            [
+              204,
+              210
+            ],
+            [
+              213,
+              214
+            ],
+            [
+              216,
+              221
+            ]
+          ],
+          "uncovered_lines": [
+            61,
+            62,
+            71,
+            76,
+            79,
+            80,
+            87,
+            88,
+            89,
+            93,
+            94,
+            95,
+            111,
+            115,
+            116,
+            129,
+            137,
+            147,
+            160,
+            170,
+            219,
+            220
+          ],
+          "whole_file": {
+            "covered": 117,
+            "total": 139,
+            "percent": 84.1726618705036,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverResolver.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "bca23d7526d0f142f8be1be9657960e4cc0dba045068a68530b118478fb484cb",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              27
+            ]
+          ],
+          "source_commits": [
+            "902b4244e159bf1176867f842a23b1012044bef4"
+          ],
+          "exception_reason": null,
+          "covered": 13,
+          "total": 13,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              6,
+              9
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              16,
+              19
+            ],
+            [
+              21,
+              24
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 13,
+            "total": 13,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverViewExt.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "c769e6c6784182656bbc59af47f9263b4fc619dd02a7db40fa78e0c1e15565b0",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              28
+            ]
+          ],
+          "source_commits": [
+            "bbb4e1e7127469d7c2c5c444de070871b93c5834",
+            "e51ed58e4a54cc6378641e421172a46fd703b666"
+          ],
+          "exception_reason": null,
+          "covered": 15,
+          "total": 15,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              11,
+              15
+            ],
+            [
+              17,
+              25
+            ],
+            [
+              27,
+              27
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 15,
+            "total": 15,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CropImageView.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "6545d24328d7dbacb2b66bac1242df9ace261490b8ac6808413efd8cda92bedb",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              112
+            ]
+          ],
+          "source_commits": [
+            "bbb4e1e7127469d7c2c5c444de070871b93c5834"
+          ],
+          "exception_reason": null,
+          "covered": 61,
+          "total": 68,
+          "percent": 89.70588235294117,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              15,
+              15
+            ],
+            [
+              17,
+              19
+            ],
+            [
+              21,
+              22
+            ],
+            [
+              26,
+              26
+            ],
+            [
+              28,
+              34
+            ],
+            [
+              38,
+              38
+            ],
+            [
+              41,
+              44
+            ],
+            [
+              46,
+              52
+            ],
+            [
+              56,
+              58
+            ],
+            [
+              61,
+              62
+            ],
+            [
+              64,
+              66
+            ],
+            [
+              68,
+              73
+            ],
+            [
+              75,
+              75
+            ],
+            [
+              77,
+              77
+            ],
+            [
+              81,
+              88
+            ],
+            [
+              90,
+              92
+            ],
+            [
+              95,
+              101
+            ],
+            [
+              103,
+              106
+            ],
+            [
+              108,
+              111
+            ]
+          ],
+          "uncovered_lines": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "whole_file": {
+            "covered": 61,
+            "total": 68,
+            "percent": 89.70588235294117,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/dialogs/QueueAdapter.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "12f74e30634b8c127a618bf10f88c20dd1b4d8df944315a3e2712e16055bb2ee",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              82,
+              97
+            ],
+            [
+              108,
+              108
+            ],
+            [
+              118,
+              118
+            ]
+          ],
+          "source_commits": [
+            "5115024e3dad12cd4f2d86e98d6f11ade544199a"
+          ],
+          "exception_reason": null,
+          "covered": 12,
+          "total": 12,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              84,
+              86
+            ],
+            [
+              88,
+              91
+            ],
+            [
+              94,
+              96
+            ],
+            [
+              108,
+              108
+            ],
+            [
+              118,
+              118
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 66,
+            "total": 66,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/extensions/MusicExts.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "f85efc29e05a475b355bd9d461594d414f2ba9da114a92acf206bee0d140bc46",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              20,
+              23
+            ],
+            [
+              112,
+              119
+            ],
+            [
+              122,
+              122
+            ]
+          ],
+          "source_commits": [
+            "35dd6e6572258b21c5b7b81bc1fd2c8c3a20572f"
+          ],
+          "exception_reason": null,
+          "covered": 6,
+          "total": 7,
+          "percent": 85.71428571428571,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              112,
+              113
+            ],
+            [
+              115,
+              118
+            ],
+            [
+              122,
+              122
+            ]
+          ],
+          "uncovered_lines": [
+            118
+          ],
+          "whole_file": {
+            "covered": 90,
+            "total": 130,
+            "percent": 69.23076923076923,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/AllMusicFragment.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "ae1b1945873321457294fb1116d4e9a1291a667b1c937b8a7d342f52ef1450fd",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              85,
+              85
+            ],
+            [
+              89,
+              99
+            ],
+            [
+              110,
+              113
+            ],
+            [
+              126,
+              126
+            ],
+            [
+              142,
+              142
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "8ff9e2f268f48caff0eca1ba1a93ad4731bd6c9f"
+          ],
+          "exception_reason": null,
+          "covered": 15,
+          "total": 15,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              85,
+              85
+            ],
+            [
+              89,
+              91
+            ],
+            [
+              93,
+              96
+            ],
+            [
+              98,
+              98
+            ],
+            [
+              110,
+              113
+            ],
+            [
+              126,
+              126
+            ],
+            [
+              142,
+              142
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 120,
+            "total": 157,
+            "percent": 76.43312101910828,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/DetailsFragment.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "3b416c430ed2e159c880faffca6dd730e7403b81757eec67b607c3014f9a35d7",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              4,
+              4
+            ],
+            [
+              22,
+              22
+            ],
+            [
+              34,
+              38
+            ],
+            [
+              50,
+              52
+            ],
+            [
+              74,
+              74
+            ],
+            [
+              169,
+              181
+            ],
+            [
+              183,
+              205
+            ],
+            [
+              207,
+              216
+            ],
+            [
+              218,
+              232
+            ],
+            [
+              234,
+              241
+            ],
+            [
+              247,
+              248
+            ],
+            [
+              289,
+              289
+            ],
+            [
+              293,
+              298
+            ],
+            [
+              339,
+              340
+            ],
+            [
+              352,
+              356
+            ],
+            [
+              358,
+              358
+            ],
+            [
+              388,
+              391
+            ],
+            [
+              393,
+              393
+            ],
+            [
+              395,
+              408
+            ],
+            [
+              410,
+              410
+            ],
+            [
+              413,
+              413
+            ],
+            [
+              452,
+              452
+            ],
+            [
+              461,
+              462
+            ],
+            [
+              490,
+              500
+            ],
+            [
+              511,
+              511
+            ],
+            [
+              517,
+              518
+            ],
+            [
+              521,
+              521
+            ],
+            [
+              524,
+              524
+            ],
+            [
+              530,
+              530
+            ],
+            [
+              535,
+              535
+            ],
+            [
+              541,
+              548
+            ],
+            [
+              554,
+              559
+            ],
+            [
+              596,
+              627
+            ],
+            [
+              658,
+              658
+            ],
+            [
+              682,
+              682
+            ],
+            [
+              726,
+              726
+            ],
+            [
+              745,
+              745
+            ],
+            [
+              749,
+              749
+            ],
+            [
+              774,
+              775
+            ],
+            [
+              779,
+              786
+            ],
+            [
+              788,
+              789
+            ],
+            [
+              796,
+              797
+            ],
+            [
+              821,
+              821
+            ],
+            [
+              825,
+              825
+            ],
+            [
+              870,
+              872
+            ],
+            [
+              878,
+              878
+            ],
+            [
+              883,
+              886
+            ],
+            [
+              893,
+              895
+            ],
+            [
+              898,
+              899
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "35dd6e6572258b21c5b7b81bc1fd2c8c3a20572f",
+            "e51ed58e4a54cc6378641e421172a46fd703b666",
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 77,
+          "total": 170,
+          "percent": 45.294117647058826,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              74,
+              74
+            ],
+            [
+              169,
+              171
+            ],
+            [
+              173,
+              174
+            ],
+            [
+              176,
+              180
+            ],
+            [
+              183,
+              187
+            ],
+            [
+              191,
+              200
+            ],
+            [
+              202,
+              204
+            ],
+            [
+              207,
+              213
+            ],
+            [
+              215,
+              216
+            ],
+            [
+              222,
+              232
+            ],
+            [
+              234,
+              241
+            ],
+            [
+              247,
+              247
+            ],
+            [
+              289,
+              289
+            ],
+            [
+              293,
+              298
+            ],
+            [
+              339,
+              340
+            ],
+            [
+              352,
+              353
+            ],
+            [
+              358,
+              358
+            ],
+            [
+              388,
+              391
+            ],
+            [
+              393,
+              393
+            ],
+            [
+              395,
+              398
+            ],
+            [
+              400,
+              401
+            ],
+            [
+              403,
+              404
+            ],
+            [
+              406,
+              407
+            ],
+            [
+              413,
+              413
+            ],
+            [
+              452,
+              452
+            ],
+            [
+              461,
+              462
+            ],
+            [
+              491,
+              491
+            ],
+            [
+              493,
+              499
+            ],
+            [
+              511,
+              511
+            ],
+            [
+              517,
+              518
+            ],
+            [
+              521,
+              521
+            ],
+            [
+              524,
+              524
+            ],
+            [
+              530,
+              530
+            ],
+            [
+              535,
+              535
+            ],
+            [
+              541,
+              545
+            ],
+            [
+              547,
+              548
+            ],
+            [
+              554,
+              559
+            ],
+            [
+              597,
+              600
+            ],
+            [
+              604,
+              607
+            ],
+            [
+              610,
+              615
+            ],
+            [
+              619,
+              620
+            ],
+            [
+              622,
+              623
+            ],
+            [
+              625,
+              626
+            ],
+            [
+              682,
+              682
+            ],
+            [
+              726,
+              726
+            ],
+            [
+              745,
+              745
+            ],
+            [
+              749,
+              749
+            ],
+            [
+              774,
+              775
+            ],
+            [
+              779,
+              786
+            ],
+            [
+              788,
+              789
+            ],
+            [
+              796,
+              797
+            ],
+            [
+              821,
+              821
+            ],
+            [
+              825,
+              825
+            ],
+            [
+              870,
+              872
+            ],
+            [
+              878,
+              878
+            ],
+            [
+              883,
+              886
+            ],
+            [
+              893,
+              895
+            ],
+            [
+              898,
+              899
+            ]
+          ],
+          "uncovered_lines": [
+            171,
+            184,
+            185,
+            186,
+            187,
+            191,
+            192,
+            193,
+            194,
+            195,
+            196,
+            197,
+            198,
+            199,
+            200,
+            203,
+            204,
+            212,
+            213,
+            232,
+            293,
+            294,
+            295,
+            296,
+            297,
+            298,
+            395,
+            396,
+            397,
+            398,
+            400,
+            401,
+            403,
+            404,
+            406,
+            452,
+            461,
+            462,
+            517,
+            518,
+            554,
+            555,
+            556,
+            557,
+            558,
+            559,
+            604,
+            605,
+            606,
+            607,
+            610,
+            611,
+            612,
+            613,
+            614,
+            615,
+            619,
+            620,
+            622,
+            623,
+            625,
+            626,
+            682,
+            726,
+            745,
+            749,
+            774,
+            775,
+            779,
+            780,
+            781,
+            782,
+            783,
+            784,
+            785,
+            786,
+            788,
+            789,
+            796,
+            797,
+            870,
+            871,
+            872,
+            878,
+            883,
+            884,
+            885,
+            886,
+            893,
+            894,
+            895,
+            898,
+            899
+          ],
+          "whole_file": {
+            "covered": 265,
+            "total": 554,
+            "percent": 47.83393501805054,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/ErrorFragment.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "bf8aaf60f3400cdf9f5102e922ec20826e1fcd53963dd10f2d7c7c3edf98760e",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              6,
+              6
+            ],
+            [
+              15,
+              15
+            ],
+            [
+              82,
+              89
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 6,
+          "total": 6,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              83,
+              87
+            ],
+            [
+              89,
+              89
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 33,
+            "total": 41,
+            "percent": 80.48780487804878,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/MusicContainersFragment.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "f6ef15dbc7ef29c59f057beaeae5980b0950721e2dfd2be2fe7f2966111fe0e0",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              23,
+              24
+            ],
+            [
+              100,
+              100
+            ],
+            [
+              102,
+              114
+            ],
+            [
+              133,
+              133
+            ],
+            [
+              367,
+              368
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "e51ed58e4a54cc6378641e421172a46fd703b666"
+          ],
+          "exception_reason": null,
+          "covered": 12,
+          "total": 14,
+          "percent": 85.71428571428571,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              100,
+              100
+            ],
+            [
+              102,
+              104
+            ],
+            [
+              106,
+              111
+            ],
+            [
+              113,
+              113
+            ],
+            [
+              133,
+              133
+            ],
+            [
+              367,
+              368
+            ]
+          ],
+          "uncovered_lines": [
+            110,
+            111
+          ],
+          "whole_file": {
+            "covered": 137,
+            "total": 225,
+            "percent": 60.888888888888886,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/library/LibraryActionsFragment.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "a866e9b90715d7cc805881b47e34552849c81a98e483161beecd33a7fdd2571d",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              116
+            ]
+          ],
+          "source_commits": [
+            "5fc5d13825413f2c58ee80af9840528116f4ebc8",
+            "49c7b948c4ccebd018c55a5509646efef4db841c",
+            "867a1a0d5daaee9b1076bd3303de24b7e6f154cb"
+          ],
+          "exception_reason": null,
+          "covered": 58,
+          "total": 72,
+          "percent": 80.55555555555556,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              21,
+              21
+            ],
+            [
+              28,
+              28
+            ],
+            [
+              32,
+              48
+            ],
+            [
+              51,
+              58
+            ],
+            [
+              60,
+              68
+            ],
+            [
+              70,
+              70
+            ],
+            [
+              73,
+              76
+            ],
+            [
+              78,
+              80
+            ],
+            [
+              83,
+              87
+            ],
+            [
+              89,
+              89
+            ],
+            [
+              91,
+              105
+            ],
+            [
+              107,
+              109
+            ],
+            [
+              112,
+              115
+            ]
+          ],
+          "uncovered_lines": [
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "whole_file": {
+            "covered": 58,
+            "total": 72,
+            "percent": 80.55555555555556,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/library/LibraryScanViewModel.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "17d1f637eee246fa62e5e5a65d7411b20707d280df1b7b435720ba06f4656671",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              63
+            ]
+          ],
+          "source_commits": [
+            "5fc5d13825413f2c58ee80af9840528116f4ebc8"
+          ],
+          "exception_reason": null,
+          "covered": 32,
+          "total": 35,
+          "percent": 91.42857142857143,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              16,
+              22
+            ],
+            [
+              25,
+              27
+            ],
+            [
+              31,
+              38
+            ],
+            [
+              40,
+              49
+            ],
+            [
+              51,
+              51
+            ],
+            [
+              53,
+              54
+            ],
+            [
+              58,
+              61
+            ]
+          ],
+          "uncovered_lines": [
+            35,
+            45,
+            46
+          ],
+          "whole_file": {
+            "covered": 32,
+            "total": 35,
+            "percent": 91.42857142857143,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/library/LocalMediaIndexer.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "322923512acdc8d846164f5d1e7cd468b1b6438989c4cc53ab6b033e88126a81",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              114
+            ]
+          ],
+          "source_commits": [
+            "5fc5d13825413f2c58ee80af9840528116f4ebc8"
+          ],
+          "exception_reason": null,
+          "covered": 61,
+          "total": 68,
+          "percent": 89.70588235294117,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              25,
+              26
+            ],
+            [
+              28,
+              31
+            ],
+            [
+              33,
+              42
+            ],
+            [
+              44,
+              47
+            ],
+            [
+              49,
+              49
+            ],
+            [
+              53,
+              81
+            ],
+            [
+              84,
+              86
+            ],
+            [
+              88,
+              89
+            ],
+            [
+              93,
+              97
+            ],
+            [
+              99,
+              101
+            ],
+            [
+              103,
+              105
+            ],
+            [
+              107,
+              108
+            ]
+          ],
+          "uncovered_lines": [
+            37,
+            70,
+            80,
+            81,
+            104,
+            105,
+            108
+          ],
+          "whole_file": {
+            "covered": 61,
+            "total": 68,
+            "percent": 89.70588235294117,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/library/MediaFolderName.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "64560ab8f2807cb53719c708fe7a4566f3b34368f2ada0a02a5b7d2b769b89fb",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              7
+            ]
+          ],
+          "source_commits": [
+            "aca7ae7cacf04d594bc42660711ab352c26dd581"
+          ],
+          "exception_reason": null,
+          "covered": 1,
+          "total": 1,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              7,
+              7
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 1,
+            "total": 1,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/library/MediaScanPolicy.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "57a34c6002cd5ff3e3d7ea65b724a732be6895310da48803e232718cc3eced03",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              28
+            ]
+          ],
+          "source_commits": [
+            "5fc5d13825413f2c58ee80af9840528116f4ebc8"
+          ],
+          "exception_reason": null,
+          "covered": 15,
+          "total": 15,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              7,
+              7
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              13,
+              16
+            ],
+            [
+              20,
+              20
+            ],
+            [
+              22,
+              28
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 15,
+            "total": 15,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoAccess.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "a645c27f10cb0559346e4e5abd8caaa4b8b7423163ef3b932d7bec54400b95fe",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              121
+            ]
+          ],
+          "source_commits": [
+            "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 79,
+          "total": 86,
+          "percent": 91.86046511627907,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              16,
+              17
+            ],
+            [
+              19,
+              21
+            ],
+            [
+              23,
+              28
+            ],
+            [
+              31,
+              33
+            ],
+            [
+              35,
+              47
+            ],
+            [
+              49,
+              49
+            ],
+            [
+              53,
+              65
+            ],
+            [
+              67,
+              70
+            ],
+            [
+              73,
+              78
+            ],
+            [
+              80,
+              89
+            ],
+            [
+              92,
+              107
+            ],
+            [
+              109,
+              109
+            ],
+            [
+              112,
+              117
+            ],
+            [
+              120,
+              121
+            ]
+          ],
+          "uncovered_lines": [
+            25,
+            46,
+            77,
+            78,
+            89,
+            113,
+            114
+          ],
+          "whole_file": {
+            "covered": 79,
+            "total": 86,
+            "percent": 91.86046511627907,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoCandidateGuard.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "0e2291d131c102248f8cd42f2e4a287724be3b51280f5cd6516b6b3dc14a1c89",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              23
+            ]
+          ],
+          "source_commits": [
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 13,
+          "total": 13,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              10,
+              16
+            ],
+            [
+              18,
+              23
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 13,
+            "total": 13,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoFeatureExtractor.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "cc36d534e042040c9fbba929a8a7bca6cf7375e78212811e09644136cf1dcadd",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              76
+            ]
+          ],
+          "source_commits": [
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 5,
+          "total": 50,
+          "percent": 10.0,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              18,
+              20
+            ],
+            [
+              22,
+              53
+            ],
+            [
+              55,
+              55
+            ],
+            [
+              58,
+              65
+            ],
+            [
+              69,
+              73
+            ],
+            [
+              76,
+              76
+            ]
+          ],
+          "uncovered_lines": [
+            18,
+            19,
+            20,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            55,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            76
+          ],
+          "whole_file": {
+            "covered": 5,
+            "total": 50,
+            "percent": 10.0,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRanker.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "217bbbe55693f26cceca8d72b7194d2736460f51777b0dd704bce9fd8a39a2d8",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              47
+            ]
+          ],
+          "source_commits": [
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 33,
+          "total": 33,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              6,
+              8
+            ],
+            [
+              13,
+              35
+            ],
+            [
+              37,
+              38
+            ],
+            [
+              40,
+              41
+            ],
+            [
+              43,
+              45
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 33,
+            "total": 33,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoRecommendationsDialogFragment.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "bef95883f2fd5b36edaecfdb3711a36ff80748f8cf36fb85bcedcd87075b31dc",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              157
+            ]
+          ],
+          "source_commits": [
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 52,
+          "total": 117,
+          "percent": 44.44444444444444,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              21,
+              22
+            ],
+            [
+              27,
+              29
+            ],
+            [
+              31,
+              44
+            ],
+            [
+              47,
+              57
+            ],
+            [
+              61,
+              68
+            ],
+            [
+              70,
+              84
+            ],
+            [
+              87,
+              91
+            ],
+            [
+              93,
+              105
+            ],
+            [
+              107,
+              112
+            ],
+            [
+              114,
+              121
+            ],
+            [
+              123,
+              141
+            ],
+            [
+              143,
+              149
+            ],
+            [
+              151,
+              156
+            ]
+          ],
+          "uncovered_lines": [
+            29,
+            66,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            87,
+            88,
+            89,
+            90,
+            91,
+            96,
+            97,
+            98,
+            109,
+            110,
+            111,
+            112,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            151,
+            152,
+            153
+          ],
+          "whole_file": {
+            "covered": 52,
+            "total": 117,
+            "percent": 44.44444444444444,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoScopeRepository.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "5c2a9d8ce39cadb1b829dab1825d35377394cfc132f1fd9b7647e0cdada3604a",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              96
+            ]
+          ],
+          "source_commits": [
+            "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 73,
+          "total": 73,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              8,
+              20
+            ],
+            [
+              22,
+              22
+            ],
+            [
+              25,
+              38
+            ],
+            [
+              40,
+              43
+            ],
+            [
+              46,
+              47
+            ],
+            [
+              49,
+              51
+            ],
+            [
+              53,
+              56
+            ],
+            [
+              58,
+              62
+            ],
+            [
+              64,
+              73
+            ],
+            [
+              75,
+              77
+            ],
+            [
+              79,
+              85
+            ],
+            [
+              87,
+              87
+            ],
+            [
+              89,
+              91
+            ],
+            [
+              93,
+              94
+            ],
+            [
+              96,
+              96
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 73,
+            "total": 73,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoSourcesDialogFragment.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "147dab1e587d0b55829c631eed9234f8df4c366d35766ef9bdac299360e56bca",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              217
+            ]
+          ],
+          "source_commits": [
+            "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
+            "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d"
+          ],
+          "exception_reason": null,
+          "covered": 163,
+          "total": 181,
+          "percent": 90.05524861878453,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              18,
+              20
+            ],
+            [
+              26,
+              41
+            ],
+            [
+              43,
+              51
+            ],
+            [
+              53,
+              57
+            ],
+            [
+              59,
+              84
+            ],
+            [
+              86,
+              91
+            ],
+            [
+              93,
+              100
+            ],
+            [
+              102,
+              126
+            ],
+            [
+              128,
+              143
+            ],
+            [
+              145,
+              148
+            ],
+            [
+              150,
+              154
+            ],
+            [
+              156,
+              161
+            ],
+            [
+              163,
+              173
+            ],
+            [
+              175,
+              183
+            ],
+            [
+              185,
+              216
+            ]
+          ],
+          "uncovered_lines": [
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            49,
+            50,
+            72,
+            140,
+            141,
+            142,
+            143,
+            152,
+            181,
+            183
+          ],
+          "whole_file": {
+            "covered": 163,
+            "total": 181,
+            "percent": 90.05524861878453,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/PhotoTargetAccess.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "37c39e23df7f68146f6d867122d038bcf625d3cb4967e4ac7463c09239ea78e6",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              31
+            ]
+          ],
+          "source_commits": [
+            "a9d97b375242a7a29fe63eb41e7ff57695a61f57"
+          ],
+          "exception_reason": null,
+          "covered": 12,
+          "total": 18,
+          "percent": 66.66666666666667,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              10,
+              13
+            ],
+            [
+              15,
+              17
+            ],
+            [
+              20,
+              29
+            ],
+            [
+              31,
+              31
+            ]
+          ],
+          "uncovered_lines": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28
+          ],
+          "whole_file": {
+            "covered": 12,
+            "total": 18,
+            "percent": 66.66666666666667,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/SafePhotoDecoder.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "a2fc7170507bbb09f7b8814c8401483e4c59636d5bf4b327d69e036f685af2e7",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              49
+            ]
+          ],
+          "source_commits": [
+            "a9d97b375242a7a29fe63eb41e7ff57695a61f57"
+          ],
+          "exception_reason": null,
+          "covered": 29,
+          "total": 31,
+          "percent": 93.54838709677419,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              13,
+              14
+            ],
+            [
+              16,
+              26
+            ],
+            [
+              28,
+              42
+            ],
+            [
+              44,
+              46
+            ]
+          ],
+          "uncovered_lines": [
+            26,
+            36
+          ],
+          "whole_file": {
+            "covered": 29,
+            "total": 31,
+            "percent": 93.54838709677419,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/photos/SystemPhotoSearch.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "e734094df0edd663923b49343c578bf5bcf92143b8bb5e1b1b67eb4ec61e45b4",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              53
+            ]
+          ],
+          "source_commits": [
+            "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d",
+            "a057aa5aad4fcd4cdc30551d56aa47c4ccd1c948"
+          ],
+          "exception_reason": null,
+          "covered": 25,
+          "total": 25,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              12,
+              12
+            ],
+            [
+              14,
+              20
+            ],
+            [
+              27,
+              30
+            ],
+            [
+              32,
+              32
+            ],
+            [
+              34,
+              39
+            ],
+            [
+              43,
+              47
+            ],
+            [
+              53,
+              53
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 25,
+            "total": 25,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/player/MediaPlayerHolder.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "d70976418742414f9939cb98714656e5b481dddb7dfb3a80dec3d9649370a0b0",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              20,
+              21
+            ],
+            [
+              99,
+              99
+            ],
+            [
+              116,
+              133
+            ],
+            [
+              164,
+              164
+            ],
+            [
+              170,
+              180
+            ],
+            [
+              186,
+              186
+            ],
+            [
+              228,
+              230
+            ],
+            [
+              237,
+              237
+            ],
+            [
+              293,
+              296
+            ],
+            [
+              303,
+              304
+            ],
+            [
+              316,
+              330
+            ],
+            [
+              334,
+              334
+            ],
+            [
+              381,
+              382
+            ],
+            [
+              410,
+              410
+            ],
+            [
+              416,
+              416
+            ],
+            [
+              470,
+              470
+            ],
+            [
+              493,
+              509
+            ],
+            [
+              522,
+              523
+            ],
+            [
+              539,
+              542
+            ],
+            [
+              558,
+              558
+            ],
+            [
+              627,
+              637
+            ],
+            [
+              639,
+              640
+            ],
+            [
+              645,
+              645
+            ],
+            [
+              650,
+              650
+            ],
+            [
+              656,
+              659
+            ],
+            [
+              679,
+              682
+            ],
+            [
+              685,
+              698
+            ],
+            [
+              701,
+              701
+            ],
+            [
+              704,
+              706
+            ],
+            [
+              709,
+              728
+            ],
+            [
+              746,
+              746
+            ],
+            [
+              750,
+              818
+            ],
+            [
+              821,
+              827
+            ],
+            [
+              847,
+              848
+            ],
+            [
+              868,
+              868
+            ],
+            [
+              883,
+              884
+            ],
+            [
+              894,
+              894
+            ],
+            [
+              999,
+              1000
+            ],
+            [
+              1002,
+              1002
+            ],
+            [
+              1111,
+              1125
+            ],
+            [
+              1138,
+              1138
+            ],
+            [
+              1153,
+              1153
+            ],
+            [
+              1227,
+              1235
+            ],
+            [
+              1317,
+              1323
+            ],
+            [
+              1355,
+              1355
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "03e85dd7d000aded436c6f3d5c756721e7e1ffbb",
+            "2ffeff622e9233fc179d6ed919932402594529b1",
+            "26d5c3fc68075bd9d3470135b9160520655ed29c"
+          ],
+          "exception_reason": null,
+          "covered": 153,
+          "total": 192,
+          "percent": 79.6875,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              118,
+              125
+            ],
+            [
+              127,
+              127
+            ],
+            [
+              129,
+              129
+            ],
+            [
+              132,
+              132
+            ],
+            [
+              164,
+              164
+            ],
+            [
+              170,
+              172
+            ],
+            [
+              175,
+              175
+            ],
+            [
+              177,
+              177
+            ],
+            [
+              179,
+              180
+            ],
+            [
+              186,
+              186
+            ],
+            [
+              230,
+              230
+            ],
+            [
+              237,
+              237
+            ],
+            [
+              293,
+              296
+            ],
+            [
+              304,
+              304
+            ],
+            [
+              317,
+              322
+            ],
+            [
+              325,
+              328
+            ],
+            [
+              334,
+              334
+            ],
+            [
+              381,
+              381
+            ],
+            [
+              410,
+              410
+            ],
+            [
+              416,
+              416
+            ],
+            [
+              470,
+              470
+            ],
+            [
+              493,
+              493
+            ],
+            [
+              495,
+              497
+            ],
+            [
+              501,
+              504
+            ],
+            [
+              507,
+              507
+            ],
+            [
+              522,
+              522
+            ],
+            [
+              539,
+              541
+            ],
+            [
+              558,
+              558
+            ],
+            [
+              627,
+              627
+            ],
+            [
+              630,
+              630
+            ],
+            [
+              632,
+              635
+            ],
+            [
+              637,
+              637
+            ],
+            [
+              639,
+              640
+            ],
+            [
+              645,
+              645
+            ],
+            [
+              650,
+              650
+            ],
+            [
+              656,
+              658
+            ],
+            [
+              679,
+              681
+            ],
+            [
+              685,
+              685
+            ],
+            [
+              687,
+              694
+            ],
+            [
+              696,
+              698
+            ],
+            [
+              701,
+              701
+            ],
+            [
+              706,
+              706
+            ],
+            [
+              709,
+              712
+            ],
+            [
+              714,
+              717
+            ],
+            [
+              719,
+              722
+            ],
+            [
+              725,
+              727
+            ],
+            [
+              746,
+              746
+            ],
+            [
+              750,
+              754
+            ],
+            [
+              758,
+              761
+            ],
+            [
+              763,
+              773
+            ],
+            [
+              775,
+              775
+            ],
+            [
+              778,
+              781
+            ],
+            [
+              783,
+              800
+            ],
+            [
+              802,
+              802
+            ],
+            [
+              805,
+              810
+            ],
+            [
+              812,
+              813
+            ],
+            [
+              816,
+              817
+            ],
+            [
+              821,
+              824
+            ],
+            [
+              827,
+              827
+            ],
+            [
+              847,
+              847
+            ],
+            [
+              868,
+              868
+            ],
+            [
+              883,
+              883
+            ],
+            [
+              894,
+              894
+            ],
+            [
+              999,
+              1000
+            ],
+            [
+              1002,
+              1002
+            ],
+            [
+              1111,
+              1118
+            ],
+            [
+              1120,
+              1120
+            ],
+            [
+              1122,
+              1122
+            ],
+            [
+              1124,
+              1124
+            ],
+            [
+              1138,
+              1138
+            ],
+            [
+              1153,
+              1153
+            ],
+            [
+              1227,
+              1227
+            ],
+            [
+              1230,
+              1234
+            ],
+            [
+              1317,
+              1319
+            ],
+            [
+              1323,
+              1323
+            ]
+          ],
+          "uncovered_lines": [
+            127,
+            304,
+            496,
+            497,
+            501,
+            502,
+            503,
+            504,
+            507,
+            558,
+            656,
+            657,
+            658,
+            701,
+            721,
+            722,
+            771,
+            772,
+            773,
+            799,
+            800,
+            821,
+            822,
+            823,
+            824,
+            827,
+            1113,
+            1114,
+            1115,
+            1116,
+            1117,
+            1118,
+            1120,
+            1122,
+            1124,
+            1138,
+            1317,
+            1318,
+            1319
+          ],
+          "whole_file": {
+            "covered": 506,
+            "total": 788,
+            "percent": 64.21319796954315,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/player/PlayerService.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "b67272421d84148f3ea87c0243e3c284ea37ea95dda06b994a2533579a85ecab",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              49,
+              49
+            ],
+            [
+              53,
+              53
+            ],
+            [
+              235,
+              248
+            ]
+          ],
+          "source_commits": [
+            "03e85dd7d000aded436c6f3d5c756721e7e1ffbb",
+            "734cf90c60ae92c432d7f96c73cd1672ab0de5e5"
+          ],
+          "exception_reason": null,
+          "covered": 8,
+          "total": 10,
+          "percent": 80.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              49,
+              49
+            ],
+            [
+              53,
+              53
+            ],
+            [
+              237,
+              240
+            ],
+            [
+              243,
+              246
+            ]
+          ],
+          "uncovered_lines": [
+            49,
+            53
+          ],
+          "whole_file": {
+            "covered": 92,
+            "total": 154,
+            "percent": 59.74025974025974,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/player/PlaylistFailurePlan.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "e25376c7f1cad394673f7a304c47a5f3d2b43d09ae487e53ec8c75db1599cfd4",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              21
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 8,
+          "total": 8,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              6,
+              6
+            ],
+            [
+              13,
+              14
+            ],
+            [
+              16,
+              20
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 8,
+            "total": 8,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistAdapters.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "f92e92a879f1153247936d4a3dc8f9f07e2a8cd94453aac860f157381f6b4483",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              161
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "2093970ad0169c8be57a725681e573999ad4c566",
+            "8b52992e385e6992da21d891e4eb87bbfccbef62"
+          ],
+          "exception_reason": null,
+          "covered": 102,
+          "total": 107,
+          "percent": 95.32710280373831,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              17,
+              21
+            ],
+            [
+              23,
+              25
+            ],
+            [
+              27,
+              27
+            ],
+            [
+              29,
+              35
+            ],
+            [
+              38,
+              41
+            ],
+            [
+              43,
+              43
+            ],
+            [
+              48,
+              51
+            ],
+            [
+              54,
+              56
+            ],
+            [
+              58,
+              59
+            ],
+            [
+              61,
+              61
+            ],
+            [
+              63,
+              66
+            ],
+            [
+              68,
+              70
+            ],
+            [
+              72,
+              72
+            ],
+            [
+              74,
+              80
+            ],
+            [
+              82,
+              90
+            ],
+            [
+              92,
+              95
+            ],
+            [
+              99,
+              99
+            ],
+            [
+              101,
+              105
+            ],
+            [
+              107,
+              107
+            ],
+            [
+              109,
+              112
+            ],
+            [
+              114,
+              116
+            ],
+            [
+              118,
+              118
+            ],
+            [
+              120,
+              126
+            ],
+            [
+              128,
+              129
+            ],
+            [
+              131,
+              141
+            ],
+            [
+              146,
+              147
+            ],
+            [
+              150,
+              150
+            ],
+            [
+              152,
+              161
+            ]
+          ],
+          "uncovered_lines": [
+            155,
+            156,
+            157,
+            158,
+            160
+          ],
+          "whole_file": {
+            "covered": 102,
+            "total": 107,
+            "percent": 95.32710280373831,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistEditDialogs.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "69d15b17274a14217361486b625c86b7b3bf826be889627e1bad1a560d4e3a27",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              346
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "7ca5b75f753dcf04df0c8d1ab6ebfd2d3a6c1487"
+          ],
+          "exception_reason": null,
+          "covered": 213,
+          "total": 228,
+          "percent": 93.42105263157895,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              28,
+              28
+            ],
+            [
+              33,
+              50
+            ],
+            [
+              52,
+              54
+            ],
+            [
+              58,
+              60
+            ],
+            [
+              63,
+              65
+            ],
+            [
+              68,
+              80
+            ],
+            [
+              82,
+              88
+            ],
+            [
+              90,
+              90
+            ],
+            [
+              92,
+              96
+            ],
+            [
+              99,
+              100
+            ],
+            [
+              106,
+              108
+            ],
+            [
+              112,
+              112
+            ],
+            [
+              116,
+              141
+            ],
+            [
+              143,
+              146
+            ],
+            [
+              149,
+              152
+            ],
+            [
+              158,
+              160
+            ],
+            [
+              165,
+              165
+            ],
+            [
+              170,
+              171
+            ],
+            [
+              173,
+              173
+            ],
+            [
+              180,
+              187
+            ],
+            [
+              190,
+              196
+            ],
+            [
+              200,
+              219
+            ],
+            [
+              223,
+              223
+            ],
+            [
+              225,
+              233
+            ],
+            [
+              236,
+              239
+            ],
+            [
+              242,
+              245
+            ],
+            [
+              247,
+              257
+            ],
+            [
+              259,
+              262
+            ],
+            [
+              265,
+              278
+            ],
+            [
+              282,
+              283
+            ],
+            [
+              285,
+              287
+            ],
+            [
+              289,
+              289
+            ],
+            [
+              292,
+              297
+            ],
+            [
+              300,
+              303
+            ],
+            [
+              305,
+              307
+            ],
+            [
+              309,
+              312
+            ],
+            [
+              314,
+              325
+            ],
+            [
+              327,
+              331
+            ],
+            [
+              337,
+              339
+            ],
+            [
+              345,
+              346
+            ]
+          ],
+          "uncovered_lines": [
+            50,
+            58,
+            59,
+            60,
+            143,
+            144,
+            145,
+            146,
+            236,
+            237,
+            238,
+            239,
+            257,
+            282,
+            283
+          ],
+          "whole_file": {
+            "covered": 213,
+            "total": 228,
+            "percent": 93.42105263157895,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistModels.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "bd79653fe591b70f298ee303f6993848a0f9f6d04066c7381b75de770147b0ac",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              56
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 33,
+          "total": 33,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              7,
+              11
+            ],
+            [
+              13,
+              18
+            ],
+            [
+              25,
+              32
+            ],
+            [
+              35,
+              37
+            ],
+            [
+              39,
+              39
+            ],
+            [
+              43,
+              44
+            ],
+            [
+              48,
+              55
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 33,
+            "total": 33,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistRepositories.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "b62d19c9a03dc07361ccfa0ee3d75e737016901911a5ee21780ff2a868c5084a",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              51
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 20,
+          "total": 21,
+          "percent": 95.23809523809524,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              12,
+              15
+            ],
+            [
+              17,
+              18
+            ],
+            [
+              22,
+              23
+            ],
+            [
+              25,
+              25
+            ],
+            [
+              28,
+              32
+            ],
+            [
+              34,
+              34
+            ],
+            [
+              37,
+              41
+            ],
+            [
+              45,
+              45
+            ]
+          ],
+          "uncovered_lines": [
+            41
+          ],
+          "whole_file": {
+            "covered": 20,
+            "total": 21,
+            "percent": 95.23809523809524,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistRepository.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "6f3bceacadfe3886eb42507995ff12ccfa952a36716f832065b35b805bd53733",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              174
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 110,
+          "total": 110,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              12,
+              14
+            ],
+            [
+              16,
+              16
+            ],
+            [
+              19,
+              21
+            ],
+            [
+              24,
+              27
+            ],
+            [
+              30,
+              32
+            ],
+            [
+              34,
+              37
+            ],
+            [
+              39,
+              40
+            ],
+            [
+              42,
+              44
+            ],
+            [
+              47,
+              52
+            ],
+            [
+              54,
+              54
+            ],
+            [
+              56,
+              58
+            ],
+            [
+              61,
+              63
+            ],
+            [
+              65,
+              66
+            ],
+            [
+              69,
+              74
+            ],
+            [
+              76,
+              77
+            ],
+            [
+              80,
+              86
+            ],
+            [
+              88,
+              90
+            ],
+            [
+              93,
+              97
+            ],
+            [
+              99,
+              101
+            ],
+            [
+              110,
+              113
+            ],
+            [
+              115,
+              115
+            ],
+            [
+              119,
+              121
+            ],
+            [
+              123,
+              123
+            ],
+            [
+              126,
+              132
+            ],
+            [
+              135,
+              139
+            ],
+            [
+              141,
+              143
+            ],
+            [
+              145,
+              145
+            ],
+            [
+              148,
+              153
+            ],
+            [
+              156,
+              163
+            ],
+            [
+              167,
+              171
+            ],
+            [
+              173,
+              174
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 110,
+            "total": 110,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistStorage.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "5584a9326bad313db6d129ef83c0622025250b66f349e9e49b79ab94f6aa6ae0",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              10
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 0,
+          "total": 0,
+          "percent": null,
+          "passed": false,
+          "executable_line_ranges": [],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 0,
+            "total": 0,
+            "percent": null,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistsDialogFragment.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "e76715b70bf2d163e00aafb99990ecd3330053aa96f26f20f7835f4e16b59d52",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              346
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "8b52992e385e6992da21d891e4eb87bbfccbef62",
+            "e51ed58e4a54cc6378641e421172a46fd703b666",
+            "5ade2672adc3896b9f9fbb30b45ff05bd6151796"
+          ],
+          "exception_reason": null,
+          "covered": 193,
+          "total": 234,
+          "percent": 82.47863247863248,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              32,
+              32
+            ],
+            [
+              38,
+              38
+            ],
+            [
+              40,
+              40
+            ],
+            [
+              47,
+              51
+            ],
+            [
+              54,
+              54
+            ],
+            [
+              58,
+              65
+            ],
+            [
+              67,
+              82
+            ],
+            [
+              84,
+              90
+            ],
+            [
+              92,
+              105
+            ],
+            [
+              107,
+              110
+            ],
+            [
+              112,
+              114
+            ],
+            [
+              116,
+              120
+            ],
+            [
+              123,
+              130
+            ],
+            [
+              133,
+              144
+            ],
+            [
+              147,
+              149
+            ],
+            [
+              152,
+              156
+            ],
+            [
+              158,
+              162
+            ],
+            [
+              165,
+              170
+            ],
+            [
+              172,
+              175
+            ],
+            [
+              177,
+              177
+            ],
+            [
+              180,
+              189
+            ],
+            [
+              191,
+              191
+            ],
+            [
+              193,
+              196
+            ],
+            [
+              199,
+              201
+            ],
+            [
+              203,
+              203
+            ],
+            [
+              206,
+              216
+            ],
+            [
+              218,
+              220
+            ],
+            [
+              223,
+              224
+            ],
+            [
+              227,
+              228
+            ],
+            [
+              230,
+              233
+            ],
+            [
+              235,
+              238
+            ],
+            [
+              240,
+              242
+            ],
+            [
+              244,
+              244
+            ],
+            [
+              247,
+              254
+            ],
+            [
+              256,
+              261
+            ],
+            [
+              263,
+              279
+            ],
+            [
+              281,
+              283
+            ],
+            [
+              285,
+              294
+            ],
+            [
+              296,
+              301
+            ],
+            [
+              303,
+              305
+            ],
+            [
+              307,
+              309
+            ],
+            [
+              312,
+              312
+            ],
+            [
+              315,
+              316
+            ],
+            [
+              319,
+              325
+            ],
+            [
+              327,
+              331
+            ],
+            [
+              333,
+              333
+            ],
+            [
+              335,
+              337
+            ]
+          ],
+          "uncovered_lines": [
+            72,
+            73,
+            74,
+            98,
+            99,
+            100,
+            101,
+            103,
+            104,
+            105,
+            107,
+            112,
+            113,
+            114,
+            147,
+            148,
+            149,
+            170,
+            218,
+            219,
+            220,
+            232,
+            233,
+            237,
+            238,
+            319,
+            320,
+            321,
+            322,
+            323,
+            324,
+            325,
+            327,
+            328,
+            329,
+            330,
+            331,
+            333,
+            335,
+            336,
+            337
+          ],
+          "whole_file": {
+            "covered": 193,
+            "total": 234,
+            "percent": 82.47863247863248,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/ui/MainActivity.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "0d4819d43045566d8f0025523a469aebb38cbedf4aaf1e9ef4ea3ff37968bca3",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              47,
+              47
+            ],
+            [
+              82,
+              84
+            ],
+            [
+              125,
+              135
+            ],
+            [
+              196,
+              199
+            ],
+            [
+              202,
+              206
+            ],
+            [
+              299,
+              299
+            ],
+            [
+              333,
+              337
+            ],
+            [
+              347,
+              356
+            ],
+            [
+              364,
+              364
+            ],
+            [
+              377,
+              389
+            ],
+            [
+              673,
+              674
+            ],
+            [
+              697,
+              711
+            ],
+            [
+              784,
+              784
+            ],
+            [
+              789,
+              794
+            ],
+            [
+              824,
+              824
+            ],
+            [
+              847,
+              847
+            ],
+            [
+              868,
+              901
+            ],
+            [
+              1054,
+              1063
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
+            "8ff9e2f268f48caff0eca1ba1a93ad4731bd6c9f"
+          ],
+          "exception_reason": null,
+          "covered": 59,
+          "total": 91,
+          "percent": 64.83516483516483,
+          "passed": false,
+          "executable_line_ranges": [
+            [
+              125,
+              133
+            ],
+            [
+              135,
+              135
+            ],
+            [
+              197,
+              199
+            ],
+            [
+              204,
+              206
+            ],
+            [
+              299,
+              299
+            ],
+            [
+              333,
+              337
+            ],
+            [
+              347,
+              349
+            ],
+            [
+              351,
+              353
+            ],
+            [
+              355,
+              355
+            ],
+            [
+              364,
+              364
+            ],
+            [
+              379,
+              380
+            ],
+            [
+              382,
+              382
+            ],
+            [
+              384,
+              384
+            ],
+            [
+              387,
+              389
+            ],
+            [
+              673,
+              673
+            ],
+            [
+              697,
+              697
+            ],
+            [
+              700,
+              709
+            ],
+            [
+              784,
+              784
+            ],
+            [
+              789,
+              790
+            ],
+            [
+              792,
+              793
+            ],
+            [
+              824,
+              824
+            ],
+            [
+              847,
+              847
+            ],
+            [
+              869,
+              874
+            ],
+            [
+              876,
+              879
+            ],
+            [
+              882,
+              884
+            ],
+            [
+              886,
+              900
+            ],
+            [
+              1054,
+              1057
+            ],
+            [
+              1059,
+              1060
+            ],
+            [
+              1062,
+              1062
+            ]
+          ],
+          "uncovered_lines": [
+            131,
+            132,
+            133,
+            380,
+            700,
+            701,
+            702,
+            703,
+            704,
+            705,
+            706,
+            707,
+            708,
+            709,
+            784,
+            789,
+            790,
+            792,
+            793,
+            824,
+            847,
+            873,
+            874,
+            877,
+            878,
+            879,
+            1055,
+            1056,
+            1057,
+            1059,
+            1060,
+            1062
+          ],
+          "whole_file": {
+            "covered": 465,
+            "total": 712,
+            "percent": 65.30898876404494,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/ui/MediaControlInterface.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "ef60ee518d4083a7ba6b7dd8481c3836901327affa5c2032d18edd1a7acb6692",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              6,
+              7
+            ]
+          ],
+          "source_commits": [
+            "fd00c099243b6f846e1128f1521f7676a3a0ee7b"
+          ],
+          "exception_reason": null,
+          "covered": 0,
+          "total": 0,
+          "percent": null,
+          "passed": false,
+          "executable_line_ranges": [],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 0,
+            "total": 0,
+            "percent": null,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/utils/Lists.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "773dbb58b297e9301e548192164391c2ec6677ffeac00b5160a8fb7cdee09421",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              47,
+              48
+            ]
+          ],
+          "source_commits": [
+            "bfd201cc3484c64324778c07ce2a9fe971dc64e2"
+          ],
+          "exception_reason": null,
+          "covered": 2,
+          "total": 2,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              47,
+              48
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 51,
+            "total": 122,
+            "percent": 41.80327868852459,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/utils/MusicSearch.kt",
+          "module": "android",
+          "change": "added",
+          "source_sha256": "f66ec29fbcbbe99512880f7dcc4ade2a17068c806eede1fe37973d692efbd1e0",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              18
+            ]
+          ],
+          "source_commits": [
+            "bfd201cc3484c64324778c07ce2a9fe971dc64e2"
+          ],
+          "exception_reason": null,
+          "covered": 5,
+          "total": 5,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              11,
+              12
+            ],
+            [
+              14,
+              16
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 5,
+            "total": 5,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/utils/MusicUtils.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "6f2b01214368c2d6b5a7230cc538dc4fbd5b49885fb6ee2d0adda325954525e2",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              24,
+              24
+            ],
+            [
+              26,
+              27
+            ],
+            [
+              34,
+              48
+            ],
+            [
+              54,
+              54
+            ],
+            [
+              59,
+              59
+            ],
+            [
+              62,
+              62
+            ],
+            [
+              67,
+              70
+            ]
+          ],
+          "source_commits": [
+            "d7535bfd7f8ffd90848a9b8c804ad593147acd22",
+            "7591a676b8fa273cc5970d2152fa8bfef1c1bd96"
+          ],
+          "exception_reason": null,
+          "covered": 14,
+          "total": 14,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              24,
+              24
+            ],
+            [
+              26,
+              27
+            ],
+            [
+              39,
+              40
+            ],
+            [
+              42,
+              46
+            ],
+            [
+              59,
+              59
+            ],
+            [
+              68,
+              70
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 40,
+            "total": 70,
+            "percent": 57.142857142857146,
+            "passed": false
+          }
+        },
+        {
+          "path": "project/app/src/main/java/com/iven/musicplayergo/utils/Permissions.kt",
+          "module": "android",
+          "change": "modified",
+          "source_sha256": "b440412242fb1e2e2feb3700dd9fb9c7aaf27b3ec252f8da6181d4e175a5be68",
+          "line_policy": "cumulative-diff-executable",
+          "candidate_line_ranges": [
+            [
+              6,
+              6
+            ],
+            [
+              26,
+              26
+            ],
+            [
+              28,
+              28
+            ]
+          ],
+          "source_commits": [
+            "24beffad3c0c89739b13420d2a07cedb947770c0"
+          ],
+          "exception_reason": null,
+          "covered": 1,
+          "total": 1,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              28,
+              28
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 7,
+            "total": 28,
+            "percent": 25.0,
+            "passed": false
+          }
+        }
+      ]
+    },
+    "backend": {
+      "covered": 882,
+      "total": 920,
+      "percent": 95.8695652173913,
+      "passed": true,
+      "files": [
+        {
+          "path": "services/discovery/discovery/__init__.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "3c36230e0c29d7526f470c0dc0bd53470622a95aed8da7124604b78da7e60cbb",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              1
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 0,
+          "total": 0,
+          "percent": null,
+          "passed": false,
+          "executable_line_ranges": [],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 0,
+            "total": 0,
+            "percent": null,
+            "passed": false
+          }
+        },
+        {
+          "path": "services/discovery/discovery/albums.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "ee1fa3871b8b33611168db864eb32cad5248b7645c75af6c6f28cc34a6041ade",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              188
+            ]
+          ],
+          "source_commits": [
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 120,
+          "total": 123,
+          "percent": 97.5609756097561,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              3,
+              8
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              14,
+              15
+            ],
+            [
+              26,
+              27
+            ],
+            [
+              30,
+              35
+            ],
+            [
+              38,
+              38
+            ],
+            [
+              40,
+              42
+            ],
+            [
+              46,
+              46
+            ],
+            [
+              50,
+              54
+            ],
+            [
+              56,
+              57
+            ],
+            [
+              63,
+              63
+            ],
+            [
+              67,
+              67
+            ],
+            [
+              70,
+              73
+            ],
+            [
+              75,
+              78
+            ],
+            [
+              80,
+              92
+            ],
+            [
+              94,
+              98
+            ],
+            [
+              100,
+              108
+            ],
+            [
+              110,
+              123
+            ],
+            [
+              145,
+              166
+            ],
+            [
+              168,
+              169
+            ],
+            [
+              171,
+              178
+            ],
+            [
+              180,
+              188
+            ]
+          ],
+          "uncovered_lines": [
+            54,
+            83,
+            166
+          ],
+          "whole_file": {
+            "covered": 120,
+            "total": 123,
+            "percent": 97.5609756097561,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/app.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "6ebd32ba9d21761714e84327bdb28d7fef4b232f5119b0e3edc3892843e510af",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              239
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 137,
+          "total": 141,
+          "percent": 97.16312056737588,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              5
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              13,
+              17
+            ],
+            [
+              25,
+              28
+            ],
+            [
+              31,
+              38
+            ],
+            [
+              40,
+              43
+            ],
+            [
+              46,
+              52
+            ],
+            [
+              55,
+              60
+            ],
+            [
+              62,
+              65
+            ],
+            [
+              67,
+              67
+            ],
+            [
+              70,
+              72
+            ],
+            [
+              74,
+              84
+            ],
+            [
+              97,
+              97
+            ],
+            [
+              99,
+              101
+            ],
+            [
+              110,
+              112
+            ],
+            [
+              120,
+              122
+            ],
+            [
+              124,
+              126
+            ],
+            [
+              148,
+              152
+            ],
+            [
+              154,
+              160
+            ],
+            [
+              162,
+              166
+            ],
+            [
+              172,
+              176
+            ],
+            [
+              183,
+              184
+            ],
+            [
+              186,
+              189
+            ],
+            [
+              191,
+              193
+            ],
+            [
+              195,
+              202
+            ],
+            [
+              205,
+              205
+            ],
+            [
+              207,
+              209
+            ],
+            [
+              211,
+              213
+            ],
+            [
+              215,
+              217
+            ],
+            [
+              219,
+              221
+            ],
+            [
+              223,
+              229
+            ],
+            [
+              231,
+              233
+            ],
+            [
+              235,
+              236
+            ],
+            [
+              239,
+              239
+            ]
+          ],
+          "uncovered_lines": [
+            174,
+            227,
+            228,
+            233
+          ],
+          "whole_file": {
+            "covered": 137,
+            "total": 141,
+            "percent": 97.16312056737588,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/catalog.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "3df938da5b18f15fcf931437462efa82385ddd9c75f7bb482b580019add6cc05",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              285
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 134,
+          "total": 140,
+          "percent": 95.71428571428571,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              4
+            ],
+            [
+              6,
+              6
+            ],
+            [
+              8,
+              12
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              24,
+              24
+            ],
+            [
+              26,
+              26
+            ],
+            [
+              29,
+              30
+            ],
+            [
+              32,
+              33
+            ],
+            [
+              36,
+              36
+            ],
+            [
+              44,
+              50
+            ],
+            [
+              53,
+              56
+            ],
+            [
+              59,
+              64
+            ],
+            [
+              66,
+              69
+            ],
+            [
+              72,
+              72
+            ],
+            [
+              75,
+              80
+            ],
+            [
+              82,
+              88
+            ],
+            [
+              108,
+              127
+            ],
+            [
+              129,
+              140
+            ],
+            [
+              142,
+              143
+            ],
+            [
+              146,
+              147
+            ],
+            [
+              149,
+              151
+            ],
+            [
+              162,
+              162
+            ],
+            [
+              164,
+              165
+            ],
+            [
+              173,
+              173
+            ],
+            [
+              182,
+              189
+            ],
+            [
+              206,
+              207
+            ],
+            [
+              209,
+              210
+            ],
+            [
+              219,
+              226
+            ],
+            [
+              230,
+              231
+            ],
+            [
+              239,
+              239
+            ],
+            [
+              248,
+              261
+            ],
+            [
+              263,
+              269
+            ]
+          ],
+          "uncovered_lines": [
+            49,
+            64,
+            122,
+            143,
+            267,
+            268
+          ],
+          "whole_file": {
+            "covered": 134,
+            "total": 140,
+            "percent": 95.71428571428571,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/config.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "b9899d98984d7d661d8eaab3106722253aab57efdb30bc9dec9ca4ef59fdf1e4",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              65
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 57,
+          "total": 57,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              10,
+              24
+            ],
+            [
+              26,
+              30
+            ],
+            [
+              32,
+              34
+            ],
+            [
+              36,
+              45
+            ],
+            [
+              47,
+              65
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 57,
+            "total": 57,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/errors.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "ed4efe6c4bd168d0c6c576f9c56d2f86422e7ffdc90338fa7c7e8d20bf3dc0d2",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              7
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 5,
+          "total": 5,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              1
+            ],
+            [
+              4,
+              7
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 5,
+            "total": 5,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/models.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "f367bb5473322f1bd09cdfdb3b67a1294a9b6c35588bd8385749d9d6c520f6d8",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              161
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 70,
+          "total": 71,
+          "percent": 98.59154929577464,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              4
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              22,
+              22
+            ],
+            [
+              35,
+              36
+            ],
+            [
+              39,
+              40
+            ],
+            [
+              43,
+              43
+            ],
+            [
+              45,
+              45
+            ],
+            [
+              47,
+              49
+            ],
+            [
+              52,
+              52
+            ],
+            [
+              54,
+              57
+            ],
+            [
+              59,
+              64
+            ],
+            [
+              67,
+              67
+            ],
+            [
+              69,
+              71
+            ],
+            [
+              75,
+              76
+            ],
+            [
+              79,
+              79
+            ],
+            [
+              85,
+              85
+            ],
+            [
+              88,
+              93
+            ],
+            [
+              96,
+              97
+            ],
+            [
+              101,
+              105
+            ],
+            [
+              108,
+              108
+            ],
+            [
+              111,
+              111
+            ],
+            [
+              113,
+              117
+            ],
+            [
+              120,
+              120
+            ],
+            [
+              122,
+              123
+            ],
+            [
+              125,
+              126
+            ],
+            [
+              131,
+              131
+            ],
+            [
+              136,
+              141
+            ],
+            [
+              144,
+              144
+            ],
+            [
+              147,
+              147
+            ],
+            [
+              150,
+              150
+            ],
+            [
+              161,
+              161
+            ]
+          ],
+          "uncovered_lines": [
+            63
+          ],
+          "whole_file": {
+            "covered": 70,
+            "total": 71,
+            "percent": 98.59154929577464,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/network.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "b792f95844ffefac3af7f080355b5233535df5bddf605c655f8a4a8265977ab0",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              246
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 143,
+          "total": 149,
+          "percent": 95.97315436241611,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              8
+            ],
+            [
+              10,
+              10
+            ],
+            [
+              12,
+              12
+            ],
+            [
+              14,
+              14
+            ],
+            [
+              19,
+              21
+            ],
+            [
+              24,
+              31
+            ],
+            [
+              39,
+              42
+            ],
+            [
+              45,
+              48
+            ],
+            [
+              51,
+              53
+            ],
+            [
+              56,
+              56
+            ],
+            [
+              59,
+              64
+            ],
+            [
+              77,
+              79
+            ],
+            [
+              82,
+              82
+            ],
+            [
+              84,
+              86
+            ],
+            [
+              88,
+              88
+            ],
+            [
+              90,
+              90
+            ],
+            [
+              92,
+              93
+            ],
+            [
+              96,
+              97
+            ],
+            [
+              99,
+              99
+            ],
+            [
+              102,
+              102
+            ],
+            [
+              104,
+              113
+            ],
+            [
+              116,
+              117
+            ],
+            [
+              120,
+              125
+            ],
+            [
+              127,
+              128
+            ],
+            [
+              130,
+              130
+            ],
+            [
+              144,
+              146
+            ],
+            [
+              149,
+              150
+            ],
+            [
+              152,
+              168
+            ],
+            [
+              176,
+              187
+            ],
+            [
+              189,
+              209
+            ],
+            [
+              211,
+              213
+            ],
+            [
+              223,
+              229
+            ],
+            [
+              231,
+              232
+            ],
+            [
+              235,
+              235
+            ],
+            [
+              237,
+              238
+            ],
+            [
+              241,
+              241
+            ],
+            [
+              245,
+              246
+            ]
+          ],
+          "uncovered_lines": [
+            27,
+            53,
+            105,
+            164,
+            205,
+            209
+          ],
+          "whole_file": {
+            "covered": 143,
+            "total": 149,
+            "percent": 95.97315436241611,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/policy.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "0a9ed7c39a6581d20d8c9a3b5c8cd3058410420748a3c9d7c3dc902955d80412",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              76
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 43,
+          "total": 43,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              2
+            ],
+            [
+              4,
+              7
+            ],
+            [
+              9,
+              13
+            ],
+            [
+              16,
+              17
+            ],
+            [
+              20,
+              20
+            ],
+            [
+              22,
+              22
+            ],
+            [
+              27,
+              28
+            ],
+            [
+              31,
+              33
+            ],
+            [
+              39,
+              40
+            ],
+            [
+              48,
+              51
+            ],
+            [
+              53,
+              59
+            ],
+            [
+              66,
+              74
+            ],
+            [
+              76,
+              76
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 43,
+            "total": 43,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/service.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "ca0052bb7c7bed672020687ff837af3c62d754f9d8c6c98f8b13ce881c9076d1",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              170
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 99,
+          "total": 110,
+          "percent": 90.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              7
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              16,
+              16
+            ],
+            [
+              19,
+              20
+            ],
+            [
+              23,
+              24
+            ],
+            [
+              27,
+              30
+            ],
+            [
+              32,
+              32
+            ],
+            [
+              34,
+              40
+            ],
+            [
+              42,
+              49
+            ],
+            [
+              51,
+              53
+            ],
+            [
+              55,
+              66
+            ],
+            [
+              70,
+              73
+            ],
+            [
+              75,
+              87
+            ],
+            [
+              92,
+              93
+            ],
+            [
+              98,
+              112
+            ],
+            [
+              116,
+              116
+            ],
+            [
+              133,
+              144
+            ],
+            [
+              149,
+              161
+            ]
+          ],
+          "uncovered_lines": [
+            37,
+            49,
+            53,
+            58,
+            62,
+            82,
+            84,
+            100,
+            136,
+            149,
+            150
+          ],
+          "whole_file": {
+            "covered": 99,
+            "total": 110,
+            "percent": 90.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/discovery/vision.py",
+          "module": "backend",
+          "change": "added",
+          "source_sha256": "c14cbf2788c657bceedda7a7eaed9e9062249059f2ae40e96f5aa12f743fb9f8",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              164
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 74,
+          "total": 81,
+          "percent": 91.35802469135803,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              4
+            ],
+            [
+              6,
+              7
+            ],
+            [
+              9,
+              12
+            ],
+            [
+              15,
+              31
+            ],
+            [
+              33,
+              36
+            ],
+            [
+              38,
+              45
+            ],
+            [
+              48,
+              48
+            ],
+            [
+              53,
+              57
+            ],
+            [
+              63,
+              64
+            ],
+            [
+              66,
+              71
+            ],
+            [
+              77,
+              79
+            ],
+            [
+              91,
+              96
+            ],
+            [
+              102,
+              106
+            ],
+            [
+              145,
+              147
+            ],
+            [
+              154,
+              164
+            ]
+          ],
+          "uncovered_lines": [
+            20,
+            35,
+            36,
+            43,
+            93,
+            146,
+            155
+          ],
+          "whole_file": {
+            "covered": 74,
+            "total": 81,
+            "percent": 91.35802469135803,
+            "passed": true
+          }
+        }
+      ]
+    },
+    "web": {
+      "covered": 812,
+      "total": 825,
+      "percent": 98.42424242424242,
+      "passed": true,
+      "files": [
+        {
+          "path": "services/discovery/static/album.mjs",
+          "module": "web",
+          "change": "added",
+          "source_sha256": "4e0cbe8befa77b514f0498a8dede1c3d0b7da0e3f0153ea327958060e41caa30",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              108
+            ]
+          ],
+          "source_commits": [
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 103,
+          "total": 108,
+          "percent": 95.37037037037037,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              108
+            ]
+          ],
+          "uncovered_lines": [
+            44,
+            45,
+            46,
+            104,
+            105
+          ],
+          "whole_file": {
+            "covered": 103,
+            "total": 108,
+            "percent": 95.37037037037037,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/static/app.js",
+          "module": "web",
+          "change": "added",
+          "source_sha256": "e84a9d5defdfc4c6a7864a48a19f476fa5fe81139a357d313d9143f731f31948",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              558
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688",
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 555,
+          "total": 558,
+          "percent": 99.46236559139786,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              558
+            ]
+          ],
+          "uncovered_lines": [
+            173,
+            174,
+            175
+          ],
+          "whole_file": {
+            "covered": 555,
+            "total": 558,
+            "percent": 99.46236559139786,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/static/images.mjs",
+          "module": "web",
+          "change": "added",
+          "source_sha256": "4943895b453ad18873b7abe72ba5088b52f53fb059b8da716ebf723bd4a255b3",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              41
+            ]
+          ],
+          "source_commits": [
+            "4d8ce5be6d094d59739d93ac1f60e3e5d7c472ca"
+          ],
+          "exception_reason": null,
+          "covered": 41,
+          "total": 41,
+          "percent": 100.0,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              41
+            ]
+          ],
+          "uncovered_lines": [],
+          "whole_file": {
+            "covered": 41,
+            "total": 41,
+            "percent": 100.0,
+            "passed": true
+          }
+        },
+        {
+          "path": "services/discovery/static/preview.mjs",
+          "module": "web",
+          "change": "added",
+          "source_sha256": "7041242b38c11e00c4b69eac70d6e7de95b124a0fd1b931f602dd92e4f6e8d35",
+          "line_policy": "all-executable",
+          "candidate_line_ranges": [
+            [
+              1,
+              118
+            ]
+          ],
+          "source_commits": [
+            "a4458fe06ba12479c946286062660e37f7706688"
+          ],
+          "exception_reason": null,
+          "covered": 113,
+          "total": 118,
+          "percent": 95.76271186440678,
+          "passed": true,
+          "executable_line_ranges": [
+            [
+              1,
+              118
+            ]
+          ],
+          "uncovered_lines": [
+            101,
+            104,
+            105,
+            106,
+            107
+          ],
+          "whole_file": {
+            "covered": 113,
+            "total": 118,
+            "percent": 95.76271186440678,
+            "passed": true
+          }
+        }
+      ]
+    }
+  },
+  "tests": {
+    "jvm": {
+      "tests": 100,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "android": {
+      "tests": 62,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 4
+    },
+    "backend": {
+      "tests": 159,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "web": {
+      "tests": 22,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "run_url": null
+}

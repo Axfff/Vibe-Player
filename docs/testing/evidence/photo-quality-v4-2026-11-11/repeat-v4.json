@@ -1,0 +1,268 @@
+{
+  "upstream": "wkcn/TinyCLIP-ViT-40M-32-Text-19M-LAION400M",
+  "revision": "95ec8197b3f2fe7f747865c61ca556cf0768b2f7",
+  "checkpoint_sha256": "1b08131ac0ac54429aab216c397c550527d31f5682afb5d21d35091ad39538ae",
+  "vocabulary_sha256": "1b57936b98d77a31fae254d56f35806c949ef8d84790c7315728f4340e39554e",
+  "atmosphere_vocabulary_sha256": "c044df1410728fbf2f173463b5022eaffc3096a1fdced577f4aacb3eff26cc8b",
+  "filename": "repeat-v4.onnx",
+  "bytes": 158993255,
+  "sha256": "c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9",
+  "input_shape": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "output_shape": [
+    2,
+    44
+  ],
+  "onnx_opset": 17,
+  "onnx_ir": 8,
+  "max_export_difference": 2.682209014892578e-07,
+  "torch": "2.5.1+cpu",
+  "classes": [
+    [
+      "flowers",
+      "flowers in bloom",
+      "花卉"
+    ],
+    [
+      "butterfly",
+      "a butterfly",
+      "蝴蝶"
+    ],
+    [
+      "forest",
+      "a forest of trees",
+      "树林"
+    ],
+    [
+      "lakeside",
+      "a lake",
+      "湖面"
+    ],
+    [
+      "river",
+      "a river",
+      "河流"
+    ],
+    [
+      "seashore",
+      "a beach by the sea",
+      "海滩"
+    ],
+    [
+      "alp",
+      "mountains",
+      "山峰"
+    ],
+    [
+      "cliff",
+      "a cliff",
+      "峭壁"
+    ],
+    [
+      "valley",
+      "a valley",
+      "山谷"
+    ],
+    [
+      "volcano",
+      "a volcano",
+      "火山"
+    ],
+    [
+      "snow",
+      "a snowy landscape",
+      "雪景"
+    ],
+    [
+      "waterfall",
+      "a waterfall",
+      "瀑布"
+    ],
+    [
+      "meadow",
+      "a grassy meadow",
+      "草地"
+    ],
+    [
+      "sunset",
+      "a sunset",
+      "落日"
+    ],
+    [
+      "night_sky",
+      "stars in the night sky",
+      "星空"
+    ],
+    [
+      "city",
+      "a city skyline in daylight",
+      "城市"
+    ],
+    [
+      "city_night",
+      "city lights at night",
+      "城市夜景"
+    ],
+    [
+      "street",
+      "a street",
+      "街道"
+    ],
+    [
+      "building",
+      "a building",
+      "建筑"
+    ],
+    [
+      "bridge",
+      "a bridge",
+      "桥梁"
+    ],
+    [
+      "concert",
+      "a live music concert",
+      "音乐演出"
+    ],
+    [
+      "party",
+      "a party celebration",
+      "聚会"
+    ],
+    [
+      "sport",
+      "people playing sports",
+      "运动"
+    ],
+    [
+      "canoe",
+      "a boat on water",
+      "水上船只"
+    ],
+    [
+      "animal",
+      "an animal",
+      "动物"
+    ],
+    [
+      "bird",
+      "a bird",
+      "鸟类"
+    ],
+    [
+      "insect",
+      "an insect",
+      "昆虫"
+    ],
+    [
+      "portrait",
+      "a portrait of a person",
+      "人物肖像"
+    ],
+    [
+      "people",
+      "a group of people",
+      "人群"
+    ],
+    [
+      "indoor",
+      "the interior of a room",
+      "室内"
+    ],
+    [
+      "food",
+      "food on a plate",
+      "食物"
+    ],
+    [
+      "document",
+      "a page of text or a document",
+      "文档"
+    ],
+    [
+      "screenshot",
+      "a screenshot of a computer or phone screen",
+      "屏幕截图"
+    ],
+    [
+      "vehicle",
+      "a vehicle",
+      "车辆"
+    ],
+    [
+      "object",
+      "a household object",
+      "日常物品"
+    ],
+    [
+      "artwork",
+      "a drawing or painting",
+      "绘画"
+    ],
+    [
+      "storm",
+      "a storm with dark clouds",
+      "阴云"
+    ],
+    [
+      "fire",
+      "flames of a fire",
+      "火焰"
+    ],
+    [
+      "desert",
+      "a desert",
+      "沙漠"
+    ],
+    [
+      "rain",
+      "a rainy scene",
+      "雨景"
+    ]
+  ],
+  "atmospheres": [
+    [
+      "lively",
+      "轻快鲜活",
+      [
+        "a bright, cheerful photograph full of life.",
+        "a joyful, playful scene.",
+        "a colorful scene with an uplifting atmosphere.",
+        "a lighthearted and optimistic photograph."
+      ]
+    ],
+    [
+      "peaceful",
+      "宁静舒缓",
+      [
+        "a peaceful, quiet photograph.",
+        "a still scene with a calm atmosphere.",
+        "a gentle, relaxing scene.",
+        "a serene photograph with little movement."
+      ]
+    ],
+    [
+      "reflective",
+      "沉静内省",
+      [
+        "a lonely, melancholic photograph.",
+        "a desolate scene with a somber atmosphere.",
+        "a quiet, gloomy scene.",
+        "a photograph suggesting solitude and loss."
+      ]
+    ],
+    [
+      "intense",
+      "强烈动势",
+      [
+        "a dramatic photograph full of motion.",
+        "a powerful, intense scene.",
+        "an energetic scene with forceful movement.",
+        "a photograph of action and tension."
+      ]
+    ]
+  ]
+}

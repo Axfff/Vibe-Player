@@ -1,5 +1,7 @@
 # Vibe-Player 项目讨论
 
+> 下方状态属于原始调研记录。新决策按[统一工作流](../development/workflow.md#planning-evidence-and-contribution)连接 Decision、Reason、Action、Owner 与 Verification；当前需求和状态以关联 Issue/PR 为准。
+
 这里保存调研、选择理由与需求发布前的草稿。正式 Story Issue 建立后，User Story 与 Acceptance Criteria 统一维护在该 Issue 中。
 
 ## 当前文档与决定

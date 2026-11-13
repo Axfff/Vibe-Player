@@ -17,6 +17,10 @@ import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.MusicViewModel
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.covers.CoverDisplaySource
+import com.iven.musicplayergo.covers.CoverRepositories
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.RepositoryCoverResolver
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.utils.Lists
@@ -105,9 +109,17 @@ fun Long.toAlbumArtURI(): Uri = ContentUris.withAppendedId(
 )
 
 fun Long.waitForCover(context: Context, onDone: (Bitmap?, Boolean) -> Unit) {
+    val source = RepositoryCoverResolver(CoverRepositories.get(context)).resolve(
+        CoverTarget.Album(this, null, null)
+    )
+    val data = when (source) {
+        is CoverDisplaySource.CustomFile -> source.file
+        is CoverDisplaySource.MediaStoreAlbum -> if (GoPreferences.getPrefsInstance().isCovers) toAlbumArtURI() else null
+        else -> null
+    }
     Coil.imageLoader(context).enqueue(
         ImageRequest.Builder(context)
-            .data(if (GoPreferences.getPrefsInstance().isCovers) toAlbumArtURI() else null)
+            .data(data)
             .target(
                 onSuccess = { onDone(it.toBitmap(), false) },
                 onError = { onDone(null, true) }
@@ -215,5 +227,5 @@ fun Music.findRestoreSongs(sorting: Int, musicViewModel: MusicViewModel) = when 
         sorting,
         musicViewModel.deviceMusicByFolder?.get(relativePath)
     )
-    else -> Lists.getSortedMusicListForFolder(sorting, musicViewModel.deviceMusicByAlbum?.get(album))
+    else -> Lists.getSortedMusicList(sorting, musicViewModel.deviceMusicByAlbum?.get(album))
 }

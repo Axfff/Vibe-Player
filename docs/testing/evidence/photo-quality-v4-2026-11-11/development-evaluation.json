@@ -1,0 +1,58 @@
+{
+  "production_sha": "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
+  "published_source_fingerprint": "fe8f08381c13f218b24612397481f51d183663060f3c9a7fdc35c15c511022cf",
+  "harness_note": "API 33 and phone execution precede the test-only legacy provider adaptation; production APK is unchanged. API 21/23 execute the final adapted harness. Current-head CI verifies the final complete source tree.",
+  "label_sha256": "49981542fc76c670cea6293ba66edcbd1fac5ecf852eafebbaf029141c8b538a",
+  "labels": "Already-seen provisional development labels. No human acceptance or generalization accuracy claim.",
+  "cases": [
+    {
+      "case": "bright",
+      "top5": [
+        "img_0001",
+        "img_0005",
+        "img_0033",
+        "img_0008",
+        "img_0007"
+      ],
+      "p5": 1.0,
+      "photo_ms": 3743
+    },
+    {
+      "case": "calm",
+      "top5": [
+        "img_0014",
+        "img_0015",
+        "img_0006",
+        "img_0009",
+        "img_0037"
+      ],
+      "p5": 1.0,
+      "photo_ms": 3407
+    },
+    {
+      "case": "melancholic",
+      "top5": [
+        "img_0015",
+        "img_0009",
+        "img_0017",
+        "img_0016",
+        "img_0037"
+      ],
+      "p5": 0.8,
+      "photo_ms": 4084
+    },
+    {
+      "case": "energetic",
+      "top5": [
+        "img_0030",
+        "img_0039",
+        "img_0031",
+        "img_0040",
+        "img_0029"
+      ],
+      "p5": 1.0,
+      "photo_ms": 3124
+    }
+  ],
+  "mean_p5": 0.95
+}

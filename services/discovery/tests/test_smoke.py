@@ -12,7 +12,7 @@ from .conftest import itunes_row
 
 
 @pytest.mark.parametrize(
-    "budget, lookup_matches, succeeds", [(15, True, True), (13, True, False), (15, False, False)]
+    "budget, lookup_matches, succeeds", [(4, True, True), (3, True, False), (4, False, False)]
 )
 async def test_workflow_checks_real_identity_and_budget(network, budget, lookup_matches, succeeds):
     requests = []

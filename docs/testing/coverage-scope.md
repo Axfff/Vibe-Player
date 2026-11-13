@@ -18,15 +18,17 @@ Android, Python backend and web modules have separate gates. One module's result
 
 | Work | Audited head | Relationship to this branch |
 | --- | --- | --- |
-| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Included in this validation branch; separate PR remains open |
-| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Included with four JVM tests; separate PR remains open |
-| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Included with six JVM tests; separate PR remains open |
-| PR #30 missing/playing album lookup | `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` | Latest 2026-11-02 head included with ten JVM tests; separate PR remains open |
-| PR #34 queue removal persistence | `5115024e3dad12cd4f2d86e98d6f11ade544199a` | Included with three Android tests; separate PR remains open |
+| PR #21 Add button membership state | `2093970ad0169c8be57a725681e573999ad4c566` | Included through main `844caf7c`; existing authorship retained |
+| PR #26 legacy null DATA path | `aca7ae7cacf04d594bc42660711ab352c26dd581` | Included through main, with its JVM tests |
+| PR #28 null metadata search | `bfd201cc3484c64324778c07ce2a9fe971dc64e2` | Included through main, with its JVM tests |
+| PR #30 missing/playing album lookup | `7591a676b8fa273cc5970d2152fa8bfef1c1bd96` | Included through main, with its JVM tests |
+| PR #34 queue removal persistence | `5115024e3dad12cd4f2d86e98d6f11ade544199a` | Included through main, with its Android tests |
 | PR #20 / #24 | Release closeout / README | Documentation; no executable source |
-| Local Discovery | `fa86950d0f8955a8b0718de95f7a0509dedee832` | Backend + web included in this independent validation branch; not on main |
+| Local Discovery | `8ef69e0bdfd113dc690ac935a40e40e298c8cbe7` | Original Android/backend/web feature base; current branch also includes the #51 link-validation fix |
 
-Android Discovery is absent from these audited revisions. The user is arranging its implementation separately. No imaginary Android Discovery report is generated. Its eventual source must be integrated, inventoried and tested before claiming the **whole Sprint 3 feature** is complete. Historical Redmi evidence and other PRs' test counts are not reused as coverage inputs.
+The current feature candidate contains Android Discovery and incoming main fixes. Its refreshed manifest has **51 production files: 35 Android, 12 backend, 4 web**. The earlier November 3 snapshot contained 46 files before this integration. All eight new Android Discovery source files, the cumulative LibraryActionsFragment change and backend ranking.py are included alongside Release 1. Android layout/manifest/resources are retained as application inputs, not executable line denominators. Test fixtures are test-only. No UI, photo, network, storage, cancellation or error branch is exempted.
+
+On 2026-11-10, main `844caf7c` was merged into this feature branch to resolve the README and coverage-document conflicts. The README retains both Discovery and Release 1 review links, and the generated manifest includes the incoming production changes. Original commits and authorship are retained; main and release tags were not changed. Feature-owner targeted tests and historical reports are context only; final coverage requires a clean full collection on the committed scope/config candidate. A passing coverage gate does not imply human acceptance, real model authorization or completion of the live-provider acceptance criteria.
 
 ## Reproduce
 
@@ -44,14 +46,25 @@ python scripts/coverage/coverage.py start
 export ANDROID_SERIAL=emulator-5554 DISPOSABLE_EMULATOR=1
 python scripts/require-disposable-emulator.py
 cd project
-./gradlew --no-daemon --console=plain :app:testDebugUnitTest :app:assembleDebug :app:connectedDebugAndroidTest :app:teamCoverageReport
+./gradlew --no-daemon --console=plain :app:testDebugUnitTest :app:assembleDebug
+./gradlew --no-daemon --console=plain :app:connectedDebugAndroidTest
+./gradlew --no-daemon --console=plain :app:teamCoverageReport
 cd ..
+# Run backend and web commands below before the combined report.
 python scripts/coverage/coverage.py report
 ```
 
 Windows uses `gradlew.bat` and PowerShell environment assignments. `start` requires clean test/coverage outputs. `report --unit-only --measure-only` is for a clearly labeled exploratory JVM baseline only; CI never uses either bypass. After changing production source, review and commit `python scripts/coverage/coverage.py scope --write`. CI checks the manifest; it never silently regenerates it.
 
-For an integrated Python Discovery package, run `pytest --cov=discovery` with explicit HTML, XML and JUnit destinations in `artifacts/coverage`. The source option counts unimported files. Browser production modules are detected too; their LCOV and JUnit results must exist before that combined scope can pass. Do not silently exclude the existing web application when integrating Discovery.
+For this candidate, run these from `services/discovery` after `coverage.py start`, using the locked requirements plus pytest-cov 7.1.0 / coverage 7.17.0 and the committed pnpm lockfile:
+
+```sh
+python -m pytest --cov=discovery --cov-report=xml:../../artifacts/coverage/backend.xml --cov-report=html:../../artifacts/coverage/backend --junitxml=../../artifacts/coverage/backend-junit.xml
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm run test:coverage
+```
+
+The explicit Python source option counts unimported files; c8 `--all` includes unexecuted browser production files. Android fixture HTTP servers start inside instrumentation on random loopback ports, requiring no external provider or model key. Use a clean build before collection, execute JVM before device tasks and retain separate logs; stale or doubly instrumented classes must not be accepted as valid coverage.
 
 ## Publication and failure behavior
 

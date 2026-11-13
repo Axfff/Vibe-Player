@@ -1,0 +1,42 @@
+{
+  "source_sha": "working tree based on ad1eb1bd; pre-commit evaluation",
+  "labels": "Frozen provisional; separate post-inference evaluation; no human ground truth",
+  "cases": [
+    {
+      "case_id": "case_01",
+      "returned": 3,
+      "relevant": 3,
+      "precision_at_returned": 1.0,
+      "p_at_5_missing_as_zero": 0.6,
+      "hard_distractors": 0,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_02",
+      "returned": 3,
+      "relevant": 3,
+      "precision_at_returned": 1.0,
+      "p_at_5_missing_as_zero": 0.6,
+      "hard_distractors": 0,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_03",
+      "returned": 4,
+      "relevant": 1,
+      "precision_at_returned": 0.25,
+      "p_at_5_missing_as_zero": 0.2,
+      "hard_distractors": 2,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_04",
+      "returned": 1,
+      "relevant": 1,
+      "precision_at_returned": 1.0,
+      "p_at_5_missing_as_zero": 0.2,
+      "hard_distractors": 0,
+      "random_expected_p5": 0.6
+    }
+  ]
+}

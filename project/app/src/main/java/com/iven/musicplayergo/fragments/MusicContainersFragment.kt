@@ -20,6 +20,8 @@ import com.iven.musicplayergo.extensions.handleViewVisibility
 import com.iven.musicplayergo.extensions.loadWithError
 import com.iven.musicplayergo.extensions.setTitleColor
 import com.iven.musicplayergo.extensions.waitForCover
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.loadCover
 import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.ui.MediaControlInterface
 import com.iven.musicplayergo.ui.UIControlInterface
@@ -362,8 +364,8 @@ class MusicContainersFragment : Fragment(),
 
                     if (sLaunchedByAlbumView) {
                         albumCover.background.alpha = Theming.getAlbumCoverAlpha(requireContext())
-                        mMusicViewModel.deviceMusicByAlbum?.get(item)?.first()?.albumId?.waitForCover(requireContext()) { bmp, error ->
-                            albumCover.loadWithError(bmp, error, R.drawable.ic_music_note_cover_alt)
+                        mMusicViewModel.deviceMusicByAlbum?.get(item)?.firstOrNull()?.let { song ->
+                            albumCover.loadCover(CoverTarget.Album(song.albumId ?: 0, song.artist, song.album))
                         }
                     } else {
                         albumCover.handleViewVisibility(show = false)
