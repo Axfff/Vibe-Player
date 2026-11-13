@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.iven.musicplayergo.GoConstants
-import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.databinding.NotificationActionsItemBinding
 import com.iven.musicplayergo.models.NotificationAction
 import com.iven.musicplayergo.utils.Theming
 
 
-class NotificationActionsAdapter: RecyclerView.Adapter<NotificationActionsAdapter.CheckableItemsHolder>() {
+class NotificationActionsAdapter(initialActions: NotificationAction) :
+    RecyclerView.Adapter<NotificationActionsAdapter.CheckableItemsHolder>() {
 
-    var selectedActions = GoPreferences.getPrefsInstance().notificationActions
+    var selectedActions = initialActions
+        private set
 
     private val mActions = listOf(
         NotificationAction(GoConstants.REPEAT_ACTION, GoConstants.CLOSE_ACTION), // default
@@ -55,7 +56,6 @@ class NotificationActionsAdapter: RecyclerView.Adapter<NotificationActionsAdapte
                     notifyItemChanged(mActions.indexOf(selectedActions))
                     selectedActions = mActions[absoluteAdapterPosition]
                     notifyItemChanged(absoluteAdapterPosition)
-                    GoPreferences.getPrefsInstance().notificationActions = selectedActions
                 }
 
                 root.setOnLongClickListener {
