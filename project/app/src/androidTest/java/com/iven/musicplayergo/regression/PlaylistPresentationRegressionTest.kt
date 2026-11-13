@@ -18,7 +18,7 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.fragments.AllMusicFragment
-import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
+import com.iven.musicplayergo.playlists.PlaylistsFragment
 import com.iven.musicplayergo.preferences.PreferencesFragment
 import com.iven.musicplayergo.preferences.SettingsFragment
 import org.junit.Assert.*
@@ -258,9 +258,9 @@ class PlaylistPresentationRegressionTest {
         return fragment
     }
 
-    private fun playlistPage(f: RegressionFixture): PlaylistsDialogFragment? {
-        var fragment: PlaylistsDialogFragment? = null
-        f.onActivity { fragment = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsDialogFragment>().firstOrNull() }
+    private fun playlistPage(f: RegressionFixture): PlaylistsFragment? {
+        var fragment: PlaylistsFragment? = null
+        f.onActivity { fragment = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsFragment>().firstOrNull() }
         return fragment
     }
 

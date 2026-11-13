@@ -291,9 +291,9 @@ class PlaylistCoverageBehaviorTest {
     }
     private fun child(f: RegressionFixture, tag: String) = sheet(f).childFragmentManager.findFragmentByTag(tag) as DialogFragment
     private fun sheet(f: RegressionFixture) = sheetOrNull(f)!!
-    private fun sheetOrNull(f: RegressionFixture): PlaylistsDialogFragment? {
-        var result: PlaylistsDialogFragment? = null
-        f.onActivity { result = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsDialogFragment>().firstOrNull() }
+    private fun sheetOrNull(f: RegressionFixture): PlaylistsFragment? {
+        var result: PlaylistsFragment? = null
+        f.onActivity { result = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsFragment>().firstOrNull() }
         return result
     }
     private fun <T> success(result: PlaylistResult<T>): T {

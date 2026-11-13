@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -26,6 +27,7 @@ import com.iven.musicplayergo.playlists.PlaylistNameDialogFragment
 import com.iven.musicplayergo.playlists.PlaylistResult
 import com.iven.musicplayergo.playlists.PlaylistSongPickerDialogFragment
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
+import com.iven.musicplayergo.playlists.PlaylistsFragment
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -310,11 +312,11 @@ class PlaylistLibraryRegressionTest {
     }
 
     private fun detail(f: RegressionFixture) = f.activityFragment(GoConstants.DETAILS_FRAGMENT_TAG) as? DetailsFragment
-    private fun sheet(f: RegressionFixture): PlaylistsDialogFragment {
-        var result: PlaylistsDialogFragment? = null
+    private fun sheet(f: RegressionFixture): Fragment {
+        var result: Fragment? = null
         f.onActivity {
-            val playlists = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsDialogFragment>()
-            result = playlists.firstOrNull { playlist -> playlist.dialog != null } ?: playlists.firstOrNull()
+            result = it.supportFragmentManager.findFragmentByTag("custom_playlists") as? PlaylistsDialogFragment
+                ?: it.supportFragmentManager.fragments.filterIsInstance<PlaylistsFragment>().firstOrNull()
         }
         return result ?: error("Playlist page is not attached")
     }
@@ -322,14 +324,23 @@ class PlaylistLibraryRegressionTest {
     private fun recyclerSheet(f: RegressionFixture) = f.activityFragment(RecyclerSheet.TAG_MODAL_RV) as? RecyclerSheet
 
     private fun openPlaylists(f: RegressionFixture) {
+        var openedFromError = false
         f.onActivity { activity ->
             val error = activity.supportFragmentManager.findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG)
             if (error?.view?.isShown == true) {
+                openedFromError = true
                 val toolbar = error.requireView().findViewById<Toolbar>(R.id.error_toolbar)
                 assertTrue(toolbar.menu.size() > 0)
                 assertTrue(toolbar.menu.performIdentifierAction(toolbar.menu.getItem(0).itemId, 0))
             } else {
                 activity.openPlaylists()
+            }
+        }
+        if (openedFromError) {
+            f.await("error playlist dialog shown") {
+                f.onMain {
+                    (f.activityFragment("custom_playlists") as? PlaylistsDialogFragment)?.dialog?.isShowing == true
+                }
             }
         }
         f.await("playlist page ready") {
@@ -339,7 +350,7 @@ class PlaylistLibraryRegressionTest {
 
     private fun closePlaylists(f: RegressionFixture) {
         val playlist = sheet(f)
-        if (playlist.dialog != null) {
+        if (playlist is PlaylistsDialogFragment) {
             clickSheet(f, R.id.playlist_close)
             f.await("playlists dialog closed") { f.onMain { !playlist.isAdded } }
         } else {

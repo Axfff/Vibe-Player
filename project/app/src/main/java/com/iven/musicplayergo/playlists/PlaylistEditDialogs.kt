@@ -24,6 +24,12 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
 
+/** Receives mutations from the playlist editor dialogs regardless of their visual host. */
+internal interface PlaylistEditorHost {
+    fun onPlaylistSaved(id: String, message: String? = null)
+    fun onPlaylistDeleted(id: String)
+}
+
 /** No constructor callbacks: child dialogs can be recreated by FragmentManager. */
 class PlaylistNameDialogFragment : DialogFragment() {
     private var binding: PlaylistNameDialogBinding? = null
@@ -83,7 +89,7 @@ class PlaylistNameDialogFragment : DialogFragment() {
             isCancelable = true
             when (result) {
                 is PlaylistResult.Success -> {
-                    (parentFragment as? PlaylistsDialogFragment)?.onPlaylistSaved(
+                    (parentFragment as? PlaylistEditorHost)?.onPlaylistSaved(
                         result.value.id,
                         getString(if (playlistId == null) R.string.playlist_created else R.string.playlist_renamed)
                     )
@@ -137,7 +143,7 @@ class PlaylistDeleteDialogFragment : DialogFragment() {
                     isCancelable = true
                     when (result) {
                         is PlaylistResult.Success -> {
-                            (parentFragment as? PlaylistsDialogFragment)?.onPlaylistDeleted(id)
+                            (parentFragment as? PlaylistEditorHost)?.onPlaylistDeleted(id)
                             dismissAfterSavedChange()
                         }
                         is PlaylistResult.Failure -> {
@@ -275,7 +281,7 @@ class PlaylistSongPickerDialogFragment : DialogFragment() {
             when (result) {
                 is PlaylistResult.Success -> {
                     playlist = result.value
-                    (parentFragment as? PlaylistsDialogFragment)?.onPlaylistSaved(result.value.id)
+                    (parentFragment as? PlaylistEditorHost)?.onPlaylistSaved(result.value.id)
                     // The row already shows membership. Keep feedback inside the picker
                     // so its Refresh/Done button panel stays unobscured (#6).
                 }

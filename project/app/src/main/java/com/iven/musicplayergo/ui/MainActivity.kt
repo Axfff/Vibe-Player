@@ -45,6 +45,7 @@ import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.player.MediaPlayerInterface
 import com.iven.musicplayergo.player.PlayerService
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
+import com.iven.musicplayergo.playlists.PlaylistsFragment
 import com.iven.musicplayergo.preferences.SettingsFragment
 import com.iven.musicplayergo.utils.*
 
@@ -66,7 +67,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     private var mAllMusicFragment: AllMusicFragment? = null
     private var mFoldersFragment: MusicContainersFragment? = null
     private var mAlbumsFragment: MusicContainersFragment? = null
-    private var mPlaylistsFragment: PlaylistsDialogFragment? = null
+    private var mPlaylistsFragment: PlaylistsFragment? = null
     private var mSettingsFragment: SettingsFragment? = null
     private var mDetailsFragment: DetailsFragment? = null
 
@@ -388,7 +389,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     fun openPlaylists() {
         if (supportFragmentManager.isStateSaved) return
         val showingLibraryError = supportFragmentManager
-            .findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG)?.view?.isShown == true
+            .findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG) != null
         val playlistIndex = mGoPreferences.activeTabs.indexOf(GoConstants.PLAYLIST_TAB)
         if (!showingLibraryError && isLibraryUiInitialized && playlistIndex >= 0) {
             mMainActivityBinding.viewPager2.setCurrentItem(playlistIndex, true)
@@ -487,7 +488,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             GoConstants.ALBUM_TAB -> mAlbumsFragment = MusicContainersFragment.newInstance(GoConstants.ALBUM_VIEW)
             GoConstants.SONGS_TAB -> mAllMusicFragment = AllMusicFragment.newInstance()
             GoConstants.FOLDERS_TAB -> mFoldersFragment = MusicContainersFragment.newInstance(GoConstants.FOLDER_VIEW)
-            GoConstants.PLAYLIST_TAB -> mPlaylistsFragment = PlaylistsDialogFragment()
+            GoConstants.PLAYLIST_TAB -> mPlaylistsFragment = PlaylistsFragment()
             else -> mSettingsFragment = SettingsFragment.newInstance()
         }
         return handleOnNavigationItemSelected(position)
