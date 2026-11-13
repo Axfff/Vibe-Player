@@ -197,6 +197,12 @@ class DiscoveryFlowTest {
                     scenario.onActivity { activity ->
                         assertEquals("jazz", activity.model.intent.text)
                         assertEquals("calm", activity.model.intent.mood)
+                        assertTrue(activity.findViewById<TextView>(R.id.discovery_photo_status).text.contains("Uncertain"))
+                        assertEquals(View.GONE, activity.findViewById<View>(R.id.discovery_photo_explanation).visibility)
+                        activity.findViewById<View>(R.id.discovery_photo_details).performClick()
+                        assertEquals(View.VISIBLE, activity.findViewById<View>(R.id.discovery_photo_explanation).visibility)
+                        activity.findViewById<View>(R.id.discovery_photo_details).performClick()
+                        assertEquals(View.GONE, activity.findViewById<View>(R.id.discovery_photo_explanation).visibility)
                         activity.findViewById<View>(R.id.discovery_apply_photo).performClick()
                     }
                     instrumentation.waitForIdleSync()
