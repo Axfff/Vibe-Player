@@ -25,7 +25,9 @@
           20
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -61,7 +63,8 @@
         ]
       ],
       "source_commits": [
-        "2c26fd411b6e9a33d85517c6ec6379a6f3af35a5"
+        "2c26fd411b6e9a33d85517c6ec6379a6f3af35a5",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -462,25 +465,29 @@
           114
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
       "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryActivity.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "9adc72b2c2c39b4e05c28b90e68db23b7933a58e97b41c9645a8b8102bfed98e",
+      "source_sha256": "4d8c4c5240b566f13620e92f5b0c23b182dad7e15b7f36f19a98f59287c55150",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          252
+          355
         ]
       ],
       "source_commits": [
         "8ef69e0bdfd113dc690ac935a40e40e298c8cbe7",
         "85f734c79bc6d9a2516b680bcbf654cc91f951dd",
-        "50b6b9c14b593e8670b0aba0d0182f936a4ef26e"
+        "50b6b9c14b593e8670b0aba0d0182f936a4ef26e",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110",
+        "10ee6ca4e5eb99c881d9c8d24a4427cdab9d5b87"
       ],
       "exception_reason": null
     },
@@ -547,7 +554,9 @@
           48
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -563,7 +572,8 @@
         ]
       ],
       "source_commits": [
-        "85f734c79bc6d9a2516b680bcbf654cc91f951dd"
+        "85f734c79bc6d9a2516b680bcbf654cc91f951dd",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -634,7 +644,8 @@
       "source_commits": [
         "8ef69e0bdfd113dc690ac935a40e40e298c8cbe7",
         "85f734c79bc6d9a2516b680bcbf654cc91f951dd",
-        "50b6b9c14b593e8670b0aba0d0182f936a4ef26e"
+        "50b6b9c14b593e8670b0aba0d0182f936a4ef26e",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -911,7 +922,8 @@
         "e51ed58e4a54cc6378641e421172a46fd703b666",
         "5ade2672adc3896b9f9fbb30b45ff05bd6151796",
         "2c26fd411b6e9a33d85517c6ec6379a6f3af35a5",
-        "761b071abfdd47adc64ed8661237eb9b028f3c50"
+        "761b071abfdd47adc64ed8661237eb9b028f3c50",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1101,7 +1113,8 @@
       "source_commits": [
         "5ade2672adc3896b9f9fbb30b45ff05bd6151796",
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1123,7 +1136,8 @@
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1144,7 +1158,8 @@
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1163,7 +1178,8 @@
       "source_commits": [
         "5a87ae6017dafdb41b0e959f93971d39d62e0598",
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1185,7 +1201,8 @@
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1208,7 +1225,8 @@
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1226,7 +1244,8 @@
       ],
       "source_commits": [
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
-        "b30b7e265e32e2f15b6e479d349d102515007cbc"
+        "b30b7e265e32e2f15b6e479d349d102515007cbc",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1245,7 +1264,8 @@
       "source_commits": [
         "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
         "5ade2672adc3896b9f9fbb30b45ff05bd6151796",
-        "b30b7e265e32e2f15b6e479d349d102515007cbc"
+        "b30b7e265e32e2f15b6e479d349d102515007cbc",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1268,7 +1288,8 @@
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1303,7 +1324,8 @@
       ],
       "source_commits": [
         "a9d97b375242a7a29fe63eb41e7ff57695a61f57",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1323,7 +1345,8 @@
         "0c51bf6acb9f90ab1ce40f7676d9d3538d17fb7d",
         "a057aa5aad4fcd4cdc30551d56aa47c4ccd1c948",
         "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1547,7 +1570,9 @@
           192
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -1576,7 +1601,8 @@
       ],
       "source_commits": [
         "03e85dd7d000aded436c6f3d5c756721e7e1ffbb",
-        "734cf90c60ae92c432d7f96c73cd1672ab0de5e5"
+        "734cf90c60ae92c432d7f96c73cd1672ab0de5e5",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1719,7 +1745,8 @@
         "8b52992e385e6992da21d891e4eb87bbfccbef62",
         "e51ed58e4a54cc6378641e421172a46fd703b666",
         "5ade2672adc3896b9f9fbb30b45ff05bd6151796",
-        "b30b7e265e32e2f15b6e479d349d102515007cbc"
+        "b30b7e265e32e2f15b6e479d349d102515007cbc",
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
       ],
       "exception_reason": null
     },
@@ -1735,7 +1762,9 @@
           41
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -1750,7 +1779,9 @@
           15
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -1798,7 +1829,9 @@
           103
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
@@ -1813,7 +1846,9 @@
           28
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "7dd2f3aa5dbae0ce42e036b992160fd93030f110"
+      ],
       "exception_reason": null
     },
     {
