@@ -67,6 +67,9 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
         }
         tracksAdapter = PlaylistTracksAdapter(::removeTrack)
         views.playlistRows.adapter = playlistAdapter
+        // A DialogFragment embedded in ViewPager renders as a normal Fragment. The same
+        // implementation is retained as a dialog only for the no-library error fallback.
+        views.playlistClose.isVisible = dialog != null
         views.playlistClose.setOnClickListener { dismiss() }
         views.playlistBack.setOnClickListener {
             selectedPlaylistId = null
@@ -232,7 +235,7 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             return
         }
         controls.onPlaylistSelected(songs.toList())
-        dismiss()
+        if (dialog != null) dismiss()
     }
 
     private fun libraryIsReady() = libraryState.hasLoaded && !libraryState.isLoading && !libraryState.refreshFailed
@@ -328,6 +331,14 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             }
             render()
         }
+    }
+
+    /** Returns to the list when this Fragment is embedded as the playlist navigation page. */
+    internal fun navigateBackToList(): Boolean {
+        if (dialog != null || selectedPlaylistId == null) return false
+        selectedPlaylistId = null
+        render()
+        return true
     }
 
     companion object {

@@ -16,7 +16,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.textfield.TextInputLayout
+import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.library.LibraryScanViewModel
 import com.iven.musicplayergo.library.MediaScanOutcome
@@ -29,6 +31,24 @@ import java.io.IOException
 /** Behavior gaps identified by the first full report (1005/1375 team lines). */
 @RunWith(AndroidJUnit4::class)
 class PlaylistCoverageBehaviorTest {
+    @Test fun playlistsOpenAsABottomNavigationPage() {
+        RegressionFixture.open().use { f ->
+            f.onActivity { activity ->
+                val playlistIndex = f.preferences.activeTabs.indexOf(GoConstants.PLAYLIST_TAB)
+                assertTrue("Playlists must be part of the visible bottom navigation", playlistIndex >= 0)
+                activity.openPlaylists()
+                assertEquals(playlistIndex, activity.findViewById<ViewPager2>(R.id.view_pager2).currentItem)
+            }
+            f.await("embedded playlist page") {
+                f.onMain {
+                    sheetOrNull(f)?.view?.findViewById<TextView>(R.id.playlist_heading)?.text?.toString() ==
+                        f.context.getString(R.string.playlist_title)
+                }
+            }
+            f.onMain { assertFalse(sheet(f).requireView().findViewById<View>(R.id.playlist_close).isShown) }
+        }
+    }
+
     @Test fun scanButtonIndexesRealAudioAndRefreshesWithoutChangingSavedMembership() {
         RegressionFixture.open().use { f ->
             val saved = f.createPlaylist("Scan preserves", "B", "A")

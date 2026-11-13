@@ -12,23 +12,10 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/library_open_playlists"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:minHeight="48dp"
-            android:minWidth="0dp"
-            android:maxLines="2"
-            android:text="@string/playlist_title"
-            android:contentDescription="@string/library_open_playlists_description" />
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/library_scan_music"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
             android:minHeight="48dp"
             android:minWidth="0dp"
             android:maxLines="2"

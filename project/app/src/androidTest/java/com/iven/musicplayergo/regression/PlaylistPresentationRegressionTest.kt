@@ -177,21 +177,20 @@ class PlaylistPresentationRegressionTest {
     }
 
     private fun refreshThroughPlaylistUi(f: RegressionFixture) {
-        f.onActivity { assertTrue(it.findViewById<View>(R.id.playlists_button).performClick()) }
+        f.onActivity { it.openPlaylists() }
         f.await("Playlists ready for refresh") {
-            f.onMain { playlistSheet(f)?.view?.findViewById<View>(R.id.playlist_refresh)?.isEnabled == true }
+            f.onMain { playlistPage(f)?.view?.findViewById<View>(R.id.playlist_refresh)?.isEnabled == true }
         }
         val before = f.onMain { f.viewModel.playlistLibraryState.value }
-        f.onMain { assertTrue(playlistSheet(f)!!.requireView().findViewById<View>(R.id.playlist_refresh).performClick()) }
+        f.onMain { assertTrue(playlistPage(f)!!.requireView().findViewById<View>(R.id.playlist_refresh).performClick()) }
         f.await("successful refresh through Playlists") {
             f.onMain {
                 val state = f.viewModel.playlistLibraryState.value
                 state != null && state !== before && state.hasLoaded && !state.isLoading && !state.refreshFailed &&
-                    playlistSheet(f)!!.requireView().findViewById<View>(R.id.playlist_refresh).isEnabled
+                    playlistPage(f)!!.requireView().findViewById<View>(R.id.playlist_refresh).isEnabled
             }
         }
-        f.onMain { assertTrue(playlistSheet(f)!!.requireView().findViewById<View>(R.id.playlist_close).performClick()) }
-        f.await("Playlists closed") { f.onMain { playlistSheet(f) == null } }
+        selectTab(f, GoConstants.SONGS_TAB)
     }
 
     private fun selectTab(f: RegressionFixture, tab: String) {
@@ -259,9 +258,9 @@ class PlaylistPresentationRegressionTest {
         return fragment
     }
 
-    private fun playlistSheet(f: RegressionFixture): PlaylistsDialogFragment? {
+    private fun playlistPage(f: RegressionFixture): PlaylistsDialogFragment? {
         var fragment: PlaylistsDialogFragment? = null
-        f.onActivity { fragment = it.supportFragmentManager.findFragmentByTag("custom_playlists") as? PlaylistsDialogFragment }
+        f.onActivity { fragment = it.supportFragmentManager.fragments.filterIsInstance<PlaylistsDialogFragment>().firstOrNull() }
         return fragment
     }
 

@@ -111,6 +111,7 @@ class ActiveTabsAdapter: RecyclerView.Adapter<ActiveTabsAdapter.CheckableItemsHo
         GoConstants.ALBUM_TAB -> R.string.albums
         GoConstants.SONGS_TAB -> R.string.songs
         GoConstants.FOLDERS_TAB -> R.string.folders
+        GoConstants.PLAYLIST_TAB -> R.string.playlist_title
         else -> R.string.settings
     }
 }
