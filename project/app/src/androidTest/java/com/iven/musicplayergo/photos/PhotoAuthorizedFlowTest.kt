@@ -80,9 +80,9 @@ class PhotoAuthorizedFlowTest {
                     resolver.openOutputStream(uri)!!.use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) }
                 }
                 show(a)
-                f.onMain { click("添加照片") }
-            f.await("menu item 选择照片文件夹 is visible") { f.onMain { texts().contains("选择照片文件夹") } }
-            f.onMain { click("选择照片文件夹"); click("选择目录") }
+                f.onMain { click("Add photos") }
+            f.await("menu item Choose a photo folder is visible") { f.onMain { texts().contains("Choose a photo folder") } }
+            f.onMain { click("Choose a photo folder"); click("Choose folder") }
                 systemClick(f, "Pictures")
                 systemClick(f, folder)
                 f.await("DocumentsUI entered owned directory") {
@@ -90,9 +90,9 @@ class PhotoAuthorizedFlowTest {
                 }
                 systemClick(f, "USE THIS FOLDER")
                 systemClick(f, "ALLOW")
-                f.await("target-specific confirmation") { f.onMain { texts().any { it.contains("用于：Source A") } } }
-                f.onMain { click("添加") }
-                f.await("two direct photos") { f.onMain { texts().any { it.contains("当前可用 2 张") } } }
+                f.await("target-specific confirmation") { f.onMain { texts().any { it.contains("For: Source A") } } }
+                f.onMain { click("Add") }
+                f.await("two direct photos") { f.onMain { texts().any { it.contains("2 photos available") } } }
                 val source = repo.snapshot(a).second.single()
                 assertTrue(PhotoAccessManager(f.context).hasGrant(Uri.parse(source.uris.single())))
                 assertTrue(repo.snapshot(b).second.isEmpty())
@@ -104,37 +104,37 @@ class PhotoAuthorizedFlowTest {
                 assertEquals(PhotoReadState.BUDGET_REACHED, runBlocking { provider.enumerate(source, budgetMs = 0) }.state)
                 assertEquals(1, runBlocking { provider.enumerate(source, setOf(direct.photos.first().id)) }.photos.size)
                 f.scenario.recreate()
-                f.await("real grant survives recreation") { f.onMain { texts().any { it.contains("当前可用 2 张") } } }
-                f.onMain { clickMatching { it.startsWith("照片文件夹\n") } }
-                f.await("candidate action menu") { f.onMain { texts().any { it == "查看照片" } } }
-                f.onMain { clickMatching { it == "查看照片" } }
-                f.await("readable thumbnails") { f.onMain { views().filterIsInstance<ImageView>().count { it.contentDescription?.startsWith("照片 ") == true } == 2 } }
-                f.onMain { views().filterIsInstance<ImageView>().first { it.contentDescription?.startsWith("照片 ") == true }.performClick(); click("移除") }
-                f.await("one excluded candidate") { f.onMain { texts().any { it.contains("当前可用 1 张") } } }
-                f.onMain { click("更多") }
-            f.await("menu item 恢复移除的照片 is visible") { f.onMain { texts().contains("恢复移除的照片") } }
-            f.onMain { click("恢复移除的照片") }
-                f.await("exclusion restored") { f.onMain { texts().any { it.contains("当前可用 2 张") } } }
-                f.onMain { click("关闭") }
+                f.await("real grant survives recreation") { f.onMain { texts().any { it.contains("2 photos available") } } }
+                f.onMain { clickMatching { it.startsWith("Photo folder\n") } }
+                f.await("candidate action menu") { f.onMain { texts().any { it == "View photos" } } }
+                f.onMain { clickMatching { it == "View photos" } }
+                f.await("readable thumbnails") { f.onMain { views().filterIsInstance<ImageView>().count { it.contentDescription?.startsWith("Photo ") == true } == 2 } }
+                f.onMain { views().filterIsInstance<ImageView>().first { it.contentDescription?.startsWith("Photo ") == true }.performClick(); click("Remove") }
+                f.await("one excluded candidate") { f.onMain { texts().any { it.contains("1 photos available") } } }
+                f.onMain { click("More") }
+            f.await("menu item Restore removed photos is visible") { f.onMain { texts().contains("Restore removed photos") } }
+            f.onMain { click("Restore removed photos") }
+                f.await("exclusion restored") { f.onMain { texts().any { it.contains("2 photos available") } } }
+                f.onMain { click("Close") }
                 show(b)
-                f.onMain { click("添加照片") }
-            f.await("menu item 使用已添加的照片 is visible") { f.onMain { texts().contains("使用已添加的照片") } }
-            f.onMain { click("使用已添加的照片") }
+                f.onMain { click("Add photos") }
+            f.await("menu item Use photos already added is visible") { f.onMain { texts().contains("Use photos already added") } }
+            f.onMain { click("Use photos already added") }
                 f.await("share source list") { f.onMain { texts().any { it.endsWith(source.id.take(6)) } } }
                 f.onMain { clickMatching { it.endsWith(source.id.take(6)) } }
-                f.await("sharing consent") { f.onMain { texts().contains("使用") } }
-                f.onMain { click("使用") }
+                f.await("sharing consent") { f.onMain { texts().contains("Use") } }
+                f.onMain { click("Use") }
                 f.await("shared source bound") { repo.snapshot(b).second == listOf(source) }
-                f.onMain { click("关闭") }
+                f.onMain { click("Close") }
                 show(a)
-                f.await("source row") { f.onMain { texts().any { it.startsWith("照片文件夹\n") } } }
-                f.onMain { clickMatching { it.startsWith("照片文件夹\n") } }
-                f.await("removal action menu") { f.onMain { texts().contains("从这里移除") } }
-                f.onMain { click("从这里移除") }
+                f.await("source row") { f.onMain { texts().any { it.startsWith("Photo folder\n") } } }
+                f.onMain { clickMatching { it.startsWith("Photo folder\n") } }
+                f.await("removal action menu") { f.onMain { texts().contains("Remove from here") } }
+                f.onMain { click("Remove from here") }
                 f.await("A detached only") { repo.snapshot(a).second.isEmpty() }
                 assertEquals(listOf(source), repo.snapshot(b).second)
                 assertEquals(2, runBlocking { provider.enumerate(source) }.photos.size)
-                f.onMain { click("关闭") }
+                f.onMain { click("Close") }
                 val photo = direct.photos.first()
                 val bytes = SafePhotoDecoder(f.context).bytes(Uri.parse(photo.uri))
                 val fingerprint = MessageDigest.getInstance("SHA-256").digest(bytes).joinToString("") { "%02x".format(it.toInt() and 255) }
@@ -171,15 +171,15 @@ class PhotoAuthorizedFlowTest {
                 crop()
                 repo.remove(b, source.id)
                 f.onMain { click(f.context.getString(R.string.cover_save)) }
-                f.await("revoked preview cannot save") { f.onMain { texts().any { it.contains("请重新选择照片") } } }
+                f.await("revoked preview cannot save") { f.onMain { texts().any { it == f.context.getString(R.string.cover_error_source) } } }
                 assertEquals(saved, (covers.getCover(b) as CoverResult.Success).value)
                 f.onMain { click(f.context.getString(android.R.string.cancel)) }
                 show(b)
-                f.onMain { click("更多") }
-            f.await("menu item 恢复默认封面 is visible") { f.onMain { texts().contains("恢复默认封面") } }
-            f.onMain { click("恢复默认封面"); click("恢复") }
+                f.onMain { click("More") }
+            f.await("menu item Restore default cover is visible") { f.onMain { texts().contains("Restore default cover") } }
+            f.onMain { click("Restore default cover"); click("Restore") }
                 f.await("default cover restored") { !covers.hasCover(b) }
-                f.onMain { click("关闭") }
+                f.onMain { click("Close") }
                 assertTrue(PhotoAccessManager(f.context).hasGrant(Uri.parse(source.uris.single())))
             } finally {
                 repo.deleteTarget(a); repo.deleteTarget(b)

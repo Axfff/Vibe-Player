@@ -82,7 +82,7 @@ class RealPhotoRankingTest {
                     .put("image_features",JSONArray(features.map { f -> JSONObject().put("photo_id",f.photo.id).put("fingerprint",f.fingerprint)
                         .put("labels",JSONArray(f.labels.map { JSONObject().put("label",it.label).put("confidence",it.confidence) }))
                         .put("atmospheres",JSONArray(f.atmospheres.map { JSONObject().put("label",it.label).put("support",it.confidence) })) }))
-                    .put("ranked",JSONArray(ranking.map { JSONObject().put("photo_id",it.features.photo.id).put("score",it.score).put("reasons",JSONArray(it.reasons)) }))
+                    .put("ranked",JSONArray(ranking.map { JSONObject().put("photo_id",it.features.photo.id).put("score",it.score).put("reasons",JSONArray(it.reasons.map { reason -> reason.resolve(context) })) }))
                     .put("failures",failures))
             } finally { uris.forEach { context.contentResolver.delete(it,null,null) }; audioFile.delete() }
         }

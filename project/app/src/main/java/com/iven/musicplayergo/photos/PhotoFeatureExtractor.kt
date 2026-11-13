@@ -31,12 +31,12 @@ class OnnxPhotoFeatureExtractor(context: Context, model: File) : PhotoFeatureExt
     private val environment = OrtEnvironment.getEnvironment()
     private val session: OrtSession
     init {
-        check(model.isFile) { "照片模型缺失；请打开“推荐设置”导入照片识别文件，或手动选择封面。" }
+        check(model.isFile) { "Photo model missing" }
         check(model.inputStream().use { input ->
             val digest = MessageDigest.getInstance("SHA-256"); val buffer = ByteArray(16384)
             while (true) { val n = input.read(buffer); if (n < 0) break; digest.update(buffer, 0, n) }
             digest.digest().hex() == SHA256
-        }) { "图片模型校验失败" }
+        }) { "Photo model checksum mismatch" }
         session = OrtSession.SessionOptions().use { options -> options.setIntraOpNumThreads(1); environment.createSession(model.absolutePath, options) }
     }
     override suspend fun extract(photo: ScopedPhoto): PhotoFeatures = withContext(Dispatchers.IO) {

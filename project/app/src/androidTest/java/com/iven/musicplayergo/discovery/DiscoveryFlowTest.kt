@@ -32,7 +32,7 @@ class DiscoveryFlowTest {
 
     private fun prepare(server: DiscoveryFixtureServer) {
         File(context.noBackupFilesDir, "discovery-collection-v1.json").delete()
-        context.getSharedPreferences("discovery-settings", 0).edit().clear().putString("endpoint", server.endpoint).commit()
+        context.getSharedPreferences("discovery-settings", 0).edit().clear().putString("endpoint", server.endpoint).putBoolean("custom_service", true).commit()
     }
 
     @Test fun confirmRealTransportResultsOpenSaveRestartRestoreAndExclude() {

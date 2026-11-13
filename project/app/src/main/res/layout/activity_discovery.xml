@@ -6,9 +6,6 @@
             <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_intro" android:textAppearance="?android:attr/textAppearanceMedium" />
             <com.google.android.material.button.MaterialButton android:id="@+id/discovery_collection" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_collection" />
             <LinearLayout android:id="@+id/discovery_form" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
-                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_endpoint_label" android:labelFor="@id/discovery_endpoint" />
-                <EditText android:id="@+id/discovery_endpoint" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:inputType="textUri" android:maxLines="1" android:importantForAutofill="no" android:hint="https://discovery.example.org" />
-                <com.google.android.material.button.MaterialButton android:id="@+id/discovery_connect" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_connect" />
                 <TextView android:id="@+id/discovery_provider_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:textIsSelectable="true" android:paddingBottom="8dp" />
                 <com.google.android.material.button.MaterialButton android:id="@+id/discovery_pick_photo" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_pick_photo" />
                 <TextView android:id="@+id/discovery_photo_status" android:layout_width="match_parent" android:layout_height="wrap_content" />
@@ -27,6 +24,12 @@
                 <EditText android:id="@+id/discovery_query" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:inputType="text" android:maxLength="160" android:maxLines="1" android:importantForAutofill="no" android:hint="@string/discovery_query_hint" />
                 <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_market" android:labelFor="@id/discovery_market" />
                 <Spinner android:id="@+id/discovery_market" android:layout_width="match_parent" android:layout_height="48dp" />
+                <CheckBox android:id="@+id/discovery_custom_service" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/discovery_custom_service" />
+                <LinearLayout android:id="@+id/discovery_service_fields" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:visibility="gone">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_endpoint_label" android:labelFor="@id/discovery_endpoint" />
+                <EditText android:id="@+id/discovery_endpoint" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:inputType="textUri" android:maxLines="1" android:importantForAutofill="no" android:hint="https://discovery.example.org" />
+                <com.google.android.material.button.MaterialButton android:id="@+id/discovery_connect" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_connect" />
+                </LinearLayout>
                 <CheckBox android:id="@+id/discovery_confirm" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/discovery_confirm" />
                 <com.google.android.material.button.MaterialButton android:id="@+id/discovery_search" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_search" />
             </LinearLayout>

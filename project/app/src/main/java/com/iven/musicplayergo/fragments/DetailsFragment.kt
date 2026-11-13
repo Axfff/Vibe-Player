@@ -545,7 +545,7 @@ class DetailsFragment : Fragment(), SearchView.OnQueryTextListener {
 
                 when (it.itemId) {
                     R.id.action_photo_sources -> currentCoverTarget()?.let { target ->
-                        com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(target, target.albumTitleSnapshot ?: "音乐专辑")
+                        com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(target, target.albumTitleSnapshot ?: getString(R.string.photo_album_fallback))
                             .show(childFragmentManager, "album-photo-sources")
                     }
                     R.id.action_set_cover -> showCoverPicker()

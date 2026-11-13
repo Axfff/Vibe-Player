@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.R
+import com.iven.musicplayergo.preferences.UiText
 import com.iven.musicplayergo.covers.CoverTarget
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
@@ -10,7 +12,14 @@ enum class PhotoSourceKind { SELECTED, DIRECTORY }
 data class ScopedPhoto(val id: String, val uri: String)
 @JsonClass(generateAdapter = true)
 data class PhotoSource(val id: String, val name: String, val kind: PhotoSourceKind,
-    val uris: List<String>, val recursive: Boolean = false)
+    val uris: List<String>, val recursive: Boolean = false) {
+    /** Old generated labels are displayed in the current locale without rewriting stored records. */
+    fun displayName(): UiText = when (name) {
+        "Photo folder", "\u7167\u7247\u6587\u4ef6\u5939" -> UiText.of(R.string.photo_folder_name)
+        "Selected photos", "\u5df2\u9009\u7167\u7247\u7ec4" -> UiText.of(R.string.photo_group_name)
+        else -> UiText.Literal(name)
+    }
+}
 @JsonClass(generateAdapter = true)
 data class PhotoScope(val key: String, val identity: String, val revision: Long = 0,
     val sources: List<String> = emptyList(), val excluded: List<String> = emptyList())
@@ -20,7 +29,7 @@ data class PhotoScopeCollection(val schemaVersion: Int = 1,
 data class PhotoRequest(val key: String, val identity: String, val revision: Long, val requestId: String = UUID.randomUUID().toString())
 interface PhotoScopeStorage { fun read(): String?; fun write(value: String) }
 open class PhotoScopeException(message: String) : IllegalStateException(message)
-class PhotoScopeIdentityChanged(val previous: PhotoScope) : PhotoScopeException("音乐专辑身份已变化，请重新绑定来源。")
+class PhotoScopeIdentityChanged(val previous: PhotoScope) : PhotoScopeException("Album identity changed. Rebind the photo sources.")
 
 /** No global candidate query exists. Each operation starts with one stable target. */
 class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val invalidateFeatures: () -> Unit = {}) {
@@ -31,7 +40,7 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
         require(state.sources.map { it.id }.distinct().size == state.sources.size)
         require(state.scopes.all { scope -> scope.revision >= 0 && scope.sources.all { id -> state.sources.any { it.id == id } } })
         state
-    } catch (_: Exception) { throw PhotoScopeException("来源记录无法读取；保留原记录，请重试。") }
+    } catch (_: Exception) { throw PhotoScopeException("Cannot read photo sources. Existing records are retained.") }
     private fun identity(target: CoverTarget): String = when (target) {
         is CoverTarget.Playlist -> target.storageKey
         is CoverTarget.Album -> adapterIdentity(target.artistSnapshot, target.albumTitleSnapshot)
@@ -53,20 +62,20 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
     @Synchronized fun validate(target: CoverTarget, request: PhotoRequest) {
         val current = snapshot(target).first
         if (request.key != current.key || request.identity != current.identity || request.revision != current.revision)
-            throw PhotoScopeException("照片范围已变化；请重新操作。")
+            throw PhotoScopeException("Photo scope changed. Retry the operation.")
     }
     private fun write(state: PhotoScopeCollection, updated: PhotoScope) {
         val scopes = state.scopes.filterNot { it.key == updated.key } + updated
         val referenced = scopes.flatMap { it.sources }.toSet()
         try { storage.write(adapter.toJson(state.copy(scopes = scopes, sources = state.sources.filter { it.id in referenced }))); invalidateFeatures() }
-        catch (_: Exception) { throw PhotoScopeException("保存来源失败；原范围保持不变。") }
+        catch (_: Exception) { throw PhotoScopeException("Cannot save photo sources. Original scope retained.") }
     }
     @Synchronized fun attach(target: CoverTarget, request: PhotoRequest, source: PhotoSource) {
         validate(target, request)
         require(source.uris.isNotEmpty() && source.uris.size <= 500 && source.uris.all { it.startsWith("content://") })
         require(source.kind != PhotoSourceKind.DIRECTORY || source.uris.size == 1)
         val state = read(); val scope = scope(state, target)
-        require(source.id in scope.sources || scope.sources.size < 20) { "每个目标最多 20 个来源" }
+        require(source.id in scope.sources || scope.sources.size < 20) { "At most 20 sources per target" }
         val existing = state.sources.firstOrNull { it.id == source.id }
         require(existing == null || existing == source)
         write(state.copy(sources = state.sources.filterNot { it.id == source.id } + source.copy(uris = source.uris.distinct())),
@@ -96,7 +105,7 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
         require(target.isValid())
         val state = read()
         val current = state.scopes.firstOrNull { it.key == target.storageKey }
-        check(current == previous && previous.identity != identity(target)) { "来源已变化，请重新打开后确认。" }
+        check(current == previous && previous.identity != identity(target)) { "Source changed. Reopen and confirm." }
         write(state, previous.copy(identity=identity(target), revision=previous.revision + 1, sources=emptyList(), excluded=emptyList()))
     }
     @Synchronized fun <T> guarded(target: CoverTarget, request: PhotoRequest, action: () -> T): T {
@@ -107,9 +116,9 @@ class PhotoScopeRepository(private val storage: PhotoScopeStorage, private val i
 
 /** Both cleanup operations are attempted after playlist deletion. Partial failure
  * is reported; it cannot undo an already committed playlist deletion. */
-internal fun cleanupDeletedPlaylistPhotos(removeScope: () -> Unit, removeCover: () -> Unit): List<String> {
-    val failed = mutableListOf<String>()
-    for ((label, action) in listOf("照片来源" to removeScope, "封面" to removeCover)) {
+internal fun cleanupDeletedPlaylistPhotos(removeScope: () -> Unit, removeCover: () -> Unit): List<UiText> {
+    val failed = mutableListOf<UiText>()
+    for ((label, action) in listOf(UiText.of(R.string.photo_sources_label) to removeScope, UiText.of(R.string.photo_cover_label) to removeCover)) {
         try { action() }
         catch (e: java.util.concurrent.CancellationException) { throw e }
         catch (_: Exception) { failed += label }
