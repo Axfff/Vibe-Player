@@ -2,6 +2,9 @@ package com.iven.musicplayergo.discovery
 
 import android.os.SystemClock
 import android.view.View
+import android.view.LayoutInflater
+import android.view.ContextThemeWrapper
+import android.content.res.Configuration
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -11,6 +14,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.utils.Theming
 import org.json.JSONArray
 import org.junit.Assert.*
 import org.junit.Test
@@ -159,6 +163,31 @@ class DiscoveryPresentationTest {
     }
 
     private fun rows(activity: DiscoveryActivity) = activity.findViewById<LinearLayout>(R.id.discovery_results)
+    @Test fun largeTextKeepsBothSongActionsEqualHeightWithoutClipping() {
+        prepare()
+        ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+            scenario.onActivity { activity ->
+                val config = Configuration(activity.resources.configuration).apply { fontScale = 1.3f }
+                val large = ContextThemeWrapper(activity.createConfigurationContext(config), Theming.resolveTheme(activity))
+                val row = LayoutInflater.from(large).inflate(R.layout.discovery_track, null)
+                row.findViewById<TextView>(R.id.discovery_track_title).text = "A song with a longer title"
+                row.findViewById<TextView>(R.id.discovery_track_artist).text = "Test artist"
+                val width = (320 * large.resources.displayMetrics.density).toInt()
+                row.measure(View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY),
+                    View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
+                row.layout(0, 0, width, row.measuredHeight)
+                val open = row.findViewById<TextView>(R.id.discovery_track_open)
+                val save = row.findViewById<TextView>(R.id.discovery_track_save)
+                assertEquals(open.height, save.height)
+                assertTrue(open.height >= 48 * large.resources.displayMetrics.density)
+                for (action in listOf(open, save)) {
+                    assertTrue(action.layout.height <= action.height - action.compoundPaddingTop - action.compoundPaddingBottom)
+                    assertEquals(0, action.layout.getEllipsisCount(action.layout.lineCount - 1))
+                }
+            }
+        }
+    }
+
     private fun await(scenario: ActivityScenario<DiscoveryActivity>, check: (DiscoveryActivity) -> Boolean) {
         val deadline = SystemClock.elapsedRealtime() + 10_000
         while (SystemClock.elapsedRealtime() < deadline) {

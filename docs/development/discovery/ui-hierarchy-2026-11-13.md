@@ -18,7 +18,7 @@ No catalog/ranking policy, photo model, data format, consent authority, network 
 
 ## Verified
 
-Local build/JVM checks and 18 targeted disposable-emulator tests passed, including three new presentation tests and the existing consent, error/cancellation, storage, local playback and English regressions. The initial presentation test compared a String against a SpannableStringBuilder with identical text; its assertion now compares text content and the selection passed. This was a test assertion failure, retained in the local log.
+Local build/JVM checks and 19 targeted disposable-emulator tests passed, including four new presentation tests and the existing consent, error/cancellation, storage, local playback and English regressions. The initial presentation test compared a String against a SpannableStringBuilder with identical text; its assertion now compares text content and the selection passed. This was a test assertion failure, retained in the local log. A 360dp-wide, 130%-text rendering check found unequal button heights when Open song wrapped; both song actions now use equal height, with a direct large-text measurement regression.
 
 Synthetic HTTP rows in those tests verify behavior only. Screenshots, actual live-phone results, APK/source hashes, light/dark/large-text observations and full exact-revision coverage belong to the PR's dated verification update. No old CI pass, fixture output or screenshot mock is substituted. Source scope remains cumulative from Release 1 with the unchanged 80% minimum per module.
 
