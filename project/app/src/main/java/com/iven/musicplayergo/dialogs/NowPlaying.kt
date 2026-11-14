@@ -12,6 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.covers.CoverTarget
+import com.iven.musicplayergo.covers.loadCover
 import com.iven.musicplayergo.databinding.NowPlayingBinding
 import com.iven.musicplayergo.databinding.NowPlayingControlsBinding
 import com.iven.musicplayergo.databinding.NowPlayingCoverBinding
@@ -313,9 +315,11 @@ class NowPlaying: BottomSheetDialogFragment() {
 
     private fun loadNpCover(selectedSong: Music) {
         mAlbumIdNp = selectedSong.albumId
-        mAlbumIdNp?.waitForCover(requireContext()) { bmp, error ->
-            _npCoverBinding?.npCover?.loadWithError(bmp, error, R.drawable.ic_music_note_cover)
-        }
+        _npCoverBinding?.npCover?.loadCover(CoverTarget.Album(selectedSong.albumId ?: 0, selectedSong.artist, selectedSong.album))
+    }
+
+    fun refreshCover() {
+        with(mMediaPlayerHolder) { (currentSongFM ?: currentSong)?.let(::loadNpCover) }
     }
 
     private fun setRepeat() {
@@ -367,7 +371,7 @@ class NowPlaying: BottomSheetDialogFragment() {
             with(mMediaPlayerHolder) {
                 (currentSongFM ?: currentSong)?.let { song ->
                     // load album cover
-                    if (mAlbumIdNp != song.albumId && mGoPreferences.isCovers) {
+                    if (mAlbumIdNp != song.albumId) {
                         loadNpCover(song)
                     }
                     // load album/song info

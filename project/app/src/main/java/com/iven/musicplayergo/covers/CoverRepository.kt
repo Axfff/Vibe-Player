@@ -1,17 +1,13 @@
 package com.iven.musicplayergo.covers
 
-import android.content.ContentResolver
 import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
 import android.net.Uri
-import androidx.exifinterface.media.ExifInterface
 import androidx.preference.PreferenceManager
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
+import java.util.UUID
 
 sealed class CoverImageInput {
     data class ContentUri(val uri: Uri) : CoverImageInput()
@@ -36,7 +32,18 @@ class AndroidCustomCoverRepository internal constructor(
 ) : CustomCoverRepository {
     override fun getCover(target: CoverTarget) = records.getCover(target)
     override fun hasCover(target: CoverTarget) = records.hasCover(target)
-    override fun coverFile(cover: CustomCover) = File(File(root, cover.targetType.name.lowercase()), cover.localFileName)
+    @Synchronized
+    override fun coverFile(cover: CustomCover): File {
+        val file = File(File(root, cover.targetType.name.lowercase()), cover.localFileName)
+        // Recover a transaction interrupted by the previous importer before it committed metadata.
+        if (!file.exists()) {
+            listOf(".bak", ".delete").firstOrNull { suffix ->
+                val pending = File(file.parentFile, file.name + suffix)
+                pending.isFile && pending.renameTo(file)
+            }
+        }
+        return file
+    }
 
     @Synchronized
     override fun setCover(
@@ -45,8 +52,12 @@ class AndroidCustomCoverRepository internal constructor(
         source: CoverSource
     ): CoverResult<CustomCover> {
         if (!target.isValid()) return CoverResult.Failure(CoverError.INVALID_TARGET)
+        val previous = when (val result = records.getCover(target)) {
+            is CoverResult.Failure -> return result
+            is CoverResult.Success -> result.value
+        }
         val bitmapResult = when (input) {
-            is CoverImageInput.ContentUri -> decodeUri(input.uri)
+            is CoverImageInput.ContentUri -> CoverImageDecoder(context, maxInputBytes, maxPixels, outputSize * 2).decode(input.uri)
             is CoverImageInput.CroppedBitmap -> validateBitmap(input.bitmap)
         }
         val bitmap = when (bitmapResult) {
@@ -58,13 +69,13 @@ class AndroidCustomCoverRepository internal constructor(
 
         val directory = File(root, target.typeDirectory())
         if (!directory.exists() && !directory.mkdirs()) {
-            normalized.recycleIfOwned(input)
+            if (normalized !== bitmap || input is CoverImageInput.ContentUri) normalized.recycle()
             return CoverResult.Failure(CoverError.STORAGE_WRITE_FAILED)
         }
-        val finalName = target.safeId() + ".webp"
+        // Immutable names keep the old record readable until the new record is durably committed.
+        val finalName = target.safeId() + "-" + UUID.randomUUID() + ".webp"
         val finalFile = File(directory, finalName)
         val temp = File(directory, finalName + ".tmp")
-        val backup = File(directory, finalName + ".bak")
         try {
             FileOutputStream(temp).use { output ->
                 if (!normalized.compress(Bitmap.CompressFormat.WEBP, 90, output)) {
@@ -72,30 +83,24 @@ class AndroidCustomCoverRepository internal constructor(
                 }
                 output.fd.sync()
             }
-            if (finalFile.exists() && !finalFile.renameTo(backup)) {
-                return CoverResult.Failure(CoverError.STORAGE_WRITE_FAILED)
-            }
             if (!temp.renameTo(finalFile)) {
-                backup.renameTo(finalFile)
                 return CoverResult.Failure(CoverError.STORAGE_WRITE_FAILED)
             }
             return when (val saved = records.putCover(target, finalName, source)) {
                 is CoverResult.Success -> {
-                    backup.delete()
+                    previous?.let { runCatching { coverFile(it).delete() } }
                     saved
                 }
                 is CoverResult.Failure -> {
                     finalFile.delete()
-                    backup.renameTo(finalFile)
                     saved
                 }
             }
         } catch (_: Exception) {
-            if (!finalFile.exists()) backup.renameTo(finalFile)
             return CoverResult.Failure(CoverError.STORAGE_WRITE_FAILED)
         } finally {
             temp.delete()
-            normalized.recycleIfOwned(input)
+            if (normalized !== bitmap || input is CoverImageInput.ContentUri) normalized.recycle()
         }
     }
 
@@ -106,68 +111,13 @@ class AndroidCustomCoverRepository internal constructor(
             is CoverResult.Success -> result.value ?: return CoverResult.Failure(CoverError.COVER_NOT_FOUND)
         }
         val file = coverFile(existing)
-        val pendingDelete = File(file.parentFile, file.name + ".delete")
-        if (file.exists() && !file.renameTo(pendingDelete)) {
-            return CoverResult.Failure(CoverError.STORAGE_WRITE_FAILED)
-        }
         return when (val removed = records.removeCover(target)) {
-            is CoverResult.Failure -> {
-                pendingDelete.renameTo(file)
-                removed
-            }
+            is CoverResult.Failure -> removed
             is CoverResult.Success -> {
-                pendingDelete.delete()
+                runCatching { file.delete() }
                 CoverResult.Success(Unit)
             }
         }
-    }
-
-    private fun decodeUri(uri: Uri): CoverResult<Bitmap> {
-        if (uri.scheme != ContentResolver.SCHEME_CONTENT) return CoverResult.Failure(CoverError.SOURCE_NOT_READABLE)
-        val mime = context.contentResolver.getType(uri)
-        if (mime !in setOf("image/jpeg", "image/png", "image/webp")) {
-            return CoverResult.Failure(CoverError.UNSUPPORTED_IMAGE_TYPE)
-        }
-        val length = runCatching {
-            context.contentResolver.openAssetFileDescriptor(uri, "r")?.use { it.length }
-        }.getOrNull() ?: -1L
-        if (length > maxInputBytes) return CoverResult.Failure(CoverError.IMAGE_TOO_LARGE)
-        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        if (!decodeStream(uri, bounds) || bounds.outWidth <= 0 || bounds.outHeight <= 0) {
-            return CoverResult.Failure(CoverError.IMAGE_DECODE_FAILED)
-        }
-        val pixels = bounds.outWidth.toLong() * bounds.outHeight.toLong()
-        if (pixels > maxPixels) return CoverResult.Failure(CoverError.IMAGE_TOO_LARGE)
-        var sample = 1
-        while (bounds.outWidth / sample > outputSize * 2 || bounds.outHeight / sample > outputSize * 2) sample *= 2
-        val decoded = try {
-            context.contentResolver.openInputStream(uri)?.use {
-                BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sample })
-            }
-        } catch (_: Exception) { null } ?: return CoverResult.Failure(CoverError.SOURCE_NOT_READABLE)
-        return CoverResult.Success(applyExif(uri, decoded))
-    }
-
-    private fun decodeStream(uri: Uri, options: BitmapFactory.Options): Boolean = try {
-        context.contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
-        true
-    } catch (_: Exception) { false }
-
-    private fun applyExif(uri: Uri, bitmap: Bitmap): Bitmap {
-        val orientation = try {
-            context.contentResolver.openInputStream(uri)?.use { ExifInterface(it) }
-                ?.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
-        } catch (_: Exception) { ExifInterface.ORIENTATION_NORMAL }
-        val matrix = Matrix()
-        when (orientation) {
-            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
-            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
-            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
-            ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> matrix.postScale(-1f, 1f)
-            ExifInterface.ORIENTATION_FLIP_VERTICAL -> matrix.postScale(1f, -1f)
-        }
-        if (matrix.isIdentity) return bitmap
-        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true).also { bitmap.recycle() }
     }
 
     private fun validateBitmap(bitmap: Bitmap): CoverResult<Bitmap> =
@@ -182,10 +132,6 @@ class AndroidCustomCoverRepository internal constructor(
         return Bitmap.createScaledBitmap(cropped, outputSize, outputSize, true).also {
             if (cropped !== bitmap) cropped.recycle()
         }
-    }
-
-    private fun Bitmap.recycleIfOwned(input: CoverImageInput) {
-        if (input is CoverImageInput.ContentUri && !isRecycled) recycle()
     }
 
     private fun CoverTarget.typeDirectory() = when (this) {
@@ -204,14 +150,36 @@ object CoverRepositories {
     fun get(context: Context): CustomCoverRepository = instance ?: synchronized(this) {
         instance ?: run {
             val app = context.applicationContext
-            val prefs = PreferenceManager.getDefaultSharedPreferences(app)
-            AndroidCustomCoverRepository(app, CoverRecordRepository(SharedPreferencesCoverStorage(prefs)))
+            val storage = SharedPreferencesCoverStorage(
+                app.getSharedPreferences(SharedPreferencesCoverStorage.FILE_NAME, Context.MODE_PRIVATE),
+                PreferenceManager.getDefaultSharedPreferences(app)
+            )
+            runCatching { storage.read() } // Retry on subsequent reads if migration could not commit.
+            AndroidCustomCoverRepository(app, CoverRecordRepository(storage))
         }.also { instance = it }
     }
 }
 
-internal class SharedPreferencesCoverStorage(private val preferences: SharedPreferences) : CoverRecordStorage {
-    override fun read(): String? = preferences.getString(KEY, null)
+internal class SharedPreferencesCoverStorage(
+    private val preferences: SharedPreferences,
+    private val legacy: SharedPreferences? = null
+) : CoverRecordStorage {
+    override fun read(): String? {
+        val current = preferences.getString(KEY, null)
+        val old = legacy?.getString(KEY, null)
+        if (old != null) {
+            // Never discard the only durable copy. Other default preferences are untouched.
+            if (current == null && !preferences.edit().putString(KEY, old).commit()) {
+                preferences.edit().remove(KEY).commit()
+                throw java.io.IOException("Cover metadata migration failed")
+            }
+            if (!requireNotNull(legacy).edit().remove(KEY).commit()) {
+                legacy.edit().putString(KEY, old).commit()
+                throw java.io.IOException("Legacy cover cleanup failed")
+            }
+        }
+        return current ?: old
+    }
     override fun write(json: String): Boolean {
         val previous = read()
         val success = try { preferences.edit().putString(KEY, json).commit() } catch (_: Exception) { false }
@@ -220,6 +188,9 @@ internal class SharedPreferencesCoverStorage(private val preferences: SharedPref
         } catch (_: Exception) { }
         return success
     }
-    companion object { const val KEY = "custom_covers_v1" }
+    companion object {
+        const val KEY = "custom_covers_v1"
+        const val FILE_NAME = "custom_covers"
+    }
 }
 

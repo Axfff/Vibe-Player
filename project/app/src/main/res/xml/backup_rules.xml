@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <exclude domain="file" path="custom-covers/" />
+    <exclude domain="sharedpref" path="custom_covers.xml" />
+</full-backup-content>

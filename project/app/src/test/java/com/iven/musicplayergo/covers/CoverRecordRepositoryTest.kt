@@ -65,6 +65,21 @@ class CoverRecordRepositoryTest {
         assertEquals("playlist.webp", success(repository.getCover(playlist))!!.localFileName)
     }
 
+    @Test fun clockRollbackDuringReplacementKeepsEveryRecordReadableAfterRestart() {
+        val a = CoverTarget.Album(7, null, null)
+        val b = CoverTarget.Album(8, null, null)
+        now = 200
+        success(repository.putCover(a, "a.webp", CoverSource.USER_SELECTED))
+        success(repository.putCover(b, "b.webp", CoverSource.USER_SELECTED))
+        now = 100
+        val changed = success(repository.putCover(a, "replacement.webp", CoverSource.USER_SELECTED))
+        val reopened = CoverRecordRepository(storage)
+        assertEquals("replacement.webp", success(reopened.getCover(a))!!.localFileName)
+        assertEquals("b.webp", success(reopened.getCover(b))!!.localFileName)
+        assertEquals(200L, changed.createdAtEpochMs)
+        assertEquals(200L, changed.updatedAtEpochMs)
+    }
+
     @Test fun removalIsExplicitAndPersists() {
         val target = CoverTarget.Album(7, null, null)
         success(repository.putCover(target, "7.webp", CoverSource.USER_SELECTED))
