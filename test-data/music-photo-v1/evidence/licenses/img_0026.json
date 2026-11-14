@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0026",
+    "kind": "image",
+    "path": "media/images/img_0026.jpg",
+    "title": "Chutes d'Ekom from the platform above the waterfall",
+    "creator": "Bmnda",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Chutes d'Ekom from the platform above the waterfall — Bmnda. https://commons.wikimedia.org/wiki/File:Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "9ba9a40d4ab2ee8aae2c8951cff392c9eaa4d5c2255b899fd7551a90c6de4d7e",
+    "sha256": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+    "original_size_bytes": 1233299,
+    "size_bytes": 416920,
+    "width": 960,
+    "height": 1280,
+    "source_dimensions": [
+      1944,
+      2592
+    ],
+    "commons_page_id": 58269696
+  },
+  "commons_imageinfo": {
+    "pageid": 58269696,
+    "ns": 6,
+    "title": "File:Chutes d'Ekom from the platform above the waterfall.jpg",
+    "index": 2,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 1233299,
+        "width": 1944,
+        "height": 2592,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=58269696",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2017-04-24 00:15:57",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Chutes d'Ekom from the platform above the waterfall",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Ekom Nkam Falls|Self-published work|Files with coordinates missing SDC location of creation",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "5.062303",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "10.029403",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Chutes d'Ekom from the platform above the waterfall",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "dry season 2016/17",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Bmnda&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Bmnda (page does not exist)\">Bmnda</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "1b4b84ba350bd7418ff8967f853eb405ef0b26bb8b22377ad730fda4996429c4",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

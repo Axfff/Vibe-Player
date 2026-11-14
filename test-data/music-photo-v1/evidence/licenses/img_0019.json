@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0019",
+    "kind": "image",
+    "path": "media/images/img_0019.jpg",
+    "title": "Autumn Seating (23323012764)",
+    "creator": "Michael Pardo from Niagara, Canada",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Autumn_Seating_(23323012764).jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Autumn_Seating_%2823323012764%29.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Autumn Seating (23323012764) — Michael Pardo from Niagara, Canada. https://commons.wikimedia.org/wiki/File:Autumn_Seating_(23323012764).jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "fdcce385c5cf86938b80b48cadf8b62490f175d20a0e25e921fc66fea3adb6e8",
+    "sha256": "7b692f3f4da7043612684cdae943bd9f0703122b4ae68e67cbcf8f8b5bd3580d",
+    "original_size_bytes": 2387343,
+    "size_bytes": 203562,
+    "width": 1280,
+    "height": 848,
+    "source_dimensions": [
+      1631,
+      1080
+    ],
+    "commons_page_id": 62914034
+  },
+  "commons_imageinfo": {
+    "pageid": 62914034,
+    "ns": 6,
+    "title": "File:Autumn Seating (23323012764).jpg",
+    "index": 1,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 2387343,
+        "width": 1631,
+        "height": 1080,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Autumn_Seating_%2823323012764%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Autumn_Seating_(23323012764).jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=62914034",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2017-09-29 23:39:00",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Autumn Seating (23323012764)",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Montebello Park|Flickr images reviewed by FlickreviewR|Leaves of unidentified plants|Files with coordinates missing SDC location of creation|2015 in St. Catharines|November 2015 in Ontario|Benches in St. Catharines|Files from Michael Pardo Flickr stream",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "43.158611",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "-79.250543",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Cold damp weather keeps the park visitors away.  A lone leaf occupies the otherwise empty benches of Montebello Park in St. Catharines.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2015-11-03 13:42",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/michaelpardo/23323012764/\">Autumn Seating</a>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/130551911@N05\">Michael Pardo</a> from Niagara, Canada",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "29c79d9ab429909c28c94a80eaf2bcff862fa820554f49de29d200897b2f48e7",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0008",
+    "kind": "image",
+    "path": "media/images/img_0008.jpg",
+    "title": "Rainbow-6.22.26",
+    "creator": "Polujopka",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Rainbow-6.22.26.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Rainbow-6.22.26.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Rainbow-6.22.26 — Polujopka. https://commons.wikimedia.org/wiki/File:Rainbow-6.22.26.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "454468894153e76ddcb55b08296c2e4fb44bc4ffdefde202bdd62ddda6bc4047",
+    "sha256": "7146b33c0a10735f82d2ed8839c93d1f2d4f81362d0349590206b0af68c9c59c",
+    "original_size_bytes": 2497893,
+    "size_bytes": 238588,
+    "width": 960,
+    "height": 1280,
+    "source_dimensions": [
+      3024,
+      4032
+    ],
+    "commons_page_id": 194885943
+  },
+  "commons_imageinfo": {
+    "pageid": 194885943,
+    "ns": 6,
+    "title": "File:Rainbow-6.22.26.jpg",
+    "index": 1,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 2497893,
+        "width": 3024,
+        "height": 4032,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Rainbow-6.22.26.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Rainbow-6.22.26.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=194885943",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2026-06-30 15:18:59",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Rainbow-6.22.26",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|Rainbows in Moscow",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "A rainbow after a small rain",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2026-06-22 21:14:05",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Polujopka&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Polujopka (page does not exist)\">Polujopka</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "73f64402c0ab91787dc1edee3e1888ce59c600443198fc165dcd33f9718e1ae6",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

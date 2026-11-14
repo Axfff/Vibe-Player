@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0035",
+    "kind": "image",
+    "path": "media/images/img_0035.jpg",
+    "title": "Raindrops on a window in Brastad 2",
+    "creator": "W.carter",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Raindrops_on_a_window_in_Brastad_2.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Raindrops_on_a_window_in_Brastad_2.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Raindrops on a window in Brastad 2 — W.carter. https://commons.wikimedia.org/wiki/File:Raindrops_on_a_window_in_Brastad_2.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "3f40bfc91a5581e1c5bd423cbc10208a993d18abe6b568c9331635a7e8860511",
+    "sha256": "854ed4082ab430cd772c92aca7ccd928c79d3197e595b52077ab55c0a130a839",
+    "original_size_bytes": 8536724,
+    "size_bytes": 373117,
+    "width": 922,
+    "height": 1280,
+    "source_dimensions": [
+      3283,
+      4559
+    ],
+    "commons_page_id": 88059184
+  },
+  "commons_imageinfo": {
+    "pageid": 88059184,
+    "ns": 6,
+    "title": "File:Raindrops on a window in Brastad 2.jpg",
+    "index": 3,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 8536724,
+        "width": 3283,
+        "height": 4559,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Raindrops_on_a_window_in_Brastad_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Raindrops_on_a_window_in_Brastad_2.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=88059184",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2020-03-14 13:36:53",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Raindrops on a window in Brastad 2",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Taken with Panasonic Lumix DMC-FZ1000|CC-Zero|Self-published work|Raindrops on windows|Images by W.carter|Files with coordinates missing SDC location of creation|Night in Brastad|Rain in Lysekil Municipality|Tuntorp, Brastad",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "58.384122",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "11.473736",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Raindrops on a window in Brastad, Lysekil Municipality, Sweden.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2019-12-05 22:19:13",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:W.carter\" title=\"User:W.carter\">W.carter</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "1c8e50c6ba4f444b7cbff6d99cfbc06ba7ead6c0c13b61a2470244eda5f3205f",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

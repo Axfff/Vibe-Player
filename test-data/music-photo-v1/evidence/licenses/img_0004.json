@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0004",
+    "kind": "image",
+    "path": "media/images/img_0004.jpg",
+    "title": "Anas Platyrhynchos Maikkulanpuisto Oulu 20240613",
+    "creator": "Estormiz",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Anas_Platyrhynchos_Maikkulanpuisto_Oulu_20240613.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Anas_Platyrhynchos_Maikkulanpuisto_Oulu_20240613.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Anas Platyrhynchos Maikkulanpuisto Oulu 20240613 — Estormiz. https://commons.wikimedia.org/wiki/File:Anas_Platyrhynchos_Maikkulanpuisto_Oulu_20240613.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "dc9573f8f1af66a8c4890ea6ad3f94c7eab5ab08242eba349078c1ab57a66bb6",
+    "sha256": "ae91b236635c4d26a5fda90591233ec655b98f1bec020d55134c818604c1c9c5",
+    "original_size_bytes": 2503270,
+    "size_bytes": 262699,
+    "width": 1280,
+    "height": 854,
+    "source_dimensions": [
+      4000,
+      2670
+    ],
+    "commons_page_id": 149335934
+  },
+  "commons_imageinfo": {
+    "pageid": 149335934,
+    "ns": 6,
+    "title": "File:Anas Platyrhynchos Maikkulanpuisto Oulu 20240613.jpg",
+    "index": 5,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 2503270,
+        "width": 4000,
+        "height": 2670,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Anas_Platyrhynchos_Maikkulanpuisto_Oulu_20240613.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Anas_Platyrhynchos_Maikkulanpuisto_Oulu_20240613.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=149335934",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2024-06-13 11:08:27",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Anas Platyrhynchos Maikkulanpuisto Oulu 20240613",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Taken with Canon EOS 6D|CC-Zero|Self-published work|Photographs by Estormiz|Anas platyrhynchos in Finland|Files with coordinates missing SDC location of creation|June 2024 in Oulu|Finland photographs taken on 2024-06-13|Birds of Oulu|Maikkulanpuisto",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "64.983235",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "25.570683",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "A female mallard wirh ducklings in a pond in the Maikkulanpuisto park in Oulu.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "Taken on 13 June 2024",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Estormiz\" title=\"User:Estormiz\">Estormiz</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "8f06d2dff03010fb5af30d1babcc10138ea8f3b55c344054813ff0978a21e622",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

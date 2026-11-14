@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0028",
+    "kind": "image",
+    "path": "media/images/img_0028.jpg",
+    "title": "IncendioCañas",
+    "creator": "Luispihormiguero",
+    "source_page": "https://commons.wikimedia.org/wiki/File:IncendioCa%C3%B1as.JPG",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/IncendioCa%C3%B1as.JPG",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "IncendioCañas — Luispihormiguero. https://commons.wikimedia.org/wiki/File:IncendioCa%C3%B1as.JPG. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "791a847c9b89e12c53efc983052e170fb33ebdb7b9d8df4cbd35af54f750271d",
+    "sha256": "973fa2adea7851354eb20b184f4d1ac5a888b1701449d9ba1f8339a6f4579591",
+    "original_size_bytes": 1047286,
+    "size_bytes": 212852,
+    "width": 1280,
+    "height": 960,
+    "source_dimensions": [
+      2272,
+      1704
+    ],
+    "commons_page_id": 27471036
+  },
+  "commons_imageinfo": {
+    "pageid": 27471036,
+    "ns": 6,
+    "title": "File:IncendioCañas.JPG",
+    "index": 4,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 1047286,
+        "width": 2272,
+        "height": 1704,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/IncendioCa%C3%B1as.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:IncendioCa%C3%B1as.JPG",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=27471036",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2013-07-28 20:17:30",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "IncendioCañas",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Taken with Fujifilm FinePix S3500|Wildfires|CC-Zero|Las Marinas (Almería)|Self-published work|Roads in the province of Almería|Blue sky in Andalusia|June 2013 in Andalusia|Nature of Roquetas de Mar|2013 in Roquetas de Mar",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Ashes left behind after a fire broke out in a cane field between El Solanillo and las Marinas, in Roquetas de Mar (Spain).",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2013-06-25",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Luispihormiguero\" class=\"mw-redirect\" title=\"User:Luispihormiguero\">Luispihormiguero</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "4d25572ec0221b7f3e1f2d6466fd7f54786b8e3cc4800d869de74d48d48f01a7",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

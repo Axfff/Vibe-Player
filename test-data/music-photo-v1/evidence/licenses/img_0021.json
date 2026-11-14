@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0021",
+    "kind": "image",
+    "path": "media/images/img_0021.jpg",
+    "title": "Schiphol dicht door mist, een verlaten pier op Schiphol, Bestanddeelnr 921-0115",
+    "creator": "Ron Kroon / Anefo",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Schiphol_dicht_door_mist,_een_verlaten_pier_op_Schiphol,_Bestanddeelnr_921-0115.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Schiphol_dicht_door_mist%2C_een_verlaten_pier_op_Schiphol%2C_Bestanddeelnr_921-0115.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Schiphol dicht door mist, een verlaten pier op Schiphol, Bestanddeelnr 921-0115 — Ron Kroon / Anefo. https://commons.wikimedia.org/wiki/File:Schiphol_dicht_door_mist,_een_verlaten_pier_op_Schiphol,_Bestanddeelnr_921-0115.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "04eca0e6fe620dc21b4981139910dc4c51e1108bf8a8df5c0c7a8ac9d2970964",
+    "sha256": "40e25ed6cf2229f9dc02344cf8184c509f245cd15d29adcb230b5e4757fc3f99",
+    "original_size_bytes": 1624508,
+    "size_bytes": 264062,
+    "width": 1280,
+    "height": 849,
+    "source_dimensions": [
+      3691,
+      2449
+    ],
+    "commons_page_id": 66497695
+  },
+  "commons_imageinfo": {
+    "pageid": 66497695,
+    "ns": 6,
+    "title": "File:Schiphol dicht door mist, een verlaten pier op Schiphol, Bestanddeelnr 921-0115.jpg",
+    "index": 1,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 1624508,
+        "width": 3691,
+        "height": 2449,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Schiphol_dicht_door_mist%2C_een_verlaten_pier_op_Schiphol%2C_Bestanddeelnr_921-0115.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Schiphol_dicht_door_mist,_een_verlaten_pier_op_Schiphol,_Bestanddeelnr_921-0115.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=66497695",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2018-02-16 19:19:03",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Schiphol dicht door mist, een verlaten pier op Schiphol, Bestanddeelnr 921-0115",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Images from Nationaal Archief|Images from Anefo|Netherlands photographs taken on 1968-01-22|Photographs by Ron Kroon at Schiphol Airport (1968)",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Collectie / Archief : Fotocollectie Anefo<br>\n<p>Reportage / Serie : [ onbekend ]<br>\nBeschrijving : Schiphol dicht door mist, een verlaten pier op Schiphol<br>\nDatum : 22 januari 1968<br>\nLocatie : Noord-Holland, Schiphol<br>\nTrefwoorden : MIST, hallen<br>\nFotograaf : Kroon, Ron / Anefo<br>\nAuteursrechthebbende : Nationaal Archief <br>\nMateriaalsoort : Negatief (zwart/wit)<br>\nNummer archiefinventaris : bekijk toegang 2.24.01.05<br>\n</p>\nBestanddeelnummer : 921-0115<br>",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "1968-01-22",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<a rel=\"nofollow\" class=\"external free\" href=\"http://proxy.handle.net/10648/ab33530c-d0b4-102d-bcf8-003048976d84\">http://proxy.handle.net/10648/ab33530c-d0b4-102d-bcf8-003048976d84</a>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "Ron Kroon / Anefo",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "c7a13403051c18597b9f760b7cf578abaa5122a4e977ca11ce56c92cc0b0bf5c",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}
