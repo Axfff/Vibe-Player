@@ -1,0 +1,3221 @@
+{
+  "cases": [
+    {
+      "case_id": "case_01",
+      "audio_id": "audio_0001",
+      "photo_ids": [
+        "fresh_00a581a5",
+        "fresh_8b9bbb36",
+        "fresh_15e634a7",
+        "fresh_3be3f741",
+        "fresh_f3900e1d"
+      ],
+      "audio_ms": 3356,
+      "cold_photo_ms": 4003,
+      "cached_photo_ms": 368,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "happy",
+          "score": 0.41840753
+        },
+        {
+          "label": "uplifting",
+          "score": 0.12979916
+        },
+        {
+          "label": "love",
+          "score": 0.12619069
+        },
+        {
+          "label": "melodic",
+          "score": 0.11510892
+        },
+        {
+          "label": "upbeat",
+          "score": 0.11047159
+        },
+        {
+          "label": "fun",
+          "score": 0.10960602
+        },
+        {
+          "label": "positive",
+          "score": 0.0996801
+        },
+        {
+          "label": "inspiring",
+          "score": 0.09608803
+        },
+        {
+          "label": "advertising",
+          "score": 0.09468221
+        },
+        {
+          "label": "background",
+          "score": 0.08623831
+        },
+        {
+          "label": "corporate",
+          "score": 0.07840003
+        },
+        {
+          "label": "romantic",
+          "score": 0.076338366
+        },
+        {
+          "label": "energetic",
+          "score": 0.07609771
+        },
+        {
+          "label": "soft",
+          "score": 0.06690681
+        },
+        {
+          "label": "christmas",
+          "score": 0.06277245
+        },
+        {
+          "label": "relaxing",
+          "score": 0.05871334
+        },
+        {
+          "label": "funny",
+          "score": 0.057687234
+        },
+        {
+          "label": "ballad",
+          "score": 0.05657388
+        },
+        {
+          "label": "children",
+          "score": 0.051413257
+        },
+        {
+          "label": "film",
+          "score": 0.049299948
+        },
+        {
+          "label": "motivational",
+          "score": 0.0463336
+        },
+        {
+          "label": "meditative",
+          "score": 0.044934675
+        },
+        {
+          "label": "hopeful",
+          "score": 0.043159693
+        },
+        {
+          "label": "summer",
+          "score": 0.04297082
+        },
+        {
+          "label": "sad",
+          "score": 0.04117814
+        },
+        {
+          "label": "commercial",
+          "score": 0.0384321
+        },
+        {
+          "label": "calm",
+          "score": 0.033012185
+        },
+        {
+          "label": "emotional",
+          "score": 0.032349683
+        },
+        {
+          "label": "holiday",
+          "score": 0.031876553
+        },
+        {
+          "label": "cool",
+          "score": 0.029076807
+        },
+        {
+          "label": "slow",
+          "score": 0.028332056
+        },
+        {
+          "label": "dream",
+          "score": 0.02821727
+        },
+        {
+          "label": "drama",
+          "score": 0.027601598
+        },
+        {
+          "label": "melancholic",
+          "score": 0.027402615
+        },
+        {
+          "label": "adventure",
+          "score": 0.025452135
+        },
+        {
+          "label": "documentary",
+          "score": 0.024799084
+        },
+        {
+          "label": "movie",
+          "score": 0.02464832
+        },
+        {
+          "label": "party",
+          "score": 0.023442559
+        },
+        {
+          "label": "groovy",
+          "score": 0.021851446
+        },
+        {
+          "label": "deep",
+          "score": 0.01924191
+        },
+        {
+          "label": "travel",
+          "score": 0.018645171
+        },
+        {
+          "label": "nature",
+          "score": 0.017988548
+        },
+        {
+          "label": "dark",
+          "score": 0.01771555
+        },
+        {
+          "label": "game",
+          "score": 0.016880052
+        },
+        {
+          "label": "epic",
+          "score": 0.01332766
+        },
+        {
+          "label": "action",
+          "score": 0.012944197
+        },
+        {
+          "label": "retro",
+          "score": 0.012484523
+        },
+        {
+          "label": "sexy",
+          "score": 0.011200591
+        },
+        {
+          "label": "sport",
+          "score": 0.0107422825
+        },
+        {
+          "label": "dramatic",
+          "score": 0.009038778
+        },
+        {
+          "label": "fast",
+          "score": 0.008730621
+        },
+        {
+          "label": "space",
+          "score": 0.007838778
+        },
+        {
+          "label": "soundscape",
+          "score": 0.007059455
+        },
+        {
+          "label": "heavy",
+          "score": 0.003118367
+        },
+        {
+          "label": "trailer",
+          "score": 0.0030275625
+        },
+        {
+          "label": "powerful",
+          "score": 0.0027110649
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "fresh_00a581a5",
+          "fingerprint": "9ba9b063d201b34ad6f15acf00b4f495cce0ad5df03a581d71179cc086ba9900",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.24231938
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5684829
+            },
+            {
+              "label": "peaceful",
+              "support": 0.24398994
+            },
+            {
+              "label": "reflective",
+              "support": 0.06039682
+            },
+            {
+              "label": "intense",
+              "support": 0.12713042
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_012a3946",
+          "fingerprint": "299006601c8c999b22e42bc77e8565850b492c818b3503af1d70ab7b065bf4b4",
+          "labels": [
+            {
+              "label": "lakeside",
+              "confidence": 0.30177164
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.26965225
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39985538
+            },
+            {
+              "label": "reflective",
+              "support": 0.20700231
+            },
+            {
+              "label": "intense",
+              "support": 0.1234901
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_05d92e07",
+          "fingerprint": "5a7491eae0d4ce5bef1bf68920028c23acfbfa982ed0d304c00100e54c9ec440",
+          "labels": [
+            {
+              "label": "insects",
+              "confidence": 0.27053607
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16384813
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37507218
+            },
+            {
+              "label": "reflective",
+              "support": 0.3292762
+            },
+            {
+              "label": "intense",
+              "support": 0.13180341
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_15e634a7",
+          "fingerprint": "c087044e89f3e1e91b36a66ba7eb755fc4458ef0e8db72afdd4edc67d5806acb",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.48107585
+            },
+            {
+              "label": "peaceful",
+              "support": 0.27478924
+            },
+            {
+              "label": "reflective",
+              "support": 0.06637249
+            },
+            {
+              "label": "intense",
+              "support": 0.17776248
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_2bd78206",
+          "fingerprint": "334a2cb109cb530e32e239193c9362bffe48aa4fcf5cec500f06701ad5df4a5b",
+          "labels": [
+            {
+              "label": "butterfly",
+              "confidence": 0.32398903
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.18073665
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37401864
+            },
+            {
+              "label": "reflective",
+              "support": 0.23439652
+            },
+            {
+              "label": "intense",
+              "support": 0.2108482
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_3be3f741",
+          "fingerprint": "5a915c800dade2ffdedd529486d2c29b7cff215e821ef65f75250bd3d896e8eb",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.26629043
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.4464558
+            },
+            {
+              "label": "peaceful",
+              "support": 0.31798664
+            },
+            {
+              "label": "reflective",
+              "support": 0.08227667
+            },
+            {
+              "label": "intense",
+              "support": 0.15328088
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4ce855a2",
+          "fingerprint": "eb58785eac4fc44334eef6c823e70e2c7ca265aed8d79e300747bb7d0358db8d",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19485334
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25741333
+            },
+            {
+              "label": "reflective",
+              "support": 0.12112011
+            },
+            {
+              "label": "intense",
+              "support": 0.4266132
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4d4e6a83",
+          "fingerprint": "19a6cee7ded52876b2b8185ab217147270e05595356ea9f1f922f52a984182ab",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19896522
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25807703
+            },
+            {
+              "label": "reflective",
+              "support": 0.082471445
+            },
+            {
+              "label": "intense",
+              "support": 0.46048626
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_61ff3233",
+          "fingerprint": "cdc059212b3414daa407111f2a2bc9ec29242ec2886ff15fbdba7f80f134358d",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.31998694
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.39273196
+            },
+            {
+              "label": "peaceful",
+              "support": 0.18648726
+            },
+            {
+              "label": "reflective",
+              "support": 0.18744747
+            },
+            {
+              "label": "intense",
+              "support": 0.23333332
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_67223236",
+          "fingerprint": "d932d6704d7ce36b65747971cbc1782b6b1708591ceb5f0e67e0a0f51c231ec1",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.31872332
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.22904433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.4384358
+            },
+            {
+              "label": "reflective",
+              "support": 0.11495013
+            },
+            {
+              "label": "intense",
+              "support": 0.21756966
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_83a4ea69",
+          "fingerprint": "23f4f070d63b3fdc46c85947cea7c83966e901113f0c480db5efa0702c63ccde",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.303727
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19832718
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39501578
+            },
+            {
+              "label": "reflective",
+              "support": 0.24501505
+            },
+            {
+              "label": "intense",
+              "support": 0.16164201
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8896cc23",
+          "fingerprint": "09d2b04ed8c03e471c49052af569d359b01e90158f2135fcdb0c8e499a995ab9",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16167028
+            },
+            {
+              "label": "peaceful",
+              "support": 0.29767367
+            },
+            {
+              "label": "reflective",
+              "support": 0.1525249
+            },
+            {
+              "label": "intense",
+              "support": 0.3881312
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8b9bbb36",
+          "fingerprint": "33215c3ae02fd09c3c2b92c249d0517be356021f2cf0538f4e657a55bd8c6178",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.2569908
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5368999
+            },
+            {
+              "label": "peaceful",
+              "support": 0.14071654
+            },
+            {
+              "label": "reflective",
+              "support": 0.06086829
+            },
+            {
+              "label": "intense",
+              "support": 0.2615152
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8ecb26a2",
+          "fingerprint": "5b37d205a559264700c4694ba974bdc4e898f749c29dfe5c6de84eb4a6cd4228",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.09779301
+            },
+            {
+              "label": "peaceful",
+              "support": 0.3362226
+            },
+            {
+              "label": "reflective",
+              "support": 0.4468859
+            },
+            {
+              "label": "intense",
+              "support": 0.11909849
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_94d186eb",
+          "fingerprint": "c47c0d3da2eec6311d1e226238bf318b9135b3f3ee74a79d42cd43b41a422f64",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.27747557
+            },
+            {
+              "label": "peaceful",
+              "support": 0.26958272
+            },
+            {
+              "label": "reflective",
+              "support": 0.08225967
+            },
+            {
+              "label": "intense",
+              "support": 0.37068203
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_c5bbaaa7",
+          "fingerprint": "1b3321123997cab74dd8ab5f36fcb6f8671a19f69ef665645b71fc6cc4dbd24f",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.27046794
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.13499442
+            },
+            {
+              "label": "peaceful",
+              "support": 0.33434752
+            },
+            {
+              "label": "reflective",
+              "support": 0.36827934
+            },
+            {
+              "label": "intense",
+              "support": 0.16237867
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_d98b805f",
+          "fingerprint": "96cfa0fb97bcb97eec5bf243b2ac378af8860a13710e3178bfaac2ee459dbee3",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.1389433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.370745
+            },
+            {
+              "label": "reflective",
+              "support": 0.3136323
+            },
+            {
+              "label": "intense",
+              "support": 0.17667934
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_e06db6bc",
+          "fingerprint": "d903a288817d106db47496f927a8d30bf89312876147f98ae8c01f174f91be22",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.33554244
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.23748754
+            },
+            {
+              "label": "peaceful",
+              "support": 0.20260252
+            },
+            {
+              "label": "reflective",
+              "support": 0.3778063
+            },
+            {
+              "label": "intense",
+              "support": 0.18210362
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_f3900e1d",
+          "fingerprint": "01804b6bfbf9ec383bb1f52d8af2aa8e06201e696f25157831c62d791a1be0a3",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.258881
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.42279717
+            },
+            {
+              "label": "peaceful",
+              "support": 0.13945463
+            },
+            {
+              "label": "reflective",
+              "support": 0.049373437
+            },
+            {
+              "label": "intense",
+              "support": 0.3883748
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_fee49c40",
+          "fingerprint": "e7998f2740163b893fdd4e1c4b4304c1fb1eb1fbbf34aab4b784417dc5b1ff41",
+          "labels": [
+            {
+              "label": "sunset",
+              "confidence": 0.29357713
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.34756818
+            },
+            {
+              "label": "peaceful",
+              "support": 0.28439727
+            },
+            {
+              "label": "reflective",
+              "support": 0.18086289
+            },
+            {
+              "label": "intense",
+              "support": 0.18717167
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "fresh_00a581a5",
+          "score": 0.55493116,
+          "reasons": [
+            "轻快的音乐氛围 × 模型推测的轻快鲜活画面",
+            "画面线索：花卉（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_8b9bbb36",
+          "score": 0.52304775,
+          "reasons": [
+            "轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面",
+            "画面线索：聚会（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_15e634a7",
+          "score": 0.47222835,
+          "reasons": [
+            "轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面"
+          ]
+        },
+        {
+          "photo_id": "fresh_3be3f741",
+          "score": 0.43987978,
+          "reasons": [
+            "轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面",
+            "画面线索：花卉（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_f3900e1d",
+          "score": 0.41455188,
+          "reasons": [
+            "轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面",
+            "画面线索：聚会（模型推测），请看预览确认"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_02",
+      "audio_id": "audio_0006",
+      "photo_ids": [
+        "fresh_67223236",
+        "fresh_012a3946",
+        "fresh_83a4ea69",
+        "fresh_05d92e07",
+        "fresh_d98b805f"
+      ],
+      "audio_ms": 3360,
+      "cold_photo_ms": 5289,
+      "cached_photo_ms": 298,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "relaxing",
+          "score": 0.13101591
+        },
+        {
+          "label": "slow",
+          "score": 0.08193791
+        },
+        {
+          "label": "sad",
+          "score": 0.07808498
+        },
+        {
+          "label": "emotional",
+          "score": 0.07723151
+        },
+        {
+          "label": "calm",
+          "score": 0.07590238
+        },
+        {
+          "label": "happy",
+          "score": 0.07492751
+        },
+        {
+          "label": "meditative",
+          "score": 0.07045081
+        },
+        {
+          "label": "background",
+          "score": 0.066441156
+        },
+        {
+          "label": "dark",
+          "score": 0.05358348
+        },
+        {
+          "label": "motivational",
+          "score": 0.051231336
+        },
+        {
+          "label": "advertising",
+          "score": 0.050335344
+        },
+        {
+          "label": "dream",
+          "score": 0.050316185
+        },
+        {
+          "label": "inspiring",
+          "score": 0.049613424
+        },
+        {
+          "label": "romantic",
+          "score": 0.049455974
+        },
+        {
+          "label": "film",
+          "score": 0.048047997
+        },
+        {
+          "label": "soft",
+          "score": 0.047251847
+        },
+        {
+          "label": "melodic",
+          "score": 0.04463129
+        },
+        {
+          "label": "love",
+          "score": 0.04010664
+        },
+        {
+          "label": "uplifting",
+          "score": 0.036841862
+        },
+        {
+          "label": "melancholic",
+          "score": 0.035754375
+        },
+        {
+          "label": "space",
+          "score": 0.03480961
+        },
+        {
+          "label": "soundscape",
+          "score": 0.03369734
+        },
+        {
+          "label": "documentary",
+          "score": 0.02897914
+        },
+        {
+          "label": "hopeful",
+          "score": 0.02723566
+        },
+        {
+          "label": "corporate",
+          "score": 0.02637699
+        },
+        {
+          "label": "drama",
+          "score": 0.01801494
+        },
+        {
+          "label": "nature",
+          "score": 0.0179489
+        },
+        {
+          "label": "cool",
+          "score": 0.017039327
+        },
+        {
+          "label": "deep",
+          "score": 0.016943479
+        },
+        {
+          "label": "energetic",
+          "score": 0.015453212
+        },
+        {
+          "label": "positive",
+          "score": 0.014996005
+        },
+        {
+          "label": "ballad",
+          "score": 0.014743136
+        },
+        {
+          "label": "children",
+          "score": 0.014394783
+        },
+        {
+          "label": "dramatic",
+          "score": 0.013746856
+        },
+        {
+          "label": "movie",
+          "score": 0.01337887
+        },
+        {
+          "label": "commercial",
+          "score": 0.013300168
+        },
+        {
+          "label": "summer",
+          "score": 0.012234442
+        },
+        {
+          "label": "christmas",
+          "score": 0.011955893
+        },
+        {
+          "label": "epic",
+          "score": 0.011317292
+        },
+        {
+          "label": "holiday",
+          "score": 0.0109532885
+        },
+        {
+          "label": "fun",
+          "score": 0.00997418
+        },
+        {
+          "label": "adventure",
+          "score": 0.009871094
+        },
+        {
+          "label": "travel",
+          "score": 0.009701811
+        },
+        {
+          "label": "action",
+          "score": 0.007220787
+        },
+        {
+          "label": "upbeat",
+          "score": 0.007124871
+        },
+        {
+          "label": "game",
+          "score": 0.0065894844
+        },
+        {
+          "label": "funny",
+          "score": 0.0055725463
+        },
+        {
+          "label": "groovy",
+          "score": 0.004785077
+        },
+        {
+          "label": "retro",
+          "score": 0.004369029
+        },
+        {
+          "label": "party",
+          "score": 0.00414665
+        },
+        {
+          "label": "sport",
+          "score": 0.003106406
+        },
+        {
+          "label": "trailer",
+          "score": 0.0030721098
+        },
+        {
+          "label": "sexy",
+          "score": 0.0027612243
+        },
+        {
+          "label": "fast",
+          "score": 0.0014911767
+        },
+        {
+          "label": "heavy",
+          "score": 0.0012838994
+        },
+        {
+          "label": "powerful",
+          "score": 0.0011333772
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "fresh_00a581a5",
+          "fingerprint": "9ba9b063d201b34ad6f15acf00b4f495cce0ad5df03a581d71179cc086ba9900",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.24231938
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5684829
+            },
+            {
+              "label": "peaceful",
+              "support": 0.24398994
+            },
+            {
+              "label": "reflective",
+              "support": 0.06039682
+            },
+            {
+              "label": "intense",
+              "support": 0.12713042
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_012a3946",
+          "fingerprint": "299006601c8c999b22e42bc77e8565850b492c818b3503af1d70ab7b065bf4b4",
+          "labels": [
+            {
+              "label": "lakeside",
+              "confidence": 0.30177164
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.26965225
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39985538
+            },
+            {
+              "label": "reflective",
+              "support": 0.20700231
+            },
+            {
+              "label": "intense",
+              "support": 0.1234901
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_05d92e07",
+          "fingerprint": "5a7491eae0d4ce5bef1bf68920028c23acfbfa982ed0d304c00100e54c9ec440",
+          "labels": [
+            {
+              "label": "insects",
+              "confidence": 0.27053607
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16384813
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37507218
+            },
+            {
+              "label": "reflective",
+              "support": 0.3292762
+            },
+            {
+              "label": "intense",
+              "support": 0.13180341
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_15e634a7",
+          "fingerprint": "c087044e89f3e1e91b36a66ba7eb755fc4458ef0e8db72afdd4edc67d5806acb",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.48107585
+            },
+            {
+              "label": "peaceful",
+              "support": 0.27478924
+            },
+            {
+              "label": "reflective",
+              "support": 0.06637249
+            },
+            {
+              "label": "intense",
+              "support": 0.17776248
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_2bd78206",
+          "fingerprint": "334a2cb109cb530e32e239193c9362bffe48aa4fcf5cec500f06701ad5df4a5b",
+          "labels": [
+            {
+              "label": "butterfly",
+              "confidence": 0.32398903
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.18073665
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37401864
+            },
+            {
+              "label": "reflective",
+              "support": 0.23439652
+            },
+            {
+              "label": "intense",
+              "support": 0.2108482
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_3be3f741",
+          "fingerprint": "5a915c800dade2ffdedd529486d2c29b7cff215e821ef65f75250bd3d896e8eb",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.26629043
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.4464558
+            },
+            {
+              "label": "peaceful",
+              "support": 0.31798664
+            },
+            {
+              "label": "reflective",
+              "support": 0.08227667
+            },
+            {
+              "label": "intense",
+              "support": 0.15328088
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4ce855a2",
+          "fingerprint": "eb58785eac4fc44334eef6c823e70e2c7ca265aed8d79e300747bb7d0358db8d",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19485334
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25741333
+            },
+            {
+              "label": "reflective",
+              "support": 0.12112011
+            },
+            {
+              "label": "intense",
+              "support": 0.4266132
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4d4e6a83",
+          "fingerprint": "19a6cee7ded52876b2b8185ab217147270e05595356ea9f1f922f52a984182ab",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19896522
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25807703
+            },
+            {
+              "label": "reflective",
+              "support": 0.082471445
+            },
+            {
+              "label": "intense",
+              "support": 0.46048626
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_61ff3233",
+          "fingerprint": "cdc059212b3414daa407111f2a2bc9ec29242ec2886ff15fbdba7f80f134358d",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.31998694
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.39273196
+            },
+            {
+              "label": "peaceful",
+              "support": 0.18648726
+            },
+            {
+              "label": "reflective",
+              "support": 0.18744747
+            },
+            {
+              "label": "intense",
+              "support": 0.23333332
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_67223236",
+          "fingerprint": "d932d6704d7ce36b65747971cbc1782b6b1708591ceb5f0e67e0a0f51c231ec1",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.31872332
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.22904433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.4384358
+            },
+            {
+              "label": "reflective",
+              "support": 0.11495013
+            },
+            {
+              "label": "intense",
+              "support": 0.21756966
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_83a4ea69",
+          "fingerprint": "23f4f070d63b3fdc46c85947cea7c83966e901113f0c480db5efa0702c63ccde",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.303727
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19832718
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39501578
+            },
+            {
+              "label": "reflective",
+              "support": 0.24501505
+            },
+            {
+              "label": "intense",
+              "support": 0.16164201
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8896cc23",
+          "fingerprint": "09d2b04ed8c03e471c49052af569d359b01e90158f2135fcdb0c8e499a995ab9",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16167028
+            },
+            {
+              "label": "peaceful",
+              "support": 0.29767367
+            },
+            {
+              "label": "reflective",
+              "support": 0.1525249
+            },
+            {
+              "label": "intense",
+              "support": 0.3881312
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8b9bbb36",
+          "fingerprint": "33215c3ae02fd09c3c2b92c249d0517be356021f2cf0538f4e657a55bd8c6178",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.2569908
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5368999
+            },
+            {
+              "label": "peaceful",
+              "support": 0.14071654
+            },
+            {
+              "label": "reflective",
+              "support": 0.06086829
+            },
+            {
+              "label": "intense",
+              "support": 0.2615152
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8ecb26a2",
+          "fingerprint": "5b37d205a559264700c4694ba974bdc4e898f749c29dfe5c6de84eb4a6cd4228",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.09779301
+            },
+            {
+              "label": "peaceful",
+              "support": 0.3362226
+            },
+            {
+              "label": "reflective",
+              "support": 0.4468859
+            },
+            {
+              "label": "intense",
+              "support": 0.11909849
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_94d186eb",
+          "fingerprint": "c47c0d3da2eec6311d1e226238bf318b9135b3f3ee74a79d42cd43b41a422f64",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.27747557
+            },
+            {
+              "label": "peaceful",
+              "support": 0.26958272
+            },
+            {
+              "label": "reflective",
+              "support": 0.08225967
+            },
+            {
+              "label": "intense",
+              "support": 0.37068203
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_c5bbaaa7",
+          "fingerprint": "1b3321123997cab74dd8ab5f36fcb6f8671a19f69ef665645b71fc6cc4dbd24f",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.27046794
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.13499442
+            },
+            {
+              "label": "peaceful",
+              "support": 0.33434752
+            },
+            {
+              "label": "reflective",
+              "support": 0.36827934
+            },
+            {
+              "label": "intense",
+              "support": 0.16237867
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_d98b805f",
+          "fingerprint": "96cfa0fb97bcb97eec5bf243b2ac378af8860a13710e3178bfaac2ee459dbee3",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.1389433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.370745
+            },
+            {
+              "label": "reflective",
+              "support": 0.3136323
+            },
+            {
+              "label": "intense",
+              "support": 0.17667934
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_e06db6bc",
+          "fingerprint": "d903a288817d106db47496f927a8d30bf89312876147f98ae8c01f174f91be22",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.33554244
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.23748754
+            },
+            {
+              "label": "peaceful",
+              "support": 0.20260252
+            },
+            {
+              "label": "reflective",
+              "support": 0.3778063
+            },
+            {
+              "label": "intense",
+              "support": 0.18210362
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_f3900e1d",
+          "fingerprint": "01804b6bfbf9ec383bb1f52d8af2aa8e06201e696f25157831c62d791a1be0a3",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.258881
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.42279717
+            },
+            {
+              "label": "peaceful",
+              "support": 0.13945463
+            },
+            {
+              "label": "reflective",
+              "support": 0.049373437
+            },
+            {
+              "label": "intense",
+              "support": 0.3883748
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_fee49c40",
+          "fingerprint": "e7998f2740163b893fdd4e1c4b4304c1fb1eb1fbbf34aab4b784417dc5b1ff41",
+          "labels": [
+            {
+              "label": "sunset",
+              "confidence": 0.29357713
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.34756818
+            },
+            {
+              "label": "peaceful",
+              "support": 0.28439727
+            },
+            {
+              "label": "reflective",
+              "support": 0.18086289
+            },
+            {
+              "label": "intense",
+              "support": 0.18717167
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "fresh_67223236",
+          "score": 0.36757472,
+          "reasons": [
+            "放松的音乐氛围 × 模型推测的宁静舒缓画面",
+            "画面线索：瀑布（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_012a3946",
+          "score": 0.35730577,
+          "reasons": [
+            "放松的音乐氛围 × 模型推测的宁静舒缓画面；轻快的音乐氛围 × 模型推测的轻快鲜活画面",
+            "画面线索：湖面（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_83a4ea69",
+          "score": 0.35651496,
+          "reasons": [
+            "放松的音乐氛围 × 模型推测的宁静舒缓画面",
+            "画面线索：瀑布（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_05d92e07",
+          "score": 0.35475293,
+          "reasons": [
+            "放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面",
+            "画面线索：昆虫（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_d98b805f",
+          "score": 0.34719598,
+          "reasons": [
+            "放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_03",
+      "audio_id": "audio_0011",
+      "photo_ids": [
+        "fresh_8ecb26a2",
+        "fresh_c5bbaaa7",
+        "fresh_e06db6bc"
+      ],
+      "audio_ms": 3403,
+      "cold_photo_ms": 3513,
+      "cached_photo_ms": 313,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "relaxing",
+          "score": 0.15303701
+        },
+        {
+          "label": "film",
+          "score": 0.10049086
+        },
+        {
+          "label": "emotional",
+          "score": 0.09356658
+        },
+        {
+          "label": "background",
+          "score": 0.07304163
+        },
+        {
+          "label": "romantic",
+          "score": 0.07124134
+        },
+        {
+          "label": "christmas",
+          "score": 0.06941288
+        },
+        {
+          "label": "melodic",
+          "score": 0.064674154
+        },
+        {
+          "label": "sad",
+          "score": 0.06427309
+        },
+        {
+          "label": "drama",
+          "score": 0.06016662
+        },
+        {
+          "label": "meditative",
+          "score": 0.058188137
+        },
+        {
+          "label": "inspiring",
+          "score": 0.055943567
+        },
+        {
+          "label": "melancholic",
+          "score": 0.05266381
+        },
+        {
+          "label": "soft",
+          "score": 0.03974915
+        },
+        {
+          "label": "happy",
+          "score": 0.03718509
+        },
+        {
+          "label": "epic",
+          "score": 0.037124284
+        },
+        {
+          "label": "documentary",
+          "score": 0.0357353
+        },
+        {
+          "label": "ballad",
+          "score": 0.03205566
+        },
+        {
+          "label": "adventure",
+          "score": 0.027198428
+        },
+        {
+          "label": "love",
+          "score": 0.027052967
+        },
+        {
+          "label": "corporate",
+          "score": 0.026919829
+        },
+        {
+          "label": "motivational",
+          "score": 0.026393356
+        },
+        {
+          "label": "hopeful",
+          "score": 0.02464208
+        },
+        {
+          "label": "holiday",
+          "score": 0.024594387
+        },
+        {
+          "label": "dream",
+          "score": 0.024258515
+        },
+        {
+          "label": "nature",
+          "score": 0.023663634
+        },
+        {
+          "label": "uplifting",
+          "score": 0.023459308
+        },
+        {
+          "label": "dark",
+          "score": 0.022153331
+        },
+        {
+          "label": "dramatic",
+          "score": 0.020802263
+        },
+        {
+          "label": "action",
+          "score": 0.020354802
+        },
+        {
+          "label": "energetic",
+          "score": 0.020329127
+        },
+        {
+          "label": "children",
+          "score": 0.01978748
+        },
+        {
+          "label": "calm",
+          "score": 0.019785512
+        },
+        {
+          "label": "advertising",
+          "score": 0.01920696
+        },
+        {
+          "label": "movie",
+          "score": 0.01877767
+        },
+        {
+          "label": "positive",
+          "score": 0.016344469
+        },
+        {
+          "label": "space",
+          "score": 0.013178173
+        },
+        {
+          "label": "slow",
+          "score": 0.011850544
+        },
+        {
+          "label": "soundscape",
+          "score": 0.011535198
+        },
+        {
+          "label": "cool",
+          "score": 0.010589512
+        },
+        {
+          "label": "commercial",
+          "score": 0.010250807
+        },
+        {
+          "label": "funny",
+          "score": 0.008038276
+        },
+        {
+          "label": "game",
+          "score": 0.008019724
+        },
+        {
+          "label": "fun",
+          "score": 0.007874053
+        },
+        {
+          "label": "trailer",
+          "score": 0.007124468
+        },
+        {
+          "label": "travel",
+          "score": 0.0069927233
+        },
+        {
+          "label": "summer",
+          "score": 0.006389743
+        },
+        {
+          "label": "deep",
+          "score": 0.0062850066
+        },
+        {
+          "label": "upbeat",
+          "score": 0.0044514793
+        },
+        {
+          "label": "sport",
+          "score": 0.0031345147
+        },
+        {
+          "label": "groovy",
+          "score": 0.0029981774
+        },
+        {
+          "label": "party",
+          "score": 0.0023768153
+        },
+        {
+          "label": "retro",
+          "score": 0.0021259477
+        },
+        {
+          "label": "powerful",
+          "score": 0.001975633
+        },
+        {
+          "label": "heavy",
+          "score": 0.0019171074
+        },
+        {
+          "label": "sexy",
+          "score": 0.0017573186
+        },
+        {
+          "label": "fast",
+          "score": 0.0016688437
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "fresh_00a581a5",
+          "fingerprint": "9ba9b063d201b34ad6f15acf00b4f495cce0ad5df03a581d71179cc086ba9900",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.24231938
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5684829
+            },
+            {
+              "label": "peaceful",
+              "support": 0.24398994
+            },
+            {
+              "label": "reflective",
+              "support": 0.06039682
+            },
+            {
+              "label": "intense",
+              "support": 0.12713042
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_012a3946",
+          "fingerprint": "299006601c8c999b22e42bc77e8565850b492c818b3503af1d70ab7b065bf4b4",
+          "labels": [
+            {
+              "label": "lakeside",
+              "confidence": 0.30177164
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.26965225
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39985538
+            },
+            {
+              "label": "reflective",
+              "support": 0.20700231
+            },
+            {
+              "label": "intense",
+              "support": 0.1234901
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_05d92e07",
+          "fingerprint": "5a7491eae0d4ce5bef1bf68920028c23acfbfa982ed0d304c00100e54c9ec440",
+          "labels": [
+            {
+              "label": "insects",
+              "confidence": 0.27053607
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16384813
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37507218
+            },
+            {
+              "label": "reflective",
+              "support": 0.3292762
+            },
+            {
+              "label": "intense",
+              "support": 0.13180341
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_15e634a7",
+          "fingerprint": "c087044e89f3e1e91b36a66ba7eb755fc4458ef0e8db72afdd4edc67d5806acb",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.48107585
+            },
+            {
+              "label": "peaceful",
+              "support": 0.27478924
+            },
+            {
+              "label": "reflective",
+              "support": 0.06637249
+            },
+            {
+              "label": "intense",
+              "support": 0.17776248
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_2bd78206",
+          "fingerprint": "334a2cb109cb530e32e239193c9362bffe48aa4fcf5cec500f06701ad5df4a5b",
+          "labels": [
+            {
+              "label": "butterfly",
+              "confidence": 0.32398903
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.18073665
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37401864
+            },
+            {
+              "label": "reflective",
+              "support": 0.23439652
+            },
+            {
+              "label": "intense",
+              "support": 0.2108482
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_3be3f741",
+          "fingerprint": "5a915c800dade2ffdedd529486d2c29b7cff215e821ef65f75250bd3d896e8eb",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.26629043
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.4464558
+            },
+            {
+              "label": "peaceful",
+              "support": 0.31798664
+            },
+            {
+              "label": "reflective",
+              "support": 0.08227667
+            },
+            {
+              "label": "intense",
+              "support": 0.15328088
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4ce855a2",
+          "fingerprint": "eb58785eac4fc44334eef6c823e70e2c7ca265aed8d79e300747bb7d0358db8d",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19485334
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25741333
+            },
+            {
+              "label": "reflective",
+              "support": 0.12112011
+            },
+            {
+              "label": "intense",
+              "support": 0.4266132
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4d4e6a83",
+          "fingerprint": "19a6cee7ded52876b2b8185ab217147270e05595356ea9f1f922f52a984182ab",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19896522
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25807703
+            },
+            {
+              "label": "reflective",
+              "support": 0.082471445
+            },
+            {
+              "label": "intense",
+              "support": 0.46048626
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_61ff3233",
+          "fingerprint": "cdc059212b3414daa407111f2a2bc9ec29242ec2886ff15fbdba7f80f134358d",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.31998694
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.39273196
+            },
+            {
+              "label": "peaceful",
+              "support": 0.18648726
+            },
+            {
+              "label": "reflective",
+              "support": 0.18744747
+            },
+            {
+              "label": "intense",
+              "support": 0.23333332
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_67223236",
+          "fingerprint": "d932d6704d7ce36b65747971cbc1782b6b1708591ceb5f0e67e0a0f51c231ec1",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.31872332
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.22904433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.4384358
+            },
+            {
+              "label": "reflective",
+              "support": 0.11495013
+            },
+            {
+              "label": "intense",
+              "support": 0.21756966
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_83a4ea69",
+          "fingerprint": "23f4f070d63b3fdc46c85947cea7c83966e901113f0c480db5efa0702c63ccde",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.303727
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19832718
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39501578
+            },
+            {
+              "label": "reflective",
+              "support": 0.24501505
+            },
+            {
+              "label": "intense",
+              "support": 0.16164201
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8896cc23",
+          "fingerprint": "09d2b04ed8c03e471c49052af569d359b01e90158f2135fcdb0c8e499a995ab9",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16167028
+            },
+            {
+              "label": "peaceful",
+              "support": 0.29767367
+            },
+            {
+              "label": "reflective",
+              "support": 0.1525249
+            },
+            {
+              "label": "intense",
+              "support": 0.3881312
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8b9bbb36",
+          "fingerprint": "33215c3ae02fd09c3c2b92c249d0517be356021f2cf0538f4e657a55bd8c6178",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.2569908
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5368999
+            },
+            {
+              "label": "peaceful",
+              "support": 0.14071654
+            },
+            {
+              "label": "reflective",
+              "support": 0.06086829
+            },
+            {
+              "label": "intense",
+              "support": 0.2615152
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8ecb26a2",
+          "fingerprint": "5b37d205a559264700c4694ba974bdc4e898f749c29dfe5c6de84eb4a6cd4228",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.09779301
+            },
+            {
+              "label": "peaceful",
+              "support": 0.3362226
+            },
+            {
+              "label": "reflective",
+              "support": 0.4468859
+            },
+            {
+              "label": "intense",
+              "support": 0.11909849
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_94d186eb",
+          "fingerprint": "c47c0d3da2eec6311d1e226238bf318b9135b3f3ee74a79d42cd43b41a422f64",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.27747557
+            },
+            {
+              "label": "peaceful",
+              "support": 0.26958272
+            },
+            {
+              "label": "reflective",
+              "support": 0.08225967
+            },
+            {
+              "label": "intense",
+              "support": 0.37068203
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_c5bbaaa7",
+          "fingerprint": "1b3321123997cab74dd8ab5f36fcb6f8671a19f69ef665645b71fc6cc4dbd24f",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.27046794
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.13499442
+            },
+            {
+              "label": "peaceful",
+              "support": 0.33434752
+            },
+            {
+              "label": "reflective",
+              "support": 0.36827934
+            },
+            {
+              "label": "intense",
+              "support": 0.16237867
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_d98b805f",
+          "fingerprint": "96cfa0fb97bcb97eec5bf243b2ac378af8860a13710e3178bfaac2ee459dbee3",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.1389433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.370745
+            },
+            {
+              "label": "reflective",
+              "support": 0.3136323
+            },
+            {
+              "label": "intense",
+              "support": 0.17667934
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_e06db6bc",
+          "fingerprint": "d903a288817d106db47496f927a8d30bf89312876147f98ae8c01f174f91be22",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.33554244
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.23748754
+            },
+            {
+              "label": "peaceful",
+              "support": 0.20260252
+            },
+            {
+              "label": "reflective",
+              "support": 0.3778063
+            },
+            {
+              "label": "intense",
+              "support": 0.18210362
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_f3900e1d",
+          "fingerprint": "01804b6bfbf9ec383bb1f52d8af2aa8e06201e696f25157831c62d791a1be0a3",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.258881
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.42279717
+            },
+            {
+              "label": "peaceful",
+              "support": 0.13945463
+            },
+            {
+              "label": "reflective",
+              "support": 0.049373437
+            },
+            {
+              "label": "intense",
+              "support": 0.3883748
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_fee49c40",
+          "fingerprint": "e7998f2740163b893fdd4e1c4b4304c1fb1eb1fbbf34aab4b784417dc5b1ff41",
+          "labels": [
+            {
+              "label": "sunset",
+              "confidence": 0.29357713
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.34756818
+            },
+            {
+              "label": "peaceful",
+              "support": 0.28439727
+            },
+            {
+              "label": "reflective",
+              "support": 0.18086289
+            },
+            {
+              "label": "intense",
+              "support": 0.18717167
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "fresh_8ecb26a2",
+          "score": 0.42492294,
+          "reasons": [
+            "伤感的音乐氛围 × 模型推测的沉静内省画面；放松的音乐氛围 × 模型推测的宁静舒缓画面"
+          ]
+        },
+        {
+          "photo_id": "fresh_c5bbaaa7",
+          "score": 0.361545,
+          "reasons": [
+            "伤感的音乐氛围 × 模型推测的沉静内省画面；放松的音乐氛围 × 模型推测的宁静舒缓画面",
+            "画面线索：雨景（模型推测），请看预览确认"
+          ]
+        },
+        {
+          "photo_id": "fresh_e06db6bc",
+          "score": 0.3430342,
+          "reasons": [
+            "伤感的音乐氛围 × 模型推测的沉静内省画面",
+            "画面线索：雨景（模型推测），请看预览确认"
+          ]
+        }
+      ],
+      "failures": []
+    },
+    {
+      "case_id": "case_04",
+      "audio_id": "audio_0016",
+      "photo_ids": [
+        "fresh_4d4e6a83",
+        "fresh_4ce855a2",
+        "fresh_8896cc23",
+        "fresh_94d186eb"
+      ],
+      "audio_ms": 3021,
+      "cold_photo_ms": 3094,
+      "cached_photo_ms": 245,
+      "decoded_seconds": 30,
+      "analyzed_seconds": 29.824,
+      "music_scores": [
+        {
+          "label": "epic",
+          "score": 0.47872543
+        },
+        {
+          "label": "action",
+          "score": 0.32426414
+        },
+        {
+          "label": "film",
+          "score": 0.25924402
+        },
+        {
+          "label": "trailer",
+          "score": 0.19174618
+        },
+        {
+          "label": "dark",
+          "score": 0.16341247
+        },
+        {
+          "label": "movie",
+          "score": 0.13387293
+        },
+        {
+          "label": "dramatic",
+          "score": 0.11946822
+        },
+        {
+          "label": "emotional",
+          "score": 0.066049516
+        },
+        {
+          "label": "energetic",
+          "score": 0.056087617
+        },
+        {
+          "label": "adventure",
+          "score": 0.0538307
+        },
+        {
+          "label": "soundscape",
+          "score": 0.048341297
+        },
+        {
+          "label": "documentary",
+          "score": 0.047810975
+        },
+        {
+          "label": "drama",
+          "score": 0.036268394
+        },
+        {
+          "label": "inspiring",
+          "score": 0.035125513
+        },
+        {
+          "label": "space",
+          "score": 0.0342554
+        },
+        {
+          "label": "relaxing",
+          "score": 0.031373598
+        },
+        {
+          "label": "game",
+          "score": 0.028285425
+        },
+        {
+          "label": "romantic",
+          "score": 0.026822055
+        },
+        {
+          "label": "happy",
+          "score": 0.021502104
+        },
+        {
+          "label": "advertising",
+          "score": 0.019645551
+        },
+        {
+          "label": "sport",
+          "score": 0.019505285
+        },
+        {
+          "label": "meditative",
+          "score": 0.017747723
+        },
+        {
+          "label": "dream",
+          "score": 0.017621702
+        },
+        {
+          "label": "melodic",
+          "score": 0.017052148
+        },
+        {
+          "label": "uplifting",
+          "score": 0.016905604
+        },
+        {
+          "label": "powerful",
+          "score": 0.015608925
+        },
+        {
+          "label": "corporate",
+          "score": 0.015564645
+        },
+        {
+          "label": "christmas",
+          "score": 0.0142961005
+        },
+        {
+          "label": "heavy",
+          "score": 0.013587486
+        },
+        {
+          "label": "love",
+          "score": 0.0134344995
+        },
+        {
+          "label": "motivational",
+          "score": 0.0130511485
+        },
+        {
+          "label": "sad",
+          "score": 0.0114396475
+        },
+        {
+          "label": "children",
+          "score": 0.010559993
+        },
+        {
+          "label": "background",
+          "score": 0.010329219
+        },
+        {
+          "label": "positive",
+          "score": 0.010225318
+        },
+        {
+          "label": "melancholic",
+          "score": 0.009982082
+        },
+        {
+          "label": "commercial",
+          "score": 0.00864915
+        },
+        {
+          "label": "nature",
+          "score": 0.008177223
+        },
+        {
+          "label": "holiday",
+          "score": 0.008010832
+        },
+        {
+          "label": "cool",
+          "score": 0.007931006
+        },
+        {
+          "label": "fun",
+          "score": 0.0075114802
+        },
+        {
+          "label": "slow",
+          "score": 0.0070607816
+        },
+        {
+          "label": "fast",
+          "score": 0.006033183
+        },
+        {
+          "label": "calm",
+          "score": 0.005292282
+        },
+        {
+          "label": "soft",
+          "score": 0.004978529
+        },
+        {
+          "label": "funny",
+          "score": 0.004862071
+        },
+        {
+          "label": "deep",
+          "score": 0.0047449903
+        },
+        {
+          "label": "upbeat",
+          "score": 0.004207312
+        },
+        {
+          "label": "hopeful",
+          "score": 0.0041620885
+        },
+        {
+          "label": "travel",
+          "score": 0.0040099015
+        },
+        {
+          "label": "retro",
+          "score": 0.0038949682
+        },
+        {
+          "label": "ballad",
+          "score": 0.0026883883
+        },
+        {
+          "label": "party",
+          "score": 0.002527647
+        },
+        {
+          "label": "sexy",
+          "score": 0.0023194284
+        },
+        {
+          "label": "groovy",
+          "score": 0.0018207688
+        },
+        {
+          "label": "summer",
+          "score": 0.0017461036
+        }
+      ],
+      "image_features": [
+        {
+          "photo_id": "fresh_00a581a5",
+          "fingerprint": "9ba9b063d201b34ad6f15acf00b4f495cce0ad5df03a581d71179cc086ba9900",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.24231938
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5684829
+            },
+            {
+              "label": "peaceful",
+              "support": 0.24398994
+            },
+            {
+              "label": "reflective",
+              "support": 0.06039682
+            },
+            {
+              "label": "intense",
+              "support": 0.12713042
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_012a3946",
+          "fingerprint": "299006601c8c999b22e42bc77e8565850b492c818b3503af1d70ab7b065bf4b4",
+          "labels": [
+            {
+              "label": "lakeside",
+              "confidence": 0.30177164
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.26965225
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39985538
+            },
+            {
+              "label": "reflective",
+              "support": 0.20700231
+            },
+            {
+              "label": "intense",
+              "support": 0.1234901
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_05d92e07",
+          "fingerprint": "5a7491eae0d4ce5bef1bf68920028c23acfbfa982ed0d304c00100e54c9ec440",
+          "labels": [
+            {
+              "label": "insects",
+              "confidence": 0.27053607
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16384813
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37507218
+            },
+            {
+              "label": "reflective",
+              "support": 0.3292762
+            },
+            {
+              "label": "intense",
+              "support": 0.13180341
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_15e634a7",
+          "fingerprint": "c087044e89f3e1e91b36a66ba7eb755fc4458ef0e8db72afdd4edc67d5806acb",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.48107585
+            },
+            {
+              "label": "peaceful",
+              "support": 0.27478924
+            },
+            {
+              "label": "reflective",
+              "support": 0.06637249
+            },
+            {
+              "label": "intense",
+              "support": 0.17776248
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_2bd78206",
+          "fingerprint": "334a2cb109cb530e32e239193c9362bffe48aa4fcf5cec500f06701ad5df4a5b",
+          "labels": [
+            {
+              "label": "butterfly",
+              "confidence": 0.32398903
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.18073665
+            },
+            {
+              "label": "peaceful",
+              "support": 0.37401864
+            },
+            {
+              "label": "reflective",
+              "support": 0.23439652
+            },
+            {
+              "label": "intense",
+              "support": 0.2108482
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_3be3f741",
+          "fingerprint": "5a915c800dade2ffdedd529486d2c29b7cff215e821ef65f75250bd3d896e8eb",
+          "labels": [
+            {
+              "label": "flowers",
+              "confidence": 0.26629043
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.4464558
+            },
+            {
+              "label": "peaceful",
+              "support": 0.31798664
+            },
+            {
+              "label": "reflective",
+              "support": 0.08227667
+            },
+            {
+              "label": "intense",
+              "support": 0.15328088
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4ce855a2",
+          "fingerprint": "eb58785eac4fc44334eef6c823e70e2c7ca265aed8d79e300747bb7d0358db8d",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19485334
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25741333
+            },
+            {
+              "label": "reflective",
+              "support": 0.12112011
+            },
+            {
+              "label": "intense",
+              "support": 0.4266132
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_4d4e6a83",
+          "fingerprint": "19a6cee7ded52876b2b8185ab217147270e05595356ea9f1f922f52a984182ab",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19896522
+            },
+            {
+              "label": "peaceful",
+              "support": 0.25807703
+            },
+            {
+              "label": "reflective",
+              "support": 0.082471445
+            },
+            {
+              "label": "intense",
+              "support": 0.46048626
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_61ff3233",
+          "fingerprint": "cdc059212b3414daa407111f2a2bc9ec29242ec2886ff15fbdba7f80f134358d",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.31998694
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.39273196
+            },
+            {
+              "label": "peaceful",
+              "support": 0.18648726
+            },
+            {
+              "label": "reflective",
+              "support": 0.18744747
+            },
+            {
+              "label": "intense",
+              "support": 0.23333332
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_67223236",
+          "fingerprint": "d932d6704d7ce36b65747971cbc1782b6b1708591ceb5f0e67e0a0f51c231ec1",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.31872332
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.22904433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.4384358
+            },
+            {
+              "label": "reflective",
+              "support": 0.11495013
+            },
+            {
+              "label": "intense",
+              "support": 0.21756966
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_83a4ea69",
+          "fingerprint": "23f4f070d63b3fdc46c85947cea7c83966e901113f0c480db5efa0702c63ccde",
+          "labels": [
+            {
+              "label": "waterfall",
+              "confidence": 0.303727
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.19832718
+            },
+            {
+              "label": "peaceful",
+              "support": 0.39501578
+            },
+            {
+              "label": "reflective",
+              "support": 0.24501505
+            },
+            {
+              "label": "intense",
+              "support": 0.16164201
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8896cc23",
+          "fingerprint": "09d2b04ed8c03e471c49052af569d359b01e90158f2135fcdb0c8e499a995ab9",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.16167028
+            },
+            {
+              "label": "peaceful",
+              "support": 0.29767367
+            },
+            {
+              "label": "reflective",
+              "support": 0.1525249
+            },
+            {
+              "label": "intense",
+              "support": 0.3881312
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8b9bbb36",
+          "fingerprint": "33215c3ae02fd09c3c2b92c249d0517be356021f2cf0538f4e657a55bd8c6178",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.2569908
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.5368999
+            },
+            {
+              "label": "peaceful",
+              "support": 0.14071654
+            },
+            {
+              "label": "reflective",
+              "support": 0.06086829
+            },
+            {
+              "label": "intense",
+              "support": 0.2615152
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_8ecb26a2",
+          "fingerprint": "5b37d205a559264700c4694ba974bdc4e898f749c29dfe5c6de84eb4a6cd4228",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.09779301
+            },
+            {
+              "label": "peaceful",
+              "support": 0.3362226
+            },
+            {
+              "label": "reflective",
+              "support": 0.4468859
+            },
+            {
+              "label": "intense",
+              "support": 0.11909849
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_94d186eb",
+          "fingerprint": "c47c0d3da2eec6311d1e226238bf318b9135b3f3ee74a79d42cd43b41a422f64",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.27747557
+            },
+            {
+              "label": "peaceful",
+              "support": 0.26958272
+            },
+            {
+              "label": "reflective",
+              "support": 0.08225967
+            },
+            {
+              "label": "intense",
+              "support": 0.37068203
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_c5bbaaa7",
+          "fingerprint": "1b3321123997cab74dd8ab5f36fcb6f8671a19f69ef665645b71fc6cc4dbd24f",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.27046794
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.13499442
+            },
+            {
+              "label": "peaceful",
+              "support": 0.33434752
+            },
+            {
+              "label": "reflective",
+              "support": 0.36827934
+            },
+            {
+              "label": "intense",
+              "support": 0.16237867
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_d98b805f",
+          "fingerprint": "96cfa0fb97bcb97eec5bf243b2ac378af8860a13710e3178bfaac2ee459dbee3",
+          "labels": [],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.1389433
+            },
+            {
+              "label": "peaceful",
+              "support": 0.370745
+            },
+            {
+              "label": "reflective",
+              "support": 0.3136323
+            },
+            {
+              "label": "intense",
+              "support": 0.17667934
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_e06db6bc",
+          "fingerprint": "d903a288817d106db47496f927a8d30bf89312876147f98ae8c01f174f91be22",
+          "labels": [
+            {
+              "label": "rain",
+              "confidence": 0.33554244
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.23748754
+            },
+            {
+              "label": "peaceful",
+              "support": 0.20260252
+            },
+            {
+              "label": "reflective",
+              "support": 0.3778063
+            },
+            {
+              "label": "intense",
+              "support": 0.18210362
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_f3900e1d",
+          "fingerprint": "01804b6bfbf9ec383bb1f52d8af2aa8e06201e696f25157831c62d791a1be0a3",
+          "labels": [
+            {
+              "label": "party",
+              "confidence": 0.258881
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.42279717
+            },
+            {
+              "label": "peaceful",
+              "support": 0.13945463
+            },
+            {
+              "label": "reflective",
+              "support": 0.049373437
+            },
+            {
+              "label": "intense",
+              "support": 0.3883748
+            }
+          ]
+        },
+        {
+          "photo_id": "fresh_fee49c40",
+          "fingerprint": "e7998f2740163b893fdd4e1c4b4304c1fb1eb1fbbf34aab4b784417dc5b1ff41",
+          "labels": [
+            {
+              "label": "sunset",
+              "confidence": 0.29357713
+            }
+          ],
+          "atmospheres": [
+            {
+              "label": "lively",
+              "support": 0.34756818
+            },
+            {
+              "label": "peaceful",
+              "support": 0.28439727
+            },
+            {
+              "label": "reflective",
+              "support": 0.18086289
+            },
+            {
+              "label": "intense",
+              "support": 0.18717167
+            }
+          ]
+        }
+      ],
+      "ranked": [
+        {
+          "photo_id": "fresh_4d4e6a83",
+          "score": 0.44875005,
+          "reasons": [
+            "恢宏的音乐氛围 × 模型推测的强烈动势画面"
+          ]
+        },
+        {
+          "photo_id": "fresh_4ce855a2",
+          "score": 0.41712856,
+          "reasons": [
+            "恢宏的音乐氛围 × 模型推测的强烈动势画面"
+          ]
+        },
+        {
+          "photo_id": "fresh_8896cc23",
+          "score": 0.38081634,
+          "reasons": [
+            "恢宏的音乐氛围 × 模型推测的强烈动势画面"
+          ]
+        },
+        {
+          "photo_id": "fresh_94d186eb",
+          "score": 0.3617274,
+          "reasons": [
+            "恢宏的音乐氛围 × 模型推测的强烈动势画面"
+          ]
+        }
+      ],
+      "failures": []
+    }
+  ],
+  "pool": "photo-fresh",
+  "rule_version": "music-atmosphere-v4-valence",
+  "image_model": "tinyclip-atmospheres-v4-c6811b6a-dual224"
+}
