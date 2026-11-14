@@ -80,6 +80,23 @@ class GoPreferences(context: Context) {
             ?: GoConstants.DEFAULT_ACTIVE_FRAGMENTS
         set(value) = putObjectForType("active_tabs_pref", value, typeActiveTabs)
 
+    /**
+     * Existing installations persist both the available and visible tab lists. Insert the new
+     * playlist tab before Settings without changing the user's existing tab order or visibility.
+     */
+    private fun migratePlaylistTab() {
+        fun withPlaylistTab(tabs: List<String>): List<String> {
+            if (tabs.contains(GoConstants.PLAYLIST_TAB)) return tabs
+            val settingsPosition = tabs.indexOf(GoConstants.SETTINGS_TAB)
+            return tabs.toMutableList().apply {
+                add(if (settingsPosition >= 0) settingsPosition else size, GoConstants.PLAYLIST_TAB)
+            }
+        }
+
+        if (mPrefs.contains("active_tabs_def_pref")) activeTabsDef = withPlaylistTab(activeTabsDef)
+        if (mPrefs.contains("active_tabs_pref")) activeTabs = withPlaylistTab(activeTabs)
+    }
+
     var onListEnded
         get() = mPrefs.getString("on_list_ended_pref", GoConstants.CONTINUE)
         set(value) = mPrefs.edit { putString("on_list_ended_pref", value) }
@@ -227,6 +244,7 @@ class GoPreferences(context: Context) {
             // if it is, then create the preferences
             return INSTANCE ?: synchronized(this) {
                 val instance = GoPreferences(context)
+                instance.migratePlaylistTab()
                 INSTANCE = instance
                 // return instance
                 instance

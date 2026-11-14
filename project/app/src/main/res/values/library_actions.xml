@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="library_open_playlists_description">Open and manage saved playlists</string>
     <string name="library_scan_music">Scan local music</string>
     <string name="library_import_help">Missing songs?</string>
     <string name="library_import_instructions">Allow music and audio access in system settings, then tap Scan local music.\n\nIf copied songs are still missing, use the system Files app to copy them into Music, wait for Android to index them, then scan again. Also check hidden artists, albums and folders.\n\nEach scan checks up to 1,000 recent audio files accessible to this app and refreshes the library. Refresh inside a playlist updates its library view.</string>

@@ -45,6 +45,7 @@ import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.player.MediaPlayerInterface
 import com.iven.musicplayergo.player.PlayerService
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
+import com.iven.musicplayergo.playlists.PlaylistsFragment
 import com.iven.musicplayergo.preferences.SettingsFragment
 import com.iven.musicplayergo.utils.*
 
@@ -66,6 +67,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     private var mAllMusicFragment: AllMusicFragment? = null
     private var mFoldersFragment: MusicContainersFragment? = null
     private var mAlbumsFragment: MusicContainersFragment? = null
+    private var mPlaylistsFragment: PlaylistsFragment? = null
     private var mSettingsFragment: SettingsFragment? = null
     private var mDetailsFragment: DetailsFragment? = null
 
@@ -171,6 +173,8 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     private fun handleBackPressed() {
         when {
             sDetailsFragmentExpanded -> closeDetailsFragment(isAnimation = mGoPreferences.isAnimations)
+            mGoPreferences.activeTabs.getOrNull(mMainActivityBinding.viewPager2.currentItem) ==
+                GoConstants.PLAYLIST_TAB && mPlaylistsFragment?.navigateBackToList() == true -> Unit
             else -> if (mMainActivityBinding.viewPager2.currentItem != 0) {
                 mMainActivityBinding.viewPager2.currentItem = 0
             } else {
@@ -296,7 +300,6 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         mPlayerControlsPanelBinding = PlayerControlsPanelBinding.bind(mMainActivityBinding.root)
 
         setContentView(mMainActivityBinding.root)
-        mPlayerControlsPanelBinding.playlistsButton.setOnClickListener { openPlaylists() }
 
         if (sLaunchedByTile) {
             mMainActivityBinding.loadingProgressBar.handleViewVisibility(false)
@@ -384,9 +387,19 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     }
 
     fun openPlaylists() {
-        if (supportFragmentManager.isStateSaved ||
-            supportFragmentManager.findFragmentByTag("custom_playlists") != null) return
-        PlaylistsDialogFragment().show(supportFragmentManager, "custom_playlists")
+        if (supportFragmentManager.isStateSaved) return
+        val showingLibraryError = supportFragmentManager
+            .findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG) != null
+        val playlistIndex = mGoPreferences.activeTabs.indexOf(GoConstants.PLAYLIST_TAB)
+        if (!showingLibraryError && isLibraryUiInitialized && playlistIndex >= 0) {
+            mMainActivityBinding.viewPager2.setCurrentItem(playlistIndex, true)
+            return
+        }
+        // The normal navigation can be hidden by a library error or by the user's tab
+        // configuration. Keep a dialog fallback so saved playlists remain manageable.
+        if (supportFragmentManager.findFragmentByTag("custom_playlists") == null) {
+            PlaylistsDialogFragment().show(supportFragmentManager, "custom_playlists")
+        }
     }
 
     // Handle restoring: handle intent data, if any, or restore playback
@@ -475,6 +488,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
             GoConstants.ALBUM_TAB -> mAlbumsFragment = MusicContainersFragment.newInstance(GoConstants.ALBUM_VIEW)
             GoConstants.SONGS_TAB -> mAllMusicFragment = AllMusicFragment.newInstance()
             GoConstants.FOLDERS_TAB -> mFoldersFragment = MusicContainersFragment.newInstance(GoConstants.FOLDER_VIEW)
+            GoConstants.PLAYLIST_TAB -> mPlaylistsFragment = PlaylistsFragment()
             else -> mSettingsFragment = SettingsFragment.newInstance()
         }
         return handleOnNavigationItemSelected(position)
@@ -485,6 +499,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         GoConstants.ALBUM_TAB -> mAlbumsFragment ?: initFragmentAt(index)
         GoConstants.SONGS_TAB -> mAllMusicFragment ?: initFragmentAt(index)
         GoConstants.FOLDERS_TAB -> mFoldersFragment ?: initFragmentAt(index)
+        GoConstants.PLAYLIST_TAB -> mPlaylistsFragment ?: initFragmentAt(index)
         else -> mSettingsFragment ?: initFragmentAt(index)
     }
 

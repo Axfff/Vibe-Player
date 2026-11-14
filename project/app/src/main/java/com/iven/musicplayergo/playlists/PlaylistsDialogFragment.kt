@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -29,7 +30,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /** A restorable entry point; navigation is saved by playlist ID, not by a mutable model object. */
-class PlaylistsDialogFragment : BottomSheetDialogFragment() {
+class PlaylistsDialogFragment : BottomSheetDialogFragment(), PlaylistEditorHost {
     private var binding: PlaylistSheetBinding? = null
     private lateinit var musicViewModel: MusicViewModel
     private lateinit var repository: PlaylistRepository
@@ -66,7 +67,11 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             }
         }
         tracksAdapter = PlaylistTracksAdapter(::removeTrack)
+        views.playlistRows.layoutManager = LinearLayoutManager(requireContext())
         views.playlistRows.adapter = playlistAdapter
+        // A DialogFragment embedded in ViewPager renders as a normal Fragment. The same
+        // implementation is retained as a dialog only for the no-library error fallback.
+        views.playlistClose.isVisible = showsDialog
         views.playlistClose.setOnClickListener { dismiss() }
         views.playlistBack.setOnClickListener {
             selectedPlaylistId = null
@@ -126,7 +131,7 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        (dialog as? BottomSheetDialog)?.let { sheetDialog ->
+        if (showsDialog) (dialog as? BottomSheetDialog)?.let { sheetDialog ->
             sheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)?.let { sheet ->
                 sheet.layoutParams = sheet.layoutParams.apply {
                     height = (resources.displayMetrics.heightPixels * 0.9).toInt()
@@ -135,7 +140,15 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             sheetDialog.behavior.skipCollapsed = true
             sheetDialog.behavior.state = BottomSheetBehavior.STATE_EXPANDED
         }
-        binding?.root?.let(ViewCompat::requestApplyInsets)
+        binding?.root?.let { root ->
+            ViewCompat.requestApplyInsets(root)
+            root.post {
+                binding?.playlistRows?.let { rows ->
+                    rows.adapter?.notifyDataSetChanged()
+                    rows.requestLayout()
+                }
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -150,13 +163,13 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
         super.onDestroyView()
     }
 
-    internal fun onPlaylistSaved(id: String, message: String? = null) {
+    override fun onPlaylistSaved(id: String, message: String?) {
         selectedPlaylistId = id
         reloadPlaylists()
         message?.let(::showFeedback)
     }
 
-    internal fun onPlaylistDeleted(id: String) {
+    override fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
         viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
             val target = CoverTarget.Playlist(id)
@@ -232,7 +245,7 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
             return
         }
         controls.onPlaylistSelected(songs.toList())
-        dismiss()
+        if (showsDialog) dismiss()
     }
 
     private fun libraryIsReady() = libraryState.hasLoaded && !libraryState.isLoading && !libraryState.refreshFailed
