@@ -82,13 +82,28 @@ The commands above cover the JVM tests and APK build. Full CI also runs Android 
 
 ## Course documentation and status
 
-- [Course workflow and documentation](docs/README.md)
+- [Development workflow](docs/development/workflow.md) · [Documentation and evidence index](docs/README.md)
+- [Build, install and run from source](docs/development/workflow.md#from-source-to-a-running-app)
 - [Sprint 1 evidence](docs/sprints/sprint-1.md) · [Sprint 2 progress](docs/sprints/sprint-2.md)
 - [Release 1 review index](docs/releases/release-1.md)
 - [Playlist requirements — Story #2](https://github.com/Axfff/Vibe-Player/issues/2)
 - [AC evidence matrix](docs/releases/release-1-evidence-matrix.md) · [Human review packet](docs/releases/release-1-human-review.md) · [Short retrospective template](docs/releases/release-1-retrospective.md)
 - [Feature research and decisions](docs/thinking/README.md)
 - [Implementation record](docs/development/custom-playlists-implementation.md) · [Coding-agent guide](docs/development/custom-playlists-agent-guide.md)
+
+## Team members
+
+| Name | Student ID | GitHub |
+| --- | --- | --- |
+| Peihan ZENG | 50027876 | [peihanZENG](https://github.com/peihanZENG) |
+| Shiyuan Lin | 50027204 | [CroissantXinny](https://github.com/CroissantXinny) |
+| Jingyao ZHAO | 50025074 | [Axfff](https://github.com/Axfff) |
+
+Names/IDs reuse the team's [PR #48 metadata](https://github.com/Axfff/Vibe-Player/pull/48); peihanZENG's account mapping is recorded in [Sprint 2](docs/sprints/sprint-2.md). Unknown fields stay blank. Keep this as the single member registry; contribution evidence follows the [Issue-to-verification workflow](docs/development/workflow.md#planning-evidence-and-contribution).
+
+## Release evidence
+
+Release coordination: **Release 1 — Peihan ZENG** ([peihanZENG](https://github.com/peihanZENG)); **Release 2 — Shiyuan Lin** ([CroissantXinny](https://github.com/CroissantXinny)). These are the release owners confirmed by the team on 2026-11-11; individual contributions and historical review records remain in the linked evidence.
 
 **DSAA2044 Release 1 is published.** [PR #3](https://github.com/Axfff/Vibe-Player/pull/3), including PR #12 and PR #16, merged into `main` as `81b22ee5`. [Release `release1`](https://github.com/Axfff/Vibe-Player/releases/tag/release1) points to that commit and provides the CI-built debug/evaluation APK and checksum (app version 4.4.24 / 187).
 
