@@ -328,6 +328,25 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/dialogs/RecyclerSheet.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "a6dd369ddf83c2dff83bb3c7c13c2511a7c92092ce6a8c64d7d99affd6b81601",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          283,
+          283
+        ],
+        [
+          294,
+          297
+        ]
+      ],
+      "source_commits": [],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/discovery/DiscoveryActivity.kt",
       "module": "android",
       "change": "added",
@@ -822,7 +841,8 @@
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
         "fbc1d0b1948ff484f23f60a5a9a1975c064c6c65",
-        "e51ed58e4a54cc6378641e421172a46fd703b666"
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "f1d64acf2a8810bbd18c2729f689263b526eacbc"
       ],
       "exception_reason": null
     },
@@ -1549,6 +1569,25 @@
       "source_commits": [
         "8f6e7d969f332bb036fd3ec8ca32ed7048efca02"
       ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/preferences/NotificationActionsAdapter.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "e55530f1b56fabd6851556c17096bbc77666006c7f6e455e89ff3fd96b645088",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          13,
+          14
+        ],
+        [
+          16,
+          17
+        ]
+      ],
+      "source_commits": [],
       "exception_reason": null
     },
     {
