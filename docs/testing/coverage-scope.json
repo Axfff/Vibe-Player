@@ -810,7 +810,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/fragments/MusicContainersFragment.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "f6ef15dbc7ef29c59f057beaeae5980b0950721e2dfd2be2fe7f2966111fe0e0",
+      "source_sha256": "a6585a12ea1a8aacafaaa9dfc8daef100f06c0a8827cad1b6db01a8c1b05ed0d",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -830,13 +830,19 @@
           133
         ],
         [
+          212,
+          212
+        ],
+        [
           367,
           368
         ]
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
-        "e51ed58e4a54cc6378641e421172a46fd703b666"
+        "fbc1d0b1948ff484f23f60a5a9a1975c064c6c65",
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "f1d64acf2a8810bbd18c2729f689263b526eacbc"
       ],
       "exception_reason": null
     },
