@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photo_model_setup_action">Set up photo model</string>
+    <string name="photo_model_setup_required">The photo model is missing or unavailable. Open model setup to import or replace it. Your photo sources and cover are unchanged.</string>
+    <string name="photo_all_recommendation_reasons">\n\nReasons for all recommended photos:\n</string>
+    <string name="photo_recommendation_reason_score">%1$d. %2$s\nReference score %3$.2f (ranking only)</string>
+</resources>

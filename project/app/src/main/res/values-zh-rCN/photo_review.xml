@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="photo_model_setup_action">设置照片模型</string>
+    <string name="photo_model_setup_required">照片模型缺失或暂不可用。请打开模型设置，导入或更换照片模型；现有照片来源和封面未改变。</string>
+    <string name="photo_all_recommendation_reasons">\n\n全部推荐照片的依据：\n</string>
+    <string name="photo_recommendation_reason_score">%1$d. %2$s\n参考分 %3$.2f（只用于排序）</string>
+</resources>

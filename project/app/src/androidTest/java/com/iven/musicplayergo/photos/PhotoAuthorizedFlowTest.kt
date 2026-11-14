@@ -171,7 +171,7 @@ class PhotoAuthorizedFlowTest {
                 crop()
                 repo.remove(b, source.id)
                 f.onMain { click(f.context.getString(R.string.cover_save)) }
-                f.await("revoked preview cannot save") { f.onMain { texts().any { it.contains("请重新选择照片") } } }
+                f.await("revoked preview cannot save") { f.onMain { texts().contains(f.context.getString(R.string.cover_error_source)) } }
                 assertEquals(saved, (covers.getCover(b) as CoverResult.Success).value)
                 f.onMain { click(f.context.getString(android.R.string.cancel)) }
                 show(b)

@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.iven.musicplayergo.MusicViewModel
+import com.iven.musicplayergo.R
 import com.iven.musicplayergo.analysis.*
 import com.iven.musicplayergo.covers.*
 import com.iven.musicplayergo.models.Music
@@ -27,6 +28,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
     private var rows: LinearLayout? = null
     private var analysisDetails = ""
     private var cancelButton: Button? = null
+    private var modelSetupButton: Button? = null
     private var job: Job? = null
     private var representative: Long? = null
     private val viewModel by lazy { ViewModelProvider(requireActivity())[MusicViewModel::class.java] }
@@ -59,6 +61,11 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         cancelButton = Button(requireContext()).apply {
             text = "取消分析"; visibility = View.GONE
             setOnClickListener { job?.cancel(); visibility = View.GONE; rows?.removeAllViews(); analysisDetails = ""; status?.text = "已取消，封面未改变。" }
+        }.also { layout.addView(it) }
+        modelSetupButton = Button(requireContext()).apply {
+            text = getString(R.string.photo_model_setup_action)
+            visibility = View.GONE
+            setOnClickListener { PhotoModelsDialogFragment().show(parentFragmentManager, "photo-models") }
         }.also { layout.addView(it) }
         rows = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL }.also { layout.addView(it) }
         return AlertDialog.Builder(requireContext()).setTitle("推荐封面")
@@ -98,6 +105,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
     }
     private fun analyze(song: Music) {
         analysisDetails = ""
+        modelSetupButton?.visibility = View.GONE
         cancelButton?.visibility = View.VISIBLE
         representative = song.id
         job?.cancel(); rows?.removeAllViews()
@@ -129,6 +137,7 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
     }
     private fun rank(signal: List<MoodScore>, description: String) {
         analysisDetails = ""
+        modelSetupButton?.visibility = View.GONE
         cancelButton?.visibility = View.VISIBLE
         job?.cancel(); rows?.removeAllViews()
         job = lifecycleScope.launch {
@@ -153,6 +162,14 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
             result.photos.forEach { if (candidates.size < 500) candidates[it.id] = it else partial = true }
         }
         if (candidates.isEmpty()) { status?.text = "还没有可用照片，请返回添加照片，或重新选择打不开的照片。"; return }
+        // A manual mood still needs the photo model, but does not need either audio model.
+        // Keep source recovery separate: importing a model must not replace valid grants.
+        if (PhotoModelStore(context).inspect()[PhotoModel.PHOTO] != PhotoModelStatus.READY) {
+            ensureActiveRequest(request)
+            status?.text = getString(R.string.photo_model_setup_required)
+            modelSetupButton?.visibility = View.VISIBLE
+            return
+        }
         var failures = 0; val features = mutableListOf<PhotoFeatures>()
         withPhotoExtractor({ OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }) { extractor ->
             for ((index, photo) in candidates.values.withIndex()) {
@@ -167,14 +184,21 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
             putString("query", PhotoRanker.suggestions(signal).joinToString(" "))
         })
         val uncertain = features.count { it.atmospheres.isEmpty() }
-        analysisDetails = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面氛围不确定或不适用，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。"
-        analysisDetails += "\n\n前 5 张的推荐依据：\n" + ranked.take(5).mapIndexed { index, candidate ->
-            "${index + 1}. ${candidate.reasons.joinToString("；")}\n参考分 ${String.format(java.util.Locale.ROOT, "%.2f", candidate.score)}（只用于排序）"
-        }.joinToString("\n\n")
+        val summary = "$description\n${if (ranked.isEmpty()) "暂未找到明确匹配，可手动选封面或更换氛围" else "找到 ${ranked.size} 张候选，点击图片预览、裁剪后再确认"}。\n$uncertain 张画面氛围不确定或不适用，已跳过；读取／分析失败 $failures 张${if(partial) "；部分来源未完整扫描" else ""}。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。"
         status?.text = "${description.substringBefore('；').substringBefore('\n')}\n" +
             (if (ranked.isEmpty()) "暂时没找到合适照片，试试换个氛围。" else "找到 ${ranked.size} 张照片，点选预览。") +
             (if (failures > 0 || partial) "\n部分照片暂时打不开，详见分析详情。" else "")
+        showRecommendations(ranked, request, summary)
+    }
+
+    /** Render the complete ranked result, while decoding thumbnails one page at a time. */
+    internal suspend fun showRecommendations(ranked: List<RankedPhoto>, request: PhotoRequest, summary: String) {
+        analysisDetails = summary + getString(R.string.photo_all_recommendation_reasons) + ranked.mapIndexed { index, candidate ->
+            getString(R.string.photo_recommendation_reason_score, index + 1,
+                candidate.reasons.joinToString("; "), candidate.score)
+        }.joinToString("\n\n")
         if (ranked.isEmpty()) return
+        val context = requireContext().applicationContext
         val pages = PhotoPageCursor(ranked.size)
         suspend fun showNext() {
             val reservation = pages.begin() ?: return
@@ -209,6 +233,6 @@ class PhotoRecommendationsDialogFragment : DialogFragment() {
         withContext(Dispatchers.IO) { check(targetExists(requireContext(), target)) { "目标已删除或不可用" }; PhotoRepositories.get(requireContext()).validate(target, request) }
     }
     override fun onStop() { job?.cancel(); modelCheck?.cancel(); rows?.removeAllViews(); super.onStop() }
-    override fun onDestroyView() { job?.cancel(); modelCheck?.cancel(); rows = null; status = null; modelStatus = null; cancelButton = null; super.onDestroyView() }
+    override fun onDestroyView() { job?.cancel(); modelCheck?.cancel(); rows = null; status = null; modelStatus = null; cancelButton = null; modelSetupButton = null; super.onDestroyView() }
     companion object { fun newInstance(target: CoverTarget) = PhotoRecommendationsDialogFragment().apply { arguments = target.toPhotoBundle() } }
 }
