@@ -15,11 +15,15 @@ object DiscoveryJson {
     private fun provider(value: JSONObject) = ProviderState(value.string("provider"), value.string("mode"), value.string("state"), value.optString("errorCode").takeUnless { it == "null" || it.isBlank() })
     private fun providers(value: JSONObject) = objects(value.getJSONArray("catalogs")).map { provider(it) }
     private fun track(value: JSONObject): DiscoveryTrack {
-        val track = DiscoveryTrack(ref(value.getJSONObject("ref")), value.string("title").trim(), value.string("artist").trim(), value.string("officialUrl"), value.optString("recommendationReason"), value.optString("linkNotice"))
+        val tags = value.optJSONArray("tags")?.takeIf { it.length() <= 30 }?.let { array ->
+            (0 until array.length()).map { array.opt(it) }.takeIf { rows -> rows.all { it is String && it.isNotBlank() && it.length <= 40 } }?.map { it as String }
+        }
+        val track = DiscoveryTrack(ref(value.getJSONObject("ref")), value.string("title").trim(), value.string("artist").trim(), value.string("officialUrl"), value.optString("recommendationReason"), value.optString("linkNotice"), tags)
         if (!track.valid()) throw DiscoveryFailure("invalid_track")
         return track
     }
     private fun track(value: DiscoveryTrack) = JSONObject().put("ref", ref(value.ref)).put("title", value.title).put("artist", value.artist).put("officialUrl", value.officialUrl)
+        .apply { value.catalogTags?.let { put("tags", JSONArray(it)) } }
 
     fun status(raw: String): DiscoveryStatus = checked {
         val value = JSONObject(raw)

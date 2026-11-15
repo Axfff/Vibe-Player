@@ -91,12 +91,30 @@ def expected_scope():
 def validate_scope():
     expected = expected_scope()
     saved = json.loads(MANIFEST.read_text(encoding="utf-8"))
-    # Attribution changes when a new commit is made, but paths, content and line ranges must match.
+    # Paths/content/ranges match exactly. Attribution also has a separate history check below.
     def comparable(value):
         return {**value, "files": [{k: v for k, v in f.items() if k != "source_commits"} for f in value["files"]]}
     if comparable(saved) != comparable(expected):
         raise ValueError("Scope manifest is stale/incomplete; review `python scripts/coverage/coverage.py scope --write`")
+    manifest_commit = git("log", "-1", "--format=%H", "--", MANIFEST.relative_to(ROOT).as_posix())
+    validate_attribution(saved["files"], expected["files"], manifest_commit)
     return expected
+
+
+def validate_attribution(saved_files, expected_files, manifest_commit):
+    """Preserve Git provenance, allowing only the manifest writer's own unknowable SHA.
+
+    A source+manifest commit cannot put its own hash inside itself. That one commit
+    may be absent from the saved list, even after later docs-only commits. Every
+    other source commit must match Git's generated history, in order. Reports use
+    expected_scope(), so their attribution includes that commit as well.
+    """
+    expected = {entry["path"]: entry["source_commits"] for entry in expected_files}
+    for entry in saved_files:
+        history = expected[entry["path"]]
+        without_writer = [commit for commit in history if commit != manifest_commit]
+        if entry.get("source_commits") not in (history, without_writer):
+            raise ValueError(f"Coverage source attribution is stale/incomplete for {entry['path']}; regenerate scope")
 
 
 def source_fingerprint():

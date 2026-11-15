@@ -23,6 +23,8 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 @RunWith(AndroidJUnit4::class)
@@ -38,16 +40,27 @@ class DiscoveryFlowTest {
     @Test fun confirmRealTransportResultsOpenSaveRestartRestoreAndExclude() {
         DiscoveryFixtureServer().use { server ->
             prepare(server)
+            val releaseDiscoveryResponse = CountDownLatch(1)
+            server.handler = { request ->
+                if (request.path == "/v1/discover") {
+                    check(releaseDiscoveryResponse.await(10, TimeUnit.SECONDS)) { "Test did not release discovery response" }
+                    DiscoveryFixtureServer.Response(DiscoveryFixtureServer.results())
+                } else DiscoveryFixtureServer.Response(DiscoveryFixtureServer.status())
+            }
             ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
                 await(scenario) { !it.model.busy && it.model.status != null }
-                scenario.onActivity { activity ->
-                    assertFalse(activity.findViewById<View>(R.id.discovery_search).isEnabled)
-                    activity.findViewById<EditText>(R.id.discovery_query).setText("piano")
-                    activity.findViewById<CheckBox>(R.id.discovery_confirm).isChecked = true
-                    activity.findViewById<View>(R.id.discovery_search).performClick()
-                    activity.findViewById<View>(R.id.discovery_search).performClick()
-                    assertTrue(activity.model.busy)
-                }
+                try {
+                    scenario.onActivity { activity ->
+                        assertFalse(activity.findViewById<View>(R.id.discovery_search).isEnabled)
+                        activity.findViewById<EditText>(R.id.discovery_query).setText("piano")
+                        activity.findViewById<CheckBox>(R.id.discovery_confirm).isChecked = true
+                        activity.findViewById<View>(R.id.discovery_search).performClick()
+                        // Keep the first response in flight: an already completed search may
+                        // legitimately be repeated, even by two adjacent performClick calls.
+                        activity.findViewById<View>(R.id.discovery_search).performClick()
+                        assertTrue(activity.model.busy)
+                    }
+                } finally { releaseDiscoveryResponse.countDown() }
                 await(scenario) { !it.model.busy && it.model.results?.tracks?.size == 2 }
                 assertEquals(1, server.requests.count { it.path == "/v1/discover" })
                 val opened = AtomicReference<Intent>()
@@ -309,6 +322,63 @@ class DiscoveryFlowTest {
                     assertFalse(activity.model.busy)
                 }
                 assertTrue(server.requests.none { it.path.contains("photo") })
+            }
+        }
+    }
+
+    @Test fun perSongEvidenceUsesConfirmedQueryAndSurvivesRepositoryReload() {
+        DiscoveryFixtureServer().use { server ->
+            prepare(server)
+            val rows = JSONArray().put(DiscoveryFixtureServer.row().put("tags", JSONArray().put("Classical")))
+                .put(DiscoveryFixtureServer.row("456").put("title", "Other").put("tags", JSONArray().put("Rock")))
+            server.handler = { request -> DiscoveryFixtureServer.Response(if (request.path.endsWith("status"))
+                JSONObject(DiscoveryFixtureServer.status()).put("catalogs", JSONArray().put(DiscoveryFixtureServer.provider("itunes", state = "not_run"))).toString()
+                else DiscoveryFixtureServer.results(rows)) }
+            var original = ""
+            ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+                await(scenario) { !it.model.busy }
+                scenario.onActivity {
+                    it.model.intent = MusicIntent(tags = listOf("rock"), text = "piano")
+                    it.model.discover()
+                }
+                await(scenario) { !it.model.busy && it.model.results != null }
+                scenario.onActivity { activity ->
+                    val cards = activity.findViewById<LinearLayout>(R.id.discovery_results)
+                    original = cards.getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString()
+                    val second = cards.getChildAt(1).findViewById<TextView>(R.id.discovery_track_reason).text.toString()
+                    assertTrue(original.contains("Title/artist words: piano"))
+                    assertTrue(second.contains("No exact search-word match"))
+                    assertTrue(second.contains("Matching catalog tags: Rock"))
+                    assertNotEquals(original, second)
+                    val status = activity.findViewById<TextView>(R.id.discovery_provider_status).text.toString()
+                    assertTrue(status.contains("Apple music catalog: last request succeeded"))
+                    assertTrue(status.contains("Cloud photo analysis: not configured"))
+                    activity.model.intent = MusicIntent(text = "different later input")
+                    activity.model.showMessage("results") // rerender after editing; evidence still uses the search's intent
+                    assertEquals(original, activity.findViewById<LinearLayout>(R.id.discovery_results).getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString())
+                    activity.model.save(activity.model.results!!.tracks.first())
+                }
+                server.handler = { DiscoveryFixtureServer.Response(JSONObject(DiscoveryFixtureServer.status())
+                    .put("catalogs", JSONArray().put(DiscoveryFixtureServer.provider("itunes", state = "error").put("errorCode", "timeout"))).toString()) }
+                scenario.onActivity { it.model.connect() }
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    val status = activity.findViewById<TextView>(R.id.discovery_provider_status).text.toString()
+                    assertTrue(status.contains("Apple music catalog: unavailable on the last request"))
+                    assertTrue(status.contains("Cloud photo analysis: not configured"))
+                    assertEquals(1, activity.model.collection.saved.size)
+                }
+            }
+            ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    activity.findViewById<View>(R.id.discovery_collection).performClick()
+                    val cards = activity.findViewById<LinearLayout>(R.id.discovery_results)
+                    assertEquals(1, cards.childCount)
+                    assertEquals(original, cards.getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString())
+                    assertEquals(listOf("Classical"), activity.model.collection.saved.single().track.catalogTags)
+                    assertEquals("piano", activity.model.collection.saved.single().intent.text)
+                }
             }
         }
     }

@@ -31,4 +31,27 @@ class DeviceCatalogPolicyTest {
         assertTrue(DeviceCatalogPolicy.select(emptyList(), query()).isEmpty())
         assertThrows(DiscoveryFailure::class.java) { DeviceCatalogPolicy.select(pool, query().copy(market = "invalid")) }
     }
+
+    @Test fun explicitPianoSurvivesEightRockMatchesAndTiesKeepProviderOrder() {
+        val pool = (1..8).map { item(it, "Other $it", genre = "Rock") } + item(9, "ＰＩＡＮＯ", genre = "Classical")
+        val input = query(MusicIntent(tags = listOf("rock"), text = "piano"))
+        val result = DeviceCatalogPolicy.select(pool, input)
+        assertEquals(listOf("9", "1", "2", "3", "4", "5", "6", "7"), result.map { it.ref.id })
+        assertEquals(DiscoveryMatch(emptyList(), listOf("piano")), DiscoveryMatch.of(result.first(), input.intent))
+        assertEquals(DiscoveryMatch(listOf("rock"), emptyList()), DiscoveryMatch.of(result[1], input.intent))
+        assertEquals(listOf("Classical"), result.first().catalogTags)
+        assertEquals((1..8).map(Int::toString), DeviceCatalogPolicy.select(pool, input.copy(intent = input.intent.copy(text = " "))).map { it.ref.id })
+        assertFalse(DeviceCatalogPolicy.select(pool, input.copy(excluded = listOf(DiscoveryRef("itunes", "9")))).any { it.ref.id == "9" })
+    }
+
+    @Test fun multipleWordsArtistWordsAndSecondaryTagsBreakTiesWithoutChangingSourceRows() {
+        val pool = listOf(item(1, "Piano", genre = "Classical"), item(2, "Piano", genre = "Rock"),
+            item(3, "Moon", artist = "ＰＩＡＮＯ ＮＩＧＨＴ", genre = "Classical"), item(4, "Piano", genre = "Rock"))
+        val intent = MusicIntent(tags = listOf("rock"), text = "Night PIANO piano")
+        val result = DeviceCatalogPolicy.select(pool, query(intent))
+        assertEquals(listOf("3", "2", "4", "1"), result.map { it.ref.id })
+        assertEquals(listOf("night", "piano"), DiscoveryMatch.of(result.first(), intent).words)
+        assertTrue(pool.all { it.track.catalogTags == null })
+        assertEquals(result, DeviceCatalogPolicy.select(pool, query(intent)))
+    }
 }

@@ -39,6 +39,7 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
     var results: DiscoveryResults? = null
         private set
     private var resultQuery: DiscoveryQuery? = null
+    internal val resultIntent get() = resultQuery?.intent
     var collection = DiscoveryCollection()
         private set
     var collectionError: String? = null
@@ -103,7 +104,7 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         runOperation { client ->
             val current = client.status()
             val response = client.discover(current.token, query)
-            return@runOperation { status = current; results = response; resultQuery = query; message = if (response.tracks.isEmpty()) "no_results" else "results" }
+            return@runOperation { status = current.copy(catalogs = response.catalogs); results = response; resultQuery = query; message = if (response.tracks.isEmpty()) "no_results" else "results" }
         }
     }
 
