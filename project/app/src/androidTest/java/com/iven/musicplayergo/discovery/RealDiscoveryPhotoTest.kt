@@ -1,6 +1,8 @@
 package com.iven.musicplayergo.discovery
 
 import android.net.Uri
+import android.os.Build
+import android.os.ParcelFileDescriptor
 import android.os.SystemClock
 import android.view.View
 import android.widget.CheckBox
@@ -11,10 +13,12 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.iven.musicplayergo.photos.*
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.ui.MainActivity
 import kotlinx.coroutines.runBlocking
 import org.json.JSONArray
 import org.json.JSONObject
 import org.junit.Assert.*
+import org.junit.After
 import org.junit.Assume.assumeTrue
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,17 +27,28 @@ import java.io.File
 /** Opt-in real phone inference/catalog evidence; never replaces models or clears user data. */
 @RunWith(AndroidJUnit4::class)
 class RealDiscoveryPhotoTest {
+    private val photos by lazy {
+        PendingDiscoveryPhotos(InstrumentationRegistry.getInstrumentation().targetContext.contentResolver)
+    }
+
     @Test fun importedModelProducesEditableIntentAndRealCatalogResults() = runBlocking<Unit> {
         assumeTrue(InstrumentationRegistry.getArguments().getString("discoveryReal") == "true")
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext
         val files = instrumentation.context.assets.list("photo-discovery/media/images")!!.sorted()
         assertTrue("Supply public JPEG fixtures separately", files.isNotEmpty())
+        // Use the exported launcher like a foreground user. Some phones reject
+        // ActivityScenario's internal screen launch while another app is on top.
+        val launch = instrumentation.uiAutomation.executeShellCommand(
+            "am start -W -n ${context.packageName}/${MainActivity::class.java.name}")
+        val launchResult = ParcelFileDescriptor.AutoCloseInputStream(launch).bufferedReader().use { it.readText() }
+        assertTrue("Normal app launch failed: $launchResult", launchResult.contains("Status: ok"))
         val evidence = JSONArray()
         var first: PhotoIntent? = null
         var firstUri: Uri? = null
         for (name in files) {
-            val uri = Uri.parse("content://${instrumentation.context.packageName}.photo-fixtures/photo-discovery/media/images/$name")
+            val uri = fixtureUri(name)
+            assertEquals("Fixture must expose its real JPEG type", "image/jpeg", context.contentResolver.getType(uri))
             val started = SystemClock.elapsedRealtime()
             val features = withPhotoExtractor({ OnnxPhotoFeatureExtractor(context, PhotoModelStore(context).file(PhotoModel.PHOTO)) }) {
                 it.extract(ScopedPhoto("discovery-selected", uri.toString()))
@@ -106,6 +121,27 @@ class RealDiscoveryPhotoTest {
                     .put("external_navigation_verified", false).put("cold_restart_verified", false).toString(2))
             }
         }
+    }
+
+    private fun fixtureUri(name: String): Uri {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val path = "photo-discovery/media/images/$name"
+        if (Build.VERSION.SDK_INT < 29) {
+            // Legacy devices cannot insert media without broad storage permission.
+            return Uri.parse("content://${instrumentation.context.packageName}.photo-fixtures/$path")
+        }
+        return photos.insert(name) { instrumentation.context.assets.open(path) }
+    }
+
+    @After fun removeOnlyPhotosCreatedByThisTest() {
+        if (Build.VERSION.SDK_INT < 29) return
+        val cleanup = photos.cleanup()
+        if (cleanup.created == 0) return
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        File(context.filesDir, "discovery-real-cleanup.json").writeText(JSONObject()
+            .put("created", cleanup.created).put("deleted", cleanup.deleted)
+            .put("pending_only", true).put("errors", JSONArray(cleanup.errors)).toString(2))
+        assertTrue("Fixture cleanup failed: ${cleanup.errors}", cleanup.errors.isEmpty())
     }
 
     private fun await(scenario: ActivityScenario<DiscoveryActivity>, predicate: (DiscoveryActivity) -> Boolean) {
