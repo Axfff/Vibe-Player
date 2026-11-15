@@ -23,6 +23,8 @@ import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicReference
 
 @RunWith(AndroidJUnit4::class)
@@ -38,16 +40,27 @@ class DiscoveryFlowTest {
     @Test fun confirmRealTransportResultsOpenSaveRestartRestoreAndExclude() {
         DiscoveryFixtureServer().use { server ->
             prepare(server)
+            val releaseDiscoveryResponse = CountDownLatch(1)
+            server.handler = { request ->
+                if (request.path == "/v1/discover") {
+                    check(releaseDiscoveryResponse.await(10, TimeUnit.SECONDS)) { "Test did not release discovery response" }
+                    DiscoveryFixtureServer.Response(DiscoveryFixtureServer.results())
+                } else DiscoveryFixtureServer.Response(DiscoveryFixtureServer.status())
+            }
             ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
                 await(scenario) { !it.model.busy && it.model.status != null }
-                scenario.onActivity { activity ->
-                    assertFalse(activity.findViewById<View>(R.id.discovery_search).isEnabled)
-                    activity.findViewById<EditText>(R.id.discovery_query).setText("piano")
-                    activity.findViewById<CheckBox>(R.id.discovery_confirm).isChecked = true
-                    activity.findViewById<View>(R.id.discovery_search).performClick()
-                    activity.findViewById<View>(R.id.discovery_search).performClick()
-                    assertTrue(activity.model.busy)
-                }
+                try {
+                    scenario.onActivity { activity ->
+                        assertFalse(activity.findViewById<View>(R.id.discovery_search).isEnabled)
+                        activity.findViewById<EditText>(R.id.discovery_query).setText("piano")
+                        activity.findViewById<CheckBox>(R.id.discovery_confirm).isChecked = true
+                        activity.findViewById<View>(R.id.discovery_search).performClick()
+                        // Keep the first response in flight: an already completed search may
+                        // legitimately be repeated, even by two adjacent performClick calls.
+                        activity.findViewById<View>(R.id.discovery_search).performClick()
+                        assertTrue(activity.model.busy)
+                    }
+                } finally { releaseDiscoveryResponse.countDown() }
                 await(scenario) { !it.model.busy && it.model.results?.tracks?.size == 2 }
                 assertEquals(1, server.requests.count { it.path == "/v1/discover" })
                 val opened = AtomicReference<Intent>()
