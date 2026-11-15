@@ -44,7 +44,8 @@ class DiscoveryActivity : BaseActivity() {
         binding = ActivityDiscoveryBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showCollection = savedInstanceState?.getBoolean("collection") ?: false
-        editing = savedInstanceState?.getBoolean("editing") ?: (model.results == null)
+        // View state can outlive the process-local results. Collection has its own durable data.
+        editing = model.results == null || savedInstanceState?.getBoolean("editing") == true
         optionsExpanded = savedInstanceState?.getBoolean("options") ?: false
         photoDetailsExpanded = savedInstanceState?.getBoolean("photo-details") ?: false
         expandedTracks.addAll(savedInstanceState?.getStringArrayList("track-details").orEmpty())
@@ -262,6 +263,7 @@ class DiscoveryActivity : BaseActivity() {
                 model.resultIntent?.let { intent -> response.tracks.forEach { addTrack(it, intent, savedList = false) } }
             }
         }
+        binding.discoveryFeedback.isVisible = binding.discoveryMessage.isVisible || model.busy
     }
 
     private fun addTrack(track: DiscoveryTrack, intent: MusicIntent, savedList: Boolean) {
