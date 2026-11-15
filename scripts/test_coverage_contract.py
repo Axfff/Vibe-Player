@@ -1,8 +1,11 @@
 """Gate semantics, including the failures that CI must not round away or hide."""
 import importlib.util
+import copy
+import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location("coverage_contract", Path(__file__).parent / "coverage/coverage.py")
 coverage = importlib.util.module_from_spec(spec)
@@ -10,6 +13,54 @@ spec.loader.exec_module(coverage)
 
 
 class CoverageContractTest(unittest.TestCase):
+    def test_cleared_or_invented_source_attribution_is_rejected(self):
+        path = "project/app/src/main/java/a/Changed.kt"
+        history = ["1" * 40, "2" * 40]
+        expected = [{"path": path, "source_commits": history}]
+        for broken in ([], history[:1], history[1:], history[::-1], history + [history[0]], ["3" * 40], None):
+            with self.subTest(history=broken), self.assertRaisesRegex(ValueError, "source attribution"):
+                coverage.validate_attribution([{"path": path, "source_commits": broken}], expected, "4" * 40)
+
+    def test_only_manifest_writers_own_hash_may_be_omitted(self):
+        path = "project/app/src/main/java/a/Changed.kt"
+        older, writer = "1" * 40, "2" * 40
+        expected = [{"path": path, "source_commits": [older, writer]}]
+        for history in ([older], [older, writer]):
+            coverage.validate_attribution([{"path": path, "source_commits": history}], expected, writer)
+        with self.assertRaisesRegex(ValueError, "source attribution"):
+            coverage.validate_attribution([{"path": path, "source_commits": []}], expected, writer)
+
+    def test_new_source_can_be_committed_with_its_manifest_without_circular_hash(self):
+        writer = "2" * 40
+        path = "project/app/src/main/java/a/New.kt"
+        coverage.validate_attribution([{"path": path, "source_commits": []}],
+                                      [{"path": path, "source_commits": [writer]}], writer)
+        coverage.validate_attribution([{"path": path, "source_commits": []}],
+                                      [{"path": path, "source_commits": []}], writer)
+
+    def test_scope_gate_enforces_attribution_and_reports_complete_generated_history(self):
+        older, writer = "1" * 40, "2" * 40
+        expected = {"files": [{"path": "a.kt", "source_commits": [older, writer], "source_sha256": "source"}]}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            manifest = root / "scope.json"
+            with patch.object(coverage, "ROOT", root), patch.object(coverage, "MANIFEST", manifest), \
+                    patch.object(coverage, "expected_scope", return_value=expected), \
+                    patch.object(coverage, "git", return_value=writer) as git:
+                saved = copy.deepcopy(expected)
+                saved["files"][0]["source_commits"] = []
+                manifest.write_text(json.dumps(saved), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "source attribution"):
+                    coverage.validate_scope()
+                saved["files"][0]["source_commits"] = [older]
+                manifest.write_text(json.dumps(saved), encoding="utf-8")
+                self.assertEqual(expected, coverage.validate_scope())
+                git.assert_called_with("log", "-1", "--format=%H", "--", "scope.json")
+                saved["files"][0]["source_sha256"] = "stale source"
+                manifest.write_text(json.dumps(saved), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "stale/incomplete"):
+                    coverage.validate_scope()
+
     def test_threshold_is_exact_and_not_rounded(self):
         self.assertFalse(coverage.fraction(1999, 2500)["passed"])  # 79.96%
         self.assertTrue(coverage.fraction(2000, 2500)["passed"])
