@@ -320,6 +320,63 @@ class DiscoveryFlowTest {
         }
     }
 
+    @Test fun perSongEvidenceUsesConfirmedQueryAndSurvivesRepositoryReload() {
+        DiscoveryFixtureServer().use { server ->
+            prepare(server)
+            val rows = JSONArray().put(DiscoveryFixtureServer.row().put("tags", JSONArray().put("Classical")))
+                .put(DiscoveryFixtureServer.row("456").put("title", "Other").put("tags", JSONArray().put("Rock")))
+            server.handler = { request -> DiscoveryFixtureServer.Response(if (request.path.endsWith("status"))
+                JSONObject(DiscoveryFixtureServer.status()).put("catalogs", JSONArray().put(DiscoveryFixtureServer.provider("itunes", state = "not_run"))).toString()
+                else DiscoveryFixtureServer.results(rows)) }
+            var original = ""
+            ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+                await(scenario) { !it.model.busy }
+                scenario.onActivity {
+                    it.model.intent = MusicIntent(tags = listOf("rock"), text = "piano")
+                    it.model.discover()
+                }
+                await(scenario) { !it.model.busy && it.model.results != null }
+                scenario.onActivity { activity ->
+                    val cards = activity.findViewById<LinearLayout>(R.id.discovery_results)
+                    original = cards.getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString()
+                    val second = cards.getChildAt(1).findViewById<TextView>(R.id.discovery_track_reason).text.toString()
+                    assertTrue(original.contains("Title/artist words: piano"))
+                    assertTrue(second.contains("No exact search-word match"))
+                    assertTrue(second.contains("Matching catalog tags: Rock"))
+                    assertNotEquals(original, second)
+                    val status = activity.findViewById<TextView>(R.id.discovery_provider_status).text.toString()
+                    assertTrue(status.contains("Apple music catalog: last request succeeded"))
+                    assertTrue(status.contains("Cloud photo analysis: not configured"))
+                    activity.model.intent = MusicIntent(text = "different later input")
+                    activity.model.showMessage("results") // rerender after editing; evidence still uses the search's intent
+                    assertEquals(original, activity.findViewById<LinearLayout>(R.id.discovery_results).getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString())
+                    activity.model.save(activity.model.results!!.tracks.first())
+                }
+                server.handler = { DiscoveryFixtureServer.Response(JSONObject(DiscoveryFixtureServer.status())
+                    .put("catalogs", JSONArray().put(DiscoveryFixtureServer.provider("itunes", state = "error").put("errorCode", "timeout"))).toString()) }
+                scenario.onActivity { it.model.connect() }
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    val status = activity.findViewById<TextView>(R.id.discovery_provider_status).text.toString()
+                    assertTrue(status.contains("Apple music catalog: unavailable on the last request"))
+                    assertTrue(status.contains("Cloud photo analysis: not configured"))
+                    assertEquals(1, activity.model.collection.saved.size)
+                }
+            }
+            ActivityScenario.launch(DiscoveryActivity::class.java).use { scenario ->
+                await(scenario) { !it.model.busy }
+                scenario.onActivity { activity ->
+                    activity.findViewById<View>(R.id.discovery_collection).performClick()
+                    val cards = activity.findViewById<LinearLayout>(R.id.discovery_results)
+                    assertEquals(1, cards.childCount)
+                    assertEquals(original, cards.getChildAt(0).findViewById<TextView>(R.id.discovery_track_reason).text.toString())
+                    assertEquals(listOf("Classical"), activity.model.collection.saved.single().track.catalogTags)
+                    assertEquals("piano", activity.model.collection.saved.single().intent.text)
+                }
+            }
+        }
+    }
+
     private fun dialog(): View = android.view.inspector.WindowInspector.getGlobalWindowViews()
         .last { it.findViewById<View>(android.R.id.button1) != null }
 

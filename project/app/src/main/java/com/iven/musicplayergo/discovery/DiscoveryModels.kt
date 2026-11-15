@@ -16,6 +16,8 @@ data class DiscoveryTrack(
     val officialUrl: String,
     val reason: String = "",
     val linkNotice: String = "",
+    // Null means older/missing metadata. Empty means the catalog supplied no tags.
+    val catalogTags: List<String>? = null,
 ) {
     fun valid() = ref.valid() && title.isNotBlank() && title.length <= 300 &&
         artist.isNotBlank() && artist.length <= 300 && DiscoveryLinks.valid(ref, officialUrl)

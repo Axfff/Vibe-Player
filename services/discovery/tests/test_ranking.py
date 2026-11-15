@@ -23,11 +23,31 @@ def test_metadata_rank_and_tie_order_are_deterministic_without_mutation(network)
     intent = DiscoveryIntent(targetMood="calm", musicTags=["jazz"], text="piano")
     first = rank_candidates([candidates], intent)
     second = rank_candidates([candidates], intent)
-    assert [c.track.ref.providerTrackId for c in first] == ["103", "104", "102", "101", "105"]
+    assert [c.track.ref.providerTrackId for c in first] == ["102", "103", "104", "101", "105"]
     assert [c.track for c in first] == [c.track for c in second]
     assert candidates[0].track.recommendationReason == original
-    assert "目录标签匹配 1 项" in first[0].track.recommendationReason
-    assert "标题/艺人词匹配 1 项" in first[2].track.recommendationReason
+    assert "目录标签匹配 1 项" in first[1].track.recommendationReason
+    assert "标题/艺人词匹配 1 项" in first[0].track.recommendationReason
+
+
+def test_explicit_words_survive_eight_genre_matches_in_discovery(client_factory, intent, live_settings):
+    def handler(request):
+        if request.method == "HEAD":
+            return httpx.Response(200)
+        if request.url.host == "api.jamendo.com":
+            return httpx.Response(200, json={"headers": {"status": "success"}, "results": []})
+        rows = [{**itunes_row(100 + i, f"Artist {i}"), "primaryGenreName": "Rock"} for i in range(8)]
+        rows.append({**itunes_row(109, "Pianist"), "trackName": "ＰＩＡＮＯ", "primaryGenreName": "Classical"})
+        return httpx.Response(200, json={"results": rows})
+
+    intent["intent"].update(text="piano", musicTags=["rock"])
+    response = client_factory(live_settings, handler).post("/v1/discover", json=intent)
+    assert response.status_code == 200
+    tracks = response.json()["tracks"]
+    assert [t["ref"]["providerTrackId"] for t in tracks] == ["109", "100", "101", "102", "103", "104", "105", "106"]
+    assert tracks[0]["tags"] == ["Classical"]
+    assert "标题/艺人词匹配 1 项" in tracks[0]["recommendationReason"]
+    assert "目录标签匹配 1 项" in tracks[1]["recommendationReason"]
 
 
 def test_rank_deduplicates_and_uses_mood_only_without_user_tags_or_text(network):
@@ -38,6 +58,20 @@ def test_rank_deduplicates_and_uses_mood_only_without_user_tags_or_text(network)
     result = rank_candidates([candidates + candidates], DiscoveryIntent(targetMood="calm"))
     assert [c.track.ref.providerTrackId for c in result] == ["102", "101"]
     assert len(rank_candidates([], DiscoveryIntent(targetMood="calm"))) == 0
+
+
+def test_blank_text_keeps_style_priority_and_nonblank_uses_word_counts_then_tags(network):
+    source = ITunesCatalog(Settings(itunes_mode="live"), network(lambda r: httpx.Response(200)))
+    candidates = source.normalize([
+        {**itunes_row(101), "trackName": "Piano", "primaryGenreName": "Classical"},
+        {**itunes_row(102), "trackName": "Piano", "primaryGenreName": "Rock"},
+        {**itunes_row(103, "ＰＩＡＮＯ ＮＩＧＨＴ"), "primaryGenreName": "Classical"},
+        {**itunes_row(104), "trackName": "Piano", "primaryGenreName": "Rock"},
+    ], "piano")
+    intent = DiscoveryIntent(targetMood="calm", musicTags=["rock"], text="night PIANO piano")
+    assert [c.track.ref.providerTrackId for c in rank_candidates([candidates], intent)] == ["103", "102", "104", "101"]
+    intent = DiscoveryIntent(targetMood="calm", musicTags=["rock"], text=" ")
+    assert [c.track.ref.providerTrackId for c in rank_candidates([candidates], intent)] == ["102", "104", "101", "103"]
 
 
 def test_exclusions_and_normalized_artist_cap_apply_across_sources(

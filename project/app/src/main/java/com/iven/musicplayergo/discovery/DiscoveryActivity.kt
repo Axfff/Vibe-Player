@@ -155,8 +155,7 @@ class DiscoveryActivity : BaseActivity() {
         val status = model.status
         binding.discoveryServiceFields.isVisible = model.customService
         binding.discoveryProviderStatus.text = if (!model.customService) getString(R.string.discovery_device_ready)
-            else if (status == null) getString(R.string.discovery_status_unknown)
-            else getString(if (status.canAnalyze) R.string.discovery_connected else R.string.discovery_blocked)
+            else DiscoveryPresentation.service(status).resolve(this)
         binding.discoveryPhotoStatus.text = when {
             model.photo != null -> model.localPhotoDescription?.resolve(this) ?: "${model.photo!!.scenes.joinToString { DiscoveryLabels.text(it).resolve(this) }}\n${model.photo!!.moods.joinToString { DiscoveryLabels.text(it).resolve(this) }} · ${model.photo!!.tags.joinToString { DiscoveryLabels.text(it).resolve(this) }}"
             model.photoUri != null -> getString(R.string.discovery_photo_selected)
@@ -170,25 +169,24 @@ class DiscoveryActivity : BaseActivity() {
         binding.discoveryResults.removeAllViews()
         if (showCollection) {
             if (model.collection.saved.isEmpty() && model.collectionError == null) binding.discoveryMessage.setText(R.string.discovery_collection_empty)
-            model.collection.saved.forEach { addTrack(it.track, savedList = true) }
+            model.collection.saved.forEach { addTrack(it.track, it.intent, savedList = true) }
         } else {
             model.results?.let { response ->
                 if (model.message == "results" || model.message == "no_results") {
                     if (response.tracks.size < 8) binding.discoveryMessage.append("\n" + getString(R.string.discovery_shortage, response.tracks.size))
                     if (response.catalogs.any { it.error != null }) binding.discoveryMessage.append("\n" + getString(R.string.discovery_catalog_partial))
                 }
-                response.tracks.forEach { addTrack(it, savedList = false) }
+                model.resultIntent?.let { intent -> response.tracks.forEach { addTrack(it, intent, savedList = false) } }
             }
         }
     }
 
-    private fun addTrack(track: DiscoveryTrack, savedList: Boolean) {
+    private fun addTrack(track: DiscoveryTrack, intent: MusicIntent, savedList: Boolean) {
         val row = DiscoveryTrackBinding.inflate(layoutInflater, binding.discoveryResults, false)
         row.discoveryTrackTitle.text = track.title
         row.discoveryTrackArtist.text = track.artist
         row.discoveryTrackSource.text = "${track.ref.provider} · ${track.ref.id}\n${track.officialUrl}"
-        // Service prose may use another language; identity/content is retained while UI copy is local.
-        row.discoveryTrackReason.text = getString(R.string.discovery_metadata_reason) + "\n" + getString(R.string.discovery_official_notice)
+        row.discoveryTrackReason.text = DiscoveryPresentation.reason(track, intent).resolve(this) + "\n" + getString(R.string.discovery_official_notice)
         row.discoveryTrackOpen.setOnClickListener { openOfficial(track) }
         val saved = model.collection.saved.any { it.track.ref == track.ref }
         row.discoveryTrackSave.setText(if (savedList) R.string.discovery_remove else if (saved) R.string.discovery_saved else R.string.discovery_save)

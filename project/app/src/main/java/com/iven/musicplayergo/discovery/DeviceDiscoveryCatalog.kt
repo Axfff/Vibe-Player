@@ -5,7 +5,6 @@ import java.net.HttpURLConnection
 import java.net.SocketTimeoutException
 import java.net.URL
 import java.net.URLEncoder
-import java.text.Normalizer
 import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
@@ -20,7 +19,7 @@ class DeviceDiscoveryCatalog(
     private val cancelled = AtomicBoolean(false)
     private val active = AtomicReference<HttpURLConnection?>()
     override fun status() = DiscoveryStatus("", ProviderState("vision", "unconfigured", "optional_local", null),
-        listOf(ProviderState("itunes", "live", "ready", null)), "", "")
+        listOf(ProviderState("itunes", "live", "not_run", null)), "", "")
     override fun analyze(token: String, jpeg: ByteArray): PhotoIntent = throw DiscoveryFailure("vision_not_live")
     override fun cancel() { cancelled.set(true); active.getAndSet(null)?.disconnect() }
 
@@ -49,7 +48,7 @@ class DeviceDiscoveryCatalog(
             if (timedOut.get()) throw DiscoveryFailure("timeout")
             if (cancelled.get()) throw DiscoveryFailure("cancelled")
             val tracks = DeviceCatalogPolicy.select(DeviceCatalogPolicy.parse(raw), query)
-            return DiscoveryResults(tracks, "", listOf(ProviderState("itunes", "live", "ready", null)))
+            return DiscoveryResults(tracks, "", listOf(ProviderState("itunes", "live", "ok", null)))
         } catch (e: DiscoveryFailure) { throw e
         } catch (_: SocketTimeoutException) { throw DiscoveryFailure("timeout")
         } catch (_: Exception) {
@@ -65,14 +64,7 @@ data class DeviceCatalogCandidate(val track: DiscoveryTrack, val genre: String)
 
 /** Same metadata-only policy as the service: user intent wins, two songs per artist, eight results. */
 object DeviceCatalogPolicy {
-    private val moodTerms = mapOf("calm" to "ambient", "bright" to "pop", "energetic" to "dance",
-        "melancholic" to "acoustic", "dreamy" to "ambient", "focused" to "instrumental")
-    fun term(intent: MusicIntent): String = intent.text.trim().ifEmpty {
-        intent.tags.distinct().joinToString(" ").ifEmpty { moodTerms.getValue(intent.mood) }
-    }
-    private fun normalized(value: String) = Normalizer.normalize(value, Normalizer.Form.NFKC)
-        .lowercase(Locale.ROOT).trim().replace(Regex("\\s+"), " ")
-    private fun words(value: String) = Regex("[\\p{L}\\p{N}_]+").findAll(normalized(value)).map { it.value }.toSet()
+    fun term(intent: MusicIntent): String = DiscoveryMatch.term(intent)
     fun parse(raw: String): List<DeviceCatalogCandidate> {
         try {
             val rows = JSONObject(raw).getJSONArray("results")
@@ -95,18 +87,19 @@ object DeviceCatalogPolicy {
     }
     fun select(candidates: List<DeviceCatalogCandidate>, query: DiscoveryQuery): List<DiscoveryTrack> {
         if (!query.valid()) throw DiscoveryFailure("invalid_input")
-        val wanted = query.intent.tags.map(::normalized).toSet().ifEmpty {
-            if (query.intent.text.isBlank()) setOf(moodTerms.getValue(query.intent.mood)) else emptySet()
-        }
-        val terms = words(term(query.intent))
+        val explicitText = query.intent.text.isNotBlank()
         val excluded = query.excluded.map { it.key }.toSet()
         val artists = mutableMapOf<String, Int>()
-        return candidates.filter { it.track.valid() }.distinctBy { it.track.ref.key }.withIndex()
-            .sortedWith(compareByDescending<IndexedValue<DeviceCatalogCandidate>> { if (normalized(it.value.genre) in wanted) 1 else 0 }
-                .thenByDescending { (words(it.value.track.title + " " + it.value.track.artist) intersect terms).size }
+        val scored = candidates.filter { it.track.valid() }.distinctBy { it.track.ref.key }.map {
+            val track = it.track.copy(catalogTags = listOf(it.genre).filter(String::isNotBlank))
+            track to DiscoveryMatch.of(track, query.intent)
+        }.withIndex()
+        return scored.sortedWith(compareByDescending<IndexedValue<Pair<DiscoveryTrack, DiscoveryMatch>>> {
+                if (explicitText) it.value.second.words.size else it.value.second.tags.size
+            }.thenByDescending { if (explicitText) it.value.second.tags.size else it.value.second.words.size }
                 .thenBy { it.index })
-            .map { it.value.track }.filter { track ->
-                val artist = normalized(track.artist)
+            .map { it.value.first }.filter { track ->
+                val artist = DiscoveryMatch.normalized(track.artist)
                 if (track.ref.key in excluded || (artists[artist] ?: 0) >= 2) false
                 else { artists[artist] = (artists[artist] ?: 0) + 1; true }
             }.take(8)
