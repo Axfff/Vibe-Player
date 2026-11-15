@@ -174,7 +174,9 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
         when {
             sDetailsFragmentExpanded -> closeDetailsFragment(isAnimation = mGoPreferences.isAnimations)
             mGoPreferences.activeTabs.getOrNull(mMainActivityBinding.viewPager2.currentItem) ==
-                GoConstants.PLAYLIST_TAB && mPlaylistsFragment?.navigateBackToList() == true -> Unit
+                GoConstants.PLAYLIST_TAB && supportFragmentManager.fragments
+                    .filterIsInstance<PlaylistsFragment>()
+                    .firstOrNull { it.isResumed && it.isVisible }?.navigateBackToList() == true -> Unit
             else -> if (mMainActivityBinding.viewPager2.currentItem != 0) {
                 mMainActivityBinding.viewPager2.currentItem = 0
             } else {

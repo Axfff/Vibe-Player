@@ -47,7 +47,7 @@ import kotlin.math.sin
  * test. Audio is inserted through MediaStore, decoded by the production MediaPlayer and
  * removed by URI afterwards. No production lifecycle or playback callback is substituted.
  */
-class RegressionFixture private constructor(private val taggedAudio: Boolean) : AutoCloseable {
+class RegressionFixture private constructor(private val taggedAudio: Boolean, private val initialTabs: List<String>?) : AutoCloseable {
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     val context: Context = instrumentation.targetContext
     val preferences: GoPreferences get() = GoPreferences.getPrefsInstance()
@@ -105,6 +105,7 @@ class RegressionFixture private constructor(private val taggedAudio: Boolean) : 
         preferences.lockRotation = false
         preferences.continueOnEnd = true
         preferences.onListEnded = "1" // Stop when the saved snapshot ends.
+        initialTabs?.let { preferences.activeTabsDef = it; preferences.activeTabs = it }
         listOf("A", "B", "C").forEach { insertAudio(it) }
         launchActivity(scanApplication)
         await("initial successful MediaStore scan", 20_000) {
@@ -339,7 +340,7 @@ class RegressionFixture private constructor(private val taggedAudio: Boolean) : 
     companion object {
         const val TAG = "PlaylistRegression"
 
-        fun open(scanApplication: Application? = null, taggedAudio: Boolean = false): RegressionFixture = RegressionFixture(taggedAudio).also {
+        fun open(scanApplication: Application? = null, taggedAudio: Boolean = false, initialTabs: List<String>? = null): RegressionFixture = RegressionFixture(taggedAudio, initialTabs).also {
             try {
                 it.initialize(scanApplication)
             } catch (failure: Throwable) {

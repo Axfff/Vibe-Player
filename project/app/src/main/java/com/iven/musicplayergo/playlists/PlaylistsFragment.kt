@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +18,7 @@ import com.iven.musicplayergo.covers.CoverRepositories
 import com.iven.musicplayergo.covers.CoverResult
 import com.iven.musicplayergo.covers.CoverTarget
 import com.iven.musicplayergo.covers.loadCover
-import com.iven.musicplayergo.databinding.PlaylistSheetBinding
+import com.iven.musicplayergo.databinding.PlaylistPageBinding
 import com.iven.musicplayergo.ui.MediaControlInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -29,7 +27,7 @@ import kotlinx.coroutines.withContext
 
 /** The persistent bottom-navigation page for managing saved playlists. */
 class PlaylistsFragment : Fragment(), PlaylistEditorHost {
-    private var binding: PlaylistSheetBinding? = null
+    private var binding: PlaylistPageBinding? = null
     private lateinit var musicViewModel: MusicViewModel
     private lateinit var repository: PlaylistRepository
     private lateinit var playlistAdapter: PlaylistListAdapter
@@ -50,7 +48,7 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        PlaylistSheetBinding.inflate(inflater, container, false).also { binding = it }.root
+        PlaylistPageBinding.inflate(inflater, container, false).also { binding = it }.root
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,56 +58,49 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
         playlistAdapter = PlaylistListAdapter { playlist ->
             if (!mutating) {
                 selectedPlaylistId = playlist.id
+                views.playlistAppBar.setExpanded(true, false)
                 render()
             }
         }
         tracksAdapter = PlaylistTracksAdapter(::removeTrack)
         views.playlistRows.layoutManager = LinearLayoutManager(requireContext())
         views.playlistRows.adapter = playlistAdapter
-        views.playlistClose.isVisible = false
-        views.playlistBack.setOnClickListener {
-            selectedPlaylistId = null
-            render()
-        }
-        views.playlistPrimary.setOnClickListener {
+        views.playlistControls.playlistClose.isVisible = false
+        views.playlistControls.playlistBack.setOnClickListener { navigateBackToList() }
+        views.playlistControls.playlistPrimary.setOnClickListener {
             if (selectedPlaylistId == null) showNameDialog(null) else playSelectedPlaylist()
         }
-        views.playlistAdd.setOnClickListener {
+        views.playlistControls.playlistAdd.setOnClickListener {
             val playlist = currentPlaylist() ?: return@setOnClickListener
             if (childFragmentManager.findFragmentByTag(ADD_DIALOG) == null) {
                 PlaylistSongPickerDialogFragment.newInstance(playlist.id).show(childFragmentManager, ADD_DIALOG)
             }
         }
-        views.playlistRename.setOnClickListener { showNameDialog(currentPlaylist()) }
-        views.playlistDelete.setOnClickListener {
+        views.playlistControls.playlistRename.setOnClickListener { showNameDialog(currentPlaylist()) }
+        views.playlistControls.playlistDelete.setOnClickListener {
             val playlist = currentPlaylist() ?: return@setOnClickListener
             if (childFragmentManager.findFragmentByTag(DELETE_DIALOG) == null) {
                 PlaylistDeleteDialogFragment.newInstance(playlist.id, playlist.name)
                     .show(childFragmentManager, DELETE_DIALOG)
             }
         }
-        views.playlistRefresh.setOnClickListener {
+        views.playlistControls.playlistRefresh.setOnClickListener {
             reloadPlaylists()
             musicViewModel.refreshPlaylistLibrary()
         }
-        views.playlistSetCover.setOnClickListener {
+        bindPlaylistPhotoSources(views.playlistControls.playlistPhotoSources, ::currentPlaylist)
+        views.playlistControls.playlistSetCover.setOnClickListener {
             val id = selectedPlaylistId ?: return@setOnClickListener
             if (childFragmentManager.findFragmentByTag(COVER_DIALOG) == null) {
                 CoverCropDialogFragment.forPlaylist(id).show(childFragmentManager, COVER_DIALOG)
             }
         }
-        views.playlistRemoveCover.setOnClickListener { removePlaylistCover() }
+        views.playlistControls.playlistRemoveCover.setOnClickListener { removePlaylistCover() }
         childFragmentManager.setFragmentResultListener(CoverCropDialogFragment.RESULT_KEY, viewLifecycleOwner) { _, _ ->
             playlistAdapter.notifyDataSetChanged()
             render()
         }
 
-        val initialBottomPadding = views.root.paddingBottom
-        ViewCompat.setOnApplyWindowInsetsListener(views.root) { root, insets ->
-            root.setPadding(root.paddingLeft, root.paddingTop, root.paddingRight,
-                initialBottomPadding + insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom)
-            insets
-        }
         musicViewModel.playlistLibraryState.observe(viewLifecycleOwner) { state ->
             libraryState = state
             render()
@@ -146,12 +137,7 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
 
     override fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
-            val target = CoverTarget.Playlist(id)
-            if (CoverRepositories.get(requireContext()).hasCover(target)) {
-                CoverRepositories.get(requireContext()).removeCover(target)
-            }
-        }
+        cleanupPlaylistArtwork(id, ::showFeedback)
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))
     }
@@ -159,6 +145,7 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
     internal fun navigateBackToList(): Boolean {
         if (selectedPlaylistId == null) return false
         selectedPlaylistId = null
+        binding?.playlistAppBar?.setExpanded(true, false)
         render()
         return true
     }
@@ -240,33 +227,33 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
         val playableCount = resolved?.count { it.isAvailable } ?: 0
         val unavailableCount = resolved?.count { !it.isAvailable } ?: 0
 
-        views.playlistHeading.text = selected?.name ?: getString(R.string.playlist_title)
-        views.playlistBack.isVisible = detail
-        views.playlistBack.isEnabled = !mutating
-        views.playlistSummary.text = if (selected == null) getString(R.string.playlist_collection_hint) else {
+        views.playlistControls.playlistHeading.text = selected?.name ?: getString(R.string.playlist_title)
+        views.playlistControls.playlistBack.isVisible = detail
+        views.playlistControls.playlistBack.isEnabled = !mutating
+        views.playlistControls.playlistSummary.text = if (selected == null) getString(R.string.playlist_collection_hint) else {
             resources.getQuantityString(R.plurals.playlist_track_count, selected.tracks.size, selected.tracks.size) +
                 "\n" + getString(R.string.playlist_order_hint)
         }
-        views.playlistPrimary.setText(if (detail) R.string.playlist_play else R.string.playlist_create)
-        views.playlistPrimary.isEnabled = storageReady && (!detail || (libraryIsReady() && playableCount > 0))
-        views.playlistAdd.isVisible = detail
-        views.playlistAdd.isEnabled = storageReady && libraryIsReady()
-        views.playlistRename.isVisible = detail
-        views.playlistRename.isEnabled = storageReady
-        views.playlistDelete.isVisible = detail
-        views.playlistDelete.isEnabled = storageReady
-        views.playlistCoverActions.isVisible = detail
+        views.playlistControls.playlistPrimary.setText(if (detail) R.string.playlist_play else R.string.playlist_create)
+        views.playlistControls.playlistPrimary.isEnabled = storageReady && (!detail || (libraryIsReady() && playableCount > 0))
+        views.playlistControls.playlistAdd.isVisible = detail
+        views.playlistControls.playlistAdd.isEnabled = storageReady && libraryIsReady()
+        views.playlistControls.playlistRename.isVisible = detail
+        views.playlistControls.playlistRename.isEnabled = storageReady
+        views.playlistControls.playlistDelete.isVisible = detail
+        views.playlistControls.playlistDelete.isEnabled = storageReady
+        views.playlistControls.playlistCoverActions.isVisible = detail
         if (selected != null) {
             val target = CoverTarget.Playlist(selected.id)
             val hasCover = CoverRepositories.get(requireContext()).hasCover(target)
-            views.playlistCover.loadCover(target)
-            views.playlistSetCover.setText(if (hasCover) R.string.cover_change else R.string.cover_set)
-            views.playlistSetCover.isEnabled = storageReady
-            views.playlistRemoveCover.isVisible = hasCover
-            views.playlistRemoveCover.isEnabled = storageReady
+            views.playlistControls.playlistCover.loadCover(target)
+            views.playlistControls.playlistSetCover.setText(if (hasCover) R.string.cover_change else R.string.cover_set)
+            views.playlistControls.playlistSetCover.isEnabled = storageReady
+            views.playlistControls.playlistRemoveCover.isVisible = hasCover
+            views.playlistControls.playlistRemoveCover.isEnabled = storageReady
         }
-        views.playlistRefresh.isEnabled = !loadingPlaylists && !mutating && !libraryState.isLoading
-        views.playlistProgress.isVisible = loadingPlaylists || mutating || libraryState.isLoading
+        views.playlistControls.playlistRefresh.isEnabled = !loadingPlaylists && !mutating && !libraryState.isLoading
+        views.playlistControls.playlistProgress.isVisible = loadingPlaylists || mutating || libraryState.isLoading
         tracksAdapter.actionsEnabled = storageReady
 
         val status = when {
@@ -280,8 +267,8 @@ class PlaylistsFragment : Fragment(), PlaylistEditorHost {
             unavailableCount > 0 -> resources.getQuantityString(R.plurals.playlist_unavailable_count, unavailableCount, unavailableCount)
             else -> ""
         }
-        views.playlistStatus.text = status
-        views.playlistStatus.isVisible = status.isNotEmpty()
+        views.playlistControls.playlistStatus.text = status
+        views.playlistControls.playlistStatus.isVisible = status.isNotEmpty()
         val isEmpty = if (selected == null) playlists.isEmpty() else selected.tracks.isEmpty()
         views.playlistEmpty.isVisible = isEmpty && !loadingPlaylists && readError == null
         views.playlistEmpty.setText(if (detail) R.string.playlist_no_tracks else R.string.playlist_no_playlists)
