@@ -14,6 +14,11 @@ class CoverRecordRepository(
 ) {
     private val adapter = Moshi.Builder().build().adapter(CustomCoverCollection::class.java)
 
+    /** Recovery must use the whole validated document, never treat a read failure as no covers. */
+    @Synchronized
+    internal fun allCovers(): CoverResult<List<CustomCover>> =
+        withCollection { CoverResult.Success(it.covers.toList()) }
+
     @Synchronized
     fun getCover(target: CoverTarget): CoverResult<CustomCover?> {
         if (!target.isValid()) return failure(CoverError.INVALID_TARGET)

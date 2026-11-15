@@ -30,10 +30,18 @@ class AndroidCustomCoverRepository internal constructor(
     private val maxPixels: Long = 40_000_000,
     private val outputSize: Int = 1024
 ) : CustomCoverRepository {
+    init {
+        synchronized(transactionLock) { recoverFiles() }
+    }
+
+    private fun recoverFiles() {
+        val snapshot = records.allCovers()
+        if (snapshot is CoverResult.Success) CoverFileRecovery.recover(root, snapshot.value)
+    }
+
     override fun getCover(target: CoverTarget) = records.getCover(target)
     override fun hasCover(target: CoverTarget) = records.hasCover(target)
-    @Synchronized
-    override fun coverFile(cover: CustomCover): File {
+    override fun coverFile(cover: CustomCover): File = synchronized(transactionLock) {
         val file = File(File(root, cover.targetType.name.lowercase()), cover.localFileName)
         // Recover a transaction interrupted by the previous importer before it committed metadata.
         if (!file.exists()) {
@@ -42,20 +50,24 @@ class AndroidCustomCoverRepository internal constructor(
                 pending.isFile && pending.renameTo(file)
             }
         }
-        return file
+        file
     }
 
-    @Synchronized
     override fun setCover(
+        target: CoverTarget,
+        input: CoverImageInput,
+        source: CoverSource
+    ): CoverResult<CustomCover> = synchronized(transactionLock) { setCoverLocked(target, input, source) }
+
+    private fun setCoverLocked(
         target: CoverTarget,
         input: CoverImageInput,
         source: CoverSource
     ): CoverResult<CustomCover> {
         if (!target.isValid()) return CoverResult.Failure(CoverError.INVALID_TARGET)
-        val previous = when (val result = records.getCover(target)) {
-            is CoverResult.Failure -> return result
-            is CoverResult.Success -> result.value
-        }
+        val snapshot = records.allCovers()
+        if (snapshot is CoverResult.Failure) return snapshot
+        CoverFileRecovery.recover(root, (snapshot as CoverResult.Success).value)
         val bitmapResult = when (input) {
             is CoverImageInput.ContentUri -> CoverImageDecoder(context, maxInputBytes, maxPixels, outputSize * 2).decode(input.uri)
             is CoverImageInput.CroppedBitmap -> validateBitmap(input.bitmap)
@@ -88,7 +100,7 @@ class AndroidCustomCoverRepository internal constructor(
             }
             return when (val saved = records.putCover(target, finalName, source)) {
                 is CoverResult.Success -> {
-                    previous?.let { runCatching { coverFile(it).delete() } }
+                    recoverFiles()
                     saved
                 }
                 is CoverResult.Failure -> {
@@ -104,17 +116,16 @@ class AndroidCustomCoverRepository internal constructor(
         }
     }
 
-    @Synchronized
-    override fun removeCover(target: CoverTarget): CoverResult<Unit> {
-        val existing = when (val result = records.getCover(target)) {
-            is CoverResult.Failure -> return result
-            is CoverResult.Success -> result.value ?: return CoverResult.Failure(CoverError.COVER_NOT_FOUND)
-        }
-        val file = coverFile(existing)
+    override fun removeCover(target: CoverTarget): CoverResult<Unit> = synchronized(transactionLock) {
+        recoverFiles()
+        removeCoverLocked(target)
+    }
+
+    private fun removeCoverLocked(target: CoverTarget): CoverResult<Unit> {
         return when (val removed = records.removeCover(target)) {
             is CoverResult.Failure -> removed
             is CoverResult.Success -> {
-                runCatching { file.delete() }
+                recoverFiles()
                 CoverResult.Success(Unit)
             }
         }
@@ -141,6 +152,11 @@ class AndroidCustomCoverRepository internal constructor(
     private fun CoverTarget.safeId() = when (this) {
         is CoverTarget.Album -> albumId.toString()
         is CoverTarget.Playlist -> playlistId.lowercase()
+    }
+
+    private companion object {
+        // Recovery in a reopened repository must never collect another instance's in-flight WebP.
+        val transactionLock = Any()
     }
 }
 

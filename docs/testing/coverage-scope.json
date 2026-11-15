@@ -243,6 +243,21 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverFileRecovery.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "f32a7ac3132f7e39dde803647df1e299fe3443ce87ff3dd37c7fd68af5859bc9",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          43
+        ]
+      ],
+      "source_commits": [],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverImageDecoder.kt",
       "module": "android",
       "change": "added",
@@ -280,12 +295,12 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRecordRepository.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "c3ea6434d1ebc85e42ba2a2e3ae135141ea9fe12059583e7e62b1dfded72697f",
+      "source_sha256": "a86cc615a9eb8c3f9e4c5aa461716adac9c0d99b33ee9060b48c971408e8093f",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          133
+          138
         ]
       ],
       "source_commits": [
@@ -298,12 +313,12 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/covers/CoverRepository.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "a256c4cc4df020d25abe638846c711efc44ce2a74f39874cee857343f0c7dec0",
+      "source_sha256": "9034243667dfa7c4af428369a8fc45e49e67574610ac12ed67757a7476d790f0",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          196
+          212
         ]
       ],
       "source_commits": [
@@ -933,7 +948,9 @@
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
-        "e51ed58e4a54cc6378641e421172a46fd703b666"
+        "fbc1d0b1948ff484f23f60a5a9a1975c064c6c65",
+        "e51ed58e4a54cc6378641e421172a46fd703b666",
+        "f1d64acf2a8810bbd18c2729f689263b526eacbc"
       ],
       "exception_reason": null
     },
