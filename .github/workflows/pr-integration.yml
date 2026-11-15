@@ -1,0 +1,43 @@
+name: PR integration
+
+on:
+  pull_request:
+    # Retargeting must recheck the new base even when the head did not change.
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-integration-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  integration:
+    name: PR integration
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Test integration guard and workflow contract
+        run: python scripts/test_pr_integration.py
+      - name: Verify the tested head includes the target base
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python scripts/pr_integration.py --base "$PR_BASE_SHA" --head "$PR_HEAD_SHA"
+      - name: Retain exact base/head integration receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: pr-integration-${{ github.run_id }}
+          path: artifacts/process/pr-integration.json
+          if-no-files-found: error
+          retention-days: 90
