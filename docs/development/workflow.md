@@ -2,6 +2,8 @@
 
 For new work from 2026-11-11 (Asia/Singapore). Historical evidence keeps its original date, revision and review status. This is the single process source; [AGENTS.md](../../AGENTS.md) is the coding-agent entry point.
 
+[Review and integration operations](review-and-integration.md) explains automatic stacked-PR CI, the exact base/head guard, administrator rollout and current evidence entry points. It implements this workflow without replacing human review.
+
 ## Issue to merge
 
 Issue → Implementation → Automated tests → Agent technical review → PR → Teammate review → Fix comments → Merge.
@@ -100,7 +102,7 @@ For full verification follow all Android, backend and web steps in the workflow;
 
 ## Repository protection
 
-The owner/admin should activate the existing `main branch protection` ruleset for main: require PRs, at least one non-author approval, renewed approval after reviewable changes, conversation resolution, and successful `build` plus `Team line coverage` checks. Keep force pushes/deletion disallowed and routine bypass actors absent. Require a publisher check only when its exact name exists for every allowed PR source; fork publication uses a separate workflow. See [GitHub's protection settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
+The owner/admin should activate the existing `main branch protection` ruleset for main: require PRs, at least one non-author approval, renewed approval after reviewable changes, conversation resolution, and successful `build` plus `Team line coverage` checks. After the integration workflow is installed and its actual check exists, also require `PR integration` and strict up-to-date branches. Keep force pushes/deletion disallowed and routine bypass actors absent. Require a publisher check only when its exact name exists for every allowed PR source; fork publication uses a separate workflow. See [GitHub's protection settings](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches).
 
 On 2026-11-11, main was unprotected, the existing ruleset was disabled, and this account lacked admin permission. Written policy does not enable protection. Verify activation by observing that an existing PR with missing approval or failed required checks cannot merge; do not merge or force-push to test it.
 

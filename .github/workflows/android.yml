@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, 'feat/**', 'ci/coverage-probe/**']
   pull_request:
-    branches: [main]
+    # Include stacked PRs: branch filters here would filter the TARGET branch.
   workflow_dispatch:
 
 permissions:
@@ -41,6 +41,7 @@ jobs:
           python-version: '3.12'
       - name: Verify scope and gate contract
         run: |
+          python scripts/test_pr_integration.py
           python scripts/test_coverage_contract.py
           python scripts/coverage/coverage.py scope
           cd project
