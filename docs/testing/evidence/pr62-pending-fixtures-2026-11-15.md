@@ -27,7 +27,7 @@ The new gate rejected the original #62 manifest at `RecyclerSheet.kt`; after reg
 
 ## Local and phone verification
 
-Android test sources are commit `414288a26474400d3643a6ab9720501663b4a3de`'s tree; subsequent repair commits change only coverage tooling/tests and documentation. Build used JDK 17.0.20.1, the pinned wrapper/AGP and the existing offline dependency cache:
+The four fixture tests on the phone/emulator used Android test sources from `414288a26474400d3643a6ab9720501663b4a3de`. Their helper/cases remain unchanged in the subsequent CI timing correction below. Build used JDK 17.0.20.1, the pinned wrapper/AGP and the existing offline dependency cache:
 
 ```text
 project/gradlew.bat -p project --offline --no-daemon --console=plain -I <local-cache-init> :app:testDebugUnitTest :app:assembleDebug :app:assembleDebugAndroidTest
@@ -43,6 +43,14 @@ adb -s <serial> shell am instrument -w -r -e class com.iven.musicplayergo.discov
 - Local test APK SHA-256: `df67c5a529e0bf20aed82cc815ce2b623e102536d66bd081db496ab4171e1c36`. Local main APK (emulator only): `2341cc5bf008012c0836713951909f07ce9a6eabfd23d1ab9148d029d1bbc2a0`.
 
 The phone result certifies this model-independent fixture lifecycle against the installed integration. The whole opt-in real-model/catalog/UI test was not rerun this time; earlier device/model results keep their original SHAs and limits.
+
+## First CI failure and targeted test correction
+
+[Run 43704839946](https://github.com/Axfff/Vibe-Player/actions/runs/43704839946) on `57fba9c4f300dc26c32592935c031a23432e66ad` **failed**, with one Android assertion: `DiscoveryFlowTest.confirmRealTransportResultsOpenSaveRestartRestoreAndExclude`, line 52, expected one discover request but observed two. All four new pending-photo cases passed in that run. The original failed ZIP is retained locally with SHA-256 `5778e4ec3ddf39b6aeca998dc5df7d703bd5996be890957970d236c41e10019d`; it is not a passing verification record.
+
+The duplicate-click check had assumed the first loopback response was still in flight during the second `performClick`. A fast response can finish before the first call returns, making the second request legitimate. Commit `e876b9c86fe7138df1eaedd9b48d890c66c4dda3` holds the fixture response with a bounded latch until both click attempts complete, retaining the busy-state and exactly-one-request assertions. It does not relax assertions, add blanket retries, or change application behavior.
+
+The updated test APK built successfully. All **7 DiscoveryFlowTest cases passed**, 20.9 seconds, on the disposable API33 emulator. This revised emulator-only test APK SHA-256 is `853d5f9e6982cff6f03cb4bf2a921a59225eda19a5a1df110a6ddec10f78a4b5`. The phone's previously tested package and main application were not replaced again. Final full CI on the corrected head is linked in the dated PR update; the first failure remains part of its history.
 
 ## Integration and review boundary
 
