@@ -3,6 +3,7 @@ import importlib.util
 import copy
 import json
 from pathlib import Path
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -13,6 +14,46 @@ spec.loader.exec_module(coverage)
 
 
 class CoverageContractTest(unittest.TestCase):
+    def test_real_git_history_survives_same_commit_manifest_and_later_document_commit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            def git(*args):
+                return subprocess.check_output(["git", *args], cwd=root, text=True, encoding="utf-8", stderr=subprocess.PIPE).strip()
+            git("init")
+            git("config", "user.name", "Coverage contract fixture")
+            git("config", "user.email", "coverage-fixture@example.invalid")
+            git("config", "commit.gpgsign", "false")
+            source = root / "project/app/src/main/java/Fixture.kt"
+            source.parent.mkdir(parents=True)
+            source.write_text("original\n", encoding="utf-8")
+            def commit(message):
+                git("add", ".")
+                git("commit", "-m", message)
+                return git("rev-parse", "HEAD")
+            baseline = commit("baseline")
+            source.write_text("first change\n", encoding="utf-8")
+            first = commit("first source change")
+            manifest = root / "docs/testing/coverage-scope.json"
+            manifest.parent.mkdir(parents=True)
+            with patch.object(coverage, "ROOT", root), patch.object(coverage, "BASE", baseline), \
+                    patch.object(coverage, "MANIFEST", manifest):
+                source.write_text("second change\n", encoding="utf-8")
+                saved = coverage.expected_scope()
+                self.assertEqual([first], saved["files"][0]["source_commits"])
+                manifest.write_text(json.dumps(saved), encoding="utf-8")
+                writer = commit("source and generated manifest")
+                self.assertEqual([first, writer], coverage.validate_scope()["files"][0]["source_commits"])
+                (root / "README.md").write_text("unrelated documentation\n", encoding="utf-8")
+                commit("docs only")
+                coverage.validate_scope()
+                saved["files"][0]["source_commits"] = []
+                manifest.write_text(json.dumps(saved), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "source attribution"):
+                    coverage.validate_scope()
+                manifest.write_text(json.dumps(coverage.expected_scope()), encoding="utf-8")
+                commit("refresh complete attribution")
+                self.assertEqual([first, writer], coverage.validate_scope()["files"][0]["source_commits"])
+
     def test_cleared_or_invented_source_attribution_is_rejected(self):
         path = "project/app/src/main/java/a/Changed.kt"
         history = ["1" * 40, "2" * 40]
