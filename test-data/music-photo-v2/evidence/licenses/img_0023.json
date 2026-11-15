@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0023",
+    "kind": "image",
+    "path": "media/images/img_0023.jpg",
+    "title": "Freestanding facade of a ruined colonial building in Porlamar, Margarita Island, Venezuela",
+    "creator": "Wilfredor",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Freestanding_facade_of_a_ruined_colonial_building_in_Porlamar,_Margarita_Island,_Venezuela.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Freestanding_facade_of_a_ruined_colonial_building_in_Porlamar%2C_Margarita_Island%2C_Venezuela.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Freestanding facade of a ruined colonial building in Porlamar, Margarita Island, Venezuela — Wilfredor. https://commons.wikimedia.org/wiki/File:Freestanding_facade_of_a_ruined_colonial_building_in_Porlamar,_Margarita_Island,_Venezuela.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "73a37833ea08b1587ee5898025463c080233c42b55ed934f4566e471d32f935b",
+    "sha256": "5efadd9501729059ff0cc7a36e043dac11cb7ef50a3ff9ad2ba3f9250173650d",
+    "original_size_bytes": 1164996,
+    "size_bytes": 221658,
+    "width": 794,
+    "height": 1280,
+    "source_dimensions": [
+      1049,
+      1691
+    ],
+    "commons_page_id": 23596995
+  },
+  "commons_imageinfo": {
+    "pageid": 23596995,
+    "ns": 6,
+    "title": "File:Freestanding facade of a ruined colonial building in Porlamar, Margarita Island, Venezuela.jpg",
+    "index": 4,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 1164996,
+        "width": 1049,
+        "height": 1691,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Freestanding_facade_of_a_ruined_colonial_building_in_Porlamar%2C_Margarita_Island%2C_Venezuela.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Freestanding_facade_of_a_ruined_colonial_building_in_Porlamar,_Margarita_Island,_Venezuela.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=23596995",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2013-01-05 02:07:23",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Freestanding facade of a ruined colonial building in Porlamar, Margarita Island, Venezuela",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Taken with Nikon D300|CC-Zero|Walls|Porlamar|Self-published work|Colonial architecture in Isla Margarita|Files by Wilfredor|Images of Venezuela by User:Wilfredor|Photographs of Isla Margarita by Wilfredor|Photographs of Porlamar by Wilfredor|Streets in Porlamar|Old Houses of Margarita Island by Wilfredor|Ruins in Margarita Island",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Freestanding two-storey facade remaining from a ruined colonial building, with empty windows and small iron balconies, beside a street in Porlamar, Margarita Island, Venezuela.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2012-12-30 12:39:11",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Wilfredor\" class=\"mw-redirect\" title=\"User:Wilfredor\">Wilfredor</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "152644ceb2c4b4559d710016d1d49a5fddc1d7809a88824fe55f816fa3ec7a9b",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0014",
+    "kind": "image",
+    "path": "media/images/img_0014.jpg",
+    "title": "Water lilies in a gymnasium garden pond at Brno, Czech Republic",
+    "creator": "I.Sáček, senior",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Water_lilies_in_a_gymnasium_garden_pond_at_Brno,_Czech_Republic.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Water_lilies_in_a_gymnasium_garden_pond_at_Brno%2C_Czech_Republic.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Water lilies in a gymnasium garden pond at Brno, Czech Republic — I.Sáček, senior. https://commons.wikimedia.org/wiki/File:Water_lilies_in_a_gymnasium_garden_pond_at_Brno,_Czech_Republic.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "d43294776a77834754901746d7df93a91fcb0b3c87949afdbc8090185d39ad60",
+    "sha256": "c0a35187491ee3b13613b555b9e38052c9eb0bbd8b2795d22aa4c4ef9d6ed895",
+    "original_size_bytes": 605083,
+    "size_bytes": 342687,
+    "width": 974,
+    "height": 782,
+    "source_dimensions": [
+      974,
+      782
+    ],
+    "commons_page_id": 26440560
+  },
+  "commons_imageinfo": {
+    "pageid": 26440560,
+    "ns": 6,
+    "title": "File:Water lilies in a gymnasium garden pond at Brno, Czech Republic.jpg",
+    "index": 6,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 605083,
+        "width": 974,
+        "height": 782,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Water_lilies_in_a_gymnasium_garden_pond_at_Brno%2C_Czech_Republic.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Water_lilies_in_a_gymnasium_garden_pond_at_Brno,_Czech_Republic.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=26440560",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2013-06-01 15:02:55",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Water lilies in a gymnasium garden pond at Brno, Czech Republic",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|Garden ponds in the Czech Republic|Ponds in Brno|School garden of Gymnázium Brno-Řečkovice",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Brno Řečkovice, Gymnázium, zahrada, bazén, lekníny",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2013-06-01 16:49:19",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:I.S%C3%A1%C4%8Dek,_senior\" title=\"User:I.Sáček, senior\">I.Sáček, senior</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "6bd5777a7ab2860a7e2d21f0817080947c041b8290b2716e84e431e4a6afbd5e",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

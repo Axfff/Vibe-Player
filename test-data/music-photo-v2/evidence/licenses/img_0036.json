@@ -1,0 +1,139 @@
+{
+  "asset": {
+    "asset_id": "img_0036",
+    "kind": "image",
+    "path": "media/images/img_0036.jpg",
+    "title": "Abandoned railway track at Itabashi Station 2",
+    "creator": "Syced",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Abandoned_railway_track_at_Itabashi_Station_2.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Abandoned_railway_track_at_Itabashi_Station_2.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Abandoned railway track at Itabashi Station 2 — Syced. https://commons.wikimedia.org/wiki/File:Abandoned_railway_track_at_Itabashi_Station_2.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "f58b45a211ddab8bbf3db3c55bf3c737f3b19bf9946699a6227519de67b14811",
+    "sha256": "42f5cc475114afedd9f54a05ee662ab9cb8f0bf6bbd9afa4cbec729314deeabd",
+    "original_size_bytes": 7199948,
+    "size_bytes": 693449,
+    "width": 1280,
+    "height": 960,
+    "source_dimensions": [
+      4032,
+      3024
+    ],
+    "commons_page_id": 119102636
+  },
+  "commons_imageinfo": {
+    "pageid": 119102636,
+    "ns": 6,
+    "title": "File:Abandoned railway track at Itabashi Station 2.jpg",
+    "index": 3,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 7199948,
+        "width": 4032,
+        "height": 3024,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Abandoned_railway_track_at_Itabashi_Station_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Abandoned_railway_track_at_Itabashi_Station_2.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=119102636",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2022-06-09 10:47:54",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Abandoned railway track at Itabashi Station 2",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Itabashi Station|CC-Zero|Self-published work|Disused railway tracks in Japan|Uploaded with Mobile/Android|Files with coordinates missing SDC location of creation|Japan photographs taken on 2022-06-04|June 2022 in rail transport in Tokyo|Railway photographs taken on 2022-06-04",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "GPSLatitude": {
+            "value": "35.745388",
+            "source": "commons-desc-page"
+          },
+          "GPSLongitude": {
+            "value": "139.718814",
+            "source": "commons-desc-page"
+          },
+          "GPSMapDatum": {
+            "value": "WGS-84",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Itabashi Station (railway station in Kita-ku, Tokyo, Japan)",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "4 June 2022, 11:02",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Syced\" title=\"User:Syced\">Syced</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "a1ca84e7d580cfb52d9ff4e3e52537c996061256b284fc7a35895dd4d301abb1",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

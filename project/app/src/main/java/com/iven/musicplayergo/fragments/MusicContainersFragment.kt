@@ -209,7 +209,7 @@ class MusicContainersFragment : Fragment(),
     }
 
     private fun setListDataSource(selectedList: List<String>?) {
-        if (!selectedList.isNullOrEmpty()) mListAdapter.swapList(selectedList)
+        if (selectedList != null) mListAdapter.swapList(selectedList)
     }
 
     @SuppressLint("NotifyDataSetChanged")

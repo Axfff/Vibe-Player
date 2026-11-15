@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0015",
+    "kind": "image",
+    "path": "media/images/img_0015.jpg",
+    "title": "Ruby Mountain refected in Diablo Lake",
+    "creator": "Ron Clausen",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Ruby_Mountain_refected_in_Diablo_Lake.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Ruby_Mountain_refected_in_Diablo_Lake.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Ruby Mountain refected in Diablo Lake — Ron Clausen. https://commons.wikimedia.org/wiki/File:Ruby_Mountain_refected_in_Diablo_Lake.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "ac2f36c69e86a2e49d17e5916d6976edbfbb2d2a645f40ddbc17ca7ec2159018",
+    "sha256": "cb48c04fd2930f4adf1316239ec017007015edcee67b39a9e32c762c0a87de41",
+    "original_size_bytes": 524967,
+    "size_bytes": 190179,
+    "width": 1280,
+    "height": 777,
+    "source_dimensions": [
+      2261,
+      1372
+    ],
+    "commons_page_id": 69453394
+  },
+  "commons_imageinfo": {
+    "pageid": 69453394,
+    "ns": 6,
+    "title": "File:Ruby Mountain refected in Diablo Lake.jpg",
+    "index": 6,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 524967,
+        "width": 2261,
+        "height": 1372,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Ruby_Mountain_refected_in_Diablo_Lake.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Ruby_Mountain_refected_in_Diablo_Lake.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=69453394",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2018-05-26 01:03:37",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Ruby Mountain refected in Diablo Lake",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Mountains of Washington (state)|CC-Zero|Diablo Lake|Water reflections of mountains in Washington (state)|Self-published work|Ruby Mountain",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Ruby Mountain refected in Diablo Lake. North Cascades of Washington state",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2018-05-22 10:45:52",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Ron_Clausen\" title=\"User:Ron Clausen\">Ron Clausen</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "754715031af66364a2b2734e466058dfb87d253e51980c81d0dd80a56c5d717c",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

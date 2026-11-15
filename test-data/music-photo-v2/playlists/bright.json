@@ -1,0 +1,21 @@
+{
+  "playlist_id": "bright",
+  "display_name": "明亮轻快",
+  "track_ids": [
+    "audio_0001",
+    "audio_0002",
+    "audio_0003",
+    "audio_0004",
+    "audio_0005"
+  ],
+  "representative_track_id": "audio_0001",
+  "paths": [
+    "media/audio/audio_0001.mp3",
+    "media/audio/audio_0002.mp3",
+    "media/audio/audio_0003.mp3",
+    "media/audio/audio_0004.mp3",
+    "media/audio/audio_0005.mp3"
+  ],
+  "app_import_status": "APP_PLAYLISTS_PENDING",
+  "note": "Ordered portable list; the current app has no M3U/JSON playlist import."
+}

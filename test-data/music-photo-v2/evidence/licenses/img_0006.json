@@ -1,0 +1,126 @@
+{
+  "asset": {
+    "asset_id": "img_0006",
+    "kind": "image",
+    "path": "media/images/img_0006.jpg",
+    "title": "Pink and white Nymphaea water lily flowers, бел и розов лотос",
+    "creator": "Делфина",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Pink_and_white_Nymphaea_water_lily_flowers,_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Pink_and_white_Nymphaea_water_lily_flowers%2C_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Pink and white Nymphaea water lily flowers, бел и розов лотос — Делфина. https://commons.wikimedia.org/wiki/File:Pink_and_white_Nymphaea_water_lily_flowers,_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "0baa20f2428d046f60f410cf11cf95da4c2ae4839558e86ab0c92a3fdc74ef7e",
+    "sha256": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+    "original_size_bytes": 556959,
+    "size_bytes": 254159,
+    "width": 1280,
+    "height": 960,
+    "source_dimensions": [
+      4000,
+      3000
+    ],
+    "commons_page_id": 165869580
+  },
+  "commons_imageinfo": {
+    "pageid": 165869580,
+    "ns": 6,
+    "title": "File:Pink and white Nymphaea water lily flowers, бел и розов лотос.jpg",
+    "index": 5,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 556959,
+        "width": 4000,
+        "height": 3000,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Pink_and_white_Nymphaea_water_lily_flowers%2C_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Pink_and_white_Nymphaea_water_lily_flowers,_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=165869580",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2025-05-23 21:17:36",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Pink and white Nymphaea water lily flowers, бел и розов лотос",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "Nymphaea cultivars|Thessaloniki|CC-Zero|Pink flowers|Self-published work|Green leaves|Nymphaea subg. Nymphaea",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Pink Nymphaea water lily flowers, on a green leaves and water background. Two bright water lilies in a pond in a city park along the Aegean Sea in Thessaloniki.",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2024-08-27 09:10:37",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:%D0%94%D0%B5%D0%BB%D1%84%D0%B8%D0%BD%D0%B0&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Делфина (page does not exist)\">Делфина</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "1458817d5dec0c839743c02c346d8f93eb3ff7de57129bd4a381cdb19ef23518",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}
