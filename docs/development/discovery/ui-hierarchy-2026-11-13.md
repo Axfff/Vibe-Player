@@ -1,5 +1,7 @@
 # Discovery screen hierarchy — 2026-11-13
 
+2026-11-15 follow-up: [PR #69 feedback/recovery repair and verification](../../testing/evidence/pr69-feedback-recovery-2026-11-15.md) keeps request feedback/Cancel beside fixed actions and restores the form when transient results are absent. It incorporates #66's latest search/evidence/status fixes. The original dated design and evidence below retain their historical boundaries.
+
 ## Scope
 
 [Story #68](https://github.com/Axfff/Vibe-Player/issues/68) responds to the user's observation that Discovery reads like an instruction manual. It builds on [PR #66](https://github.com/Axfff/Vibe-Player/pull/66), preserving independent phone search, English resources, existing cover integration and [Story #36](https://github.com/Axfff/Vibe-Player/issues/36)'s functional boundaries.
