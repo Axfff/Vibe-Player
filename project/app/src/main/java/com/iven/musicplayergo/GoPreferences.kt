@@ -80,6 +80,36 @@ class GoPreferences(context: Context) {
             ?: GoConstants.DEFAULT_ACTIVE_FRAGMENTS
         set(value) = putObjectForType("active_tabs_pref", value, typeActiveTabs)
 
+    /**
+     * Existing installations persist both the available and visible tab lists. Insert the new
+     * playlist tab before Settings without changing the user's existing tab order or visibility.
+     */
+    private fun migratePlaylistTab() {
+        if (mPrefs.getBoolean("playlist_tab_migrated_v1", false)) return
+        val available: List<String>? = getObjectForType("active_tabs_def_pref", typeActiveTabs)
+        val visible: List<String>? = getObjectForType("active_tabs_pref", typeActiveTabs)
+        // An earlier navigation build may already have offered Playlists, then the user hid it.
+        val alreadyOffered = available?.contains(GoConstants.PLAYLIST_TAB) == true ||
+            visible?.contains(GoConstants.PLAYLIST_TAB) == true
+        fun withPlaylistTab(tabs: List<String>): List<String> {
+            if (tabs.contains(GoConstants.PLAYLIST_TAB)) return tabs
+            val settingsPosition = tabs.indexOf(GoConstants.SETTINGS_TAB)
+            return tabs.toMutableList().apply {
+                add(if (settingsPosition >= 0) settingsPosition else size, GoConstants.PLAYLIST_TAB)
+            }
+        }
+
+        // Commit both lists and the marker together: a later launch cannot repeat half a migration.
+        val adapter = mMoshi.adapter<List<String>>(typeActiveTabs)
+        mPrefs.edit(commit = true) {
+            available?.let { putString("active_tabs_def_pref", adapter.toJson(withPlaylistTab(it))) }
+            visible?.let { putString("active_tabs_pref", adapter.toJson(if (alreadyOffered) it else withPlaylistTab(it))) }
+            putBoolean("playlist_tab_migrated_v1", true)
+        }
+    }
+
+    init { migratePlaylistTab() }
+
     var onListEnded
         get() = mPrefs.getString("on_list_ended_pref", GoConstants.CONTINUE)
         set(value) = mPrefs.edit { putString("on_list_ended_pref", value) }

@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -26,6 +27,7 @@ import com.iven.musicplayergo.playlists.PlaylistNameDialogFragment
 import com.iven.musicplayergo.playlists.PlaylistResult
 import com.iven.musicplayergo.playlists.PlaylistSongPickerDialogFragment
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
+import com.iven.musicplayergo.playlists.PlaylistsFragment
 import org.junit.Assert.*
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -58,7 +60,7 @@ class PlaylistLibraryRegressionTest {
             val initialMenus = f.onMain { detail(f)!!.requireView().findViewById<Toolbar>(R.id.details_toolbar).menu.size() }
             val initialScrollChildren = f.onMain { detail(f)!!.requireView().findViewById<RecyclerView>(R.id.songs_rv).parent.let { it as android.view.ViewGroup }.childCount }
             repeat(3) {
-                refreshThroughPlaylistUi(f)
+                f.refreshLibrary()
                 f.onMain {
                     val root = detail(f)!!.requireView()
                     assertEquals(1, root.findViewById<RecyclerView>(R.id.songs_rv).adapter!!.itemCount)
@@ -71,7 +73,7 @@ class PlaylistLibraryRegressionTest {
             f.record("RG04-$source-before-${if (allAudio) "empty" else "missing"}")
             if (allAudio) f.tracks.keys.toList().forEach(f::deleteAudio) else f.deleteAudio("B")
             repeat(3) { iteration ->
-                refreshThroughPlaylistUi(f)
+                f.refreshLibrary()
                 f.onMain {
                     assertFalse(f.viewModel.playlistLibraryState.value!!.refreshFailed)
                     assertTrue(f.viewModel.playlistLibraryState.value!!.hasLoaded)
@@ -310,37 +312,50 @@ class PlaylistLibraryRegressionTest {
     }
 
     private fun detail(f: RegressionFixture) = f.activityFragment(GoConstants.DETAILS_FRAGMENT_TAG) as? DetailsFragment
-    private fun sheet(f: RegressionFixture) = f.activityFragment("custom_playlists") as PlaylistsDialogFragment
+    private fun sheet(f: RegressionFixture): Fragment {
+        var result: Fragment? = null
+        f.onActivity {
+            result = it.supportFragmentManager.findFragmentByTag("custom_playlists") as? PlaylistsDialogFragment
+                ?: it.supportFragmentManager.fragments.filterIsInstance<PlaylistsFragment>().firstOrNull()
+        }
+        return result ?: error("Playlist page is not attached")
+    }
     private fun picker(f: RegressionFixture) = sheet(f).childFragmentManager.findFragmentByTag("playlist_add") as PlaylistSongPickerDialogFragment
     private fun recyclerSheet(f: RegressionFixture) = f.activityFragment(RecyclerSheet.TAG_MODAL_RV) as? RecyclerSheet
 
     private fun openPlaylists(f: RegressionFixture) {
-        f.await("reachable playlist entry") {
-            f.onMain {
-                f.activityFragment(GoConstants.ERROR_FRAGMENT_TAG)?.view?.isShown == true ||
-                    f.scenarioActivityView<View>(R.id.playlists_button)?.isShown == true
-            }
-        }
+        var openedFromError = false
         f.onActivity { activity ->
             val error = activity.supportFragmentManager.findFragmentByTag(GoConstants.ERROR_FRAGMENT_TAG)
             if (error?.view?.isShown == true) {
+                openedFromError = true
                 val toolbar = error.requireView().findViewById<Toolbar>(R.id.error_toolbar)
                 assertTrue(toolbar.menu.size() > 0)
                 assertTrue(toolbar.menu.performIdentifierAction(toolbar.menu.getItem(0).itemId, 0))
             } else {
-                val button = activity.findViewById<View>(R.id.playlists_button)
-                assertTrue("Playlist entry must be reachable", button.isShown)
-                button.performClick()
+                activity.openPlaylists()
             }
         }
-        f.await("playlists sheet ready") {
-            f.onMain { (f.activityFragment("custom_playlists") as? PlaylistsDialogFragment)?.view?.findViewById<View>(R.id.playlist_refresh)?.isEnabled == true }
+        if (openedFromError) {
+            f.await("error playlist dialog shown") {
+                f.onMain {
+                    (f.activityFragment("custom_playlists") as? PlaylistsDialogFragment)?.dialog?.isShowing == true
+                }
+            }
+        }
+        f.await("playlist page ready") {
+            f.onMain { sheet(f).view?.findViewById<View>(R.id.playlist_refresh)?.isEnabled == true }
         }
     }
 
     private fun closePlaylists(f: RegressionFixture) {
-        clickSheet(f, R.id.playlist_close)
-        f.await("playlists sheet closed") { f.onMain { f.activityFragment("custom_playlists") == null } }
+        val playlist = sheet(f)
+        if (playlist is PlaylistsDialogFragment) {
+            clickSheet(f, R.id.playlist_close)
+            f.await("playlists dialog closed") { f.onMain { !playlist.isAdded } }
+        } else {
+            f.onActivity { it.findViewById<ViewPager2>(R.id.view_pager2).setCurrentItem(0, false) }
+        }
     }
 
     private fun refreshThroughPlaylistUi(f: RegressionFixture) {

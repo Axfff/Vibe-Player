@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="library_open_playlists_description">打开和管理已保存的歌单</string>
     <string name="library_scan_music">扫描本地音乐</string>
     <string name="library_import_help">找不到歌曲？</string>
     <string name="library_import_instructions">请先在系统设置中允许访问音乐和音频，再点“扫描本地音乐”。\n\n如果仍找不到复制的歌曲，请使用系统“文件”应用将它复制到 Music 文件夹，等待 Android 建立索引后重试。也请检查是否隐藏了相关歌手、专辑或文件夹。\n\n每次扫描会检查本应用可访问的最近最多 1,000 个音频文件并刷新曲库。歌单内的“刷新”用于更新曲库视图。</string>

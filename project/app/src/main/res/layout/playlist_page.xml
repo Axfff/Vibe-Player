@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="?attr/main_bg">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/playlist_app_bar" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:background="?attr/main_bg" app:elevation="0dp">
+        <include android:id="@+id/playlist_controls" layout="@layout/playlist_controls"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll" />
+    </com.google.android.material.appbar.AppBarLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/playlist_rows"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="16dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView
+            android:id="@+id/playlist_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="32dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="?android:attr/textColorSecondary" />
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

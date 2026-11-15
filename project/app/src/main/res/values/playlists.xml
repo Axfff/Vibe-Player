@@ -62,4 +62,5 @@
         <item quantity="one">%d unavailable song will be skipped.</item>
         <item quantity="other">%d unavailable songs will be skipped.</item>
     </plurals>
+    <string name="playlist_artwork_cleanup_failed">Playlist deleted, but some photo sources or cover files could not be removed.</string>
 </resources>

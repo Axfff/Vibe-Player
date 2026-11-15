@@ -5,7 +5,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.iven.musicplayergo.MusicViewModel
 import com.iven.musicplayergo.R
 import com.iven.musicplayergo.databinding.LibraryActionsBinding
-import com.iven.musicplayergo.ui.MainActivity
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.yield
 
@@ -31,11 +29,9 @@ class LibraryActionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        arrangeActionButtons()
         val owner = ViewModelProvider(requireActivity())
         music = owner[MusicViewModel::class.java]
         scanner = owner[LibraryScanViewModel::class.java]
-        binding?.libraryOpenPlaylists?.setOnClickListener { (activity as? MainActivity)?.openPlaylists() }
         binding?.libraryScanMusic?.setOnClickListener { scanner.startScan() }
         binding?.libraryDiscovery?.setOnClickListener {
             startActivity(Intent(requireContext(), com.iven.musicplayergo.discovery.DiscoveryActivity::class.java))
@@ -49,28 +45,6 @@ class LibraryActionsFragment : Fragment() {
         }
         scanner.state.observe(viewLifecycleOwner) { renderAndRefresh() }
         music.playlistLibraryState.observe(viewLifecycleOwner) { renderAndRefresh() }
-    }
-
-    private fun arrangeActionButtons() {
-        val views = binding ?: return
-        val configuration = resources.configuration
-        if (configuration.screenWidthDp >= 600) {
-            views.libraryFeedbackRow.orientation = LinearLayout.HORIZONTAL
-            views.libraryScanStatus.layoutParams = (views.libraryScanStatus.layoutParams as LinearLayout.LayoutParams).apply {
-                width = 0
-                weight = 1f
-            }
-        }
-        if (configuration.fontScale >= 1.3f && configuration.screenWidthDp < 600) {
-            views.libraryActionButtons.orientation = LinearLayout.VERTICAL
-            listOf(views.libraryOpenPlaylists, views.libraryScanMusic).forEach { button ->
-                button.layoutParams = (button.layoutParams as LinearLayout.LayoutParams).apply {
-                    width = ViewGroup.LayoutParams.MATCH_PARENT
-                    weight = 0f
-                    marginStart = 0
-                }
-            }
-        }
     }
 
     private fun renderAndRefresh() {
