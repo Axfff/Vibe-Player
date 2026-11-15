@@ -1,0 +1,125 @@
+{
+  "asset": {
+    "asset_id": "img_0005",
+    "kind": "image",
+    "path": "media/images/img_0005.jpg",
+    "title": "Butterfly's",
+    "creator": "Tutut Aprilia",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Butterfly%27s.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Butterfly%27s.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Butterfly's — Tutut Aprilia. https://commons.wikimedia.org/wiki/File:Butterfly%27s.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "d7fdd751f8b7684b96c9dccb6c98a2dc57e3800c92325222a6c5cad79a7ca6c3",
+    "sha256": "7020a172b2056276dc357543ddb69791317ef5de9a8c21d9a41ce12e7ad62f6f",
+    "original_size_bytes": 181520,
+    "size_bytes": 229884,
+    "width": 1280,
+    "height": 961,
+    "source_dimensions": [
+      1600,
+      1201
+    ],
+    "commons_page_id": 163578751
+  },
+  "commons_imageinfo": {
+    "pageid": 163578751,
+    "ns": 6,
+    "title": "File:Butterfly's.jpg",
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 181520,
+        "width": 1600,
+        "height": 1201,
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Butterfly%27s.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Butterfly%27s.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=163578751",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2025-04-15 03:48:01",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Butterfly's",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Self-published work|Pemanfaatan Lisensi CC di Indonesia",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Kupu-Kupu cantik yang sedang sarapan",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2025-04-15",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/wiki/User:Tutut_Aprilia\" title=\"User:Tutut Aprilia\">Tutut Aprilia</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "4715f63db23a4c96cf5fcbee11ad81b447e24710ea22bec1dcc70332114f002f",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

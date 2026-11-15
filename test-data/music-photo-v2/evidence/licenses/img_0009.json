@@ -1,0 +1,140 @@
+{
+  "asset": {
+    "asset_id": "img_0009",
+    "kind": "image",
+    "path": "media/images/img_0009.jpg",
+    "title": "Lake with Calm Reflection and Cloudy Sky",
+    "creator": "Deshna Subramanian",
+    "source_page": "https://commons.wikimedia.org/wiki/File:Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg",
+    "download_url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg",
+    "license": "CC0 1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "verified_on": "2026-11-07",
+    "attribution": "Lake with Calm Reflection and Cloudy Sky — Deshna Subramanian. https://commons.wikimedia.org/wiki/File:Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+    "original_sha256": "ce55bbd34f93bf43a5d3cc4d2deb178be65401308254fbfa176d033c505710d6",
+    "sha256": "83a0e73117758efc042ea8bfb10ec07486a1de7cfc5bc9aceada8632df145d5c",
+    "original_size_bytes": 70578,
+    "size_bytes": 95766,
+    "width": 960,
+    "height": 1280,
+    "source_dimensions": [
+      960,
+      1280
+    ],
+    "commons_page_id": 177716892
+  },
+  "commons_imageinfo": {
+    "pageid": 177716892,
+    "ns": 6,
+    "title": "File:Lake with Calm Reflection and Cloudy Sky.jpg",
+    "index": 1,
+    "imagerepository": "local",
+    "imageinfo": [
+      {
+        "size": 70578,
+        "width": 960,
+        "height": 1280,
+        "thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg/500px-Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "thumbwidth": 500,
+        "thumbheight": 667,
+        "responsiveUrls": {
+          "2": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+        },
+        "thumbattribs": {
+          "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg/500px-Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+          "decoding": "async",
+          "loading": "lazy",
+          "width": 500,
+          "height": 667,
+          "srcset": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+        },
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/File:Lake_with_Calm_Reflection_and_Cloudy_Sky.jpg",
+        "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=177716892",
+        "extmetadata": {
+          "DateTime": {
+            "value": "2025-11-02 08:23:10",
+            "source": "mediawiki-metadata",
+            "hidden": ""
+          },
+          "ObjectName": {
+            "value": "Lake with Calm Reflection and Cloudy Sky",
+            "source": "mediawiki-metadata"
+          },
+          "CommonsMetadataExtension": {
+            "value": 1.2,
+            "source": "extension",
+            "hidden": ""
+          },
+          "Categories": {
+            "value": "CC-Zero|Views of lakes|Self-published work",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "Assessments": {
+            "value": "",
+            "source": "commons-categories",
+            "hidden": ""
+          },
+          "ImageDescription": {
+            "value": "Lake with Calm Reflection and Cloudy Sky",
+            "source": "commons-desc-page"
+          },
+          "DateTimeOriginal": {
+            "value": "2025-10-30",
+            "source": "commons-desc-page"
+          },
+          "Credit": {
+            "value": "<span class=\"int-own-work\" lang=\"en\">Own work</span>",
+            "source": "commons-desc-page"
+          },
+          "Artist": {
+            "value": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Deshna_Subramanian&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Deshna Subramanian (page does not exist)\">Deshna Subramanian</a>",
+            "source": "commons-desc-page"
+          },
+          "LicenseShortName": {
+            "value": "CC0",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "UsageTerms": {
+            "value": "Creative Commons Zero, Public Domain Dedication",
+            "source": "commons-desc-page"
+          },
+          "AttributionRequired": {
+            "value": "false",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "LicenseUrl": {
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+            "source": "commons-desc-page"
+          },
+          "Copyrighted": {
+            "value": "True",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "Restrictions": {
+            "value": "",
+            "source": "commons-desc-page",
+            "hidden": ""
+          },
+          "License": {
+            "value": "cc0",
+            "source": "commons-templates",
+            "hidden": ""
+          }
+        },
+        "mime": "image/jpeg"
+      }
+    ]
+  },
+  "file_page_sha256": "06f73553bf43a5e7c69b1e4823c795ee4043e08e7aa1909b342ceed8f8ab55c5",
+  "file_page_license_path_confirmed": "publicdomain/zero/1.0",
+  "metadata_license_source": "commons-desc-page",
+  "metadata_artist_source": "commons-desc-page",
+  "verified_on": "2026-11-07",
+  "verification_note": "Checked the concrete file page and per-file licensing metadata before downloading. This is the image license, not the generic page footer license."
+}

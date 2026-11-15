@@ -1,0 +1,17 @@
+{
+  "representative_tracks": {
+    "bright": "audio_0001",
+    "calm": "audio_0006",
+    "melancholic": "audio_0011",
+    "energetic": "audio_0016"
+  },
+  "relevant_threshold": 2,
+  "role_is_not_a_score": true,
+  "label_status": "provisional",
+  "ground_truth": false,
+  "ranking_run": "External; supply actual source SHA and zero to five unique in-scope IDs",
+  "ranking_reason": "Labels remain provisional development labels; models have already been compared on v1.",
+  "top_5": null,
+  "precision_at_5": null,
+  "ordering": "SHA-256 ASCII music-photo-v2:{case_number}:{neutral_photo_id}; ascending digest; independent of annotation row order"
+}
