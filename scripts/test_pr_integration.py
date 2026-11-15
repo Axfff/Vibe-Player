@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -131,6 +132,44 @@ class IntegrationTest(unittest.TestCase):
 
 
 class WorkflowContractTest(unittest.TestCase):
+    def coverage_gate(self):
+        text = (ROOT / ".github/workflows/android.yml").read_text(encoding="utf-8")
+        match = re.search(r"(?ms)^  coverage_gate:\n(.*?)(?=^  \S|\Z)", text)
+        self.assertIsNotNone(match, "Required native gate must be present")
+        return match.group(1)
+
+    def test_native_gate_runs_after_unsuccessful_builds_without_write_permissions(self):
+        gate = self.coverage_gate()
+        self.assertIn("    name: Team line coverage gate\n", gate)
+        self.assertIn("    needs: build\n", gate)
+        self.assertIn("    if: ${{ always() && github.event_name == 'pull_request' }}\n", gate)
+        self.assertIn("    permissions: {}\n", gate)
+        self.assertIn("          BUILD_RESULT: ${{ needs.build.result }}\n", gate)
+        self.assertEqual(1, len(re.findall(r"(?m)^\s+if:", gate)), "Step must not skip failed builds")
+        for unsafe in ("continue-on-error:", "uses:", "secrets."):
+            self.assertNotIn(unsafe, gate)
+
+    def test_native_gate_command_passes_only_an_explicit_success(self):
+        # Execute the workflow's command itself, not a Python copy of its logic.
+        command = re.search(r"(?m)^        run: (.+)$", self.coverage_gate()).group(1)
+        bash = shutil.which("bash")
+        if os.name == "nt":
+            # Git for Windows supplies Bash; avoid the Windows Store/WSL shim.
+            git_bash = Path(shutil.which("git")).resolve().parents[1] / "bin/bash.exe"
+            if git_bash.is_file():
+                bash = str(git_bash)
+        self.assertIsNotNone(bash, "Bash is required to test the Actions gate")
+        for outcome in ("success", "failure", "cancelled", "skipped", "", None, "unknown"):
+            with self.subTest(build_result=outcome):
+                environment = os.environ.copy()
+                environment.pop("BUILD_RESULT", None)
+                if outcome is not None:
+                    environment["BUILD_RESULT"] = outcome
+                result = subprocess.run([bash, "--noprofile", "--norc", "-e", "-c", command],
+                                        env=environment, capture_output=True, text=True)
+                self.assertEqual(outcome == "success", result.returncode == 0,
+                                 f"{outcome!r}: {result.stdout} {result.stderr}")
+
     def test_full_ci_and_integration_accept_stacked_target_branches(self):
         for name in ("android.yml", "pr-integration.yml"):
             text = (ROOT / ".github/workflows" / name).read_text(encoding="utf-8")

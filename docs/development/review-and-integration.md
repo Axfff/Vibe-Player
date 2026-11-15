@@ -9,7 +9,8 @@ the checks and where to find current evidence. It does not record approval.
 | Check | Evidence | Does not establish |
 | --- | --- | --- |
 | `build` | APK, executed JVM/Android/backend/web tests and the complete cumulative coverage gate at the reported head | Peer approval, product acceptance or a later integration |
-| `Team line coverage` | Validated provenance and full reports for that head; original 80% per-module threshold | A live model result when its optional test was skipped |
+| `Team line coverage gate` | Native Android CI job accepts only a successful `build`; failure, cancellation, skipped or missing results cannot pass | A second test/coverage run, report publication or peer approval |
+| `Team line coverage` | Existing report publisher validates provenance and full reports for that head; original 80% per-module threshold | The native required gate, or a live model result when its optional test was skipped |
 | `PR integration` | Clean exact head contains the event's exact target base; JSON receipt records both commits and the resulting head tree | Full tests, review, or freshness if the target advances later |
 
 Android CI accepts PRs to **all target branches**, including feature/test/fix
@@ -19,6 +20,12 @@ also reacts to PR edits so retargeting checks the new base. It has only
 `contents: read`, does not use `pull_request_target`, and never writes branches,
 Reviews, issue checkboxes or rulesets. The coverage publisher's existing
 validation and permissions remain unchanged.
+
+The native gate has no checkout or token permissions. Its job-level `always()`
+condition lets it inspect an unsuccessful dependency instead of silently skipping
+after a failed build. It runs for all PR sources and targets, including forks;
+push/manual runs skip this PR-only gate. It does not rerun tests or replace the
+publisher. A cancelled workflow or absent check is not successful verification.
 
 The integration guard requires base to be an ancestor of head, even for a
 conflict-free merge. Therefore the head tested by full CI already contains all
@@ -69,17 +76,41 @@ reran or certified every open stacked PR.
 
 ## Administrator rollout
 
-After the workflow is reviewed and installed, confirm the actual check names
-exist, then configure the existing main ruleset:
+For [PR #72](https://github.com/Axfff/Vibe-Player/pull/72), Axfff should update the
+existing [main branch protection ruleset](https://github.com/Axfff/Vibe-Player/rules/25885033)
+after the new head's complete PR CI and native gate have passed:
 
-- Enable enforcement; require PRs and at least one non-author approval.
-- Dismiss approvals after reviewable changes, require approval of the latest
-  push and resolution of blocking review conversations.
-- Require `build`, `Team line coverage` and `PR integration`, with strict target
-  freshness. Keep force pushes, deletion and routine bypasses disabled.
-- Verify settings and the merge UI on an unapproved/unverified PR without
-  attempting a prohibited merge. The code change cannot enable rulesets for a
-  writer who lacks administrator permission.
+1. In **Require status checks to pass**, add the exact context
+   `Team line coverage gate`, with **GitHub Actions** as its expected source
+   (App ID `15368`). Keep the existing `build` requirement with that same source.
+   Replace the required `Team line coverage` context in the same saved change;
+   merely adding the new job leaves the old requirement in place. The old report
+   check, bot comment and full artifacts continue to be published; do not delete
+   the publisher or change the 80% per-module gate.
+2. Keep enforcement **Active**, **Require branches to be up to date** enabled,
+   PRs required, at least **one non-author approval**, stale-approval dismissal,
+   approval of the latest reviewable push and conversation resolution. Preserve
+   all other review settings, force-push/deletion restrictions and absence of
+   routine bypasses. Do not disable protection to make the button available.
+3. Save and reread the rules. Verify that the new check is actually marked
+   required on #72 and belongs to its latest head and Android CI run. Request a
+   fresh non-author review of that head; the approval of `7b463845` is historical.
+   This handoff does **not** authorize merging #72.
+
+After #72 is separately approved and merged, also require the exact
+`PR integration` check from GitHub Actions once its installed workflow is
+available. Existing stacked branches must incorporate the workflow and receive
+fresh full CI before targeting main; old manual runs or a missing new context
+are not substitutes. Strict target freshness stays enabled throughout.
+
+The November 15 follow-up confirmed the ruleset had become active, with required
+`build` and `Team line coverage` contexts. At head `7b463845`, approval and both
+checks were successful but GitHub still reported `BLOCKED`; the API did not
+establish the reason. The native-gate change is an explicit, auditable required
+job, not a claim that this unexplained earlier state has been diagnosed or fixed.
+If the updated merge UI remains blocked, inspect its specific reason and resolve
+that requirement rather than bypassing it. This account has Write, not admin,
+permission and cannot apply the administrator's settings.
 
 At the November 15 audit, main was unprotected and the disabled ruleset had
 zero required approvals and no required checks. That dated observation is not a
