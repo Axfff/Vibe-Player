@@ -1,0 +1,183 @@
+{
+  "status": "PHYSICAL_PHONE_RANKING_AND_FINAL_COPY_VERIFIED",
+  "method": "Actual music and photo inference via phone UI; identities visually matched from captured public-photo thumbnails; no emulator scores substituted. Final wording APK rechecked on phone with the calm and reflective tracks, model setup, search guidance, crop preview and cancellation; the four-song raw ranking evidence predates only wording changes.",
+  "rule_version": "music-atmosphere-v4-valence",
+  "image_model": {
+    "tinyclip-atmospheres-v4.onnx": "c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9",
+    "tinyclip-atmospheres-v3.onnx": "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95",
+    "discogs-effnet-bsdynamic-1.onnx": "a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c",
+    "mtg_jamendo_moodtheme-discogs-effnet-1.onnx": "7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff"
+  },
+  "manifest_sha256": "feb71df0f639a9a98827e573e0884dbe94fe18a374a06a1af9410c0e17dc9f47",
+  "apk_sha256": "f7b7b9242730dded8827c5dda140e647645a1a271d5581826ca5ee773411c58e",
+  "cases": [
+    {
+      "song": "Carefree",
+      "mood": "轻快",
+      "candidate_count": 7,
+      "details": "依据音乐：Carefree；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：轻快、活泼、欢快（模型推测）。\n找到 7 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "top5": [
+        {
+          "id": "fresh_00a581a5",
+          "score": 0.56,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面\n画面线索：花卉（模型推测），请看预览确认\n参考匹配分 0.56，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_8b9bbb36",
+          "score": 0.52,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n画面线索：聚会（模型推测），请看预览确认\n参考匹配分 0.52，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_15e634a7",
+          "score": 0.48,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.48，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_3be3f741",
+          "score": 0.44,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n画面线索：花卉（模型推测），请看预览确认\n参考匹配分 0.44，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_f3900e1d",
+          "score": 0.43,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n画面线索：聚会（模型推测），请看预览确认\n参考匹配分 0.43，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "carefree-page-0.png",
+        "carefree-page-1.png",
+        "carefree-page-2.png"
+      ]
+    },
+    {
+      "song": "Thinking of You",
+      "mood": "舒缓",
+      "candidate_count": 6,
+      "details": "依据音乐：Thinking of You；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：放松、伤感、舒缓（模型推测）。舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。\n找到 6 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "top5": [
+        {
+          "id": "fresh_67223236",
+          "score": 0.38,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面\n画面线索：瀑布（模型推测），请看预览确认\n参考匹配分 0.38，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_05d92e07",
+          "score": 0.37,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：昆虫（模型推测），请看预览确认\n参考匹配分 0.37，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_012a3946",
+          "score": 0.35,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；轻快的音乐氛围 × 模型推测的轻快鲜活画面\n画面线索：湖面（模型推测），请看预览确认\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_83a4ea69",
+          "score": 0.35,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：瀑布（模型推测），请看预览确认\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_d98b805f",
+          "score": 0.35,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "thinking-page-0.png",
+        "thinking-page-1.png",
+        "thinking-page-2.png"
+      ]
+    },
+    {
+      "song": "Heartbreaking",
+      "mood": "伤感",
+      "candidate_count": 3,
+      "details": "依据音乐：Heartbreaking；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：放松、伤感、沉静（模型推测）。舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。\n找到 3 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "top5": [
+        {
+          "id": "fresh_8ecb26a2",
+          "score": 0.42,
+          "reason": "推荐理由：伤感的音乐氛围 × 模型推测的沉静内省画面；放松的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.42，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_c5bbaaa7",
+          "score": 0.36,
+          "reason": "推荐理由：伤感的音乐氛围 × 模型推测的沉静内省画面；放松的音乐氛围 × 模型推测的宁静舒缓画面\n画面线索：雨景（模型推测），请看预览确认\n参考匹配分 0.36，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_e06db6bc",
+          "score": 0.34,
+          "reason": "推荐理由：伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：雨景（模型推测），请看预览确认\n参考匹配分 0.34，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "heartbreaking-page-0.png",
+        "heartbreaking-page-1.png",
+        "heartbreaking-page-2.png"
+      ]
+    },
+    {
+      "song": "Volitile Reaction",
+      "mood": "动感",
+      "candidate_count": 4,
+      "details": "依据音乐：Volitile Reaction；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：恢宏、动感、暗沉（模型推测）。\n找到 4 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "top5": [
+        {
+          "id": "fresh_4d4e6a83",
+          "score": 0.45,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.45，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_4ce855a2",
+          "score": 0.42,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.42，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_8896cc23",
+          "score": 0.38,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.38，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_94d186eb",
+          "score": 0.35,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "volatile-page-0.png",
+        "volatile-page-1.png",
+        "volatile-page-2.png"
+      ]
+    }
+  ],
+  "before_calm_reflective_overlap": 3,
+  "after_calm_reflective_overlap": 0,
+  "butterfly_reflective_rank_before": 2,
+  "butterfly_reflective_rank_after": null,
+  "preservation": {
+    "playlists_unchanged": true,
+    "covers_unchanged": true,
+    "scopes_unchanged": true,
+    "models_unchanged": true,
+    "new_covers_saved": 0,
+    "system_settings_restored": true
+  },
+  "final_apk_sha256": "ae44a664a8cde119596ebe3868e59d966c5e3086cab03cbba64794db4ae6ca40",
+  "final_copy_checks": {
+    "home": true,
+    "add_menu": true,
+    "search_copy": true,
+    "model_setup_copy": true,
+    "reflective_three_images_no_butterfly": true,
+    "calm_six_candidates": true,
+    "cards_have_short_captions_without_scores": true,
+    "details_available": true,
+    "crop_preview_plain_copy": true,
+    "crop_cancel_preserves_cover": true,
+    "playlists_covers_scopes_unchanged": true,
+    "system_settings_restored": true
+  },
+  "ranking_methods_unchanged_since_native_evaluation": {
+    "private fun weights(": "a523347a935ff8eb7efd35fbc077fe81338d2c672c26bc25d1b6ef740f9a6f7c",
+    "fun rank(": "7a91d1f2f5550e28e31eadab643b594e56cc50e87dc674a0b338627d630cf31f"
+  }
+}

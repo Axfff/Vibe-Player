@@ -1,0 +1,254 @@
+{
+  "rule_version": "music-atmosphere-v4-valence",
+  "image_model_changed": false,
+  "method": "Actual Android inference, same frozen neutral input pools. Existing original/fresh photos were used during development. The additional 12-photo pool was replayed only after policy selection; previously seen exploratory data, not a new holdout or human-labelled test.",
+  "pools": [
+    {
+      "pool": "photo-cases",
+      "cases": [
+        {
+          "audio_id": "audio_0001",
+          "before": [
+            "img_0001",
+            "img_0005",
+            "img_0033",
+            "img_0008",
+            "img_0007"
+          ],
+          "after": [
+            "img_0001",
+            "img_0005",
+            "img_0033",
+            "img_0008",
+            "img_0007"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0,
+          "before_provisional_p5": 1.0,
+          "after_provisional_p5": 1.0
+        },
+        {
+          "audio_id": "audio_0006",
+          "before": [
+            "img_0014",
+            "img_0015",
+            "img_0006",
+            "img_0009",
+            "img_0037"
+          ],
+          "after": [
+            "img_0014",
+            "img_0006",
+            "img_0015",
+            "img_0002",
+            "img_0011"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0,
+          "before_provisional_p5": 1.0,
+          "after_provisional_p5": 1.0
+        },
+        {
+          "audio_id": "audio_0011",
+          "before": [
+            "img_0015",
+            "img_0009",
+            "img_0017",
+            "img_0016",
+            "img_0037"
+          ],
+          "after": [
+            "img_0017",
+            "img_0009",
+            "img_0021",
+            "img_0016",
+            "img_0010"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0,
+          "before_provisional_p5": 0.8,
+          "after_provisional_p5": 1.0
+        },
+        {
+          "audio_id": "audio_0016",
+          "before": [
+            "img_0030",
+            "img_0039",
+            "img_0031",
+            "img_0040",
+            "img_0029"
+          ],
+          "after": [
+            "img_0030",
+            "img_0039",
+            "img_0031",
+            "img_0040",
+            "img_0029"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0,
+          "before_provisional_p5": 1.0,
+          "after_provisional_p5": 1.0
+        }
+      ],
+      "before_calm_reflective_overlap": 3,
+      "after_calm_reflective_overlap": 0
+    },
+    {
+      "pool": "photo-fresh",
+      "cases": [
+        {
+          "audio_id": "audio_0001",
+          "before": [
+            "fresh_00a581a5",
+            "fresh_8b9bbb36",
+            "fresh_15e634a7",
+            "fresh_3be3f741",
+            "fresh_f3900e1d"
+          ],
+          "after": [
+            "fresh_00a581a5",
+            "fresh_8b9bbb36",
+            "fresh_15e634a7",
+            "fresh_3be3f741",
+            "fresh_f3900e1d"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0006",
+          "before": [
+            "fresh_05d92e07",
+            "fresh_8ecb26a2",
+            "fresh_012a3946",
+            "fresh_83a4ea69",
+            "fresh_d98b805f"
+          ],
+          "after": [
+            "fresh_67223236",
+            "fresh_012a3946",
+            "fresh_83a4ea69",
+            "fresh_05d92e07",
+            "fresh_d98b805f"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0011",
+          "before": [
+            "fresh_8ecb26a2",
+            "fresh_05d92e07",
+            "fresh_d98b805f",
+            "fresh_c5bbaaa7",
+            "fresh_83a4ea69"
+          ],
+          "after": [
+            "fresh_8ecb26a2",
+            "fresh_c5bbaaa7",
+            "fresh_e06db6bc"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0016",
+          "before": [
+            "fresh_4d4e6a83",
+            "fresh_4ce855a2",
+            "fresh_8896cc23",
+            "fresh_f3900e1d",
+            "fresh_94d186eb"
+          ],
+          "after": [
+            "fresh_4d4e6a83",
+            "fresh_4ce855a2",
+            "fresh_8896cc23",
+            "fresh_94d186eb"
+          ],
+          "evaluated_photos": 20,
+          "failures": 0
+        }
+      ],
+      "before_calm_reflective_overlap": 4,
+      "after_calm_reflective_overlap": 0
+    },
+    {
+      "pool": "photo-holdout",
+      "cases": [
+        {
+          "audio_id": "audio_0001",
+          "before": [
+            "holdout_c2f9cafb",
+            "holdout_e51bf29a",
+            "holdout_ecf6f20e",
+            "holdout_209ba2e2",
+            "holdout_e97c3706"
+          ],
+          "after": [
+            "holdout_c2f9cafb",
+            "holdout_e51bf29a",
+            "holdout_ecf6f20e",
+            "holdout_209ba2e2",
+            "holdout_e97c3706"
+          ],
+          "evaluated_photos": 12,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0006",
+          "before": [
+            "holdout_e0a13c38",
+            "holdout_84fb65d7",
+            "holdout_f3b815e2",
+            "holdout_6aa8ee5c",
+            "holdout_ecf6f20e"
+          ],
+          "after": [
+            "holdout_e0a13c38",
+            "holdout_6aa8ee5c",
+            "holdout_84fb65d7"
+          ],
+          "evaluated_photos": 12,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0011",
+          "before": [
+            "holdout_f3b815e2",
+            "holdout_e0a13c38",
+            "holdout_84fb65d7",
+            "holdout_6aa8ee5c",
+            "holdout_ea6dfd90"
+          ],
+          "after": [
+            "holdout_f3b815e2"
+          ],
+          "evaluated_photos": 12,
+          "failures": 0
+        },
+        {
+          "audio_id": "audio_0016",
+          "before": [
+            "holdout_2562d8c8",
+            "holdout_ea6dfd90"
+          ],
+          "after": [
+            "holdout_2562d8c8",
+            "holdout_ea6dfd90"
+          ],
+          "evaluated_photos": 12,
+          "failures": 0
+        }
+      ],
+      "before_calm_reflective_overlap": 4,
+      "after_calm_reflective_overlap": 0
+    }
+  ],
+  "production_source_sha256": {
+    "PhotoRanker.kt": "0c20c1bac0072b6cdbf3a6a7662b8a9319b274dff6bd716c4111d270d4eefda8",
+    "PhotoSourcesDialogFragment.kt": "741e5157c079a1703aa7dc53e47e7ea7cf5072a5b13bf705dd89a2ab4bafbea5",
+    "PhotoRecommendationsDialogFragment.kt": "36857ef68c885f189fec804d73cbc61f7fa3b443ee6c28ac9eab3e688daa3ab3"
+  }
+}

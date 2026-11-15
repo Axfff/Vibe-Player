@@ -1,0 +1,14 @@
+{
+  "home": true,
+  "add_menu": true,
+  "search_copy": true,
+  "model_setup_copy": true,
+  "reflective_three_images_no_butterfly": true,
+  "calm_six_candidates": true,
+  "cards_have_short_captions_without_scores": true,
+  "details_available": true,
+  "crop_preview_plain_copy": true,
+  "crop_cancel_preserves_cover": true,
+  "playlists_covers_scopes_unchanged": true,
+  "system_settings_restored": true
+}
