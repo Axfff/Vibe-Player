@@ -7,6 +7,7 @@ import android.graphics.Rect
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.ContextThemeWrapper
+import android.view.Choreographer
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.CheckBox
@@ -280,6 +281,15 @@ class DiscoveryRecoveryTest {
     private fun eightResults() = DiscoveryFixtureServer.results(JSONArray().apply { (101..108).forEach { put(DiscoveryFixtureServer.row(it.toString())) } })
     private fun screenshot(name: String) {
         if (InstrumentationRegistry.getArguments().getString("discoveryFeedbackScreenshots") != "true") return
+        // UI assertions can finish before SurfaceFlinger displays that frame (or the IME settles).
+        instrumentation.uiAutomation.waitForIdle(300, 5_000)
+        val frames = CountDownLatch(1)
+        instrumentation.runOnMainSync {
+            Choreographer.getInstance().postFrameCallback {
+                Choreographer.getInstance().postFrameCallback { frames.countDown() }
+            }
+        }
+        assertTrue(frames.await(5, TimeUnit.SECONDS))
         val bitmap = instrumentation.uiAutomation.takeScreenshot()
         try { File(context.getExternalFilesDir(null), "pr69-$name.png").outputStream().use { bitmap.compress(Bitmap.CompressFormat.PNG, 100, it) } }
         finally { bitmap.recycle() }
