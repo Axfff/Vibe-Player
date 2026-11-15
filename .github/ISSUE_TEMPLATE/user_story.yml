@@ -1,80 +1,82 @@
 name: User Story
-description: Define a course feature and its acceptance criteria in one issue.
+description: Plan one verifiable course feature with an owner and estimate.
 title: "[Story] "
 body:
   - type: markdown
     attributes:
       value: |
-        Keep the User Story and Acceptance Criteria in this issue. Sprint documents and PRs should link here instead of maintaining another requirements copy.
-        Describe expected behavior now; leave acceptance checkboxes unchecked until supported by verification evidence.
-  - type: input
-    id: iteration
-    attributes:
-      label: Sprint and target review
-      placeholder: "Sprint 2 / Release 1"
-    validations:
-      required: true
-  - type: textarea
-    id: background
-    attributes:
-      label: Background and user problem
-      description: Explain the existing behavior and the user need this feature addresses.
-    validations:
-      required: true
+        This issue is the primary source for the Story and AC. Link it from PRs and Sprint records instead of copying it.
+        Plan before implementation. Missing historical estimates stay "Not recorded before work"; never invent one.
   - type: textarea
     id: user-story
     attributes:
       label: User Story
-      value: |
-        As a [user],
-        I want to [achieve a goal],
-        so that [user benefit].
-    validations:
-      required: true
-  - type: textarea
-    id: scope
-    attributes:
-      label: Scope and product rules
-      value: |
-        In scope:
-        - [Describe included behavior]
-
-        Out of scope:
-        - [Describe deferred behavior]
-
-        Product rules / decisions to confirm:
-        - [Describe a rule or open decision]
+      placeholder: As a [user], I want [goal], so that [benefit].
     validations:
       required: true
   - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
-      description: Use stable AC identifiers and observable outcomes. Include relevant empty, invalid, and failure cases.
-      value: |
-        - [ ] AC1 — Given [context], when [action], then [observable outcome].
-        - [ ] AC2 — Given [edge case], when [action], then [observable outcome].
+      description: Use stable AC IDs and observable pass/fail conditions. Use Given/When/Then for ambiguity; include relevant boundary and error cases.
+      placeholder: |
+        - [ ] AC1 — Given ..., when ..., then ...
+        - [ ] AC2 — Given ..., when ..., then ...
     validations:
       required: true
   - type: textarea
     id: implementation-tasks
     attributes:
-      label: Implementation tasks
-      description: Optional technical breakdown. These tasks do not replace the acceptance criteria.
+      label: Implementation Tasks
+      description: Usually 3–6 meaningful tasks. Link detailed implementation notes instead of a long checklist.
       placeholder: |
-        - [ ] Data and persistence
-        - [ ] UI and interactions
-        - [ ] Playback integration and tests
-  - type: textarea
-    id: verification
+        - [ ] Implement ...
+        - [ ] Test ...
+        - [ ] Verify and record ...
+    validations:
+      required: true
+  - type: input
+    id: owner
     attributes:
-      label: Verification plan
-      description: Map AC IDs to test cases. Record actual results, environment, commit, and evidence when executed.
-      placeholder: "AC1 -> test case / expected result; actual result: Pending"
+      label: Owner
+      description: Actual accountable team member; also use GitHub Assignees when available.
+      placeholder: "@account"
+    validations:
+      required: true
+  - type: input
+    id: reviewer
+    attributes:
+      label: Reviewer
+      description: Expected non-author teammate, or "Team to confirm". This is a plan, not an approval.
+      placeholder: "@account or Team to confirm"
+    validations:
+      required: true
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate (hours)
+      description: Estimate before work; include date and assumptions. Preserve the original when revising; actual effort is separate.
+      placeholder: "6 hours; YYYY-MM-DD; assumes ..."
+    validations:
+      required: true
+  - type: input
+    id: sprint
+    attributes:
+      label: Sprint
+      description: Identify this increment. For a feature spanning sprints, assign AC IDs and tasks to each sprint.
+      placeholder: "Sprint 3 / Release 2; AC1–AC3 in this increment"
     validations:
       required: true
   - type: textarea
-    id: links
+    id: verification
     attributes:
-      label: Related work and decisions
-      description: Link relevant research, PRs, dependencies, and scope-change discussions. Assign owners only after team agreement.
+      label: Verification
+      description: Map AC IDs to tests or manual steps and expected outcomes. After execution link actual SHA, environment, results and evidence.
+      placeholder: "AC1 -> command or manual steps -> expected outcome; evidence location"
+    validations:
+      required: true
+  - type: textarea
+    id: scope-and-links
+    attributes:
+      label: Scope, dependencies and related work
+      description: Optional scope boundaries, decisions, Issues and PRs. Setup tasks use the setup AC checklist in docs/development/workflow.md.

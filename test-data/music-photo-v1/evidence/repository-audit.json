@@ -1,0 +1,51 @@
+{
+  "checked_on": "2026-11-07",
+  "repository": "Axfff/Vibe-Player",
+  "main_sha": "844caf7cd1cfb3348cdd130136763528c3274573",
+  "branch": "data/music-photo-fixtures-v1",
+  "issues": [
+    {
+      "number": 40,
+      "title": "[Release 2][User Story] Choose a local photo as album cover",
+      "state": "open",
+      "html_url": "https://github.com/Axfff/Vibe-Player/issues/40",
+      "updated_at": "2026-11-03T15:23:03Z",
+      "body": "## User story\n\nAs a listener, I want to choose a photo from my device as an album cover, so that I can personalize the music I play.\n\n## Scope\n\nProvide the basic cover feature first. Let the user browse a scrollable photo collection, choose a photo, preview it, and apply it to an album. Keep the original music and photo files unchanged.\n\n## Acceptance criteria\n\n- [ ] From an album, the user can open a photo picker, scroll through available local photos, select one, and preview it before applying it.\n- [ ] Applying a photo shows it as the cover for the intended album in the app. Other albums keep their own covers.\n- [ ] The selected cover remains after the app is closed and reopened. The user can replace it or restore the original/default cover.\n- [ ] Cancelling the picker or preview leaves the current cover unchanged.\n- [ ] If photo access is denied, the collection is empty, or a selected photo is no longer available, the app explains the situation and keeps or falls back to a usable cover without crashing.\n- [ ] The feature does not modify or delete the original photo or music file.\n\n## Implementation tasks\n\n- [ ] Add the album-cover selection and preview flow.\n- [ ] Store and restore the selected cover for the correct album; handle unavailable photos and access changes.\n- [ ] Update album-cover displays and provide replace/reset actions.\n- [ ] Add focused automated tests and verify the flow on an Android device or emulator.\n- [ ] Link the implementation pull request to this issue.\n\n## Verification\n\nCheck each acceptance criterion, including cancellation, empty/denied access, restart, replacement, and a missing photo. Record the tested build, device or emulator, and results. Leave the criteria unchecked until verified.\n\n## Priority and dependency\n\nRelease 2 foundation; build before or alongside the photo recommendation story #41. Sprint assignment is for the team to decide.\n\n---\n\n## 用户故事\n\n作为听歌的人，我希望从设备中选择一张照片作为专辑封面，以便个性化我播放的音乐。\n\n## 范围\n\n先完成封面的基本功能：浏览可滚动的本地照片、选择并预览照片，然后将其设为专辑封面。保留原始音乐和照片文件。\n\n## 验收标准\n\n- [ ] 用户可以从专辑打开照片选择器，滚动浏览可用的本地照片，选择并预览后再应用。\n- [ ] 应用后，照片在应用中显示为目标专辑的封面，其他专辑的封面不受影响。\n- [ ] 关闭并重新打开应用后，所选封面仍然存在。用户可以更换封面或恢复原始／默认封面。\n- [ ] 取消选择或预览时，当前封面不变。\n- [ ] 如果照片访问被拒绝、相册为空或所选照片不再可用，应用会说明情况，并保留当前封面或使用可用的备用封面，不会崩溃。\n- [ ] 此功能不会修改或删除原始照片或音乐文件。\n\n## 实现任务\n\n- [ ] 添加专辑封面选择和预览流程。\n- [ ] 为正确的专辑保存和恢复所选封面，处理照片不可用及访问权限变化。\n- [ ] 更新专辑封面的显示，并提供更换和恢复操作。\n- [ ] 添加针对性的自动化测试，并在 Android 真机或模拟器上验证流程。\n- [ ] 将实现该功能的 Pull Request 关联到本 Issue。\n\n## 验证\n\n逐项检查验收标准，包括取消、无照片／拒绝访问、重启、更换和照片丢失等情况。记录测试构建、设备或模拟器及结果；验证前不要勾选验收项。\n\n## 优先级与依赖\n\n这是 Release 2 的基础功能，应先于或与照片推荐功能 #41 并行完成。具体安排到哪个 Sprint 由团队决定。\n",
+      "comments_count": 0
+    },
+    {
+      "number": 41,
+      "title": "[Release 2][User Story] Recommend local photos that match the music",
+      "state": "open",
+      "html_url": "https://github.com/Axfff/Vibe-Player/issues/41",
+      "updated_at": "2026-11-03T15:22:50Z",
+      "body": "## User story\n\nAs a listener, I want the app to recommend photos that match my music, so that I can quickly find a suitable album cover.\n\n## Scope\n\nUse the music as the query and recommend photos from the user's local collection first. Use lyrics or the sound/mood of the music as the matching signal. The user makes the final choice; a recommendation does not change the cover automatically.\n\n## Acceptance criteria\n\n- [ ] From an album's cover-selection flow, the user can request recommendations for the relevant music and see matching local photos in a scrollable list.\n- [ ] Recommendations use a documented signal from the music (lyrics or sound/mood) and photo content; their ordering is based on that match rather than a random list. The screen indicates the signal used without claiming information that was not analyzed.\n- [ ] The user can preview and apply a recommended photo through the cover flow in #40, or cancel without changing the current cover.\n- [ ] If there are no accessible photos, no usable music signal, no suitable results, or matching fails, the app explains the situation and still lets the user choose a local photo manually when available.\n- [ ] Photos stay on the device unless the user is clearly told what will be sent and explicitly agrees. Refusal or cancellation sends nothing.\n- [ ] The team records a small, repeatable evaluation with example music and photos, expected matches, actual recommendations, and limitations. Results and the chosen matching approach are available for review; no unagreed accuracy target is assumed.\n\n## Implementation tasks\n\n- [ ] Decide and document whether to use lyrics or sound/mood, how photos are matched, and how missing inputs are handled.\n- [ ] Implement the matching and ranking of accessible local photos.\n- [ ] Connect recommendations to the scrollable selection and cover flow in #40.\n- [ ] Add focused tests for ranking and failure states; run the agreed examples and an Android device or emulator flow.\n- [ ] Link the implementation pull request and evaluation results to this issue.\n\n## Verification\n\nCheck the criteria with matching and non-matching examples, missing inputs, denied access, cancellation, and failed matching. Record the tested build, environment, results, and any limits. Leave the criteria unchecked until verified.\n\n## Priority, dependencies, and open decisions\n\nRelease 2 feature; depends on the basic cover flow in #40. The matching method and evaluation examples need team agreement. The shared note mentions “before Sunday?” as tentative; confirm the date before treating it as a deadline. Sprint assignment is for the team to decide. Related: #36 uses a photo to find music, while this story uses music to find a cover photo.\n\n---\n\n## 用户故事\n\n作为听歌的人，我希望应用推荐与音乐相符的照片，以便快速找到合适的专辑封面。\n\n## 范围\n\n以音乐作为查询，优先从用户的本地相册中推荐照片。使用歌词或音乐的声音／氛围作为匹配依据。由用户最终选择；推荐不会自动更改封面。\n\n## 验收标准\n\n- [ ] 用户可以在专辑封面选择流程中，针对相应音乐请求推荐，并在可滚动的列表中查看匹配的本地照片。\n- [ ] 推荐使用音乐的已记录信号（歌词或声音／氛围）以及照片内容；排序基于匹配程度，而非随机列表。界面说明使用了什么信号，不声称分析过实际未分析的信息。\n- [ ] 用户可以通过 #40 的封面流程预览并应用推荐照片，也可以取消而不更改当前封面。\n- [ ] 如果没有可访问的照片、没有可用的音乐信号、没有合适结果或匹配失败，应用会说明情况；有可用照片时仍允许用户手动选择。\n- [ ] 照片保留在设备上，除非用户被清楚告知将发送什么并明确同意。拒绝或取消时不发送照片。\n- [ ] 团队记录一组可重复的评估，包括音乐和照片示例、预期匹配、实际推荐及局限，并提供匹配方法和结果供审阅；不预设未经商定的准确率目标。\n\n## 实现任务\n\n- [ ] 决定并记录使用歌词还是声音／氛围、照片匹配方式及输入缺失时的处理方式。\n- [ ] 实现对可访问本地照片的匹配和排序。\n- [ ] 将推荐连接到 #40 的可滚动照片选择和封面流程。\n- [ ] 添加匹配排序和失败状态的针对性测试；运行约定示例并在 Android 真机或模拟器上验证流程。\n- [ ] 将实现该功能的 Pull Request 和评估结果关联到本 Issue。\n\n## 验证\n\n使用匹配和不匹配的示例检查各项标准，并测试输入缺失、拒绝访问、取消和匹配失败。记录测试构建、环境、结果和限制；验证前不要勾选验收项。\n\n## 优先级、依赖与待定事项\n\nRelease 2 功能，依赖 #40 的基本封面流程。匹配方法和评估示例需要团队商定。共享笔记中“周日前？”是暂定说法，需要确认具体日期后才能作为截止时间。具体 Sprint 由团队决定。相关 Issue：#36 是通过照片查找音乐；本故事是通过音乐查找封面照片。\n",
+      "comments_count": 0
+    }
+  ],
+  "audio_pr": {
+    "number": 46,
+    "sha": "4776e4e1c5ab0ee56aa7931f53d1177690a2d2a2",
+    "state": "OPEN",
+    "window_seconds": 30,
+    "scope": "single local audio track; no playlist aggregation or image-content ranking"
+  },
+  "cover_branch": {
+    "ref": "feat/custom-cover-foundation",
+    "sha": "25849a42feac0b631911909830162b3d807a5b94",
+    "pr_found": false,
+    "source_flow": "PickVisualMedia + preview/crop; not executed"
+  },
+  "app_import": "No JSON/M3U playlist import found; existing create/add UI required",
+  "release1_tag_object": "38e903dc14a3c796853dfe133dde4e42ecd665ce",
+  "release1_commit": "81b22ee5868e0cd5ac6a75472296caab3753a7b5",
+  "worktree_audit": "Independent worktree from fetched latest main; other worktrees inspected, existing untracked Discovery owner document untouched. No suitable licensed real media fixtures found.",
+  "instructions": "No applicable AGENTS.md found in repository or ancestors; complete user attachment read.",
+  "device_check": {
+    "command": "adb devices -l",
+    "output": "List of devices attached\n\n",
+    "status": "NO_RUNNING_DEVICE"
+  },
+  "auth": "Existing gh keyring account CroissantXinny, repository push=true; process-local use of already configured Windows HTTP proxy. No token stored.",
+  "python_version": "3.12.14"
+}

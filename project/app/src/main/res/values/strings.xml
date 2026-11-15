@@ -229,4 +229,5 @@
     <string name="cover_change">Change custom cover</string>
     <string name="cover_remove">Restore default cover</string>
     <string name="cover_removed">Default cover restored.</string>
+    <string name="photo_sources">封面照片来源</string>
 </resources>

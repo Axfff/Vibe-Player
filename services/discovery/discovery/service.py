@@ -4,7 +4,6 @@ import time
 from collections import Counter
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
-from itertools import zip_longest
 
 from .catalog import official_link
 from .errors import DiscoveryError
@@ -14,6 +13,7 @@ from .models import (
     PlaybackCapability,
 )
 from .policy import now_iso
+from .ranking import normalized, rank_candidates
 
 
 @dataclass
@@ -68,14 +68,14 @@ class DiscoveryService:
                 return_exceptions=True,
             )
             groups = [value if isinstance(value, list) else [] for value in results]
-            pool = [candidate for row in zip_longest(*groups) for candidate in row if candidate]
+            pool = rank_candidates(groups, request.intent)
             tracks, artists = [], Counter()
             selection_issues = Counter()
             # Limit validation traffic as well as results. No unbounded pagination/fallback search.
             inspected = 0
             for candidate in pool:
                 track = candidate.track
-                artist_key = (track.ref.provider, track.artist.casefold())
+                artist_key = normalized(track.artist)
                 if track.ref.key in excluded or artists[artist_key] >= 2:
                     continue
                 if inspected >= 12:
@@ -84,10 +84,16 @@ class DiscoveryService:
                     break
                 inspected += 1
                 try:
+                    # Search API's trackViewUrl is the authoritative content link. A HEAD
+                    # from our server may be geolocated to a storefront home page, which
+                    # says nothing about the user's browser or the catalog identity.
+                    # Validate its exact host + song ID; never manufacture a replacement URL.
+                    url = track.officialUrl
+                    if track.ref.provider != "itunes":
+                        url = await self.http.resolve_page(url, track.ref.provider)
+                        track.linkVerification = "page_resolved"
                     track.officialUrl = official_link(
-                        await self.http.resolve_page(track.officialUrl, track.ref.provider),
-                        track.ref.provider,
-                        track.ref.providerTrackId,
+                        url, track.ref.provider, track.ref.providerTrackId
                     )
                 except (DiscoveryError, ValueError) as error:
                     code = (
@@ -111,7 +117,7 @@ class DiscoveryService:
             if len(tracks) < limit:
                 shortage = (
                     f"目标 {limit} 首，返回 {len(tracks)} 首。"
-                    "已按来源状态、有效官方链接、排除列表及每来源同艺人最多两首筛选。"
+                    "已按来源状态、官方链接身份、排除列表及同艺人最多两首筛选。"
                 )
             return DiscoveryResponse(
                 sessionId=session_id,
@@ -141,8 +147,12 @@ class DiscoveryService:
                 raise DiscoveryError("track_unavailable", 404)
             track = candidate.track
             try:
+                url = track.officialUrl
+                if ref.provider != "itunes":
+                    url = await self.http.resolve_page(url, ref.provider)
+                    track.linkVerification = "page_resolved"
                 track.officialUrl = official_link(
-                    await self.http.resolve_page(track.officialUrl, ref.provider),
+                    url,
                     ref.provider,
                     ref.providerTrackId,
                 )

@@ -125,6 +125,8 @@ class CatalogTrack(StrictModel):
     artwork: None = None
     tags: list[Tag] = Field(default_factory=list, max_length=30)
     recommendationReason: str
+    linkVerification: Literal["catalog_identity", "page_resolved"] = "catalog_identity"
+    linkNotice: str = "来源目录已提供曲目身份及官方链接；页面可用性受所在地区和账户影响。"
     capability: PlaybackCapability
 
 

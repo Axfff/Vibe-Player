@@ -214,14 +214,16 @@ def test_unavailable_capability(client_factory, intent):
     assert fresh["capability"]["mode"] == "UNAVAILABLE" and fresh["track"] is None
 
 
-def test_untrusted_official_redirect_excluded(client_factory, intent):
+def test_untrusted_jamendo_official_redirect_excluded(client_factory, intent):
     def handler(request):
         if request.method == "HEAD":
             return httpx.Response(302, headers={"location": "https://evil.test/"})
-        return httpx.Response(200, json={"results": [itunes_row()]})
+        return httpx.Response(
+            200, json={"headers": {"status": "success"}, "results": [jamendo_row()]}
+        )
 
     data = (
-        client_factory(Settings(itunes_mode="live"), handler)
+        client_factory(Settings(jamendo_mode="live", jamendo_client_id="fixture"), handler)
         .post("/v1/discover", json=intent)
         .json()
     )

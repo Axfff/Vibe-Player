@@ -1,0 +1,101 @@
+{
+  "source_sha": "b30b7e265e32e2f15b6e479d349d102515007cbc",
+  "labels": "provisional, not human ground truth",
+  "freeze": {
+    "version": 2,
+    "frozen_on": "2026-11-10",
+    "stage": "Input-order repair of previously evaluated development set; not held-out",
+    "parent_dataset": "music-photo-v1",
+    "parent_checksums_sha256": "00074df2433791cbe28602d299f7fd618de69c0e9b352b654e2cd31b9cfc54e9",
+    "changes": [
+      "Independent candidate order and corresponding galleries",
+      "Offline original JPEG copyright/author notice",
+      "Python minimum and short-list evaluation documentation"
+    ],
+    "files": {
+      "manifest.json": "7f937693bcb49a60b5e332989c183d7e62c64a20f77241827c21424456a43bd3",
+      "evaluation/protocol.json": "c2bf86bfcfe39fe2ae45e8cf9f58efd5b2ca361c74205d2f61d4b7288cd9171c",
+      "candidates/case_01.json": "88ade10d1f356ff636c258e1cbfdde2338f21a1d91277847554a7e8120dd4ca9",
+      "candidates/case_02.json": "dc268257204166bc3730d7fc7130b00fb55046445fdfcb280c00081570bada73",
+      "candidates/case_03.json": "d1b55c0f6ade2dd6a2172a0b133b82fe0415c358273d5e14ceb4f5d314370190",
+      "candidates/case_04.json": "509c7be7cccc33c942c0355edbff2e41ac3b0a33d98d20fd3a94fc5782ec8048",
+      "playlists/bright.json": "f36b14e911cef3c86622ca75796df04e829b0af056b703a129b6496b362a5915",
+      "playlists/calm.json": "6012c3a79961eddec15830f1cfaf89245f6c4835845edbfd8c209b486fd6d493",
+      "playlists/energetic.json": "7da11e9c734b96db0d41e71f9bde856acd450b648ec8f51b76f689e18eb6bb5b",
+      "playlists/melancholic.json": "9356dd218201cf7854f69c55f3e84e69defe59e03dcc6955360160f0135c6b27",
+      "evaluation/expected-relevance.csv": "49981542fc76c670cea6293ba66edcbd1fac5ecf852eafebbaf029141c8b538a",
+      "evaluation/per-track-overrides.csv": "ffb3b073389a48c1eec2fe012b81d93ed02a87de9efe77ab447dcc1aca41bf33"
+    }
+  },
+  "cases": [
+    {
+      "case_id": "case_01",
+      "audio_id": "audio_0001",
+      "top_5": [
+        "img_0005",
+        "img_0001",
+        "img_0033",
+        "img_0007",
+        "img_0008"
+      ],
+      "returned": 5,
+      "precision_at_returned": 1.0,
+      "provisional_precision_at_5": 1.0,
+      "hard_distractors_at_5": 0,
+      "uniform_random_expected_precision_at_5": 0.6,
+      "uniform_random_expected_hard_distractors_at_5": 1.0
+    },
+    {
+      "case_id": "case_02",
+      "audio_id": "audio_0006",
+      "top_5": [
+        "img_0015",
+        "img_0009",
+        "img_0006",
+        "img_0014",
+        "img_0013"
+      ],
+      "returned": 5,
+      "precision_at_returned": 1.0,
+      "provisional_precision_at_5": 1.0,
+      "hard_distractors_at_5": 0,
+      "uniform_random_expected_precision_at_5": 0.6,
+      "uniform_random_expected_hard_distractors_at_5": 1.0
+    },
+    {
+      "case_id": "case_03",
+      "audio_id": "audio_0011",
+      "top_5": [
+        "img_0009",
+        "img_0015",
+        "img_0017",
+        "img_0010",
+        "img_0013"
+      ],
+      "returned": 5,
+      "precision_at_returned": 0.8,
+      "provisional_precision_at_5": 0.8,
+      "hard_distractors_at_5": 1,
+      "uniform_random_expected_precision_at_5": 0.6,
+      "uniform_random_expected_hard_distractors_at_5": 1.0
+    },
+    {
+      "case_id": "case_04",
+      "audio_id": "audio_0016",
+      "top_5": [
+        "img_0039",
+        "img_0033",
+        "img_0030",
+        "img_0031",
+        "img_0040"
+      ],
+      "returned": 5,
+      "precision_at_returned": 1.0,
+      "provisional_precision_at_5": 1.0,
+      "hard_distractors_at_5": 0,
+      "uniform_random_expected_precision_at_5": 0.6,
+      "uniform_random_expected_hard_distractors_at_5": 1.0
+    }
+  ],
+  "limitation": "Four small, manually curated groups do not demonstrate generalization."
+}

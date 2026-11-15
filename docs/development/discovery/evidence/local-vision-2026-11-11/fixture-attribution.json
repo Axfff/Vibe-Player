@@ -1,0 +1,130 @@
+{
+  "source_pr": "https://github.com/Axfff/Vibe-Player/pull/49",
+  "source_manifest_sha256": "87b72939afab818f52ec3833ddd0a3061cc5f1f8bcb6ecdf0868bda9a32d4cd0",
+  "assets": [
+    {
+      "asset_id": "img_0006",
+      "kind": "image",
+      "path": "case_01/images/img_0006.jpg",
+      "title": "Pink and white Nymphaea water lily flowers, бел и розов лотос",
+      "creator": "Делфина",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Pink_and_white_Nymphaea_water_lily_flowers,_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Pink_and_white_Nymphaea_water_lily_flowers%2C_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verified_on": "2026-11-07",
+      "attribution": "Pink and white Nymphaea water lily flowers, бел и розов лотос — Делфина. https://commons.wikimedia.org/wiki/File:Pink_and_white_Nymphaea_water_lily_flowers,_%D0%B1%D0%B5%D0%BB_%D0%B8_%D1%80%D0%BE%D0%B7%D0%BE%D0%B2_%D0%BB%D0%BE%D1%82%D0%BE%D1%81.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "original_sha256": "0baa20f2428d046f60f410cf11cf95da4c2ae4839558e86ab0c92a3fdc74ef7e",
+      "sha256": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+      "original_size_bytes": 556959,
+      "size_bytes": 254159,
+      "width": 1280,
+      "height": 960,
+      "source_dimensions": [
+        4000,
+        3000
+      ],
+      "commons_page_id": 165869580,
+      "source_package_path": "media/images/img_0006.jpg",
+      "export_paths": [
+        "case_01/images/img_0006.jpg",
+        "case_02/images/img_0006.jpg",
+        "case_04/images/img_0006.jpg"
+      ]
+    },
+    {
+      "asset_id": "img_0013",
+      "kind": "image",
+      "path": "case_02/images/img_0013.jpg",
+      "title": "Creek near Lake Louise in Banff",
+      "creator": "Rschroeder1985",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Creek_near_Lake_Louise_in_Banff.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Creek_near_Lake_Louise_in_Banff.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verified_on": "2026-11-07",
+      "attribution": "Creek near Lake Louise in Banff — Rschroeder1985. https://commons.wikimedia.org/wiki/File:Creek_near_Lake_Louise_in_Banff.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "original_sha256": "f21c259b2169bffe9e6275e18dea2c1faeb959781fe1f016c4938ed5b92f7415",
+      "sha256": "ba956b3a6c947c9a72084f1c7bc5cab188ba02a2ae7030ac6f2e7e8ed231c65d",
+      "original_size_bytes": 3072861,
+      "size_bytes": 338654,
+      "width": 1280,
+      "height": 960,
+      "source_dimensions": [
+        3264,
+        2448
+      ],
+      "commons_page_id": 92391932,
+      "source_package_path": "media/images/img_0013.jpg",
+      "export_paths": [
+        "case_02/images/img_0013.jpg",
+        "case_03/images/img_0013.jpg",
+        "case_04/images/img_0013.jpg"
+      ]
+    },
+    {
+      "asset_id": "img_0026",
+      "kind": "image",
+      "path": "case_01/images/img_0026.jpg",
+      "title": "Chutes d'Ekom from the platform above the waterfall",
+      "creator": "Bmnda",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verified_on": "2026-11-07",
+      "attribution": "Chutes d'Ekom from the platform above the waterfall — Bmnda. https://commons.wikimedia.org/wiki/File:Chutes_d%27Ekom_from_the_platform_above_the_waterfall.jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "original_sha256": "9ba9a40d4ab2ee8aae2c8951cff392c9eaa4d5c2255b899fd7551a90c6de4d7e",
+      "sha256": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+      "original_size_bytes": 1233299,
+      "size_bytes": 416920,
+      "width": 960,
+      "height": 1280,
+      "source_dimensions": [
+        1944,
+        2592
+      ],
+      "commons_page_id": 58269696,
+      "source_package_path": "media/images/img_0026.jpg",
+      "export_paths": [
+        "case_01/images/img_0026.jpg",
+        "case_02/images/img_0026.jpg",
+        "case_04/images/img_0026.jpg"
+      ]
+    },
+    {
+      "asset_id": "img_0027",
+      "kind": "image",
+      "path": "case_01/images/img_0027.jpg",
+      "title": "Thunderstorm (lightning)",
+      "creator": "Thisik",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Thunderstorm_(lightning).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Thunderstorm_%28lightning%29.jpg",
+      "license": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "verified_on": "2026-11-07",
+      "attribution": "Thunderstorm (lightning) — Thisik. https://commons.wikimedia.org/wiki/File:Thunderstorm_(lightning).jpg. CC0 1.0: https://creativecommons.org/publicdomain/zero/1.0/. Changes: EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "modifications": "EXIF orientation applied; converted to RGB; downscaled without upscaling/cropping to a maximum 1280-pixel edge; JPEG quality 90, subsampling 2, optimize=True; embedded EXIF/IPTC/XMP/GPS stripped. Author, license and changes retained here.",
+      "original_sha256": "5545822b6b080c25eae2ae671542ab63f34a984fd0263e2bcb322b210ae7e9fc",
+      "sha256": "9ccb0f75ca590d5967e40bc976ec57ac8bea4186ff40c20b29026960e576dd8b",
+      "original_size_bytes": 1181953,
+      "size_bytes": 88122,
+      "width": 960,
+      "height": 1280,
+      "source_dimensions": [
+        3024,
+        4032
+      ],
+      "commons_page_id": 175066616,
+      "source_package_path": "media/images/img_0027.jpg",
+      "export_paths": [
+        "case_01/images/img_0027.jpg",
+        "case_02/images/img_0027.jpg",
+        "case_04/images/img_0027.jpg"
+      ]
+    }
+  ]
+}

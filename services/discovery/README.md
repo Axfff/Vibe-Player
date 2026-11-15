@@ -2,6 +2,8 @@
 
 Python 3.11+ / FastAPI，同源静态调试页。Windows 实测 Python 3.14.5，依赖完整锁定于 `requirements.txt`。本目录独立于 Android 与自定义多歌单。
 
+Sprint 3 已增加原生 Android 客户端：主界面 **Vibe Discovery** → 手动意图 → 真实目录 → 官方外跳 → Discovery Collection。启动/手机连接/照片阻塞和测试边界见 [Android Sprint 3](../../docs/development/discovery/android-sprint3.md)，总体需求见 [Story #36](https://github.com/Axfff/Vibe-Player/issues/36)。静态页保留为开发工具。
+
 ## 启动
 
 在仓库根目录的 PowerShell 中执行：
@@ -37,7 +39,7 @@ Linux/macOS：`python3 -m venv .venv`，`.venv/bin/python -m pip install -r requ
 
 默认直连并校验公共 DNS。使用既有本地 HTTP CONNECT 代理的电脑，可以显式设置 `DISCOVERY_LOCAL_PROXY_URL=http://127.0.0.1:7897`（填写自己的本地端口）。只接受 127.0.0.1 / ::1 和端口；不接受远程代理、凭据或路径，也不自动读取系统设置。此模式由本地代理解析目标 DNS，客户端仍验证目标 HTTPS 证书，逐跳执行官方域名白名单。状态接口返回 `networkRoute=direct|loopback_proxy`。
 
-2026-10-28 本机 iTunes 真实搜索与 ID lookup 成功；官方曲目页转到 `/cn/new`，因此页面筛选为 0 首，并显示 `official_track_mismatch`。完整证据见[本轮联调记录](../../docs/development/discovery/album-and-live-2026-10-28.md)。
+2026-10-28 的旧实现因服务器 HEAD 转到 `/cn/new` 而筛为零首；历史证据见[当时记录](../../docs/development/discovery/album-and-live-2026-10-28.md)。2026-11-03 改为校验 Apple 目录返回的原始 HTTPS `trackViewUrl`、准确域名和曲目 ID，独立展示地区/账户可用性限制。不会生成替代曲目 URL；Jamendo 试听许可/流检查保留。
 
 ## 整个相册
 

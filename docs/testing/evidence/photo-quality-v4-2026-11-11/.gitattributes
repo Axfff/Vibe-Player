@@ -1,0 +1,2 @@
+# Preserve the frozen evidence bytes and their recorded SHA-256 values on every OS.
+* -text

@@ -1,0 +1,39 @@
+{
+  "recordedAt": "2026-11-03T14:29:54.368657+08:00",
+  "sourceSha": "8ef69e0bdfd113dc690ac935a40e40e298c8cbe7",
+  "backendSha": "8ef69e0bdfd113dc690ac935a40e40e298c8cbe7",
+  "apkSha256": "6480c0df6f007d248784f8e8f23da53e087565ec78a7d5e176200ba0273a3cce",
+  "apkPath": "project/app/build/outputs/apk/debug/app-debug.apk",
+  "package": "com.iven.musicplayergo.debug",
+  "device": "Coverage_API_33 disposable emulator-5582 / API 33",
+  "androidTests": {
+    "tests": "12",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0"
+  },
+  "live": {
+    "catalog": "itunes live / US",
+    "vision": "unconfigured / cloud authorized false / budget 0 / calls 0",
+    "jamendo": "unconfigured",
+    "manualFlow": {
+      "inputConfirmed": true,
+      "scene": "city",
+      "intent": {
+        "targetMood": "focused",
+        "text": "piano"
+      },
+      "realResults": 8,
+      "officialBrowserLaunched": true,
+      "browserFinalUrl": "https://music.apple.com/cn/new",
+      "songPageAvailability": "NOT PASSED: official regional redirect",
+      "savedProviderTrackId": "1440861221",
+      "forceStopColdRestartRestored": true,
+      "localAudioPermission": "denied; Discovery remained reachable"
+    },
+    "smoke": "sprint3-live-catalog-2026-11-03.json",
+    "mockOrFixtureInLiveFlow": false
+  },
+  "humanAcceptance": "pending",
+  "release1Unchanged": "81b22ee5868e0cd5ac6a75472296caab3753a7b5"
+}

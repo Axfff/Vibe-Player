@@ -1,0 +1,21 @@
+{
+  "playlist_id": "melancholic",
+  "display_name": "忧伤沉静",
+  "track_ids": [
+    "audio_0011",
+    "audio_0012",
+    "audio_0013",
+    "audio_0014",
+    "audio_0015"
+  ],
+  "representative_track_id": "audio_0011",
+  "paths": [
+    "media/audio/audio_0011.mp3",
+    "media/audio/audio_0012.mp3",
+    "media/audio/audio_0013.mp3",
+    "media/audio/audio_0014.mp3",
+    "media/audio/audio_0015.mp3"
+  ],
+  "app_import_status": "APP_PLAYLISTS_PENDING",
+  "note": "Ordered portable list; the current app has no M3U/JSON playlist import."
+}

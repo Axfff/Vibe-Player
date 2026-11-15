@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="12dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="16dp" android:orientation="vertical">
+        <TextView android:id="@+id/discovery_track_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6" />
+        <TextView android:id="@+id/discovery_track_artist" android:layout_width="match_parent" android:layout_height="wrap_content" android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+        <TextView android:id="@+id/discovery_track_source" android:layout_width="match_parent" android:layout_height="wrap_content" android:textIsSelectable="true" android:paddingTop="8dp" />
+        <TextView android:id="@+id/discovery_track_reason" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingTop="8dp" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/discovery_track_open" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_open" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/discovery_track_save" style="@style/Widget.MaterialComponents.Button.OutlinedButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_save" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/discovery_track_exclude" style="@style/Widget.MaterialComponents.Button.TextButton" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/discovery_exclude" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

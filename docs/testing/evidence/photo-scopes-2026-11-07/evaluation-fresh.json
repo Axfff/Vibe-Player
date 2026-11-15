@@ -1,0 +1,42 @@
+{
+  "source_sha": "e27c4398c3d67ab9d4188421f3ccbc2c0035f437",
+  "labels": "Frozen provisional; separate post-inference evaluation; no human ground truth",
+  "cases": [
+    {
+      "case_id": "case_01",
+      "returned": 5,
+      "relevant": 5,
+      "precision_at_returned": 1.0,
+      "p_at_5_missing_as_zero": 1.0,
+      "hard_distractors": 0,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_02",
+      "returned": 5,
+      "relevant": 5,
+      "precision_at_returned": 1.0,
+      "p_at_5_missing_as_zero": 1.0,
+      "hard_distractors": 0,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_03",
+      "returned": 4,
+      "relevant": 2,
+      "precision_at_returned": 0.5,
+      "p_at_5_missing_as_zero": 0.4,
+      "hard_distractors": 2,
+      "random_expected_p5": 0.6
+    },
+    {
+      "case_id": "case_04",
+      "returned": 5,
+      "relevant": 4,
+      "precision_at_returned": 0.8,
+      "p_at_5_missing_as_zero": 0.8,
+      "hard_distractors": 1,
+      "random_expected_p5": 0.6
+    }
+  ]
+}

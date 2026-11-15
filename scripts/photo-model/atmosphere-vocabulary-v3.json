@@ -1,0 +1,10 @@
+{
+  "version": "atmospheres-v3",
+  "temperature": 0.05,
+  "classes": [
+    ["lively", "轻快鲜活", ["a bright, cheerful photograph full of life.", "a joyful, playful scene.", "a colorful scene with an uplifting atmosphere.", "a lighthearted and optimistic photograph."]],
+    ["peaceful", "宁静舒缓", ["a peaceful, quiet photograph.", "a still scene with a calm atmosphere.", "a gentle, relaxing scene.", "a serene photograph with little movement."]],
+    ["reflective", "沉静内省", ["a lonely, melancholic photograph.", "a desolate scene with a somber atmosphere.", "a quiet, gloomy scene.", "a photograph suggesting solitude and loss."]],
+    ["intense", "强烈动势", ["a dramatic photograph full of motion.", "a powerful, intense scene.", "an energetic scene with forceful movement.", "a photograph of action and tension."]]
+  ]
+}

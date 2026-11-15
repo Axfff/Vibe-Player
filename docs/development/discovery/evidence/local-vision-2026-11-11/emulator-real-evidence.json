@@ -1,0 +1,181 @@
+{
+  "photos": [
+    {
+      "file": "img_0006.jpg",
+      "fingerprint": "2a0bcb230273de91a6eb3ef8f2b839cdb2e4f10903a103d3025b8938909786e9",
+      "model": "tinyclip-atmospheres-v4-c6811b6a-dual224",
+      "elapsed_ms": 4131,
+      "atmospheres": [
+        {
+          "label": "lively",
+          "support": 0.29648134
+        },
+        {
+          "label": "peaceful",
+          "support": 0.52124757
+        },
+        {
+          "label": "reflective",
+          "support": 0.078476146
+        },
+        {
+          "label": "intense",
+          "support": 0.10379494
+        }
+      ],
+      "suggestion": "手机本地分析 · tinyclip-atmospheres-v4-c6811b6a-dual224\n画面氛围：宁静舒缓\n场景未明确识别\n这是画面线索与音乐氛围的规则关联，不是人物情绪或歌曲听感识别。请修改并确认。"
+    },
+    {
+      "file": "img_0013.jpg",
+      "fingerprint": "ba956b3a6c947c9a72084f1c7bc5cab188ba02a2ae7030ac6f2e7e8ed231c65d",
+      "model": "tinyclip-atmospheres-v4-c6811b6a-dual224",
+      "elapsed_ms": 5916,
+      "atmospheres": [
+        {
+          "label": "lively",
+          "support": 0.26233336
+        },
+        {
+          "label": "peaceful",
+          "support": 0.36829072
+        },
+        {
+          "label": "reflective",
+          "support": 0.22212094
+        },
+        {
+          "label": "intense",
+          "support": 0.14725499
+        }
+      ],
+      "suggestion": "手机本地分析 · tinyclip-atmospheres-v4-c6811b6a-dual224\n画面氛围：宁静舒缓\n场景建议：nature\n这是画面线索与音乐氛围的规则关联，不是人物情绪或歌曲听感识别。请修改并确认。"
+    },
+    {
+      "file": "img_0026.jpg",
+      "fingerprint": "f50d4a0fec8b6f6b745e8a0b3b16c53cc5b381024bfea082d6182a4dbffb429a",
+      "model": "tinyclip-atmospheres-v4-c6811b6a-dual224",
+      "elapsed_ms": 2718,
+      "atmospheres": [
+        {
+          "label": "lively",
+          "support": 0.120193556
+        },
+        {
+          "label": "peaceful",
+          "support": 0.34929124
+        },
+        {
+          "label": "reflective",
+          "support": 0.2907254
+        },
+        {
+          "label": "intense",
+          "support": 0.23978978
+        }
+      ],
+      "suggestion": "uncertain; manual input required"
+    },
+    {
+      "file": "img_0027.jpg",
+      "fingerprint": "9ccb0f75ca590d5967e40bc976ec57ac8bea4186ff40c20b29026960e576dd8b",
+      "model": "tinyclip-atmospheres-v4-c6811b6a-dual224",
+      "elapsed_ms": 5836,
+      "atmospheres": [
+        {
+          "label": "lively",
+          "support": 0.17025577
+        },
+        {
+          "label": "peaceful",
+          "support": 0.19229051
+        },
+        {
+          "label": "reflective",
+          "support": 0.35979265
+        },
+        {
+          "label": "intense",
+          "support": 0.27766114
+        }
+      ],
+      "suggestion": "手机本地分析 · tinyclip-atmospheres-v4-c6811b6a-dual224\n画面氛围：沉静内省、强烈动势\n场景未明确识别\n这是画面线索与音乐氛围的规则关联，不是人物情绪或歌曲听感识别。请修改并确认。\n多种氛围接近，建议不确定。"
+    }
+  ],
+  "query": {
+    "intent": {
+      "targetMood": "focused",
+      "musicTags": [
+        "piano"
+      ],
+      "text": "piano"
+    },
+    "sceneTags": [
+      "water"
+    ],
+    "confirmed": true,
+    "inputMode": "photo",
+    "market": "US",
+    "limit": 8,
+    "exclude": [],
+    "visualSuggestions": {
+      "sceneTags": [],
+      "visualMoodSuggestions": [
+        "calm"
+      ],
+      "musicDescriptors": [],
+      "uncertainty": "medium"
+    }
+  },
+  "tracks": [
+    {
+      "id": "itunes:1440861221",
+      "title": "Piano",
+      "artist": "Ariana Grande",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano\/1440860819?i=1440861221&uo=4"
+    },
+    {
+      "id": "itunes:844514243",
+      "title": "Piano (Emotional Music)",
+      "artist": "Solenne Whisper",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano-emotional-music\/844514128?i=844514243&uo=4"
+    },
+    {
+      "id": "itunes:1065946789",
+      "title": "Classical Piano Music for Baby Sleep",
+      "artist": "Baby Lullaby Academy",
+      "url": "https:\/\/music.apple.com\/us\/album\/classical-piano-music-for-baby-sleep\/1065946325?i=1065946789&uo=4"
+    },
+    {
+      "id": "itunes:1704227053",
+      "title": "Piano",
+      "artist": "Ariana Grande",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano\/1704227027?i=1704227053&uo=4"
+    },
+    {
+      "id": "itunes:1761370261",
+      "title": "PIANO",
+      "artist": "Oxlade",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano\/1761369738?i=1761370261&uo=4"
+    },
+    {
+      "id": "itunes:1044222535",
+      "title": "Piano (Replayed Version)",
+      "artist": "Yiruma",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano-replayed-version\/1044222525?i=1044222535&uo=4"
+    },
+    {
+      "id": "itunes:1810704212",
+      "title": "Piano",
+      "artist": "Werenoi & GIMS",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano\/1810704200?i=1810704212&uo=4"
+    },
+    {
+      "id": "itunes:1095365599",
+      "title": "Piano (Feat. )",
+      "artist": "Relax Focus",
+      "url": "https:\/\/music.apple.com\/us\/album\/piano-feat\/1095365452?i=1095365599&uo=4"
+    }
+  ],
+  "cloud_vision_mode": "unconfigured",
+  "ui_flow_verified": false
+}

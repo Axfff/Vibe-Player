@@ -1,0 +1,89 @@
+{
+  "case_id": "case_04",
+  "audio": {
+    "asset_id": "audio_0016",
+    "path": "media/audio/audio_0016.mp3"
+  },
+  "photos": [
+    {
+      "asset_id": "fresh_00a581a5",
+      "path": "media/images/fresh_00a581a5.jpg"
+    },
+    {
+      "asset_id": "fresh_012a3946",
+      "path": "media/images/fresh_012a3946.jpg"
+    },
+    {
+      "asset_id": "fresh_05d92e07",
+      "path": "media/images/fresh_05d92e07.jpg"
+    },
+    {
+      "asset_id": "fresh_15e634a7",
+      "path": "media/images/fresh_15e634a7.jpg"
+    },
+    {
+      "asset_id": "fresh_2bd78206",
+      "path": "media/images/fresh_2bd78206.jpg"
+    },
+    {
+      "asset_id": "fresh_3be3f741",
+      "path": "media/images/fresh_3be3f741.jpg"
+    },
+    {
+      "asset_id": "fresh_4ce855a2",
+      "path": "media/images/fresh_4ce855a2.jpg"
+    },
+    {
+      "asset_id": "fresh_4d4e6a83",
+      "path": "media/images/fresh_4d4e6a83.jpg"
+    },
+    {
+      "asset_id": "fresh_61ff3233",
+      "path": "media/images/fresh_61ff3233.jpg"
+    },
+    {
+      "asset_id": "fresh_67223236",
+      "path": "media/images/fresh_67223236.jpg"
+    },
+    {
+      "asset_id": "fresh_83a4ea69",
+      "path": "media/images/fresh_83a4ea69.jpg"
+    },
+    {
+      "asset_id": "fresh_8896cc23",
+      "path": "media/images/fresh_8896cc23.jpg"
+    },
+    {
+      "asset_id": "fresh_8b9bbb36",
+      "path": "media/images/fresh_8b9bbb36.jpg"
+    },
+    {
+      "asset_id": "fresh_8ecb26a2",
+      "path": "media/images/fresh_8ecb26a2.jpg"
+    },
+    {
+      "asset_id": "fresh_94d186eb",
+      "path": "media/images/fresh_94d186eb.jpg"
+    },
+    {
+      "asset_id": "fresh_c5bbaaa7",
+      "path": "media/images/fresh_c5bbaaa7.jpg"
+    },
+    {
+      "asset_id": "fresh_d98b805f",
+      "path": "media/images/fresh_d98b805f.jpg"
+    },
+    {
+      "asset_id": "fresh_e06db6bc",
+      "path": "media/images/fresh_e06db6bc.jpg"
+    },
+    {
+      "asset_id": "fresh_f3900e1d",
+      "path": "media/images/fresh_f3900e1d.jpg"
+    },
+    {
+      "asset_id": "fresh_fee49c40",
+      "path": "media/images/fresh_fee49c40.jpg"
+    }
+  ]
+}

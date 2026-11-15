@@ -66,8 +66,11 @@ def test_missing_key_effective_status(client_factory):
     assert data["catalogs"][0]["configured"] is False
 
 
-def test_same_domain_redirect_wrong_track_excluded(client_factory, intent):
+def test_itunes_catalog_identity_does_not_use_server_storefront_redirect(client_factory, intent):
+    calls = []
+
     def handler(request):
+        calls.append(request.method)
         if request.method == "HEAD":
             if request.url.path == "/wrong":
                 return httpx.Response(200)
@@ -79,10 +82,11 @@ def test_same_domain_redirect_wrong_track_excluded(client_factory, intent):
         .post("/v1/discover", json=intent)
         .json()
     )
-    assert data["returned"] == 0
-    assert data["selectionIssues"] == [
-        {"provider": "itunes", "reasonCode": "official_track_mismatch", "count": 1}
-    ]
+    assert data["returned"] == 1
+    assert data["tracks"][0]["officialUrl"] == itunes_row()["trackViewUrl"]
+    assert data["tracks"][0]["linkVerification"] == "catalog_identity"
+    assert data["tracks"][0]["linkNotice"]
+    assert calls == ["GET"]
 
 
 async def test_api_redirect_cannot_cross_provider(network):

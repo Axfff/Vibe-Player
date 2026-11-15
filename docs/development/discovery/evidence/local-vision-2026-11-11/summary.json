@@ -1,0 +1,25 @@
+{
+  "production_sha": "50b6b9c14b593e8670b0aba0d0182f936a4ef26e",
+  "apk_sha256": "37cd9504875196677c5511fd3fa8b29ff60adf24f2d69b3df7f2045a004d60a5",
+  "phone": {
+    "serial": "7512baaf",
+    "api": 37,
+    "preexisting_files_hash_preserved": 10,
+    "complete_ui_flow": "blocked: locked device; test installer rejected"
+  },
+  "emulator": {
+    "serial": "emulator-5560",
+    "api": 33,
+    "abi": "x86_64",
+    "photo_pipeline": true,
+    "user_override": true,
+    "live_tracks": 8,
+    "official_destination": "https://music.apple.com/cn/new",
+    "target_song_page": false,
+    "cold_restore": "itunes:1511052092"
+  },
+  "vision_cloud_requests": 0,
+  "vision_cloud_mode": "unconfigured",
+  "live_provider": "itunes",
+  "new_account_or_paid_model_used": false
+}

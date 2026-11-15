@@ -314,13 +314,12 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                     } else {
                         // if queue had started, update latestPlayedSong
                         // picking the first queued song
-                        prefs.queue?.let { queue ->
-                            if (prefs.isQueue != null && queue.isNotEmpty()) {
-                                prefs.latestPlayedSong = queue[0]
-                            }
-                            return
+                        val queue = prefs.queue
+                        if (prefs.isQueue != null && !queue.isNullOrEmpty()) {
+                            queue.first()
+                        } else {
+                            getRandomMusic()
                         }
-                        getRandomMusic()
                     }
                 }
             }

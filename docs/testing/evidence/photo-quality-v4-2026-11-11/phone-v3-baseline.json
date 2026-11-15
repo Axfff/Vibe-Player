@@ -1,0 +1,206 @@
+{
+  "date": "2026-11-11 Asia/Singapore",
+  "status": "PHYSICAL_PHONE_UI_VERIFIED",
+  "model_sha256": "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95",
+  "manifest_sha256": "feb71df0f639a9a98827e573e0884dbe94fe18a374a06a1af9410c0e17dc9f47",
+  "method": "Same frozen 20-photo pool, actual on-phone audio/photo inference for four representative tracks, normal app UI; ranked photo identities visually matched to the manifest, displayed scores/reasons transcribed from fresh UI XML/screenshots.",
+  "limits": [
+    "Exploratory 20-photo sample, not a statistical accuracy estimate or human acceptance.",
+    "Top five only; remaining candidates were not reviewed.",
+    "Phone results supersede desktop preview, which reused prior audio scores and approximated Android image decoding.",
+    "Volitile Reaction is the source MP3 embedded-title spelling; official title is Volatile Reaction."
+  ],
+  "cases": [
+    {
+      "song_as_displayed": "Carefree",
+      "test_mood": "轻快",
+      "status": "依据音乐：Carefree；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n找到 10 张候选，点击图片预览、裁剪后再确认。\n1 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 10,
+      "top5": [
+        {
+          "rank": 1,
+          "id": "fresh_00a581a5",
+          "displayed_score": 0.44,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.44，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 2,
+          "id": "fresh_15e634a7",
+          "displayed_score": 0.4,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.40，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 3,
+          "id": "fresh_3be3f741",
+          "displayed_score": 0.4,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.40，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 4,
+          "id": "fresh_8b9bbb36",
+          "displayed_score": 0.4,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.40，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 5,
+          "id": "fresh_f3900e1d",
+          "displayed_score": 0.37,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.37，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "carefree-top.png",
+        "carefree-down-0.png"
+      ]
+    },
+    {
+      "song_as_displayed": "Thinking of You",
+      "test_mood": "舒缓",
+      "status": "依据音乐：Thinking of You；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n找到 7 张候选，点击图片预览、裁剪后再确认。\n1 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 7,
+      "top5": [
+        {
+          "rank": 1,
+          "id": "fresh_012a3946",
+          "displayed_score": 0.3,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；轻快的音乐氛围 × 模型推测的轻快鲜活画面\n参考匹配分 0.30，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 2,
+          "id": "fresh_2bd78206",
+          "displayed_score": 0.29,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；另有蝴蝶线索，具体内容请看预览确认\n参考匹配分 0.29，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 3,
+          "id": "fresh_8ecb26a2",
+          "displayed_score": 0.29,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.29，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 4,
+          "id": "fresh_c5bbaaa7",
+          "displayed_score": 0.28,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.28，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 5,
+          "id": "fresh_05d92e07",
+          "displayed_score": 0.28,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；轻快的音乐氛围 × 模型推测的轻快鲜活画面\n参考匹配分 0.28，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "thinking-top-0.png",
+        "thinking-down-0.png"
+      ]
+    },
+    {
+      "song_as_displayed": "Heartbreaking",
+      "test_mood": "伤感",
+      "status": "依据音乐：Heartbreaking；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n找到 6 张候选，点击图片预览、裁剪后再确认。\n1 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 6,
+      "top5": [
+        {
+          "rank": 1,
+          "id": "fresh_8ecb26a2",
+          "displayed_score": 0.31,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.31，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 2,
+          "id": "fresh_2bd78206",
+          "displayed_score": 0.3,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；另有蝴蝶线索，具体内容请看预览确认\n参考匹配分 0.30，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 3,
+          "id": "fresh_c5bbaaa7",
+          "displayed_score": 0.3,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.30，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 4,
+          "id": "fresh_012a3946",
+          "displayed_score": 0.29,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；另有湖面线索，具体内容请看预览确认\n参考匹配分 0.29，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 5,
+          "id": "fresh_8896cc23",
+          "displayed_score": 0.28,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.28，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "heartbreaking-top-0.png",
+        "heartbreaking-down-0.png"
+      ]
+    },
+    {
+      "song_as_displayed": "Volitile Reaction",
+      "test_mood": "动感",
+      "status": "依据音乐：Volitile Reaction；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n找到 9 张候选，点击图片预览、裁剪后再确认。\n1 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 9,
+      "top5": [
+        {
+          "rank": 1,
+          "id": "fresh_4d4e6a83",
+          "displayed_score": 0.33,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.33，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 2,
+          "id": "fresh_83a4ea69",
+          "displayed_score": 0.32,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面；暗沉的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 3,
+          "id": "fresh_61ff3233",
+          "displayed_score": 0.32,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面；另有雨景线索，具体内容请看预览确认\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 4,
+          "id": "fresh_94d186eb",
+          "displayed_score": 0.31,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.31，仅用于本批排序，不是准确率。"
+        },
+        {
+          "rank": 5,
+          "id": "fresh_4ce855a2",
+          "displayed_score": 0.3,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.30，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "volatile-top-0.png",
+        "volatile-down-0.png"
+      ]
+    }
+  ],
+  "calm_vs_reflective_top5_shared": 4,
+  "preservation": {
+    "previous_playlists_unchanged": 3,
+    "previous_cover_records_and_bytes_unchanged": true,
+    "previous_sources_unchanged": true,
+    "all_old_and_new_seed_bytes_unchanged": true,
+    "new_playlist": "QA1111",
+    "new_photo_count": 20,
+    "new_music_files": 3,
+    "new_covers_saved": 0,
+    "usb_stay_awake_restored_to": 0
+  },
+  "judgment": "Cheerful flowers are plausible. Calm and reflective share 4/5 photos; butterfly remains #2 for reflective music and bright lake remains #4. Action gets three surfing images but rain-street #3 is questionable. Reasons are mostly broad/repetitive. Further quality improvement is needed; no P@5 accuracy claim.",
+  "evidence_sha256": {
+    "carefree-top.png": "ccc1f3aa053521026f16538ea5945c4ca7d7896a8c8e6a80c0344ebd2d011d52",
+    "carefree-down-0.png": "f5459019dd0712bec1e75b27fd6c749f34ee027869e6c8527fc58159849bc95e",
+    "thinking-top-0.png": "78b82405e5ed9700dc661146cda88521865a09d4aeca445bc1f934d4c195986e",
+    "thinking-down-0.png": "9683d96e0e9c89e3e57d561fb1209e67e03aaef3ddf37897620f050147a83350",
+    "heartbreaking-top-0.png": "22a34a5e4491f11abea6b33cfdd0e73ddc040f20f542b5de32821f77bedae582",
+    "heartbreaking-down-0.png": "65cef4488b59df6db8afda9605c7d53ac8cae6fe241ab4c42b962cfc75ef6cd5",
+    "volatile-top-0.png": "301783dffc3ca8f6922affd81481e14908b3c44a32cd5b3d40eba3bda81daeac",
+    "volatile-down-0.png": "eefe8fb8e5dc14f7896077449435f4f6f65af819b2a39e05681f887d687a8641"
+  }
+}

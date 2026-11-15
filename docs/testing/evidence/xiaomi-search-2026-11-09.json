@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-09",
+  "scope": "Read-only Xiaomi picker compatibility investigation; no product code change",
+  "device": {
+    "model": "REDMI K90 Pro Max",
+    "android": 17,
+    "api": 37,
+    "t_extension": 22,
+    "u_extension": 22,
+    "firmware": "OS4.0.5.0.XPMCNXM"
+  },
+  "product_code_commit": "1b10cc4210d1b232917d5c34503b7eb1dc7178b2",
+  "product_apk_sha256": "6ae9395fcc240f0ab3338bd7c018cd2ccee1edeb91db72dd1c00273f32aa7ce6",
+  "system_packages": [
+    {
+      "name": "com.android.photopicker",
+      "apk_sha256": "4260d982e7792d369a5ca640a2043637a19a6c838decf264aa93d1eccf12b0c1"
+    },
+    {
+      "name": "com.android.providers.media.module",
+      "apk_sha256": "749ba32c4a3363681948c390f791420391848aaa8064f904adbfa74a9fb632f3"
+    }
+  ],
+  "probe": {
+    "package": "org.vibeplayer.qa.pickerprobe",
+    "requested_permissions": [],
+    "final_apk_sha256": "c00ded4769da71327073f3cde0ca90403b19059d2aaf11b34df0cb449f424650",
+    "source_sha256": "bac5c07803b591c8c347ff6211b7eff83cabb872282bb7b5b3b3ccf854876cad",
+    "public_apis_only": true,
+    "removed_after_test": true
+  },
+  "activity_cases": [
+    {
+      "variant": "default-expanded",
+      "query": "flowers",
+      "initial_contains_query": false,
+      "search_icon": true,
+      "package": [
+        "com.android.photopicker"
+      ],
+      "search_input": [
+        ""
+      ]
+    },
+    {
+      "variant": "default-collapsed",
+      "query": "flowers",
+      "initial_contains_query": false,
+      "search_icon": true,
+      "package": [
+        "com.android.photopicker"
+      ],
+      "search_input": [
+        ""
+      ]
+    },
+    {
+      "variant": "default-single",
+      "query": "flowers",
+      "initial_contains_query": false,
+      "search_icon": true,
+      "package": [
+        "com.android.photopicker"
+      ],
+      "search_input": [
+        ""
+      ]
+    },
+    {
+      "variant": "default-chinese",
+      "query": "花卉",
+      "initial_contains_query": false,
+      "search_icon": true,
+      "package": [
+        "com.android.photopicker"
+      ],
+      "search_input": [
+        ""
+      ]
+    },
+    {
+      "variant": "module-expanded",
+      "query": "flowers",
+      "initial_contains_query": false,
+      "search_icon": false,
+      "package": [
+        "com.android.providers.media.module"
+      ]
+    },
+    {
+      "variant": "module-single",
+      "query": "flowers",
+      "initial_contains_query": false,
+      "search_icon": false,
+      "package": [
+        "com.android.providers.media.module"
+      ]
+    }
+  ],
+  "embedded_case": {
+    "query": "flowers",
+    "mime_types": [
+      "image/*"
+    ],
+    "max_selection": 100,
+    "highlight_type": 1,
+    "picker_launched_expanded": true,
+    "callback": "onSessionOpened",
+    "surface_pixels": [
+      1200,
+      2122
+    ],
+    "visual_result": "All photos grid; no query-results section",
+    "evidence": "Local screenshot inspected; embedded surface contents absent from UI Automator tree"
+  },
+  "conclusion": "No working public automatic-query route found on the tested firmware; retain standard request and manual selection fallback.",
+  "preservation": {
+    "original_playlists_unchanged": true,
+    "original_playlist_count": 2,
+    "all_ten_seed_files_unchanged": true,
+    "saved_cover_sha256": "79670aba3f9e37cae5fdc0d76f5b63e240611d3a0be3cd9afc80122b71227335",
+    "saved_cover_bytes": 91824,
+    "personal_media_selected": false,
+    "result_uris_retained": false,
+    "sources_added": 0,
+    "stay_on_while_plugged_in_restored": 0,
+    "system_flags_changed": false
+  },
+  "limitations": [
+    "Manual search availability was verified earlier; result relevance not accepted.",
+    "Static analysis is specific to these installed APKs and corroborates observed behavior.",
+    "No system APK, decompiled vendor source, personal-media screenshot, URI or device serial is published.",
+    "No claim of passing automatic search or recommendation-quality acceptance; formal AC unchanged."
+  ]
+}

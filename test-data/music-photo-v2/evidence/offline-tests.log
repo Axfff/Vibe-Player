@@ -1,0 +1,34 @@
+test_access_denied_is_not_retried_or_bypassed (test_fixture_tools.FixtureToolsTest.test_access_denied_is_not_retried_or_bypassed) ... ok
+test_answer_fields_and_semantic_case_ids_are_rejected (test_fixture_tools.FixtureToolsTest.test_answer_fields_and_semantic_case_ids_are_rejected) ... ok
+test_bad_audio_signature_cannot_be_music (test_fixture_tools.FixtureToolsTest.test_bad_audio_signature_cannot_be_music) ... ok
+test_bad_image_signature_cannot_be_a_photo (test_fixture_tools.FixtureToolsTest.test_bad_image_signature_cannot_be_a_photo) ... ok
+test_checksums_reject_change_missing_and_unlisted_files (test_fixture_tools.FixtureToolsTest.test_checksums_reject_change_missing_and_unlisted_files) ... ok
+test_corrupt_or_html_download_is_not_accepted (test_fixture_tools.FixtureToolsTest.test_corrupt_or_html_download_is_not_accepted) ... ok
+test_credential_urls_are_rejected (test_fixture_tools.FixtureToolsTest.test_credential_urls_are_rejected) ... ok
+test_crop_bounds_and_documented_crop (test_fixture_tools.FixtureToolsTest.test_crop_bounds_and_documented_crop) ... ok
+test_evaluation_counts_real_candidate_ids_and_rejects_bad_results (test_fixture_tools.FixtureToolsTest.test_evaluation_counts_real_candidate_ids_and_rejects_bad_results) ... ok
+test_existing_unequal_export_file_is_preserved (test_fixture_tools.FixtureToolsTest.test_existing_unequal_export_file_is_preserved) ... ok
+test_export_json_preserves_existing_user_content (test_fixture_tools.FixtureToolsTest.test_export_json_preserves_existing_user_content) ... ok
+test_external_paths_are_rejected (test_fixture_tools.FixtureToolsTest.test_external_paths_are_rejected) ... ok
+test_ffprobe_allows_original_album_art_but_rejects_extra_video (test_fixture_tools.FixtureToolsTest.test_ffprobe_allows_original_album_art_but_rejects_extra_video) ... ok
+test_freeze_detects_label_changes_without_overwriting (test_fixture_tools.FixtureToolsTest.test_freeze_detects_label_changes_without_overwriting) ... ok
+test_full_download_verifies_hash (test_fixture_tools.FixtureToolsTest.test_full_download_verifies_hash) ... ok
+test_identical_export_is_idempotent (test_fixture_tools.FixtureToolsTest.test_identical_export_is_idempotent) ... ok
+test_missing_or_unapproved_license_is_rejected (test_fixture_tools.FixtureToolsTest.test_missing_or_unapproved_license_is_rejected) ... ok
+test_network_failure_has_bounded_retries (test_fixture_tools.FixtureToolsTest.test_network_failure_has_bounded_retries) ... ok
+test_normalization_strips_exif_and_preserves_orientation (test_fixture_tools.FixtureToolsTest.test_normalization_strips_exif_and_preserves_orientation) ... ok
+test_oversize_download_fails (test_fixture_tools.FixtureToolsTest.test_oversize_download_fails) ... ok
+test_package_rejects_duplicate_assets_and_missing_media (test_fixture_tools.FixtureToolsTest.test_package_rejects_duplicate_assets_and_missing_media) ... ok
+test_resume_checks_offset_and_preserves_partial (test_fixture_tools.FixtureToolsTest.test_resume_checks_offset_and_preserves_partial) ... ok
+test_seeded_shuffle_reproducible_and_keeps_membership (test_fixture_tools.FixtureToolsTest.test_seeded_shuffle_reproducible_and_keeps_membership) ... ok
+test_server_ignoring_range_restarts_without_duplicate_bytes (test_fixture_tools.FixtureToolsTest.test_server_ignoring_range_restarts_without_duplicate_bytes) ... ok
+test_short_response_resumes_instead_of_accepting_truncation (test_fixture_tools.FixtureToolsTest.test_short_response_resumes_instead_of_accepting_truncation) ... ok
+test_unknown_download_id_fails_before_network (test_fixture_tools.FixtureToolsTest.test_unknown_download_id_fails_before_network) ... ok
+test_verified_cache_needs_no_network (test_fixture_tools.FixtureToolsTest.test_verified_cache_needs_no_network) ... ok
+test_wrong_or_duplicate_candidate_reference_is_rejected (test_fixture_tools.FixtureToolsTest.test_wrong_or_duplicate_candidate_reference_is_rejected) ... ok
+test_wrong_range_response_is_rejected (test_fixture_tools.FixtureToolsTest.test_wrong_range_response_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.290s
+
+OK

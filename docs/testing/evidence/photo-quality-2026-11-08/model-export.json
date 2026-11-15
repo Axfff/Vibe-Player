@@ -1,0 +1,225 @@
+{
+  "upstream": "wkcn/TinyCLIP-ViT-8M-16-Text-3M-YFCC15M",
+  "revision": "a2a8c6eaa2549ad66eb7c31b85022bf58273a26c",
+  "checkpoint_sha256": "9339ee3d736344d0ddcaa6c03edc9f89688f08caaea5401220885233da726fcc",
+  "vocabulary_sha256": "1b57936b98d77a31fae254d56f35806c949ef8d84790c7315728f4340e39554e",
+  "filename": "tinyclip-scenes-v2.onnx",
+  "bytes": 33305014,
+  "sha256": "425e98a2cf201054928c7a2d2c649ac59713636e1667fbc95eb50e1bdd2a0492",
+  "input_shape": [
+    2,
+    3,
+    224,
+    224
+  ],
+  "output_shape": [
+    2,
+    40
+  ],
+  "onnx_opset": 17,
+  "onnx_ir": 8,
+  "max_export_difference": 2.682209014892578e-07,
+  "torch": "2.5.1+cpu",
+  "classes": [
+    [
+      "flowers",
+      "flowers in bloom",
+      "花卉"
+    ],
+    [
+      "butterfly",
+      "a butterfly",
+      "蝴蝶"
+    ],
+    [
+      "forest",
+      "a forest of trees",
+      "树林"
+    ],
+    [
+      "lakeside",
+      "a lake",
+      "湖面"
+    ],
+    [
+      "river",
+      "a river",
+      "河流"
+    ],
+    [
+      "seashore",
+      "a beach by the sea",
+      "海滩"
+    ],
+    [
+      "alp",
+      "mountains",
+      "山峰"
+    ],
+    [
+      "cliff",
+      "a cliff",
+      "峭壁"
+    ],
+    [
+      "valley",
+      "a valley",
+      "山谷"
+    ],
+    [
+      "volcano",
+      "a volcano",
+      "火山"
+    ],
+    [
+      "snow",
+      "a snowy landscape",
+      "雪景"
+    ],
+    [
+      "waterfall",
+      "a waterfall",
+      "瀑布"
+    ],
+    [
+      "meadow",
+      "a grassy meadow",
+      "草地"
+    ],
+    [
+      "sunset",
+      "a sunset",
+      "落日"
+    ],
+    [
+      "night_sky",
+      "stars in the night sky",
+      "星空"
+    ],
+    [
+      "city",
+      "a city skyline in daylight",
+      "城市"
+    ],
+    [
+      "city_night",
+      "city lights at night",
+      "城市夜景"
+    ],
+    [
+      "street",
+      "a street",
+      "街道"
+    ],
+    [
+      "building",
+      "a building",
+      "建筑"
+    ],
+    [
+      "bridge",
+      "a bridge",
+      "桥梁"
+    ],
+    [
+      "concert",
+      "a live music concert",
+      "音乐演出"
+    ],
+    [
+      "party",
+      "a party celebration",
+      "聚会"
+    ],
+    [
+      "sport",
+      "people playing sports",
+      "运动"
+    ],
+    [
+      "canoe",
+      "a boat on water",
+      "水上船只"
+    ],
+    [
+      "animal",
+      "an animal",
+      "动物"
+    ],
+    [
+      "bird",
+      "a bird",
+      "鸟类"
+    ],
+    [
+      "insect",
+      "an insect",
+      "昆虫"
+    ],
+    [
+      "portrait",
+      "a portrait of a person",
+      "人物肖像"
+    ],
+    [
+      "people",
+      "a group of people",
+      "人群"
+    ],
+    [
+      "indoor",
+      "the interior of a room",
+      "室内"
+    ],
+    [
+      "food",
+      "food on a plate",
+      "食物"
+    ],
+    [
+      "document",
+      "a page of text or a document",
+      "文档"
+    ],
+    [
+      "screenshot",
+      "a screenshot of a computer or phone screen",
+      "屏幕截图"
+    ],
+    [
+      "vehicle",
+      "a vehicle",
+      "车辆"
+    ],
+    [
+      "object",
+      "a household object",
+      "日常物品"
+    ],
+    [
+      "artwork",
+      "a drawing or painting",
+      "绘画"
+    ],
+    [
+      "storm",
+      "a storm with dark clouds",
+      "阴云"
+    ],
+    [
+      "fire",
+      "flames of a fire",
+      "火焰"
+    ],
+    [
+      "desert",
+      "a desert",
+      "沙漠"
+    ],
+    [
+      "rain",
+      "a rainy scene",
+      "雨景"
+    ]
+  ]
+}

@@ -280,7 +280,7 @@ class RecyclerSheet: BottomSheetDialogFragment() {
                     sleepTimerElapsed.handleViewVisibility(show = false)
 
                     modalRv.setHasFixedSize(true)
-                    val notificationActionsAdapter = NotificationActionsAdapter()
+                    val notificationActionsAdapter = NotificationActionsAdapter(mGoPreferences.notificationActions)
                     val layoutManager =  LinearLayoutManager(requireActivity())
                     modalRv.layoutManager = layoutManager
                     modalRv.adapter = notificationActionsAdapter
@@ -291,6 +291,10 @@ class RecyclerSheet: BottomSheetDialogFragment() {
                         dismiss()
                     }
                     btnPositive.setOnClickListener {
+                        val selectedActions = notificationActionsAdapter.selectedActions
+                        if (selectedActions != mGoPreferences.notificationActions) {
+                            mGoPreferences.notificationActions = selectedActions
+                        }
                         mMediaPlayerHolder.onHandleNotificationUpdate(
                             isAdditionalActionsChanged = true
                         )

@@ -112,6 +112,24 @@ class PlaylistPresentationRegressionTest {
             val settledPosition = f.onMain { f.player.currentPosition }
             assertTrue("playlist seeks away from zero", settledPosition >= 4_800)
             f.await("decoded audio advances after seek") { f.onMain { f.player.currentPosition >= settledPosition + 100 } }
+            // Emulator AudioTrack may correct its clock after onSeekComplete and
+            // the first advancing sample. Establish a stable pre-action clock;
+            // the strict position/identity assertions around each UI action stay unchanged.
+            var clockAnchor = checkpoint(f)
+            var previousPosition = clockAnchor.position
+            f.await("two seconds of stable decoded playback before changing display settings") {
+                val sample = checkpoint(f)
+                val elapsed = sample.elapsed - clockAnchor.elapsed
+                val advanced = sample.position - clockAnchor.position
+                val stable = sample.position >= previousPosition - 150 &&
+                    kotlin.math.abs(advanced.toLong() - elapsed) <= 300
+                if (!stable) {
+                    android.util.Log.i("PlaylistClock", "Pre-action clock correction: previous=$previousPosition, sample=${sample.position}, advanced=$advanced, elapsed=$elapsed")
+                    clockAnchor = sample
+                }
+                previousPosition = sample.position
+                stable && elapsed >= 2_000 && advanced >= 1_700
+            }
             val originalPlayer = f.player
             assertMiniPlayer(f, actualTracks.getValue("C").displayName!!.substringBeforeLast('.'))
 

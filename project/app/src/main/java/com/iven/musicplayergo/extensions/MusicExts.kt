@@ -216,5 +216,5 @@ fun Music.findRestoreSongs(sorting: Int, musicViewModel: MusicViewModel) = when 
         sorting,
         musicViewModel.deviceMusicByFolder?.get(relativePath)
     )
-    else -> Lists.getSortedMusicListForFolder(sorting, musicViewModel.deviceMusicByAlbum?.get(album))
+    else -> Lists.getSortedMusicList(sorting, musicViewModel.deviceMusicByAlbum?.get(album))
 }

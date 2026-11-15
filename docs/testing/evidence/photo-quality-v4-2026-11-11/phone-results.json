@@ -1,0 +1,184 @@
+{
+  "status": "PHYSICAL_PHONE_UI_VERIFIED",
+  "date": "2026-11-11",
+  "method": "Actual representative-track audio and photo inference in the Android app; same 20-photo authorized folder as v3. Visual identities matched against public source photos; scores/reasons read from app UI. No desktop result substituted for phone order.",
+  "model_hashes": {
+    "tinyclip-atmospheres-v4.onnx": "c6811b6a8127a3091e2fc21e0a5b48f0234de40afa30472028b15ab215092dd9",
+    "tinyclip-atmospheres-v3.onnx": "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95",
+    "discogs-effnet-bsdynamic-1.onnx": "a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c",
+    "mtg_jamendo_moodtheme-discogs-effnet-1.onnx": "7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff"
+  },
+  "manifest_sha256": "feb71df0f639a9a98827e573e0884dbe94fe18a374a06a1af9410c0e17dc9f47",
+  "apk_sha256": "fc3f72eec59cf62045f7435d254209291ce9167693b87feceb0b4ba3abe92537",
+  "cases": [
+    {
+      "song": "Carefree",
+      "mood": "轻快",
+      "status": "依据音乐：Carefree；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：轻快、活泼、欢快（模型推测）。\n找到 9 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 9,
+      "top5": [
+        {
+          "id": "fresh_00a581a5",
+          "score": 0.5,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面\n画面线索：花卉（模型推测），请看预览确认\n参考匹配分 0.50，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_8b9bbb36",
+          "score": 0.46,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n画面线索：聚会（模型推测），请看预览确认\n参考匹配分 0.46，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_15e634a7",
+          "score": 0.43,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n参考匹配分 0.43，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_3be3f741",
+          "score": 0.41,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；柔和的音乐氛围 × 模型推测的宁静舒缓画面\n画面线索：花卉（模型推测），请看预览确认\n参考匹配分 0.41，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_f3900e1d",
+          "score": 0.39,
+          "reason": "推荐理由：轻快的音乐氛围 × 模型推测的轻快鲜活画面；充满活力的音乐氛围 × 模型推测的强烈动势画面\n画面线索：聚会（模型推测），请看预览确认\n参考匹配分 0.39，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "carefree-page-0.png",
+        "carefree-page-1.png",
+        "carefree-page-2.png"
+      ]
+    },
+    {
+      "song": "Thinking of You",
+      "mood": "舒缓",
+      "status": "依据音乐：Thinking of You；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：放松、伤感、舒缓（模型推测）。舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。\n找到 10 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 10,
+      "top5": [
+        {
+          "id": "fresh_8ecb26a2",
+          "score": 0.34,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.34，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_05d92e07",
+          "score": 0.34,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：昆虫（模型推测），请看预览确认\n参考匹配分 0.34，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_67223236",
+          "score": 0.32,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面\n画面线索：瀑布（模型推测），请看预览确认\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_012a3946",
+          "score": 0.32,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；轻快的音乐氛围 × 模型推测的轻快鲜活画面\n画面线索：湖面（模型推测），请看预览确认\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_83a4ea69",
+          "score": 0.32,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：瀑布（模型推测），请看预览确认\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "thinking-clean-page-0.png",
+        "thinking-clean-page-1.png",
+        "thinking-clean-page-2.png"
+      ]
+    },
+    {
+      "song": "Heartbreaking",
+      "mood": "伤感",
+      "status": "依据音乐：Heartbreaking；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：放松、伤感、沉静（模型推测）。舒缓与伤感线索并存，推荐可能重叠；可使用“使用我选择的氛围”侧重其中一种。\n找到 9 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 9,
+      "top5": [
+        {
+          "id": "fresh_8ecb26a2",
+          "score": 0.39,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.39，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_05d92e07",
+          "score": 0.37,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：昆虫（模型推测），请看预览确认\n参考匹配分 0.37，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_d98b805f",
+          "score": 0.35,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_c5bbaaa7",
+          "score": 0.34,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：雨景（模型推测），请看预览确认\n参考匹配分 0.34，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_83a4ea69",
+          "score": 0.34,
+          "reason": "推荐理由：放松的音乐氛围 × 模型推测的宁静舒缓画面；伤感的音乐氛围 × 模型推测的沉静内省画面\n画面线索：瀑布（模型推测），请看预览确认\n参考匹配分 0.34，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "heartbreaking-page-0.png",
+        "heartbreaking-page-1.png",
+        "heartbreaking-page-2.png"
+      ]
+    },
+    {
+      "song": "Volitile Reaction",
+      "mood": "动感",
+      "status": "依据音乐：Volitile Reaction；开头解码 30.0 秒，实际 29 个有效片段 / 29.824 秒。\n片段线索：恢宏、动感、暗沉（模型推测）。\n找到 5 张候选，点击图片预览、裁剪后再确认。\n0 张画面氛围不确定或不适用，已跳过；读取／分析失败 0 张。\n按整体画面氛围搭配，不要求认出具体物体。描述为模型推测，不代表照片中人物的情绪；可自行改选。",
+      "candidate_count": 5,
+      "top5": [
+        {
+          "id": "fresh_4d4e6a83",
+          "score": 0.4,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.40，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_4ce855a2",
+          "score": 0.38,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.38，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_8896cc23",
+          "score": 0.35,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.35，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_94d186eb",
+          "score": 0.32,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        },
+        {
+          "id": "fresh_f3900e1d",
+          "score": 0.32,
+          "reason": "推荐理由：恢宏的音乐氛围 × 模型推测的强烈动势画面\n画面线索：聚会（模型推测），请看预览确认\n参考匹配分 0.32，仅用于本批排序，不是准确率。"
+        }
+      ],
+      "screenshots": [
+        "volatile-page-0.png",
+        "volatile-page-1.png",
+        "volatile-page-2.png"
+      ]
+    }
+  ],
+  "calm_reflective_overlap": 3,
+  "preservation": {
+    "original_playlists_and_covers_unchanged": true,
+    "photo_sources_and_scopes_unchanged": true,
+    "seed_files_unchanged": 33,
+    "old_v3_and_music_models_retained": true,
+    "new_covers_saved": 0,
+    "stay_awake_restored": 0,
+    "heads_up_notifications_restored": 1
+  },
+  "limits": [
+    "No formal relevance accuracy or human acceptance claim.",
+    "Butterfly remains second in reflective results.",
+    "Both calm and reflective audio excerpts contain relaxing and sad signals.",
+    "Fireworks may receive the coarse party scene label.",
+    "Existing ONNX 16KB alignment issue #55 remains."
+  ]
+}

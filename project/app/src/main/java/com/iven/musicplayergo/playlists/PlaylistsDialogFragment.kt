@@ -99,6 +99,11 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment(), PlaylistEditorHost 
             reloadPlaylists()
             musicViewModel.refreshPlaylistLibrary()
         }
+        views.playlistPhotoSources.setOnClickListener {
+            val selected = currentPlaylist() ?: return@setOnClickListener
+            com.iven.musicplayergo.photos.PhotoSourcesDialogFragment.newInstance(CoverTarget.Playlist(selected.id), selected.name)
+                .show(childFragmentManager, "playlist-photo-sources")
+        }
         views.playlistSetCover.setOnClickListener {
             val id = selectedPlaylistId ?: return@setOnClickListener
             if (childFragmentManager.findFragmentByTag(COVER_DIALOG) == null) {
@@ -171,11 +176,18 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment(), PlaylistEditorHost 
 
     override fun onPlaylistDeleted(id: String) {
         if (selectedPlaylistId == id) selectedPlaylistId = null
-        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+        val context = requireContext().applicationContext
+        lifecycleScope.launch {
             val target = CoverTarget.Playlist(id)
-            if (CoverRepositories.get(requireContext()).hasCover(target)) {
-                CoverRepositories.get(requireContext()).removeCover(target)
+            val failed = withContext(Dispatchers.IO) {
+                com.iven.musicplayergo.photos.cleanupDeletedPlaylistPhotos(
+                    { com.iven.musicplayergo.photos.PhotoRepositories.get(context).deleteTarget(target) },
+                    {
+                        val result = CoverRepositories.get(context).removeCover(target)
+                        check(result is CoverResult.Success || result is CoverResult.Failure && result.error == com.iven.musicplayergo.covers.CoverError.COVER_NOT_FOUND)
+                    })
             }
+            if (isAdded && failed.isNotEmpty()) showFeedback("歌单已删除，但${failed.joinToString("、")}清理失败，旧记录可能保留。")
         }
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))

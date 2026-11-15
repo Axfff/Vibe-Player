@@ -1,0 +1,57 @@
+{
+  "case_id": "case_04",
+  "audio": {
+    "asset_id": "audio_0016",
+    "path": "media/audio/audio_0016.mp3"
+  },
+  "photos": [
+    {
+      "asset_id": "holdout_1721f4d2",
+      "path": "media/images/holdout_1721f4d2.jpg"
+    },
+    {
+      "asset_id": "holdout_209ba2e2",
+      "path": "media/images/holdout_209ba2e2.jpg"
+    },
+    {
+      "asset_id": "holdout_2562d8c8",
+      "path": "media/images/holdout_2562d8c8.jpg"
+    },
+    {
+      "asset_id": "holdout_6aa8ee5c",
+      "path": "media/images/holdout_6aa8ee5c.jpg"
+    },
+    {
+      "asset_id": "holdout_84fb65d7",
+      "path": "media/images/holdout_84fb65d7.jpg"
+    },
+    {
+      "asset_id": "holdout_c2f9cafb",
+      "path": "media/images/holdout_c2f9cafb.jpg"
+    },
+    {
+      "asset_id": "holdout_e0a13c38",
+      "path": "media/images/holdout_e0a13c38.jpg"
+    },
+    {
+      "asset_id": "holdout_e51bf29a",
+      "path": "media/images/holdout_e51bf29a.jpg"
+    },
+    {
+      "asset_id": "holdout_e97c3706",
+      "path": "media/images/holdout_e97c3706.jpg"
+    },
+    {
+      "asset_id": "holdout_ea6dfd90",
+      "path": "media/images/holdout_ea6dfd90.jpg"
+    },
+    {
+      "asset_id": "holdout_ecf6f20e",
+      "path": "media/images/holdout_ecf6f20e.jpg"
+    },
+    {
+      "asset_id": "holdout_f3b815e2",
+      "path": "media/images/holdout_f3b815e2.jpg"
+    }
+  ]
+}

@@ -1,0 +1,188 @@
+{
+  "date": "2026-11-10 Asia/Singapore",
+  "branch_head": "e4e0206f94e4490c87f93bb48007edd98a056e30",
+  "production_commit": "5e5c94383858ea14d4507bfde91ff8d4dab8fe96",
+  "apk_sha256": "c301335aba5f41f7cbd89bc5ad69e7e53b3902ea582f71c451ffa244a924c3be",
+  "device": {
+    "model": "25102RKBEC",
+    "android_api": 37,
+    "page_size_bytes": 4096
+  },
+  "models_sha256": {
+    "discogs-effnet-bsdynamic-1.onnx": "a280825b334797cf677939db8cd5762c0392aedd0ca6415dbc1cd083f045e43c",
+    "mtg_jamendo_moodtheme-discogs-effnet-1.onnx": "7d6270acaa5f4bba4b115a0d6849aca05ed6bd153dcb6d9da4f6ab9f99ef10ff",
+    "tinyclip-atmospheres-v3.onnx": "d7c4c554e61ce95c37c094669ce0dd0bda9f68e5471e37793c3d9ba046fc4e95"
+  },
+  "photo_model_import": "Selected tinyclip-atmospheres-v3.onnx through the actual Xiaomi ACTION_OPEN_DOCUMENT handler, confirmed selection, and observed import/verification success; earlier music models retained.",
+  "analysis": {
+    "track": "Carefree",
+    "requested_seconds": 30,
+    "effective_seconds": 29.824,
+    "frames": 29,
+    "authorized_fixture_photos": 6,
+    "candidates": 3,
+    "uncertain_atmosphere": 0,
+    "extraction_failures": 0,
+    "top_photo": "img_0001 sunflower",
+    "top_batch_score": 0.4,
+    "explanation": "lively + peaceful picture atmosphere; marked model inference and score not accuracy"
+  },
+  "crop": {
+    "cancel_preserved_cover_sha256": "79670aba3f9e37cae5fdc0d76f5b63e240611d3a0be3cd9afc80122b71227335",
+    "explicit_save_source": "RECOMMENDED",
+    "saved_cover_sha256": "73a1cc6da6f9b00782aee746ca7a84dfdd55e2db02453542aa2e4da49bd21b76",
+    "saved_cover_bytes": 93246
+  },
+  "force_stop_reopen": {
+    "cover_hash_preserved": true,
+    "cover_visually_fills_qa_playlist_frame": true,
+    "models_validated": 3,
+    "source_readable_photos": 6,
+    "scope_sha256_unchanged": "35ff7787284fe39d1beacdf92327655fe784df40d6088bb2671081a2fad7d1c4"
+  },
+  "preservation": {
+    "original_playlist_count": 2,
+    "original_playlists_unchanged": true,
+    "all_ten_seed_files_unchanged": true,
+    "personal_photos_selected_or_uploaded": false,
+    "temporary_usb_stay_awake_restored_to": 0
+  },
+  "native_compatibility": {
+    "warning_reproduced_on_cold_launch": true,
+    "warning_not_disabled": true,
+    "current_runtime": "1.20.0",
+    "current_phone_runtime_page_size": 4096,
+    "inspected_official_aar_artifacts": [
+      {
+        "version": "1.20.0",
+        "url": "https://repo.maven.apache.org/maven2/com/microsoft/onnxruntime/onnxruntime-android/1.20.0/onnxruntime-android-1.20.0.aar",
+        "aar_sha256": "07a8f71ef890afed8c6087a56220e6d558a492804276ee2dd7cb7f6262242027",
+        "libs": {
+          "jni/arm64-v8a/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "52329b7c8e5fcd5c1aa88b01093215faaef362e3f3d0e374cb8b10d1e4704677"
+          },
+          "jni/arm64-v8a/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              4096,
+              4096
+            ],
+            "sha256": "ac94a0df9d6f2e4eb2a18723807e4cb2e38b5a78bceb9c367bcbf84633171649"
+          },
+          "jni/x86_64/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "047705ab42981a4884eec435f60cc1a311e40414cd52fa2f252da2b473756844"
+          },
+          "jni/x86_64/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              4096,
+              4096
+            ],
+            "sha256": "c09ed0c68d026b6320c5505fd78c3b0a1c52c1c94d3911566ccf6a94b55ac2e9"
+          }
+        },
+        "manifest_min_sdk": 21
+      },
+      {
+        "version": "1.21.1",
+        "url": "https://repo.maven.apache.org/maven2/com/microsoft/onnxruntime/onnxruntime-android/1.21.1/onnxruntime-android-1.21.1.aar",
+        "aar_sha256": "30e594a4b9246fe3ca25768570e90f71e6d33ceb7b7dd72f92dcd7c267611d3f",
+        "libs": {
+          "jni/arm64-v8a/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "11ef853b751532dc827bd7799f557f9495e2ee7523b9b355753fc0344576bd5e"
+          },
+          "jni/arm64-v8a/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              16384,
+              16384
+            ],
+            "sha256": "f657216254a2f88fcbd89c5e73a2f7ae5a8145d092f8700951aedba8e4a60ef2"
+          },
+          "jni/x86_64/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "66032672c3f62a42c6345e5cf3931c88e3cf9443ba104fee5370e8e3f6640ca8"
+          },
+          "jni/x86_64/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              16384,
+              16384
+            ],
+            "sha256": "cc9fc0591222fc5c90a07ef055d7bacde08e62c49a5ec9e629be2c6b535cf94b"
+          }
+        },
+        "manifest_min_sdk": 24
+      },
+      {
+        "version": "1.22.0",
+        "url": "https://repo.maven.apache.org/maven2/com/microsoft/onnxruntime/onnxruntime-android/1.22.0/onnxruntime-android-1.22.0.aar",
+        "aar_sha256": "04a4617a9c797cf49225595e45b5546081cb34c86ac817581141577d3b7dbfe2",
+        "libs": {
+          "jni/arm64-v8a/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "999ecfdb5b5a13e4097487773b6d71ce8a075408a237daab072e8f5e817bd78e"
+          },
+          "jni/arm64-v8a/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              16384,
+              16384
+            ],
+            "sha256": "5614bd018cca9031c4dbcfc2a3bece42fae52861a92ff09c4bd2491bd93ac758"
+          },
+          "jni/x86_64/libonnxruntime.so": {
+            "load_alignments": [
+              16384,
+              16384,
+              16384
+            ],
+            "sha256": "e3e67500ac56271802355bad3a46dcfcb90ce6392d9c4793b5a2c48da0d2a4e9"
+          },
+          "jni/x86_64/libonnxruntime4j_jni.so": {
+            "load_alignments": [
+              16384,
+              16384
+            ],
+            "sha256": "bc96f7f9245dbf66110dccab9394c9283188ce28c4ad6d8ba3dc1ded842b9324"
+          }
+        },
+        "manifest_min_sdk": 24
+      }
+    ],
+    "status": "Unresolved 16 KB compatibility; inspected aligned versions declare minSdk 24, while product retains 21. No manifest override, dependency upgrade or warning-suppression change."
+  },
+  "screenshots": {
+    "phone-v3-photo-model-imported.png": "f1accc6d5952b337d643d869a8fc1c41762aa8443265b71e823b2f43227df335",
+    "phone-v3-recommendations.png": "d6251b79be20a23c5cad299f1ae185d83160797c3b88c0acb8e7598e0517cb24",
+    "phone-v3-cover-after-restart.png": "1b47eff8611563d91d16fbd994fb4039b3ee30b8bb3db24d468f01010aab13a2",
+    "phone-v3-source-after-restart.png": "53e5b387b1790486f4a185dd93f39f4156d7a264473fbd6bc1e8ced0a02ad7f9",
+    "phone-v3-models-after-restart.png": "07e27a026eff133426acb798766457aa800ae40c6d0ea51641a1c2f45cc33495"
+  },
+  "attribution": "https://github.com/Axfff/Vibe-Player/blob/7592fbac/test-data/music-photo-v2/ATTRIBUTION.md",
+  "limits": [
+    "Six licensed fixture photos and one representative track, not a new four-case quality benchmark or human acceptance.",
+    "Process force-stop/reopen, not a physical phone reboot.",
+    "16 KB native runtime compatibility is not established by this 4 KB phone run.",
+    "The first file search was altered by the active IME; no search result was selected. The model was selected by browsing the known QA folder.",
+    "System keyword handoff and manual album bridge were not re-tested in this follow-up."
+  ]
+}
