@@ -1,5 +1,7 @@
 # Vibe Discovery API v0.1
 
+2026-11-15 更新（[PR #66 修复与验证](../../testing/evidence/pr66-discovery-repair-2026-11-15.md)）：用户明确填写搜索词时，排序先比较标题/艺人查询词匹配数，再比较目录标签匹配数，最后保留来源顺序；搜索词为空时保留原标签/氛围回退。Android 直连与自定义服务使用相同优先级。逐曲说明由原查询、实际标题/艺人及 `tags` 生成英文资源文案；Collection v1 新增可选 `tags`，旧记录无需迁移。服务状态逐目录展示，与云端照片状态分开；`not_run` 仅代表尚未验证，不能视为真实检索成功。以下历史描述保留其原始日期。
+
 2026-11-03 更新：原生 Android 的实现与网络/保存合同见 [Sprint 3 实现](android-sprint3.md)。以下旧版「所有官方页先 HEAD」描述由本节覆盖：iTunes 使用 Search/Lookup 原始 trackViewUrl 的 HTTPS/准确域名/曲目 ID 校验，返回 `linkVerification=catalog_identity` 与地区/账户 `linkNotice`；Jamendo 仍校验页重定向，标记 `page_resolved`。目录身份有效不等于当前地域可播放。不会把服务器跳到 storefront 首页改造成新曲目地址。
 
 排序已升级为实际目录标签匹配数、标题/艺人查询词匹配数、交替来源原始检索位置的确定性优先级。全来源同一规范化艺人最多两首，缺标签降级为零分；理由明确非音频分析。查询输入合同兼容，已有相册/试听适配器保留。
