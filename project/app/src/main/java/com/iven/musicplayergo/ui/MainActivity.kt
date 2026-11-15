@@ -838,6 +838,7 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
     override fun onHandleCoverOptionsUpdate() {
         mMediaPlayerHolder.updateMediaSessionMetaData()
         mAlbumsFragment?.onUpdateCoverOption()
+        mNpDialog?.refreshCover()
     }
 
     override fun onOpenNewDetailsFragment() {

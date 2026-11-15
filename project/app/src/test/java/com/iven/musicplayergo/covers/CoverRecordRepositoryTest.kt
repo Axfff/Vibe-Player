@@ -63,6 +63,34 @@ class CoverRecordRepositoryTest {
         success(repository.putCover(playlist, "playlist.webp", CoverSource.USER_SELECTED))
         assertEquals("album.webp", success(repository.getCover(album))!!.localFileName)
         assertEquals("playlist.webp", success(repository.getCover(playlist))!!.localFileName)
+        assertEquals(setOf("album.webp", "playlist.webp"), success(repository.allCovers()).map { it.localFileName }.toSet())
+    }
+
+    @Test fun recoverySnapshotIsIndependentOfLaterWritesAndDoesNotWriteMetadata() {
+        assertEquals(emptyList<CustomCover>(), success(repository.allCovers()))
+        assertEquals(0, storage.writes)
+        val a = CoverTarget.Album(7, null, null)
+        val old = success(repository.putCover(a, "7.webp", CoverSource.USER_SELECTED))
+        val snapshot = success(repository.allCovers())
+        success(repository.removeCover(a))
+        assertEquals(listOf(old), snapshot)
+        assertEquals(emptyList<CustomCover>(), success(repository.allCovers()))
+        assertEquals(2, storage.writes)
+    }
+
+    @Test fun clockRollbackDuringReplacementKeepsEveryRecordReadableAfterRestart() {
+        val a = CoverTarget.Album(7, null, null)
+        val b = CoverTarget.Album(8, null, null)
+        now = 200
+        success(repository.putCover(a, "a.webp", CoverSource.USER_SELECTED))
+        success(repository.putCover(b, "b.webp", CoverSource.USER_SELECTED))
+        now = 100
+        val changed = success(repository.putCover(a, "replacement.webp", CoverSource.USER_SELECTED))
+        val reopened = CoverRecordRepository(storage)
+        assertEquals("replacement.webp", success(reopened.getCover(a))!!.localFileName)
+        assertEquals("b.webp", success(reopened.getCover(b))!!.localFileName)
+        assertEquals(200L, changed.createdAtEpochMs)
+        assertEquals(200L, changed.updatedAtEpochMs)
     }
 
     @Test fun removalIsExplicitAndPersists() {
@@ -102,12 +130,14 @@ class CoverRecordRepositoryTest {
         invalid.forEach {
             storage.json = it
             error(CoverError.STORAGE_READ_FAILED, repository.getCover(CoverTarget.Album(1, null, null)))
+            error(CoverError.STORAGE_READ_FAILED, repository.allCovers())
         }
     }
 
     @Test fun storageExceptionsAreTypedFailures() {
         storage.throwRead = true
         error(CoverError.STORAGE_READ_FAILED, repository.getCover(CoverTarget.Album(1, null, null)))
+        error(CoverError.STORAGE_READ_FAILED, repository.allCovers())
         storage.throwRead = false
         storage.throwWrite = true
         error(CoverError.STORAGE_WRITE_FAILED, repository.putCover(CoverTarget.Album(1, null, null), "x.webp", CoverSource.USER_SELECTED))

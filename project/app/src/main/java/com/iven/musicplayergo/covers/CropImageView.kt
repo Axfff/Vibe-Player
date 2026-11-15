@@ -37,6 +37,14 @@ class CropImageView @JvmOverloads constructor(
 
     init { scaleType = ScaleType.MATRIX }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val desired = (360 * resources.displayMetrics.density).toInt()
+        fun bound(spec: Int) = if (MeasureSpec.getMode(spec) == MeasureSpec.UNSPECIFIED) desired
+            else MeasureSpec.getSize(spec)
+        val edge = minOf(desired, bound(widthMeasureSpec), bound(heightMeasureSpec))
+        setMeasuredDimension(edge, edge)
+    }
+
     fun setCropBitmap(bitmap: Bitmap) {
         source = bitmap
         setImageBitmap(bitmap)
@@ -44,7 +52,7 @@ class CropImageView @JvmOverloads constructor(
     }
 
     fun export(size: Int = 1024): Bitmap {
-        require(width > 0 && height > 0 && source != null)
+        require(width > 0 && width == height && size > 0 && source != null)
         return Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888).also { output ->
             val canvas = Canvas(output)
             canvas.scale(size.toFloat() / width, size.toFloat() / height)
