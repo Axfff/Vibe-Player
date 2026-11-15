@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.preferences.english
+import com.iven.musicplayergo.preferences.contains
 import com.iven.musicplayergo.analysis.MoodScore
 import org.junit.Assert.*
 import org.junit.Test
@@ -10,7 +12,7 @@ class PhotoRankerTest {
             PhotoAtmospherePolicy.names.keys.map { PhotoLabel(it, if (it == if (label == "flowers") "lively" else "peaceful") score else (1f-score)/3f) })
     @Test fun formulaUsesIndependentMusicAndPhotoScores() {
         val result = PhotoRanker.rank(listOf(MoodScore("calm", .8f), MoodScore("happy", .2f)), listOf(photo("a"))).single()
-        assertEquals(.7568627f, result.score, .00001f); assertTrue(result.reasons.first().contains("舒缓")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
+        assertEquals(.7568627f, result.score, .00001f); assertTrue(result.reasons.first().contains("calm")); assertEquals(PhotoRanker.VERSION, result.ruleVersion)
     }
     @Test fun tiesAreStableAndDefaultIsFive() {
         val candidates = (10 downTo 1).map { photo(it.toString().padStart(2,'0')) }
@@ -37,22 +39,22 @@ class PhotoRankerTest {
     }
     @Test fun suggestionsComeOnlyFromExplicitSignals() {
         assertTrue(PhotoRanker.suggestions(emptyList()).isEmpty())
-        assertEquals(listOf("树林","湖面","山谷"),PhotoRanker.suggestions(listOf(MoodScore("calm",1f))))
+        assertEquals(listOf("forest","lakeside","valley"),PhotoRanker.suggestions(listOf(MoodScore("calm",1f))).map { it.english() })
     }
     @Test fun multipleAtmospheresDoNotHideTheConcreteSceneExplanation() {
         val feature = photo("mixed").copy(atmospheres=listOf(PhotoLabel("lively",.05f), PhotoLabel("peaceful",.45f),
             PhotoLabel("reflective",.4f), PhotoLabel("intense",.1f)))
         val result = PhotoRanker.rank(listOf(MoodScore("calm",.6f),MoodScore("sad",.4f)),listOf(feature)).single()
         assertEquals(2,result.reasons.size)
-        assertTrue(result.reasons.first().contains("舒缓")); assertTrue(result.reasons.first().contains("伤感"))
-        assertTrue(result.reasons.last().contains("湖面")); assertTrue(result.reasons.last().contains("模型推测"))
+        assertTrue(result.reasons.first().contains("calm")); assertTrue(result.reasons.first().contains("sad"))
+        assertTrue(result.reasons.last().contains("lakeside")); assertTrue(result.reasons.last().contains("model estimate"))
     }
     @Test fun musicSummaryReportsMixedEvidenceAndRejectsInvalidOrUnmappedSignals() {
         val mixed = listOf(MoodScore("relaxing",.15f),MoodScore("sad",.06f))
-        assertTrue(PhotoRanker.musicDescription(mixed).contains("舒缓与伤感线索并存"))
-        assertTrue(PhotoRanker.musicDescription(mixed).contains("放松、伤感"))
+        assertTrue(PhotoRanker.musicDescription(mixed).contains("Calm and sad cues coexist"))
+        assertTrue(PhotoRanker.musicDescription(mixed).contains("relaxing, sad"))
         assertEquals(PhotoRanker.musicDescription(mixed),PhotoRanker.musicDescription(mixed+mixed+listOf(MoodScore("sad",.05f))))
-        assertFalse(PhotoRanker.musicDescription(listOf(MoodScore("happy",.8f))).contains("并存"))
+        assertFalse(PhotoRanker.musicDescription(listOf(MoodScore("happy",.8f))).contains("coexist"))
         assertEquals(PhotoRanker.musicDescription(emptyList()),PhotoRanker.musicDescription(listOf(MoodScore("happy",Float.NaN),
             MoodScore("sad",.01f),MoodScore("calm",2f),MoodScore("unknown",1f))))
     }
@@ -60,14 +62,14 @@ class PhotoRankerTest {
         val happy = listOf(MoodScore("happy",1f))
         assertTrue(PhotoRanker.rank(happy,listOf(photo("a","document"),photo("b").copy(labels=emptyList()))).isEmpty())
         val result=PhotoRanker.rank(happy,listOf(photo("flower","flowers"))).single()
-        assertTrue(result.reasons.any { it.contains("花卉") })
-        assertTrue(result.reasons.none { it.contains("蝴蝶") })
+        assertTrue(result.reasons.any { it.contains("flowers") })
+        assertTrue(result.reasons.none { it.contains("butterfly") })
         assertTrue(PhotoRanker.mapping.values.flatten().all { it in PhotoScenePolicy.names || it in PhotoScenePolicy.broadNames })
     }
     @Test fun broadAtmosphereCanRankWithoutInventingAnObjectButUniformSupportCannot() {
         val calm = listOf(MoodScore("calm", 1f))
         val unnamed = photo("unnamed").copy(labels=emptyList())
-        assertTrue(PhotoRanker.rank(calm,listOf(unnamed)).single().reasons.single().contains("宁静舒缓"))
+        assertTrue(PhotoRanker.rank(calm,listOf(unnamed)).single().reasons.single().contains("peaceful"))
         assertTrue(PhotoRanker.rank(calm,listOf(unnamed.copy(atmospheres=emptyList()))).isEmpty())
         val uniform = unnamed.copy(atmospheres=PhotoAtmospherePolicy.names.keys.map { PhotoLabel(it,.25f) })
         assertTrue(PhotoRanker.rank(calm,listOf(uniform)).isEmpty())
@@ -80,9 +82,9 @@ class PhotoRankerTest {
     @Test fun searchCapabilityDistinguishesExtensionAndUnknown() {
         assertTrue(PhotoSearchPolicy.explanation(36,17).contains("17"))
         assertTrue(PhotoSearchPolicy.explanation(36,17).contains("19"))
-        assertFalse(PhotoSearchPolicy.explanation(36,19).contains("更新 App"))
-        assertTrue(PhotoSearchPolicy.explanation(32,null).contains("此 Android 版本"))
-        assertTrue(PhotoSearchPolicy.explanation(36,null).contains("无法读取"))
+        assertFalse(PhotoSearchPolicy.explanation(36,19).contains("Updating this app"))
+        assertTrue(PhotoSearchPolicy.explanation(32,null).contains("This Android version"))
+        assertTrue(PhotoSearchPolicy.explanation(36,null).contains("Cannot read"))
         assertEquals(SystemPhotoSearchCapability.UNSUPPORTED,PhotoSearchPolicy.capability(32,99))
         assertEquals(SystemPhotoSearchCapability.UNKNOWN,PhotoSearchPolicy.capability(36,null))
         assertEquals(SystemPhotoSearchCapability.UNSUPPORTED,PhotoSearchPolicy.capability(36,18))

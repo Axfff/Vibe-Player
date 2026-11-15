@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.preferences.english
+import com.iven.musicplayergo.preferences.contains
 import com.iven.musicplayergo.covers.CoverTarget
 import org.junit.Assert.*
 import org.junit.Test
@@ -80,10 +82,10 @@ class PhotoScopeRepositoryTest {
         for (readFailure in listOf(true,false)) {
             memory.value = if(readFailure) "broken" else valid; memory.fail = !readFailure
             var coverCleaned = false
-            assertEquals(listOf("照片来源"),cleanupDeletedPlaylistPhotos({repo.deleteTarget(a)},{coverCleaned=true}))
+            assertEquals(listOf("photo sources"),cleanupDeletedPlaylistPhotos({repo.deleteTarget(a)},{coverCleaned=true}).map { it.english() })
             assertTrue(coverCleaned); assertEquals(if(readFailure) "broken" else valid,memory.value)
         }
-        assertEquals(listOf("封面"),cleanupDeletedPlaylistPhotos({}, {error("cover disk failure")}))
+        assertEquals(listOf("cover"),cleanupDeletedPlaylistPhotos({}, {error("cover disk failure")}).map { it.english() })
         assertEquals(emptyList<String>(),cleanupDeletedPlaylistPhotos({},{}))
     }
     @Test fun selectionDuplicatesAreFixedAndDeduplicated() {

@@ -1,5 +1,8 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.R
+import com.iven.musicplayergo.preferences.UiText
+import com.iven.musicplayergo.preferences.UiTextException
 import android.content.Context
 import android.system.Os
 import com.iven.musicplayergo.analysis.MoodAnalyzer
@@ -11,16 +14,16 @@ import java.io.InputStream
 import java.security.MessageDigest
 
 /** Only these exact, previously evaluated model versions can become active. */
-enum class PhotoModel(val title: String, val filename: String, val bytes: Long, val sha256: String, val source: String, val license: String) {
-    MUSIC("音乐识别", "discogs-effnet-bsdynamic-1.onnx", 18027718, MoodAnalyzer.BACKBONE_SHA256,
-        "https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
-    MOOD("音乐氛围", "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", 2739322, MoodAnalyzer.HEAD_SHA256,
-        "https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
-    PHOTO("照片识别", OnnxPhotoFeatureExtractor.FILENAME, 158993255, OnnxPhotoFeatureExtractor.SHA256,
-        "https://github.com/Axfff/Vibe-Player/blob/feat/scoped-photo-recommendations/docs/development/photo-scene-model.md", "MIT（TinyCLIP；本项目转换为 ONNX）");
+enum class PhotoModel(val title: UiText, val filename: String, val bytes: Long, val sha256: String, val source: String, val license: UiText) {
+    MUSIC(UiText.of(R.string.photo_model_music), "discogs-effnet-bsdynamic-1.onnx", 18027718, MoodAnalyzer.BACKBONE_SHA256,
+        "https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx", UiText.of(R.string.photo_license_audio)),
+    MOOD(UiText.of(R.string.photo_model_mood), "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", 2739322, MoodAnalyzer.HEAD_SHA256,
+        "https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx", UiText.of(R.string.photo_license_audio)),
+    PHOTO(UiText.of(R.string.photo_model_photo), OnnxPhotoFeatureExtractor.FILENAME, 158993255, OnnxPhotoFeatureExtractor.SHA256,
+        "https://github.com/Axfff/Vibe-Player/blob/feat/scoped-photo-recommendations/docs/development/photo-scene-model.md", UiText.of(R.string.photo_license_image));
 }
 
-enum class PhotoModelStatus(val label: String) { MISSING("未导入"), UPDATE_REQUIRED("请导入新版照片识别文件，现有封面不受影响"), READY("已准备好"), INVALID("文件不完整或版本不对，请重新导入"), UNREADABLE("无法读取，请重新导入") }
+enum class PhotoModelStatus(val label: UiText) { MISSING(UiText.of(R.string.photo_model_missing)), UPDATE_REQUIRED(UiText.of(R.string.photo_model_update)), READY(UiText.of(R.string.photo_model_ready)), INVALID(UiText.of(R.string.photo_model_invalid)), UNREADABLE(UiText.of(R.string.photo_model_unreadable)) }
 
 /** App-private copies; no persisted source URI or photo-library permission is needed. */
 class PhotoModelStore(private val directory: File) {
@@ -53,7 +56,7 @@ class PhotoModelStore(private val directory: File) {
     internal suspend fun install(filename: String, bytes: Long, sha256: String, open: () -> InputStream, progress: suspend (Int) -> Unit = {}) = withContext(Dispatchers.IO) {
         require(filename.matches(Regex("[a-zA-Z0-9._-]+")) && filename !in setOf(".", "..") && bytes > 0)
         lock.withLock {
-            check(directory.isDirectory || directory.mkdirs()) { "无法创建模型目录，请检查可用空间。" }
+            if (!directory.isDirectory && !directory.mkdirs()) throw UiTextException(UiText.of(R.string.photo_model_directory_failed))
             val staging = File.createTempFile("import-", ".part", directory)
             try {
                 val digest = MessageDigest.getInstance("SHA-256")
@@ -66,15 +69,13 @@ class PhotoModelStore(private val directory: File) {
                         val n = input.read(buffer)
                         if (n < 0) break
                         count += n
-                        check(count <= bytes) { "文件过大，与所需模型不匹配；原模型保留。" }
+                        if (count > bytes) throw UiTextException(UiText.of(R.string.photo_model_too_large))
                         digest.update(buffer, 0, n)
                         output.write(buffer, 0, n)
                         val next = (count * 100 / bytes).toInt()
                         if (next != percent) { percent = next; progress(percent) }
                     }
-                    check(count == bytes && digest.digest().hex() == sha256) {
-                        "文件不完整或版本不对。请按文件说明重新下载，原有文件保留。"
-                    }
+                    if (count != bytes || digest.digest().hex() != sha256) throw UiTextException(UiText.of(R.string.photo_model_checksum_failed))
                     output.fd.sync()
                 } }
                 currentCoroutineContext().ensureActive()

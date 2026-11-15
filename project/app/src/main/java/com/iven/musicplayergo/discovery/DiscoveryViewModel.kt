@@ -6,6 +6,7 @@ import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.iven.musicplayergo.preferences.UiText
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
@@ -21,7 +22,9 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
     private val preferences = app.getSharedPreferences("discovery-settings", 0)
     private val debug = app.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     val updates = MutableLiveData(0)
-    var endpoint = preferences.getString("endpoint", if (debug) "http://127.0.0.1:8765" else "").orEmpty()
+    var endpoint = preferences.getString("endpoint", "").orEmpty()
+    var customService = preferences.getBoolean("custom_service", false)
+        private set
     var intent = MusicIntent()
     var scene: String? = null
     var market = "US"
@@ -29,13 +32,14 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         private set
     var photo: PhotoIntent? = null
         private set
-    var localPhotoDescription: String? = null
+    var localPhotoDescription: UiText? = null
         private set
     var status: DiscoveryStatus? = null
         private set
     var results: DiscoveryResults? = null
         private set
     private var resultQuery: DiscoveryQuery? = null
+    internal val resultIntent get() = resultQuery?.intent
     var collection = DiscoveryCollection()
         private set
     var collectionError: String? = null
@@ -78,7 +82,17 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
 
     fun connect() = runOperation { client ->
         val current = client.status()
-        return@runOperation { status = current; message = if (current.canAnalyze) "connected" else "manual_model_blocked" }
+        return@runOperation { status = current; message = "connected" }
+    }
+
+    fun useCustomService(enabled: Boolean) {
+        if (enabled == customService) return
+        cancel()
+        customService = enabled
+        preferences.edit().putBoolean("custom_service", enabled).apply()
+        status = null
+        message = "ready"
+        changed()
     }
 
     fun discover() {
@@ -90,7 +104,7 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
         runOperation { client ->
             val current = client.status()
             val response = client.discover(current.token, query)
-            return@runOperation { status = current; results = response; resultQuery = query; message = if (response.tracks.isEmpty()) "no_results" else "results" }
+            return@runOperation { status = current.copy(catalogs = response.catalogs); results = response; resultQuery = query; message = if (response.tracks.isEmpty()) "no_results" else "results" }
         }
     }
 
@@ -169,11 +183,14 @@ class DiscoveryViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun runOperation(action: (DiscoveryGateway) -> (() -> Unit)) {
         if (busy) return
-        val base = try { DiscoveryLinks.endpoint(endpoint, debug) } catch (error: DiscoveryFailure) { message = error.code; changed(); return }
-        endpoint = base
-        preferences.edit().putString("endpoint", base).apply()
+        val base = if (customService) try { DiscoveryLinks.endpoint(endpoint, debug) }
+            catch (error: DiscoveryFailure) { message = error.code; changed(); return } else null
+        if (base != null) {
+            endpoint = base
+            preferences.edit().putString("endpoint", base).apply()
+        }
         val version = ++generation
-        val client = DiscoveryClient(base)
+        val client: DiscoveryGateway = if (base == null) DeviceDiscoveryCatalog() else DiscoveryClient(base)
         gateway = client
         busy = true
         message = "loading"

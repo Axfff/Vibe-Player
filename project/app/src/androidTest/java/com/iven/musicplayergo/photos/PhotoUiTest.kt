@@ -49,85 +49,85 @@ class PhotoUiTest {
             val source=PhotoSource("ui-source","Unreachable source",PhotoSourceKind.SELECTED,listOf("content://unavailable/photo"))
             repo.attach(target,repo.request(target),source)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(target,playlist.name).showNow(it.supportFragmentManager,"source-ui") }
-            f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("暂时无法统计张数") } } }
+            f.await("invalid grant is explained") { f.onMain { texts().any { it.contains("Photo count is unavailable") } } }
             f.onMain {
-                assertTrue(texts().containsAll(listOf("推荐封面", "直接选一张", "添加照片", "更多")))
-                assertFalse(texts().contains("推荐设置"))
-                assertFalse(texts().contains("按关键词找照片"))
-                click("更多") }
-            f.await("menu item 照片使用说明 is visible") { f.onMain { texts().contains("照片使用说明") } }
-            f.onMain { click("照片使用说明"); click("知道了")
+                assertTrue(texts().containsAll(listOf("Recommend a cover", "Choose a photo directly", "Add photos", "More")))
+                assertFalse(texts().contains("Recommendation settings"))
+                assertFalse(texts().contains("Find photos by keyword"))
+                click("More") }
+            f.await("menu item How photos are used is visible") { f.onMain { texts().contains("How photos are used") } }
+            f.onMain { click("How photos are used"); click("Got it")
             }
-            f.onMain { click("添加照片") }
-            f.await("menu item 小米相册搜索后添加 is visible") { f.onMain { texts().contains("小米相册搜索后添加") } }
-            f.onMain { click("小米相册搜索后添加"); click("返回") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos in Xiaomi Gallery is visible") { f.onMain { texts().contains("Find photos in Xiaomi Gallery") } }
+            f.onMain { click("Find photos in Xiaomi Gallery"); click("Back") }
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("添加照片") }
-            f.await("menu item 小米相册搜索后添加 is visible") { f.onMain { texts().contains("小米相册搜索后添加") } }
-            f.onMain { click("小米相册搜索后添加"); click("授权照片文件夹") }
-            f.await("album guide folder options displayed") { f.onMain { texts().contains("选择照片文件夹") } }
-            f.onMain { click("取消") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos in Xiaomi Gallery is visible") { f.onMain { texts().contains("Find photos in Xiaomi Gallery") } }
+            f.onMain { click("Find photos in Xiaomi Gallery"); click("Choose a photo folder") }
+            f.await("album guide folder options displayed") { f.onMain { texts().contains("Choose a photo folder") } }
+            f.onMain { click("Cancel") }
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("添加照片") }
-            f.await("menu item 小米相册搜索后添加 is visible") { f.onMain { texts().contains("小米相册搜索后添加") } }
-            f.onMain { click("小米相册搜索后添加"); click("选择整理好的照片") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos in Xiaomi Gallery is visible") { f.onMain { texts().contains("Find photos in Xiaomi Gallery") } }
+            f.onMain { click("Find photos in Xiaomi Gallery"); click("Choose the prepared photos") }
             f.await("album guide opens ordinary picker") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("添加照片") }
-            f.await("menu item 选择照片文件夹 is visible") { f.onMain { texts().contains("选择照片文件夹") } }
-            f.onMain { click("选择照片文件夹") }
-            f.onMain { click("取消") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Choose a photo folder is visible") { f.onMain { texts().contains("Choose a photo folder") } }
+            f.onMain { click("Choose a photo folder") }
+            f.onMain { click("Cancel") }
             assertEquals(listOf(source),repo.snapshot(target).second)
             f.scenario.recreate()
             f.await("source dialog restored") { f.onMain { texts().any { it.contains("Unreachable source") } } }
-            f.onMain { click("更多") }
-            f.await("menu item 刷新照片 is visible") { f.onMain { texts().contains("刷新照片") } }
-            f.onMain { click("刷新照片") }
-            f.await("refreshed invalid grant") { f.onMain { texts().any { it.contains("请重新选择照片") } } }
-            f.onMain { click("更多") }
-            f.await("menu item 恢复移除的照片 is visible") { f.onMain { texts().contains("恢复移除的照片") } }
-            f.onMain { click("恢复移除的照片") }
-            f.onMain { click("添加照片") }
-            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
-            f.onMain { click("按关键词找照片") }
-            f.onMain { views().filterIsInstance<EditText>().last().setText("private query");click("取消") }
+            f.onMain { click("More") }
+            f.await("menu item Refresh photos is visible") { f.onMain { texts().contains("Refresh photos") } }
+            f.onMain { click("Refresh photos") }
+            f.await("refreshed invalid grant") { f.onMain { texts().any { it.contains("Choose these photos again") } } }
+            f.onMain { click("More") }
+            f.await("menu item Restore removed photos is visible") { f.onMain { texts().contains("Restore removed photos") } }
+            f.onMain { click("Restore removed photos") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos by keyword is visible") { f.onMain { texts().contains("Find photos by keyword") } }
+            f.onMain { click("Find photos by keyword") }
+            f.onMain { views().filterIsInstance<EditText>().last().setText("private query");click("Cancel") }
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("添加照片") }
-            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
-            f.onMain { click("按关键词找照片") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos by keyword is visible") { f.onMain { texts().contains("Find photos by keyword") } }
+            f.onMain { click("Find photos by keyword") }
             assertTrue(f.onMain { views().filterIsInstance<EditText>().last().text.toString()=="private query" })
-            f.onMain { click("按氛围填写关键词") }
-            f.await("manual search atmosphere choices") { f.onMain { texts().contains("舒缓") } }
+            f.onMain { click("Suggest keywords from an atmosphere") }
+            f.await("manual search atmosphere choices") { f.onMain { texts().contains("calm") } }
             f.onMain {
-                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
                 val list=text.parent as android.widget.ListView
                 list.performItemClick(text,list.getPositionForView(text),0)
             }
-            f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("湖面") } }
-            f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("查找照片") }
-            f.await("empty query stays in app") { f.onMain { texts().any { it.contains("请输入关键词") } } }
+            f.await("editable suggestions") { f.onMain { views().filterIsInstance<EditText>().last().text.contains("lakeside") } }
+            f.onMain { views().filterIsInstance<EditText>().last().setText(" ");click("Find photos") }
+            f.await("empty query stays in app") { f.onMain { texts().any { it.contains("Enter keywords") } } }
             f.await("app window after empty search dialog closes") { PhotoSystemUi.hasPackage(f.context.packageName) }
-            f.onMain { click("添加照片") }
-            f.await("menu item 按关键词找照片 is visible") { f.onMain { texts().contains("按关键词找照片") } }
-            f.onMain { click("按关键词找照片");views().filterIsInstance<EditText>().last().setText("edited lake") }
-            f.onMain { click("查找照片") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Find photos by keyword is visible") { f.onMain { texts().contains("Find photos by keyword") } }
+            f.onMain { click("Find photos by keyword");views().filterIsInstance<EditText>().last().setText("edited lake") }
+            f.onMain { click("Find photos") }
             f.await("ordinary picker launched") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("添加照片") }
-            f.await("menu item 从文件选择照片 is visible") { f.onMain { texts().contains("从文件选择照片") } }
-            f.onMain { click("从文件选择照片") }
+            f.onMain { click("Add photos") }
+            f.await("menu item Choose photo files is visible") { f.onMain { texts().contains("Choose photo files") } }
+            f.onMain { click("Choose photo files") }
             f.await("document picker launched") { PhotoSystemUi.hasPackage("documentsui") }
             back(f)
             assertEquals(listOf(source),repo.snapshot(target).second)
-            f.onMain { click("直接选一张") }
+            f.onMain { click("Choose a photo directly") }
             f.await("manual picker launched") { PhotoSystemUi.hasPackage("providers.media") }
             back(f)
             f.await("cancelled manual crop dismissed") { f.onMain {
-                texts().contains("关闭") && !texts().contains(f.context.getString(com.iven.musicplayergo.R.string.cover_crop_title))
+                texts().contains("Close") && !texts().contains(f.context.getString(com.iven.musicplayergo.R.string.cover_crop_title))
             } }
-            f.onMain { click("关闭") }
+            f.onMain { click("Close") }
             repo.deleteTarget(target)
         }
     }
@@ -135,20 +135,20 @@ class PhotoUiTest {
         RegressionFixture.open().use { f ->
             val playlist=f.createPlaylist("Empty photos","A");val target=CoverTarget.Playlist(playlist.id)
             f.onActivity { PhotoRecommendationsDialogFragment.newInstance(target).showNow(it.supportFragmentManager,"recommend-ui") }
-            f.onMain { click("自己选氛围") }
+            f.onMain { click("Choose an atmosphere yourself") }
             f.onMain {
-                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="舒缓" }
+                val text=views().filterIsInstance<TextView>().last { it.text.toString()=="calm" }
                 // List row click through its ListView parent, as Android dispatches it.
                 val parent=text.parent as android.widget.ListView
                 parent.performItemClick(text,parent.getPositionForView(text),0)
             }
-            f.await("empty scope explains no readable photos") { f.onMain { texts().any { it.contains("还没有可用照片") } } }
-            f.onMain { click("选择歌曲") }
-            f.await("representative chooser shows actual title") { f.onMain { texts().any { it == "选择一首歌" } } }
-            f.onMain { click("取消") }
-            f.onMain { click("取消分析") }
-            assertTrue(f.onMain { texts().any { it.contains("封面未改变") } })
-            f.onMain { click("关闭") }
+            f.await("empty scope explains no readable photos") { f.onMain { texts().any { it.contains("No photos are available") } } }
+            f.onMain { click("Choose a song") }
+            f.await("representative chooser shows actual title") { f.onMain { texts().any { it == "Choose one song" } } }
+            f.onMain { click("Cancel") }
+            f.onMain { click("Cancel analysis") }
+            assertTrue(f.onMain { texts().any { it.contains("cover is unchanged") } })
+            f.onMain { click("Close") }
         }
     }
     @Test fun changedAlbumOffersExplicitEmptyRebindAndCancellationPreservesOldScope() {
@@ -161,13 +161,13 @@ class PhotoUiTest {
             repo.attach(old,repo.request(old),source)
             val oldRequest=repo.request(old)
             f.onActivity { PhotoSourcesDialogFragment.newInstance(current,"Current album").showNow(it.supportFragmentManager,"rebind-ui") }
-            f.await("changed album offers recovery") { f.onMain { texts().contains("重新选择照片") } }
-            f.onMain { click("重新选择照片"); click("取消") }
+            f.await("changed album offers recovery") { f.onMain { texts().contains("Choose photos again") } }
+            f.onMain { click("Choose photos again"); click("Cancel") }
             assertEquals(listOf(source),repo.snapshot(old).second)
-            f.onMain { click("重新选择照片"); click("继续") }
+            f.onMain { click("Choose photos again"); click("Continue") }
             f.await("confirmed current album is empty") { runCatching { repo.snapshot(current).second.isEmpty() }.getOrDefault(false) }
             assertThrows(PhotoScopeException::class.java) { repo.validate(current,oldRequest) }
-            f.onMain { click("关闭") }; repo.deleteTarget(current)
+            f.onMain { click("Close") }; repo.deleteTarget(current)
         }
     }
 }

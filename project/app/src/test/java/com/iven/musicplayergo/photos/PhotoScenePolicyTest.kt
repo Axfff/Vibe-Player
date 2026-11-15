@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.preferences.english
+import com.iven.musicplayergo.preferences.contains
 import org.junit.Assert.*
 import org.junit.Test
 
@@ -9,7 +11,7 @@ class PhotoScenePolicyTest {
     }
     @Test fun agreementKeepsFlowerCueWithoutInventingButterfly() {
         assertEquals(listOf(PhotoLabel("flowers", .35f)), PhotoScenePolicy.labels(arrayOf(scores("flowers"), scores("flowers"))))
-        assertEquals("蝴蝶", PhotoScenePolicy.names.getValue("butterfly"))
+        assertEquals("butterfly", PhotoScenePolicy.names.getValue("butterfly").english())
         assertEquals("butterfly", PhotoScenePolicy.labels(arrayOf(scores("butterfly"), scores("butterfly"))).single().label)
     }
     @Test fun aConflictingCropOrWeakMarginAbstains() {
@@ -32,7 +34,7 @@ class PhotoScenePolicyTest {
         assertEquals("flower_plants",PhotoScenePolicy.labels(arrayOf(mixed,mixed)).single().label)
         val outside = scores("river").apply { this[PhotoScenePolicy.names.keys.indexOf("document")] = .34f }
         assertTrue(PhotoScenePolicy.labels(arrayOf(outside,scores("lakeside"))).isEmpty())
-        assertEquals("水景",PhotoScenePolicy.title("waterscape"))
+        assertEquals("water scenery",PhotoScenePolicy.title("waterscape").english())
         assertTrue(PhotoScenePolicy.labels(arrayOf(scores("river",.19f),scores("lakeside",.19f))).isEmpty())
     }
     @Test fun atmosphereRetainsAmbiguousObjectsButRejectsFlatWeakAndDocumentInputs() {

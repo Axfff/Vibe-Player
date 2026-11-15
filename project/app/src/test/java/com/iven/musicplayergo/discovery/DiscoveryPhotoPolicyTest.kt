@@ -1,5 +1,7 @@
 package com.iven.musicplayergo.discovery
 
+import com.iven.musicplayergo.preferences.english
+import com.iven.musicplayergo.preferences.contains
 import com.iven.musicplayergo.photos.*
 import org.junit.Assert.*
 import org.junit.Test
@@ -18,7 +20,7 @@ class DiscoveryPhotoPolicyTest {
         assertTrue(result.intent.valid())
         assertEquals("medium", result.intent.uncertainty)
         assertTrue(result.description.contains("real-model-version"))
-        assertTrue(result.description.contains("宁静舒缓"))
+        assertTrue(result.description.contains("peaceful"))
     }
 
     @Test fun closeAtmospheresRemainExplicitlyUncertain() {
@@ -26,7 +28,7 @@ class DiscoveryPhotoPolicyTest {
         assertEquals(listOf("calm", "melancholic"), result.intent.moods)
         assertEquals("high", result.intent.uncertainty)
         assertTrue(result.intent.scenes.isEmpty())
-        assertTrue(result.description.contains("不确定"))
+        assertTrue(result.description.contains("uncertain"))
     }
 
     @Test fun malformedWeakAndDocumentSignalsProduceNoSuggestion() {

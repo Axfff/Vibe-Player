@@ -35,5 +35,7 @@ def rank_candidates(groups, intent):
             f" 排序依据：目录标签匹配 {len(matches)} 项，标题/艺人词匹配 {len(text_matches)} 项；"
             "并列保留来源检索顺序，不代表听感或音频分析。"
         )
-        ranked.append(((-len(matches), -len(text_matches), position), candidate))
+        # Explicit user words outrank broad genre/style matches; provider order breaks ties.
+        scores = (len(text_matches), len(matches)) if intent.text.strip() else (len(matches), len(text_matches))
+        ranked.append(((-scores[0], -scores[1], position), candidate))
     return [candidate for _, candidate in sorted(ranked, key=lambda item: item[0])]

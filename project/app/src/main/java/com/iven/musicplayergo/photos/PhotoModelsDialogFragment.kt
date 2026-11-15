@@ -1,5 +1,8 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.preferences.UiText
+import com.iven.musicplayergo.preferences.UiTextException
+import com.iven.musicplayergo.R
 import android.app.Application
 import android.app.Dialog
 import android.content.DialogInterface
@@ -18,7 +21,7 @@ import java.util.concurrent.atomic.AtomicReference
 data class PhotoModelSetupState(
     val models: Map<PhotoModel, PhotoModelStatus> = emptyMap(),
     val busy: Boolean = false,
-    val message: String = "正在检查所需文件…"
+    val message: UiText = UiText.of(R.string.photo_checking)
 )
 
 /** Survives rotation; does not hold an Activity, View, or retained source grant. */
@@ -29,26 +32,26 @@ class PhotoModelSetupViewModel(application: Application) : AndroidViewModel(appl
     private var job: Job? = null
     private val input = AtomicReference<InputStream?>()
 
-    fun refresh() { if (job?.isActive != true) runOperation("正在检查所需文件…") {} }
+    fun refresh() { if (job?.isActive != true) runOperation(UiText.of(R.string.photo_checking)) {} }
     fun import(model: PhotoModel, uri: Uri) {
         if (job?.isActive == true) return
-        runOperation("正在导入${model.title}…") {
+        runOperation(UiText.of(R.string.photo_model_importing, model.title)) {
             store.import(model, {
                 getApplication<Application>().contentResolver.openInputStream(uri)?.also { input.set(it) }
-                    ?: error("无法读取所选文件，请重新选择。")
+                    ?: throw UiTextException(UiText.of(R.string.photo_model_read_failed))
             }) { percent -> withContext(Dispatchers.Main) {
-                mutableState.value = PhotoModelSetupState(state.value?.models.orEmpty(), true, "正在导入${model.title}：$percent%")
+                mutableState.value = PhotoModelSetupState(state.value?.models.orEmpty(), true, UiText.of(R.string.photo_model_progress, model.title, percent))
             } }
-            "${model.title}已准备好。"
+            UiText.of(R.string.photo_model_imported, model.title)
         }
     }
-    private fun runOperation(message: String, action: suspend () -> Any?) {
+    private fun runOperation(message: UiText, action: suspend () -> Any?) {
         mutableState.value = PhotoModelSetupState(state.value?.models.orEmpty(), true, message)
         job = viewModelScope.launch(start = CoroutineStart.UNDISPATCHED) {
-            var result = "已检查所需文件。"
-            try { (action() as? String)?.let { result = it } }
-            catch (e: CancellationException) { result = "已取消。已完成的文件会保留。" }
-            catch (e: Exception) { result = if (e is IllegalStateException) e.message ?: "导入失败。" else "导入失败，请检查文件是否能打开、手机空间是否充足。原有文件保留。" }
+            var result: UiText = UiText.of(R.string.photo_checked)
+            try { (action() as? UiText)?.let { result = it } }
+            catch (e: CancellationException) { result = UiText.of(R.string.photo_import_cancelled) }
+            catch (e: Exception) { result = (e as? UiTextException)?.text ?: UiText.of(R.string.photo_import_failed_help) }
             finally {
                 input.getAndSet(null)?.let { runCatching { it.close() } }
                 // Publish the terminal state before returning to the cancelled dispatcher.
@@ -69,6 +72,8 @@ class PhotoModelSetupViewModel(application: Application) : AndroidViewModel(appl
 class PhotoModelsDialogFragment : DialogFragment() {
     private val model by lazy { ViewModelProvider(this)[PhotoModelSetupViewModel::class.java] }
     private var pending: PhotoModel? = null
+    private val photoOnly get() = arguments?.getBoolean("photo-only") == true
+    private val requiredModels get() = if (photoOnly) listOf(PhotoModel.PHOTO) else PhotoModel.values().toList()
     private val picker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         val selected = pending
         pending = null
@@ -83,50 +88,51 @@ class PhotoModelsDialogFragment : DialogFragment() {
         val padding = (16 * resources.displayMetrics.density).toInt()
         val layout = LinearLayout(requireContext()).apply { orientation = LinearLayout.VERTICAL; setPadding(padding, padding / 2, padding, padding / 2) }
         fun text(value: String) = TextView(requireContext()).apply { text = value; layout.addView(this) }
-        text("首次使用需导入下面 3 个文件。准备好后，所有歌单和专辑都能使用；音乐和照片不会上传。")
+        text(if (photoOnly) getString(R.string.discovery_photo_model_intro) else getString(R.string.photo_model_intro))
         val summary = text("")
         val status = text("")
-        val rows = PhotoModel.values().associateWith { item ->
-            val state = text(item.title)
+        val rows = requiredModels.associateWith { item ->
+            val state = text(item.title.resolve(requireContext()))
             val button = Button(requireContext()).apply {
-                text = "导入${item.title}文件"
+                text = getString(R.string.photo_import_file , item.title.resolve(requireContext()))
                 setOnClickListener { pending = item; picker.launch(arrayOf("*/*")) }
             }
             layout.addView(button)
             layout.addView(Button(requireContext()).apply {
-                text = "${item.title}：文件说明"
+                text = getString(R.string.photo_file_instructions , item.title.resolve(requireContext()))
                 setOnClickListener {
                     val info = TextView(requireContext()).apply {
                         setPadding(padding, padding, padding, padding)
-                        text = "所需文件：${item.filename}\n大小：${item.bytes} 字节\n许可：${item.license}\n\n来源与准备说明（在浏览器中打开）：\n${item.source}\n\n${if (item == PhotoModel.PHOTO) "照片模型需按说明从官方 TinyCLIP 权重转换，或使用与下列校验值一致的已转换文件。" else "下载完成后回到此页导入。"}文件会复制到应用私有存储；卸载或清除应用数据后需重新导入。\n\nSHA-256：${item.sha256}"
+                        text = getString(R.string.photo_model_file_info , item.filename, item.bytes, item.license.resolve(requireContext()), item.source, if (item == PhotoModel.PHOTO) getString(R.string.photo_model_conversion) else getString(R.string.photo_model_download_help), item.sha256)
                         Linkify.addLinks(this, Linkify.WEB_URLS)
                     }
-                    AlertDialog.Builder(requireContext()).setTitle(item.title).setView(ScrollView(requireContext()).apply { addView(info) }).setPositiveButton("知道了", null).show()
+                    AlertDialog.Builder(requireContext()).setTitle(item.title.resolve(requireContext())).setView(ScrollView(requireContext()).apply { addView(info) }).setPositiveButton(getString(R.string.photo_ok), null).show()
                 }
             })
             state to button
         }
-        val cancel = Button(requireContext()).apply { text = "取消操作"; setOnClickListener { model.cancel() } }
+        val cancel = Button(requireContext()).apply { text = getString(R.string.photo_cancel_operation); setOnClickListener { model.cancel() } }
         layout.addView(cancel)
-        val refresh = Button(requireContext()).apply { text = "重新检查"; setOnClickListener { model.refresh() } }
+        val refresh = Button(requireContext()).apply { text = getString(R.string.photo_recheck); setOnClickListener { model.refresh() } }
         layout.addView(refresh)
         model.state.observe(this) { value ->
             if (!value.busy && value.models.isNotEmpty()) parentFragmentManager.setFragmentResult("photo-models-updated", Bundle())
-            summary.text = if (value.models.size == 3 && value.models.values.all { it == PhotoModelStatus.READY })
-                "准备好了，可以返回推荐封面。"
-            else "已准备 ${value.models.values.count { it == PhotoModelStatus.READY }}/3，请导入缺少的文件。"
-            status.text = value.message
+            summary.text = if (requiredModels.all { value.models[it] == PhotoModelStatus.READY })
+                getString(R.string.photo_setup_ready)
+            else getString(R.string.photo_setup_count , requiredModels.count { value.models[it] == PhotoModelStatus.READY }, requiredModels.size)
+            status.text = value.message.resolve(requireContext())
             rows.forEach { (item, row) ->
-                row.first.text = "${item.title} · ${String.format(java.util.Locale.ROOT, "%.1f", item.bytes / 1_000_000.0)} MB\n${value.models[item]?.label ?: "待检查"}"
+                row.first.text = getString(R.string.photo_setup_row , item.title.resolve(requireContext()), item.bytes / 1_000_000.0, value.models[item]?.label?.resolve(requireContext()) ?: getString(R.string.photo_pending))
                 row.second.isEnabled = !value.busy
             }
             cancel.visibility = if (value.busy) android.view.View.VISIBLE else android.view.View.GONE
             cancel.isEnabled = value.busy
             refresh.isEnabled = !value.busy
         }
-        return AlertDialog.Builder(requireContext()).setTitle("推荐功能设置")
-            .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton("返回") { _, _ -> model.cancel() }.create()
+        return AlertDialog.Builder(requireContext()).setTitle(getString(R.string.photo_setup_title))
+            .setView(ScrollView(requireContext()).apply { addView(layout) }).setNegativeButton(getString(R.string.photo_back)) { _, _ -> model.cancel() }.create()
     }
+    companion object { fun forDiscovery() = PhotoModelsDialogFragment().apply { arguments = Bundle().apply { putBoolean("photo-only", true) } } }
     override fun onStart() { super.onStart(); if (model.state.value?.models.isNullOrEmpty()) model.refresh() }
     override fun onCancel(dialog: DialogInterface) { model.cancel(); super.onCancel(dialog) }
 }

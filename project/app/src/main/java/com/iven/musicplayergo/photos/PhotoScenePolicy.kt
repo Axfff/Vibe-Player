@@ -1,20 +1,22 @@
 package com.iven.musicplayergo.photos
 
+import com.iven.musicplayergo.R
+import com.iven.musicplayergo.preferences.UiText
 /** Order is the exported scenes-v2 vocabulary; scores are cosines, not probabilities.
  * A crop cannot overrule the full frame. Weak or conflicting cues produce no label.
  */
 object PhotoScenePolicy {
     val names = linkedMapOf(
-        "flowers" to "花卉", "butterfly" to "蝴蝶", "forest" to "树林", "lakeside" to "湖面",
-        "river" to "河流", "seashore" to "海滩", "alp" to "山峰", "cliff" to "峭壁",
-        "valley" to "山谷", "volcano" to "火山", "snow" to "雪景", "waterfall" to "瀑布",
-        "meadow" to "草地", "sunset" to "落日", "night_sky" to "星空", "city" to "城市",
-        "city_night" to "城市夜景", "street" to "街道", "building" to "建筑", "bridge" to "桥梁",
-        "concert" to "音乐演出", "party" to "聚会", "sport" to "运动", "canoe" to "水上船只",
-        "animal" to "动物", "bird" to "鸟类", "insect" to "昆虫", "portrait" to "人物肖像",
-        "people" to "人群", "indoor" to "室内", "food" to "食物", "document" to "文档",
-        "screenshot" to "屏幕截图", "vehicle" to "车辆", "object" to "日常物品", "artwork" to "绘画",
-        "storm" to "阴云", "fire" to "火焰", "desert" to "沙漠", "rain" to "雨景")
+        "flowers" to UiText.of(R.string.photo_label_flowers), "butterfly" to UiText.of(R.string.photo_label_butterfly), "forest" to UiText.of(R.string.photo_label_forest), "lakeside" to UiText.of(R.string.photo_label_lakeside),
+        "river" to UiText.of(R.string.photo_label_river), "seashore" to UiText.of(R.string.photo_label_seashore), "alp" to UiText.of(R.string.photo_label_alp), "cliff" to UiText.of(R.string.photo_label_cliff),
+        "valley" to UiText.of(R.string.photo_label_valley), "volcano" to UiText.of(R.string.photo_label_volcano), "snow" to UiText.of(R.string.photo_label_snow), "waterfall" to UiText.of(R.string.photo_label_waterfall),
+        "meadow" to UiText.of(R.string.photo_label_meadow), "sunset" to UiText.of(R.string.photo_label_sunset), "night_sky" to UiText.of(R.string.photo_label_night_sky), "city" to UiText.of(R.string.photo_label_city),
+        "city_night" to UiText.of(R.string.photo_label_city_night), "street" to UiText.of(R.string.photo_label_street), "building" to UiText.of(R.string.photo_label_building), "bridge" to UiText.of(R.string.photo_label_bridge),
+        "concert" to UiText.of(R.string.photo_label_concert), "party" to UiText.of(R.string.photo_label_party), "sport" to UiText.of(R.string.photo_label_sport), "canoe" to UiText.of(R.string.photo_label_canoe),
+        "animal" to UiText.of(R.string.photo_label_animal), "bird" to UiText.of(R.string.photo_label_bird), "insect" to UiText.of(R.string.photo_label_insect), "portrait" to UiText.of(R.string.photo_label_portrait),
+        "people" to UiText.of(R.string.photo_label_people), "indoor" to UiText.of(R.string.photo_label_indoor), "food" to UiText.of(R.string.photo_label_food), "document" to UiText.of(R.string.photo_label_document),
+        "screenshot" to UiText.of(R.string.photo_label_screenshot), "vehicle" to UiText.of(R.string.photo_label_vehicle), "object" to UiText.of(R.string.photo_label_object), "artwork" to UiText.of(R.string.photo_label_artwork),
+        "storm" to UiText.of(R.string.photo_label_storm), "fire" to UiText.of(R.string.photo_label_fire), "desert" to UiText.of(R.string.photo_label_desert), "rain" to UiText.of(R.string.photo_label_rain))
     // Visually overlapping classes can support a broad cue without asserting a species
     // or specific landscape. Unrelated classes still compete outside each family.
     private val families = linkedMapOf(
@@ -24,9 +26,9 @@ object PhotoScenePolicy {
         "insects" to setOf("butterfly", "insect"),
         "urban" to setOf("city", "city_night", "street", "building", "bridge"),
         "rainy_weather" to setOf("rain", "storm"))
-    val broadNames = mapOf("flower_plants" to "花草", "waterscape" to "水景", "mountain_scenery" to "山地景色",
-        "insects" to "昆虫", "urban" to "城市场景", "rainy_weather" to "阴雨景色")
-    fun title(label: String) = names[label] ?: broadNames[label] ?: label
+    val broadNames = mapOf("flower_plants" to UiText.of(R.string.photo_label_flower_plants), "waterscape" to UiText.of(R.string.photo_label_waterscape), "mountain_scenery" to UiText.of(R.string.photo_label_mountain_scenery),
+        "insects" to UiText.of(R.string.photo_label_insects), "urban" to UiText.of(R.string.photo_label_urban), "rainy_weather" to UiText.of(R.string.photo_label_rainy_weather))
+    fun title(label: String) = names[label] ?: broadNames[label] ?: UiText.Literal(label)
 
     fun labels(views: Array<FloatArray>): List<PhotoLabel> {
         require(views.size == 2 && views.all { row -> row.size == names.size && row.all { it.isFinite() && it in -1f..1f } })
@@ -49,8 +51,8 @@ object PhotoScenePolicy {
  * Relative support among four text prototypes is not a probability or person-emotion inference.
  */
 object PhotoAtmospherePolicy {
-    val names = linkedMapOf("lively" to "轻快鲜活", "peaceful" to "宁静舒缓",
-        "reflective" to "沉静内省", "intense" to "强烈动势")
+    val names = linkedMapOf("lively" to UiText.of(R.string.photo_label_lively), "peaceful" to UiText.of(R.string.photo_label_peaceful),
+        "reflective" to UiText.of(R.string.photo_label_reflective), "intense" to UiText.of(R.string.photo_label_intense))
     fun cues(views: Array<FloatArray>, sceneViews: Array<FloatArray>): List<PhotoLabel> {
         require(views.size == 2 && views.all { it.size == names.size && it.all { score -> score.isFinite() && score in -1f..1f } })
         require(sceneViews.size == 2 && sceneViews.all { it.size == PhotoScenePolicy.names.size && it.all { score -> score.isFinite() && score in -1f..1f } })

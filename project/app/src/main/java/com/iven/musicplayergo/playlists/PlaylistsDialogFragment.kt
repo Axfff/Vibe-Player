@@ -174,7 +174,7 @@ class PlaylistsDialogFragment : BottomSheetDialogFragment() {
                         check(result is CoverResult.Success || result is CoverResult.Failure && result.error == com.iven.musicplayergo.covers.CoverError.COVER_NOT_FOUND)
                     })
             }
-            if (isAdded && failed.isNotEmpty()) showFeedback("歌单已删除，但${failed.joinToString("、")}清理失败，旧记录可能保留。")
+            if (isAdded && failed.isNotEmpty()) showFeedback(getString(R.string.photo_playlist_cleanup_failed , failed.joinToString(", ") { it.resolve(requireContext()) }))
         }
         reloadPlaylists()
         showFeedback(getString(R.string.playlist_deleted))

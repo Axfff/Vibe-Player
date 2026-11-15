@@ -13,27 +13,27 @@ import java.io.ByteArrayOutputStream
 class SafePhotoDecoder(context: Context) {
     private val resolver = context.applicationContext.contentResolver
     fun bytes(uri: Uri): ByteArray {
-        require(uri.scheme == "content" && resolver.getType(uri) in PhotoAccessManager.MIME_TYPES) { "不支持的图片格式" }
-        resolver.openAssetFileDescriptor(uri, "r")?.use { require(it.length <= MAX_BYTES) { "图片超过 20 MiB" } }
+        require(uri.scheme == "content" && resolver.getType(uri) in PhotoAccessManager.MIME_TYPES) { "Unsupported image format" }
+        resolver.openAssetFileDescriptor(uri, "r")?.use { require(it.length <= MAX_BYTES) { "Image exceeds 20 MiB" } }
         return resolver.openInputStream(uri)?.use { input ->
             val output = ByteArrayOutputStream(); val buffer = ByteArray(16 * 1024)
             while (true) {
                 if (Thread.currentThread().isInterrupted) throw InterruptedException()
                 val count = input.read(buffer); if (count < 0) break
-                require(output.size().toLong() + count <= MAX_BYTES) { "图片超过 20 MiB" }
+                require(output.size().toLong() + count <= MAX_BYTES) { "Image exceeds 20 MiB" }
                 output.write(buffer, 0, count)
             }; output.toByteArray()
-        } ?: error("图片暂不可用")
+        } ?: error("Image unavailable")
     }
     fun decode(bytes: ByteArray, edge: Int = 1024): Bitmap {
         require(bytes.size <= MAX_BYTES)
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
-        require(bounds.outWidth > 0 && bounds.outHeight > 0 && bounds.outWidth.toLong() * bounds.outHeight <= 40_000_000) { "图片损坏或像素过大" }
+        require(bounds.outWidth > 0 && bounds.outHeight > 0 && bounds.outWidth.toLong() * bounds.outHeight <= 40_000_000) { "Invalid image or excessive pixel count" }
         var sample = 1
         while (maxOf(bounds.outWidth, bounds.outHeight) / sample > edge * 2) sample *= 2
         val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size, BitmapFactory.Options().apply { inSampleSize = sample })
-            ?: error("无法解码图片")
+            ?: error("Cannot decode image")
         val orientation = ByteArrayInputStream(bytes).use { ExifInterface(it).getAttributeInt(ExifInterface.TAG_ORIENTATION, 1) }
         val matrix = Matrix().apply {
             when (orientation) {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="discovery_choice_calm">Calm</string>
+    <string name="discovery_choice_bright">Bright</string>
+    <string name="discovery_choice_energetic">Energetic</string>
+    <string name="discovery_choice_melancholic">Melancholic</string>
+    <string name="discovery_choice_dreamy">Dreamy</string>
+    <string name="discovery_choice_focused">Focused</string>
+    <string name="discovery_choice_ambient">Ambient</string>
+    <string name="discovery_choice_acoustic">Acoustic</string>
+    <string name="discovery_choice_piano">Piano</string>
+    <string name="discovery_choice_electronic">Electronic</string>
+    <string name="discovery_choice_jazz">Jazz</string>
+    <string name="discovery_choice_classical">Classical</string>
+    <string name="discovery_choice_rock">Rock</string>
+    <string name="discovery_choice_pop">Pop</string>
+    <string name="discovery_choice_chillout">Chillout</string>
+    <string name="discovery_choice_instrumental">Instrumental</string>
+    <string name="discovery_choice_folk">Folk</string>
+    <string name="discovery_choice_dance">Dance</string>
+    <string name="discovery_choice_nature">Nature</string>
+    <string name="discovery_choice_water">Water</string>
+    <string name="discovery_choice_city">City</string>
+    <string name="discovery_choice_indoors">Indoors</string>
+    <string name="discovery_choice_night">Night</string>
+    <string name="discovery_choice_daylight">Daylight</string>
+    <string name="discovery_choice_warm_colors">Warm colors</string>
+    <string name="discovery_choice_cool_colors">Cool colors</string>
+    <string name="discovery_choice_open_space">Open space</string>
+    <string name="discovery_choice_abstract">Abstract</string>
+    <string name="discovery_choice_other">Other</string>
+    <string name="discovery_choice_us">United States (US)</string>
+    <string name="discovery_choice_gb">United Kingdom (GB)</string>
+    <string name="discovery_choice_cn">China mainland (CN)</string>
+    <string name="discovery_choice_hk">Hong Kong (HK)</string>
+    <string name="discovery_choice_jp">Japan (JP)</string>
+    <string name="discovery_choice_de">Germany (DE)</string>
+    <string name="discovery_choice_fr">France (FR)</string>
+    <string name="discovery_choice_ca">Canada (CA)</string>
+    <string name="discovery_choice_au">Australia (AU)</string>
+</resources>

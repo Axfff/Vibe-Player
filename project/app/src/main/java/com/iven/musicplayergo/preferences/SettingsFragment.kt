@@ -92,13 +92,15 @@ class SettingsFragment : Fragment() {
             val newLocale = locales.keys.elementAt(which)
             if (GoPreferences.getPrefsInstance().locale != newLocale) {
                 GoPreferences.getPrefsInstance().locale = locales.keys.elementAt(which)
+                AppLanguage.apply(requireContext().applicationContext)
                 mUIControlInterface.onAppearanceChanged(isThemeChanged = false)
             }
         }.setNegativeButton(R.string.cancel, null)
 
         if (GoPreferences.getPrefsInstance().locale != null) {
-            dialog.setNeutralButton(R.string.sorting_pref_default) { _, _ ->
+            dialog.setNeutralButton(R.string.locale_default_english) { _, _ ->
                 GoPreferences.getPrefsInstance().locale = null
+                AppLanguage.apply(requireContext().applicationContext)
                 mUIControlInterface.onAppearanceChanged(isThemeChanged = false)
             }
         }

@@ -25,6 +25,8 @@ import com.iven.musicplayergo.utils.Versioning
 
 class MusicNotificationManager(private val playerService: PlayerService) {
 
+    private val textContext get() = com.iven.musicplayergo.preferences.AppLanguage.context(playerService)
+
     private val mMediaPlayerHolder get() = MediaPlayerHolder.getInstance()
 
     //notification manager/builder
@@ -175,10 +177,10 @@ class MusicNotificationManager(private val playerService: PlayerService) {
 
         notificationBuilder.setSmallIcon(R.drawable.ic_report)
             .setSilent(true)
-            .setContentTitle(playerService.getString(R.string.error_fs_not_allowed_sum))
-            .setContentText(playerService.getString(R.string.error_fs_not_allowed))
+            .setContentTitle(textContext.getString(R.string.error_fs_not_allowed_sum))
+            .setContentText(textContext.getString(R.string.error_fs_not_allowed))
             .setStyle(NotificationCompat.BigTextStyle()
-                .bigText(playerService.getString(R.string.error_fs_not_allowed)))
+                .bigText(textContext.getString(R.string.error_fs_not_allowed)))
             .priority = NotificationCompat.PRIORITY_DEFAULT
         with(NotificationManagerCompat.from(playerService)) {
             notify(GoConstants.NOTIFICATION_ERROR_ID, notificationBuilder.build())
@@ -187,7 +189,7 @@ class MusicNotificationManager(private val playerService: PlayerService) {
 
     @TargetApi(26)
     private fun createNotificationChannel(id: String) {
-        val name = playerService.getString(R.string.app_name)
+        val name = textContext.getString(R.string.app_name)
         val channel = NotificationChannelCompat.Builder(id, NotificationManager.IMPORTANCE_LOW)
             .setName(name)
             .setLightsEnabled(false)
