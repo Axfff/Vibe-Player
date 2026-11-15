@@ -4,7 +4,7 @@ on:
   push:
     branches: [main, 'feat/**', 'ci/coverage-probe/**']
   pull_request:
-    branches: [main]
+    # Include stacked PRs: branch filters here would filter the TARGET branch.
   workflow_dispatch:
 
 permissions:
@@ -41,6 +41,7 @@ jobs:
           python-version: '3.12'
       - name: Verify scope and gate contract
         run: |
+          python scripts/test_pr_integration.py
           python scripts/test_coverage_contract.py
           python scripts/coverage/coverage.py scope
           cd project
@@ -119,6 +120,20 @@ jobs:
           path: project/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 90
+
+  # Native required check; the existing publisher keeps its separate report name.
+  coverage_gate:
+    name: Team line coverage gate
+    needs: build
+    if: ${{ always() && github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Require the build and coverage gate to pass
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: test "$BUILD_RESULT" = success
 
   publish:
     needs: build

@@ -23,7 +23,7 @@ class SafePhotoDecoder(context: Context) {
                 require(output.size().toLong() + count <= MAX_BYTES) { "图片超过 20 MiB" }
                 output.write(buffer, 0, count)
             }; output.toByteArray()
-        } ?: error("图片暂不可读取")
+        } ?: error("图片暂不可用")
     }
     fun decode(bytes: ByteArray, edge: Int = 1024): Bitmap {
         require(bytes.size <= MAX_BYTES)

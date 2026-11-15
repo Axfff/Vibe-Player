@@ -12,15 +12,15 @@ import java.security.MessageDigest
 
 /** Only these exact, previously evaluated model versions can become active. */
 enum class PhotoModel(val title: String, val filename: String, val bytes: Long, val sha256: String, val source: String, val license: String) {
-    MUSIC("音乐特征", "discogs-effnet-bsdynamic-1.onnx", 18027718, MoodAnalyzer.BACKBONE_SHA256,
+    MUSIC("音乐识别", "discogs-effnet-bsdynamic-1.onnx", 18027718, MoodAnalyzer.BACKBONE_SHA256,
         "https://essentia.upf.edu/models/feature-extractors/discogs-effnet/discogs-effnet-bsdynamic-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
     MOOD("音乐氛围", "mtg_jamendo_moodtheme-discogs-effnet-1.onnx", 2739322, MoodAnalyzer.HEAD_SHA256,
         "https://essentia.upf.edu/models/classification-heads/mtg_jamendo_moodtheme/mtg_jamendo_moodtheme-discogs-effnet-1.onnx", "CC BY-NC-SA 4.0（非商业用途）"),
-    PHOTO("照片内容", OnnxPhotoFeatureExtractor.FILENAME, 158993255, OnnxPhotoFeatureExtractor.SHA256,
+    PHOTO("照片识别", OnnxPhotoFeatureExtractor.FILENAME, 158993255, OnnxPhotoFeatureExtractor.SHA256,
         "https://github.com/Axfff/Vibe-Player/blob/feat/scoped-photo-recommendations/docs/development/photo-scene-model.md", "MIT（TinyCLIP；本项目转换为 ONNX）");
 }
 
-enum class PhotoModelStatus(val label: String) { MISSING("未导入"), UPDATE_REQUIRED("检测到旧版照片模型，请导入新版；音乐模型与已保存封面不受影响"), READY("已校验，可用"), INVALID("文件不完整或版本不匹配，请重新导入"), UNREADABLE("无法读取，请重新导入") }
+enum class PhotoModelStatus(val label: String) { MISSING("未导入"), UPDATE_REQUIRED("请导入新版照片识别文件，现有封面不受影响"), READY("已准备好"), INVALID("文件不完整或版本不对，请重新导入"), UNREADABLE("无法读取，请重新导入") }
 
 /** App-private copies; no persisted source URI or photo-library permission is needed. */
 class PhotoModelStore(private val directory: File) {
@@ -73,7 +73,7 @@ class PhotoModelStore(private val directory: File) {
                         if (next != percent) { percent = next; progress(percent) }
                     }
                     check(count == bytes && digest.digest().hex() == sha256) {
-                        "文件不完整或版本不匹配。请从模型说明中的官方来源获取对应文件；原模型保留。"
+                        "文件不完整或版本不对。请按文件说明重新下载，原有文件保留。"
                     }
                     output.fd.sync()
                 } }

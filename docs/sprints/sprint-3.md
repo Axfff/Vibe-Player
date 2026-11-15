@@ -4,6 +4,12 @@ The [overall Story, supporting requirements, Sprint 3/4 AC and task responsibili
 
 Published parent: [Story #36](https://github.com/Axfff/Vibe-Player/issues/36). Both sprints' retained AC and task assignments are recorded there.
 
+**Reading this historical record:** the dated results below keep their original
+revisions and limitations. For later branch integration and physical-device
+evidence, use the [current evidence entry points](../development/review-and-integration.md#read-the-current-state-without-rewriting-history),
+then verify the linked PR's latest head and review. In particular, #37 has merged;
+the later #69 phone result belongs to its separately identified integration SHA.
+
 Implementation: [draft PR #37](https://github.com/Axfff/Vibe-Player/pull/37). Local cumulative gate at `00bad97b` passes with 37 JVM / 49 Android / 166 Python / 22 web tests, Android 88.47%, backend 96.17%, web 98.42%. The PR's cloud report is measured separately against its actual head.
 
 ## 2026-11-11 local-photo continuation
