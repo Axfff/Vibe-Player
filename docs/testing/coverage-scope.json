@@ -1077,7 +1077,8 @@
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "bbb029d1ee072a2b74dce3541e617c2087aec2f7"
       ],
       "exception_reason": null
     },
@@ -1809,6 +1810,21 @@
       "source_commits": [
         "24beffad3c0c89739b13420d2a07cedb947770c0"
       ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/utils/Popups.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "bf1e871a33fdb10acb4bc38b4ad778efe6cd7385fb387301fe0b4920e5f52dc6",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          82,
+          82
+        ]
+      ],
+      "source_commits": [],
       "exception_reason": null
     },
     {
