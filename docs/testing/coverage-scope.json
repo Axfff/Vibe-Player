@@ -13,7 +13,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "6944ca228fbddbd478eb16e188131c8cbe69efae3c25eef611ec47b22eb8ae47",
+      "source_sha256": "35d23fc31f2fd4d1f434a68bcf057377c4fccc0822b586ccf4f15b4e2272753f",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -57,12 +57,20 @@
           123
         ],
         [
+          141,
+          141
+        ],
+        [
           148,
           148
         ],
         [
           151,
           151
+        ],
+        [
+          174,
+          174
         ],
         [
           194,
@@ -89,16 +97,32 @@
           259
         ],
         [
-          277,
-          279
+          270,
+          270
         ],
         [
-          288,
-          291
+          274,
+          275
         ],
         [
-          317,
-          321
+          278,
+          280
+        ],
+        [
+          287,
+          292
+        ],
+        [
+          301,
+          302
+        ],
+        [
+          316,
+          317
+        ],
+        [
+          321,
+          325
         ]
       ],
       "source_commits": [
@@ -1077,7 +1101,8 @@
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "bbb029d1ee072a2b74dce3541e617c2087aec2f7"
       ],
       "exception_reason": null
     },
