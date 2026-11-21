@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="raptor_analysis_action">Analyze music</string>
+    <string name="raptor_analysis_title">Raptor Radio music analysis</string>
+    <string name="raptor_analysis_unknown_track">Unknown track</string>
+    <string name="raptor_analysis_loading">Analyzing on this device…</string>
+    <string name="raptor_analysis_error">Couldn’t analyze this track. Check that the file is available and try again.</string>
+    <string name="raptor_analysis_close">Close</string>
+    <string name="raptor_analysis_duration">Analyzed %1$s seconds</string>
+    <string name="raptor_analysis_excerpt">Analyzed the first %1$s seconds</string>
+    <plurals name="raptor_analysis_tempo">
+        <item quantity="one">%1$d BPM · %2$d beat detected</item>
+        <item quantity="other">%1$d BPM · %2$d beats detected</item>
+    </plurals>
+    <string name="raptor_analysis_no_beat">No steady beat detected</string>
+    <string name="raptor_analysis_styles">Predicted scene styles</string>
+    <string name="raptor_analysis_scene">%1$s s · %2$s</string>
+    <string name="raptor_analysis_confidence">%1$s (%2$s model confidence)</string>
+    <string name="raptor_analysis_low_confidence">%1$s (low model confidence)</string>
+    <string name="raptor_analysis_drift">Drift</string>
+    <string name="raptor_analysis_groove">Groove</string>
+    <string name="raptor_analysis_surge">Surge</string>
+    <string name="raptor_analysis_neutral">Neutral</string>
+</resources>
