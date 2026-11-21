@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="raptor_analysis_action">分析音乐</string>
+    <string name="raptor_analysis_title">Raptor Radio 音乐分析</string>
+    <string name="raptor_analysis_unknown_track">未知歌曲</string>
+    <string name="raptor_analysis_loading">正在本机分析…</string>
+    <string name="raptor_analysis_error">无法分析这首歌曲。请确认音频文件仍可访问，然后重试。</string>
+    <string name="raptor_analysis_close">关闭</string>
+    <string name="raptor_analysis_duration">已分析 %1$s 秒</string>
+    <string name="raptor_analysis_excerpt">已分析开头 %1$s 秒</string>
+    <plurals name="raptor_analysis_tempo">
+        <item quantity="other">%1$d BPM · 检测到 %2$d 个节拍</item>
+    </plurals>
+    <string name="raptor_analysis_no_beat">未检测到稳定节拍</string>
+    <string name="raptor_analysis_styles">预测场景风格</string>
+    <string name="raptor_analysis_scene">%1$s 秒 · %2$s</string>
+    <string name="raptor_analysis_confidence">%1$s（模型置信度 %2$s）</string>
+    <string name="raptor_analysis_low_confidence">%1$s（模型置信度较低）</string>
+    <string name="raptor_analysis_drift">悠缓</string>
+    <string name="raptor_analysis_groove">律动</string>
+    <string name="raptor_analysis_surge">激昂</string>
+    <string name="raptor_analysis_neutral">默认</string>
+</resources>
