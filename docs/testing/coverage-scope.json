@@ -113,16 +113,17 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/AndroidAudioDecoder.kt",
       "module": "android",
       "change": "added",
-      "source_sha256": "6be943cd3262053b4e84ae3592e2e78a4d4bd510bfa6c97dfcb88b4e5f3d7c87",
+      "source_sha256": "cfcf207765e263b8b312d628cc360475f72cb99119177532a94fef0acb44a3fc",
       "line_policy": "all-executable",
       "candidate_line_ranges": [
         [
           1,
-          165
+          204
         ]
       ],
       "source_commits": [
-        "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+        "b64979733feb6b28f83ade0876b0af0b0613eb5d",
+        "c24fe923851d059d590ce0d3f5817a88433c568e"
       ],
       "exception_reason": null
     },
@@ -175,6 +176,74 @@
       ],
       "source_commits": [
         "b64979733feb6b28f83ade0876b0af0b0613eb5d"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/RaptorAnalysisDialogFragment.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "938faa09a23faf661cacd568abc5150d78aa16f99b599b7027480c62b42f23aa",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          112
+        ]
+      ],
+      "source_commits": [
+        "0b13e247e64a0efd0a02b4a37314f2fe6c3aa887"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/RaptorBeatDetector.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "52010e68cdf85a8c39b6531bfbda6ad766e1aaf980cdfe3d64140ea12450c264",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          240
+        ]
+      ],
+      "source_commits": [
+        "c24fe923851d059d590ce0d3f5817a88433c568e"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/RaptorStyleModel.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "ca49a5f2f30c53900fe4dba7e4e093a3e438acec25dc136ec732ac8eab3ab5e7",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          235
+        ]
+      ],
+      "source_commits": [
+        "c24fe923851d059d590ce0d3f5817a88433c568e"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/analysis/RaptorTrackAnalyzer.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "c03acb82d40994c9c4cdf2feb7708ff1afb0d5f6dde4e0fc10c9febfba685753",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          56
+        ]
+      ],
+      "source_commits": [
+        "c24fe923851d059d590ce0d3f5817a88433c568e"
       ],
       "exception_reason": null
     },
@@ -1077,7 +1146,8 @@
         "b30b7e265e32e2f15b6e479d349d102515007cbc",
         "14dd5ac8952f37ef72982ebd85ddb8c5873284ca",
         "351c8d1ee6a3a8b0453c58a67d27e7cb1e11fcb5",
-        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7"
+        "2e5195e5e322c5637c847f2237c8a20a3e0e23a7",
+        "bbb029d1ee072a2b74dce3541e617c2087aec2f7"
       ],
       "exception_reason": null
     },
@@ -1808,6 +1878,55 @@
       ],
       "source_commits": [
         "24beffad3c0c89739b13420d2a07cedb947770c0"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/utils/Popups.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "2dcf055977cd58d7880df17f9461d41c74ce3f3d1b92751f7a90225324052f22",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          6,
+          6
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          15,
+          15
+        ],
+        [
+          30,
+          31
+        ],
+        [
+          33,
+          41
+        ],
+        [
+          43,
+          48
+        ],
+        [
+          50,
+          69
+        ],
+        [
+          72,
+          72
+        ],
+        [
+          74,
+          74
+        ]
+      ],
+      "source_commits": [
+        "0b13e247e64a0efd0a02b4a37314f2fe6c3aa887"
       ],
       "exception_reason": null
     },
