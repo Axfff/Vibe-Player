@@ -21,9 +21,41 @@ import kotlin.math.sin
 
 internal data class AudioExcerpt(val samples: FloatArray, val reachedDurationLimit: Boolean)
 
+internal data class NativeAudioExcerpt(
+    val channels: Array<FloatArray>,
+    val sampleRate: Int,
+    val reachedDurationLimit: Boolean
+)
+
 /** Decode a bounded excerpt of a local track. This must not be run on the main thread. */
 internal class AndroidAudioDecoder(private val context: Context) {
     suspend fun decode(uri: Uri, maxSeconds: Int = 30): AudioExcerpt = withContext(Dispatchers.IO) {
+        val pcm = decodePcm(uri, maxSeconds, retainChannels = false)
+        val coroutine = currentCoroutineContext()
+        val mono = resampleTo16k(pcm.channels.single(), pcm.frameCount, pcm.sampleRate) {
+            coroutine.ensureActive()
+        }
+        AudioExcerpt(mono, pcm.reachedDurationLimit)
+    }
+
+    /** Keep the source rate and up to two separate channels for audio onset and style features. */
+    suspend fun decodeNative(uri: Uri, maxSeconds: Int = 30): NativeAudioExcerpt = withContext(Dispatchers.IO) {
+        val pcm = decodePcm(uri, maxSeconds, retainChannels = true)
+        val channels = if (pcm.reachedDurationLimit) pcm.channels else {
+            Array(pcm.channels.size) { channel -> pcm.channels[channel].copyOf(pcm.frameCount) }
+        }
+        NativeAudioExcerpt(channels, pcm.sampleRate, pcm.reachedDurationLimit)
+    }
+
+    private class DecodedPcm(
+        val channels: Array<FloatArray>,
+        val sampleRate: Int,
+        val frameCount: Int
+    ) {
+        val reachedDurationLimit: Boolean get() = frameCount == channels.first().size
+    }
+
+    private suspend fun decodePcm(uri: Uri, maxSeconds: Int, retainChannels: Boolean): DecodedPcm {
         require(uri.scheme == "content" || uri.scheme == "file") { "Only local content and file URIs are supported" }
         require(maxSeconds in 1..60) { "Excerpt duration must be between 1 and 60 seconds" }
         val coroutine = currentCoroutineContext()
@@ -46,7 +78,7 @@ internal class AndroidAudioDecoder(private val context: Context) {
             var sourceRate = 0
             var channels = 0
             var encoding = AudioFormat.ENCODING_PCM_16BIT
-            var samples = FloatArray(0)
+            var samples = emptyArray<FloatArray>()
             var count = 0
             var inputDone = false
             var outputDone = false
@@ -84,8 +116,9 @@ internal class AndroidAudioDecoder(private val context: Context) {
                         if (count > 0 && (rate != sourceRate || countChannels != channels || pcm != encoding)) {
                             throw IOException("Audio format changed during decoding")
                         }
-                        if (samples.isEmpty() || (count == 0 && rate != sourceRate)) {
-                            samples = FloatArray(rate * maxSeconds)
+                        val outputChannels = if (retainChannels) min(countChannels, 2) else 1
+                        if (count == 0 && (sourceRate != rate || samples.size != outputChannels)) {
+                            samples = Array(outputChannels) { FloatArray(rate * maxSeconds) }
                         }
                         sourceRate = rate
                         channels = countChannels
@@ -104,17 +137,23 @@ internal class AndroidAudioDecoder(private val context: Context) {
                                 output.order(ByteOrder.LITTLE_ENDIAN)
                                 output.position(info.offset)
                                 output.limit(info.offset + info.size)
-                                val frames = min(info.size / frameBytes, samples.size - count)
+                                val capacity = samples.first().size
+                                val frames = min(info.size / frameBytes, capacity - count)
                                 repeat(frames) {
                                     var sum = 0f
-                                    repeat(channels) {
+                                    repeat(channels) { channel ->
                                         val value = if (encoding == AudioFormat.ENCODING_PCM_FLOAT) output.float else output.short / 32768f
                                         if (!value.isFinite()) throw IOException("Non-finite decoded sample")
-                                        sum += value
+                                        if (retainChannels) {
+                                            if (channel < samples.size) samples[channel][count] = value
+                                        } else {
+                                            sum += value
+                                        }
                                     }
-                                    samples[count++] = (sum / channels).coerceIn(-1f, 1f)
+                                    if (!retainChannels) samples[0][count] = (sum / channels).coerceIn(-1f, 1f)
+                                    count++
                                 }
-                                if (count == samples.size) outputDone = true
+                                if (count == capacity) outputDone = true
                             }
                             if (info.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) outputDone = true
                             lastProgress = SystemClock.elapsedRealtime()
@@ -125,7 +164,7 @@ internal class AndroidAudioDecoder(private val context: Context) {
                 }
             }
             if (count == 0 || sourceRate == 0) throw IOException("No decodable audio")
-            AudioExcerpt(resampleTo16k(samples, count, sourceRate) { coroutine.ensureActive() }, count == samples.size)
+            return DecodedPcm(samples, sourceRate, count)
         } finally {
             if (started) runCatching { codec?.stop() }
             runCatching { codec?.release() }
