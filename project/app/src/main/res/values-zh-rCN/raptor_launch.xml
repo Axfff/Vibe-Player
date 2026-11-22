@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="library_open_raptor_radio">Raptor Radio</string>
+    <string name="raptor_play_song">在 Raptor Radio 中游玩</string>
+</resources>

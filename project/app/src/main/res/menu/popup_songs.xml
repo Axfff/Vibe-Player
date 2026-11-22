@@ -15,4 +15,8 @@
         android:id="@+id/analyze_music"
         android:icon="@drawable/ic_equalizer"
         android:title="@string/raptor_analysis_action" />
+    <item
+        android:id="@+id/raptor_play_song"
+        android:icon="@drawable/ic_play"
+        android:title="@string/raptor_play_song" />
 </menu>

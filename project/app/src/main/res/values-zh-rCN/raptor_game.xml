@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="raptor_game_back">返回</string>
+    <string name="raptor_game_score">得分\n%1$05d</string>
+    <string name="raptor_game_best">最高分\n%1$05d</string>
+    <string name="raptor_game_scene">场景\n%1$s</string>
+    <string name="raptor_game_tempo">节奏 %1$d BPM</string>
+    <string name="raptor_game_no_beat">未检测到稳定节拍</string>
+    <string name="raptor_game_ready">准备好了吗？</string>
+    <string name="raptor_game_paused">已暂停</string>
+    <string name="raptor_game_over">游戏结束</string>
+    <string name="raptor_game_start">开始跑酷</string>
+    <string name="raptor_game_pause">暂停</string>
+    <string name="raptor_game_resume">继续跑酷</string>
+    <string name="raptor_game_retry">再玩一次</string>
+    <string name="raptor_game_jump">跳跃</string>
+    <string name="raptor_game_mute">静音</string>
+    <string name="raptor_game_unmute">取消静音</string>
+    <string name="raptor_game_soundtrack">音乐</string>
+    <string name="raptor_game_open_audio">打开本地音频</string>
+    <string name="raptor_game_local_audio">本地音频</string>
+    <string name="raptor_game_loading">正在本机分析音频…</string>
+    <string name="raptor_game_load_error">无法打开或分析这首歌，请选择其他音频。</string>
+    <string name="raptor_game_audio_unavailable">暂时无法播放，请稍后重试。</string>
+    <string name="raptor_game_stage_description">恐龙跑酷。点击开始或跳跃。</string>
+    <string name="raptor_game_hint">点击赛道或跳跃按钮越过障碍。</string>
+</resources>
