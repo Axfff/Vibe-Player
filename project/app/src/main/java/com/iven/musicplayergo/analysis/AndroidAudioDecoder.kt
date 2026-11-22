@@ -56,14 +56,20 @@ internal class AndroidAudioDecoder(private val context: Context) {
     }
 
     private suspend fun decodePcm(uri: Uri, maxSeconds: Int, retainChannels: Boolean): DecodedPcm {
-        require(uri.scheme == "content" || uri.scheme == "file") { "Only local content and file URIs are supported" }
+        require(uri.scheme in setOf("content", "file", "android.resource")) { "Only local audio URIs are supported" }
         require(maxSeconds in 1..60) { "Excerpt duration must be between 1 and 60 seconds" }
         val coroutine = currentCoroutineContext()
         val extractor = MediaExtractor()
         var codec: MediaCodec? = null
         var started = false
         try {
-            extractor.setDataSource(context, uri, null)
+            if (uri.scheme == "android.resource") {
+                val asset = context.contentResolver.openAssetFileDescriptor(uri, "r")
+                    ?: throw IOException("Unable to open bundled audio")
+                asset.use { extractor.setDataSource(it.fileDescriptor, it.startOffset, it.length) }
+            } else {
+                extractor.setDataSource(context, uri, null)
+            }
             val track = (0 until extractor.trackCount).firstOrNull {
                 extractor.getTrackFormat(it).getString(MediaFormat.KEY_MIME)?.startsWith("audio/") == true
             } ?: throw IOException("No audio track")
