@@ -5,6 +5,7 @@ Use `RaptorTrackAnalyzer` from Kotlin code in the Android `:app` module. It open
 ## Analyze a library track
 
 The library uses `song.id?.toContentUri()` from `com.iven.musicplayergo.extensions`. A document picker can supply its granted `content://` URI directly.
+For a bundled track, use the local `android.resource://` URI for its raw audio resource.
 
 In a Fragment with a view, call the suspend API from that view's lifecycle scope. The callbacks below represent the caller's result and error UI.
 

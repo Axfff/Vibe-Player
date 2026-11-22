@@ -4,6 +4,7 @@
 
 - [From source to a running app](development/workflow.md#from-source-to-a-running-app)
 - [Use Raptor Radio music analysis in Android code](development/raptor-music-analysis.md)
+- [Play and verify the Android Raptor Radio demo](development/raptor-radio-game.md)
 - [Review, stacked-PR integration and administrator rollout](development/review-and-integration.md)
 - [Story form](../.github/ISSUE_TEMPLATE/user_story.yml) · [PR template](../.github/PULL_REQUEST_TEMPLATE.md)
 - [Team members](../README.md#team-members)
