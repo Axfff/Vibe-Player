@@ -35,13 +35,33 @@
             android:text="@string/library_scan_music" />
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/library_discovery"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+    <LinearLayout
+        android:id="@+id/library_demo_buttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="48dp"
-        android:text="@string/discovery_title" />
+        android:orientation="horizontal">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/library_discovery"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:minWidth="0dp"
+            android:maxLines="2"
+            android:text="@string/discovery_title" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/library_raptor_radio"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:minHeight="48dp"
+            android:minWidth="0dp"
+            android:maxLines="2"
+            android:text="@string/library_open_raptor_radio" />
+    </LinearLayout>
 
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/library_scan_progress"

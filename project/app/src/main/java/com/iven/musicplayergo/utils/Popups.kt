@@ -15,6 +15,7 @@ import com.iven.musicplayergo.extensions.setTitleColor
 import com.iven.musicplayergo.extensions.toContentUri
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.player.MediaPlayerHolder
+import com.iven.musicplayergo.raptor.RaptorRadioActivity
 import com.iven.musicplayergo.ui.MediaControlInterface
 import com.iven.musicplayergo.ui.UIControlInterface
 
@@ -41,8 +42,11 @@ object Popups {
             inflate(R.menu.popup_songs)
 
             val songUri = song?.id?.takeIf { it > 0 }?.toContentUri()
+            val title = song?.title ?: song?.displayName
+                ?: activity.getString(R.string.raptor_analysis_unknown_track)
             val fragments = (activity as? AppCompatActivity)?.supportFragmentManager
             menu.findItem(R.id.analyze_music).isVisible = songUri != null && fragments != null
+            menu.findItem(R.id.raptor_play_song).isVisible = songUri != null
             menu.findItem(R.id.song_title).setTitle(activity.resources, song?.title)
             menu.enablePopupIcons(activity.resources)
             gravity = Gravity.END
@@ -63,11 +67,12 @@ object Popups {
                         if (songUri != null && fragments != null && !fragments.isStateSaved) {
                             val tag = RaptorAnalysisDialogFragment.TAG
                             if (fragments.findFragmentByTag(tag) == null) {
-                                val title = song.title ?: song.displayName
-                                    ?: activity.getString(R.string.raptor_analysis_unknown_track)
                                 RaptorAnalysisDialogFragment.newInstance(songUri, title).show(fragments, tag)
                             }
                         }
+                    }
+                    R.id.raptor_play_song -> if (songUri != null) {
+                        activity.startActivity(RaptorRadioActivity.intent(activity, songUri, title))
                     }
                     else -> mediaControlInterface.onAddToQueue(song)
                 }

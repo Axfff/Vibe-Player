@@ -35,6 +35,10 @@
         tools:ignore="UnusedAttribute">
 
         <activity android:name=".discovery.DiscoveryActivity" android:exported="false" />
+        <activity
+            android:name=".raptor.RaptorRadioActivity"
+            android:exported="false"
+            android:theme="@style/Theme.RaptorRadio" />
 
         <activity
             android:name=".ui.MainActivity"

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="raptor_game_title">RAPTOR RADIO</string>
+    <string name="raptor_game_back">Back</string>
+    <string name="raptor_game_score">Score\n%1$05d</string>
+    <string name="raptor_game_best">Best\n%1$05d</string>
+    <string name="raptor_game_scene">Scene\n%1$s</string>
+    <string name="raptor_game_tempo">Tempo %1$d BPM</string>
+    <string name="raptor_game_no_beat">No steady beat</string>
+    <string name="raptor_game_ready">Ready to run?</string>
+    <string name="raptor_game_paused">Paused</string>
+    <string name="raptor_game_over">Run over</string>
+    <string name="raptor_game_start">Start run</string>
+    <string name="raptor_game_pause">Pause</string>
+    <string name="raptor_game_resume">Resume run</string>
+    <string name="raptor_game_retry">Run again</string>
+    <string name="raptor_game_jump">Jump</string>
+    <string name="raptor_game_mute">Mute</string>
+    <string name="raptor_game_unmute">Unmute</string>
+    <string name="raptor_game_soundtrack">Soundtrack</string>
+    <string name="raptor_game_open_audio">Open local audio</string>
+    <string name="raptor_game_local_audio">Local audio</string>
+    <string name="raptor_game_loading">Analyzing audio on this device…</string>
+    <string name="raptor_game_load_error">This track could not be opened or analyzed. Choose another track.</string>
+    <string name="raptor_game_audio_unavailable">Audio playback is unavailable. Try again when audio is free.</string>
+    <string name="raptor_game_afterglow">Afterglow</string>
+    <string name="raptor_game_signal_hop">Signal Hop</string>
+    <string name="raptor_game_meteor_fm">Meteor FM</string>
+    <string name="raptor_game_stage_description">Dinosaur runner. Tap to start or jump.</string>
+    <string name="raptor_game_hint">Tap the game or press Jump to clear the obstacles.</string>
+    <style name="Theme.RaptorRadio" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">#131120</item>
+        <item name="android:statusBarColor">#131120</item>
+        <item name="android:navigationBarColor">#131120</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="colorPrimary">#DCFF73</item>
+        <item name="colorOnPrimary">#20241B</item>
+        <item name="colorSecondary">#C3A7F5</item>
+        <item name="colorSurface">#211A30</item>
+        <item name="colorOnSurface">#F6F1FC</item>
+    </style>
+</resources>
