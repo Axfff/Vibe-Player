@@ -79,7 +79,7 @@ object Popups {
                     R.id.speed_5 -> 1.5F
                     R.id.speed_6 -> 1.75F
                     R.id.speed_7 -> 2.0F
-                    R.id.speed_8 -> 2.5F
+                    R.id.speed_8 -> 2.25F
                     else -> 2.5F
                 }
                 if (GoPreferences.getPrefsInstance().playbackSpeedMode != GoConstants.PLAYBACK_SPEED_ONE_ONLY) {
