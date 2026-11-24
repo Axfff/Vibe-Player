@@ -138,7 +138,7 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                  MediaStore.Audio.AudioColumns.ALBUM_ID, // 7
                  pathColumn, // 8
                  MediaStore.Audio.AudioColumns._ID, // 9
-                 MediaStore.MediaColumns.DATE_MODIFIED // 10
+                 MediaStore.MediaColumns.DATE_ADDED // 10
              )
 
              val selection = "${MediaStore.Audio.AudioColumns.IS_MUSIC} = 1"
@@ -171,7 +171,7 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                  val idIndex =
                      cursor.getColumnIndexOrThrow(MediaStore.Audio.AudioColumns._ID)
                  val dateAddedIndex =
-                     cursor.getColumnIndexOrThrow(MediaStore.Audio.AudioColumns.DATE_MODIFIED)
+                     cursor.getColumnIndexOrThrow(MediaStore.Audio.AudioColumns.DATE_ADDED)
 
                  while (cursor.moveToNext()) {
                      // Now loop through the music files
@@ -267,11 +267,12 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
 
         deviceMusicFiltered?.let { deviceMusic ->
 
-            // update queue songs id
+            // Refresh timestamps too: older builds saved DATE_MODIFIED as dateAdded.
             prefs.queue?.run {
                 val updatedQueue = map {
                     val music = findMusic(it)
-                    it.copy(albumId = music?.albumId, id= music?.id)
+                    it.copy(albumId = music?.albumId, id = music?.id,
+                        dateAdded = music?.dateAdded ?: it.dateAdded)
                 }
                 // filter queue to remove songs not available on the device
                 prefs.queue = updatedQueue.filter {
@@ -283,7 +284,8 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
             prefs.favorites?.run {
                 val updatedFavorites = map {
                     val music = findMusic(it)
-                    it.copy(albumId = music?.albumId, id= music?.id)
+                    it.copy(albumId = music?.albumId, id = music?.id,
+                        dateAdded = music?.dateAdded ?: it.dateAdded)
                 }
                 prefs.favorites = updatedFavorites.filter {
                     // Playback source is not file identity (e.g. a playlist position bookmark).
@@ -296,7 +298,8 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                 prefs.isQueue?.let { preQueueSong ->
                     val found = findMusic(preQueueSong)
                     prefs.isQueue = if (found != null) {
-                        preQueueSong.copy(albumId = found.albumId, id = found.id)
+                        preQueueSong.copy(albumId = found.albumId, id = found.id,
+                            dateAdded = found.dateAdded)
                     } else {
                         getRandomMusic()
                     }
@@ -310,7 +313,8 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
                 prefs.latestPlayedSong?.let { lps ->
                     val found = findMusic(lps)
                     prefs.latestPlayedSong = if (found != null) {
-                        lps.copy(albumId = found.albumId, id = found.id)
+                        lps.copy(albumId = found.albumId, id = found.id,
+                            dateAdded = found.dateAdded)
                     } else {
                         // if queue had started, update latestPlayedSong
                         // picking the first queued song

@@ -13,7 +13,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "6944ca228fbddbd478eb16e188131c8cbe69efae3c25eef611ec47b22eb8ae47",
+      "source_sha256": "35d23fc31f2fd4d1f434a68bcf057377c4fccc0822b586ccf4f15b4e2272753f",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -57,12 +57,20 @@
           123
         ],
         [
+          141,
+          141
+        ],
+        [
           148,
           148
         ],
         [
           151,
           151
+        ],
+        [
+          174,
+          174
         ],
         [
           194,
@@ -89,16 +97,32 @@
           259
         ],
         [
-          277,
-          279
+          270,
+          270
         ],
         [
-          288,
-          291
+          274,
+          275
         ],
         [
-          317,
-          321
+          278,
+          280
+        ],
+        [
+          287,
+          292
+        ],
+        [
+          301,
+          302
+        ],
+        [
+          316,
+          317
+        ],
+        [
+          321,
+          325
         ]
       ],
       "source_commits": [
@@ -1728,7 +1752,8 @@
         ]
       ],
       "source_commits": [
-        "bfd201cc3484c64324778c07ce2a9fe971dc64e2"
+        "bfd201cc3484c64324778c07ce2a9fe971dc64e2",
+        "9b6b7221ee0039444a42f24c9e3f4140df08af35"
       ],
       "exception_reason": null
     },
@@ -1814,6 +1839,21 @@
       "source_commits": [
         "24beffad3c0c89739b13420d2a07cedb947770c0"
       ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/utils/Popups.kt",
+      "module": "android",
+      "change": "modified",
+      "source_sha256": "bf1e871a33fdb10acb4bc38b4ad778efe6cd7385fb387301fe0b4920e5f52dc6",
+      "line_policy": "cumulative-diff-executable",
+      "candidate_line_ranges": [
+        [
+          82,
+          82
+        ]
+      ],
+      "source_commits": [],
       "exception_reason": null
     },
     {
