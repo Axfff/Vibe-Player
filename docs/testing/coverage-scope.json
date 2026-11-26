@@ -13,7 +13,7 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "35d23fc31f2fd4d1f434a68bcf057377c4fccc0822b586ccf4f15b4e2272753f",
+      "source_sha256": "ae28a8bef9f46766830be6a1dc6b3b550631f4edef4171bfaf54248f1c31532c",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
@@ -22,114 +22,119 @@
         ],
         [
           9,
-          9
+          10
         ],
         [
-          13,
-          13
+          14,
+          14
         ],
         [
-          16,
-          23
+          17,
+          24
         ],
         [
-          35,
-          36
+          36,
+          37
         ],
         [
-          39,
-          42
+          40,
+          43
         ],
         [
-          63,
-          63
+          64,
+          64
         ],
         [
-          78,
-          105
+          79,
+          106
         ],
         [
-          107,
-          112
+          108,
+          113
         ],
         [
-          117,
-          123
+          118,
+          124
         ],
         [
-          141,
-          141
+          142,
+          142
         ],
         [
-          148,
-          148
+          149,
+          149
         ],
         [
-          151,
-          151
+          152,
+          152
         ],
         [
-          174,
-          174
+          175,
+          175
         ],
         [
-          194,
-          194
+          195,
+          195
         ],
         [
-          198,
-          198
+          199,
+          199
         ],
         [
-          217,
-          217
+          218,
+          218
         ],
         [
-          224,
-          224
+          225,
+          225
         ],
         [
-          244,
-          245
+          245,
+          246
         ],
         [
-          257,
-          259
+          258,
+          260
         ],
         [
-          270,
-          270
+          271,
+          271
         ],
         [
-          274,
-          275
+          275,
+          276
         ],
         [
-          278,
-          280
+          279,
+          281
         ],
         [
-          287,
-          292
+          288,
+          293
         ],
         [
-          301,
-          302
+          302,
+          303
         ],
         [
-          316,
-          317
+          317,
+          318
         ],
         [
-          321,
-          325
+          322,
+          326
+        ],
+        [
+          334,
+          334
         ]
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
         "24beffad3c0c89739b13420d2a07cedb947770c0",
         "aca7ae7cacf04d594bc42660711ab352c26dd581",
-        "ebff6a843e8c445bf2c4b0142b27f06844650c50"
+        "ebff6a843e8c445bf2c4b0142b27f06844650c50",
+        "d1753de2e13c7e75abbc4501b464da4b20780280"
       ],
       "exception_reason": null
     },
@@ -959,6 +964,21 @@
       "source_commits": [
         "5fc5d13825413f2c58ee80af9840528116f4ebc8"
       ],
+      "exception_reason": null
+    },
+    {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/library/SavedMusicLookup.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "fac1bd5df3948183c6f9d3d40a4017fe7a6deb19cd446d9d690883b2b9c4b590",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          14
+        ]
+      ],
+      "source_commits": [],
       "exception_reason": null
     },
     {
@@ -1848,7 +1868,9 @@
           82
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "a641e8d8cbfdf5e4e97b306079325edb6abc6fc9"
+      ],
       "exception_reason": null
     },
     {

@@ -6,6 +6,7 @@ import android.provider.MediaStore
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.iven.musicplayergo.library.findSavedMusic
 import com.iven.musicplayergo.library.legacyMediaFolderName
 import com.iven.musicplayergo.models.Album
 import com.iven.musicplayergo.models.Music
@@ -330,12 +331,5 @@ class MusicViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    private fun findMusic(song: Music?): Music? {
-        val songToFind = song?.copy(startFrom = 0)
-        return deviceMusicFiltered?.find { newMusic ->
-            songToFind?.title == newMusic.title && songToFind?.displayName == newMusic.displayName
-                    && songToFind?.track == newMusic.track && songToFind.album == newMusic.album
-                    && songToFind.year == newMusic.year && songToFind.duration == newMusic.duration
-        }
-    }
+    private fun findMusic(song: Music?): Music? = findSavedMusic(song, deviceMusicFiltered)
 }
