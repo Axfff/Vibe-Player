@@ -29,7 +29,7 @@ object Lists {
             list?.iterator()?.let { iterate ->
                 while (iterate.hasNext()) {
                     val filteredString = iterate.next()
-                    if (filteredString.lowercase().contains(query?.lowercase()!!)) {
+                    if (filteredString.contains(query!!, ignoreCase = true)) {
                         filteredStrings.add(filteredString)
                     }
                 }
