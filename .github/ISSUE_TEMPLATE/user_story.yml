@@ -15,13 +15,23 @@ body:
     validations:
       required: true
   - type: textarea
+    id: supporting-requirements
+    attributes:
+      label: Supporting Requirements
+      description: List the behavior and constraints needed to satisfy this story. Use stable SR IDs and reference them from the Acceptance Criteria.
+      placeholder: |
+        - SR1 — Required behavior ...
+        - SR2 — Relevant quality or boundary constraint ...
+    validations:
+      required: true
+  - type: textarea
     id: acceptance-criteria
     attributes:
       label: Acceptance Criteria
-      description: Use stable AC IDs and observable pass/fail conditions. Use Given/When/Then for ambiguity; include relevant boundary and error cases.
+      description: Use stable AC IDs, reference the relevant SR IDs and state observable pass/fail conditions. Use Given/When/Then for ambiguity; include relevant boundary and error cases.
       placeholder: |
-        - [ ] AC1 — Given ..., when ..., then ...
-        - [ ] AC2 — Given ..., when ..., then ...
+        - [ ] AC1 (SR1) — Given ..., when ..., then ...
+        - [ ] AC2 (SR2) — Given ..., when ..., then ...
     validations:
       required: true
   - type: textarea
