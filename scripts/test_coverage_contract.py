@@ -89,6 +89,25 @@ class CoverageContractTest(unittest.TestCase):
         self.assertEqual("web", coverage.module("services/discovery/static/app.js"))
         self.assertIsNone(coverage.module("project/app/src/test/java/NewTest.kt"))
 
+    def test_runner_scope_and_independent_gate(self):
+        path = "demos/beat-runner/public/engine/timing.mjs"
+        self.assertEqual("runner", coverage.module(path))
+        self.assertEqual("runner", coverage.module("demos/beat-runner/public/app.js"))
+        self.assertIsNone(coverage.module("demos/beat-runner/test/app.test.js"))
+        self.assertIsNone(coverage.module("demos/beat-runner/model/extract.mjs"))
+        scope = {"files": [
+            {"module": "web", "path": "services/discovery/static/app.js", "change": "added"},
+            {"module": "runner", "path": path, "change": "added"},
+        ]}
+        reports = {"web": {"static/app.js": {n: True for n in range(1, 101)}}, "runner": {}}
+        with self.assertRaisesRegex(ValueError, "Missing/ambiguous production source"):
+            coverage.summarize(scope, reports)
+        reports["runner"]["public/engine/timing.mjs"] = {1: False}
+        result = coverage.summarize(scope, reports)
+        self.assertTrue(result["web"]["passed"])
+        self.assertFalse(result["runner"]["passed"])
+        self.assertEqual(1, result["runner"]["total"])
+
     def test_node_flat_junit_preserves_cases_and_failures(self):
         original = coverage.ROOT
         try:
