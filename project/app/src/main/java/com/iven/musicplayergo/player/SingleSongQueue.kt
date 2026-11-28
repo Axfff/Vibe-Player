@@ -22,7 +22,9 @@ internal fun addSingleSongToQueue(
             queueSongs.add(songToQueue)
         }
     } else if (isQueueActive) {
-        queueSongs.removeAt(currentIndex)
+        queueSongs.removeAll {
+            it.id == songToQueue.id && it.albumId == songToQueue.albumId
+        }
         val currentPosition = indexOfSong(currentSong)
         queueSongs.add(currentPosition + 1, songToQueue)
     }

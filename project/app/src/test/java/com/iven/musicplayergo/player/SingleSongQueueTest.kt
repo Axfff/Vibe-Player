@@ -30,6 +30,42 @@ class SingleSongQueueTest {
     }
 
     @Test
+    fun requeuingABookmarkRemovesEveryRestoredCopyOfTheTrack() {
+        val bookmark = queued.copy(startFrom = 9000, launchedBy = "1")
+        val queue = mutableListOf(current, queued.copy(startFrom = 5000), queued, last)
+
+        addSingleSongToQueue(queue, bookmark, current, isQueueActive = true)
+
+        assertEquals(listOf(current, bookmark, last), queue)
+    }
+
+    @Test
+    fun restoredCopiesAroundTheCurrentTrackAreRemovedWithoutChangingOtherIdentities() {
+        val bookmark = queued.copy(startFrom = 9000, launchedBy = "1")
+        val sameSongId = queued.copy(albumId = 200L)
+        val sameAlbumId = queued.copy(id = 20L)
+        val queue = mutableListOf(
+            queued, sameSongId, current, queued.copy(startFrom = 5000),
+            last, sameAlbumId, queued.copy(launchedBy = "1")
+        )
+
+        addSingleSongToQueue(queue, bookmark, current, isQueueActive = true)
+
+        assertEquals(listOf(sameSongId, current, bookmark, last, sameAlbumId), queue)
+    }
+
+    @Test
+    fun anInactiveQueueKeepsRestoredDuplicatesAndTheirMetadataUnchanged() {
+        val queue = mutableListOf(current, queued.copy(startFrom = 5000), last, queued)
+        val savedQueue = queue.toList()
+        val bookmark = queued.copy(startFrom = 9000, launchedBy = "1")
+
+        addSingleSongToQueue(queue, bookmark, current, isQueueActive = false)
+
+        assertEquals(savedQueue, queue)
+    }
+
+    @Test
     fun removingAnEarlierTrackRecalculatesTheCurrentPositionBeforeInsertion() {
         val bookmark = queued.copy(startFrom = 9000, launchedBy = "1")
         val queue = mutableListOf(queued, current, last)
