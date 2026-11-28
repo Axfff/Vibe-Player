@@ -44,6 +44,7 @@ import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.player.MediaPlayerInterface
 import com.iven.musicplayergo.player.PlayerService
+import com.iven.musicplayergo.player.addSingleSongToQueue
 import com.iven.musicplayergo.playlists.PlaylistsDialogFragment
 import com.iven.musicplayergo.preferences.SettingsFragment
 import com.iven.musicplayergo.utils.*
@@ -974,24 +975,12 @@ class MainActivity : BaseActivity(), UIControlInterface, MediaControlInterface {
 
             song?.let { songToQueue ->
 
-                // don't add duplicates
-                val currentIndex = queueSongs.findIndex(songToQueue)
-                if (currentIndex == RecyclerView.NO_POSITION) {
-                    if (isQueue != null && !canRestoreQueue && isQueueStarted) {
-                        val currentPosition = queueSongs.findIndex(currentSong)
-                        queueSongs.add(currentPosition+1, songToQueue)
-                    } else {
-                        queueSongs.add(songToQueue)
-                    }
-                } else {
-                    // song is already present but queue is already started
-                    // move the song next to the played song
-                    if (isQueue != null && !canRestoreQueue && isQueueStarted) {
-                        queueSongs.remove(songToQueue)
-                        val currentPosition = queueSongs.findIndex(currentSong)
-                        queueSongs.add(currentPosition+1, songToQueue)
-                    }
-                }
+                addSingleSongToQueue(
+                    queueSongs,
+                    songToQueue,
+                    currentSong,
+                    isQueue != null && !canRestoreQueue && isQueueStarted
+                )
 
                 Toast.makeText(
                     this@MainActivity,

@@ -134,7 +134,8 @@
         "24beffad3c0c89739b13420d2a07cedb947770c0",
         "aca7ae7cacf04d594bc42660711ab352c26dd581",
         "ebff6a843e8c445bf2c4b0142b27f06844650c50",
-        "d1753de2e13c7e75abbc4501b464da4b20780280"
+        "d1753de2e13c7e75abbc4501b464da4b20780280",
+        "1983562bf49ed578a10a96797e7cbb2fd15dab09"
       ],
       "exception_reason": null
     },
@@ -978,7 +979,9 @@
           14
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "1983562bf49ed578a10a96797e7cbb2fd15dab09"
+      ],
       "exception_reason": null
     },
     {
@@ -1481,6 +1484,23 @@
       "exception_reason": null
     },
     {
+      "path": "project/app/src/main/java/com/iven/musicplayergo/player/SingleSongQueue.kt",
+      "module": "android",
+      "change": "added",
+      "source_sha256": "4c889d53bb01b387bebabf4c9f61ddb1a5173edab1a24e51a6d2dec102f44129",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "source_commits": [
+        "256ddf0352faffe199e7355d2966e8a7216f0751"
+      ],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/playlists/PlaylistAdapters.kt",
       "module": "android",
       "change": "added",
@@ -1656,85 +1676,90 @@
       "path": "project/app/src/main/java/com/iven/musicplayergo/ui/MainActivity.kt",
       "module": "android",
       "change": "modified",
-      "source_sha256": "0d4819d43045566d8f0025523a469aebb38cbedf4aaf1e9ef4ea3ff37968bca3",
+      "source_sha256": "907abc4aff75669dfcc163a6e80ab86ad52f7b9beb987d91d0ff1e67e7f034f4",
       "line_policy": "cumulative-diff-executable",
       "candidate_line_ranges": [
         [
           47,
-          47
+          48
         ],
         [
-          82,
-          84
+          83,
+          85
         ],
         [
-          125,
-          135
+          126,
+          136
         ],
         [
-          196,
-          199
+          197,
+          200
         ],
         [
-          202,
-          206
+          203,
+          207
         ],
         [
-          299,
-          299
+          300,
+          300
         ],
         [
-          333,
-          337
+          334,
+          338
         ],
         [
-          347,
-          356
+          348,
+          357
         ],
         [
-          364,
-          364
+          365,
+          365
         ],
         [
-          377,
-          389
+          378,
+          390
         ],
         [
-          673,
-          674
+          674,
+          675
         ],
         [
-          697,
-          711
+          698,
+          712
         ],
         [
-          784,
-          784
+          785,
+          785
         ],
         [
-          789,
-          794
+          790,
+          795
         ],
         [
-          824,
-          824
+          825,
+          825
         ],
         [
-          847,
-          847
+          848,
+          848
         ],
         [
-          868,
-          901
+          869,
+          902
         ],
         [
-          1054,
-          1063
+          978,
+          983
+        ],
+        [
+          1043,
+          1052
         ]
       ],
       "source_commits": [
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
-        "8ff9e2f268f48caff0eca1ba1a93ad4731bd6c9f"
+        "8ff9e2f268f48caff0eca1ba1a93ad4731bd6c9f",
+        "256ddf0352faffe199e7355d2966e8a7216f0751"
       ],
       "exception_reason": null
     },
