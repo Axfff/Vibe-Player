@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 BASE = "947709e4c798a103b9fcc5962172f2e85d349196"
 MANIFEST = ROOT / "docs/testing/coverage-scope.json"
 OUTPUT = ROOT / "artifacts/coverage"
+SOURCE_ROOTS = ("project", "services", "scripts/coverage", "demos/beat-runner")
 
 
 def git(*args):
@@ -34,6 +35,8 @@ def module(path):
         return "backend"
     if re.match(r"services/[^/]+/static/.*\.(m?js)$", path):
         return "web"
+    if re.fullmatch(r"demos/beat-runner/public/.*\.m?js", path):
+        return "runner"
     return None
 
 
@@ -101,8 +104,8 @@ def validate_scope():
 
 def source_fingerprint():
     paths = set(git("ls-files").splitlines()) | set(git("ls-files", "--others", "--exclude-standard").splitlines())
-    relevant = [p for p in paths if (p.startswith("project/") or p.startswith("services/") or
-                p.startswith("scripts/coverage/")) and (ROOT / p).is_file()]
+    prefixes = tuple(root + "/" for root in SOURCE_ROOTS)
+    relevant = [p for p in paths if p.startswith(prefixes) and (ROOT / p).is_file()]
     return hashlib.sha256("\n".join(f"{p}:{digest(ROOT / p)}" for p in sorted(relevant)).encode()).hexdigest()
 
 
@@ -302,14 +305,15 @@ def main():
         fresh(OUTPUT / 'backend/index.html')
         fresh(OUTPUT / 'backend-junit.xml')
         tests["backend"] = test_counts(["artifacts/coverage/backend-junit.xml"])
-    if "web" in names:
-        reports["web"] = lcov(fresh(OUTPUT / "web/lcov.info"))
-        fresh(OUTPUT / 'web/index.html')
-        shutil.copyfile(fresh(OUTPUT / 'web/cobertura-coverage.xml'), OUTPUT / 'web.xml')
-        fresh(OUTPUT / 'web-junit.xml')
-        tests["web"] = test_counts(["artifacts/coverage/web-junit.xml"])
+    for name in sorted(names & {"web", "runner"}):
+        directory = OUTPUT / name
+        reports[name] = lcov(fresh(directory / "lcov.info"))
+        fresh(directory / "index.html")
+        shutil.copyfile(fresh(directory / "cobertura-coverage.xml"), OUTPUT / f"{name}.xml")
+        fresh(OUTPUT / f"{name}-junit.xml")
+        tests[name] = test_counts([f"artifacts/coverage/{name}-junit.xml"])
     summary = {"schema": 1, **stamp, "baseline": BASE,
-               "dirty": bool(git("status", "--porcelain", "--", "project", "services", "scripts/coverage")),
+               "dirty": bool(git("status", "--porcelain", "--", *SOURCE_ROOTS)),
                "measurement_only": args.measure_only or args.unit_only,
                "modules": summarize(scope, reports), "tests": tests,
                "run_url": os.environ.get("COVERAGE_RUN_URL")}
