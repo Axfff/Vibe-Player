@@ -221,9 +221,31 @@ def summarize(scope, reports):
             for name, rows in groups.items()}
 
 
+def publication_summary(summary):
+    # Schema 1 is also consumed by the workflow_run publisher on the target branch.
+    # Keep its web totals complete, and expose each independently gated browser app.
+    modules = dict(summary["modules"])
+    tests = dict(summary["tests"])
+    if "runner" not in modules:
+        return summary
+    browser_modules = {name: modules.pop(name) for name in ("web", "runner") if name in modules}
+    browser_tests = {name: tests.pop(name) for name in browser_modules}
+    modules["web"] = {
+        **fraction(sum(row["covered"] for row in browser_modules.values()),
+                   sum(row["total"] for row in browser_modules.values())),
+        "passed": all(row["passed"] for row in browser_modules.values()),
+        "files": [entry for row in browser_modules.values() for entry in row["files"]],
+        "by_root": {name: fraction(row["covered"], row["total"]) for name, row in browser_modules.items()},
+    }
+    tests["web"] = {key: sum(row[key] for row in browser_tests.values())
+                    for key in ("tests", "failures", "errors", "skipped")}
+    tests["web"]["by_root"] = browser_tests
+    return {**summary, "modules": modules, "tests": tests}
+
+
 def write_reports(summary):
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    (OUTPUT / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    (OUTPUT / "summary.json").write_text(json.dumps(publication_summary(summary), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     lines = ["<!-- vibe-team-coverage -->", "## Sprint 3 team line coverage",
              f"Tested SHA: `{summary['sha']}`; baseline: `{BASE}`.",
              f"Source fingerprint: `{summary['source_fingerprint']}`; uncommitted source: `{summary['dirty']}`.",
