@@ -10,6 +10,159 @@
   ],
   "files": [
     {
+      "path": "demos/beat-runner/public/analysis-worker.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "b67a10ec61c7a5cf8421fc3ea32132025b4d68f66305c7512c18bef14fc61a1c",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          30
+        ]
+      ],
+      "source_commits": [
+        "7f1c2d1d9b149ef0e729886eb523810c6aad8a59"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/app.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "12969d165505c884a1429cf40358ce33dfeca0cdb66d9d2922bf597d8ff7c95d",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          261
+        ]
+      ],
+      "source_commits": [
+        "7f1c2d1d9b149ef0e729886eb523810c6aad8a59"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/audio.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "51b46228a022d5a02cb03265620201db99c54fe39424f844c0c5143215f9d860",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          87
+        ]
+      ],
+      "source_commits": [
+        "7f1c2d1d9b149ef0e729886eb523810c6aad8a59"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/beat.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "c5417c4cfd44f4b76301c5367a891231361e15a7fa2bf6f065f313ed90178c6f",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          203
+        ]
+      ],
+      "source_commits": [
+        "b53399c5994b926634e4b010a9f8fc56d8af3510"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/demo-tracks.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "6160b007c52388cb281288de3ced186f22eedeaecba2457fc1c927b5ea4c95fd",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          213
+        ]
+      ],
+      "source_commits": [
+        "b53399c5994b926634e4b010a9f8fc56d8af3510"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/runner.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "c395f780c1713ed66502c29342f0d917c056707d57e379e4d00fb64cb83a9aa8",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          70
+        ]
+      ],
+      "source_commits": [
+        "96dae72e0b6355002952f67fef67cd808a83d8e0"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/scene.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "0b1ed40fd9dd3368244bff24f2749cee1b315b21e9b6fcf861b8b208f010801c",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          350
+        ]
+      ],
+      "source_commits": [
+        "96dae72e0b6355002952f67fef67cd808a83d8e0"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/style-model.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "023a36649ef3ea2230c61c6c5b2205e2f03e964cca56ba62d006615ef3b34b55",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          222
+        ]
+      ],
+      "source_commits": [
+        "40b18e826ae52386ebc7376ebf5312f99129a8c8"
+      ],
+      "exception_reason": null
+    },
+    {
+      "path": "demos/beat-runner/public/timeline.js",
+      "module": "runner",
+      "change": "added",
+      "source_sha256": "794d350650659f29f986da54212e23476af26ee567c95a48495c34e4522f73f8",
+      "line_policy": "all-executable",
+      "candidate_line_ranges": [
+        [
+          1,
+          28
+        ]
+      ],
+      "source_commits": [
+        "96dae72e0b6355002952f67fef67cd808a83d8e0"
+      ],
+      "exception_reason": null
+    },
+    {
       "path": "project/app/src/main/java/com/iven/musicplayergo/MusicViewModel.kt",
       "module": "android",
       "change": "modified",
@@ -133,7 +286,9 @@
         "fd00c099243b6f846e1128f1521f7676a3a0ee7b",
         "24beffad3c0c89739b13420d2a07cedb947770c0",
         "aca7ae7cacf04d594bc42660711ab352c26dd581",
-        "ebff6a843e8c445bf2c4b0142b27f06844650c50"
+        "ebff6a843e8c445bf2c4b0142b27f06844650c50",
+        "d1753de2e13c7e75abbc4501b464da4b20780280",
+        "1983562bf49ed578a10a96797e7cbb2fd15dab09"
       ],
       "exception_reason": null
     },
@@ -1046,7 +1201,9 @@
           14
         ]
       ],
-      "source_commits": [],
+      "source_commits": [
+        "1983562bf49ed578a10a96797e7cbb2fd15dab09"
+      ],
       "exception_reason": null
     },
     {
@@ -1973,7 +2130,9 @@
         ]
       ],
       "source_commits": [
-        "0b13e247e64a0efd0a02b4a37314f2fe6c3aa887"
+        "a641e8d8cbfdf5e4e97b306079325edb6abc6fc9",
+        "0b13e247e64a0efd0a02b4a37314f2fe6c3aa887",
+        "a99a1bfcd712b5e429d3a9d4dd4e22597faa704e"
       ],
       "exception_reason": null
     },
