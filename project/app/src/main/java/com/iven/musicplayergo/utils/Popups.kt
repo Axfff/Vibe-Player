@@ -3,13 +3,16 @@ package com.iven.musicplayergo.utils
 import android.app.Activity
 import android.view.Gravity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import com.iven.musicplayergo.GoConstants
 import com.iven.musicplayergo.GoPreferences
 import com.iven.musicplayergo.R
+import com.iven.musicplayergo.analysis.RaptorAnalysisDialogFragment
 import com.iven.musicplayergo.extensions.enablePopupIcons
 import com.iven.musicplayergo.extensions.setTitle
 import com.iven.musicplayergo.extensions.setTitleColor
+import com.iven.musicplayergo.extensions.toContentUri
 import com.iven.musicplayergo.models.Music
 import com.iven.musicplayergo.player.MediaPlayerHolder
 import com.iven.musicplayergo.ui.MediaControlInterface
@@ -24,34 +27,51 @@ object Popups {
         song: Music?,
         launchedBy: String
     ) {
+        itemView?.let { createSongPopup(activity, it, song, launchedBy).show() }
+    }
+
+    internal fun createSongPopup(
+        activity: Activity,
+        anchor: View,
+        song: Music?,
+        launchedBy: String
+    ): PopupMenu {
         val mediaControlInterface = activity as MediaControlInterface
-        itemView?.let { view ->
+        return PopupMenu(activity, anchor).apply {
+            inflate(R.menu.popup_songs)
 
-            PopupMenu(activity, view).apply {
+            val songUri = song?.id?.takeIf { it > 0 }?.toContentUri()
+            val fragments = (activity as? AppCompatActivity)?.supportFragmentManager
+            menu.findItem(R.id.analyze_music).isVisible = songUri != null && fragments != null
+            menu.findItem(R.id.song_title).setTitle(activity.resources, song?.title)
+            menu.enablePopupIcons(activity.resources)
+            gravity = Gravity.END
 
-                inflate(R.menu.popup_songs)
-
-                menu.findItem(R.id.song_title).setTitle(activity.resources, song?.title)
-                menu.enablePopupIcons(activity.resources)
-                gravity = Gravity.END
-
-                setOnMenuItemClickListener { menuItem ->
-                    when (menuItem.itemId) {
-                        R.id.favorites_add -> {
-                            Lists.addToFavorites(
-                                activity,
-                                song,
-                                canRemove = false,
-                                0,
-                                launchedBy
-                            )
-                            (activity as UIControlInterface).onFavoriteAddedOrRemoved()
-                        }
-                        else -> mediaControlInterface.onAddToQueue(song)
+            setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.favorites_add -> {
+                        Lists.addToFavorites(
+                            activity,
+                            song,
+                            canRemove = false,
+                            0,
+                            launchedBy
+                        )
+                        (activity as UIControlInterface).onFavoriteAddedOrRemoved()
                     }
-                    return@setOnMenuItemClickListener true
+                    R.id.analyze_music -> {
+                        if (songUri != null && fragments != null && !fragments.isStateSaved) {
+                            val tag = RaptorAnalysisDialogFragment.TAG
+                            if (fragments.findFragmentByTag(tag) == null) {
+                                val title = song.title ?: song.displayName
+                                    ?: activity.getString(R.string.raptor_analysis_unknown_track)
+                                RaptorAnalysisDialogFragment.newInstance(songUri, title).show(fragments, tag)
+                            }
+                        }
+                    }
+                    else -> mediaControlInterface.onAddToQueue(song)
                 }
-                show()
+                true
             }
         }
     }

@@ -11,4 +11,8 @@
     <item
         android:icon="@drawable/ic_queue_add"
         android:title="@string/queue_add" />
+    <item
+        android:id="@+id/analyze_music"
+        android:icon="@drawable/ic_equalizer"
+        android:title="@string/raptor_analysis_action" />
 </menu>

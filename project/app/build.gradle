@@ -3,8 +3,18 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply from: rootProject.file('gradle/coverage.gradle')
 
+def raptorAssets = layout.buildDirectory.dir('generated/raptor-assets')
+def stageRaptorModel = tasks.register('stageRaptorModel', Copy) {
+    from rootProject.file('../demos/beat-runner/public/model.json')
+    into raptorAssets.map { it.dir('raptor') }
+}
+tasks.matching { it.name == 'preBuild' }.configureEach {
+    dependsOn stageRaptorModel
+}
+
 android {
     compileSdkVersion 33
+    sourceSets.main.assets.srcDir(raptorAssets)
     //noinspection GradleDependency
     defaultConfig {
         applicationId "com.iven.musicplayergo"

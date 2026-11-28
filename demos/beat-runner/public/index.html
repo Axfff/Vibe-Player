@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#131120">
+  <meta name="description" content="A music-reactive dinosaur runner for Vibe-Player.">
+  <title>Raptor Radio · Vibe-Player</title>
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-icon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span> VIBE<span>PLAYER</span></div>
+    <p class="local"><i aria-hidden="true"></i> On-device audio</p>
+  </header>
+
+  <main>
+    <div class="masthead">
+      <h1>RAPTOR<span> RADIO</span></h1>
+      <p>Jump the terrain. Hear the beat.<br> Watch the world change with the music.</p>
+    </div>
+
+    <section class="cabinet" aria-label="Raptor Radio game">
+      <div class="stage" id="stage">
+        <canvas id="world" width="480" height="222" role="img" aria-label="Side-scrolling dinosaur runner. Use Space, Up Arrow or the Jump button to jump."></canvas>
+        <div class="hud">
+          <div class="scores">
+            <div><span>Score</span><strong id="score">00000</strong></div>
+            <div><span>Best</span><strong id="best">00000</strong></div>
+          </div>
+          <div class="scene-readout">
+            <i class="beat-light" id="beat-light" aria-hidden="true"></i>
+            <div><span>Scene</span><strong id="scene-name">Neutral</strong></div>
+          </div>
+        </div>
+        <div class="game-message" id="game-message">
+          <strong id="game-title" aria-live="polite">Ready to run?</strong>
+          <button type="button" class="primary" id="action" disabled>Start run</button>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="now-playing">
+          <span class="record-icon" aria-hidden="true"></span>
+          <div class="track-info"><span class="control-label">Selected track</span><strong id="track-name">Afterglow</strong></div>
+        </div>
+        <div class="music-readout">
+          <div><span class="control-label">Tempo</span><strong id="tempo">–</strong></div>
+          <div><span class="control-label">Style model</span><strong id="confidence">Loading</strong></div>
+        </div>
+        <div class="play-controls">
+          <button type="button" class="jump-button" id="jump" disabled>Jump <kbd>SPACE</kbd></button>
+          <button type="button" class="icon-button" id="pause" aria-label="Pause run" title="Pause (P)" disabled>
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 5v14m6-14v14"/></svg>
+          </button>
+          <button type="button" class="icon-button" id="mute" aria-label="Mute audio" aria-pressed="false" title="Mute audio">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 10v4h4l5 4V6l-5 4H4zm12-1c2 1 2 5 0 6m3-8c3 2 3 8 0 10"/><path class="mute-slash" d="m4 4 16 16"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="tracks" aria-labelledby="track-heading">
+      <div class="track-heading">
+        <h2 id="track-heading">Soundtrack</h2>
+        <label class="file-button">
+          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          Open local audio
+          <input id="audio-file" type="file" accept="audio/*,.mp3,.wav,.ogg,.flac,.m4a,.aac,.opus">
+        </label>
+      </div>
+      <div class="track-list" id="track-list"></div>
+      <p class="feedback" id="feedback" role="status"></p>
+    </section>
+  </main>
+</body>
+</html>

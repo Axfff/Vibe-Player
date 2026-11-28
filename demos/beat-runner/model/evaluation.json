@@ -1,0 +1,105 @@
+{
+  "dataset": "https://cvml.unige.ch/databases/DEAM/",
+  "styleOrder": [
+    "drift",
+    "groove",
+    "surge"
+  ],
+  "minimumTestWindowBalancedAccuracy": 0.45,
+  "baselineStyle": "drift",
+  "promotedModelSha256": "cec711d5e40fc3bd64390aa27ab7bbb529b524e0423dd8eb817e8b714bd762d6",
+  "skippedTracks": [],
+  "selectionSha256": "4768d8299293b8996c8b4b455e27d328c75a4d56259c38404ecaacae128bf0c5",
+  "metrics": {
+    "test": {
+      "artists": 60,
+      "tracks": 72,
+      "windowCounts": {
+        "drift": 48,
+        "groove": 48,
+        "surge": 48
+      },
+      "windowAccuracy": 0.569444,
+      "windowBalancedAccuracy": 0.569444,
+      "baselineWindowBalancedAccuracy": 0.333333,
+      "trackBalancedAccuracy": 0.611111,
+      "windowConfusionMatrix": [
+        [
+          24,
+          13,
+          11
+        ],
+        [
+          8,
+          24,
+          16
+        ],
+        [
+          3,
+          11,
+          34
+        ]
+      ]
+    },
+    "train": {
+      "artists": 167,
+      "tracks": 216,
+      "windowCounts": {
+        "drift": 144,
+        "groove": 144,
+        "surge": 144
+      },
+      "windowAccuracy": 0.6875,
+      "windowBalancedAccuracy": 0.6875,
+      "baselineWindowBalancedAccuracy": 0.333333,
+      "trackBalancedAccuracy": 0.703704,
+      "windowConfusionMatrix": [
+        [
+          104,
+          28,
+          12
+        ],
+        [
+          29,
+          77,
+          38
+        ],
+        [
+          6,
+          22,
+          116
+        ]
+      ]
+    },
+    "validation": {
+      "artists": 58,
+      "tracks": 72,
+      "windowCounts": {
+        "drift": 48,
+        "groove": 48,
+        "surge": 48
+      },
+      "windowAccuracy": 0.576389,
+      "windowBalancedAccuracy": 0.576389,
+      "baselineWindowBalancedAccuracy": 0.333333,
+      "trackBalancedAccuracy": 0.555556,
+      "windowConfusionMatrix": [
+        [
+          23,
+          18,
+          7
+        ],
+        [
+          9,
+          28,
+          11
+        ],
+        [
+          4,
+          12,
+          32
+        ]
+      ]
+    }
+  }
+}
