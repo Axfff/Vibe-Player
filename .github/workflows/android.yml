@@ -80,16 +80,23 @@ jobs:
           python -m pip install -r requirements.txt pytest-cov==7.1.0 coverage==7.17.0
           python -m pytest --cov=discovery --cov-report=xml:../../artifacts/coverage/backend.xml --cov-report=html:../../artifacts/coverage/backend --junitxml=../../artifacts/coverage/backend-junit.xml
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
-        if: ${{ !cancelled() && hashFiles('services/discovery/static/*.js', 'services/discovery/static/*.mjs') != '' }}
+        if: ${{ !cancelled() }}
         with:
           node-version: '24'
-      - name: Test all Discovery web production files when present
-        if: ${{ !cancelled() && hashFiles('services/discovery/static/*.js', 'services/discovery/static/*.mjs') != '' }}
+      - name: Install locked JavaScript test tools
+        if: ${{ !cancelled() }}
         working-directory: services/discovery
         run: |
           npm install -g pnpm@11.25.0 --ignore-scripts
           pnpm install --frozen-lockfile --ignore-scripts
-          pnpm run test:coverage
+      - name: Test all Discovery web production files when present
+        if: ${{ !cancelled() && hashFiles('services/discovery/static/*.js', 'services/discovery/static/*.mjs') != '' }}
+        working-directory: services/discovery
+        run: pnpm run test:coverage
+      - name: Test the beat runner and measure all shipped JavaScript
+        if: ${{ !cancelled() }}
+        working-directory: demos/beat-runner
+        run: npm run coverage:ci
       - name: Generate full Android HTML and XML from collected data
         if: ${{ !cancelled() }}
         working-directory: project

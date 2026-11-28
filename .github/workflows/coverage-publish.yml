@@ -99,15 +99,15 @@ jobs:
               let passing = true;
               text += '| Module | Covered / executable lines | Line coverage | >=80% |\n|---|---:|---:|---|\n';
               for (const [name, value] of modules) {
-                if (!['android','backend','web'].includes(name) || !Number.isSafeInteger(value.total) || !Number.isSafeInteger(value.covered) || value.total <= 0 || value.total > 10000000 || value.covered < 0 || value.covered > value.total) throw new Error('Invalid coverage counts');
+                if (!['android','backend','web','runner'].includes(name) || !Number.isSafeInteger(value.total) || !Number.isSafeInteger(value.covered) || value.total <= 0 || value.total > 10000000 || value.covered < 0 || value.covered > value.total) throw new Error('Invalid coverage counts');
                 const ok = value.covered * 100 >= value.total * 80;
                 passing &&= ok;
                 text += `| ${name} | ${value.covered}/${value.total} | ${(100 * value.covered / value.total).toFixed(4)}% | ${ok ? 'PASS' : 'FAIL'} |\n`;
               }
-              if (!data.tests.jvm || !data.tests.android) throw new Error('Missing required test suites');
+              if (!data.tests.jvm || !data.tests.android || (data.modules.runner && !data.tests.runner)) throw new Error('Missing required test suites');
               text += '\nExecuted tests:\n';
               for (const [name, value] of Object.entries(data.tests)) {
-                if (!['jvm','android','backend','web'].includes(name)) throw new Error('Invalid suite');
+                if (!['jvm','android','backend','web','runner'].includes(name)) throw new Error('Invalid suite');
                 for (const k of ['tests','failures','errors','skipped']) if (!Number.isSafeInteger(value[k]) || value[k] < 0 || value[k] > 1000000) throw new Error('Invalid test counts');
                 if (value.tests - value.skipped <= 0 || value.failures || value.errors) passing = false;
                 text += `- ${name}: ${value.tests} tests, ${value.failures} failures, ${value.errors} errors, ${value.skipped} skipped\n`;
